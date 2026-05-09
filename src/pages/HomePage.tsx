@@ -1,4 +1,5 @@
 import Hero from "../components/Hero";
+import AboutUs from "../components/AboutUs";
 import TrustedPlatforms from "../components/TrustedPlatforms";
 import ServiceGrid from "../components/ServiceGrid";
 import WhyChooseUs from "../components/WhyChooseUs";
@@ -12,8 +13,7 @@ import WorkingProcess from "../components/WorkingProcess";
 import FAQ from "../components/FAQ";
 import ToolsLogoBar from "../components/ToolsLogoBar";
 import Comparison from "../components/Comparison";
-import Team from "../components/Team";
-import Awards from "../components/Awards";
+
 import NewsletterCTA from "../components/NewsletterCTA";
 import servicesData from "../data/services.json";
 import { blogPosts } from "../data/blogData";
@@ -35,9 +35,8 @@ export default function HomePage() {
       <IndustryExpertise />
       <SuccessStories />
       <Testimonials />
-      <Team />
       <WorkingProcess />
-      <Awards />
+      <AboutUs />
       <FAQ />
       <NewsletterCTA />
       <LatestInsights initialPosts={posts} />

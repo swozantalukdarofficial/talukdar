@@ -86,23 +86,6 @@ export default function Hero() {
               <span>See Our Success</span>
             </button>
           </div>
-
-          <div className="flex items-center gap-8 pt-8 border-t border-white/5">
-            <div>
-              <div className="text-2xl font-black text-white">500+</div>
-              <div className="text-[10px] text-neutral-500 uppercase tracking-widest font-bold">Projects Done</div>
-            </div>
-            <div className="w-[1px] h-8 bg-white/10"></div>
-            <div>
-              <div className="text-2xl font-black text-white">98%</div>
-              <div className="text-[10px] text-neutral-500 uppercase tracking-widest font-bold">Client Success</div>
-            </div>
-            <div className="w-[1px] h-8 bg-white/10"></div>
-            <div>
-              <div className="text-2xl font-black text-white">10X</div>
-              <div className="text-[10px] text-neutral-500 uppercase tracking-widest font-bold">Average ROI</div>
-            </div>
-          </div>
         </motion.div>
 
         <motion.div

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo from "../assets/Webestone-Logo.png";
 import {
 	Facebook,
 	Instagram,
@@ -42,12 +43,17 @@ export default function Footer() {
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
 					{/* Column 1: Brand & Contact (4 cols) */}
 					<div className="lg:col-span-4 space-y-8">
-						<div className="flex items-start gap-4">
-							<div className="w-16 h-16 bg-neon-green rounded-lg flex items-center justify-center text-blue-700 font-bold text-4xl shrink-0 shadow-lg shadow-neon-green/20">
-								W
+						<div className="space-y-6">
+							<div className="h-12 flex items-center">
+								<img
+									src={logo}
+									alt="Webestone Logo"
+									className="h-full w-auto object-contain"
+								/>
 							</div>
-							<div className="space-y-1 pt-1">
-								<p className="text-white font-medium">Drop us an email</p>
+							
+							<div className="space-y-1">
+								<p className="text-white font-medium text-sm">Drop us an email</p>
 								<a
 									href={`mailto:${socials.email}`}
 									className="text-lg text-white font-bold hover:text-neon-green transition-colors block"
@@ -217,7 +223,7 @@ export default function Footer() {
 						<div className="self-start lg:self-end mt-8 lg:mt-auto">
 							<a
 								href={`mailto:${socials.email}`}
-								className="inline-flex items-center gap-3 bg-neon-green hover:bg-neon-green/90 text-blue-900 px-6 py-3 rounded-lg font-bold transition-colors shadow-lg shadow-neon-green/20"
+								className="inline-flex items-center gap-3 bg-[#87E65C] hover:bg-[#87E65C]/90 text-blue-900 px-6 py-3 rounded-lg font-bold transition-colors shadow-lg shadow-[#87E65C]/20"
 							>
 								<div className="p-1 bg-white/20 rounded">
 									<Mail className="w-6 h-6" />

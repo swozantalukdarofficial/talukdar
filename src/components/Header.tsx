@@ -242,7 +242,7 @@ export default function Header() {
 				{/* CTA Button */}
 				<div className="hidden lg:flex items-center gap-4">
 					<Link to="/contact">
-						<MagneticButton className="px-6 py-2.5 bg-neon-green text-black font-bold text-sm rounded-full hover:bg-neon-green/90 transition-all flex items-center gap-2">
+						<MagneticButton className="px-6 py-2.5 bg-[#87E65C] text-black font-bold text-sm rounded-full hover:bg-[#87E65C]/90 transition-all flex items-center gap-2">
 							<span>Get a Proposal</span>
 							<ArrowRight className="w-4 h-4" />
 						</MagneticButton>
