@@ -106,7 +106,7 @@ export default function Header() {
 			title: "WordPress Web",
 			description: "CMS Solutions",
 			icon: Layout, 
-			href: "/services/web-development",
+			href: "/services/wordpress-development",
 		},
 		{
 			title: "Web Design (UI UX)",
@@ -115,10 +115,10 @@ export default function Header() {
 			href: "/services/ui-ux-design",
 		},
 		{
-			title: "AI Solutions",
-			description: "AI-Driven Marketing",
-			icon: Bot,
-			href: "/services/ai-solutions",
+			title: "Shopify Development",
+			description: "E-commerce Solutions",
+			icon: ShoppingBag,
+			href: "/services/shopify-development",
 		},
 	];
 

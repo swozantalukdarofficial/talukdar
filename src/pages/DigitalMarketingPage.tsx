@@ -209,7 +209,7 @@ export default function DigitalMarketingPage() {
 						</motion.p>
 						<motion.div variants={heroItem}>
 							<Link to="/contact">
-								<MagneticButton className="px-8 py-3 bg-neon-green text-black font-bold rounded-full shadow-[0_0_20px_rgba(0,255,157,0.3)] hover:shadow-[0_0_30px_rgba(0,255,157,0.5)] transition-shadow hover:bg-[#87E65C]">
+								<MagneticButton className="px-8 py-3 bg-neon-green text-black font-bold rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)] transition-shadow hover:bg-[#87E65C]">
 									Get In Touch
 								</MagneticButton>
 							</Link>

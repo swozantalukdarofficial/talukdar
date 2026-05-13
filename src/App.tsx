@@ -20,9 +20,14 @@ import SocialMediaMarketingPage from "./pages/SocialMediaMarketingPage";
 import AiSeoPage from "./pages/AiSeoPage";
 import SeoPage from "./pages/SeoPage";
 import WordpressDevelopmentPage from "./pages/WordpressDevelopmentPage";
+import WordpressServicePage from "./pages/WordpressServicePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import MotionGraphicsPage from "./pages/MotionGraphicsPage";
+import UiUxDesignPage from "./pages/UiUxDesignPage";
+import ShopifyDevelopmentPage from "./pages/ShopifyDevelopmentPage";
+import SitemapPage from "./pages/SitemapPage";
 
 export default function App() {
 	return (
@@ -46,9 +51,12 @@ export default function App() {
 					<Route path="/services/video-editing" element={<VideoEditingPage />} />
 					<Route path="/services/ppc" element={<PPCPage />} />
 					<Route path="/services/social-media-marketing" element={<SocialMediaMarketingPage />} />
-					<Route path="/services/ai-solutions" element={<AiSeoPage />} />
+					<Route path="/services/shopify-development" element={<ShopifyDevelopmentPage />} />
 					<Route path="/services/web-development" element={<WordpressDevelopmentPage />} />
+					<Route path="/services/wordpress-development" element={<WordpressServicePage />} />
 					<Route path="/services/content-writing" element={<ContentWritingPage />} />
+					<Route path="/services/motion-graphics" element={<MotionGraphicsPage />} />
+					<Route path="/services/ui-ux-design" element={<UiUxDesignPage />} />
 					
 					{/* Dynamic Service Detail Page (Catch-all for other services) */}
 					<Route path="/services/:slug" element={<ServiceDetailPage />} />
@@ -58,6 +66,7 @@ export default function App() {
 						element={<TermsAndConditionsPage />}
 					/>
 					<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+					<Route path="/sitemap" element={<SitemapPage />} />
 					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
 				<Footer />

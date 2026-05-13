@@ -370,7 +370,7 @@ export default function ContentWritingPage() {
             >
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-neon-green text-black font-bold rounded-full shadow-[0_0_25px_rgba(0,255,157,0.35)] hover:shadow-[0_0_40px_rgba(0,255,157,0.55)] hover:scale-105 transition-all duration-300 text-sm"
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-neon-green text-black font-bold rounded-full shadow-[0_0_25px_rgba(135,230,92,0.35)] hover:shadow-[0_0_40px_rgba(135,230,92,0.55)] hover:scale-105 transition-all duration-300 text-sm"
               >
                 Get a Free Content Strategy
                 <ArrowRight className="w-4 h-4" />
@@ -954,7 +954,7 @@ export default function ContentWritingPage() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-neon-green text-black font-bold rounded-full shadow-[0_0_25px_rgba(0,255,157,0.4)] hover:shadow-[0_0_40px_rgba(0,255,157,0.6)] hover:scale-105 transition-all duration-300"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-neon-green text-black font-bold rounded-full shadow-[0_0_25px_rgba(135,230,92,0.4)] hover:shadow-[0_0_40px_rgba(135,230,92,0.6)] hover:scale-105 transition-all duration-300"
                   >
                     Request a Free Quote
                     <ArrowRight className="w-5 h-5" />

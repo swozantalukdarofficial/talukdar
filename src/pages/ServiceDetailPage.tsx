@@ -45,7 +45,7 @@ export default function ServiceDetailPage() {
 						</p>
 						<Link
 							to="/contact"
-							className="inline-block px-8 py-4 bg-neon-green text-black font-bold rounded-full shadow-[0_0_20px_rgba(0,255,157,0.3)] hover:shadow-[0_0_30px_rgba(0,255,157,0.5)] transition-all transform hover:scale-105"
+							className="inline-block px-8 py-4 bg-neon-green text-black font-bold rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)] transition-all transform hover:scale-105"
 						>
 							Get In Touch
 						</Link>
@@ -103,7 +103,7 @@ export default function ServiceDetailPage() {
 						>
 							<Link
 								to="/contact"
-								className="inline-block px-8 py-3 bg-neon-green text-black font-bold rounded-full shadow-[0_0_20px_rgba(0,255,157,0.3)] hover:shadow-[0_0_30px_rgba(0,255,157,0.5)] transition-all transform hover:scale-105"
+								className="inline-block px-8 py-3 bg-neon-green text-black font-bold rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)] transition-all transform hover:scale-105"
 							>
 								Get In Touch
 							</Link>

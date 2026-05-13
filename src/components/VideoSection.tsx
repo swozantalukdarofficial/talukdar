@@ -246,7 +246,7 @@ export default function VideoSection() {
 													className="absolute inset-0 rounded-full bg-neon-green/20"
 												/>
 												{/* Play circle */}
-												<div className="relative w-20 h-20 bg-neon-green rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(0,255,157,0.5)] group-hover:shadow-[0_0_60px_rgba(0,255,157,0.8)] transition-all duration-300">
+												<div className="relative w-20 h-20 bg-neon-green rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(135,230,92,0.5)] group-hover:shadow-[0_0_60px_rgba(135,230,92,0.8)] transition-all duration-300">
 													<Play className="w-8 h-8 text-black fill-black ml-1" />
 												</div>
 											</motion.div>

@@ -103,7 +103,7 @@ export default function AboutUs() {
               Led by AI
               {/* Green swoosh underline effect */}
               <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 10C50 2 150 2 198 10" stroke="#00FF9D" strokeWidth="3" strokeLinecap="round" />
+                <path d="M2 10C50 2 150 2 198 10" stroke="#87E65C" strokeWidth="3" strokeLinecap="round" />
               </svg>
             </span>
           </h2>

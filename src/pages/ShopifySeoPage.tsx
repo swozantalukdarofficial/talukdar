@@ -139,7 +139,7 @@ export default function ShopifySeoPage() {
 						<div className="pt-6">
 							<Link
 								to="/contact"
-								className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-green text-black font-bold text-lg rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(0,255,157,0.3)] transition-all duration-300 hover:bg-[#87E65C]"
+								className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-green text-black font-bold text-lg rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(135,230,92,0.3)] transition-all duration-300 hover:bg-[#87E65C]"
 							>
 								Get a quote
 								<ArrowRight className="w-5 h-5" />
@@ -155,9 +155,9 @@ export default function ShopifySeoPage() {
 						className="relative z-10 flex justify-center lg:justify-end"
 					>
 						<img
-							src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1000&auto=format&fit=crop"
+							src="/shopify_seo_hero.png"
 							alt="Shopify SEO E-commerce Illustration"
-							className="w-full max-w-sm md:max-w-md lg:max-w-lg drop-shadow-[0_0_50px_rgba(0,255,157,0.15)] hover:-translate-y-4 transition-transform duration-500"
+							className="w-full max-w-sm md:max-w-md lg:max-w-lg drop-shadow-[0_0_50px_rgba(135,230,92,0.25)] hover:-translate-y-4 transition-transform duration-700"
 						/>
 					</motion.div>
 				</div>

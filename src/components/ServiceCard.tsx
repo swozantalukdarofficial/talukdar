@@ -26,7 +26,7 @@ export default function ServiceCard({
 				stiffness: 100,
 			}}
 			viewport={{ once: true }}
-			className="group relative p-8 rounded-2xl bg-white/5 border border-white/10 overflow-hidden hover:border-neon-green/50 hover:shadow-[0_0_30px_rgba(0,255,157,0.1)] transition-all duration-500 backdrop-blur-sm"
+			className="group relative p-8 rounded-2xl bg-white/5 border border-white/10 overflow-hidden hover:border-neon-green/50 hover:shadow-[0_0_30px_rgba(135,230,92,0.1)] transition-all duration-500 backdrop-blur-sm"
 		>
 			{/* Hover Gradient Overlay */}
 			<div className="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

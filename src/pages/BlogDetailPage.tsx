@@ -68,7 +68,6 @@ export default function BlogDetailPage() {
 					}
 				</div>
 				<div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-				<div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
 
 				<div className="relative z-10 container max-w-4xl px-6 text-center space-y-6">
 					<motion.div

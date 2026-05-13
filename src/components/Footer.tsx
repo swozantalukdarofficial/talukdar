@@ -18,7 +18,7 @@ const services = [
 	{ name: "UI/UX Design", href: "/services/ui-ux-design" },
 	{ name: "Video Editing", href: "/services/video-editing" },
 	{ name: "Motion Graphics", href: "/services/motion-graphics" },
-	{ name: "AI Solutions", href: "/services/ai-solutions" },
+	{ name: "Shopify Development", href: "/services/shopify-development" },
 ];
 
 const socials = {
@@ -160,6 +160,14 @@ export default function Footer() {
 										className="hover:text-neon-green transition-colors text-sm"
 									>
 										Privacy Policy
+									</Link>
+								</li>
+								<li>
+									<Link
+										to="/sitemap"
+										className="hover:text-neon-green transition-colors text-sm"
+									>
+										Sitemap
 									</Link>
 								</li>
 							</ul>

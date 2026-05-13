@@ -1,0 +1,613 @@
+import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { 
+  ShoppingBag, 
+  Zap, 
+  Smartphone, 
+  Globe, 
+  BarChart3, 
+  RefreshCcw, 
+  CheckCircle2, 
+  ArrowRight,
+  ChevronDown,
+  Figma,
+  Code2,
+  Rocket
+} from "lucide-react";
+import Awards from "../components/Awards";
+import TestimonialSlider from "../components/TestimonialSlider";
+import Counter from "../components/Counter";
+import ShopifyPortfolio from "../components/ShopifyPortfolio";
+
+const services = [
+  {
+    title: "Custom Theme Development",
+    desc: "Bespoke Shopify themes built from scratch with Liquid, optimized for speed and conversion.",
+    icon: <Figma className="w-8 h-8 text-pink-400" />,
+    span: "md:col-span-2 md:row-span-2 bg-gradient-to-br from-pink-900/20 to-black border-pink-500/20"
+  },
+  {
+    title: "Shopify App Integration",
+    desc: "Seamless connection with ERP, CRM, and marketing tools.",
+    icon: <Zap className="w-6 h-6 text-yellow-400" />,
+    span: "md:col-span-1 bg-black border-white/10"
+  },
+  {
+    title: "Store Migration",
+    desc: "Safe migration from WooCommerce, Magento, or BigCommerce.",
+    icon: <RefreshCcw className="w-6 h-6 text-cyan-400" />,
+    span: "md:col-span-1 bg-black border-white/10"
+  },
+  {
+    title: "Headless Commerce",
+    desc: "Cutting-edge headless solutions using Hydrogen and Oxygen for ultimate flexibility.",
+    icon: <Rocket className="w-8 h-8 text-emerald-400" />,
+    span: "md:col-span-2 bg-gradient-to-r from-neutral-900 to-black border-white/10"
+  }
+];
+
+const stats = [
+  { value: 150, suffix: "+", label: "Stores Launched", sub: "Global E-commerce Success" },
+  { value: 45, suffix: "%", label: "Avg. Conversion Boost", sub: "Through UX Optimization" },
+  { value: 99.9, suffix: "%", label: "Uptime Guaranteed", sub: "Shopify Plus Infrastructure" },
+  { value: 12, suffix: "M+", label: "GMV Handled", sub: "For Our Clients Annually" },
+];
+
+const features = [
+  { title: "Mobile-First Design", desc: "Over 70% of e-commerce traffic is mobile. We ensure your store looks stunning on every device.", icon: <Smartphone className="w-6 h-6" /> },
+  { title: "SEO Optimized", desc: "Built-in SEO best practices to ensure your products rank high on Google from day one.", icon: <Globe className="w-6 h-6" /> },
+  { title: "Conversion Focus", desc: "Every pixel is placed with conversion in mind, reducing cart abandonment and boosting AOV.", icon: <BarChart3 className="w-6 h-6" /> },
+];
+
+const processSteps = [
+  { step: "01", title: "Strategy & Audit", desc: "We analyze your business goals and current store performance to create a roadmap." },
+  { step: "02", title: "UX/UI Design", desc: "High-fidelity mockups focusing on brand identity and customer journey." },
+  { step: "03", title: "Liquid Development", desc: "Clean, performant code following Shopify's latest standards." },
+  { step: "04", title: "App & Tech Stack", desc: "Configuring the best apps and integrations for your specific needs." },
+  { step: "05", title: "QA & Testing", desc: "Rigorous testing across browsers and devices to ensure a flawless launch." },
+  { step: "06", title: "Launch & Support", desc: "Ongoing maintenance and optimization to keep your store growing." },
+];
+
+const faqs = [
+  { q: "Why should I choose Shopify over WooCommerce?", a: "Shopify is a hosted platform, meaning you don't have to worry about server maintenance, security updates, or technical glitches. It's built specifically for commerce and scales effortlessly." },
+  { q: "Can you migrate my existing store to Shopify?", a: "Yes, we specialize in migrating data, SEO equity, and design from platforms like WooCommerce, Magento, and Wix to Shopify with zero downtime." },
+  { q: "Do you build custom Shopify apps?", a: "Absolutely. If a public app doesn't meet your needs, we build private Shopify apps tailored to your specific business logic." },
+  { q: "How long does it take to launch a store?", a: "A custom Shopify project typically takes 4 to 8 weeks depending on complexity, while a theme-based setup can be launched in 2 to 3 weeks." },
+];
+
+function FaqItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <motion.div layout onClick={() => setOpen(!open)} className="border-b border-white/10 py-5 cursor-pointer group">
+      <div className="flex items-center justify-between gap-4">
+        <h4 className="text-lg font-medium text-white group-hover:text-emerald-400 transition-colors">{q}</h4>
+        <div className={`w-8 h-8 rounded-full border border-white/20 flex items-center justify-center transition-all ${open ? 'bg-emerald-500 border-emerald-500 text-white rotate-180' : 'text-neutral-400'}`}>
+          <ChevronDown className="w-4 h-4" />
+        </div>
+      </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="overflow-hidden"
+          >
+            <p className="pt-4 text-neutral-400 leading-relaxed pr-8">{a}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
+export default function ShopifyDevelopmentPage() {
+  const containerRef = useRef(null);
+  
+  return (
+    <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-emerald-500/30">
+      
+      {/* 1. HERO SECTION (UPGRADED) */}
+      <section className="relative z-10 pt-40 pb-20 min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
+        {/* Animated Mesh Gradients */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.2, 1],
+              x: [0, 50, 0],
+              y: [0, 30, 0]
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full bg-emerald-600/10 blur-[120px]" 
+          />
+          <motion.div 
+            animate={{ 
+              scale: [1.2, 1, 1.2],
+              x: [0, -50, 0],
+              y: [0, -30, 0]
+            }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-blue-600/10 blur-[120px]" 
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+          {/* Left Side: Content */}
+          <div className="text-left space-y-8">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-sm font-semibold backdrop-blur-md"
+            >
+              <ShoppingBag className="w-4 h-4" />
+              Scale to 7-Figures with Shopify Plus
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-6xl md:text-8xl font-black leading-[0.95] tracking-tight"
+            >
+              Build Your <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-400">
+                Empire.
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.8 }}
+              className="text-lg md:text-xl text-neutral-400 max-w-xl leading-relaxed"
+            >
+              We don't just build websites; we architect high-conversion e-commerce engines. Engineered for speed, designed for luxury, and optimized for maximum profit.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="flex flex-wrap gap-4"
+            >
+              <Link to="/contact" className="px-10 py-5 bg-[#87E65C] text-black font-bold rounded-full hover:scale-105 transition-all flex items-center gap-2 shadow-[0_0_50px_rgba(135,230,92,0.25)]">
+                Launch My Project <ArrowRight className="w-5 h-5" />
+              </Link>
+              <button className="px-10 py-5 border border-white/20 text-white font-bold rounded-full hover:bg-white/5 transition-all backdrop-blur-sm">
+                View Showcase
+              </button>
+            </motion.div>
+          </div>
+
+          {/* Right Side: Interactive 3D Mockup */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            className="relative h-[600px] hidden lg:block"
+          >
+            {/* Main Store Mockup */}
+            <motion.div 
+              animate={{ y: [0, -20, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-2xl border border-white/20 rounded-[2.5rem] shadow-[0_0_100px_rgba(16,185,129,0.1)] p-8 overflow-hidden"
+            >
+               {/* Browser UI */}
+               <div className="flex gap-2 mb-8">
+                  <div className="w-3 h-3 rounded-full bg-rose-500" />
+                  <div className="w-3 h-3 rounded-full bg-amber-500" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-500" />
+               </div>
+               
+               {/* Dashboard Content */}
+               <div className="space-y-6">
+                  <div className="h-40 w-full bg-emerald-500/10 rounded-2xl border border-emerald-500/20 p-6 flex flex-col justify-end">
+                     <div className="h-2 w-1/3 bg-emerald-500/40 rounded mb-2" />
+                     <div className="h-8 w-1/2 bg-white/20 rounded" />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                     <div className="h-32 bg-white/5 rounded-2xl border border-white/10" />
+                     <div className="h-32 bg-white/5 rounded-2xl border border-white/10" />
+                  </div>
+                  <div className="h-12 w-full bg-emerald-500 rounded-full" />
+               </div>
+            </motion.div>
+
+            {/* Floating Revenue Card */}
+            <motion.div 
+              animate={{ y: [-10, 10, -10], x: [0, 10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-10 -right-10 p-6 bg-black/60 backdrop-blur-xl border border-emerald-500/30 rounded-3xl shadow-2xl z-20"
+            >
+               <div className="text-emerald-400 text-xs font-bold mb-1 uppercase tracking-tighter">Total Revenue</div>
+               <div className="text-3xl font-black text-white">$124,580.00</div>
+               <div className="mt-2 flex items-center gap-2 text-emerald-400 text-sm font-bold">
+                  <span className="flex items-center justify-center w-4 h-4 bg-emerald-500/20 rounded-full text-[10px]">↑</span>
+                  +24.5%
+               </div>
+            </motion.div>
+
+            {/* Floating Order Bubble */}
+            <motion.div 
+              animate={{ y: [20, -20, 20], x: [-10, 0, -10] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute bottom-10 -left-10 p-4 bg-blue-600/20 backdrop-blur-xl border border-blue-400/30 rounded-2xl shadow-2xl z-20 flex items-center gap-4"
+            >
+               <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+                  <ShoppingBag className="w-6 h-6 text-white" />
+               </div>
+               <div>
+                  <div className="text-white text-xs font-bold">New Order!</div>
+                  <div className="text-neutral-400 text-[10px]">Just now • $450.00</div>
+               </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 2. TRUSTED BY SECTION */}
+      <Awards />
+
+      {/* 3. SERVICES BENTO SECTION (UPGRADED) */}
+      <section className="py-24 px-6 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div className="max-w-2xl">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="text-emerald-500 font-mono text-sm font-bold tracking-[0.3em] uppercase mb-4"
+              >
+                Our Expertise
+              </motion.div>
+              <h2 className="text-5xl md:text-7xl font-black mb-4 tracking-tighter">Shopify <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Capabilities.</span></h2>
+            </div>
+            <p className="text-neutral-400 text-lg max-w-md pb-4">
+              We leverage the full power of Shopify's infrastructure to build scalable, high-performance commerce engines.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+            {services.map((item, i) => (
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={`relative p-10 rounded-[2.5rem] border border-white/10 overflow-hidden group transition-all duration-500 hover:border-emerald-500/50 hover:shadow-[0_0_80px_rgba(16,185,129,0.1)] ${item.span}`}
+              >
+                {/* Background Decor */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                
+                {/* Abstract Visuals based on index */}
+                {i === 0 && (
+                   <div className="absolute top-12 right-12 w-64 h-64 opacity-10 group-hover:opacity-30 transition-opacity pointer-events-none">
+                      <div className="font-mono text-[10px] text-emerald-400 space-y-1">
+                         <div>&lt;section class="hero"&gt;</div>
+                         <div className="pl-4">{"{{ section.settings.title }}"}</div>
+                         <div className="pl-4">&lt;div class="product-grid"&gt;</div>
+                         <div className="pl-8">{"{% for product in collection.products %}"}</div>
+                         <div className="pl-12">&lt;img src="{"{{ product.image | img_url }}"}" /&gt;</div>
+                         <div className="pl-8">{"{% endfor %}"}</div>
+                         <div>&lt;/section&gt;</div>
+                      </div>
+                   </div>
+                )}
+                {i === 3 && (
+                   <div className="absolute -bottom-10 -right-10 w-80 h-80 opacity-5 group-hover:opacity-20 transition-opacity pointer-events-none">
+                      <div className="grid grid-cols-4 gap-4">
+                         {[...Array(16)].map((_, j) => (
+                           <div key={j} className="aspect-square border border-emerald-500/40 rounded-lg flex items-center justify-center">
+                              <Zap className="w-4 h-4 text-emerald-500" />
+                           </div>
+                         ))}
+                      </div>
+                   </div>
+                )}
+
+                <div className="relative z-10 h-full flex flex-col justify-between">
+                  <div className="space-y-6">
+                    <motion.div 
+                      whileHover={{ rotate: 15, scale: 1.1 }}
+                      className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-black transition-all duration-500 shadow-xl"
+                    >
+                      {item.icon}
+                    </motion.div>
+                    <div className="space-y-4">
+                      <h3 className="text-3xl font-black text-white group-hover:text-emerald-400 transition-colors leading-tight">
+                        {item.title}
+                      </h3>
+                      <p className="text-neutral-400 text-base md:text-lg leading-relaxed max-w-sm group-hover:text-neutral-300 transition-colors">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-2 text-emerald-500 text-sm font-bold opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0">
+                    Learn More <ArrowRight className="w-4 h-4" />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. STATS COUNTER SECTION */}
+      <section className="py-24 px-6 relative z-10 border-y border-white/5 bg-black">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+            {stats.map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="text-4xl md:text-6xl font-black text-emerald-400 mb-2">
+                  <Counter value={stat.value} suffix={stat.suffix} />
+                </div>
+                <div className="text-lg font-bold mb-1">{stat.label}</div>
+                <div className="text-xs text-neutral-500 uppercase tracking-widest">{stat.sub}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. WHY SHOPIFY? SECTION */}
+      <section className="py-24 px-6 relative z-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">The Platform of <br /><span className="text-emerald-400">Future E-commerce</span></h2>
+            <div className="space-y-8">
+              {features.map((f, i) => (
+                <div key={i} className="flex gap-6 group">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0 group-hover:bg-emerald-500 group-hover:text-black transition-all">
+                    {f.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-2">{f.title}</h3>
+                    <p className="text-neutral-400 leading-relaxed">{f.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="relative aspect-square bg-neutral-900 rounded-3xl border border-white/5 overflow-hidden">
+             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-transparent" />
+             <div className="p-12 h-full flex flex-col justify-center text-center">
+                <ShoppingBag className="w-24 h-24 text-emerald-500 mx-auto mb-8 animate-bounce" />
+                <h4 className="text-3xl font-bold mb-4">Shopify Plus Partner</h4>
+                <p className="text-neutral-400 italic">"Empowering brands to scale without friction."</p>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. OUR PROCESS SECTION (UPGRADED) */}
+      <section className="py-24 px-6 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-emerald-500 font-mono text-sm font-bold tracking-[0.4em] uppercase mb-4"
+            >
+              Execution Strategy
+            </motion.div>
+            <h2 className="text-5xl md:text-7xl font-black mb-6">Our Battle-Tested <br /><span className="text-emerald-400">Roadmap.</span></h2>
+            <p className="text-neutral-400 max-w-2xl mx-auto text-lg">From initial discovery to a global scale-up, we follow a precise methodology to ensure your store's success.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-white/10 rounded-[3rem] overflow-hidden bg-white/[0.02]">
+            {processSteps.map((step, i) => (
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group relative p-12 border-b border-r border-white/10 hover:bg-emerald-500/[0.02] transition-all duration-500"
+              >
+                {/* Large Background Number */}
+                <div className="absolute top-8 right-8 text-8xl font-black text-white/[0.03] group-hover:text-emerald-500/10 transition-colors pointer-events-none select-none">
+                   {step.step}
+                </div>
+
+                <div className="relative z-10 space-y-6">
+                   <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold group-hover:bg-emerald-500 group-hover:text-black transition-all">
+                      {step.step}
+                   </div>
+                   
+                   <div className="space-y-4">
+                      <h3 className="text-3xl font-bold text-white group-hover:text-emerald-400 transition-colors">{step.title}</h3>
+                      <p className="text-neutral-400 leading-relaxed group-hover:text-neutral-300 transition-colors">
+                         {step.desc}
+                      </p>
+                   </div>
+                </div>
+
+                {/* Hover Glow */}
+                <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+             <div className="inline-flex items-center gap-4 p-2 pl-6 pr-2 rounded-full bg-white/5 border border-white/10">
+                <span className="text-sm text-neutral-400">Want to see our full detailed checklist?</span>
+                <button className="px-6 py-2 bg-emerald-500 text-black font-bold rounded-full text-xs hover:bg-emerald-400 transition-all">
+                   Get PDF Roadmap
+                </button>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. PORTFOLIO MARQUEE SECTION */}
+      <ShopifyPortfolio />
+
+      {/* 8. APP INTEGRATIONS SECTION (UPGRADED) */}
+      <section className="py-24 px-6 relative z-10 overflow-hidden bg-white/[0.01]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+             <motion.div
+               initial={{ opacity: 0, x: -20 }}
+               whileInView={{ opacity: 1, x: 0 }}
+               viewport={{ once: true }}
+               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold mb-6"
+             >
+               <Zap className="w-3 h-3" /> Tech Stack Connectivity
+             </motion.div>
+             <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">Built for <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Seamless Integrations</span></h2>
+             <p className="text-neutral-400 text-lg mb-8 leading-relaxed">
+               Your store is only as good as the tools it talks to. We build a unified commerce ecosystem that synchronizes your marketing, shipping, and customer support.
+             </p>
+             <div className="flex flex-wrap gap-3">
+                {["Klaviyo", "Gorgias", "Yotpo", "Recharge", "Nosto", "ShipStation", "Zendesk"].map((app, i) => (
+                  <motion.span 
+                    key={i} 
+                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+                    className="px-5 py-2 rounded-xl bg-white/5 border border-white/10 text-sm font-bold text-neutral-300 transition-all cursor-default"
+                  >
+                    {app}
+                  </motion.span>
+                ))}
+             </div>
+          </div>
+
+          {/* Integration Hub Visual */}
+          <div className="relative h-[400px] flex items-center justify-center">
+             <div className="absolute inset-0 bg-blue-500/5 blur-[100px] rounded-full" />
+             
+             {/* Center Shopify Logo */}
+             <motion.div 
+               animate={{ scale: [1, 1.1, 1] }}
+               transition={{ duration: 4, repeat: Infinity }}
+               className="w-24 h-24 rounded-3xl bg-emerald-500 flex items-center justify-center shadow-[0_0_50px_rgba(16,185,129,0.4)] z-10"
+             >
+                <ShoppingBag className="w-12 h-12 text-white" />
+             </motion.div>
+
+             {/* Orbiting Apps */}
+             {[0, 60, 120, 180, 240, 300].map((angle, i) => (
+               <motion.div
+                 key={i}
+                 initial={{ opacity: 0 }}
+                 animate={{ 
+                    opacity: 1,
+                    x: Math.cos(angle * Math.PI / 180) * 140,
+                    y: Math.sin(angle * Math.PI / 180) * 140,
+                 }}
+                 transition={{ delay: i * 0.1, duration: 0.5 }}
+                 className="absolute w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md"
+               >
+                  <Code2 className="w-5 h-5 text-neutral-500" />
+                  {/* Connection Line */}
+                  <div 
+                    className="absolute h-[1px] bg-gradient-to-r from-emerald-500/50 to-transparent origin-left"
+                    style={{ 
+                      width: '140px', 
+                      transform: `rotate(${angle + 180}deg)`,
+                      left: '50%',
+                      top: '50%',
+                      zIndex: -1
+                    }}
+                  />
+               </motion.div>
+             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 9. MIGRATION EXPERTS SECTION (UPGRADED) */}
+      <section className="py-24 px-6 relative z-10">
+        <div className="max-w-7xl mx-auto rounded-[3rem] bg-gradient-to-br from-neutral-900 to-black border border-white/5 overflow-hidden">
+           <div className="grid grid-cols-1 lg:grid-cols-2">
+              <div className="p-12 md:p-20 space-y-8">
+                 <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                    <RefreshCcw className="w-8 h-8 text-emerald-400" />
+                 </div>
+                 <h2 className="text-4xl md:text-5xl font-black tracking-tight">Zero-Friction <br /><span className="text-emerald-400">Migration.</span></h2>
+                 <p className="text-neutral-400 text-lg leading-relaxed">
+                   Outgrowing your current platform? We specialize in complex migrations with 100% data integrity and zero SEO loss. 
+                 </p>
+                 <ul className="space-y-4">
+                    {[
+                      "Magento to Shopify Plus",
+                      "WooCommerce to Shopify",
+                      "BigCommerce & Custom Platforms",
+                      "Full SEO Equity Protection"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center gap-3 text-white font-bold">
+                        <CheckCircle2 className="w-5 h-5 text-emerald-500" /> {item}
+                      </li>
+                    ))}
+                 </ul>
+              </div>
+
+              <div className="relative bg-emerald-500/5 p-12 flex flex-col justify-center border-l border-white/5">
+                 <div className="space-y-6 relative">
+                    <div className="absolute left-6 top-0 bottom-0 w-[2px] bg-gradient-to-b from-emerald-500 to-transparent opacity-20" />
+                    
+                    {[
+                      { step: "Data Audit", desc: "Mapping products, orders & customers." },
+                      { step: "SEO Mapping", desc: "Redirecting 100% of your current URLs." },
+                      { step: "Launch Day", desc: "Seamless transition with no downtime." }
+                    ].map((s, i) => (
+                      <motion.div 
+                        key={i} 
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.2 }}
+                        className="relative pl-12"
+                      >
+                         <div className="absolute left-4 top-1 w-4 h-4 rounded-full bg-emerald-500 border-4 border-black z-10" />
+                         <h4 className="text-xl font-bold text-white mb-1">{s.step}</h4>
+                         <p className="text-neutral-500 text-sm">{s.desc}</p>
+                      </motion.div>
+                    ))}
+                 </div>
+
+                 <div className="mt-12 p-6 rounded-2xl bg-black border border-white/10 flex items-center justify-between">
+                    <div>
+                       <div className="text-xs text-neutral-500 uppercase font-bold tracking-widest">Success Rate</div>
+                       <div className="text-2xl font-black text-white">100.0%</div>
+                    </div>
+                    <div className="h-10 w-32 bg-emerald-500/20 rounded-full flex items-center justify-center text-emerald-400 text-xs font-bold border border-emerald-500/30">
+                       Verified Expert
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+      </section>
+
+      {/* 10. TESTIMONIALS SECTION */}
+      <TestimonialSlider />
+
+      {/* 11. FAQ SECTION */}
+      <section className="py-24 px-6 relative z-10 max-w-4xl mx-auto">
+        <h2 className="text-4xl font-bold text-center mb-12">Expert <span className="text-neutral-500">Shopify FAQs</span></h2>
+        <div className="border-t border-white/10">
+          {faqs.map((faq, i) => (
+            <FaqItem key={i} q={faq.q} a={faq.a} />
+          ))}
+        </div>
+      </section>
+
+      {/* 12. FINAL CTA SECTION */}
+      <section className="pb-32 px-6 relative z-10">
+        <div className="max-w-6xl mx-auto rounded-[3rem] overflow-hidden bg-[#0A0A0A] border border-white/5 py-24 px-12 text-center relative">
+          <div className="absolute inset-0 bg-emerald-500/5 blur-[100px] -z-10" />
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">Ready to Build Your <br /><span className="text-emerald-400">Empire?</span></h2>
+          <p className="text-neutral-400 text-lg max-w-2xl mx-auto mb-12">Let's build a Shopify store that stands out, scales effortlessly, and drives massive revenue.</p>
+          <Link to="/contact" className="inline-flex items-center gap-2 px-10 py-5 bg-[#87E65C] text-black font-bold rounded-full hover:scale-105 transition-all shadow-[0_0_50px_rgba(135,230,92,0.3)]">
+            Get Started Now <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
+      </section>
+
+    </main>
+  );
+}

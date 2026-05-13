@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 export default function BackgroundEffects() {
 	return (
 		<div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-      {/* Base Noise Texture to prevent banding (fata fata look) */}
-      <div className="absolute inset-0 opacity-[0.4] mix-blend-overlay pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
 
 			{/* Floating Orb 1 - Top Left */}
 			<motion.div

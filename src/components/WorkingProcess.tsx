@@ -79,7 +79,7 @@ export default function WorkingProcess() {
           <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/5 -translate-x-1/2 hidden md:block">
             <motion.div 
               style={{ height: lineHeight }}
-              className="w-full bg-gradient-to-b from-neon-green via-blue-500 to-purple-500 shadow-[0_0_15px_rgba(0,255,157,0.5)]"
+              className="w-full bg-gradient-to-b from-neon-green via-blue-500 to-purple-500 shadow-[0_0_15px_rgba(135,230,92,0.5)]"
             />
           </div>
 

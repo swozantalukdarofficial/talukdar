@@ -8,6 +8,7 @@ import {
 	Send,
 	CheckCircle,
 	MessageCircle,
+	ArrowRight,
 } from "lucide-react";
 
 const contactInfo = {
@@ -134,21 +135,24 @@ export default function ContactPage() {
 							</div>
 
 							{/* WhatsApp CTA */}
-							<div className="p-6 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/20">
-								<h3 className="text-white font-bold mb-2 flex items-center gap-2">
-									<MessageCircle className="text-[#25D366] w-5 h-5" />
-									Chat on WhatsApp
+							<div className="p-8 rounded-[2rem] bg-gradient-to-br from-[#25D366]/20 to-transparent border border-[#25D366]/20 relative overflow-hidden group">
+                                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                                    <MessageCircle className="w-24 h-24 text-[#25D366]" />
+                                </div>
+								<h3 className="text-2xl font-bold mb-2 flex items-center gap-3">
+									<MessageCircle className="text-[#25D366] w-6 h-6" />
+									Instant Chat
 								</h3>
-								<p className="text-neutral-400 text-sm mb-4">
-									Get an instant response via WhatsApp
+								<p className="text-neutral-400 mb-6 max-w-xs">
+									Need a quick answer? Chat with our experts directly on WhatsApp for instant support.
 								</p>
 								<a
 									href={`https://wa.me/8801333600272?text=Hi, I want to discuss a project.`}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white font-bold rounded-full hover:bg-[#20BD5A] transition-colors text-sm"
+									className="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white font-bold rounded-full hover:bg-[#20BD5A] hover:scale-105 transition-all text-sm shadow-[0_0_30px_rgba(37,211,102,0.3)]"
 								>
-									Start Chat
+									Start WhatsApp Chat <ArrowRight className="w-4 h-4" />
 								</a>
 							</div>
 						</motion.div>
@@ -194,7 +198,7 @@ export default function ContactPage() {
 								:	<motion.form
 										key="form"
 										onSubmit={handleSubmit}
-										className="space-y-6 p-8 md:p-10 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm"
+										className="space-y-6 p-8 md:p-10 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm shadow-2xl"
 									>
 										<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 											<div className="space-y-2">
@@ -284,7 +288,7 @@ export default function ContactPage() {
 										<button
 											type="submit"
 											disabled={isSubmitting}
-											className="w-full py-4 bg-neon-green text-black font-bold rounded-xl hover:bg-neon-green/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,255,157,0.3)] hover:shadow-[0_0_30px_rgba(0,255,157,0.5)]"
+											className="w-full py-4 bg-neon-green text-black font-bold rounded-xl hover:bg-neon-green/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)]"
 										>
 											{isSubmitting ?
 												<>
@@ -304,6 +308,95 @@ export default function ContactPage() {
 					</div>
 				</div>
 			</section>
+
+            {/* NEW SECTION: STRATEGY CALL */}
+            <section className="py-24 px-6 relative z-10 bg-white/[0.02] border-y border-white/5">
+                <div className="max-w-7xl mx-auto">
+                    <div className="bg-gradient-to-r from-neutral-900 to-black rounded-[3rem] p-10 md:p-20 border border-white/10 flex flex-col lg:flex-row items-center justify-between gap-12 overflow-hidden relative">
+                        <div className="absolute top-0 right-0 w-96 h-96 bg-neon-green/10 rounded-full blur-[100px] -z-10" />
+                        <div className="max-w-2xl space-y-6">
+                            <h2 className="text-4xl md:text-6xl font-black leading-tight">Book a Free <br /><span className="text-neon-green">Strategy Session</span></h2>
+                            <p className="text-neutral-400 text-lg">
+                                Prefer to speak with an expert directly? Book a 30-minute discovery call where we'll audit your current strategy and provide actionable insights.
+                            </p>
+                            <ul className="space-y-3">
+                                {[
+                                    "Free 30-minute consultation",
+                                    "Custom growth roadmap",
+                                    "Technical site audit (Live)"
+                                ].map((item, i) => (
+                                    <li key={i} className="flex items-center gap-3 text-white font-bold text-sm">
+                                        <CheckCircle className="w-5 h-5 text-neon-green" /> {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className="flex flex-col items-center gap-6">
+                             <div className="p-8 bg-white/5 border border-white/10 rounded-3xl text-center space-y-4 backdrop-blur-xl">
+                                <div className="text-neon-green font-bold text-sm uppercase tracking-[0.2em]">Next Available Slot</div>
+                                <div className="text-4xl font-black">Tomorrow</div>
+                                <div className="text-neutral-400 text-sm">9:30 AM - 11:00 AM</div>
+                                <button className="w-full py-4 bg-white text-black font-bold rounded-xl hover:scale-105 transition-all">
+                                    Schedule Meeting
+                                </button>
+                             </div>
+                             <p className="text-neutral-500 text-xs italic font-medium">Powered by Calendly</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* NEW SECTION: OUR PROCESS */}
+            <section className="py-24 px-6 relative z-10">
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl md:text-5xl font-bold mb-4">What Happens <span className="text-neon-green">Next?</span></h2>
+                        <p className="text-neutral-400">Our seamless process from inquiry to execution.</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {[
+                            { step: "01", title: "Review & Audit", desc: "Our team analyzes your inquiry and current digital presence within 24 hours." },
+                            { step: "02", title: "Discovery Call", desc: "We jump on a quick call to align on your business goals and specific needs." },
+                            { step: "03", title: "Growth Proposal", desc: "You receive a custom tailored proposal with fixed timelines and ROI projections." }
+                        ].map((item, i) => (
+                            <motion.div 
+                                key={i} 
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.2 }}
+                                className="p-10 rounded-[2.5rem] bg-neutral-900/40 border border-white/5 relative group hover:bg-neutral-900 hover:border-neon-green/30 transition-all"
+                            >
+                                <div className="text-6xl font-black text-white/5 absolute top-8 right-8 group-hover:text-neon-green/10 transition-colors">{item.step}</div>
+                                <div className="w-12 h-12 rounded-full bg-neon-green/10 flex items-center justify-center text-neon-green font-bold mb-6">
+                                    {item.step}
+                                </div>
+                                <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                                <p className="text-neutral-400 leading-relaxed">{item.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* NEW SECTION: FAQ (COMPACT) */}
+            <section className="py-24 px-6 relative z-10 max-w-4xl mx-auto">
+                <div className="text-center mb-16">
+                    <h2 className="text-4xl font-bold mb-4">Common <span className="text-neutral-500">Concerns</span></h2>
+                </div>
+                <div className="space-y-4">
+                    {[
+                        { q: "How fast will I get a response?", a: "We typically respond to all inquiries within 12 to 24 hours during business days." },
+                        { q: "Is the first consultation really free?", a: "Yes! Our strategy sessions are 100% free with no obligation to sign. We believe in providing value first." },
+                        { q: "Do you work with startups?", a: "Absolutely. We work with everything from bootstrapped startups to global enterprises, tailoring our packages to fit your stage." }
+                    ].map((faq, i) => (
+                        <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                            <h4 className="text-lg font-bold text-white mb-2">{faq.q}</h4>
+                            <p className="text-neutral-400 text-sm leading-relaxed">{faq.a}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
 		</main>
 	);
 }

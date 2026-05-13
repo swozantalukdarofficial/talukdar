@@ -33,43 +33,43 @@ export default function VideoEditingPage() {
 
 	// Slider Services
 	const sliderServices = [
-		{ image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1000&auto=format&fit=crop", title: "Commercial Videos" },
-		{ image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop", title: "Post Production Editing" },
-		{ image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=1000&auto=format&fit=crop", title: "Corporate Films" },
-		{ image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop", title: "Social Media Reels" },
+		{ image: "/video_commercial.png", title: "Commercial Videos" },
+		{ image: "/video_post.png", title: "Post Production Editing" },
+		{ image: "/video_corporate.png", title: "Corporate Films" },
+		{ image: "/video_reels.png", title: "Social Media Reels" },
 	];
 
 	// Process Steps
 	const steps = [
 		{
 			num: "01",
-			title: "Discovery & Strategy",
-			desc: "We align on your goals, target audience, and key messages before we start.",
+			title: "Discovery & Narrative",
+			desc: "We align on your story's core message and audience goals before a single frame is cut.",
 		},
 		{
 			num: "02",
-			title: "Scripting & Concept",
-			desc: "Creative writers craft compelling narratives tailored specifically for your brand.",
+			title: "Footage Ingestion",
+			desc: "High-speed cloud organization and proxy creation for a smooth, high-fidelity editing experience.",
 		},
 		{
 			num: "03",
-			title: "Pre-Production",
-			desc: "Location scouting, casting, and detailed logistical planning to ensure a smooth shoot.",
+			title: "Narrative Assembly",
+			desc: "The 'Rough Cut' where we craft the flow of the story and establish the perfect pacing.",
 		},
 		{
 			num: "04",
-			title: "Rough Storyboard",
-			desc: "A storyboard is the backbone of the process, ensuring the visual style and story match your vision. We craft a storyboard that details the visuals, scene by scene. It gives you an idea of the final video.",
+			title: "Visual Enhancement",
+			desc: "Layering B-roll, high-end motion graphics, and visual effects to make every second count.",
 		},
 		{
 			num: "05",
-			title: "Filming & Production",
-			desc: "Our expert crew captures stunning 4K/6K cinema-quality footage using top-tier equipment.",
+			title: "Audio Precision",
+			desc: "Cinematic sound design, noise reduction, and mixing to ensure professional audio clarity.",
 		},
 		{
 			num: "06",
-			title: "Editing & Delivery",
-			desc: "Meticulous color grading, sound mixing, and visual effects finalized for your launch.",
+			title: "Color & Final Export",
+			desc: "Advanced color grading and multi-format export optimized for YouTube, Reels, and 4K Cinema.",
 		},
 	];
 
@@ -117,7 +117,7 @@ export default function VideoEditingPage() {
 						<div className="pt-4">
 							<Link
 								to="/contact"
-								className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-green text-black font-bold text-lg rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(0,255,157,0.3)] transition-all duration-300 hover:bg-[#87E65C]"
+								className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-green text-black font-bold text-lg rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(135,230,92,0.3)] transition-all duration-300 hover:bg-[#87E65C]"
 							>
 								Get a quote
 								<ArrowRight className="w-5 h-5" />
@@ -133,9 +133,9 @@ export default function VideoEditingPage() {
 						className="relative z-10 flex justify-center lg:justify-end"
 					>
 						<img
-							src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop"
+							src="/video_editing_hero.png"
 							alt="Video Production Editor Illustration"
-							className="w-full max-w-md md:max-w-lg lg:max-w-2xl drop-shadow-[0_0_40px_rgba(0,255,157,0.2)]"
+							className="w-full max-w-md md:max-w-lg lg:max-w-2xl drop-shadow-[0_0_40px_rgba(135,230,92,0.2)] hover:scale-[1.02] transition-transform duration-700"
 						/>
 					</motion.div>
 				</div>
@@ -238,72 +238,68 @@ export default function VideoEditingPage() {
 						</motion.h2>
 					</div>
 
-					<div
-						className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start"
-						ref={processContainerRef}
-					>
-						{/* Left: Sticky Image Container */}
-						<div className="hidden lg:flex sticky top-24 h-[500px] flex-col justify-center items-center">
-							<div className="relative w-full max-w-md aspect-square bg-neutral-900 border border-white/10 rounded-full flex items-center justify-center p-12 overflow-hidden">
-								{/* Moving Grid Background */}
-								<div className="absolute inset-0 bg-gradient-to-tr from-neon-green/10 via-transparent to-purple-500/10 opacity-20"></div>
-								<AnimatePresence mode="popLayout">
-									<motion.img
-										key={activeStep}
-										initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-										animate={{ opacity: 1, scale: 1, rotate: 0 }}
-										exit={{ opacity: 0, scale: 1.2, rotate: 10 }}
-										transition={{ duration: 0.5 }}
-										src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop"
-										alt="Process Illustration"
-										className="relative z-10 w-full h-full object-contain"
-									/>
-								</AnimatePresence>
-							</div>
-						</div>
-
-						{/* Right: Scrolling Steps List */}
-						<div className="space-y-12 py-12 lg:py-64">
-							{steps.map((step, idx) => (
-								<motion.div
-									key={idx}
-									className="relative group cursor-default"
-									initial="hidden"
-									whileInView="visible"
-									viewport={{ margin: "-50% 0px -50% 0px" }}
-									onViewportEnter={() => setActiveStep(idx)}
-								>
-									{/* Vertical dotted line connector */}
-									{idx !== steps.length - 1 && (
-										<div className="absolute left-[2.25rem] top-24 bottom-[-3rem] w-px border-l-2 border-dashed border-white/10"></div>
-									)}
-
-									<div
-										className={`flex flex-col md:flex-row gap-6 md:gap-8 items-start transition-all duration-500 ${activeStep === idx ? "opacity-100" : "opacity-30 hover:opacity-100"}`}
-									>
-										{/* Number Indicator */}
-										<div
-											className={`w-20 h-20 shrink-0 rounded-2xl flex items-center justify-center text-3xl font-black transition-colors duration-500 ${activeStep === idx ? "bg-purple-900/40 text-neon-green border border-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.2)]" : "bg-neutral-900 text-neutral-500 border border-white/5"}`}
-										>
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
+						{/* Background Decorative Lines (Desktop Only) */}
+						<div className="hidden lg:block absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-y-1/2 pointer-events-none" />
+						
+						{steps.map((step, idx) => (
+							<motion.div
+								key={idx}
+								initial={{ opacity: 0, y: 30 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true }}
+								transition={{ delay: idx * 0.1 }}
+								className="relative group"
+							>
+								{/* Step Card */}
+								<div className="h-full p-10 rounded-[3rem] bg-neutral-900/40 border border-white/5 backdrop-blur-xl hover:bg-neutral-800/60 hover:border-neon-green/30 transition-all duration-500 group-hover:-translate-y-2">
+									{/* Top Header */}
+									<div className="flex items-center justify-between mb-8">
+										<div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-600/20 to-neon-green/20 border border-white/10 flex items-center justify-center text-2xl font-black text-white group-hover:text-neon-green group-hover:scale-110 transition-all duration-500">
 											{step.num}
 										</div>
-
-										{/* Content Card */}
-										<div
-											className={`flex-1 p-8 rounded-3xl transition-all duration-500 ${activeStep === idx ? "bg-gradient-to-br from-purple-900/60 to-neutral-900 border border-purple-500/30 shadow-2xl scale-[1.02]" : "bg-transparent border border-transparent"}`}
-										>
-											<h3 className="text-2xl font-bold text-white mb-4">
-												{step.title}
-											</h3>
-											<p className="text-neutral-300 leading-relaxed font-medium">
-												{step.desc}
-											</p>
+										<div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+											<div className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
 										</div>
 									</div>
-								</motion.div>
-							))}
-						</div>
+
+									{/* Content */}
+									<h3 className="text-2xl font-bold text-white mb-4 group-hover:text-neon-green transition-colors">
+										{step.title}
+									</h3>
+									<p className="text-neutral-400 leading-relaxed font-medium group-hover:text-neutral-300 transition-colors">
+										{step.desc}
+									</p>
+
+									{/* Decorative Corner */}
+									<div className="absolute bottom-6 right-6 w-12 h-12 border-b-2 border-r-2 border-white/5 group-hover:border-neon-green/30 rounded-br-2xl transition-colors" />
+								</div>
+								
+								{/* Connector for desktop (Horizontal) */}
+								{idx % 3 !== 2 && (
+									<div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-[2px] bg-white/5 group-hover:bg-neon-green/30 z-[-1]" />
+								)}
+							</motion.div>
+						))}
 					</div>
+
+					{/* Final CTA within Process for better conversion */}
+					<motion.div 
+						initial={{ opacity: 0, scale: 0.9 }}
+						whileInView={{ opacity: 1, scale: 1 }}
+						viewport={{ once: true }}
+						className="mt-20 p-12 rounded-[3rem] bg-gradient-to-r from-purple-900/20 to-neon-green/10 border border-white/5 text-center space-y-6"
+					>
+						<h3 className="text-3xl font-bold text-white">Ready to bring your vision to life?</h3>
+						<p className="text-neutral-400 max-w-xl mx-auto">
+							From strategy to final delivery, we ensure every frame tells your story perfectly. Let's start your project today.
+						</p>
+						<div className="pt-4">
+							<Link to="/contact" className="inline-flex items-center gap-3 px-10 py-5 bg-neon-green text-black font-black text-lg rounded-full hover:scale-105 transition-all shadow-[0_10px_40px_rgba(135,230,92,0.3)]">
+								Book Your Session <ArrowRight className="w-5 h-5" />
+							</Link>
+						</div>
+					</motion.div>
 				</div>
 			</section>
 

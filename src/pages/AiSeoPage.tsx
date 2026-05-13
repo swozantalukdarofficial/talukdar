@@ -1,16 +1,15 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Plus } from "lucide-react";
-// Note: Assets are imported but may need to be replaced with valid paths or placeholders
-// import aiHeroImg from "../assets/ai_seo_hero.png";
-// import aiStrategyImg from "../assets/ai_seo_strategy.png";
-
-const aiHeroImg = "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop";
-const aiStrategyImg = "https://images.unsplash.com/photo-1620712943543-bcc4638d9f8e?q=80&w=1965&auto=format&fit=crop";
+import aiRobotImg from "../assets/ai-robot.png";
 
 export default function AiSeoPage() {
 	const [activeFaq, setActiveFaq] = useState<number | null>(0);
+
+	const stats = [
+		{ label: "$ Revenue", sublabel: "Generated via SEO" },
+		{ label: "Qualified Leads", sublabel: "Generated" },
+	];
 
 	const faqs = [
 		{
@@ -97,73 +96,74 @@ export default function AiSeoPage() {
 
 	return (
 		<main className="min-h-screen bg-black text-white pt-24 overflow-hidden">
-			{/* 1. Hero / Split Header Layout */}
-			<section className="relative z-10 border-b border-white/5">
-				<div className="grid grid-cols-1 lg:grid-cols-2">
-					<div className="bg-gradient-to-br from-indigo-600 to-purple-500 py-20 px-6 lg:px-16 flex flex-col justify-center">
-						<motion.h1
-							initial={{ opacity: 0, x: -30 }}
-							animate={{ opacity: 1, x: 0 }}
-							transition={{ duration: 0.8 }}
-							className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] uppercase text-white tracking-tighter"
-						>
-							AI-DRIVEN SEO: THE FUTURE OF SEARCH VISIBILITY
-						</motion.h1>
-					</div>
-
-					<div className="relative min-h-[400px]">
-						<img
-							src={aiHeroImg}
-							alt="AI SEO Hero"
-							className="absolute inset-0 w-full h-full object-cover"
-						/>
-						<div className="absolute inset-0 bg-indigo-900/30 mix-blend-overlay"></div>
-						<div className="absolute inset-x-0 bottom-4 right-4 flex justify-end">
-							<Link
-								to="/contact"
-								className="inline-flex items-center gap-2 px-8 py-3 bg-indigo-500 hover:bg-[#87E65C] hover:text-black text-white font-bold rounded-full shadow-lg transition-all hover:-translate-y-1"
-							>
-								GET AI AUDIT
-							</Link>
-						</div>
-					</div>
-				</div>
-
-				<div className="bg-neutral-950 text-white border-b border-white/5 py-20 px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-					<motion.div
-						initial={{ opacity: 0, y: 30 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
-						className="space-y-6"
+			{/* 1. Hero Section - Exact match to screenshot */}
+			<section className="relative z-10 px-6 lg:px-20 py-12 md:py-16 max-w-7xl mx-auto">
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+					<motion.div 
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.8, ease: "easeOut" }}
+						className="space-y-10"
 					>
-						<h2 className="text-3xl md:text-4xl font-black text-indigo-500 uppercase leading-snug tracking-tighter">
-							WHY SETTLE FOR ANALOG SEO IN A DIGITAL AI WORLD?
-						</h2>
-						<p className="font-medium text-neutral-100 leading-relaxed text-lg">
-							Traditional SEO is becoming obsolete. With search engines
-							incorporating AI into their core algorithms, you need an AI-driven
-							approach to maintain and grow your rankings.
+						{/* Stats Row */}
+						<div className="flex flex-wrap gap-8 md:gap-12">
+							<div className="space-y-1">
+								<h4 className="text-xl md:text-2xl font-bold text-white">$ Revenue</h4>
+								<p className="text-[10px] text-neutral-500 uppercase tracking-[0.1em] font-bold">Generated via SEO</p>
+							</div>
+							<div className="space-y-1">
+								<h4 className="text-xl md:text-2xl font-bold text-white">Qualified Leads</h4>
+								<p className="text-[10px] text-neutral-500 uppercase tracking-[0.1em] font-bold">Generated</p>
+							</div>
+						</div>
+
+						{/* Main Heading */}
+						<div className="space-y-2">
+							<h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight uppercase">
+								NEXT-GEN SEO BY <br />
+								<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+									WEBESTONE
+								</span>
+							</h1>
+						</div>
+
+						{/* Description */}
+						<p className="text-base md:text-lg text-neutral-300 max-w-lg leading-relaxed font-medium">
+							WebestOne positions itself as an AI SEO service provider built to turn search visibility into predictable business outcomes, not vanity rankings that look good but fail to convert.
 						</p>
-						<p className="font-medium text-neutral-100 leading-relaxed text-lg">
-							At Webestone, we leverage cutting-edge artificial intelligence to
-							decipher search patterns, optimize content with pinpoint accuracy,
-							and deliver results that manual strategies simply can't match.
+
+						{/* Subtext */}
+						<p className="text-[10px] text-neutral-500 uppercase tracking-[0.2em] font-bold max-w-lg leading-relaxed">
+							RECOGNIZED AND TRUSTED BY BRANDS THAT EXPECT SEARCH TO DRIVE RESULTS
 						</p>
 					</motion.div>
+
+					{/* Image Side */}
 					<motion.div
 						initial={{ opacity: 0, scale: 0.95 }}
-						whileInView={{ opacity: 1, scale: 1 }}
-						viewport={{ once: true }}
-						className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl p-2 bg-neutral-900"
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 1, delay: 0.2 }}
+						className="relative"
 					>
-						<img
-							src={aiStrategyImg}
-							alt="AI SEO Strategy"
-							className="w-full h-auto rounded-xl object-cover"
-						/>
+						<div className="relative rounded-[3rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/5">
+							<img 
+								src={aiRobotImg} 
+								alt="AI SEO Robot" 
+								className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
+							/>
+							<div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+						</div>
+						
+						{/* Subtle Glows */}
+						<div className="absolute -z-10 -top-20 -right-20 w-80 h-80 bg-blue-600/10 blur-[120px] rounded-full"></div>
+						<div className="absolute -z-10 -bottom-20 -left-20 w-80 h-80 bg-purple-600/10 blur-[120px] rounded-full"></div>
 					</motion.div>
 				</div>
 			</section>
+
+			{/* Divider / Transition */}
+			<div className="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent my-12"></div>
+
 
 			{/* 2. Workflow Timeline Track */}
 			<section className="py-24 px-6 relative z-10 bg-neutral-950 text-white border-b border-white/5">

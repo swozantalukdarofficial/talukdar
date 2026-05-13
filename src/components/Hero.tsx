@@ -77,7 +77,7 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-4 pt-4">
-            <MagneticButton className="px-8 py-4 bg-neon-green text-black font-black rounded-full flex items-center gap-2 shadow-[0_0_30px_rgba(0,255,157,0.4)] hover:shadow-neon-green/60 transition-all">
+            <MagneticButton className="px-8 py-4 bg-neon-green text-black font-black rounded-full flex items-center gap-2 shadow-[0_0_30px_rgba(135,230,92,0.4)] hover:shadow-neon-green/60 transition-all">
               <span>Get Your Free Consultation</span>
               <ArrowRight className="w-5 h-5" />
             </MagneticButton>

@@ -30,7 +30,7 @@ export default function NewsletterCTA() {
                   className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-white focus:outline-none focus:border-neon-green transition-all"
                 />
               </div>
-              <MagneticButton className="px-8 py-4 bg-neon-green text-black font-black rounded-full shadow-[0_0_20px_rgba(0,255,157,0.3)] hover:shadow-neon-green/60 transition-all flex items-center justify-center gap-2 shrink-0">
+              <MagneticButton className="px-8 py-4 bg-neon-green text-black font-black rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-neon-green/60 transition-all flex items-center justify-center gap-2 shrink-0">
                 <span>Subscribe</span>
                 <Send className="w-4 h-4" />
               </MagneticButton>
