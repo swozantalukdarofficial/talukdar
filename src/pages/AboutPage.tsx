@@ -260,8 +260,6 @@ export default function AboutPage() {
           </div>
 
           <div className="relative mt-8 overflow-hidden py-10 group">
-             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none hidden md:block" />
-             <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none hidden md:block" />
 
              <motion.div
                animate={{ x: ["0%", "-50%"] }}
@@ -526,8 +524,6 @@ export default function AboutPage() {
       <section className="py-32 px-6 relative z-10 overflow-hidden">
         <SectionHeading badge="Wall of Love" title="What Our Clients Say." center />
         <div className="relative group mt-20">
-          <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none hidden md:block" />
-          <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none hidden md:block" />
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
@@ -569,8 +565,6 @@ export default function AboutPage() {
       <section className="py-20 px-6 relative z-10 overflow-hidden">
         <SectionHeading badge="The Collective" title="The Minds Behind the Magic." center />
         <div className="relative group/marquee mt-10">
-          <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none hidden md:block" />
-          <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none hidden md:block" />
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
