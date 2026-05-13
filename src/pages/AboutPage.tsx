@@ -423,35 +423,36 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <SectionHeading badge="The Journey" title="Our Growth Timeline." center />
           <div className="relative mt-24">
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-white/10 " />
+            <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-white/10" />
             <motion.div 
               style={{ scaleY: 0, originY: 0 }}
               whileInView={{ scaleY: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
-              className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-neon-green shadow-[0_0_20px_rgba(16,185,129,0.8)] " 
+              className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-neon-green shadow-[0_0_20px_rgba(16,185,129,0.8)]" 
             />
-            <div className="space-y-24">
+            <div className="space-y-12 md:space-y-24">
               {[
                 { year: "2019", title: "The Inception", event: "Foundation laid in a small studio with 3 dreamers. We started with a vision to disrupt the digital status quo.", align: "left" },
                 { year: "2021", title: "Global Expansion", event: "Scaled to 20+ experts and hit 100+ global clients. Established our presence in London and New York.", align: "right" },
                 { year: "2023", title: "South Asia's Best", event: "Recognized as 'Agency of the Year' in South Asia. Our work set new benchmarks for innovation and design.", align: "left" },
                 { year: "2024", title: "The AI Era", event: "Launched our dedicated AI & R&D Innovation Lab to pioneer next-gen digital solutions.", align: "right" }
               ].map((m, i) => (
-                <div key={i} className={`relative flex items-center justify-center md:justify-between w-full ${m.align === 'left' ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                   <div className=" w-[45%] text-right px-12">
+                <div key={i} className={`relative flex flex-col md:flex-row items-center justify-center md:justify-between w-full ${m.align === 'left' ? 'md:flex-row' : 'md:flex-row-reverse'} gap-6 md:gap-0`}>
+                   <div className="hidden md:block w-[45%] text-right px-12">
                       {m.align === 'right' && <div className="text-8xl font-black text-white/5 select-none">{m.year}</div>}
                    </div>
-                   <div className="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-black border-2 border-neon-green shadow-[0_0_15px_rgba(16,185,129,1)] z-20 " />
+                   <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-black border-2 border-neon-green shadow-[0_0_15px_rgba(16,185,129,1)] z-20" />
                    <motion.div 
                      initial={{ opacity: 0, x: m.align === 'left' ? -50 : 50 }}
                      whileInView={{ opacity: 1, x: 0 }}
-                     className={`w-full md:w-[45%] p-10 rounded-[3rem] bg-white/[0.02] border border-white/5 hover:border-neon-green/30 transition-all group relative overflow-hidden`}
+                     className="w-full md:w-[45%] p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] bg-white/[0.02] border border-white/5 hover:border-neon-green/30 transition-all group relative overflow-hidden"
                    >
-                      <div className="absolute top-[-20%] right-[-10%] text-9xl font-black text-white/[0.02] group-hover:text-neon-green/[0.05] transition-all select-none">{m.year}</div>
-                      <h3 className="text-3xl font-black mb-4">{m.title}</h3>
-                      <p className="text-neutral-400 leading-relaxed text-lg">{m.event}</p>
+                      <div className="md:hidden inline-block px-4 py-1.5 rounded-full bg-neon-green/10 border border-neon-green/20 text-neon-green text-sm font-bold mb-6">{m.year}</div>
+                      <div className="hidden md:block absolute top-[-20%] right-[-10%] text-9xl font-black text-white/[0.02] group-hover:text-neon-green/[0.05] transition-all select-none">{m.year}</div>
+                      <h3 className="text-2xl md:text-3xl font-black mb-4">{m.title}</h3>
+                      <p className="text-neutral-400 leading-relaxed text-base md:text-lg">{m.event}</p>
                    </motion.div>
-                   <div className=" w-[45%] text-left px-12">
+                   <div className="hidden md:block w-[45%] text-left px-12">
                       {m.align === 'left' && <div className="text-8xl font-black text-white/5 select-none">{m.year}</div>}
                    </div>
                 </div>
