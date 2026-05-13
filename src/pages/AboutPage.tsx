@@ -260,8 +260,8 @@ export default function AboutPage() {
           </div>
 
           <div className="relative mt-8 overflow-hidden py-10 group">
-             <div className="absolute inset-y-0 left-0 w-12 md:w-32 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none" />
-             <div className="absolute inset-y-0 right-0 w-12 md:w-32 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none" />
+             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none hidden md:block" />
+             <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none hidden md:block" />
 
              <motion.div
                animate={{ x: ["0%", "-50%"] }}
@@ -569,8 +569,8 @@ export default function AboutPage() {
       <section className="py-20 px-6 relative z-10 overflow-hidden">
         <SectionHeading badge="The Collective" title="The Minds Behind the Magic." center />
         <div className="relative group/marquee mt-10">
-          <div className="absolute inset-y-0 left-0 w-12 md:w-40 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-12 md:w-40 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none hidden md:block" />
+          <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none hidden md:block" />
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
@@ -587,8 +587,8 @@ export default function AboutPage() {
                   { name: "Sadia Surove", color: "from-blue-600/20 to-indigo-600/20" },
                   { name: "Adiba Ahmed", color: "from-pink-500/20 to-rose-500/20" }
                 ].map((m, i) => (
-                  <div key={i} className="group w-72 cursor-pointer flex flex-col items-center">
-                    <div className={`w-64 h-64 rounded-[3.5rem] bg-gradient-to-br ${m.color} border border-white/10 flex items-center justify-center mb-6 relative group-hover:border-neon-green/50 transition-all duration-500 overflow-hidden shadow-2xl`}>
+                  <div key={i} className="group w-64 md:w-72 cursor-pointer flex flex-col items-center">
+                    <div className={`w-56 h-56 md:w-64 md:h-64 rounded-[3.5rem] bg-gradient-to-br ${m.color} border border-white/10 flex items-center justify-center mb-6 relative group-hover:border-neon-green/50 transition-all duration-500 overflow-hidden shadow-2xl`}>
                       <div className="text-7xl font-black text-white/20 group-hover:text-neon-green group-hover:scale-110 transition-all duration-500">
                         {m.name.split(' ').map(n => n[0]).join('')}
                       </div>
