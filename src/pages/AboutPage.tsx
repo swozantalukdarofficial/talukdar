@@ -178,7 +178,7 @@ export default function AboutPage() {
       </section>
 
       {/* 3. GENESIS (OUR STORY) */}
-      <section className="py-32 px-6 relative z-10">
+      <section className="py-20 px-6 relative z-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="relative aspect-square rounded-[3rem] overflow-hidden border border-white/10 group">
              <div className="absolute inset-0 bg-gradient-to-br from-neon-green/20 to-transparent z-10" />
@@ -215,7 +215,7 @@ export default function AboutPage() {
       </section>
 
       {/* 4. MISSION & VISION */}
-      <section className="py-24 px-6 relative z-10 bg-white/[0.02]">
+      <section className="py-16 px-6 relative z-10 bg-white/[0.02]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           <motion.div 
             whileHover={{ y: -10 }}
@@ -242,7 +242,7 @@ export default function AboutPage() {
 
 
       {/* 6. SERVICE ECOSYSTEM (MARQUEE) */}
-      <section className="py-32 px-6 relative z-10 overflow-hidden">
+      <section className="py-20 px-6 relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-24">
              <motion.div
@@ -259,9 +259,9 @@ export default function AboutPage() {
              </motion.div>
           </div>
 
-          <div className="relative mt-20 overflow-hidden py-10 group">
-             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none" />
-             <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none" />
+          <div className="relative mt-8 overflow-hidden py-10 group">
+             <div className="absolute inset-y-0 left-0 w-12 md:w-32 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none" />
+             <div className="absolute inset-y-0 right-0 w-12 md:w-32 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none" />
 
              <motion.div
                animate={{ x: ["0%", "-50%"] }}
@@ -294,7 +294,7 @@ export default function AboutPage() {
       </section>
 
       {/* 7. INNOVATION LAB */}
-      <section className="py-32 px-6 relative z-10 overflow-hidden bg-[#050505]">
+      <section className="py-20 px-6 relative z-10 overflow-hidden bg-[#050505]">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neon-green/5 rounded-full blur-[150px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -369,7 +369,7 @@ export default function AboutPage() {
       </section>
 
       {/* 8. WHY CHOOSE US */}
-      <section className="py-32 px-6 relative z-10">
+      <section className="py-20 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <SectionHeading badge="The Outliers" title="Why Choose WeBestOne." />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -394,7 +394,7 @@ export default function AboutPage() {
       </section>
 
       {/* 9. OUR PROMISE */}
-      <section className="py-32 px-6 relative z-10 bg-white/[0.01]">
+      <section className="py-20 px-6 relative z-10 bg-white/[0.01]">
          <div className="max-w-4xl mx-auto text-center">
             <div className="w-20 h-20 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-10">
                <Heart className="w-10 h-10 text-blue-400" />
@@ -566,11 +566,11 @@ export default function AboutPage() {
       </section>
 
       {/* 13. TEAM (MARQUEE) */}
-      <section className="py-32 px-6 relative z-10 overflow-hidden">
+      <section className="py-20 px-6 relative z-10 overflow-hidden">
         <SectionHeading badge="The Collective" title="The Minds Behind the Magic." center />
-        <div className="relative group/marquee mt-20">
-          <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none" />
+        <div className="relative group/marquee mt-10">
+          <div className="absolute inset-y-0 left-0 w-12 md:w-40 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-12 md:w-40 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none" />
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
@@ -603,7 +603,7 @@ export default function AboutPage() {
       </section>
 
       {/* 14. AWARDS */}
-      <section className="py-32 relative z-10 bg-white/[0.02]">
+      <section className="py-20 relative z-10 bg-white/[0.02]">
         <Awards />
       </section>
 
@@ -611,7 +611,7 @@ export default function AboutPage() {
       <FAQ />
 
       {/* 16. FINAL CTA */}
-      <section className="py-40 px-6 relative z-10">
+      <section className="py-24 px-6 relative z-10">
         <div className="max-w-7xl mx-auto text-center">
            <motion.div
              initial={{ opacity: 0, y: 20 }}
