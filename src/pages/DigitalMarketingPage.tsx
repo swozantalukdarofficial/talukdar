@@ -40,125 +40,138 @@ const heroItem = {
 	},
 };
 
-const servicesGrid = [
+const coreServices = [
+	{
+		title: "Web Design",
+		desc: "Websites designed to communicate value clearly and guide users toward action with strong User Interface (UI) and User Experience (UX).",
+		icon: Monitor,
+	},
 	{
 		title: "Search Engine Optimization (SEO)",
-		desc: "Combine AI-powered automation with white hat SEO practices to ensure your brand remains visible in AI search results.",
+		desc: "Search focused strategies that attract the right audience, improve organic traffic, and support long term growth across the Search Engine Results Page (SERP). Ranking is not the goal. Being chosen is.",
 		icon: Search,
 	},
 	{
-		title: "Franchise SEO",
-		desc: "Amplify market reach and improve your AI visibility with Thrive's franchise SEO services. AI-driven insights ensure corporate and individual franchise prominence.",
-		icon: Globe,
-	},
-	{
-		title: "Local SEO",
-		desc: "Generate more leads and sales with hyperlocal digital marketing services. Use automation to reduce manual efforts while maintaining oversight.",
-		icon: Map,
-	},
-	{
-		title: "Technical SEO",
-		desc: "Establish a strong online foundation. Our technical SEO experts run crawl error reports and check HTTPS status codes.",
-		icon: Monitor,
-	},
-	{
-		title: "Link Building",
-		desc: "Acquire a steady stream of traffic from high-authority websites. Leverage guest posts and collaborations.",
-		icon: Share2,
-	},
-	{
-		title: "Web Design & Development",
-		desc: "Build custom, mobile-ready, and search engine-optimized websites that support your digital marketing campaigns.",
-		icon: PenTool,
-	},
-	{
-		title: "Custom Website Design",
-		desc: "Capture your target audience's attention with a professional custom web design. Analyze your industry demands effectively.",
-		icon: Monitor,
-	},
-	{
-		title: "Social Media Marketing",
-		desc: "Build strong brand awareness. Measure online behavior to develop strategies that drive measurable growth across all platforms.",
-		icon: Megaphone,
-	},
-	{
-		title: "Pay Per Click (PPC) Management",
-		desc: "Reach highly-targeted audience segments through data-driven PPC campaigns. Conduct thorough keyword research and optimize landing pages.",
+		title: "Pay Per Click (PPC)",
+		desc: "Paid campaigns built across Google Ads and Meta Ads to reach high intent users and deliver faster returns.",
 		icon: DollarSign,
 	},
 	{
-		title: "Video Production",
-		desc: "Create a buzz in the online community with captivating video content strategies.",
-		icon: Video,
-	},
-	{
 		title: "Content Writing",
-		desc: "Our content specialists stay up-to-date with the latest trends to produce compelling copy.",
+		desc: "Strategic content designed to communicate value clearly, support content marketing, and strengthen brand growth.",
 		icon: Edit3,
 	},
 	{
-		title: "Online Reputation Management (ORM)",
-		desc: "Strengthen your brand reputation and manage online reviews effectively.",
+		title: "Social Media",
+		desc: "Purpose driven engagement across Facebook, Instagram, LinkedIn, YouTube, and TikTok that builds trust, visibility, and customer engagement.",
+		icon: Megaphone,
+	},
+];
+
+const advancedServices = [
+	{
+		title: "Technical SEO",
+		desc: "Website infrastructure improvements that help search engines crawl, index, and rank your website more effectively using tools like Google Search Console.",
+		icon: Monitor,
+	},
+	{
+		title: "Local SEO",
+		desc: "Location focused optimization strategies that increase visibility and attract nearby customers actively searching for services.",
+		icon: Map,
+	},
+	{
+		title: "Link Building",
+		desc: "Authority focused backlink strategies that strengthen domain credibility and support sustainable search engine rankings.",
+		icon: Share2,
+	},
+	{
+		title: "Conversion Rate Optimization",
+		desc: "Performance improvements designed to turn more website visitors into qualified leads and paying customers through Conversion Rate Optimization (CRO).",
+		icon: BarChart3,
+	},
+	{
+		title: "Landing Page Optimization",
+		desc: "Campaign focused landing pages designed to capture attention, communicate value clearly, and improve conversions.",
+		icon: PenTool,
+	},
+	{
+		title: "Marketing Analytics",
+		desc: "Data driven performance tracking using Google Analytics that reveals insights and guides smarter marketing decisions.",
+		icon: BarChart3,
+	},
+	{
+		title: "Video Production",
+		desc: "Professional video content designed to support video marketing, social media engagement, and brand storytelling.",
+		icon: Video,
+	},
+	{
+		title: "Online Reputation Management",
+		desc: "Monitoring and improvement strategies that protect and strengthen your brand reputation across digital platforms.",
 		icon: Star,
+	},
+	{
+		title: "Marketing Automation",
+		desc: "Automated workflows that nurture leads, improve customer communication, and streamline marketing processes.",
+		icon: Globe,
 	},
 ];
 
 const digitalServices = [
 	{
-		title: "Creative",
+		title: "Creative and Brand Development",
 		items: [
-			"Logo & Branding",
-			"Graphic Design",
-			"Copywriting",
-			"Video & Photography",
-			"Explainer Videos",
+			"Branding and brand identity design",
+			"Graphic design and visual assets",
+			"Strategic copywriting",
+			"Video and visual storytelling",
+			"Creative content development",
 		],
 		gradient: "from-pink-500 to-rose-600",
 	},
 	{
-		title: "Websites",
+		title: "Websites and Digital Platforms",
 		items: [
-			"Web Design & Build",
-			"Ecommerce",
-			"Custom Development",
-			"Landing Pages & CRO",
-			"Support & Maintenance",
+			"Website design and development",
+			"E-commerce solutions across Shopify, WordPress, and WooCommerce",
+			"Custom web functionality",
+			"Landing page design",
+			"Responsive design and ongoing optimization",
 		],
 		gradient: "from-orange-500 to-amber-500",
 	},
 	{
-		title: "Digital Marketing",
+		title: "Digital Marketing and Growth",
 		items: [
-			"PPC",
-			"SEO",
-			"Social Media",
-			"Sales & Marketing Automation",
-			"Email Marketing",
+			"Search Engine Optimization (SEO)",
+			"Pay Per Click (PPC)",
+			"Social Media Marketing",
+			"Marketing automation systems",
+			"Campaign performance analytics",
 		],
 		gradient: "from-blue-600 to-indigo-600",
 	},
 ];
 
 const reasons = [
-	{ title: "AI driven Solutions", active: true },
-	{ title: "Customized Strategies", active: false },
-	{ title: "Experienced Team", active: false },
-	{ title: "Transparent Reporting", active: false },
-	{ title: "Maintenance and Support", active: false },
+	{ title: "Data led decisions", active: true },
+	{ title: "Goal focused campaigns", active: false },
+	{ title: "Hands on experts", active: false },
+	{ title: "Clear results tracking", active: false },
+	{ title: "Continuous improvement", active: false },
 ];
 
 const faqs = [
 	{
-		q: "What content strategy do you use in your SEO services?",
-		a: "We focus on creating high-quality, authoritative content that directly answers user queries and aligns with search intent.",
+		q: "What does digital marketing include?",
+		a: "Digital marketing covers SEO, PPC, social media, content writing, web design, and analytics. At WebestOne, these services work together as an integrated growth system.",
 	},
 	{
-		q: "Is AI SEO better than traditional SEO?",
-		a: "It's an evolution. While traditional SEO fundamentals like technical health and backlinks remain crucial, AI SEO adapts to how AI interprets content.",
+		q: "How long does it take to see results?",
+		a: "Paid campaigns typically show measurable results in 4 to 6 weeks. SEO and content marketing build compounding returns over 3 to 6 months.",
 	},
 	{
-		q: "How long does it take to see results from AI SEO?",
-		a: "SEO is a long-term strategy, but AI-driven optimizations can sometimes accelerate visibility improvements, typically seen within 3-6 months.",
+		q: "Do you offer custom digital marketing plans?",
+		a: "Yes. Every plan is built around your specific industry, audience, budget, and goals. No templates. No copy-paste strategies.",
 	},
 ];
 
@@ -198,14 +211,14 @@ export default function DigitalMarketingPage() {
 							variants={heroItem}
 							className="text-4xl md:text-6xl font-bold leading-tight"
 						>
-							Your digital dreams are just <br />
-							<span className="text-neon-green">one team away...</span>
+							Digital Marketing Agency Where <br />
+							<span className="text-neon-green">Strategy, Technology, and Growth Come Together</span>
 						</motion.h1>
 						<motion.p
 							variants={heroItem}
 							className="text-neutral-400 text-lg leading-relaxed max-w-lg"
 						>
-							Results-driven Marketing | Web Design + SEO + PPC + Email & SMS + Social Media
+							Digital marketing is no longer about doing more. It is about doing what works. At WebestOne, we help businesses grow with clarity, speed, and purpose. Our team blends experience with AI marketing solutions and AI driven services to help brands compete, adapt, and scale across digital channels worldwide.
 						</motion.p>
 						<motion.div variants={heroItem}>
 							<Link to="/contact">
@@ -283,13 +296,9 @@ export default function DigitalMarketingPage() {
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 						<div className="space-y-6 text-neutral-300 leading-relaxed">
 							<p>
-								Today’s digital marketing services are AI driven which means
-								smarter targeting, personalized messaging, and faster
-								optimization. With AI, campaigns perform better, budgets are
-								used more efficiently, and businesses grow faster with data
-								based decisions.
+								Most businesses do more marketing. Very few do better marketing. Modern growth demands smarter decisions built on clarity and discipline. Data, automation, and structured execution reduce waste, sharpen targeting, and improve performance. WebestOne focuses on outcomes that drive real business growth, not surface level metrics expected from a traditional digital marketing agency.
 							</p>
-							<div className="inline-block px-6 py-2 bg-neon-green/10 text-neon-green rounded-full font-bold border border-neon-green/30 hover:bg-[#87E65C]">
+							<div className="inline-block px-6 py-2 bg-neon-green/10 text-neon-green rounded-full font-bold border border-neon-green/30">
 								Building tomorrow's trends today
 							</div>
 						</div>
@@ -396,11 +405,11 @@ export default function DigitalMarketingPage() {
 							className="inline-block"
 						>
 							<span className="text-neon-green font-mono text-sm tracking-widest uppercase block mb-4">
-								Our Expertise
+								Our Services
 							</span>
 							<h2 className="text-3xl md:text-4xl xl:text-5xl font-bold relative inline-block">
-								WeBestOne's Digital{" "}
-								<span className="text-neon-green">Marketing Services</span>
+								Our AI Driven{" "}
+								<span className="text-neon-green">Digital Marketing Services</span>
 								<svg
 									className="absolute w-full h-3 -bottom-2 text-neon-green/50 left-0"
 									viewBox="0 0 200 9"
@@ -417,13 +426,12 @@ export default function DigitalMarketingPage() {
 							</h2>
 						</div>
 						<p className="text-neutral-400 mt-6">
-							Build Brand Recognition as an Industry Leader and Increase
-							Profitability
+							Growth focused digital execution. If your marketing feels busy but not productive, this is where it breaks.
 						</p>
 					</div>
 
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-						{servicesGrid.map((service, index) => (
+						{coreServices.map((service, index) => (
 							<motion.div
 								key={index}
 								initial={{ opacity: 0, y: 20 }}
@@ -457,10 +465,10 @@ export default function DigitalMarketingPage() {
 						className="inline-block"
 					>
 						<span className="text-neon-green font-mono text-sm tracking-widest uppercase block mb-4">
-							Categories
+							Integrated Solutions
 						</span>
 						<h2 className="text-3xl md:text-4xl xl:text-5xl font-bold relative inline-block">
-							Digital Services
+							Integrated Digital Solutions
 							<svg
 								className="absolute w-full h-3 -bottom-2 text-neon-green/50 left-0"
 								viewBox="0 0 200 9"
@@ -520,25 +528,25 @@ export default function DigitalMarketingPage() {
 					{[
 						{
 							title: "SEO Strategy",
-							desc: "SEO is important because it can help businesses to attract more traffic to their website.",
+							desc: "Organic search strategies designed to improve visibility, attract qualified visitors, and support long term digital growth.",
 							icon: Search,
 							color: "text-orange-400",
 						},
 						{
-							title: "Google Ads",
-							desc: "This type of advertising is often used to promote products or services effectively.",
+							title: "Paid Advertising",
+							desc: "Targeted advertising campaigns that connect brands with high intent audiences and generate measurable results.",
 							icon: Monitor,
 							color: "text-blue-400",
 						},
 						{
-							title: "Paid Media",
-							desc: "Paid social ads can be targeted to specific demographics, interests effectively.",
+							title: "Paid Social Campaigns",
+							desc: "Strategic social media advertising designed to increase reach, strengthen brand awareness, and drive audience engagement.",
 							icon: Megaphone,
 							color: "text-pink-400",
 						},
 						{
-							title: "Analytics",
-							desc: "Google Analytics provides insights into who is visiting your website and where from.",
+							title: "Data and Analytics",
+							desc: "Performance tracking and marketing insights that help businesses understand behavior, measure results, and refine strategy.",
 							icon: BarChart3,
 							color: "text-green-400",
 						},
@@ -567,7 +575,7 @@ export default function DigitalMarketingPage() {
 
 							<Link to="/contact">
 								<button className="px-6 py-2 bg-neon-green text-black text-xs font-bold rounded-full transition-colors cursor-pointer hover:bg-[#87E65C]">
-									Choose Your Blend
+									Learn More
 								</button>
 							</Link>
 						</div>
@@ -586,9 +594,9 @@ export default function DigitalMarketingPage() {
 								Why Choose Us
 							</span>
 							<h2 className="text-3xl md:text-4xl xl:text-5xl font-bold mb-4 relative inline-block">
-								Why Choose Webestone for{" "}
+								Why choose WebestOne for{" "}
 								<span className="text-neon-green">
-									Best Digital Marketing Services
+									digital marketing services?
 								</span>
 								<svg
 									className="absolute w-full h-3 -bottom-2 text-neon-green/50 left-0"
