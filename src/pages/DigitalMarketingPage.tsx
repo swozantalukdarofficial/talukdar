@@ -175,6 +175,29 @@ const faqs = [
 	},
 ];
 
+const processSteps = [
+	{
+		title: "Discovery and Research",
+		desc: "We begin by understanding your business, audience, industry landscape, and growth objectives.",
+	},
+	{
+		title: "Strategy Development",
+		desc: "Our team builds a focused digital strategy designed to reach the right audience and support measurable outcomes. A weak strategy breaks everything that follows. We fix that early.",
+	},
+	{
+		title: "Execution and Optimization",
+		desc: "Campaigns, content, and digital assets are developed and continuously refined for performance.",
+	},
+	{
+		title: "Measurement and Insights",
+		desc: "Performance data is analyzed to understand results, identify opportunities, and guide future improvements using data analytics.",
+	},
+	{
+		title: "Continuous Growth",
+		desc: "Strategies evolve over time to maintain momentum and support long term business growth.",
+	},
+];
+
 export default function DigitalMarketingPage() {
 	const [activeReason, setActiveReason] = useState(0);
 	const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -454,6 +477,62 @@ export default function DigitalMarketingPage() {
 								<p className="text-sm text-neutral-400 leading-relaxed">
 									{service.desc}
 								</p>
+							</motion.div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			{/* --- Our Process Section --- */}
+			<section className="py-24 px-6 relative z-10 bg-neutral-950 border-t border-white/5">
+				<div className="max-w-4xl mx-auto space-y-16">
+					<div className="space-y-4">
+						<span className="text-neon-green font-mono text-sm tracking-widest uppercase block mb-4">
+							Our Process
+						</span>
+						<h2 className="text-3xl md:text-4xl xl:text-5xl font-bold relative inline-block text-white">
+							Our Process
+							<svg
+								className="absolute w-full h-3 -bottom-2 text-neon-green/50 left-0"
+								viewBox="0 0 200 9"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M2.00025 6.99996C18.4475 2.66663 80.9167 -2.49997 197.99 1.99996"
+									stroke="currentColor"
+									strokeWidth="3"
+									strokeLinecap="round"
+								></path>
+							</svg>
+						</h2>
+						<p className="text-neutral-400 mt-6 text-lg max-w-2xl">
+							At WebestOne, every project follows a structured approach designed to turn strategy into measurable growth used by every high-performing digital marketing agency.
+						</p>
+					</div>
+
+					<div className="relative border-l border-white/10 ml-4 md:ml-6 pl-8 md:pl-12 space-y-12">
+						{processSteps.map((step, index) => (
+							<motion.div
+								key={index}
+								initial={{ opacity: 0, x: -20 }}
+								whileInView={{ opacity: 1, x: 0 }}
+								viewport={{ once: true, margin: "-100px" }}
+								transition={{ delay: index * 0.1 }}
+								className="relative"
+							>
+								{/* Timeline Dot */}
+								<div className="absolute -left-[41px] md:-left-[57px] top-1 w-6 h-6 rounded-full bg-neutral-900 border-2 border-neon-green flex items-center justify-center z-10">
+									<div className="w-2 h-2 rounded-full bg-neon-green"></div>
+								</div>
+
+								<div className="space-y-3">
+									<span className="text-neon-green font-mono text-xs uppercase tracking-wider font-bold">Step 0{index + 1}</span>
+									<h3 className="text-2xl md:text-3xl font-bold text-white">{step.title}</h3>
+									<p className="text-neutral-400 text-base md:text-lg leading-relaxed max-w-2xl">
+										{step.desc}
+									</p>
+								</div>
 							</motion.div>
 						))}
 					</div>
