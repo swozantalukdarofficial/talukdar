@@ -111,13 +111,13 @@ export default function SeoPage() {
   return (
     <main className="min-h-screen bg-black text-white pt-24 overflow-hidden">
       {/* 1. Hero Section - Standardized Sizes */}
-      <section className="relative z-10 px-6 lg:px-20 py-12 md:py-16 max-w-7xl mx-auto">
+      <section className="relative z-10 px-6 lg:px-20 pt-4 pb-12 md:pt-8 md:pb-16 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-10"
+            className="space-y-8"
           >
 
             {/* Main Heading */}
