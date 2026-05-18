@@ -129,10 +129,10 @@ export default function AiSeoPage() {
 
 						{/* Main Heading */}
 						<div className="space-y-2">
-							<h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight uppercase">
-								AI SEO SERVICE AGENCY THAT <br />
+							<h1 className="text-3xl md:text-5xl lg:text-5xl font-black leading-tight tracking-tight uppercase">
+								AI SEO Service Agency <br />
 								<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-									TURNS VISIBILITY INTO PREDICTABLE GROWTH
+									That Turns Visibility <br />Into Predictable Growth
 								</span>
 							</h1>
 						</div>
