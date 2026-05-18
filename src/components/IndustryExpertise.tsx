@@ -1,17 +1,13 @@
 import { motion } from "framer-motion";
-import { ShoppingBag, GraduationCap, Building2, HeartPulse, Laptop, Truck, Plane, Camera, Utensils, Zap } from "lucide-react";
+import { ShoppingBag, GraduationCap, Building2, HeartPulse, Laptop, Zap } from "lucide-react";
 
 const industries = [
+  { name: "Energy", icon: Zap, color: "text-yellow-500" },
   { name: "E-Commerce", icon: ShoppingBag, color: "text-rose-500" },
   { name: "Ed-Tech", icon: GraduationCap, color: "text-blue-500" },
   { name: "NGOs", icon: HeartPulse, color: "text-emerald-500" },
   { name: "Real Estate", icon: Building2, color: "text-amber-500" },
   { name: "SaaS & Tech", icon: Laptop, color: "text-indigo-500" },
-  { name: "Logistics", icon: Truck, color: "text-slate-400" },
-  { name: "Travel", icon: Plane, color: "text-cyan-500" },
-  { name: "Media", icon: Camera, color: "text-purple-500" },
-  { name: "Food & Bev", icon: Utensils, color: "text-orange-500" },
-  { name: "Energy", icon: Zap, color: "text-yellow-500" },
 ];
 
 export default function IndustryExpertise() {
@@ -28,7 +24,7 @@ export default function IndustryExpertise() {
             Industries We <span className="text-neon-green">Empower</span>
           </h2>
           <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
-            Our strategies are not one-size-fits-all. We specialize in growing businesses across diverse high-impact sectors.
+            Our AI-powered strategies are not one-size-fits-all. We specialize in growing businesses across diverse high-impact sectors.
           </p>
         </motion.div>
       </div>

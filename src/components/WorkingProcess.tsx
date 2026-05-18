@@ -5,35 +5,35 @@ import { useRef } from "react";
 const steps = [
   {
     title: "Discovery & Audit",
-    description: "We dive deep into your brand, market, and competitors to find untapped growth opportunities and data gaps.",
+    description: "We dive deep into your brand, market, and competitors using AI analysis tools and data analytics to find untapped growth opportunities and revenue gaps.",
     icon: Search,
     color: "from-blue-500 to-cyan-500",
     glow: "shadow-blue-500/20",
   },
   {
     title: "Strategy Planning",
-    description: "Our experts craft a data-driven roadmap tailored specifically to your business goals and KPIs.",
+    description: "Our experts craft a data-driven digital strategy roadmap tailored specifically to your business goals, target audience, and KPIs.",
     icon: Lightbulb,
     color: "from-purple-500 to-indigo-500",
     glow: "shadow-purple-500/20",
   },
   {
     title: "Creative Execution",
-    description: "High-quality content, precision design, and technical setups that bring the strategy to life with impact.",
+    description: "High-quality content, precision design, AI automation setup, and technical implementation that bring the strategy to life with measurable impact.",
     icon: PenTool,
     color: "from-rose-500 to-pink-500",
     glow: "shadow-rose-500/20",
   },
   {
     title: "Launch & Scale",
-    description: "We deploy the campaigns across platforms and continuously optimize them to maximize performance and ROI.",
+    description: "We deploy campaigns across Google Ads, Meta Ads, organic search, and social platforms, then continuously optimize using real-time data for maximum performance and ROI.",
     icon: Rocket,
     color: "from-neon-green to-emerald-500",
     glow: "shadow-neon-green/20",
   },
   {
     title: "Revenue Growth",
-    description: "The final result: increased visibility, higher conversion rates, and scalable revenue for your brand.",
+    description: "The end result is increased organic traffic, higher conversion rates, and scalable, predictable revenue for your brand.",
     icon: TrendingUp,
     color: "from-amber-500 to-orange-500",
     glow: "shadow-amber-500/20",
@@ -69,7 +69,7 @@ export default function WorkingProcess() {
               Our <span className="text-neon-green">Proven</span> Process
             </h2>
             <p className="text-neutral-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-              We don't believe in guesswork. Our systematic approach ensures that every project is built for long-term success.
+              We don't believe in guesswork. Our systematic AI-driven approach ensures every project is engineered for long-term, compounding growth.
             </p>
           </motion.div>
         </div>

@@ -22,13 +22,13 @@ export default function WhyChooseUs() {
 							</span>
 						</div>
 						<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white tracking-tight">
-							We build resilient <br className="hidden md:block" />
+							We Build Resilient <br className="hidden md:block" />
 							<span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green to-emerald-400">
-								growth engines.
+								AI Growth Engines.
 							</span>
 						</h2>
 						<p className="mt-6 text-neutral-400 text-lg md:text-xl max-w-2xl mx-auto">
-							Stop settling for average results. We integrate design, technology, and marketing to create seamless experiences that drive real business impact.
+							Stop settling for average results. We integrate design, technology, and AI marketing to create seamless customer experiences that drive real business impact.
 						</p>
 					</motion.div>
 				</div>
@@ -51,7 +51,7 @@ export default function WhyChooseUs() {
 							</div>
 							<h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">Data-Driven ROI</h3>
 							<p className="text-neutral-400 text-lg leading-relaxed max-w-md">
-								We don't guess. Every campaign, content piece, and ad is backed by hard data to ensure maximum return on your investment.
+								We don't guess. Every campaign, content piece, and ad is backed by Google Analytics, Search Console data, and AI insights to ensure maximum return on your investment.
 							</p>
 						</div>
 					</motion.div>
@@ -68,7 +68,7 @@ export default function WhyChooseUs() {
 						</div>
 						<h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Full Transparency</h3>
 						<p className="text-neutral-400 leading-relaxed">
-							Clear reporting, open communication, and absolute clarity on where every dollar goes.
+							Clear reporting, open communication, and absolute clarity on where every dollar goes. No black boxes. No hidden fees.
 						</p>
 					</motion.div>
 
@@ -84,7 +84,7 @@ export default function WhyChooseUs() {
 						</div>
 						<h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Agile Execution</h3>
 						<p className="text-neutral-400 leading-relaxed">
-							We move fast. Rapid testing, iteration, and scaling to keep you ahead of the competition.
+							We move fast. Rapid testing, AI-powered iteration, and continuous scaling keep you ahead of competitors stuck in quarterly review cycles.
 						</p>
 					</motion.div>
 
@@ -104,7 +104,7 @@ export default function WhyChooseUs() {
 							</div>
 							<h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">Precision Targeting</h3>
 							<p className="text-neutral-400 text-lg leading-relaxed max-w-md">
-								We don't just drive traffic; we attract the right audience. High-intent prospects that are ready to convert into loyal customers.
+								We don't chase traffic. We attract high-intent prospects ready to convert into loyal customers using advanced audience segmentation and machine learning.
 							</p>
 						</div>
 					</motion.div>

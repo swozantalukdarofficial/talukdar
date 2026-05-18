@@ -5,19 +5,19 @@ const testimonials = [
   {
     name: "Akramul Haque",
     role: "Founder, Maisha Net",
-    content: "Webestone transformed our online presence. Our organic leads grew by 300% within just 6 months of working with their SEO and content team.",
+    content: "Webestone transformed our online presence. Our organic traffic and leads grew by 300% within just six months of working with their AI-driven SEO and content team.",
     image: "https://i.pravatar.cc/150?u=akram",
   },
   {
     name: "Sarah Ahmed",
     role: "CEO, Arch Leather",
-    content: "The best digital marketing agency in Bangladesh, period. Their data-driven approach to social media ads gave us our best sales quarter ever.",
+    content: "The best AI digital marketing agency in Bangladesh, period. Their data-backed approach to social media advertising and Meta Ads gave us our best sales quarter ever.",
     image: "https://i.pravatar.cc/150?u=sarah",
   },
   {
     name: "Rahat Kabir",
     role: "Director, EduBD",
-    content: "Professional, creative, and results-oriented. They built our Ed-Tech platform from scratch and managed the entire launch campaign perfectly.",
+    content: "Professional, creative, and results-oriented. They built our Ed-Tech platform from scratch with clean responsive design and managed the entire launch campaign flawlessly.",
     image: "https://i.pravatar.cc/150?u=rahat",
   },
 ];

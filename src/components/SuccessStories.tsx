@@ -4,19 +4,19 @@ import { ArrowUpRight, TrendingUp, Users, Target } from "lucide-react";
 const cases = [
   {
     title: "High-Performance Web Ecosystem",
-    client: "Global Tech Solutions",
+    client: "GLOBAL TECH SOLUTIONS",
     stat: "300%",
     metric: "Increase in User Retention",
-    description: "Built a custom, lightning-fast web platform with seamless UI/UX that transformed their digital presence.",
+    description: "Built a custom, lightning-fast web platform with seamless UI and UX that transformed their digital presence and lowered bounce rate by 60%.",
     tags: ["Web Dev", "UI/UX Design"],
     color: "from-blue-500/20 to-cyan-500/20",
   },
   {
-    title: "Lead Gen Optimization",
-    client: "TechEdu Lab",
+    title: "Lead Generation Optimization",
+    client: "TECHEDU LAB",
     stat: "12X",
     metric: "Lower Cost Per Lead",
-    description: "Revamped their Facebook & Google Ads funnel to maximize conversion efficiency.",
+    description: "Revamped their Facebook and Google Ads funnel with AI-driven audience targeting and landing page optimization to maximize conversion rate and slash wasted spend.",
     tags: ["PPC", "CRO"],
     color: "from-neon-green/20 to-emerald-500/20",
   },
@@ -47,7 +47,7 @@ export default function SuccessStories() {
               Real Results for <span className="text-neon-green">Real Businesses</span>
             </h2>
             <p className="text-neutral-400 text-lg">
-              We don't just talk about growth; we deliver it. Our case studies represent the measurable impact we've had on our clients' revenue and visibility.
+              We don't just talk about growth. We deliver it. Our case studies represent the measurable impact we have had on our clients' revenue and visibility.
             </p>
           </motion.div>
           <motion.div

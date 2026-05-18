@@ -25,40 +25,48 @@ import {
 import { MagneticButton } from "../components/ui/MagneticButton";
 
 const processSteps = [
-  { 
-    title: "Insight planning", 
-    desc: "Understanding your audience's behavior and planning content that resonates with their needs and interests." 
+  {
+    title: "Insight Planning",
+    desc: "As a data driven social media marketing agency, we analyze audience behavior, engagement patterns, and platform metrics to support smarter decisions aligned with business goals and measurable performance."
   },
-  { 
-    title: "Content Creation & Curation", 
-    desc: "Developing visually stunning and engaging content tailored for each specific social platform." 
+  {
+    title: "Strategic Mapping",
+    desc: "We examine your positioning, goals, and competitors to build an Expert Social Media Strategy supported by social media audience targeting and disciplined audience segmentation for relevance."
   },
-  { 
-    title: "Audience Engagement", 
-    desc: "Proactive community management and interaction to build real connections and brand loyalty." 
+  {
+    title: "Creative Production",
+    desc: "Our team delivers Best social media content creation with Expert social media creatives design, producing visuals and messaging through Canva tailored for platform behavior."
   },
-  { 
-    title: "Performance Tracking & Optimization", 
-    desc: "Continuous data analysis to refine strategies and maximize your social media ROI." 
+  {
+    title: "Live Engagement Handling",
+    desc: "We manage social media page management and social media campaign management through scheduled publishing, active community management, and continuous social listening."
+  },
+  {
+    title: "Measurement Refinement",
+    desc: "Social media analytics, conversion tracking, and performance reporting help refine campaigns continuously while supporting a performance-based social media marketing agency focused on measurable growth."
   }
 ];
 
 const faqs = [
   {
+    q: "What does social media management include?",
+    a: "It covers planning, publishing, and refinement using social media optimization (SMO). This supports consistent organic reach while aligning content with platform signals."
+  },
+  {
     q: "How does automation improve results?",
-    a: "Automation allows for faster response times, more precise targeting, and 24/7 engagement, ensuring no opportunity is missed in the fast-paced social landscape."
+    a: "An AI driven social media marketing agency adapts faster than manual workflows. Automation improves efficiency while strategy remains human guided."
   },
   {
     q: "Does automation replace creativity?",
-    a: "No, automation handles repetitive tasks like scheduling and data collection, freeing up our creative team to focus on high-level strategy and unique storytelling."
+    a: "An AI social media automation agency supports execution, not replacement. Creative direction and brand tone remain human led."
   },
   {
     q: "How are paid campaigns managed?",
-    a: "We use data-driven insights to optimize ad spend across platforms like Meta, LinkedIn, and TikTok, ensuring maximum reach and conversion for your budget."
+    a: "A paid advertising social media agency controls testing, delivery, and spend. This structure improves learning speed while reducing waste."
   },
   {
     q: "Is competitor research included?",
-    a: "Yes, we perform deep-dive competitor analysis to identify gaps, trends, and opportunities within your specific niche."
+    a: "A social media audit supported by competitor analysis reveals positioning gaps. Insights guide content direction and channel focus."
   }
 ];
 

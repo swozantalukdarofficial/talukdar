@@ -65,15 +65,19 @@ export default function Hero() {
         >
           <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10">
             <span className="flex h-2 w-2 rounded-full bg-neon-green animate-ping"></span>
-            <span className="text-xs font-bold text-white uppercase tracking-widest">Creative & Digital Growth Agency</span>
+            <span className="text-xs font-bold text-white uppercase tracking-widest">AI-POWERED CREATIVE & GROWTH AGENCY</span>
           </div>
 
+          <p className="text-[11px] font-semibold text-neutral-500 uppercase tracking-[0.2em] mb-1 italic">
+            Attention is the new currency. We help you earn it, hold it, and convert it.
+          </p>
+
           <h1 className="text-5xl md:text-7xl font-black text-white leading-[1.05] tracking-tight">
-            Your All-in-One <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green to-cyan-400">Creative & Growth</span> Partner
+            AI-Powered Solutions <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green to-cyan-400">That Convert Attention Into</span> Revenue
           </h1>
 
           <p className="text-lg text-neutral-400 max-w-xl leading-relaxed">
-            From high-performance Web Development and SEO to cinematic Video Editing and ROI-driven Marketing. We build the complete digital ecosystem your brand needs to dominate.
+            From AI driven SEO and conversion-focused web development to data-backed PPC, social media advertising services, and high-impact video marketing. We engineer the complete AI digital marketing ecosystem your brand needs to scale.
           </p>
 
           <div className="flex flex-wrap gap-4 pt-4">
@@ -95,7 +99,7 @@ export default function Hero() {
           className="relative"
         >
           <HeroVideoPlayer />
-          
+
           {/* Floating Card 1: Conversion */}
           <motion.div
             animate={{ y: [0, -10, 0] }}

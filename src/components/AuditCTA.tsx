@@ -17,17 +17,17 @@ export default function AuditCTA() {
               <span className="text-xs font-bold uppercase tracking-wider">Not getting results?</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Get Your Free <span className="text-neon-green">Digital Growth Audit</span> Today
+              Get Your Free <span className="text-neon-green">AI-Powered Growth Audit</span> Today
             </h2>
             <p className="text-neutral-400 text-lg mb-8 leading-relaxed">
-              Is your digital presence failing to convert? Our experts will analyze your website, SEO, and marketing strategy to show you exactly how to scale.
+              Is your digital presence failing to convert? Our team will analyze your website, SEO, social media, and ad strategy using AI tools and show you exactly where you are losing revenue and how to fix it.
             </p>
             <ul className="space-y-4 mb-8">
               {[
-                "Website Performance Check",
-                "SEO & Ranking Analysis",
+                "Website Performance & Core Web Vitals Check",
+                "SEO & Google Ranking Analysis",
                 "Social Media Engagement Audit",
-                "Competitor Comparison",
+                "Competitor Benchmark Comparison",
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-neutral-300">
                   <CheckCircle2 className="w-5 h-5 text-neon-green" />

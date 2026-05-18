@@ -19,7 +19,7 @@ export default function NewsletterCTA() {
               Ready to <span className="text-neon-green">Skyrocket</span> Your Revenue?
             </h2>
             <p className="text-neutral-400 text-lg mb-12 max-w-xl mx-auto leading-relaxed">
-              Join 500+ business owners receiving weekly data-driven growth strategies directly in their inbox.
+              Join 500+ business owners receiving weekly AI-driven growth strategies, digital marketing playbooks, and SEO insights directly in their inbox.
             </p>
 
             <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4 mb-8" onSubmit={(e) => e.preventDefault()}>

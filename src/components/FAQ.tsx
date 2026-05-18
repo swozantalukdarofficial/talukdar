@@ -5,23 +5,23 @@ import { useState } from "react";
 const faqs = [
   {
     question: "How long does it take to see results?",
-    answer: "Typically, for SEO, it takes 3-6 months for significant growth. However, for Paid Ads (PPC) and SMM, you can start seeing results within the first month of campaign launch.",
+    answer: "Paid campaigns on Google Ads and Meta Ads typically show measurable results in 4 to 6 weeks. Organic Search Engine Optimization and content marketing build compounding returns over 3 to 6 months. We share weekly performance updates from day one so you always know where you stand.",
   },
   {
-    question: "Do you offer custom marketing plans?",
-    answer: "Yes, every business is unique. We build customized growth engines based on your industry, target audience, and business goals rather than using generic packages.",
+    question: "Do you offer custom AI marketing plans?",
+    answer: "Yes. Every plan is built around your specific industry, audience, budget, and goals. No templates. No copy-paste strategies. Every campaign we run is tailored after a discovery audit.",
   },
   {
     question: "What is a Free Marketing Audit?",
-    answer: "It's a comprehensive review of your current digital presence. We analyze your website, SEO, and social media to find gaps and show you where your budget is being wasted.",
+    answer: "A no-commitment review of your website performance, SEO health, social media engagement, and ad spend efficiency. You receive a clear report identifying exactly where you are losing revenue and what to fix first.",
   },
   {
     question: "How do you track success?",
-    answer: "We focus on revenue and conversions, not just likes and shares. We provide detailed monthly reports showing lead growth, traffic quality, and ROI.",
+    answer: "Through real-time dashboards connected to Google Analytics, Google Search Console, Meta Ads Manager, and our internal AI reporting tools. You see every metric live, 24/7. No monthly PDF surprises.",
   },
   {
     question: "Which industries do you specialize in?",
-    answer: "While we work with various sectors, we have extensive experience in E-commerce, Ed-Tech, Real Estate, and NGOs across Bangladesh and globally.",
+    answer: "E-Commerce, SaaS & Tech, and Ed-Tech are our strongest verticals with proven case studies. We also work with Real Estate, Energy, and NGO clients on a project basis.",
   },
 ];
 

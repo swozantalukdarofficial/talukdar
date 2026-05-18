@@ -109,11 +109,11 @@ export default function AboutUs() {
           </h2>
 
           <p className="text-neutral-400 text-lg leading-relaxed">
-            WeBestOne is built on intelligent innovation designed to help brands
-            grow with clarity, precision, and purpose. We create AI powered
-            systems that elevate visibility, strengthen engagement, and turn data
-            into measurable results. Every solution is engineered to help your
-            brand achieve smarter, faster, and more predictable growth.
+            WeBestOne is built on intelligent innovation engineered to help brands
+            grow with clarity, precision, and purpose. We create AI-powered
+            systems that elevate visibility, strengthen customer engagement, and turn data
+            into measurable revenue. Every solution we deliver is built for smarter, faster,
+            more predictable growth.
           </p>
 
           <div className="pt-4">

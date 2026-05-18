@@ -8,8 +8,8 @@ const features = [
     others: "Generic One-Size-Fits-All",
   },
   {
-    name: "AI Automation",
-    we: "Full Integration for Speed",
+    name: "AI Integration",
+    we: "Full AI Automation for Speed & Scale",
     others: "Slow Manual Processes",
   },
   {
@@ -45,10 +45,10 @@ export default function Comparison() {
               Why We Are Different
             </div>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              WeBestOne vs <span className="text-neutral-500">Others Agencies</span>
+              WeBestOne vs <span className="text-neutral-500">Other Agencies</span>
             </h2>
             <p className="text-neutral-400 text-lg">
-              Most agencies focus on visibility. We focus on <span className="text-white font-bold">Profitability.</span>
+              Most agencies sell visibility. We engineer <span className="text-white font-bold">profitability.</span>
             </p>
           </motion.div>
         </div>

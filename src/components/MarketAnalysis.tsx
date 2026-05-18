@@ -6,7 +6,7 @@ const stats = [
     icon: Users,
     value: "67M+",
     label: "Active Internet Users",
-    description: "Bangladesh has a massive digital audience waiting to be reached.",
+    description: "Bangladesh holds one of South Asia's largest digital audiences. The brands that show up first in search and social capture the market.",
     color: "text-blue-500",
     bg: "bg-blue-500/10",
   },
@@ -14,23 +14,23 @@ const stats = [
     icon: Globe,
     value: "45M+",
     label: "Social Media Users",
-    description: "The majority of the population is active on social platforms daily.",
+    description: "Daily active users across Facebook, Instagram, TikTok, LinkedIn, and YouTube. Massive reach for precision-targeted social media marketing campaigns.",
     color: "text-rose-500",
     bg: "bg-rose-500/10",
   },
   {
     icon: TrendingUp,
     value: "20%+",
-    label: "Annual E-commerce Growth",
-    description: "Digital commerce is exploding in the Bangladesh market.",
+    label: "Annual E-Commerce Growth",
+    description: "The e-commerce market is compounding fast. Shopify and WooCommerce stores with strong SEO and conversion rate optimization are capturing the lead.",
     color: "text-neon-green",
     bg: "bg-neon-green/10",
   },
   {
     icon: BarChart2,
     value: "85%",
-    label: "Research Before Buy",
-    description: "Customers research online before making any purchase decision.",
+    label: "Research Before Buying",
+    description: "Customers Google products, read reviews, and check social proof before any purchase decision. If you are not on page one of the SERP, you do not exist.",
     color: "text-purple-500",
     bg: "bg-purple-500/10",
   },
@@ -48,10 +48,10 @@ export default function MarketAnalysis() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-5xl font-black text-white mb-6">
-              Why Your Business Needs a <span className="text-neon-green">Strategic Partner?</span>
+              Why Brands Need an <span className="text-neon-green">AI-Powered Growth Partner</span>
             </h2>
             <p className="text-neutral-400 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-              The digital landscape is evolving rapidly. To stay competitive, brands need more than just a website or an ad—they need a <span className="text-white font-semibold">Complete Growth Ecosystem.</span>
+              The digital landscape is moving faster than traditional marketing can keep up with. To compete in 2026, brands need more than a website or an ad campaign. They need an <span className="text-white font-semibold">AI-driven growth ecosystem</span> engineered for speed, precision, and measurable ROI.
             </p>
           </motion.div>
         </div>
