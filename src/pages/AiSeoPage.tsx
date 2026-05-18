@@ -153,7 +153,7 @@ export default function AiSeoPage() {
 						initial={{ opacity: 0, scale: 0.95 }}
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{ duration: 1, delay: 0.2 }}
-						className="relative"
+						className="relative lg:ml-8 xl:ml-12"
 					>
 						<div className="relative rounded-[3rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/5">
 							<img 
