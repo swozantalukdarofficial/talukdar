@@ -13,47 +13,57 @@ export default function AiSeoPage() {
 
 	const faqs = [
 		{
-			question: "How is AI SEO different from traditional SEO?",
+			question: "Why choose an AI SEO service agency like WebestOne?",
 			answer:
-				"AI SEO uses machine learning and data analysis to predict trends, understand user intent better, and automate complex tasks like keyword research and content optimization at scale.",
+				"Because visibility without results is wasted. We operate as a proven AI SEO company focused on real growth and strong AI search visibility.",
 		},
 		{
-			question: "Will AI SEO make my website rank faster?",
+			question: "Do you offer AI-based SEO services for Google SGE?",
 			answer:
-				"While SEO is always a long-term game, AI-driven strategies help identify high-impact opportunities quickly, allowing for faster adjustments and more efficient ranking improvements compared to manual methods.",
+				"Yes. Our AI-based SEO services are designed for Google SGE, AI Overviews, and modern AI search systems.",
 		},
 		{
-			question: "Is AI-generated content safe for Google ranking?",
+			question: "What makes your AI SEO solutions different?",
 			answer:
-				"Google rewards high-quality, helpful content regardless of how it's produced. We use AI to enhance research and structure, but our expert human editors always refine the content to ensure it meets Google's E-E-A-T standards.",
+				"We focus on clarity, intent, and LLM optimization, not just rankings.",
 		},
 		{
-			question: "Can AI help with technical SEO audits?",
+			question: "Can AI SEO improve visibility on Perplexity AI and Gemini?",
 			answer:
-				"Yes, AI tools can scan thousands of pages in minutes to find broken links, duplicate content, and site speed issues that humans might miss, providing a more comprehensive technical foundation.",
+				"Yes. We improve LLM visibility across both platforms.",
+		},
+		{
+			question: "How long does it take to see results?",
+			answer:
+				"You will see early changes in months, with stronger results over time.",
+		},
+		{
+			question: "Do you guarantee rankings?",
+			answer:
+				"No. We guarantee clear execution, transparency, and continuous improvement.",
 		},
 	];
 
 	const workflowSteps = [
 		{
 			num: "1",
-			title: "Data Collection",
-			desc: "We use AI to gather vast amounts of data from search engines, competitors, and your own site's performance to build a solid foundation.",
+			title: "Research Your Niche",
+			desc: "We study your market, competitors, and gaps to build a clear picture of where you stand and where opportunity exists.",
 		},
 		{
 			num: "2",
-			title: "Predictive Analysis",
-			desc: "Our AI models identify emerging keyword trends and content gaps, allowing us to stay ahead of the curve and your competitors.",
+			title: "Set Up Your Team",
+			desc: "Experts are assigned based on what is needed for your specific industry, goals, and search environment.",
 		},
 		{
 			num: "3",
-			title: "Dynamic Optimization",
-			desc: "We continuously refine content and meta-data based on real-time search engine algorithm changes and user behavior data.",
+			title: "Create a Game Plan",
+			desc: "We build a plan with clear goals, defined timelines, and measurable targets tied to real business outcomes.",
 		},
 		{
 			num: "4",
-			title: "Performance Tracking",
-			desc: "AI-powered reporting provides deep insights into what's working and where to pivot, ensuring maximum ROI for your SEO investment.",
+			title: "Review and Scale",
+			desc: "We track results, identify what works, and continuously improve to ensure compounding, long-term growth.",
 		},
 	];
 
@@ -120,16 +130,16 @@ export default function AiSeoPage() {
 						{/* Main Heading */}
 						<div className="space-y-2">
 							<h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight uppercase">
-								NEXT-GEN SEO BY <br />
+								AI SEO SERVICE AGENCY THAT <br />
 								<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-									WEBESTONE
+									TURNS VISIBILITY INTO PREDICTABLE GROWTH
 								</span>
 							</h1>
 						</div>
 
 						{/* Description */}
 						<p className="text-base md:text-lg text-neutral-300 max-w-lg leading-relaxed font-medium">
-							WebestOne positions itself as an AI SEO service provider built to turn search visibility into predictable business outcomes, not vanity rankings that look good but fail to convert.
+							WebestOne is not a typical AI SEO service agency. We build search systems that place your brand inside decisions before your competitors are even considered.
 						</p>
 
 						{/* Subtext */}
@@ -170,9 +180,9 @@ export default function AiSeoPage() {
 				<div className="max-w-7xl mx-auto space-y-16">
 					<div className="text-center relative">
 						<SectionHeading
-							topTitle="OUR AI PROCESS"
-							mainTitle="The AI SEO"
-							greenText="Success Loop"
+							topTitle="OUR DATA-DRIVEN PROCESS"
+							mainTitle="Clear Steps,"
+							greenText="Clear Results"
 						/>
 					</div>
 
@@ -209,8 +219,8 @@ export default function AiSeoPage() {
 					<div className="text-center space-y-4 flex flex-col items-center">
 						<SectionHeading
 							topTitle="QUESTIONS & ANSWERS"
-							mainTitle="FAQs about"
-							greenText="AI SEO"
+							mainTitle="FAQs About Our"
+							greenText="SEO Company"
 						/>
 					</div>
 
