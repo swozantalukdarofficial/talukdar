@@ -23,77 +23,85 @@ import aiBrainImg from "../assets/ai-brain.png";
 const offers = [
   {
     title: "AI SEO Strategy",
-    desc: "Predictive modeling and AI-driven insights to build a future-proof roadmap.",
+    desc: "Smart planning powered by AI search optimization for long-term, predictable growth.",
     icon: Zap,
     color: "text-yellow-400"
   },
   {
     title: "AI Search Consultancy",
-    desc: "Expert guidance on navigating the evolving landscape of AI-powered search.",
+    desc: "Clear direction from a proven AI SEO company that understands how decisions happen today.",
     icon: Search,
     color: "text-blue-400"
   },
   {
     title: "GEO SEO",
-    desc: "Generative Engine Optimization to ensure your brand is cited by LLMs.",
+    desc: "Visibility across generative discovery systems including Google SGE, Gemini, and Perplexity.",
     icon: Globe,
     color: "text-emerald-400"
   },
   {
     title: "AEO SEO",
-    desc: "Answer Engine Optimization to dominate voice and direct-answer queries.",
+    desc: "Content built for answer-based search so your brand appears where questions get answered.",
     icon: Target,
     color: "text-rose-400"
   },
   {
     title: "Entity Optimization",
-    desc: "Establishing authority through structured data and knowledge graph integration.",
+    desc: "Clear signals across AI and search engines through structured data and knowledge graph integration.",
     icon: ShieldCheck,
     color: "text-purple-400"
   },
   {
     title: "Technical SEO",
-    desc: "Deep-level site health checks and performance optimization for crawlers.",
+    desc: "Fast, clean, and optimized performance with deep-level site health checks for crawlers.",
     icon: LineChart,
     color: "text-orange-400"
   },
   {
     title: "Digital PR",
-    desc: "High-authority link building and brand mentions through strategic outreach.",
+    desc: "Authority building through link building and strategic brand mention outreach.",
     icon: Globe,
     color: "text-cyan-400"
   },
   {
-    title: "EverySearch Tracking",
-    desc: "LLM performance tracking and visibility monitoring across all platforms.",
+    title: "LLM Performance Tracking",
+    desc: "Track how AI systems surface your brand across ChatGPT, Gemini, Perplexity, and beyond.",
     icon: BarChart3,
     color: "text-pink-400"
   }
 ];
 
 const steps = [
-  { num: "1", title: "Research your niche", desc: "Deep-dive into market trends and competitor gaps using proprietary AI tools." },
-  { num: "2", title: "Set up your team", desc: "Assigning dedicated experts to execute every facet of your customized strategy." },
-  { num: "3", title: "Create a game plan", desc: "Mapping out a 12-month roadmap focused on sustainable organic growth." },
-  { num: "4", title: "Review and scale", desc: "Continuous monitoring and rapid iteration to maximize your results." }
+  { num: "1", title: "Research your niche", desc: "We study your market, competitors, and gaps to build a clear picture of where you stand and where opportunity exists." },
+  { num: "2", title: "Set up your team", desc: "Experts are assigned based on what is needed for your specific industry, goals, and search environment." },
+  { num: "3", title: "Create a game plan", desc: "We build a plan with clear goals, defined timelines, and measurable targets tied to real business outcomes." },
+  { num: "4", title: "Review and scale", desc: "We track results, identify what works, and continuously improve to ensure compounding, long-term growth." }
 ];
 
 const faqs = [
   {
-    q: "Why should I choose WebestOne?",
-    a: "We specialize in next-gen AI-driven SEO that adapts to the evolving search landscape, including LLMs and generative search engines."
+    q: "Why choose an AI SEO service agency like WebestOne?",
+    a: "Because visibility without results is wasted. We operate as a proven AI SEO company focused on real growth and strong AI search visibility."
   },
   {
-    q: "How does your SEO approach differ?",
-    a: "Our strategy is built around clarity, authority, and adaptability, supported by continuous data analysis and AI-driven insights."
+    q: "Do you offer AI-based SEO services for Google SGE?",
+    a: "Yes. Our AI-based SEO services are designed for Google SGE, AI Overviews, and modern AI search systems."
   },
   {
-    q: "How long does SEO take to show results?",
-    a: "Visibility improvements are typically seen within 3-6 months, depending on the niche, competition, and starting baseline."
+    q: "What makes your AI SEO solutions different?",
+    a: "We focus on clarity, intent, and LLM optimization, not just rankings."
   },
   {
-    q: "Can you guarantee rankings?",
-    a: "No reputable agency can guarantee #1 rankings, but we guarantee data-backed strategies that significantly improve visibility and high-intent traffic."
+    q: "Can AI SEO improve visibility on Perplexity AI and Gemini?",
+    a: "Yes. We improve LLM visibility across both platforms."
+  },
+  {
+    q: "How long does it take to see results?",
+    a: "You will see early changes in months, with stronger results over time."
+  },
+  {
+    q: "Do you guarantee rankings?",
+    a: "No. We guarantee clear execution, transparency, and continuous improvement."
   }
 ];
 
@@ -126,16 +134,16 @@ export default function SeoPage() {
             {/* Main Heading */}
             <div className="space-y-2">
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight uppercase">
-                NEXT-GEN SEO BY <br />
+                AI SEO SERVICE AGENCY THAT <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-                  WEBESTONE
+                  TURNS VISIBILITY INTO PREDICTABLE GROWTH
                 </span>
               </h1>
             </div>
 
             {/* Description */}
             <p className="text-base md:text-lg text-neutral-300 max-w-lg leading-relaxed font-medium">
-              WebestOne positions itself as an AI SEO service provider built to turn search visibility into predictable business outcomes, not vanity rankings that look good but fail to convert.
+              WebestOne is not a typical AI SEO service agency. We build search systems that place your brand inside decisions before your competitors are even considered.
             </p>
 
             {/* Subtext */}
@@ -187,13 +195,13 @@ export default function SeoPage() {
                 </h2>
                 <div className="space-y-4 text-neutral-400 text-sm md:text-base leading-relaxed">
                   <p>
-                    SEO becomes powerful when it is structured, measurable, and tied directly to business intent. When executed correctly, it evolves into a compounding acquisition channel rather than an ongoing experiment.
+                    Search has changed. People do not scroll through pages anymore. They read answers, summaries, and recommendations, then decide fast. That means your brand is judged before your site is even opened.
                   </p>
                   <p>
-                    WebestOne operates as an AI SEO service provider for local businesses, startups, eCommerce brands, and multilingual organizations. Our approach blends technical accuracy, semantic clarity, authoritative content, and sustained trust signals to produce consistent organic growth.
+                    Most companies still rely on outdated SEO methods. That gap leads to lost visibility, weak trust, and poor leads. As an AI SEO service agency, WebestOne builds AI search optimization strategies around how decisions actually happen today.
                   </p>
                   <p className="font-bold text-white pt-2">
-                    The result is not just traffic, but credibility across every discovery touchpoint.
+                    If you are not there at that moment, your competitor is.
                   </p>
                 </div>
               </div>
@@ -207,24 +215,23 @@ export default function SeoPage() {
             >
               <div className="space-y-6">
                 <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-                  Search visibility no <br />
-                  longer works the way <br />
-                  most businesses think it <br />
-                  does
+                  SEO That Drives <br />
+                  Real Business <br />
+                  Outcomes
                 </h2>
                 <div className="w-24 h-1 bg-blue-600"></div>
                 <div className="space-y-4 text-neutral-400 text-sm md:text-base leading-relaxed">
                   <p>
-                    Search engines evolve constantly, but customer behavior changes even faster. Today, buyers rely on summaries, extracted answers, and AI-generated recommendations before they ever visit a website.
+                    Traffic does not grow a business. Decisions do. WebestOne works as an AI SEO service agency and a proven AI SEO company for businesses that want results tied to revenue, not reports.
                   </p>
                   <p>
-                    Yet many companies still invest in SEO as if rankings alone decide success. That disconnect quietly costs visibility, credibility, and qualified leads. As an AI SEO service provider, WebestOne designs search strategies around how decisions are actually made today, not how SEO worked years ago.
+                    We combine semantic search, strong technical SEO, and structured content. The result is simple — better trust, better leads, and real LLM visibility where decisions happen.
                   </p>
                 </div>
               </div>
               <div className="p-8 rounded-2xl bg-blue-600/10 border border-blue-500/20">
                 <p className="text-blue-400 font-bold leading-relaxed">
-                  If your brand is not present where understanding forms, competitors will be.
+                  Show up early. Stay trusted. Win the decision through AI search optimization.
                 </p>
               </div>
             </motion.div>
@@ -245,16 +252,16 @@ export default function SeoPage() {
               <h2 className="text-4xl md:text-5xl font-bold">
                 <span className="text-blue-500">AI SEO</span> Services
               </h2>
-              <p className="text-xl font-bold text-white">SEO should be intelligent, not reactive.</p>
+              <p className="text-xl font-bold text-white">SEO should not feel uncertain. It should feel controlled.</p>
             </div>
             <p className="text-neutral-400 leading-relaxed">
-              As an AI SEO service provider, WebestOne uses artificial intelligence to prioritize actions, forecast outcomes, and focus resources where they generate measurable impact.
+              As an AI SEO service agency, WebestOne delivers AI-based SEO services and expert AI SEO services using data, predictive systems, and AI optimization techniques to focus only on what drives results.
             </p>
             <ul className="space-y-4">
               {[
-                "Visibility across AI-driven and traditional search environments",
-                "Qualified lead growth guided by predictive analysis",
-                "Conversion improvement through automated optimization"
+                "Visibility across AI and traditional search",
+                "Better quality leads",
+                "Higher conversions through structured AI content strategy"
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-sm md:text-base text-neutral-300 font-medium">
                   <CheckCircle2 className="w-5 h-5 text-neon-green" />
@@ -265,7 +272,7 @@ export default function SeoPage() {
             <div className="pt-4">
               <Link to="/contact">
                 <button className="px-8 py-4 bg-neon-green text-black font-bold rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_rgba(135,230,92,0.2)]">
-                  Book a free consultation
+                  Book a consultation and see where you are losing ground.
                 </button>
               </Link>
               <p className="text-xs text-neutral-500 mt-4 ml-2 uppercase tracking-widest font-bold">
@@ -300,20 +307,20 @@ export default function SeoPage() {
                 <span className="text-blue-500">AI SEO solutions</span>
               </h2>
               <p className="text-lg font-bold text-white max-w-lg leading-snug">
-                Artificial Intelligence was not added to an existing workflow. The system was designed first.
+                This is not SEO with AI added later. It was built this way from the start.
               </p>
             </div>
             <p className="text-neutral-400 leading-relaxed">
-              As an AI SEO service provider, WebestOne integrates internal analytics, platforms such as Ahrefs, ChatGPT, and SurferSEO, and experienced specialists who know how to translate data into strategy, not noise.
+              As an AI SEO service agency, WebestOne does not rely on isolated tools. We operate the WebestOne SEO Intelligence System, a structured framework that connects data, content, and search signals into a single decision-making engine. By combining platforms like Ahrefs, SurferSEO, and Clearscope with internal analysis models, this system aligns your brand with search ranking signals, E-E-A-T factors, and evolving AI-driven visibility patterns.
             </p>
             <div className="space-y-4">
               <p className="font-bold text-white">AI enables our teams to:</p>
               <ul className="space-y-4">
                 {[
-                  "Identify growth opportunities competitors miss",
-                  "Forecast traffic and visibility shifts before execution",
-                  "Estimate ROI prior to investment",
-                  "Respond rapidly to algorithm and ranking-signal changes"
+                  "Hidden gaps are uncovered",
+                  "Traffic shifts are seen early",
+                  "ROI is clear before action",
+                  "Strategy adapts fast"
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-sm md:text-base text-neutral-300 font-medium">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
@@ -325,7 +332,7 @@ export default function SeoPage() {
             <div className="pt-4">
               <Link to="/contact">
                 <button className="px-8 py-4 bg-neon-green text-black font-bold rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_rgba(135,230,92,0.2)]">
-                  Schedule a free consultation
+                  Schedule a consultation and review your data clearly.
                 </button>
               </Link>
               <p className="text-xs text-neutral-500 mt-4 ml-2 uppercase tracking-widest font-bold">
@@ -369,10 +376,10 @@ export default function SeoPage() {
             </h2>
             <div className="space-y-6 text-neutral-400 leading-relaxed text-sm md:text-base">
               <p>
-                Search visibility now extends far beyond traditional results pages. An AI SEO service provider must ensure content can be interpreted, summarized, and cited by AI systems that influence decisions before a click happens.
+                Search is no longer just Google. An AI SEO service agency must ensure your content appears inside AI systems before users click.
               </p>
               <p>
-                WebestOne structures content for clarity, authority, and contextual relevance across platforms such as Amazon Alexa, OpenAI ChatGPT, and emerging AI-driven search environments.
+                WebestOne structures content across Google AI Overviews, the Google Gemini AI model, and Perplexity AI, helping your brand appear in AI-generated results.
               </p>
             </div>
           </motion.div>
@@ -392,14 +399,14 @@ export default function SeoPage() {
               <h2 className="text-4xl md:text-5xl font-bold uppercase">
                 GEO & AI SEO Services
               </h2>
-              <p className="text-lg font-bold text-white">Generative Engine Optimization is no longer optional.</p>
+              <p className="text-lg font-bold text-white">Generative Engine Optimization is now essential.</p>
             </div>
             <div className="space-y-6 text-neutral-400 leading-relaxed text-sm md:text-base">
               <p>
-                As an AI SEO service provider, WebestOne strengthens brand presence inside AI-generated answers, summaries, and discovery interfaces where customer trust is formed.
+                As an AI SEO service agency, WebestOne places your brand inside AI-generated answers where trust starts.
               </p>
               <p>
-                Our GEO strategies prioritize accessibility, credibility, and structural alignment across Google AI Overviews, Gemini, Perplexity, and related platforms.
+                Our Generative Engine Optimization (GEO) approach strengthens AI search engine optimization and long-term LLM optimization across Google SGE, Gemini, and Perplexity. Be visible where decisions begin.
               </p>
             </div>
             <div className="pt-4">
