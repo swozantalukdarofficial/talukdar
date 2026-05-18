@@ -201,12 +201,7 @@ export default function DigitalMarketingPage() {
 					className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
 				>
 					<div className="space-y-6">
-						<motion.div
-							variants={heroItem}
-							className="inline-block px-4 py-2 bg-purple-600/20 text-purple-400 rounded-full text-sm font-bold border border-purple-500/30 uppercase tracking-wide"
-						>
-							Digital Marketing Services
-						</motion.div>
+
 						<motion.h1
 							variants={heroItem}
 							className="text-4xl md:text-5xl lg:text-[3.5rem] font-black leading-[1.15] tracking-tight"
