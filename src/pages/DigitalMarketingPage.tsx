@@ -193,7 +193,7 @@ export default function DigitalMarketingPage() {
 			</div>
 
 			{/* --- Hero Section --- */}
-			<section className="relative py-20 px-6 z-10">
+			<section className="relative pt-8 pb-20 md:pt-12 md:pb-24 px-6 z-10">
 				<motion.div
 					variants={heroContainer}
 					initial="hidden"
@@ -209,11 +209,11 @@ export default function DigitalMarketingPage() {
 						</motion.div>
 						<motion.h1
 							variants={heroItem}
-							className="text-3xl md:text-4xl lg:text-5xl xl:text-[3.5rem] font-bold leading-[1.15] tracking-tight"
+							className="text-4xl md:text-5xl lg:text-[3.5rem] font-black leading-[1.15] tracking-tight"
 						>
-							Digital Marketing Agency <br />
-							Where <span className="text-neon-green">Strategy, Technology, <br className="hidden sm:block" />
-							and Growth Come Together</span>
+							Digital Marketing Agency <br className="hidden sm:block" />
+							Where <span className="text-neon-green">Strategy, Technology,</span> <br />
+							<span className="text-neon-green">& Growth</span> Come Together
 						</motion.h1>
 						<motion.p
 							variants={heroItem}
