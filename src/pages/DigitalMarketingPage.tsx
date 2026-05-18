@@ -340,6 +340,62 @@ export default function DigitalMarketingPage() {
 				</div>
 			</section>
 
+			{/* --- Advanced Digital Marketing Capabilities --- */}
+			<section className="py-24 px-6 relative z-10 bg-black border-t border-white/5">
+				<div className="max-w-7xl mx-auto space-y-16">
+					<div className="space-y-4 text-center max-w-4xl mx-auto">
+						<span className="text-neon-green font-mono text-sm tracking-widest uppercase block mb-4">
+							Advanced Capabilities
+						</span>
+						<h2 className="text-3xl md:text-4xl xl:text-5xl font-bold relative inline-block text-white">
+							Advanced Digital Marketing Capabilities
+							<svg
+								className="absolute w-full h-3 -bottom-2 text-neon-green/50 left-0"
+								viewBox="0 0 200 9"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M2.00025 6.99996C18.4475 2.66663 80.9167 -2.49997 197.99 1.99996"
+									stroke="currentColor"
+									strokeWidth="3"
+									strokeLinecap="round"
+								></path>
+							</svg>
+						</h2>
+						<p className="text-neutral-400 mt-6 text-lg">
+							Execution gets you started. Depth is what scales results. While our core services focus on execution, WebestOne also delivers specialized capabilities as an AI based digital marketing agency and expert digital marketing service provider that strengthen visibility, improve performance, and support long term digital growth using Artificial Intelligence (AI), machine learning, and smarter AI driven services.
+						</p>
+					</div>
+
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+						{advancedServices.map((service, index) => (
+							<motion.div
+								key={index}
+								initial={{ opacity: 0, y: 20 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true }}
+								transition={{ delay: index * 0.05 }}
+								whileHover={{ y: -5 }}
+								className="bg-white/5 border border-white/10 p-8 rounded-2xl text-left hover:bg-white/10 transition-colors group"
+							>
+								<div className="flex items-center gap-4 mb-4">
+									<div className="p-2 bg-purple-500/10 text-purple-400 rounded-lg group-hover:bg-purple-500 group-hover:text-white transition-colors">
+										<service.icon className="w-6 h-6" />
+									</div>
+									<h3 className="font-bold text-lg text-white group-hover:text-purple-400 transition-colors underline decoration-transparent group-hover:decoration-purple-400 underline-offset-4">
+										{service.title}
+									</h3>
+								</div>
+								<p className="text-sm text-neutral-400 leading-relaxed">
+									{service.desc}
+								</p>
+							</motion.div>
+						))}
+					</div>
+				</div>
+			</section>
+
 			{/* --- Results Driven Marketing (Visual Section) --- */}
 			<section className="py-24 px-6 relative overflow-hidden">
 				<div className="absolute inset-0 bg-blue-900/10 z-0"></div>
@@ -661,62 +717,6 @@ export default function DigitalMarketingPage() {
 							</Link>
 						</div>
 					))}
-				</div>
-			</section>
-
-			{/* --- Advanced Digital Marketing Capabilities --- */}
-			<section className="py-24 px-6 relative z-10 bg-black border-t border-white/5">
-				<div className="max-w-7xl mx-auto space-y-16">
-					<div className="space-y-4 text-center max-w-4xl mx-auto">
-						<span className="text-neon-green font-mono text-sm tracking-widest uppercase block mb-4">
-							Advanced Capabilities
-						</span>
-						<h2 className="text-3xl md:text-4xl xl:text-5xl font-bold relative inline-block text-white">
-							Advanced Digital Marketing Capabilities
-							<svg
-								className="absolute w-full h-3 -bottom-2 text-neon-green/50 left-0"
-								viewBox="0 0 200 9"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M2.00025 6.99996C18.4475 2.66663 80.9167 -2.49997 197.99 1.99996"
-									stroke="currentColor"
-									strokeWidth="3"
-									strokeLinecap="round"
-								></path>
-							</svg>
-						</h2>
-						<p className="text-neutral-400 mt-6 text-lg">
-							Execution gets you started. Depth is what scales results. While our core services focus on execution, WebestOne also delivers specialized capabilities as an AI based digital marketing agency and expert digital marketing service provider that strengthen visibility, improve performance, and support long term digital growth using Artificial Intelligence (AI), machine learning, and smarter AI driven services.
-						</p>
-					</div>
-
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-						{advancedServices.map((service, index) => (
-							<motion.div
-								key={index}
-								initial={{ opacity: 0, y: 20 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								viewport={{ once: true }}
-								transition={{ delay: index * 0.05 }}
-								whileHover={{ y: -5 }}
-								className="bg-white/5 border border-white/10 p-8 rounded-2xl text-left hover:bg-white/10 transition-colors group"
-							>
-								<div className="flex items-center gap-4 mb-4">
-									<div className="p-2 bg-purple-500/10 text-purple-400 rounded-lg group-hover:bg-purple-500 group-hover:text-white transition-colors">
-										<service.icon className="w-6 h-6" />
-									</div>
-									<h3 className="font-bold text-lg text-white group-hover:text-purple-400 transition-colors underline decoration-transparent group-hover:decoration-purple-400 underline-offset-4">
-										{service.title}
-									</h3>
-								</div>
-								<p className="text-sm text-neutral-400 leading-relaxed">
-									{service.desc}
-								</p>
-							</motion.div>
-						))}
-					</div>
 				</div>
 			</section>
 
