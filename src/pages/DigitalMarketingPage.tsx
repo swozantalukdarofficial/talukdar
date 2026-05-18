@@ -745,7 +745,8 @@ export default function DigitalMarketingPage() {
 						</div>
 					))}
 				</div>
-			</section>
+			</div>
+		</section>
 
 			{/* --- Why Choose Webestone --- */}
 			<section className="py-24 px-6 bg-white/5 relative z-10">
