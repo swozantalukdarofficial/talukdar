@@ -119,17 +119,6 @@ export default function SeoPage() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="space-y-10"
           >
-            {/* Stats Row */}
-            <div className="flex flex-wrap gap-8 md:gap-12">
-              <div className="space-y-1">
-                <h4 className="text-xl md:text-2xl font-bold text-white">$ Revenue</h4>
-                <p className="text-[10px] text-neutral-500 uppercase tracking-[0.1em] font-bold">Generated via SEO</p>
-              </div>
-              <div className="space-y-1">
-                <h4 className="text-xl md:text-2xl font-bold text-white">Qualified Leads</h4>
-                <p className="text-[10px] text-neutral-500 uppercase tracking-[0.1em] font-bold">Generated</p>
-              </div>
-            </div>
 
             {/* Main Heading */}
             <div className="space-y-2">
