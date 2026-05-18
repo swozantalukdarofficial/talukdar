@@ -661,7 +661,34 @@ export default function DigitalMarketingPage() {
 
 			{/* --- Packages Section (Coffee Bag Style) --- */}
 			<section className="py-24 px-6 bg-neutral-900 relative z-10">
-				<div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+				<div className="max-w-7xl mx-auto space-y-16">
+					<div className="space-y-4 text-center max-w-4xl mx-auto">
+						<span className="text-neon-green font-mono text-sm tracking-widest uppercase block mb-4">
+							Growth Channels
+						</span>
+						<h2 className="text-3xl md:text-4xl xl:text-5xl font-bold relative inline-block text-white">
+							Digital Growth Channels
+							<svg
+								className="absolute w-full h-3 -bottom-2 text-neon-green/50 left-0"
+								viewBox="0 0 200 9"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M2.00025 6.99996C18.4475 2.66663 80.9167 -2.49997 197.99 1.99996"
+									stroke="currentColor"
+									strokeWidth="3"
+									strokeLinecap="round"
+								></path>
+							</svg>
+						</h2>
+						<p className="text-neutral-400 mt-6 text-lg">
+							<span className="text-white font-semibold block mb-2">Visibility without direction wastes budget. These channels fix that.</span>
+							At WebestOne, successful campaigns are built through a combination of strategic visibility, targeted promotion, audience engagement, and data driven insights. As a digital growth agency, these channels work together to attract the right audience and turn attention into measurable results.
+						</p>
+					</div>
+
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 					{[
 						{
 							title: "SEO Strategy",
