@@ -204,9 +204,9 @@ export default function DigitalMarketingPage() {
 
 						<motion.h1
 							variants={heroItem}
-							className="text-4xl md:text-5xl lg:text-[3.5rem] font-black leading-[1.15] tracking-tight"
+							className="text-4xl md:text-5xl lg:text-5xl xl:text-[3.2rem] font-black leading-[1.15] tracking-tight"
 						>
-							Digital Marketing Agency <br className="hidden sm:block" />
+							Full Stack Digital <br className="hidden lg:block" /> Marketing Agency <br className="hidden sm:block lg:hidden" />
 							Where <span className="text-neon-green">Strategy, Technology,</span> <br />
 							<span className="text-neon-green">& Growth</span> Come Together
 						</motion.h1>

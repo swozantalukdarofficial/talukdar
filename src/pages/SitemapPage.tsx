@@ -35,7 +35,7 @@ const links = [
   {
     title: "Digital Marketing Services",
     items: [
-      { name: "Digital Marketing", href: "/services/digital-marketing", icon: Megaphone },
+      { name: "Full Stack Digital Marketing", href: "/services/digital-marketing", icon: Megaphone },
       { name: "AI Driven SEO", href: "/services/seo", icon: Search },
       { name: "SMM (Social Media)", href: "/services/social-media-marketing", icon: Share2 },
       { name: "PPC (Ads)", href: "/services/ppc", icon: MousePointerClick },

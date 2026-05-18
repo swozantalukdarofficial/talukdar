@@ -10,8 +10,8 @@ import {
 } from "lucide-react";
 
 const services = [
-	{ name: "Digital Marketing", href: "/services/digital-marketing" },
-	{ name: "SEO Services", href: "/services/seo" },
+	{ name: "Full Stack Digital Marketing", href: "/services/digital-marketing" },
+	{ name: "AI SEO Services", href: "/services/seo" },
 	{ name: "Social Media Management", href: "/services/social-media-marketing" },
 	{ name: "PPC Advertising", href: "/services/ppc" },
 	{ name: "Web Development", href: "/services/web-development" },

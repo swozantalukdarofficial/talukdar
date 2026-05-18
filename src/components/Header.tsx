@@ -49,7 +49,7 @@ export default function Header() {
 
 	const servicesList = [
 		{
-			title: "Digital Marketing",
+			title: "Full Stack Digital Marketing",
 			description: "Full-Service Strategy",
 			icon: Megaphone,
 			href: "/services/digital-marketing",
