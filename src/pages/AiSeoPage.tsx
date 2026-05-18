@@ -1,6 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Plus } from "lucide-react";
+import { Link } from "react-router-dom";
+import { MagneticButton } from "../components/ui/MagneticButton";
 import aiRobotImg from "../assets/ai-robot.png";
 
 export default function AiSeoPage() {
@@ -135,6 +137,15 @@ export default function AiSeoPage() {
 						<p className="text-[10px] text-neutral-500 uppercase tracking-[0.2em] font-bold max-w-lg leading-relaxed">
 							RECOGNIZED AND TRUSTED BY BRANDS THAT EXPECT SEARCH TO DRIVE RESULTS
 						</p>
+
+						{/* CTA Button */}
+						<motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+							<Link to="/contact">
+								<MagneticButton className="mt-4 px-8 py-3 bg-neon-green text-black font-bold rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)] transition-shadow hover:bg-[#87E65C]">
+									Get In Touch
+								</MagneticButton>
+							</Link>
+						</motion.div>
 					</motion.div>
 
 					{/* Image Side */}
