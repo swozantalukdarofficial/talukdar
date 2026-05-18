@@ -216,6 +216,12 @@ export default function DigitalMarketingPage() {
 						>
 							Digital marketing is no longer about doing more. It is about doing what works. At WebestOne, we help businesses grow with clarity, speed, and purpose. Our team blends experience with AI marketing solutions and AI driven services to help brands compete, adapt, and scale across digital channels worldwide.
 						</motion.p>
+						<motion.p
+							variants={heroItem}
+							className="text-white font-semibold text-lg leading-relaxed max-w-lg"
+						>
+							Most agencies focus on activity. We focus on outcomes you can measure.
+						</motion.p>
 						<motion.div variants={heroItem}>
 							<Link to="/contact">
 								<MagneticButton className="px-8 py-3 bg-neon-green text-black font-bold rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)] transition-shadow hover:bg-[#87E65C]">
