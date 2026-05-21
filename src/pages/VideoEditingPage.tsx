@@ -10,66 +10,110 @@ export default function VideoEditingPage() {
 	// FAQs Data
 	const faqs = [
 		{
-			question: "What does a video production service include?",
-			answer:
-				"Video production encompasses every activity that will be carried out to produce a video. Whether it's a full-length film, a marketing video, TVC, or a social video or even a music video, the process will be the same. You can expect some tweaks with the specifics.",
+			question: "What does a professional video editing service include?",
+			answer: "It includes full video editing, post production, color grading, audio synchronization, sound design, and video enhancement to deliver a complete final video."
 		},
 		{
-			question: "What are some fine examples of video production?",
-			answer:
-				"Examples include corporate promotional videos, product demonstrations, customer testimonials, event highlights, animated explainer videos, and social media reels.",
+			question: "How long do professional video editing services take?",
+			answer: "Most projects are completed within a few weeks depending on complexity, animation video editing services, and editing requirements."
 		},
 		{
-			question: "What can be some key aspects of video production service?",
-			answer:
-				"Key aspects include pre-production (scripting, storyboarding, planning), production (filming, lighting, directing), and post-production (editing, color grading, sound design, VFX).",
+			question: "Do you operate as a video production agency for social media and youtube?",
+			answer: "Yes. As a video production agency, we manage and deliver optimized editing for social media videos and youtube videos built for modern viewing behavior."
 		},
 		{
-			question: "What can you expect from a video production service?",
-			answer:
-				"You can expect a professional, end-to-end collaborative process. We take your core message and transform it into a visually compelling story that resonates with your target audience and drives engagement.",
+			question: "What makes a video effective?",
+			answer: "Clear storytelling, strong pacing, proper color grading, structured editing, and motion design determine how well a video performs."
 		},
+		{
+			question: "Do you offer custom video editing packages?",
+			answer: "Yes. We provide custom video editing packages based on your goals, content type, and distribution platform."
+		},
+		{
+			question: "Do you provide animation video editing services?",
+			answer: "Yes. We deliver animation video editing services including motion graphics, transitions, and visual effects for enhanced storytelling."
+		},
+		{
+			question: "What platforms do you optimize videos for?",
+			answer: "We optimize videos for youtube, social media platforms, and commercial distribution channels to improve visibility and engagement."
+		}
 	];
 
 	// Slider Services
 	const sliderServices = [
+		{ image: "/video_post.png", title: "Post Production" },
+		{ image: "/video_corporate.png", title: "Corporate Videos" },
+		{ image: "/video_reels.png", title: "Social Media Videos" },
 		{ image: "/video_commercial.png", title: "Commercial Videos" },
-		{ image: "/video_post.png", title: "Post Production Editing" },
-		{ image: "/video_corporate.png", title: "Corporate Films" },
-		{ image: "/video_reels.png", title: "Social Media Reels" },
+		{ image: "/video_brand.png", title: "Brand Story Videos" },
+		{ image: "/video_promo.png", title: "Promotional Videos" }
+	];
+
+	// Detailed services list
+	const servicesList = [
+		{
+			title: "Post production editing",
+			lead: "Raw footage does not hold attention. Structure does.",
+			desc: "We turn clips into complete stories using timeline editing, color correction, audio mixing, and sound design. This is where post production becomes the difference between being watched and being ignored. Attention is built through clear structure, strong pacing, controlled transitions, and storytelling that people can follow without effort."
+		},
+		{
+			title: "Corporate videos",
+			lead: "People decide fast.",
+			desc: "We create corporate videos that feel clear, controlled, and worth trusting. Strong pacing, clean edits, and intentional messaging drive how your brand is perceived."
+		},
+		{
+			title: "Social media videos",
+			lead: "You have seconds.",
+			desc: "As a video production agency, we deliver short-form and social media videos built for speed, clarity, and engagement. Every transition, cut, and frame is designed to hold attention."
+		},
+		{
+			title: "Commercial videos",
+			lead: "Looking good is not enough.",
+			desc: "As a video editing service agency, we create commercial videos that focus on message clarity, not just visuals. That is what drives response."
+		},
+		{
+			title: "Brand story videos",
+			lead: "If your story is unclear, it is forgettable.",
+			desc: "We use storyboarding, motion graphics, and structured editing to make your message easy to follow and remember."
+		},
+		{
+			title: "Promotional videos",
+			lead: "Even strong offers get ignored without structure.",
+			desc: "As an expert promotional video editing agency, we build promotional videos that guide viewers from interest to action without confusion."
+		}
 	];
 
 	// Process Steps
 	const steps = [
 		{
 			num: "01",
-			title: "Discovery & Narrative",
-			desc: "We align on your story's core message and audience goals before a single frame is cut.",
+			title: "Discovery and strategy",
+			desc: "We define what needs to be said and how it should be delivered before any editing begins. Every professional video editing services project starts with clear direction.",
 		},
 		{
 			num: "02",
-			title: "Footage Ingestion",
-			desc: "High-speed cloud organization and proxy creation for a smooth, high-fidelity editing experience.",
+			title: "Scripting and concept",
+			desc: "We shape your idea into a focused concept so the message flows naturally.",
 		},
 		{
 			num: "03",
-			title: "Narrative Assembly",
-			desc: "The 'Rough Cut' where we craft the flow of the story and establish the perfect pacing.",
+			title: "Pre production",
+			desc: "We prepare structure, sequence, and expectations so execution stays clean.",
 		},
 		{
 			num: "04",
-			title: "Visual Enhancement",
-			desc: "Layering B-roll, high-end motion graphics, and visual effects to make every second count.",
+			title: "Storyboard",
+			desc: "We map scenes, transitions, and flow so nothing feels random.",
 		},
 		{
 			num: "05",
-			title: "Audio Precision",
-			desc: "Cinematic sound design, noise reduction, and mixing to ensure professional audio clarity.",
+			title: "Production",
+			desc: "We capture visuals that work across youtube videos and social platforms with clarity and consistency.",
 		},
 		{
 			num: "06",
-			title: "Color & Final Export",
-			desc: "Advanced color grading and multi-format export optimized for YouTube, Reels, and 4K Cinema.",
+			title: "Post production",
+			desc: "This is where everything comes together. We use color grading, audio synchronization, motion graphics, visual effects, and tools like adobe premiere pro and final cut pro to deliver a complete result.",
 		},
 	];
 
@@ -87,40 +131,55 @@ export default function VideoEditingPage() {
 	];
 
 	return (
-		<main className="min-h-screen bg-black text-white pt-24">
+		<main className="min-h-screen bg-black text-white pt-16 md:pt-20 overflow-hidden">
 			{/* 1. Hero Section */}
-			<section className="relative pt-12 lg:pt-20 pb-20 px-6 z-10">
+			<section className="relative pt-6 pb-12 md:pt-10 md:pb-16 px-6 z-10">
 				{/* Background Glow */}
 				<div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[-1]">
 					<div className="absolute top-20 left-10 w-[500px] h-[500px] bg-neon-green/10 blur-[120px] rounded-full"></div>
 					<div className="absolute bottom-20 right-10 w-[400px] h-[400px] bg-purple-500/10 blur-[120px] rounded-full"></div>
 				</div>
 
-				<div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+				<div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.22fr_0.78fr] gap-12 lg:gap-16 items-center">
 					<motion.div
-						initial={{ opacity: 0, x: -50 }}
+						initial={{ opacity: 0, x: -30 }}
 						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.8 }}
-						className="space-y-8"
+						transition={{ duration: 0.8, ease: "easeOut" }}
+						className="space-y-6 md:space-y-7"
 					>
-						<h1 className="text-4xl md:text-5xl font-bold leading-tight">
-							Video Production and <br />
-							<span className="text-neon-green">Editing Services</span>
-						</h1>
+						{/* Badge */}
+						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neon-green/10 border border-neon-green/20 text-[#87E65C] text-[10px] font-black uppercase tracking-[0.2em]">
+							<span className="w-1.5 h-1.5 rounded-full bg-[#87E65C] animate-pulse" />
+							Video Editing
+						</div>
 
-						<p className="text-xl text-neutral-300 leading-relaxed max-w-lg font-medium">
-							Make them say WOW! with us. Break Webestone brings you
-							extraordinarily eye-catching videos to help you dominate your
-							competitors in any dimension.
-						</p>
+						{/* Main Heading */}
+						<div className="space-y-2">
+							<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.85rem] xl:text-[3.25rem] font-black leading-[1.2] tracking-tight">
+								Professional Video Editing Services <br className="hidden md:inline" />
+								<span className="text-neon-green">That Make People Stop, Watch, and Act</span>
+							</h1>
+						</div>
 
-						<div className="pt-4">
+						{/* Description */}
+						<div className="space-y-4 text-sm md:text-base text-neutral-400 max-w-xl leading-relaxed font-medium">
+							<p className="text-neutral-300 font-bold border-l-2 border-[#87E65C]/40 pl-3">
+								Every day, your audience watches something else. <br />
+								Not because it is better. <span className="text-white font-semibold">Because it holds attention longer.</span>
+							</p>
+							<p>
+								WeBestOne delivers professional video editing services as a video production agency focused on capturing attention, holding it, and turning it into action.
+							</p>
+						</div>
+
+						{/* CTA Button */}
+						<div className="pt-2">
 							<Link
 								to="/contact"
-								className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-green text-black font-bold text-lg rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(135,230,92,0.3)] transition-all duration-300 hover:bg-[#87E65C]"
+								className="inline-flex items-center gap-2.5 px-8 py-4 bg-neon-green text-black font-black text-sm uppercase tracking-wider rounded-full shadow-[0_10px_30px_rgba(135,230,92,0.2)] hover:scale-[1.03] hover:shadow-[0_15px_35px_rgba(135,230,92,0.35)] transition-all duration-300 group"
 							>
 								Get a quote
-								<ArrowRight className="w-5 h-5" />
+								<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
 							</Link>
 						</div>
 					</motion.div>
@@ -209,6 +268,31 @@ export default function VideoEditingPage() {
 						))}
 					</motion.div>
 				</div>
+
+				{/* Detailed Services Grid - UX/Copy Integration */}
+				<div className="max-w-7xl mx-auto px-6 mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+					{servicesList.map((service, idx) => (
+						<motion.div
+							key={idx}
+							initial={{ opacity: 0, y: 25 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.5, delay: idx * 0.05 }}
+							className="relative group p-8 rounded-[2.5rem] bg-neutral-900/30 border border-white/5 backdrop-blur-xl hover:border-neon-green/30 hover:bg-neutral-900/50 transition-all duration-300 flex flex-col justify-between"
+						>
+							<div className="space-y-4">
+								<span className="text-xs font-black font-mono text-neon-green/60 uppercase tracking-widest block">Service 0{idx+1}</span>
+								<h3 className="text-2xl font-bold text-white group-hover:text-neon-green transition-colors">{service.title}</h3>
+								<p className="text-[#87E65C] text-sm font-bold leading-relaxed border-l-2 border-[#87E65C]/40 pl-3.5">
+									{service.lead}
+								</p>
+								<p className="text-neutral-400 text-sm leading-relaxed font-medium">
+									{service.desc}
+								</p>
+							</div>
+						</motion.div>
+					))}
+				</div>
 			</section>
 
 			{/* 3. How do we get started? (Scroll Reveal Steps) */}
@@ -288,15 +372,20 @@ export default function VideoEditingPage() {
 						initial={{ opacity: 0, scale: 0.9 }}
 						whileInView={{ opacity: 1, scale: 1 }}
 						viewport={{ once: true }}
-						className="mt-20 p-12 rounded-[3rem] bg-gradient-to-r from-purple-900/20 to-neon-green/10 border border-white/5 text-center space-y-6"
+						className="mt-20 p-12 md:p-16 rounded-[3rem] bg-gradient-to-r from-purple-900/20 to-neon-green/10 border border-white/5 text-center space-y-6"
 					>
-						<h3 className="text-3xl font-bold text-white">Ready to bring your vision to life?</h3>
-						<p className="text-neutral-400 max-w-xl mx-auto">
-							From strategy to final delivery, we ensure every frame tells your story perfectly. Let's start your project today.
-						</p>
+						<h3 className="text-3xl md:text-4xl font-extrabold text-white">We move fast. your content keeps up</h3>
+						<div className="text-neutral-400 max-w-xl mx-auto space-y-3 font-medium text-base">
+							<p className="text-neutral-200 font-bold text-lg">
+								Delays cost attention. And attention is everything.
+							</p>
+							<p>
+								Start with professional video editing services built to keep people watching and move them to act.
+							</p>
+						</div>
 						<div className="pt-4">
-							<Link to="/contact" className="inline-flex items-center gap-3 px-10 py-5 bg-neon-green text-black font-black text-lg rounded-full hover:scale-105 transition-all shadow-[0_10px_40px_rgba(135,230,92,0.3)]">
-								Book Your Session <ArrowRight className="w-5 h-5" />
+							<Link to="/contact" className="inline-flex items-center gap-2.5 px-10 py-5 bg-neon-green text-black font-black text-lg rounded-full hover:scale-105 transition-all shadow-[0_10px_40px_rgba(135,230,92,0.3)] group">
+								Get a quote <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
 							</Link>
 						</div>
 					</motion.div>
@@ -373,6 +462,35 @@ export default function VideoEditingPage() {
 								</AnimatePresence>
 							</motion.div>
 						))}
+					</div>
+				</div>
+			</section>
+
+			{/* 5. Final CTA Section */}
+			<section className="py-24 px-6 relative z-10 bg-black">
+				<div className="max-w-6xl mx-auto">
+					<div className="relative p-12 md:p-20 rounded-[3rem] bg-neutral-900/40 border border-white/5 overflow-hidden group">
+						<div className="absolute -bottom-1/2 -left-1/4 w-full h-full bg-neon-green/5 blur-[120px] pointer-events-none" />
+						
+						<div className="max-w-3xl mx-auto text-center space-y-8 relative z-10">
+							<h2 className="text-4xl md:text-5xl font-extrabold leading-tight text-white">
+								People are already <span className="text-neon-green">watching.</span>
+							</h2>
+							<div className="text-neutral-400 text-base md:text-lg leading-relaxed space-y-4 max-w-xl mx-auto font-medium">
+								<p className="text-neutral-200 font-bold text-lg md:text-xl">
+									The only question is why they are not watching you.
+								</p>
+								<p>
+									WeBestOne delivers professional video editing services that turn attention into action.
+								</p>
+							</div>
+							<div className="pt-4">
+								<Link to="/contact" className="inline-flex items-center gap-2.5 px-10 py-5 bg-neon-green text-black font-black text-lg rounded-full hover:scale-105 transition-all shadow-[0_10px_40px_rgba(135,230,92,0.3)] group">
+									Get a Quote
+									<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+								</Link>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>

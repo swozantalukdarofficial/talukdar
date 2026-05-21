@@ -9,6 +9,7 @@ import {
   BarChart3, 
   MessageSquare, 
   Users, 
+  Play,
   PlayCircle,
   ArrowRight,
   TrendingUp,
@@ -107,6 +108,7 @@ export default function SocialMediaMarketingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [activeStep, setActiveStep] = useState(0);
   const [activePlatform, setActivePlatform] = useState(0);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   // Auto-scroll for Workflow Slider
   useEffect(() => {
@@ -179,14 +181,39 @@ export default function SocialMediaMarketingPage() {
             <div className="relative w-[240px] h-[480px] md:w-[280px] md:h-[560px] bg-neutral-900 rounded-[2.5rem] border-[6px] border-neutral-800 shadow-2xl overflow-hidden">
               {/* Internal Screen Content - YouTube Video */}
               <div className="absolute inset-0 bg-black">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&modestbranding=1&showinfo=0&rel=0"
-                  title="Social Media Marketing"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                ></iframe>
+                <AnimatePresence mode="wait">
+                  {!isVideoPlaying ? (
+                    <motion.div
+                      key="thumb"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute inset-0 cursor-pointer group/thumb"
+                      onClick={() => setIsVideoPlaying(true)}
+                    >
+                      <img 
+                        src="https://img.youtube.com/vi/MnLd2G198U8/maxresdefault.jpg" 
+                        alt="Social Media Marketing Thumbnail" 
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-105" 
+                      />
+                      <div className="absolute inset-0 bg-black/40 group-hover/thumb:bg-black/20 transition-colors duration-300" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-neon-green rounded-full flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-all duration-300">
+                          <Play className="w-6 h-6 text-black fill-black ml-1" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <iframe
+                      className="w-full h-full"
+                      src="https://www.youtube.com/embed/MnLd2G198U8?autoplay=1&controls=1&modestbranding=1&rel=0"
+                      title="Social Media Marketing"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    ></iframe>
+                  )}
+                </AnimatePresence>
                 
                 {/* Overlay to catch clicks and maintain aesthetics if needed */}
                 <div className="absolute inset-0 pointer-events-none border-[12px] border-transparent rounded-[2rem]"></div>

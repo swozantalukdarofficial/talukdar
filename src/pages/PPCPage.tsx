@@ -12,6 +12,7 @@ import {
   ChevronRight,
   PieChart,
   ArrowRight,
+  Play,
   PlayCircle,
   ChevronLeft,
   Settings,
@@ -54,7 +55,7 @@ const ppcStats = [
   { label: "Total Managed Ad Spend", value: "৳50M+", icon: <ShieldCheck className="w-5 h-5 text-purple-400" /> }
 ];
 
-const PPC_VIDEO_ID = "6pYF789-U9M"; // Relevant PPC/Marketing video
+const PPC_VIDEO_ID = "MnLd2G198U8"; // YouTube video
 
 export default function PPCPage() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
@@ -88,7 +89,7 @@ export default function PPCPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-black text-white pt-24 overflow-hidden">
+    <main className="min-h-screen bg-black text-white pt-16 md:pt-20 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-emerald-500/10 rounded-full blur-[160px]" />
@@ -96,13 +97,13 @@ export default function PPCPage() {
       </div>
 
       {/* 1. Hero Section - Exact match to screenshot */}
-      <section className="relative z-10 px-6 lg:px-20 py-12 md:py-20 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="relative z-10 px-6 lg:px-16 pt-6 pb-12 md:pt-10 md:pb-16 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.22fr_0.78fr] gap-12 lg:gap-16 items-center">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-10"
+            className="space-y-6 md:space-y-7"
           >
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em]">
@@ -112,21 +113,30 @@ export default function PPCPage() {
 
             {/* Main Heading */}
             <div className="space-y-2">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
-                PPC Advertising <br />
-                <span className="text-emerald-400">Services</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.85rem] xl:text-[3.25rem] font-black leading-[1.2] tracking-tight">
+                PPC Management Services <br className="hidden md:inline" />
+                <span className="text-emerald-400">That Turn Paid Traffic Into Predictable Growth</span>
               </h1>
             </div>
 
             {/* Description */}
-            <p className="text-base md:text-lg text-neutral-400 max-w-lg leading-relaxed font-medium">
-              We don't just create ads; we craft strategies that drive results. Whether you're targeting local customers or expanding your reach globally, our advertising solutions are tailored to your goals.
-            </p>
+            <div className="space-y-4 text-sm md:text-base text-neutral-400 max-w-xl leading-relaxed font-medium">
+              <p className="text-neutral-300 font-bold border-l-2 border-emerald-500/40 pl-3">
+                If your pay per click campaigns are not generating revenue, they are draining your budget.
+              </p>
+              <p>
+                Most businesses think they have a traffic problem. <strong className="text-white font-semibold">They actually have a performance problem.</strong>
+              </p>
+              <p>
+                At WeBestOne, we deliver PPC management services built to control cost per click, improve conversion rate, and turn paid traffic into consistent, measurable growth.
+              </p>
+            </div>
 
             {/* CTA Button */}
             <div className="pt-2">
-              <Link to="/contact" className="inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 text-black font-bold text-base rounded-full shadow-[0_10px_30px_rgba(16,185,129,0.2)] hover:scale-105 transition-all">
-                Get in touch <ArrowRight className="w-5 h-5" />
+              <Link to="/contact" className="inline-flex items-center gap-2.5 px-8 py-4 bg-emerald-500 text-black font-black text-sm uppercase tracking-wider rounded-full shadow-[0_10px_30px_rgba(16,185,129,0.2)] hover:scale-[1.03] hover:shadow-[0_15px_35px_rgba(16,185,129,0.35)] transition-all duration-300 group">
+                Get in touch
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </motion.div>
@@ -146,16 +156,24 @@ export default function PPCPage() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="absolute inset-0 cursor-pointer"
+                    className="absolute inset-0 cursor-pointer group/thumb"
                     onClick={() => setIsPlaying(true)}
                   >
-                    {/* Mock Video UI / Thumbnail */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-neutral-800 to-black flex flex-col items-center justify-center p-6 text-center">
-                      <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/20 group-hover:scale-110 transition-all duration-500 shadow-[0_0_40px_rgba(255,255,255,0.1)]">
-                        <PlayCircle className="w-12 h-12 text-white fill-white/20" />
-                      </div>
-                      <div className="mt-8 space-y-2">
-                        <p className="text-sm font-bold text-white uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">
+                    <img 
+                      src={`https://img.youtube.com/vi/${PPC_VIDEO_ID}/maxresdefault.jpg`} 
+                      alt="PPC Strategy Thumbnail" 
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-105" 
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover/thumb:bg-black/20 transition-colors duration-300" />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 transition-transform shadow-[0_0_40px_rgba(255,255,255,0.2)] relative z-10"
+                      >
+                        <Play className="w-8 h-8 text-white fill-current ml-1" />
+                      </motion.div>
+                      <div className="mt-8 space-y-2 relative z-10">
+                        <p className="text-sm font-bold text-white uppercase tracking-widest bg-black/50 px-4 py-1.5 rounded-full backdrop-blur-sm">
                           Watch How We Maximize PPC ROI
                         </p>
                       </div>
@@ -169,7 +187,7 @@ export default function PPCPage() {
                     className="absolute inset-0"
                   >
                     <iframe
-                      src={`https://www.youtube.com/embed/${PPC_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
+                      src={`https://www.youtube.com/embed/${PPC_VIDEO_ID}?autoplay=1&controls=1&modestbranding=1&rel=0`}
                       title="PPC Success Strategy"
                       className="w-full h-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -181,13 +199,56 @@ export default function PPCPage() {
               
               {/* Shine effect */}
               {!isPlaying && (
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-white/5 to-transparent pointer-events-none"></div>
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-white/5 to-transparent pointer-events-none z-20"></div>
               )}
             </div>
 
             {/* Decorative glows */}
             <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-emerald-600/5 blur-[100px] rounded-full"></div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Proof Section - Brand New & Premium */}
+      <section className="relative z-10 py-20 px-6 bg-neutral-950/50 border-y border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+            
+            {/* Left Col: Header info */}
+            <div className="space-y-4 lg:col-span-1">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold tracking-widest uppercase">
+                Real Performance
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+                Real performance. <br />
+                <span className="text-emerald-400">Not assumptions.</span>
+              </h2>
+              <p className="text-neutral-400 text-sm md:text-base leading-relaxed font-medium">
+                Most agencies talk about clicks. <strong className="text-white">We focus on outcomes.</strong> Recent campaign improvements achieved by WebestOne prove our structured approach works.
+              </p>
+            </div>
+
+            {/* Right Col: Stats Cards Grid */}
+            <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {[
+                { title: "-37% CPA", label: "Reduced Cost Per Acquisition", desc: "Lowered overall cost per acquisition by up to 37 percent across campaigns." },
+                { title: "+52% CTR", label: "Increased Click Through Rate", desc: "Improved campaign relevance to increase CTR by over 52 percent." },
+                { title: "2x - 3x CR", label: "Improved Conversion Rate", desc: "Enhanced conversions across landing funnels by 2 to 3 times." },
+                { title: "Scaled ROAS", label: "Profitable Ad Scaling", desc: "Scaled active campaigns while maintaining strong ROAS across platforms." }
+              ].map((stat, i) => (
+                <div key={i} className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.02] hover:border-emerald-500/30 transition-all duration-300 group">
+                  <div className="text-3xl font-bold text-emerald-400 mb-2 group-hover:scale-105 transition-transform duration-300 origin-left">{stat.title}</div>
+                  <div className="text-white font-semibold text-sm mb-1">{stat.label}</div>
+                  <div className="text-neutral-400 text-xs leading-relaxed font-medium">{stat.desc}</div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+
+          <div className="mt-10 text-center text-xs md:text-sm font-mono text-neutral-500">
+            * These results come from structured execution, not guesswork.
+          </div>
         </div>
       </section>
 
@@ -203,9 +264,17 @@ export default function PPCPage() {
                 </svg>
               </span>
             </h2>
-            <p className="text-neutral-400 text-lg max-w-4xl mx-auto leading-relaxed font-medium">
-              A well-crafted PPC campaign is a powerful marketing tool that can connect you directly with potential customers at the precise moment they are searching for your products or services. We specialize in creating targeted and high-performing PPC campaigns that drive qualified leads, increase conversions, and maximize your return on investment. Uncover the hidden potential of PPC campaigns:
-            </p>
+            <div className="text-neutral-400 text-lg max-w-4xl mx-auto leading-relaxed font-medium space-y-4">
+              <p className="text-neutral-300 font-bold">
+                Right now, your PPC campaign is either producing profit or losing money. There is no middle ground.
+              </p>
+              <p>
+                Most campaigns fail at the foundation. Poor keyword bidding. Low quality score. Weak targeting. No conversion strategy.
+              </p>
+              <p>
+                As a PPC marketing service provider and paid search management agency, WeBestOne rebuilds your system to eliminate waste and improve performance.
+              </p>
+            </div>
           </div>
 
           <div className="max-w-6xl mx-auto p-12 rounded-[3rem] bg-neutral-900/30 border border-white/5 backdrop-blur-xl">
@@ -213,10 +282,10 @@ export default function PPCPage() {
               {/* Left Column */}
               <div className="space-y-2">
                 {[
-                  { id: "01", title: "Reach Your Target Audience", desc: "Deliver your message to the exact people actively searching for your business or services." },
-                  { id: "03", title: "Increase Brand Visibility", desc: "Ensure your brand stays top-of-mind by appearing at the very top of search results." },
-                  { id: "05", title: "Boost Conversions", desc: "Targeted ads mean users are further down the sales funnel and ready to take action." },
-                  { id: "07", title: "Measure & Track Results", desc: "Every click, impression, and conversion is tracked, giving you clear data on your ROI." }
+                  { id: "01", title: "Stop paying for clicks that never convert", desc: "Every wasted click increases cost per click. We target high-intent users using refined keyword bidding and audience signals." },
+                  { id: "03", title: "Turn visibility into measurable growth", desc: "Impressions do not grow revenue. We optimize across google display network, youtube ads, and paid channels to drive action." },
+                  { id: "05", title: "Improve conversion rate and lower CPA", desc: "Clicks are only the starting point. We apply conversion rate optimization strategies to improve conversion rate and reduce cost per acquisition." },
+                  { id: "07", title: "Track real performance metrics", desc: "Guessing leads to loss. We use google tag manager and google analytics to track click through rate, conversions, and ROI with precision." }
                 ].map((item, i) => (
                   <div key={i} className="border-b border-white/5 last:border-0">
                     <button 
@@ -224,12 +293,12 @@ export default function PPCPage() {
                       className="w-full py-6 flex items-center justify-between group text-left"
                     >
                       <div className="flex items-center gap-4">
-                        <span className="text-red-500 font-bold text-lg font-mono">{item.id}.</span>
-                        <span className="text-white font-bold text-lg group-hover:text-red-400 transition-colors">
+                        <span className="text-emerald-500 font-bold text-lg font-mono">{item.id}.</span>
+                        <span className="text-white font-bold text-lg group-hover:text-emerald-400 transition-colors">
                           {item.title}
                         </span>
                       </div>
-                      <ChevronRight className={`w-5 h-5 text-neutral-600 transition-transform duration-300 ${openFaq === i * 2 ? 'rotate-90 text-red-500' : ''}`} />
+                      <ChevronRight className={`w-5 h-5 text-neutral-600 transition-transform duration-300 ${openFaq === i * 2 ? 'rotate-90 text-emerald-500' : ''}`} />
                     </button>
                     <AnimatePresence>
                       {openFaq === i * 2 && (
@@ -239,7 +308,7 @@ export default function PPCPage() {
                           exit={{ height: 0, opacity: 0 }}
                           className="overflow-hidden"
                         >
-                          <p className="pb-6 pl-12 text-neutral-500 text-sm leading-relaxed">
+                          <p className="pb-6 pl-12 text-neutral-400 text-sm leading-relaxed font-medium">
                             {item.desc}
                           </p>
                         </motion.div>
@@ -252,10 +321,10 @@ export default function PPCPage() {
               {/* Right Column */}
               <div className="space-y-2">
                 {[
-                  { id: "02", title: "Generate Immediate Results", desc: "Unlike SEO, PPC provides instant visibility and traffic the moment your campaign goes live." },
-                  { id: "04", title: "Drive Website Traffic", desc: "High-quality, intent-driven traffic that is more likely to engage with your site." },
-                  { id: "06", title: "Gain A Competitive Edge", desc: "Outrank competitors for high-value keywords and capture their potential market share." },
-                  { id: "08", title: "Flexibility and Control", desc: "Start, stop, or adjust your budget and targeting in real-time based on performance." }
+                  { id: "02", title: "Get results before budget is wasted", desc: "Delays cost money. Our google ads management services and microsoft advertising campaigns are structured to generate traction early." },
+                  { id: "04", title: "Drive traffic that actually converts", desc: "Traffic without intent does not scale. As a paid advertising agency, we focus on users ready to convert across facebook ads, instagram ads, and linkedin ads." },
+                  { id: "06", title: "Outperform competitors in the same auction", desc: "You are bidding for the same audience. We improve quality score, ad strength, and positioning to win higher-value traffic." },
+                  { id: "08", title: "Scale profitably without losing control", desc: "Scaling without structure increases losses. Our campaign optimization approach ensures growth while maintaining strong ROAS." }
                 ].map((item, i) => {
                   const actualIdx = i * 2 + 1;
                   return (
@@ -265,12 +334,12 @@ export default function PPCPage() {
                         className="w-full py-6 flex items-center justify-between group text-left"
                       >
                         <div className="flex items-center gap-4">
-                          <span className="text-red-500 font-bold text-lg font-mono">{item.id}.</span>
-                          <span className="text-white font-bold text-lg group-hover:text-red-400 transition-colors">
+                          <span className="text-emerald-500 font-bold text-lg font-mono">{item.id}.</span>
+                          <span className="text-white font-bold text-lg group-hover:text-emerald-400 transition-colors">
                             {item.title}
                           </span>
                         </div>
-                        <ChevronRight className={`w-5 h-5 text-neutral-600 transition-transform duration-300 ${openFaq === actualIdx ? 'rotate-90 text-red-500' : ''}`} />
+                        <ChevronRight className={`w-5 h-5 text-neutral-600 transition-transform duration-300 ${openFaq === actualIdx ? 'rotate-90 text-emerald-500' : ''}`} />
                       </button>
                       <AnimatePresence>
                         {openFaq === actualIdx && (
@@ -280,7 +349,7 @@ export default function PPCPage() {
                             exit={{ height: 0, opacity: 0 }}
                             className="overflow-hidden"
                           >
-                            <p className="pb-6 pl-12 text-neutral-500 text-sm leading-relaxed">
+                            <p className="pb-6 pl-12 text-neutral-400 text-sm leading-relaxed font-medium">
                               {item.desc}
                             </p>
                           </motion.div>
@@ -477,22 +546,25 @@ export default function PPCPage() {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-10 leading-tight">
-                  Our 4-Step <br />
-                  <span className="text-emerald-400">PPC Framework</span>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                  Our <span className="text-emerald-400">Approach</span>
                 </h2>
+                <div className="text-neutral-400 mb-8 max-w-md text-sm md:text-base leading-relaxed font-medium space-y-3">
+                  <p className="text-neutral-300 font-bold">We do not run ads. We engineer performance.</p>
+                  <p>As a PPC management services provider, WeBestOne focuses on outcomes, not activity.</p>
+                </div>
                 <div className="space-y-8">
                   {[
-                    { step: "01", title: "Keyword Intelligence", desc: "Identifying highest intent search terms for your business." },
-                    { step: "02", title: "Creative Ad Copy", desc: "Crafting compelling ad copies that drive users to click." },
-                    { step: "03", title: "Landing Page Sync", desc: "Aligning landing pages with ads to boost conversion rates." },
-                    { step: "04", title: "24/7 Optimization", desc: "Daily tracking and improving bidding strategies and performance." }
+                    { step: "01", title: "Strategy first", desc: "We identify where your system is losing money before scaling." },
+                    { step: "02", title: "Precision targeting", desc: "We eliminate waste and focus on high-conversion segments." },
+                    { step: "03", title: "Conversion-focused execution", desc: "We align ads, keywords, and landing experience to drive action." },
+                    { step: "04", title: "Continuous optimization", desc: "Performance improves through structured iteration and data analysis." }
                   ].map((item, idx) => (
                   <div key={idx} className="flex gap-6 group">
                     <div className="text-3xl font-black text-white/10 group-hover:text-emerald-500/50 transition-colors">{item.step}</div>
                     <div>
                       <h4 className="text-xl font-bold mb-2">{item.title}</h4>
-                      <p className="text-slate-400 leading-relaxed">{item.desc}</p>
+                      <p className="text-slate-400 leading-relaxed font-medium">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -539,40 +611,49 @@ export default function PPCPage() {
         </div>
       </div>
 
-      {/* 4. Industries We Serve Section */}
+      {/* 4. OWN THE TOPIC SECTION */}
       <section className="py-24 px-6 relative z-10 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <div className="flex items-center justify-center gap-4 text-blue-500 font-mono text-xs tracking-[0.3em] uppercase">
-              <div className="w-12 h-[1px] bg-blue-500/30" />
-              Industries We Serve
-              <div className="w-12 h-[1px] bg-blue-500/30" />
+            <div className="flex items-center justify-center gap-4 text-emerald-400 font-mono text-xs tracking-[0.3em] uppercase">
+              <div className="w-12 h-[1px] bg-emerald-500/30" />
+              SYSTEM CONTROL
+              <div className="w-12 h-[1px] bg-emerald-500/30" />
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-white">
-              We Speak Your <span className="text-blue-500">Industry's Language</span>
+              We control the variables that <span className="text-emerald-400">decide PPC success.</span>
             </h2>
-            <p className="text-neutral-500 max-w-2xl mx-auto">
-              Our PPC experts have hands-on experience across a wide range of industries, delivering tailored strategies that resonate with your specific audience.
-            </p>
+            <div className="text-neutral-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed font-medium space-y-2">
+              <p className="text-neutral-300 font-bold">Most campaigns fail because they ignore fundamentals.</p>
+              <p>WeBestOne manages your entire advertising stack with absolute precision:</p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[
-              "Technology & SaaS", "E-Commerce & Retail", "Healthcare & Wellness", "Finance & FinTech",
-              "Education & EdTech", "Real Estate", "Travel & Hospitality", "Fashion & Lifestyle",
-              "Legal & Compliance", "Food & Restaurant", "Automotive", "Non-Profit & NGO"
-            ].map((industry, i) => (
+              "keyword bidding strategy aligned with intent",
+              "click through rate and ad relevance",
+              "quality score optimization",
+              "conversion rate optimization across landing pages",
+              "cost per acquisition control",
+              "multi-platform execution across google ads and microsoft advertising",
+              "full tracking using google tag manager and google analytics"
+            ].map((variable, i) => (
               <motion.div
                 key={i}
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(59, 130, 246, 0.05)" }}
-                className="flex items-center gap-4 p-5 rounded-2xl bg-neutral-900/50 border border-white/5 transition-all cursor-default group"
+                whileHover={{ scale: 1.03, backgroundColor: "rgba(16, 185, 129, 0.05)", borderColor: "rgba(16, 185, 129, 0.3)" }}
+                className="flex items-start gap-4 p-6 rounded-2xl bg-neutral-900/50 border border-white/5 transition-all cursor-default group"
               >
-                <div className="w-6 h-6 rounded-full border border-blue-500/30 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-black transition-all">
+                <div className="w-6 h-6 rounded-full border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-black transition-all shrink-0 mt-0.5">
                   <Check className="w-3.5 h-3.5" />
                 </div>
-                <span className="text-neutral-300 font-medium text-sm group-hover:text-white transition-colors">{industry}</span>
+                <span className="text-neutral-300 font-bold text-sm md:text-base group-hover:text-white transition-colors leading-relaxed">{variable}</span>
               </motion.div>
             ))}
+          </div>
+
+          <div className="mt-16 text-center text-base md:text-lg font-mono text-emerald-400/80 font-bold">
+            “ This is not random testing. This is system control. ”
           </div>
         </div>
       </section>
@@ -592,24 +673,24 @@ export default function PPCPage() {
           <div className="space-y-4">
             {[
               {
-                q: "What is PPC and how does it work?",
-                a: "PPC (Pay-Per-Click) is a model of digital advertising where you pay a fee each time one of your ads is clicked. It's a way of buying visits to your site, rather than attempting to 'earn' those visits organically."
+                q: "What makes WebestOne a strong PPC management services provider?",
+                a: "We combine paid search strategy, google ads management services, conversion rate optimization, and continuous campaign improvement to drive measurable growth."
+              },
+              {
+                q: "What is included in your PPC management services?",
+                a: "Our services include keyword bidding, campaign setup, audience targeting, ad optimization, conversion tracking, and performance analysis."
+              },
+              {
+                q: "Do you only manage google ads campaigns?",
+                a: "No. As a paid advertising agency, we manage campaigns across google ads, microsoft advertising, youtube ads, facebook ads, instagram ads, and linkedin ads."
+              },
+              {
+                q: "How do you improve PPC performance?",
+                a: "We improve performance by refining keyword bidding, increasing click through rate, improving quality score, and optimizing conversion rate."
               },
               {
                 q: "How long does it take to see results?",
-                a: "Unlike SEO, which can take months, PPC results are almost immediate. Once your campaign is approved and live, your ads will start appearing in search results, driving traffic to your site instantly."
-              },
-              {
-                q: "How do you determine the budget?",
-                a: "We analyze your industry, competitor spending, and target keywords to recommend a budget that will deliver meaningful results. You have full control over your daily and monthly spend."
-              },
-              {
-                q: "Which platforms do you manage?",
-                a: "We specialize in Google Ads (Search, Display, YouTube), Meta Ads (Facebook, Instagram), LinkedIn Ads, and Bing Ads. We choose the platform that best fits your audience."
-              },
-              {
-                q: "How do we track ROI?",
-                a: "We set up advanced conversion tracking using Google Analytics and GTM. You'll receive real-time reports showing exactly how many leads or sales each taka of your ad spend is generating."
+                a: "Initial traction can appear quickly, but consistent performance comes from ongoing optimization and structured testing."
               }
             ].map((faq, i) => (
               <div 
@@ -657,20 +738,28 @@ export default function PPCPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
               <div className="space-y-8">
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
-                  Ready to Turn PPC <br />
-                  Clicks <span className="relative inline-block">
-                    <span className="text-neon-green">Into Pipeline?</span>
+                  Ready to stop guessing <br />
+                  <span className="relative inline-block">
+                    <span className="text-neon-green">and start scaling?</span>
                     <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 350 20" fill="none">
                       <path d="M5 15Q175 5 345 15" stroke="#87E65C" strokeWidth="4" strokeLinecap="round" />
                     </svg>
                   </span>
                 </h2>
-                <p className="text-neutral-400 text-lg leading-relaxed max-w-md">
-                  You want a strategy that drives real business, not just traffic. Most campaigns stop at impressions or clicks and don't convert. We help you turn paid search into a predictable revenue engine.
-                </p>
+                <div className="text-neutral-400 text-base md:text-lg leading-relaxed max-w-md space-y-4">
+                  <p className="text-neutral-300 font-bold">
+                    If your campaigns are not producing consistent results, they are costing you more than you think.
+                  </p>
+                  <p>
+                    WeBestOne delivers PPC management services designed to improve conversion rate, reduce cost per acquisition, and generate predictable growth.
+                  </p>
+                  <p className="italic text-neutral-400">
+                    You can keep spending and hoping. Or you can fix what is not working.
+                  </p>
+                </div>
                 <div className="pt-4">
                   <Link to="/contact" className="inline-flex items-center gap-3 px-10 py-5 bg-neon-green text-black font-black text-lg rounded-full hover:scale-105 transition-all shadow-[0_10px_40px_rgba(135,230,92,0.3)]">
-                    Contact us
+                    👉 contact us
                   </Link>
                 </div>
               </div>

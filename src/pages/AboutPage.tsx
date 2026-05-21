@@ -240,11 +240,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-
       {/* 6. SERVICE ECOSYSTEM (MARQUEE) */}
-      <section className="py-20 px-6 relative z-10 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-24">
+      <section className="py-20 relative z-10 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-16">
              <motion.div
                initial={{ opacity: 0, x: -30 }}
                whileInView={{ opacity: 1, x: 0 }}
@@ -258,36 +257,40 @@ export default function AboutPage() {
                 </p>
              </motion.div>
           </div>
+        </div>
 
-          <div className="relative mt-8 overflow-hidden py-10 group">
+        {/* Full-width marquee container with responsive fading gradients */}
+        <div className="relative mt-8 w-full overflow-hidden py-10 group">
+          {/* Fading Gradients */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 lg:w-48 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 lg:w-48 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none" />
 
-             <motion.div
-               animate={{ x: ["0%", "-50%"] }}
-               transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-               className="flex gap-6 w-max"
-             >
-                {[...Array(2)].map((_, listIndex) => (
-                  <div key={listIndex} className="flex gap-6">
-                    {servicesData.map((service, i) => (
-                      <Link
-                        to={service.href}
-                        key={i}
-                        className="group w-80 p-10 rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:border-neon-green/30 transition-all text-center relative overflow-hidden"
-                      >
-                        <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-neon-green transition-all">
-                           <DynamicIcon name={service.iconName} className="w-8 h-8 text-neon-green group-hover:text-black transition-all" />
-                        </div>
-                        <h4 className="text-2xl font-bold mb-3">{service.title}</h4>
-                        <p className="text-neutral-500 text-sm mb-6">{service.description}</p>
-                        <div className="inline-flex items-center gap-2 text-neon-green text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-                           Explore Service <ArrowRight className="w-3 h-3" />
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                ))}
-             </motion.div>
-          </div>
+          <motion.div
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+            className="flex gap-6 w-max px-6"
+          >
+             {[...Array(2)].map((_, listIndex) => (
+               <div key={listIndex} className="flex gap-6">
+                 {servicesData.map((service, i) => (
+                   <Link
+                     to={service.href}
+                     key={i}
+                     className="group w-72 md:w-80 p-8 md:p-10 rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:border-neon-green/30 transition-all text-center relative overflow-hidden"
+                   >
+                     <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-neon-green transition-all">
+                        <DynamicIcon name={service.iconName} className="w-8 h-8 text-neon-green group-hover:text-black transition-all" />
+                     </div>
+                     <h4 className="text-xl md:text-2xl font-bold mb-3">{service.title}</h4>
+                     <p className="text-neutral-500 text-sm mb-6 line-clamp-2 md:line-clamp-none">{service.description}</p>
+                     <div className="inline-flex items-center gap-2 text-neon-green text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                        Explore Service <ArrowRight className="w-3 h-3" />
+                     </div>
+                   </Link>
+                 ))}
+               </div>
+             ))}
+          </motion.div>
         </div>
       </section>
 

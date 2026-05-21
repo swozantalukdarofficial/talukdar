@@ -39,125 +39,164 @@ const stagger = {
 /* ─── Data ─── */
 const whyChoose = [
   {
+    icon: <Users className="w-6 h-6" />,
+    title: "Tailored to Your Brand Voice",
+    desc: "People trust brands that sound consistent. We shape tone, structure, and messaging around your identity so the content feels naturally connected to your business rather than copied from elsewhere.",
+  },
+  {
     icon: <Search className="w-6 h-6" />,
-    title: "SEO-First Approach",
-    desc: "Every piece is written with keyword strategy, search intent, and ranking potential baked in from day one.",
+    title: "Search Engine Optimized",
+    desc: "Good SEO should feel invisible. We structure content around search intent, keyword clustering, readability, and metadata without making the writing feel stuffed or unnatural.",
   },
   {
     icon: <Target className="w-6 h-6" />,
-    title: "Audience-Driven Copy",
-    desc: "We research your audience deeply to craft content that resonates, builds trust, and drives action.",
-  },
-  {
-    icon: <Zap className="w-6 h-6" />,
-    title: "Fast Turnaround",
-    desc: "Consistent delivery without compromising quality — ready when your publishing calendar needs it.",
-  },
-  {
-    icon: <Globe className="w-6 h-6" />,
-    title: "Multi-Industry Expertise",
-    desc: "From tech startups to e-commerce brands, our writers understand the language of your market.",
+    title: "Audience-Centred Approach",
+    desc: "Nobody enjoys reading content that feels heavy or forced. We focus on cleaner flow, sharper pacing, and messaging that feels easy to move through.",
   },
   {
     icon: <TrendingUp className="w-6 h-6" />,
-    title: "Measurable ROI",
-    desc: "Content that doesn't just fill pages — it generates traffic, leads, and real business growth.",
+    title: "Built Around Real Results",
+    desc: "Traffic means nothing if nobody trusts the brand behind it. Our content writing services are designed to support engagement, lead generation, and stronger conversion growth.",
+  },
+  {
+    icon: <Zap className="w-6 h-6" />,
+    title: "AI Assisted Without Feeling Artificial",
+    desc: "Most AI-generated content sounds empty because it lacks rhythm and perspective. We use AI to improve efficiency, then shape the writing with real strategy, editing, and human tension.",
+  },
+  {
+    icon: <FileText className="w-6 h-6" />,
+    title: "Content That Feels Hard to Ignore",
+    desc: "Most online content plays too safe. Safe content disappears fast. We create sharper hooks, stronger storytelling, and messaging that keeps people emotionally engaged from the first line.",
   },
 ];
 
 const services = [
   {
-    icon: <BookOpen className="w-7 h-7" />,
-    title: "Blog & Article Writing",
-    desc: "Long-form SEO blogs, thought leadership articles, and informational content that ranks and builds authority.",
-    color: "from-emerald-500/20 to-cyan-500/20",
-    border: "border-emerald-500/30",
-  },
-  {
     icon: <Globe className="w-7 h-7" />,
     title: "Website Copywriting",
-    desc: "Conversion-focused homepage, about, services, and landing page copy that turns visitors into customers.",
+    desc: "Clear website messaging designed to improve trust, engagement, and conversions from the very first interaction.",
     color: "from-blue-500/20 to-purple-500/20",
     border: "border-blue-500/30",
+    tags: ["Website content writing services", "Business copywriting agency", "Homepage copywriting", "Conversion copywriting"]
   },
   {
-    icon: <ShoppingCart className="w-7 h-7" />,
-    title: "Product Descriptions",
-    desc: "Compelling e-commerce product copy that highlights benefits, answers objections, and drives purchases.",
-    color: "from-orange-500/20 to-red-500/20",
-    border: "border-orange-500/30",
-  },
-  {
-    icon: <Mail className="w-7 h-7" />,
-    title: "Email Marketing Copy",
-    desc: "High-open-rate subject lines and persuasive email sequences that nurture leads and boost conversions.",
-    color: "from-pink-500/20 to-rose-500/20",
-    border: "border-pink-500/30",
+    icon: <Search className="w-7 h-7" />,
+    title: "Blog and SEO Content Writing",
+    desc: "Search-focused blog writing built around search intent, keyword strategy, and long-term organic traffic growth.",
+    color: "from-emerald-500/20 to-cyan-500/20",
+    border: "border-emerald-500/30",
+    tags: ["SEO content writing", "Expert blog writing agency", "Keyword optimization", "Long-form content marketing"]
   },
   {
     icon: <Megaphone className="w-7 h-7" />,
-    title: "Social Media Content",
-    desc: "Platform-optimized captions, carousels, and hooks that increase engagement and grow your following.",
+    title: "Social Media Copywriting",
+    desc: "Short-form messaging designed to stop scrolling, increase engagement, and strengthen brand personality.",
     color: "from-violet-500/20 to-indigo-500/20",
     border: "border-violet-500/30",
+    tags: ["Social media marketing", "Caption writing", "Ad copy", "Campaign messaging"]
+  },
+  {
+    icon: <ShoppingCart className="w-7 h-7" />,
+    title: "E-commerce and Product Copywriting",
+    desc: "Conversion-focused product content designed for Shopify, WordPress, and growing online stores.",
+    color: "from-orange-500/20 to-red-500/20",
+    border: "border-orange-500/30",
+    tags: ["E-commerce content writing", "Product description service", "Shopify copywriting", "Sales copywriting"]
+  },
+  {
+    icon: <Mail className="w-7 h-7" />,
+    title: "Email and Newsletter Campaigns",
+    desc: "Strategic email marketing content designed to nurture leads, strengthen customer retention, and keep audiences engaged.",
+    color: "from-pink-500/20 to-rose-500/20",
+    border: "border-pink-500/30",
+    tags: ["Email copywriting", "Newsletter campaigns", "Drip sequences", "Retention emails"]
   },
   {
     icon: <FileText className="w-7 h-7" />,
-    title: "Case Studies & Whitepapers",
-    desc: "In-depth research-backed content that establishes expertise and supports high-value B2B sales cycles.",
+    title: "Video Scriptwriting",
+    desc: "Structured scripts for advertisements, explainers, YouTube videos, and branded campaigns that hold attention naturally.",
     color: "from-teal-500/20 to-green-500/20",
     border: "border-teal-500/30",
+    tags: ["Video scriptwriting", "Creative writing", "Storytelling scripts", "Video campaign writing"]
   },
+  {
+    icon: <BookOpen className="w-7 h-7" />,
+    title: "Content Strategy and Planning",
+    desc: "Structured content strategy services designed around SEO, consistency, and scalable long-term growth.",
+    color: "from-purple-500/20 to-pink-500/20",
+    border: "border-purple-500/30",
+    tags: ["Content strategy services", "Editorial calendar", "SEO strategy", "Content ecosystems"]
+  }
 ];
 
-const industries = [
-  "Technology & SaaS",
-  "E-Commerce & Retail",
-  "Healthcare & Wellness",
-  "Finance & FinTech",
-  "Education & EdTech",
-  "Real Estate",
-  "Travel & Hospitality",
-  "Fashion & Lifestyle",
-  "Legal & Compliance",
-  "Food & Restaurant",
-  "Automotive",
-  "Non-Profit & NGO",
+const industriesData = [
+  {
+    title: "Technology and SaaS",
+    desc: "Clear messaging that simplifies complexity and strengthens positioning."
+  },
+  {
+    title: "E-commerce and Retail",
+    desc: "Conversion-focused content designed to improve engagement and increase sales."
+  },
+  {
+    title: "Real Estate",
+    desc: "Trust-driven messaging that turns attention into inquiries."
+  },
+  {
+    title: "Health and Wellness",
+    desc: "Educational content written with clarity, structure, and audience sensitivity."
+  },
+  {
+    title: "Education and E-Learning",
+    desc: "Learning-focused writing designed for engagement and readability."
+  },
+  {
+    title: "Fashion and Lifestyle",
+    desc: "Brand storytelling that feels visual, emotional, and trend aware."
+  },
+  {
+    title: "Marketing and Creative Agencies",
+    desc: "Scalable content support for high-volume campaigns and growing brands."
+  },
+  {
+    title: "Media and Entertainment",
+    desc: "High-engagement scripts and campaigns built for visibility and retention."
+  }
 ];
 
 const steps = [
   {
     num: "01",
-    title: "Discovery & Brief",
-    desc: "We learn your brand voice, goals, target audience, and competitors. A detailed content brief is created before writing begins.",
+    title: "Discovery and Research",
+    desc: "We study your audience, competitors, and market behavior to uncover real growth opportunities.",
     color: "text-neon-green",
     bg: "bg-neon-green/10 border-neon-green/30",
   },
   {
     num: "02",
-    title: "Keyword & Topic Research",
-    desc: "Using advanced SEO tools, we identify high-value keywords, search intent, and topic clusters that align with your business goals.",
+    title: "Strategy Development",
+    desc: "We build a content roadmap around search intent, positioning, and messaging direction before writing begins.",
     color: "text-cyan-400",
     bg: "bg-cyan-400/10 border-cyan-400/30",
   },
   {
     num: "03",
-    title: "Content Creation",
-    desc: "Our expert writers craft each piece with your brand tone, SEO structure, E-E-A-T principles, and reader engagement in mind.",
+    title: "Creation and Optimization",
+    desc: "Our writers create content that balances readability, SEO structure, engagement, and conversion-focused storytelling.",
     color: "text-blue-400",
     bg: "bg-blue-400/10 border-blue-400/30",
   },
   {
     num: "04",
-    title: "Review & Refinement",
-    desc: "Every piece goes through editing, plagiarism checks, and SEO scoring. You get revision rounds to ensure it hits the mark.",
+    title: "Review and Refinement",
+    desc: "Every piece is reviewed for tone, clarity, grammar, and brand consistency before delivery.",
     color: "text-purple-400",
     bg: "bg-purple-400/10 border-purple-400/30",
   },
   {
     num: "05",
-    title: "Delivery & Optimization",
-    desc: "Final content is delivered in your preferred format with meta tags, internal linking suggestions, and performance tracking setup.",
+    title: "Delivery and Performance Tracking",
+    desc: "We deliver polished content with performance-focused recommendations designed for long-term growth.",
     color: "text-pink-400",
     bg: "bg-pink-400/10 border-pink-400/30",
   },
@@ -207,62 +246,73 @@ const portfolio = [
 ];
 
 const metrics = [
-  { icon: <TrendingUp className="w-8 h-8" />, value: "320%", label: "Average Organic Traffic Growth", color: "text-neon-green" },
-  { icon: <Eye className="w-8 h-8" />, value: "4.2M+", label: "Content Views Generated", color: "text-cyan-400" },
-  { icon: <MousePointerClick className="w-8 h-8" />, value: "2.8x", label: "Average CTR Improvement", color: "text-blue-400" },
-  { icon: <BarChart3 className="w-8 h-8" />, value: "500+", label: "Content Pieces Delivered", color: "text-purple-400" },
-  { icon: <Award className="w-8 h-8" />, value: "98%", label: "Client Satisfaction Rate", color: "text-pink-400" },
-  { icon: <Users className="w-8 h-8" />, value: "45+", label: "Brands Served", color: "text-orange-400" },
+  {
+    icon: <TrendingUp className="w-8 h-8" />,
+    title: "Organic Traffic",
+    desc: "Content structures designed to improve visibility and long-term search growth.",
+    color: "text-neon-green",
+    borderColor: "hover:border-neon-green/30"
+  },
+  {
+    icon: <Users className="w-8 h-8" />,
+    title: "User Engagement",
+    desc: "Sharper messaging that increases interaction and audience retention.",
+    color: "text-cyan-400",
+    borderColor: "hover:border-cyan-400/30"
+  },
+  {
+    icon: <Award className="w-8 h-8" />,
+    title: "Brand Authority",
+    desc: "Strategic positioning that strengthens credibility and trust.",
+    color: "text-purple-400",
+    borderColor: "hover:border-purple-400/30"
+  },
+  {
+    icon: <BarChart3 className="w-8 h-8" />,
+    title: "Conversion Growth",
+    desc: "Clearer messaging designed to support stronger conversion rates and lead quality.",
+    color: "text-pink-400",
+    borderColor: "hover:border-pink-400/30"
+  }
 ];
 
 const testimonials = [
   {
-    quote:
-      "WeBestOne's content team transformed our blog into a lead generation machine. We went from 500 to 18,000 monthly visitors in just 4 months. The quality and SEO depth of every article is exceptional.",
-    name: "Rifat Hossain",
-    role: "CEO, FAST IT Solutions",
+    quote: "Before WeBestOne, our website sounded like every other company in the industry. Now the brand finally feels clear, premium, and memorable.",
+    name: "CLIENT TESTIMONIAL",
+    role: "Founder, E-commerce Brand",
     rating: 5,
   },
   {
-    quote:
-      "They rewrote our entire website copy and the difference was immediate. Our bounce rate dropped by 40% and enquiries doubled within 6 weeks. Best investment we've made in marketing.",
-    name: "Nadia Rahman",
-    role: "Marketing Head, GlowSkin BD",
+    quote: "We had traffic before, but the messaging was weak. Once the content changed, engagement and conversions started improving almost immediately.",
+    name: "CLIENT TESTIMONIAL",
+    role: "Marketing Director",
     rating: 5,
   },
   {
-    quote:
-      "The email sequences they wrote for us have an insane open rate. Our onboarding conversion went up 28% — our SaaS product finally has copy that sells it the way it deserves.",
-    name: "Arif Chowdhury",
-    role: "Founder, EduNext Platform",
+    quote: "The biggest difference was how natural everything felt. The content finally sounded like a real brand instead of generic marketing.",
+    name: "CLIENT TESTIMONIAL",
+    role: "Operations Manager",
     rating: 5,
   },
 ];
 
 const faqs = [
   {
-    q: "How long does it take to receive my content?",
-    a: "Turnaround varies by content type. Blog posts (1,000–2,000 words) take 3–5 business days. Website copy takes 5–7 days. Bulk orders and rush delivery are available on request.",
+    q: "Do you provide SEO optimized content writing services?",
+    a: "Yes. Our content writing services are built around search intent, readability, metadata optimization, and long-term visibility growth.",
   },
   {
-    q: "Will the content be SEO-optimized?",
-    a: "Yes, every piece includes keyword integration, proper heading structure, meta description suggestions, internal linking recommendations, and E-E-A-T alignment.",
+    q: "Can your content writing agency match our brand tone?",
+    a: "Yes. We adapt tone, messaging, and structure based on your audience, positioning, and branding goals.",
   },
   {
-    q: "Do you offer revisions?",
-    a: "Absolutely. All packages include 2 rounds of revisions to ensure the content aligns perfectly with your brand voice and goals.",
+    q: "Do you offer content marketing services for growing businesses?",
+    a: "Yes. We create SEO blogs, website copy, landing pages, email campaigns, and scalable content marketing services designed for long-term growth.",
   },
   {
-    q: "Can you write in Bengali or both English and Bengali?",
-    a: "Yes! We have writers fluent in both English and Bengali, and we can deliver bilingual content tailored to the Bangladeshi and global markets.",
-  },
-  {
-    q: "Do you sign an NDA or keep content confidential?",
-    a: "Yes, we treat all client projects with strict confidentiality. NDAs can be signed on request before project kickoff.",
-  },
-  {
-    q: "How do I get started?",
-    a: "Simply fill out our contact form or book a discovery call. We'll understand your needs, share a custom proposal, and start once approved.",
+    q: "Can you support long-term content strategy services?",
+    a: "Yes. We build scalable content strategy services focused on consistency, organic traffic, and customer retention.",
   },
 ];
 
@@ -330,13 +380,12 @@ export default function ContentWritingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight"
             >
-              WeBestOne{" "}
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent block">
-                Content Writing Services
+              Content Writing Services That Make{" "}
+              <span className="bg-gradient-to-r from-neon-green to-cyan-400 bg-clip-text text-transparent block">
+                Brands Sound Worth Paying Attention To
               </span>
-              That Drive Growth
             </motion.h1>
 
             {/* Description */}
@@ -344,20 +393,18 @@ export default function ContentWritingPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="space-y-4"
+              className="space-y-6"
             >
-              <p className="text-neutral-400 text-base leading-relaxed">
-                At WeBestOne, we do much more than write. We build{" "}
-                <span className="text-white font-semibold">strategies</span> that transform every word into{" "}
-                <span className="text-neon-green font-semibold">measurable business growth</span>. Our team of
-                experienced strategists, copywriters, and SEO professionals craft data-driven content
-                that attracts attention, builds trust, and inspires measurable action.
+              <p className="text-neutral-400 text-base md:text-lg leading-relaxed">
+                Most brands are posting constantly.<br />
+                Blogs. Emails. Captions. Landing pages.<br />
+                And almost all of it disappears five seconds later. Not because people hate content. Because most content sounds exactly the same.
               </p>
-              <p className="text-neutral-500 text-sm leading-relaxed">
-                Whether you need professional website copy that sells, search engine optimized blogs
-                that rank, or persuasive video scripts that connect with your audience, we make your
-                brand unforgettable through{" "}
-                <span className="text-neutral-300">intelligent storytelling</span> and strategic precision.
+              <p className="text-neutral-300 text-base leading-relaxed">
+                <strong>WeBestOne</strong> builds content writing services designed to make people stop, feel something, and keep reading. We combine audience psychology, search behavior, and sharp messaging to create content that feels impossible to skim past.
+              </p>
+              <p className="text-neon-green font-bold text-base tracking-wide border-l-2 border-neon-green pl-4">
+                Because good content gets seen. Great content gets remembered.
               </p>
             </motion.div>
 
@@ -528,19 +575,18 @@ export default function ContentWritingPage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-center mb-14 space-y-3"
+            className="text-center mb-14 space-y-4"
           >
             <div className="flex items-center justify-center gap-3">
               <span className="w-8 h-[1px] bg-neon-green/60" />
               <span className="text-neon-green font-mono text-xs tracking-[0.25em] uppercase">Why WeBestOne</span>
               <span className="w-8 h-[1px] bg-neon-green/60" />
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold">
-              Content That Works,{" "}
-              <span className="text-neon-green">Not Just Fills Space</span>
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+              Why Brands Choose <span className="text-neon-green">WeBestOne</span> for Their Content Writing Needs
             </h2>
-            <p className="text-neutral-400 max-w-xl mx-auto">
-              We don't just write — we strategize, optimize, and deliver content that achieves real business results.
+            <p className="text-neutral-400 max-w-3xl mx-auto leading-relaxed text-base md:text-lg">
+              The internet is already crowded with content nobody remembers. More generic writing will not fix that. WeBestOne creates content that feels sharper, smoother, and built with actual intent behind it. We combine creative content writing, search engine optimization, and audience psychology to create messaging people genuinely want to keep reading. Every sentence is designed to guide attention naturally rather than fight for it.
             </p>
           </motion.div>
 
@@ -578,7 +624,7 @@ export default function ContentWritingPage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-center mb-14 space-y-3"
+            className="text-center mb-14 space-y-4"
           >
             <div className="flex items-center justify-center gap-3">
               <span className="w-8 h-[1px] bg-cyan-400/60" />
@@ -586,9 +632,11 @@ export default function ContentWritingPage() {
               <span className="w-8 h-[1px] bg-cyan-400/60" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold">
-              Core Content Writing{" "}
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Services</span>
+              Our Core <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Content Writing Services</span>
             </h2>
+            <p className="text-neutral-400 max-w-3xl mx-auto leading-relaxed text-base md:text-lg">
+              Content is no longer just a marketing task. It shapes how people see your brand before they ever contact you. That is why we build content systems designed for visibility, authority, engagement, and long-term growth across search, social, websites, and campaigns.
+            </p>
           </motion.div>
 
           <motion.div
@@ -602,11 +650,22 @@ export default function ContentWritingPage() {
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className={`p-6 rounded-2xl border ${s.border} bg-gradient-to-br ${s.color} hover:scale-[1.02] transition-all duration-300 group`}
+                className={`p-6 rounded-2xl border ${s.border} bg-gradient-to-br ${s.color} hover:scale-[1.02] transition-all duration-300 group flex flex-col justify-between`}
               >
-                <div className="text-white mb-4 group-hover:scale-110 transition-transform duration-300">{s.icon}</div>
-                <h3 className="text-white font-bold text-lg mb-2">{s.title}</h3>
-                <p className="text-neutral-400 text-sm leading-relaxed">{s.desc}</p>
+                <div>
+                  <div className="text-white mb-4 group-hover:scale-110 transition-transform duration-300">{s.icon}</div>
+                  <h3 className="text-white font-bold text-lg mb-2">{s.title}</h3>
+                  <p className="text-neutral-400 text-sm leading-relaxed mb-4">{s.desc}</p>
+                </div>
+                {s.tags && (
+                  <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-white/5">
+                    {s.tags.map((tag, tIdx) => (
+                      <span key={tIdx} className="text-[10px] text-neutral-400 bg-white/[0.03] border border-white/5 px-2 py-0.5 rounded-full">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </motion.div>
             ))}
           </motion.div>
@@ -623,7 +682,7 @@ export default function ContentWritingPage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-center mb-14 space-y-3"
+            className="text-center mb-14 space-y-4"
           >
             <div className="flex items-center justify-center gap-3">
               <span className="w-8 h-[1px] bg-blue-400/60" />
@@ -631,11 +690,10 @@ export default function ContentWritingPage() {
               <span className="w-8 h-[1px] bg-blue-400/60" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold">
-              We Speak Your{" "}
-              <span className="text-blue-400">Industry's Language</span>
+              Industries <span className="text-blue-400">WeBestOne Supports</span>
             </h2>
-            <p className="text-neutral-400 max-w-xl mx-auto">
-              Our writers have hands-on experience across a wide range of industries.
+            <p className="text-neutral-400 max-w-3xl mx-auto leading-relaxed text-base md:text-lg">
+              Every industry has its own tone, pace, and audience behavior. We shape content around how people actually search, think, compare, and decide so brands feel relevant inside their market instead of sounding generic everywhere.
             </p>
           </motion.div>
 
@@ -644,18 +702,35 @@ export default function ContentWritingPage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {industries.map((ind, i) => (
+            {industriesData.map((ind, i) => (
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="flex items-center gap-2 p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:border-blue-400/30 hover:bg-blue-400/[0.04] transition-all duration-300 group"
+                className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:border-blue-400/30 hover:bg-blue-400/[0.04] transition-all duration-300 group flex flex-col gap-3"
               >
-                <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0 group-hover:scale-110 transition-transform" />
-                <span className="text-neutral-300 text-sm font-medium">{ind}</span>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-blue-400 shrink-0 group-hover:scale-110 transition-transform" />
+                  <h3 className="text-white font-bold text-sm md:text-base">{ind.title}</h3>
+                </div>
+                <p className="text-neutral-400 text-xs leading-relaxed">{ind.desc}</p>
               </motion.div>
             ))}
+          </motion.div>
+
+          {/* Industry Quote */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-16 text-center max-w-2xl mx-auto p-8 rounded-3xl border border-blue-500/10 bg-blue-500/[0.02]"
+          >
+            <Quote className="w-8 h-8 text-blue-400 mx-auto mb-4 opacity-40" />
+            <p className="text-lg md:text-xl font-medium text-neutral-300 italic">
+              “Every industry has its own rhythm. Great content sounds like it belongs there naturally.”
+            </p>
           </motion.div>
         </div>
       </section>
@@ -670,7 +745,7 @@ export default function ContentWritingPage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-center mb-16 space-y-3"
+            className="text-center mb-16 space-y-4"
           >
             <div className="flex items-center justify-center gap-3">
               <span className="w-8 h-[1px] bg-purple-400/60" />
@@ -678,11 +753,10 @@ export default function ContentWritingPage() {
               <span className="w-8 h-[1px] bg-purple-400/60" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold">
-              Our{" "}
-              <span className="text-purple-400">5-Step Content</span> Creation Process
+              Our Process: From <span className="text-purple-400">Strategy</span> to Search Visibility
             </h2>
-            <p className="text-neutral-400 max-w-xl mx-auto">
-              A proven system that ensures every piece of content is strategic, polished, and results-driven.
+            <p className="text-neutral-400 max-w-2xl mx-auto leading-relaxed text-base md:text-lg">
+              Strong content is never random. Every project follows a structured process designed to balance visibility, clarity, engagement, and business goals without losing the human side of the writing.
             </p>
           </motion.div>
 
@@ -793,7 +867,7 @@ export default function ContentWritingPage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-center mb-14 space-y-3"
+            className="text-center mb-14 space-y-4"
           >
             <div className="flex items-center justify-center gap-3">
               <span className="w-8 h-[1px] bg-neon-green/60" />
@@ -801,8 +875,7 @@ export default function ContentWritingPage() {
               <span className="w-8 h-[1px] bg-neon-green/60" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold">
-              Numbers That{" "}
-              <span className="text-neon-green">Speak for Themselves</span>
+              Proven Results <span className="text-neon-green">with WeBestOne</span>
             </h2>
           </motion.div>
 
@@ -811,19 +884,38 @@ export default function ContentWritingPage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {metrics.map((m, i) => (
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] text-center hover:border-white/20 transition-all duration-300 group"
+                className={`p-8 rounded-3xl border border-white/[0.08] bg-white/[0.03] text-center hover:border-white/20 transition-all duration-300 group flex flex-col items-center gap-4 ${m.borderColor}`}
               >
-                <div className={`${m.color} mb-3 flex justify-center group-hover:scale-110 transition-transform duration-300`}>{m.icon}</div>
-                <div className={`text-4xl font-bold ${m.color} mb-1`}>{m.value}</div>
-                <div className="text-neutral-400 text-xs uppercase tracking-wide">{m.label}</div>
+                <div className={`${m.color} group-hover:scale-110 transition-transform duration-300`}>
+                  {m.icon}
+                </div>
+                <h3 className="text-white font-bold text-lg md:text-xl">{m.title}</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed">{m.desc}</p>
               </motion.div>
             ))}
+          </motion.div>
+
+          {/* Success Quote */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-16 max-w-3xl mx-auto p-8 md:p-10 rounded-[2.5rem] border border-neon-green/10 bg-neon-green/[0.02] text-center relative overflow-hidden"
+          >
+            <Quote className="w-10 h-10 text-neon-green mx-auto mb-6 opacity-30" />
+            <p className="text-xl md:text-2xl font-bold text-white leading-relaxed">
+              “Our content stopped feeling like filler and started feeling like a real competitive advantage.”
+            </p>
+            <p className="text-neon-green font-mono text-xs font-black uppercase tracking-[0.2em] mt-6">
+              — CLIENT SUCCESS STORY
+            </p>
           </motion.div>
         </div>
       </section>
@@ -941,15 +1033,16 @@ export default function ContentWritingPage() {
                   <PenTool className="w-4 h-4" />
                   Ready to Start?
                 </div>
-                <h2 className="text-3xl md:text-5xl font-bold text-white">
-                  Let's Build Content That{" "}
+                <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+                  Build a Brand People{" "}
                   <span className="bg-gradient-to-r from-neon-green to-cyan-400 bg-clip-text text-transparent">
-                    Grows Your Business
+                    Actually Remember
                   </span>
                 </h2>
-                <p className="text-neutral-400 max-w-xl mx-auto leading-relaxed">
-                  Whether you need one blog post or a full content strategy, our team is ready to deliver.
-                  Let's get your brand the visibility it deserves.
+                <p className="text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+                  People can feel when the content was written just to fill space.
+                  That kind of writing disappears instantly. <strong>WeBestOne</strong> provides content writing services designed to capture attention, strengthen brand authority, improve visibility, and drive measurable business growth.
+                  If your content is not creating momentum, it is time to rebuild the strategy behind it.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
@@ -963,7 +1056,7 @@ export default function ContentWritingPage() {
                     to="/contact"
                     className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/20 text-white font-semibold hover:border-neon-green/50 hover:bg-neon-green/5 transition-all duration-300"
                   >
-                    Book a Discovery Call
+                    Start Your Project Today
                   </Link>
                 </div>
               </div>

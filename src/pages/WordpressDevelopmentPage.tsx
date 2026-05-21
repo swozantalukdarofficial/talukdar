@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView, animate, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
   Code2,
   Globe,
@@ -23,7 +23,145 @@ import {
   Award,
   Star,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+
+
+/* ─── Animated Counter Component ─── */
+interface AnimatedCounterProps {
+  value: string;
+  duration?: number;
+}
+
+
+/* ─── 3D Ambient Tilt Card Component ─── */
+function Card3D({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [15, -15]), { damping: 20, stiffness: 150 });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-15, 15]), { damping: 20, stiffness: 150 });
+  
+  const scale = useSpring(1, { damping: 20, stiffness: 150 });
+  const shineX = useTransform(x, [-0.5, 0.5], ["0%", "100%"]);
+  const shineY = useTransform(y, [-0.5, 0.5], ["0%", "100%"]);
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (isHovered) return;
+
+    let animationFrameId: number;
+    const startTime = Date.now();
+
+    const animateFloat = () => {
+      const elapsed = (Date.now() - startTime) / 1000;
+      const angle = elapsed * 0.8; // Slow rotation speed
+      x.set(Math.cos(angle) * 0.15);
+      y.set(Math.sin(angle * 1.5) * 0.15);
+      
+      animationFrameId = requestAnimationFrame(animateFloat);
+    };
+
+    animateFloat();
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isHovered, x, y]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left - width / 2;
+    const mouseY = e.clientY - rect.top - height / 2;
+    
+    x.set(mouseX / width);
+    y.set(mouseY / height);
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    scale.set(1.04);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    scale.set(1);
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{ perspective: 1000 }}
+      className="relative w-full h-full"
+    >
+      <motion.div
+        style={{
+          rotateX,
+          rotateY,
+          scale,
+          transformStyle: "preserve-3d",
+        }}
+        className="w-full h-full relative z-10 transition-shadow duration-300 rounded-2xl overflow-hidden border border-white/10 bg-black/60 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_50px_rgba(139,92,246,0.15)]"
+      >
+        {/* Shine Overlay */}
+        <motion.div
+          style={{
+            background: `radial-gradient(circle 250px at ${shineX} ${shineY}, rgba(255,255,255,0.06), transparent)`,
+          }}
+          className="absolute inset-0 z-20 pointer-events-none"
+        />
+        
+        {/* Inner Content (parallax depth) */}
+        <div style={{ transform: "translateZ(30px)" }} className="relative z-10 w-full h-full">
+          {children}
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+function AnimatedCounter({ value, duration = 2.5 }: AnimatedCounterProps) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (!inView) return;
+
+    // Matches values like "<1.5s", "99.9%", "100+", "45%", "100/100"
+    const match = value.match(/^([^0-9.]*)([0-9.]+)(.*)$/);
+    if (!match) {
+      if (ref.current) ref.current.textContent = value;
+      return;
+    }
+
+    const prefix = match[1] || "";
+    const targetNumber = parseFloat(match[2]);
+    const suffix = match[3] || "";
+    const isDecimal = match[2].includes(".");
+
+    const controls = animate(0, targetNumber, {
+      duration: duration,
+      ease: "easeOut",
+      onUpdate(latest) {
+        if (ref.current) {
+          const formatted = isDecimal ? latest.toFixed(1) : Math.round(latest).toString();
+          ref.current.textContent = `${prefix}${formatted}${suffix}`;
+        }
+      },
+    });
+
+    return () => controls.stop();
+  }, [inView, value, duration]);
+
+  return <span ref={ref}>{value}</span>;
+}
 
 /* ─── Animation Variants ─── */
 const fadeUp = {
@@ -38,34 +176,34 @@ const stagger = {
 /* ─── Data ─── */
 const whyChoose = [
   {
-    icon: <Code2 className="w-6 h-6" />,
-    title: "Custom Tailored Code",
-    desc: "No bloated templates. We write clean, optimized code that perfectly fits your specific business requirements.",
+    icon: <Users className="w-6 h-6" />,
+    title: "Eliminate Manual Processes",
+    desc: "Most businesses lose time in places they do not see. We automate manual processes to save valuable time and eliminate human errors.",
   },
   {
-    icon: <Smartphone className="w-6 h-6" />,
-    title: "Mobile-First Design",
-    desc: "Flawless user experiences across all devices. We ensure your site looks and functions perfectly on mobile.",
+    icon: <Globe className="w-6 h-6" />,
+    title: "Connect Disconnected Tools",
+    desc: "Stop jumping between tabs. We unify your disconnected tools into a single source of truth for your entire operations.",
   },
   {
     icon: <Zap className="w-6 h-6" />,
-    title: "Lightning Fast Speed",
-    desc: "Optimized for core web vitals. We build blazing fast websites that keep visitors engaged and reduce bounce rates.",
+    title: "Fix Workflows Under Pressure",
+    desc: "Workflows that break under pressure become extremely expensive. We build systems that perform flawlessly at peak scales.",
   },
   {
-    icon: <Search className="w-6 h-6" />,
-    title: "SEO-Optimized Architecture",
-    desc: "Built from the ground up with SEO best practices, ensuring search engines can easily crawl and rank your site.",
+    icon: <Code2 className="w-6 h-6" />,
+    title: "Custom CMS Development",
+    desc: "As a custom CMS development agency, we build structured systems that align with your exact workflows, not against them.",
   },
   {
-    icon: <ShieldCheck className="w-6 h-6" />,
-    title: "Enterprise-Grade Security",
-    desc: "Robust protection against vulnerabilities, regular backups, and secure coding practices to keep your data safe.",
+    icon: <ShoppingCart className="w-6 h-6" />,
+    title: "Custom E-commerce Systems",
+    desc: "From advanced online storefronts to complex backend integrations, everything is designed for conversion and performance.",
   },
   {
-    icon: <Wrench className="w-6 h-6" />,
-    title: "Easy Content Management",
-    desc: "Intuitive backend systems (like WordPress) customized for you, making future updates a breeze without coding.",
+    icon: <TrendingUp className="w-6 h-6" />,
+    title: "Scalable Infrastructure",
+    desc: "We build systems designed to support how your business runs, scales, and adapts, eliminating your technical growth ceiling.",
   },
 ];
 
@@ -243,30 +381,52 @@ const testimonials = [
   },
 ];
 
+const whatWeBuild = [
+  {
+    num: "01",
+    title: "Crafting your unique platform",
+    desc: "Your business is not standard. Your system should not be either. We build using HTML5, CSS3, JavaScript, and modern frameworks like React, Angular, and Vue.js to create scalable, structured platforms. This is where design meets functionality.",
+  },
+  {
+    num: "02",
+    title: "Connecting everything into one system",
+    desc: "Disconnected tools slow everything down. We integrate custom APIs, CRMs, and payment gateways so your operations work as one system, not separate parts.",
+  },
+  {
+    num: "03",
+    title: "Building for scale from the start",
+    desc: "Growth breaks weak systems. We develop using Node.js, PHP, Laravel, and MySQL, supported by Cloudflare, optimized hosting environments, and secure infrastructure with SSL certificates. This is built to handle growth before it happens.",
+  },
+];
+
 const faqs = [
   {
-    q: "How long does it take to build a custom website?",
-    a: "A standard corporate website usually takes 3-5 weeks from discovery to launch. Complex e-commerce sites or custom web applications may take 6-12 weeks depending on the features required.",
+    q: "How much do custom web development services cost?",
+    a: "The cost depends on integrations, features, and system complexity. We provide a clear estimate based on your exact requirements.",
   },
   {
-    q: "Do you use pre-made templates or build from scratch?",
-    a: "We specialize in custom design and development. While we can work with templates if requested to save budget, we strongly recommend custom builds for better performance, uniqueness, and scalability.",
+    q: "How long do custom web development services take?",
+    a: "Most projects take between four to twelve weeks depending on scope and complexity.",
   },
   {
-    q: "Will my website be mobile-friendly and responsive?",
-    a: "Absolutely. We follow a mobile-first approach. Your website will adapt seamlessly to look and function perfectly on smartphones, tablets, and desktops.",
+    q: "Do you provide ongoing support after launch?",
+    a: "Yes. We provide maintenance, updates, and continuous system improvements.",
   },
   {
-    q: "Do you provide hosting and ongoing maintenance?",
-    a: "Yes! We offer premium, secure hosting solutions and dedicated maintenance packages to ensure your website remains updated, secure, and fast long after it's launched.",
+    q: "What technologies do you use?",
+    a: "We use HTML5, CSS3, JavaScript, React, Node.js, PHP, and MySQL, along with modern frameworks depending on project needs.",
   },
   {
-    q: "Will the website be optimized for SEO?",
-    a: "Yes. All our websites are built with semantic HTML, optimized media, fast loading speeds, and proper metadata structures to give you the best possible foundation for search engine rankings.",
+    q: "Do you provide Shopify web development services and ecommerce platforms?",
+    a: "Yes. We provide Shopify web development services along with custom ecommerce systems using WooCommerce and Magento, depending on your business model and scalability needs.",
   },
   {
-    q: "Can I easily update the content myself?",
-    a: "Yes. We integrate user-friendly Content Management Systems (like WordPress) and provide you with comprehensive training so you can easily update text, images, and blogs without needing to code.",
+    q: "Do you offer React web development services?",
+    a: "Yes. We provide React web development services for scalable and high-performance applications.",
+  },
+  {
+    q: "Can you rebuild an existing system?",
+    a: "Yes. We restructure and rebuild systems that are limiting growth or performance.",
   },
 ];
 
@@ -321,12 +481,12 @@ export default function WordpressDevelopmentPage() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* ── Left: Text ── */}
-          <div className="space-y-7">
+          <div className="space-y-6">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.04] text-neutral-300 text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.04] text-neutral-300 text-xs font-semibold tracking-wider uppercase"
             >
               <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
               High-Performance Web Solutions
@@ -337,11 +497,14 @@ export default function WordpressDevelopmentPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight"
+              className="text-4xl md:text-5xl lg:text-[3.25rem] font-black leading-[1.15] tracking-tight"
             >
-              We Build Websites That{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent block">
-                Load Faster & Sell More
+              <span className="text-blue-400 font-semibold text-sm md:text-base block mb-2 tracking-[0.15em] uppercase">
+                Custom Web Development Services
+              </span>
+              Build Systems Your Business Can{" "}
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent block mt-1">
+                Actually Scale On
               </span>
             </motion.h1>
 
@@ -352,17 +515,41 @@ export default function WordpressDevelopmentPage() {
               transition={{ delay: 0.2 }}
               className="space-y-4"
             >
-              <p className="text-neutral-400 text-base leading-relaxed">
-                At WeBestOne, we engineer digital experiences. We build{" "}
-                <span className="text-white font-semibold">custom websites and applications</span> that are 
-                <span className="text-blue-400 font-semibold"> fast, secure, and infinitely scalable</span>. 
-                Our expert development team turns complex requirements into sleek, highly-converting platforms.
+              {/* Highlighted H2 Quote block */}
+              <div className="relative pl-4 border-l-2 border-blue-500/80 py-1.5 my-3 bg-gradient-to-r from-blue-500/[0.03] to-transparent rounded-r-xl">
+                <h2 className="text-base md:text-lg font-bold text-white/95 leading-relaxed">
+                  "If your systems are slowing you down, it is not your effort. <span className="text-blue-400">It is your setup."</span>
+                </h2>
+              </div>
+
+              {/* Lead Paragraph */}
+              <p className="text-neutral-400 text-sm md:text-[0.95rem] leading-relaxed">
+                Most businesses do not hit a growth ceiling because of marketing. 
+                They hit it because <span className="text-white font-medium">their systems cannot keep up</span>. 
+                That is where custom web development services change everything.
               </p>
-              <p className="text-neutral-500 text-sm leading-relaxed">
-                From bespoke WordPress themes and robust WooCommerce stores to cutting-edge React web applications, 
-                we craft technical solutions that elevate your brand and dominate search rankings through{" "}
-                <span className="text-neutral-300">superior architecture</span>.
-              </p>
+
+              {/* High-End Feature Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 hover:border-blue-500/20 hover:bg-blue-500/[0.01] transition-all duration-300">
+                  <div className="flex items-center gap-2 mb-1.5 text-blue-400 font-bold text-xs uppercase tracking-wider">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_#3b82f6]" />
+                    Operational Systems
+                  </div>
+                  <p className="text-neutral-400 text-xs leading-relaxed font-medium">
+                    We do not build simple pages. We build operational systems that support how your business runs, scales, and adapts.
+                  </p>
+                </div>
+                <div className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 hover:border-cyan-500/20 hover:bg-cyan-500/[0.01] transition-all duration-300">
+                  <div className="flex items-center gap-2 mb-1.5 text-cyan-400 font-bold text-xs uppercase tracking-wider">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_8px_#06b6d4]" />
+                    Controlled Infrastructure
+                  </div>
+                  <p className="text-neutral-400 text-xs leading-relaxed font-medium">
+                    This is not a template. This is robust infrastructure designed to remove friction and create momentum.
+                  </p>
+                </div>
+              </div>
             </motion.div>
 
             {/* CTAs */}
@@ -549,11 +736,11 @@ export default function WordpressDevelopmentPage() {
               <span className="w-8 h-[1px] bg-blue-500/60" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold">
-              Engineering Excellence,{" "}
-              <span className="text-blue-500">Not Just Templates</span>
+              Your business deserves{" "}
+              <span className="text-blue-500">more than a basic setup</span>
             </h2>
-            <p className="text-neutral-400 max-w-xl mx-auto">
-              We build technically robust, scalable, and beautifully designed digital platforms that drive your business forward.
+            <p className="text-neutral-400 max-w-2xl mx-auto text-base leading-relaxed">
+              Most businesses lose time in places they do not see: manual processes, disconnected tools, and workflows that break under pressure. Over time, that becomes expensive. Our website development services for businesses are designed to fix that at the root.
             </p>
           </motion.div>
 
@@ -578,6 +765,47 @@ export default function WordpressDevelopmentPage() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          3.5 WHAT WE ACTUALLY BUILD
+      ══════════════════════════════════════════ */}
+      <section className="relative z-10 py-24 px-6 bg-neutral-950/40 border-t border-b border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-center mb-14 space-y-3"
+          >
+            <div className="flex items-center justify-center gap-3">
+              <span className="w-8 h-[1px] bg-emerald-400/60" />
+              <span className="text-emerald-400 font-mono text-xs tracking-[0.25em] uppercase">Architecture</span>
+              <span className="w-8 h-[1px] bg-emerald-400/60" />
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold">
+              What we <span className="text-emerald-400">actually build</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {whatWeBuild.map((item, i) => (
+              <div
+                key={i}
+                className="p-8 rounded-3xl border border-white/5 bg-white/[0.01] hover:border-emerald-500/20 hover:bg-emerald-500/[0.01] transition-all duration-300 flex flex-col justify-between"
+              >
+                <div className="space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-emerald-400 font-mono font-bold text-lg">
+                    {item.num}
+                  </div>
+                  <h3 className="text-white font-bold text-lg">{item.title}</h3>
+                  <p className="text-neutral-400 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -627,7 +855,7 @@ export default function WordpressDevelopmentPage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          4. INDUSTRIES
+          4. INDUSTRIES & SCALABILITY
       ══════════════════════════════════════════ */}
       <section className="relative z-10 py-24 px-6 bg-white/[0.02]">
         <div className="max-w-5xl mx-auto">
@@ -636,18 +864,34 @@ export default function WordpressDevelopmentPage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-center mb-14 space-y-3"
+            className="text-center mb-14 space-y-6"
           >
             <div className="flex items-center justify-center gap-3">
               <span className="w-8 h-[1px] bg-purple-400/60" />
-              <span className="text-purple-400 font-mono text-xs tracking-[0.25em] uppercase">Industries We Serve</span>
+              <span className="text-purple-400 font-mono text-xs tracking-[0.25em] uppercase">Why Custom Changes Everything</span>
               <span className="w-8 h-[1px] bg-purple-400/60" />
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold">
-              Platforms Built For{" "}
-              <span className="text-purple-400">Your Specific Market</span>
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+              There comes a point where your <br />
+              <span className="text-purple-400">tools stop supporting your growth</span>
             </h2>
-            <p className="text-neutral-400 max-w-xl mx-auto">
+            <div className="max-w-3xl mx-auto space-y-4 text-neutral-300 text-sm md:text-base leading-relaxed mb-10">
+              <p>
+                That is not a signal to push harder. <span className="text-white font-semibold">That is a signal to rebuild properly.</span>
+              </p>
+              <p>
+                With custom web development services, your business stops adjusting to software. 
+                Your system starts working the way it should.
+              </p>
+              <p className="text-purple-400 font-medium">
+                This is how businesses move from operational to scalable.
+              </p>
+            </div>
+            <div className="w-full h-[1px] bg-white/5 my-8" />
+            <h3 className="text-2xl md:text-3xl font-bold text-white mt-8">
+              Platforms Built For <span className="text-purple-400">Your Specific Market</span>
+            </h3>
+            <p className="text-neutral-400 max-w-xl mx-auto text-sm">
               Our development team creates highly specialized technical solutions tailored to industry-specific demands.
             </p>
           </motion.div>
@@ -683,7 +927,7 @@ export default function WordpressDevelopmentPage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-center mb-16 space-y-3"
+            className="text-center mb-16 space-y-6"
           >
             <div className="flex items-center justify-center gap-3">
               <span className="w-8 h-[1px] bg-pink-400/60" />
@@ -691,9 +935,29 @@ export default function WordpressDevelopmentPage() {
               <span className="w-8 h-[1px] bg-pink-400/60" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold">
-              Our <span className="text-pink-400">5-Step Development</span> Lifecycle
+              How we <span className="text-pink-400">build it</span>
             </h2>
-            <p className="text-neutral-400 max-w-xl mx-auto">
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto text-left mb-12">
+              <div className="p-5 rounded-2xl bg-white/[0.01] border border-white/5">
+                <h3 className="text-pink-400 font-bold text-base mb-2">01 Discovery and planning</h3>
+                <p className="text-neutral-400 text-xs leading-relaxed">
+                  We break down your workflows, identify bottlenecks, and define system architecture before anything is built.
+                </p>
+              </div>
+              <div className="p-5 rounded-2xl bg-white/[0.01] border border-white/5">
+                <h3 className="text-pink-400 font-bold text-base mb-2">02 Design and development</h3>
+                <p className="text-neutral-400 text-xs leading-relaxed">
+                  We design using Figma and Adobe XD, then develop using scalable technologies. All builds are version controlled using Git and GitHub, tested using Google Lighthouse, and follow web accessibility standards.
+                </p>
+              </div>
+            </div>
+
+            <div className="w-full h-[1px] bg-white/5 my-8" />
+            <h3 className="text-2xl md:text-3xl font-bold text-white mt-4">
+              Our <span className="text-pink-400">5-Step Development</span> Lifecycle
+            </h3>
+            <p className="text-neutral-400 max-w-xl mx-auto text-sm">
               A transparent, agile process ensuring on-time delivery and pixel-perfect execution of your vision.
             </p>
           </motion.div>
@@ -729,7 +993,7 @@ export default function WordpressDevelopmentPage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          6. DEVELOPMENT PORTFOLIO
+          6. CUSTOM SOLUTIONS BUILT FOR REAL USE
       ══════════════════════════════════════════ */}
       <section className="relative z-10 py-24 px-6 bg-white/[0.02]">
         <div className="max-w-6xl mx-auto">
@@ -746,11 +1010,18 @@ export default function WordpressDevelopmentPage() {
               <span className="w-8 h-[1px] bg-cyan-400/60" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold">
-              Digital Experiences <span className="text-cyan-400">We've Shipped</span>
+              Custom solutions <span className="text-cyan-400">built for real use</span>
             </h2>
-            <p className="text-neutral-400 max-w-xl mx-auto">
-              Explore some of our recent web development projects and the technical challenges we solved.
-            </p>
+            <div className="max-w-3xl mx-auto text-neutral-400 text-sm md:text-base leading-relaxed space-y-3">
+              <p>
+                At WebestOne, we work with businesses that have already outgrown basic solutions. We build what is missing. Everything is built for actual usage, not surface-level presentation.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs font-mono text-neutral-500">
+                <span className="px-3 py-1 rounded-full border border-white/5 bg-white/[0.01]">Custom ecommerce using WooCommerce, Shopify, Magento</span>
+                <span className="px-3 py-1 rounded-full border border-white/5 bg-white/[0.01]">SEO-ready using Analytics, Lighthouse & SEO Tools</span>
+                <span className="px-3 py-1 rounded-full border border-white/5 bg-white/[0.01]">Scalable architectures tested for real user behavior</span>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div
@@ -827,7 +1098,7 @@ export default function WordpressDevelopmentPage() {
                 className="flex flex-col items-center text-center space-y-3 p-6 rounded-2xl border border-white/5 bg-white/[0.01]"
               >
                 <div className={`p-3 rounded-xl bg-white/5 ${m.color}`}>{m.icon}</div>
-                <h4 className={`text-4xl font-black ${m.color}`}>{m.value}</h4>
+                <h4 className={`text-4xl font-black ${m.color}`}><AnimatedCounter value={m.value} /></h4>
                 <p className="text-neutral-400 text-sm font-medium">{m.label}</p>
               </motion.div>
             ))}
@@ -865,20 +1136,23 @@ export default function WordpressDevelopmentPage() {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
-                className="p-8 rounded-2xl border border-white/10 bg-black hover:border-purple-500/30 transition-colors duration-300 flex flex-col justify-between"
               >
-                <div>
-                  <div className="flex gap-1 mb-6">
-                    {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-                    ))}
+                <Card3D>
+                  <div className="p-8 h-full flex flex-col justify-between">
+                    <div>
+                      <div className="flex gap-1 mb-6">
+                        {[...Array(t.rating)].map((_, idx) => (
+                          <Star key={idx} className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+                        ))}
+                      </div>
+                      <p className="text-neutral-300 leading-relaxed mb-8">"{t.quote}"</p>
+                    </div>
+                    <div>
+                      <p className="text-white font-bold">{t.name}</p>
+                      <p className="text-neutral-500 text-sm">{t.role}</p>
+                    </div>
                   </div>
-                  <p className="text-neutral-300 leading-relaxed mb-8">"{t.quote}"</p>
-                </div>
-                <div>
-                  <p className="text-white font-bold">{t.name}</p>
-                  <p className="text-neutral-500 text-sm">{t.role}</p>
-                </div>
+                </Card3D>
               </motion.div>
             ))}
           </div>
@@ -903,7 +1177,7 @@ export default function WordpressDevelopmentPage() {
               <span className="w-8 h-[1px] bg-blue-500/60" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold">
-              Frequently Asked <span className="text-blue-500">Questions</span>
+              Frequently asked <span className="text-blue-500">questions</span>
             </h2>
           </motion.div>
 
@@ -919,6 +1193,24 @@ export default function WordpressDevelopmentPage() {
             ))}
           </motion.div>
 
+          {/* Final thought */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-center max-w-2xl mx-auto mb-16 space-y-4"
+          >
+            <h3 className="text-xl font-bold text-neutral-400 uppercase tracking-wider">Final thought</h3>
+            <p className="text-2xl md:text-3xl font-extrabold text-white leading-snug">
+              Your business will keep growing. <br />
+              <span className="text-blue-400">The real question is whether your system can keep up.</span>
+            </p>
+            <p className="text-neutral-400 text-sm md:text-base leading-relaxed">
+              With custom web development services, you build a foundation that supports performance, scale, and long-term growth.
+            </p>
+          </motion.div>
+
           {/* CTA Box */}
           <motion.div
             variants={fadeUp}
@@ -930,16 +1222,16 @@ export default function WordpressDevelopmentPage() {
             <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 opacity-90" />
             <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20 mix-blend-overlay" />
             <div className="relative p-12 text-center space-y-6">
-              <h2 className="text-4xl font-bold text-white">Ready to Build Your Next Digital Platform?</h2>
-              <p className="text-blue-100 max-w-2xl mx-auto text-lg">
-                Let's discuss your project requirements and architect a robust web solution that drives real business growth.
+              <h2 className="text-3xl md:text-4xl font-bold text-white">We move with speed. Your business keeps up</h2>
+              <p className="text-blue-100 max-w-2xl mx-auto text-base md:text-lg">
+                Delays cost efficiency, visibility, and growth. Start with custom web development services designed around how your business actually works.
               </p>
               <div className="pt-4">
                 <Link
                   to="/contact"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white text-blue-600 font-bold rounded-full hover:scale-105 transition-transform duration-300 shadow-xl"
                 >
-                  Schedule a Tech Consultation <ArrowRight className="w-5 h-5" />
+                  👉 Book a strategy call <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>
             </div>
