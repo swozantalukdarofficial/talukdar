@@ -1,184 +1,244 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { Search, ArrowRight, MoveUpRight } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Search, ArrowRight, Sparkles, Filter, Calendar, Clock } from "lucide-react";
 import { blogPosts, categories } from "../data/blogData";
+import CircularGallery from "../components/CircularGallery";
 
 export default function BlogsPage() {
-	const [searchQuery, setSearchQuery] = useState("");
-	const [activeCategory, setActiveCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+  const navigate = useNavigate();
 
-	const featuredPost = blogPosts.find((p) => p.featured) || blogPosts[0];
-	const regularPosts = blogPosts.filter(
-		(p) => !p.featured || p.id !== featuredPost.id,
-	);
+  const featuredPost = blogPosts.find((p) => p.featured) || blogPosts[0];
+  const regularPosts = blogPosts.filter(
+    (p) => p.id !== featuredPost.id
+  );
 
-	const filteredPosts = regularPosts.filter((post) => {
-		const matchesCategory =
-			activeCategory === "All" || post.category === activeCategory;
-		const matchesSearch =
-			post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-			post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-		return matchesCategory && matchesSearch;
-	});
+  // Take the top articles to populate a gorgeous infinite WebGL carousel!
+  const featuredPosts = useMemo(() => {
+    const featured = blogPosts.filter((p) => p.featured);
+    return featured.length >= 3 ? featured : blogPosts.slice(0, 6);
+  }, []);
 
-	return (
-		<main className="min-h-screen text-white pt-20">
-			{/* Header */}
-			<section className="py-20 px-6 text-center relative">
-				<div className="absolute inset-0 bg-gradient-to-b from-neon-green/5 to-transparent pointer-events-none" />
-				<motion.div
-					initial={{ opacity: 0, y: 30 }}
-					animate={{ opacity: 1, y: 0 }}
-					className="relative z-10 max-w-3xl mx-auto space-y-6"
-				>
-					<span className="inline-block px-4 py-2 bg-neon-green/10 text-neon-green rounded-full text-sm font-bold border border-neon-green/30">
-						Our Blog
-					</span>
-					<h1 className="text-5xl md:text-7xl font-bold">
-						Latest{" "}
-						<span className="bg-gradient-to-r from-neon-green to-blue-400 bg-clip-text text-transparent">
-							Insights
-						</span>
-					</h1>
-					<p className="text-neutral-400 text-lg">
-						Stay updated with the latest trends in digital marketing, AI,
-						design, and more.
-					</p>
-				</motion.div>
-			</section>
+  const galleryItems = useMemo(() => {
+    return featuredPosts.map((post) => {
+      let imageSrc = post.image;
+      if (post.image?.includes("from-")) {
+        if (post.category === "AI & Tech") {
+          imageSrc = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop";
+        } else if (post.category === "Design") {
+          imageSrc = "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop";
+        } else if (post.category === "Marketing") {
+          imageSrc = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop";
+        } else if (post.category === "Development") {
+          imageSrc = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop";
+        } else {
+          imageSrc = "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop";
+        }
+      }
+      return {
+        image: imageSrc,
+        text: post.title,
+        id: post.id
+      };
+    });
+  }, [featuredPosts]);
 
-			{/* Featured Post */}
-			{featuredPost && (
-				<section className="px-6 pb-16 max-w-7xl mx-auto">
-					<Link to={`/blogs/${featuredPost.id}`}>
-						<motion.div
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							className="group relative grid grid-cols-1 md:grid-cols-2 gap-0 rounded-3xl overflow-hidden border border-white/10 bg-white/5 hover:border-neon-green/30 transition-all"
-						>
-							<div
-								className={`aspect-[4/3] md:aspect-auto bg-gradient-to-br ${featuredPost.image} relative`}
-							>
-								<div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
-								<span className="absolute top-6 left-6 px-3 py-1 bg-neon-green text-black text-xs font-bold rounded-full">
-									Featured
-								</span>
-							</div>
-							<div className="p-8 md:p-12 flex flex-col justify-center space-y-6">
-								<span className="text-neon-green text-sm font-medium">
-									{featuredPost.category} · {featuredPost.readTime}
-								</span>
-								<h2 className="text-3xl md:text-4xl font-bold text-white group-hover:text-neon-green transition-colors leading-tight">
-									{featuredPost.title}
-								</h2>
-								<p className="text-neutral-400 leading-relaxed">
-									{featuredPost.excerpt}
-								</p>
-								<div className="flex items-center gap-4 pt-4 border-t border-white/10">
-									<div className="w-10 h-10 bg-neutral-800 rounded-full flex items-center justify-center text-sm font-bold text-white">
-										{featuredPost.author?.charAt(0) || "W"}
-									</div>
-									<div>
-										<div className="text-sm font-bold text-white">
-											{featuredPost.author || "WeBestOne Team"}
-										</div>
-										<div className="text-xs text-neutral-500">
-											{featuredPost.date}
-										</div>
-									</div>
-									<div className="ml-auto flex items-center text-neon-green font-medium text-sm gap-1">
-										Read More <MoveUpRight className="w-4 h-4" />
-									</div>
-								</div>
-							</div>
-						</motion.div>
-					</Link>
-				</section>
-			)}
+  const handleItemClick = (id: string) => {
+    navigate(`/blogs/${id}`);
+  };
 
-			{/* Filters */}
-			<section className="px-6 pb-8 max-w-7xl mx-auto">
-				<div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-					{/* Search */}
-					<div className="relative w-full md:w-80">
-						<Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
-						<input
-							type="text"
-							value={searchQuery}
-							onChange={(e) => setSearchQuery(e.target.value)}
-							placeholder="Search articles..."
-							className="w-full bg-white/5 border border-white/10 rounded-xl pl-11 pr-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-neon-green/50 transition-colors"
-						/>
-					</div>
-					{/* Categories */}
-					<div className="flex flex-wrap gap-2">
-						{categories.map((cat) => (
-							<button
-								key={cat}
-								onClick={() => setActiveCategory(cat)}
-								className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-									activeCategory === cat ?
-										"bg-neon-green text-black"
-									:	"bg-white/5 text-neutral-400 hover:bg-white/10 border border-white/10"
-								}`}
-							>
-								{cat}
-							</button>
-						))}
-					</div>
-				</div>
-			</section>
+  const filteredPosts = regularPosts.filter((post) => {
+    const matchesCategory =
+      activeCategory === "All" || post.category === activeCategory;
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
-			{/* Blog Grid */}
-			<section className="px-6 pb-24 max-w-7xl mx-auto">
-				{filteredPosts.length === 0 ?
-					<div className="text-center py-24 text-neutral-500">
-						<p className="text-xl">No articles found for "{searchQuery}"</p>
-					</div>
-				:	<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{filteredPosts.map((post, i) => (
-							<motion.article
-								key={post.id}
-								initial={{ opacity: 0, y: 30 }}
-								animate={{ opacity: 1, y: 0 }}
-								transition={{ delay: i * 0.05 }}
-								className="group"
-							>
-								<Link to={`/blogs/${post.id}`}>
-									<div className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:border-neon-green/30 transition-all h-full flex flex-col">
-										<div
-											className={`aspect-[16/9] bg-gradient-to-br ${post.image} relative overflow-hidden`}
-										>
-											<div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500 group-hover:scale-105 transform" />
-											<span className="absolute top-4 left-4 px-3 py-1 bg-black/60 backdrop-blur text-xs font-medium text-white border border-white/10 rounded-full">
-												{post.category}
-											</span>
-										</div>
-										<div className="p-6 flex flex-col gap-4 flex-1">
-											<div className="flex items-center gap-2 text-xs text-neutral-500">
-												<span>{post.date}</span>
-												<span>·</span>
-												<span>{post.readTime}</span>
-											</div>
-											<h3 className="text-lg font-bold text-white group-hover:text-neon-green transition-colors leading-snug">
-												{post.title}
-											</h3>
-											<p className="text-sm text-neutral-400 leading-relaxed flex-1">
-												{post.excerpt}
-											</p>
-											<div className="flex items-center text-sm font-medium text-neutral-400 group-hover:text-neon-green transition-colors pt-4 border-t border-white/5">
-												Read More{" "}
-												<ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-											</div>
-										</div>
-									</div>
-								</Link>
-							</motion.article>
-						))}
-					</div>
-				}
-			</section>
-		</main>
-	);
+  return (
+    <main className="min-h-screen bg-black text-white pt-24 pb-24 overflow-hidden relative">
+      {/* Immersive Background Elements */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-br from-neon-green/5 to-purple-600/5 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute top-[80vh] right-0 w-[400px] h-[400px] bg-blue-500/[0.02] rounded-full blur-[120px] pointer-events-none z-0" />
+
+      {/* Grid Pattern overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0 opacity-80" />
+
+      {/* ══════════════════════════════════════════
+          1. SLEEK TECH HEADER
+      ══════════════════════════════════════════ */}
+      <section className="relative z-10 pt-16 pb-12 px-6 max-w-5xl mx-auto text-center space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-neutral-300 backdrop-blur-md"
+        >
+          <Sparkles className="w-3.5 h-3.5 text-[#87E65C]" />
+          <span>Webestone Insights</span>
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-4xl md:text-6xl font-black text-white tracking-tight"
+        >
+          Latest <span className="text-[#87E65C]">Insights & Ideas</span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-neutral-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed"
+        >
+          Explore expert strategies in custom web development, SEO scaling, brand architecture, and intelligent automation systems.
+        </motion.p>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          2. FEATURED 3D WEBGL CAROUSEL GALLERY
+      ══════════════════════════════════════════ */}
+      {activeCategory === "All" && searchQuery === "" && (
+        <section className="px-6 pb-20 max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-6">
+            <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-[#87E65C] bg-[#87E65C]/10 px-4 py-2 rounded-full border border-[#87E65C]/25 shadow-lg shadow-[#87E65C]/5 animate-pulse">
+              🏆 Interactive Featured Articles · Swipe & Drag to Rotate
+            </span>
+          </div>
+          <div className="h-[460px] md:h-[540px] w-full relative rounded-3xl overflow-hidden border border-white/10 bg-neutral-950/30 backdrop-blur-md shadow-2xl">
+            <CircularGallery
+              items={galleryItems}
+              bend={1.8}
+              textColor="#ffffff"
+              borderRadius={0.04}
+              scrollSpeed={2.5}
+              scrollEase={0.05}
+              onItemClick={handleItemClick}
+            />
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════════
+          3. SEARCH & FILTERS BAR
+      ══════════════════════════════════════════ */}
+      <section className="px-6 pb-12 max-w-7xl mx-auto relative z-10">
+        <div className="p-4 rounded-2xl border border-white/10 bg-neutral-950/40 backdrop-blur-md flex flex-col lg:flex-row gap-4 items-center justify-between shadow-lg">
+          
+          {/* Search Box */}
+          <div className="relative w-full lg:w-80 group">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500 group-focus-within:text-[#87E65C] transition-colors" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search articles..."
+              className="w-full bg-white/[0.03] border border-white/10 rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-[#87E65C]/40 focus:bg-white/[0.05] transition-all"
+            />
+          </div>
+
+          {/* Filter Pills */}
+          <div className="flex flex-wrap gap-2 justify-center">
+            {categories.map((cat) => {
+              const isActive = activeCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`px-4.5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 border ${
+                    isActive
+                      ? "bg-[#87E65C] text-black border-[#87E65C] shadow-lg shadow-[#87E65C]/15 scale-105"
+                      : "bg-white/5 text-neutral-400 border-white/5 hover:text-white hover:bg-white/10 hover:border-white/10"
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          4. ARTICLE GRID
+      ══════════════════════════════════════════ */}
+      <section className="px-6 max-w-7xl mx-auto relative z-10">
+        {filteredPosts.length === 0 ? (
+          <div className="text-center py-28 rounded-3xl border border-white/5 bg-neutral-950/20 max-w-3xl mx-auto">
+            <Filter className="w-12 h-12 text-neutral-600 mx-auto mb-4 animate-pulse" />
+            <h3 className="text-lg font-bold text-neutral-400 mb-1">No articles found</h3>
+            <p className="text-neutral-500 text-sm max-w-xs mx-auto">
+              We couldn't find any match for "{searchQuery}". Try updating your filters or search keywords.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredPosts.map((post, i) => (
+              <motion.article
+                key={post.id}
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className="group"
+              >
+                <Link to={`/blogs/${post.id}`}>
+                  <div className="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/20 hover:bg-neutral-900/40 hover:border-[#87E65C]/30 transition-all duration-500 h-full flex flex-col shadow-xl">
+                    
+                    {/* Media Card */}
+                    <div className="aspect-[16/9] bg-gradient-to-br from-neutral-800 to-neutral-950 relative overflow-hidden shrink-0">
+                      {post.image?.includes("from-") ? (
+                        <div className={`w-full h-full bg-gradient-to-br ${post.image} opacity-30 group-hover:scale-105 transition-transform duration-700`} />
+                      ) : (
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                        />
+                      )}
+                      
+                      <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent" />
+                      
+                      <span className="absolute top-4 left-4 px-3 py-1 bg-black/60 border border-white/10 backdrop-blur-md text-[9px] uppercase font-bold tracking-widest text-white rounded-full">
+                        {post.category}
+                      </span>
+                    </div>
+
+                    {/* Card Content */}
+                    <div className="p-6 flex flex-col gap-3.5 flex-1 justify-between">
+                      <div className="space-y-3.5">
+                        <div className="flex items-center gap-3 text-[10px] text-neutral-500 uppercase font-semibold tracking-wider">
+                          <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-[#87E65C]" /> {post.date}</span>
+                          <span>·</span>
+                          <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-[#87E65C]" /> {post.readTime}</span>
+                        </div>
+                        
+                        <h3 className="text-lg font-bold text-white group-hover:text-[#87E65C] transition-colors leading-snug tracking-tight">
+                          {post.title}
+                        </h3>
+                        
+                        <p className="text-neutral-400 text-xs md:text-sm leading-relaxed line-clamp-3">
+                          {post.excerpt}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center justify-between text-xs font-bold uppercase tracking-widest text-neutral-400 group-hover:text-[#87E65C] transition-colors pt-5 mt-4 border-t border-white/5">
+                        <span>Read Article</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+                      </div>
+                    </div>
+
+                  </div>
+                </Link>
+              </motion.article>
+            ))}
+          </div>
+        )}
+      </section>
+    </main>
+  );
 }
