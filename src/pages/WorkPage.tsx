@@ -6,37 +6,54 @@ import { Link } from "react-router-dom";
 const PORTFOLIO_IMAGES = [
   {
     src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
-    alt: "E-Commerce System Development"
+    alt: "Full Stack Digital Marketing - Strategic Business Campaigns"
   },
   {
-    src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
-    alt: "AI Web Analytics & SEO Dashboard"
+    src: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?q=80&w=800&auto=format&fit=crop",
+    alt: "AI Driven SEO - High-Performance Ranking & Metrics"
   },
   {
-    src: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop",
-    alt: "UI/UX Landing Page Design"
+    src: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=800&auto=format&fit=crop",
+    alt: "SMM (Social Media Marketing) - Brand Feed Engagement"
   },
   {
-    src: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=800&auto=format&fit=crop",
-    alt: "SaaS Operational Dashboard"
+    src: "https://images.unsplash.com/photo-1533750516457-a7f992034fec?q=80&w=800&auto=format&fit=crop",
+    alt: "PPC Ads Management - Google & Facebook Funnels"
   },
   {
-    src: "https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=800&auto=format&fit=crop",
-    alt: "Custom Web Application Platform"
+    src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop",
+    alt: "Shopify SEO - Store Growth & Conversion Optimization"
   },
   {
-    src: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=800&auto=format&fit=crop",
-    alt: "Brand Architecture Design"
+    src: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=800&auto=format&fit=crop",
+    alt: "Content Writing - Persuasive SEO Copywriting & Articles"
   },
   {
-    src: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800&auto=format&fit=crop",
-    alt: "Marketing Campaigns Strategy"
+    src: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop",
+    alt: "Cinematic Video Editing - Viral Short-form Content"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop",
+    alt: "Motion Graphics - Dynamic Creative Animations"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=800&auto=format&fit=crop",
+    alt: "Full-Stack Website Development - Scaleable Architectures"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1561070791-26c113006238?q=80&w=800&auto=format&fit=crop",
+    alt: "Custom WordPress Web - High-Performance CMS Systems"
   },
   {
     src: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=800&auto=format&fit=crop",
-    alt: "Shopify E-Commerce System"
+    alt: "Web Design (UI UX) - User-Focused Design Systems"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop",
+    alt: "Custom Shopify Development - Advanced E-commerce Solutions"
   }
 ];
+
 
 export default function WorkPage() {
   return (
