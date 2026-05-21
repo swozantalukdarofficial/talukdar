@@ -5,6 +5,7 @@ import BackgroundEffects from "./components/BackgroundEffects";
 import WhatsAppChat from "./components/WhatsAppChat";
 import ScrollToTop from "./components/ScrollToTop";
 import HomePage from "./pages/HomePage";
+import WorkPage from "./pages/WorkPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import BlogsPage from "./pages/BlogsPage";
@@ -38,6 +39,7 @@ export default function App() {
 				<Header />
 				<Routes>
 					<Route path="/" element={<HomePage />} />
+					<Route path="/work" element={<WorkPage />} />
 					<Route path="/about" element={<AboutPage />} />
 					<Route path="/contact" element={<ContactPage />} />
 					<Route path="/blogs" element={<BlogsPage />} />

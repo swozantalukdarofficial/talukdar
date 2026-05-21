@@ -125,7 +125,7 @@ export default function Header() {
   // Need to import Layout and ShoppingBag
 	const navLinks = [
 		{ name: "Home", href: "/" },
-		{ name: "Work", href: "#work" },
+		{ name: "Work", href: "/work" },
 		{ name: "Services", href: "/services" },
 		{ name: "Blogs", href: "/blogs" },
 		{ name: "Contact", href: "/contact" },
