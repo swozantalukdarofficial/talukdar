@@ -8,100 +8,42 @@ export default function ShopifySeoPage() {
 
 	// FAQs Data
 	const faqs = [
-		{
-			question: "What does Shopify SEO service include?",
-			answer:
-				"Our Shopify SEO service includes comprehensive keyword research, on-page optimization (titles, meta descriptions, alt tags), technical SEO audits (improving site speed, mobile responsiveness), backlink building, and content strategy tailored specifically for e-commerce growth.",
-		},
-		{
-			question: "How long does Shopify SEO service take to show results?",
-			answer:
-				"While some technical fixes can yield immediate improvements, profound organic growth typically takes 3 to 6 months. SEO is a long-term strategy that builds compound, sustainable traffic over time.",
-		},
-		{
-			question:
-				"Why should I hire a Shopify SEO agency for my eCommerce business?",
-			answer:
-				"Shopify has unique technical quirks and URL structures that require specialized knowledge. An expert agency knows how to navigate these challenges, implement advanced schema markup for products, and execute strategies that actually drive revenue, not just empty traffic.",
-		},
-		{
-			question: "How much does SEO for Shopify service cost?",
-			answer:
-				"Costs vary depending on the size of your store, your current baseline, and the competitiveness of your niche. We offer custom scalable packages designed to guarantee a positive ROI. Contact us for a free detailed audit and quote.",
-		},
+		{ question: "What does a Shopify SEO service include", answer: "Our Shopify SEO services include keyword research, product and collection page optimization, technical SEO fixes, content strategy, and ongoing performance tracking." },
+		{ question: "How long does Shopify SEO take to show results", answer: "Initial improvements can appear within weeks, but consistent growth in organic traffic requires continuous optimization and authority building." },
+		{ question: "Why hire a Shopify SEO service agency", answer: "A Shopify SEO service agency ensures your store is optimized for search visibility, user experience, and conversion rate optimization, which most stores fail to achieve on their own." },
+		{ question: "What tools do you use for Shopify SEO", answer: "We use Google Analytics, Google Search Console, Ahrefs, and SEMrush to analyze data, track performance, and improve SEO results." },
+		{ question: "How does Shopify SEO improve conversions", answer: "Shopify SEO improves conversions by aligning content with search intent, improving user experience, optimizing product pages, and increasing targeted organic traffic." },
 	];
 
 	// Steps for Success Data
 	const steps = [
-		{
-			title: "In-Depth Site Audit",
-			desc: "We analyze your store's architecture, pinpointing technical roadblocks and indexing issues.",
-		},
-		{
-			title: "Keyword & Competitor Research",
-			desc: "Identifying high-intent, low-competition product keywords that your competitors are missing.",
-		},
-		{
-			title: "On-Page Optimization",
-			desc: "Restructuring your product descriptions, category pages, and metadata for maximum relevance.",
-		},
-		{
-			title: "Technical SEO Fixes",
-			desc: "Enhancing site speed, mobile responsiveness, and implementing crucial e-commerce schema markup.",
-		},
-		{
-			title: "Content & Link Building",
-			desc: "Publishing blog content and securing authoritative backlinks to boost your domain authority.",
-		},
-		{
-			title: "Tracking & Iteration",
-			desc: "Continuous monitoring of rankings, traffic, and conversions to refine and scale the strategy.",
-		},
+		{ title: "In-depth Shopify SEO audit", desc: "We analyze crawlability, indexing, and Core Web Vitals using Google Search Console, Ahrefs, and SEMrush to identify technical gaps." },
+		{ title: "Keyword and search intent strategy", desc: "We identify high-value keywords based on search intent, impressions, and competitive opportunities within Google." },
+		{ title: "Product, collection, and category page optimization", desc: "We improve Shopify store optimization services across product pages, collections, and category structures to increase click-through rate and rankings." },
+		{ title: "Technical Shopify website optimization", desc: "We resolve mobile-first indexing issues, improve site structure, and enhance performance through Shopify UX optimization for better visibility, usability, and crawlability." },
+		{ title: "Content, E-E-A-T, and authority building", desc: "We strengthen E-E-A-T signals, build topical authority, and improve organic traffic through structured content and relevance." },
+		{ title: "Tracking and continuous optimization", desc: "We use Google Analytics to track bounce rate, conversion rate optimization, and performance, then refine strategies based on real data." },
 	];
 
 	// Masonry Grid Data
 	const masonryItems = [
-		{
-			title: "Custom Strategies",
-			desc: "We build custom SEO plans that align with your unique business goals, eschewing one-size-fits-all approaches.",
-			image:
-				"https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600&auto=format&fit=crop",
-			className: "md:col-span-2 md:row-span-2",
-		},
-		{
-			title: "Sustainable Success",
-			desc: "We aim for steady, reliable business growth and loyal customers.",
-			image:
-				"https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400&auto=format&fit=crop",
-			className: "md:col-span-1 md:row-span-1",
-		},
-		{
-			title: "A/B Testing",
-			desc: "Rigorous testing to refine campaigns and ensure peak performance.",
-			image:
-				"https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop",
-			className: "md:col-span-1 md:row-span-1",
-		},
-		{
-			title: "Performance Tracking",
-			desc: "Detailed analytics providing crystal-clear transparency on your ROI.",
-			image:
-				"https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=600&auto=format&fit=crop",
-			className: "md:col-span-2 md:row-span-1",
-		},
+		{ title: "Performance-focused Shopify SEO approach", desc: "As a Shopify SEO service agency, we focus on performance, not generic execution.", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600&auto=format&fit=crop", className: "md:col-span-2 md:row-span-2" },
+		{ title: "Revenue-focused strategy", desc: "Our Shopify website optimization service is built to improve conversion rate, not just increase traffic.", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400&auto=format&fit=crop", className: "md:col-span-1 md:row-span-1" },
+		{ title: "Data-driven optimization", desc: "We use data from Google, analytics tools, and search behavior to guide every decision.", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop", className: "md:col-span-1 md:row-span-1" },
+		{ title: "Continuous Shopify store optimization services", desc: "Our Shopify store optimization services improve user experience, rankings, and long-term scalability.", image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=600&auto=format&fit=crop", className: "md:col-span-2 md:row-span-1" },
 	];
 
 	return (
 		<main className="min-h-screen bg-black text-white pt-24 overflow-x-hidden">
 			{/* 1. Hero Section */}
-			<section className="relative pt-12 lg:pt-20 pb-20 px-6 z-10">
+			<section className="relative pt-4 lg:pt-8 pb-12 lg:pb-20 px-6 z-10">
 				{/* Background Glow */}
 				<div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[-1]">
-					<div className="absolute top-20 left-10 w-[500px] h-[500px] bg-neon-green/10 blur-[120px] rounded-full"></div>
-					<div className="absolute top-40 right-10 w-[400px] h-[400px] bg-emerald-500/10 blur-[100px] rounded-full"></div>
+					<div className="absolute top-10 left-10 w-[500px] h-[500px] bg-neon-green/10 blur-[120px] rounded-full"></div>
+					<div className="absolute top-20 right-10 w-[400px] h-[400px] bg-emerald-500/10 blur-[100px] rounded-full"></div>
 				</div>
 
-				<div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+				<div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 					<motion.div
 						initial={{ opacity: 0, x: -50 }}
 						animate={{ opacity: 1, x: 0 }}
@@ -109,22 +51,25 @@ export default function ShopifySeoPage() {
 						className="space-y-8"
 					>
 						<h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight">
-							Shopify SEO <br />
-							<span className="text-neon-green">Services</span>
+							Shopify SEO service agency focused on <br className="hidden md:inline" />
+							<span className="text-neon-green">rankings, traffic, and revenue growth</span>
 						</h1>
 
-						<p className="text-lg text-neutral-300 leading-relaxed font-medium">
-							Get your Shopify store in front of the right audience and grow
-							faster with Webestone's Shopify SEO services. Our SEO services
-							help your Shopify-powered online store rank higher, attract the
-							right customers, and boost conversions.
-						</p>
+						<div className="space-y-4 text-base md:text-lg text-neutral-300 leading-relaxed font-medium">
+							<p className="text-white font-bold border-l-2 border-[#87E65C]/40 pl-3">
+								Getting traffic to your Shopify store is not the problem. <br />
+								<span className="text-neon-green">Getting the right traffic that converts is.</span>
+							</p>
+							<p>
+								As a Shopify SEO service agency, WebestOne helps your store rank higher on Google, attract high-intent buyers, and turn organic traffic into consistent revenue.
+							</p>
+						</div>
 
 						<ul className="space-y-3 pt-2">
 							{[
-								"More Organic Traffic, Conversions & Revenue",
-								"Outrank Your Competitors & Build Brand Position",
-								"Greater Productivity and Efficiency",
+								"More organic traffic that converts into revenue",
+								"Outrank competitors and strengthen your market position",
+								"Smarter Shopify website optimization for scalable growth",
 							].map((item, idx) => (
 								<li
 									key={idx}
@@ -189,7 +134,7 @@ export default function ShopifySeoPage() {
 						className="order-1 lg:order-2 space-y-6"
 					>
 						<h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white leading-tight relative inline-block">
-							Grow Your eCommerce Business <br />
+							Grow your ecommerce business <br />
 							<span className="text-neon-green">through Shopify SEO</span>
 							<svg
 								className="absolute w-full h-3 -bottom-3 text-neon-green/50 left-0"
@@ -206,17 +151,11 @@ export default function ShopifySeoPage() {
 							</svg>
 						</h2>
 						<p className="text-lg text-neutral-300 leading-relaxed font-medium">
-							We help Shopify brands grow through customized marketing
-							strategies, from technical foundations to deep analytics. Our team
-							studies your store's performance, builds high-converting landing
-							pages, and drives high-intent shoppers directly to your
-							storefront.
+							<span className="text-white font-bold">Traffic alone does not grow a Shopify store. Conversions do.</span> <br />
+							As a Shopify SEO expert and Shopify SEO service provider, WebestOne delivers Shopify website optimization services focused on search intent, user experience, and performance.
 						</p>
 						<p className="text-lg text-neutral-300 leading-relaxed font-medium">
-							We focus on increasing repeat purchases, optimizing your sales
-							funnel, and continuously tracking ROI. With ongoing store
-							optimization, we ensure your Shopify store is always ready for
-							explosive growth.
+							We improve visibility, strengthen product discovery, and turn organic traffic into measurable results.
 						</p>
 					</motion.div>
 				</div>
@@ -417,6 +356,36 @@ export default function ShopifySeoPage() {
 								</AnimatePresence>
 							</motion.div>
 						))}
+					</div>
+				</div>
+			</section>
+
+			{/* 6. Final CTA Section */}
+			<section className="py-24 px-6 relative z-10 bg-black">
+				<div className="max-w-6xl mx-auto">
+					<div className="relative p-12 md:p-20 rounded-[3rem] bg-neutral-900/40 border border-white/5 overflow-hidden group">
+						<div className="absolute -bottom-1/2 -left-1/4 w-full h-full bg-neon-green/5 blur-[120px] pointer-events-none" />
+						
+						<div className="max-w-3xl mx-auto text-center space-y-8 relative z-10">
+							<h2 className="text-4xl md:text-5xl font-extrabold leading-tight text-white">
+								Ready to scale your <br className="hidden md:block" />
+								<span className="text-neon-green">Shopify store with SEO</span>
+							</h2>
+							<div className="text-neutral-400 text-base md:text-lg leading-relaxed space-y-4 max-w-xl mx-auto font-medium">
+								<p className="text-neutral-200 font-bold text-lg md:text-xl">
+									If your store is not ranking, not converting, or not growing, the issue is not traffic. It is your SEO system.
+								</p>
+								<p>
+									WebestOne is a Shopify SEO service agency that improves organic traffic, strengthens conversion rate optimization, and builds scalable ecommerce growth.
+								</p>
+							</div>
+							<div className="pt-4">
+								<Link to="/contact" className="inline-flex items-center gap-2.5 px-10 py-5 bg-neon-green text-black font-black text-lg rounded-full hover:scale-105 transition-all shadow-[0_10px_40px_rgba(135,230,92,0.3)] group">
+									Get a quote
+									<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+								</Link>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>

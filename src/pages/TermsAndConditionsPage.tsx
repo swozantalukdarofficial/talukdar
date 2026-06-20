@@ -1,17 +1,25 @@
 import { Link } from "react-router-dom";
-import { Scale, ArrowLeft } from "lucide-react";
+import { Scale, ArrowLeft, Mail, Phone, MapPin } from "lucide-react";
 import { useEffect } from "react";
 
-const sections = [
+type Section = {
+	id: number;
+	title: string;
+	content: string;
+	bullets?: string[];
+	afterBullets?: string;
+};
+
+const sections: Section[] = [
 	{
 		id: 1,
 		title: "Introduction",
-		content: `These Terms and Conditions constitute a legal agreement between you (the "Client" or "User") and WeBestOne (the "Company"). By engaging our services or using our website, you acknowledge that you have read, understood, and agreed to these terms in full. If you do not agree with any part of these Terms and Conditions, you should discontinue using our website or services immediately.`,
+		content: `This document serves as a formal agreement between WeBestOne and any individual, business, or organization using our services or platforms. Using our website or requesting our services indicates that you understand and accept the policies and conditions outlined within this agreement. Anyone who does not accept these conditions should avoid using the website, platforms, or related services provided by WeBestOne.`,
 	},
 	{
 		id: 2,
 		title: "Services Provided",
-		content: `WeBestOne provides a variety of professional digital solutions including, but not limited to, digital marketing, web development, content creation, design services, branding, automation, and artificial intelligence powered solutions. The scope, timeline, and pricing of each project will be clearly defined in an official written agreement or proposal before the commencement of work.`,
+		content: `WeBestOne delivers a broad range of digital and creative services, including marketing strategy, website development, branding, automation systems, content production, and AI supported business solutions. The scope, timeline, and pricing of each project will be clearly defined in an official written agreement or proposal before the commencement of work.`,
 	},
 	{
 		id: 3,
@@ -31,17 +39,17 @@ const sections = [
 	{
 		id: 6,
 		title: "Confidentiality",
-		content: `WeBestOne agrees to treat all information shared by the client as confidential and to use it solely for project purposes. Confidential information will not be disclosed to any third party without the client's written consent, unless required by law. Similarly, the client agrees not to disclose any confidential business information, processes, or proprietary materials belonging to WeBestOne.`,
+		content: `WeBestOne agrees to treat all information shared by the client as confidential and to use it solely for project purposes. Confidential information will not be disclosed to any third party without the client’s written consent, unless required by law. Similarly, the client agrees not to disclose any confidential business information, processes, or proprietary materials belonging to WeBestOne.`,
 	},
 	{
 		id: 7,
 		title: "Limitation of Liability",
-		content: `While WeBestOne strives to provide professional, accurate, and reliable digital solutions, the company shall not be held responsible for any indirect, incidental, or consequential damages, including but not limited to loss of profits, revenue, data, or business opportunities resulting from the use of our website or services. Our total liability for any claim shall not exceed the total amount paid by the client for the specific service in question.`,
+		content: `Although WeBestOne works to maintain reliable and professional service standards, we cannot be held liable for indirect losses, financial interruption, data issues, or business impacts connected to the use of our services, platforms, or digital materials. Any liability connected to a specific project or service will remain limited to the amount directly paid for that individual service agreement.`,
 	},
 	{
 		id: 8,
 		title: "Revisions and Modifications",
-		content: `Project revisions or modifications are allowed only as per the terms mentioned in the signed agreement. Requests for additional changes beyond the agreed scope may require additional time and cost, subject to written approval from both parties.`,
+		content: `Project revisions or modifications are allowed only as per the terms mentioned in the signed agreement. Additional revisions or expanded project requirements outside the approved scope may involve updated timelines, revised pricing, and confirmation from both parties before implementation.`,
 	},
 	{
 		id: 9,
@@ -52,23 +60,27 @@ const sections = [
 			"Non-payment or consistent delay in payments",
 			"Mutual consent between the client and WeBestOne",
 		],
-		afterBullets:
-			"Upon termination, the client will be responsible for payment for all work completed up to the termination date.",
+		afterBullets: "Upon termination, the client will be responsible for payment for all work completed up to the termination date.",
 	},
 	{
 		id: 10,
-		title: "Third Party Tools and Services",
-		content: `WeBestOne may integrate third party tools, plugins, software, or services into a client's project when necessary. We do not hold responsibility for the functionality, pricing, or policy changes of any external service provider.`,
+		title: "External Platforms, Software, and Integrations",
+		content: `WeBestOne may integrate third party tools, plugins, software, or services into a client’s project when necessary. We do not hold responsibility for the functionality, pricing, or policy changes of any external service provider.`,
 	},
 	{
 		id: 11,
-		title: "Updates to Terms and Conditions",
-		content: `WeBestOne reserves the right to modify or update these Terms and Conditions at any time without prior notice. All updates will be published on this page, and the revised date will indicate the effective version. Continued use of our website or services after such modifications constitutes acceptance of the updated Terms and Conditions.`,
+		title: "Policy Revisions and Future Changes",
+		content: `WeBestOne may revise, expand, or adjust these terms whenever operational, legal, or service-related updates become necessary. All updates will be published on this page, and the revised date will indicate the effective version. Ongoing use of the website or related services after updates are published will be interpreted as acceptance of the revised terms.`,
 	},
 	{
 		id: 12,
 		title: "Governing Law",
-		content: `These Terms and Conditions shall be governed by and interpreted in accordance with the applicable laws. Any disputes arising under or in connection with these terms shall be subject to the exclusive jurisdiction of the competent courts.`,
+		content: `This agreement will operate under the applicable laws and legal regulations of Bangladesh. Any legal matter connected to these terms will be handled through the courts and legal authorities located in Dhaka, Bangladesh.`,
+	},
+	{
+		id: 13,
+		title: "Contact Information",
+		content: `For any questions or clarifications regarding these Terms and Conditions, please contact us through:`,
 	},
 ];
 
@@ -78,7 +90,7 @@ export default function TermsAndConditionsPage() {
 	}, []);
 
 	return (
-		<main className="relative min-h-screen pt-32 pb-24">
+		<main className="relative min-h-screen pt-32 pb-24 bg-black text-white">
 			{/* Background glows */}
 			<div className="absolute top-0 left-1/4 w-96 h-96 bg-neon-green/5 rounded-full blur-[120px] pointer-events-none" />
 			<div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
@@ -106,16 +118,10 @@ export default function TermsAndConditionsPage() {
 						<span className="font-semibold text-neutral-300">
 							Effective Date:
 						</span>{" "}
-						February 22, 2025
+						June 20, 2026
 					</p>
 					<p className="text-neutral-400 mt-4 leading-relaxed">
-						Welcome to{" "}
-						<span className="text-neon-green font-semibold">WeBestOne</span>.
-						These Terms and Conditions govern your use of our website, services,
-						and any related digital platforms operated by WeBestOne. By
-						accessing or using our website or services, you agree to comply with
-						and be bound by the following terms. Please read them carefully
-						before proceeding.
+						Welcome to WeBestOne. These terms outline the rules, responsibilities, and conditions connected to the use of the WeBestOne website, digital platforms, and professional services. Accessing our website or working with our services confirms your acceptance of the conditions, responsibilities, and policies described below. We encourage you to review all sections carefully before continuing to use the platform or services. 
 					</p>
 				</div>
 
@@ -137,6 +143,32 @@ export default function TermsAndConditionsPage() {
 									<p className="text-neutral-400 leading-relaxed">
 										{section.content}
 									</p>
+
+									{/* Custom details for Section 13 (Contact Information) */}
+									{section.id === 13 && (
+										<div className="mt-6 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-4 max-w-lg">
+											<a
+												href="mailto:legal@webestone.com"
+												className="flex items-center gap-3 text-neutral-300 hover:text-neon-green transition-colors"
+											>
+												<Mail className="w-5 h-5 text-neon-green" />
+												<span>legal@webestone.com</span>
+											</a>
+											<a
+												href="tel:+8801333600272"
+												className="flex items-center gap-3 text-neutral-300 hover:text-neon-green transition-colors"
+											>
+												<Phone className="w-5 h-5 text-neon-green" />
+												<span>+880 1333 600 272</span>
+											</a>
+											<div className="flex items-center gap-3 text-neutral-300">
+												<MapPin className="w-5 h-5 text-neon-green" />
+												<span>Dhaka, Bangladesh</span>
+											</div>
+										</div>
+									)}
+
+									{/* Simple bullets */}
 									{section.bullets && (
 										<ul className="mt-3 space-y-2">
 											{section.bullets.map((bullet, i) => (
@@ -150,6 +182,7 @@ export default function TermsAndConditionsPage() {
 											))}
 										</ul>
 									)}
+
 									{section.afterBullets && (
 										<p className="text-neutral-400 leading-relaxed mt-3">
 											{section.afterBullets}
@@ -160,38 +193,6 @@ export default function TermsAndConditionsPage() {
 							<div className="mt-8 border-b border-white/5" />
 						</section>
 					))}
-				</div>
-
-				{/* Contact section */}
-				<div className="mt-14 p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-					<h2 className="text-xl font-bold text-white mb-4">
-						13. Contact Information
-					</h2>
-					<p className="text-neutral-400 mb-6">
-						For any questions or clarifications regarding these Terms and
-						Conditions, please contact us through:
-					</p>
-					<div className="space-y-3">
-						<a
-							href="mailto:legal@webestone.com"
-							className="flex items-center gap-3 text-neutral-300 hover:text-neon-green transition-colors"
-						>
-							<span className="text-lg">📧</span>
-							<span>legal@webestone.com</span>
-						</a>
-						<p className="flex items-center gap-3 text-neutral-300">
-							<span className="text-lg">📍</span>
-							<span>Dhaka, Bangladesh</span>
-						</p>
-					</div>
-					<div className="mt-6 pt-6 border-t border-white/10">
-						<Link
-							to="/contact"
-							className="inline-flex items-center gap-2 bg-neon-green hover:bg-neon-green/90 text-blue-900 font-bold px-6 py-3 rounded-lg transition-colors"
-						>
-							Contact Us
-						</Link>
-					</div>
 				</div>
 			</div>
 		</main>

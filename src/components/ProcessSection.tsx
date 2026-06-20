@@ -1,12 +1,17 @@
 import { motion } from "framer-motion";
 
 const processSteps = [
-  { num: "01", title: "Discover & Research", desc: "User interviews, competitor analysis, and defining the target persona to build a solid foundation." },
-  { num: "02", title: "Wireframing", desc: "Low-fidelity sketches to establish information architecture and core user flows without distractions." },
-  { num: "03", title: "Visual Design (UI)", desc: "Applying color theory, typography, and brand identity into high-fidelity screens that wow users." },
-  { num: "04", title: "Interactive Prototyping", desc: "Connecting screens to simulate the final product experience and test complex interactions." },
-  { num: "05", title: "Usability Testing", desc: "Observing real users navigating the prototype to catch friction points and refine the logic." },
-  { num: "06", title: "Dev Handoff", desc: "Exporting assets, redlines, and comprehensive style guides for a pixel-perfect development." },
+  { num: "01", title: "Discovery", desc: "We define direction using structured user personas." },
+  { num: "02", title: "Research", desc: "We identify friction through UX audits and heuristic evaluation." },
+  { num: "03", title: "Strategy", desc: "We build a clear UX strategy supported by strong information architecture." },
+  { num: "04", title: "Wireframing", desc: "We create wireframes that define flow before design begins." },
+  { num: "05", title: "UI design", desc: "We design using Figma, Adobe XD, Sketch, and InVision." },
+  { num: "06", title: "UX optimization", desc: "We refine through usability testing to remove hesitation." },
+  { num: "07", title: "Content alignment", desc: "We align messaging with how users think and decide." },
+  { num: "08", title: "Development", desc: "We build stable, scalable digital systems." },
+  { num: "09", title: "Quality assurance", desc: "We test usability, performance, and consistency." },
+  { num: "10", title: "Analytics and setup", desc: "We implement tracking to measure behavior and outcomes." },
+  { num: "11", title: "Launch and scale", desc: "We improve continuously based on real user data." },
 ];
 
 export default function ProcessSection() {
@@ -23,10 +28,10 @@ export default function ProcessSection() {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold mb-6 tracking-tight"
           >
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Methodology</span>
+            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">web design process</span>
           </motion.h2>
           <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
-            A battle-tested 6-step process to ensure flawless execution from initial idea to final developer handoff.
+            This is not random execution. It is a structured system. Every stage exists to remove friction and guide decisions.
           </p>
         </div>
 

@@ -20,7 +20,7 @@ import PPCPage from "./pages/PPCPage";
 import SocialMediaMarketingPage from "./pages/SocialMediaMarketingPage";
 import AiSeoPage from "./pages/AiSeoPage";
 import SeoPage from "./pages/SeoPage";
-import WordpressDevelopmentPage from "./pages/WordpressDevelopmentPage";
+import WordpressDevelopmentPage from "./pages/CustomwebsiteDevelopmentPage";
 import WordpressServicePage from "./pages/WordpressServicePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";

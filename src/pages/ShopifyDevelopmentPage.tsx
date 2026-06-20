@@ -22,28 +22,58 @@ import ShopifyPortfolio from "../components/ShopifyPortfolio";
 
 const services = [
   {
-    title: "Custom Theme Development",
-    desc: "Bespoke Shopify themes built from scratch with Liquid, optimized for speed and conversion.",
+    title: "UI/UX Design",
+    desc: "We design interfaces that improve the shopping experience, making navigation clear, smooth, and aligned with user behavior.",
     icon: <Figma className="w-8 h-8 text-pink-400" />,
     span: "md:col-span-2 md:row-span-2 bg-gradient-to-br from-pink-900/20 to-black border-pink-500/20"
   },
   {
-    title: "Shopify App Integration",
-    desc: "Seamless connection with ERP, CRM, and marketing tools.",
+    title: "Shopify App Development",
+    desc: "Custom Shopify development that adds functionality where your business actually needs it.",
     icon: <Zap className="w-6 h-6 text-yellow-400" />,
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
-    title: "Store Migration",
-    desc: "Safe migration from WooCommerce, Magento, or BigCommerce.",
-    icon: <RefreshCcw className="w-6 h-6 text-cyan-400" />,
+    title: "Shopify Theme Development",
+    desc: "Theme development and customization built for speed, structure, and consistency across your Shopify store.",
+    icon: <Figma className="w-6 h-6 text-cyan-400" />,
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
-    title: "Headless Commerce",
-    desc: "Cutting-edge headless solutions using Hydrogen and Oxygen for ultimate flexibility.",
-    icon: <Rocket className="w-8 h-8 text-emerald-400" />,
+    title: "Shopify Plugin Development",
+    desc: "Enhance functionality without disrupting performance or user experience.",
+    icon: <Zap className="w-6 h-6 text-emerald-400" />,
     span: "md:col-span-2 bg-gradient-to-r from-neutral-900 to-black border-white/10"
+  },
+  {
+    title: "Shopify Migration",
+    desc: "Secure migration from platforms such as WooCommerce with full data protection and structure alignment.",
+    icon: <RefreshCcw className="w-6 h-6 text-blue-400" />,
+    span: "md:col-span-1 bg-black border-white/10"
+  },
+  {
+    title: "Shopify Integrations",
+    desc: "Connect your Shopify store with CRM systems, inventory management, and essential ecommerce tools.",
+    icon: <Zap className="w-6 h-6 text-purple-400" />,
+    span: "md:col-span-1 bg-black border-white/10"
+  },
+  {
+    title: "Shopify Support and Maintenance",
+    desc: "Ongoing expert assistance to maintain performance, stability, and efficient online store management.",
+    icon: <CheckCircle2 className="w-6 h-6 text-green-400" />,
+    span: "md:col-span-1 bg-black border-white/10"
+  },
+  {
+    title: "Shopify Speed Optimization",
+    desc: "Improve loading speed, performance, and experience for mobile shoppers through mobile optimization.",
+    icon: <Zap className="w-6 h-6 text-yellow-500" />,
+    span: "md:col-span-1 bg-black border-white/10"
+  },
+  {
+    title: "Shopify Marketing",
+    desc: "Support your store with structure that aligns with buying behavior, cart management, and conversion flow.",
+    icon: <BarChart3 className="w-6 h-6 text-red-400" />,
+    span: "md:col-span-3 bg-gradient-to-r from-neutral-900 to-black border-white/10"
   }
 ];
 
@@ -55,25 +85,26 @@ const stats = [
 ];
 
 const features = [
-  { title: "Mobile-First Design", desc: "Over 70% of e-commerce traffic is mobile. We ensure your store looks stunning on every device.", icon: <Smartphone className="w-6 h-6" /> },
-  { title: "SEO Optimized", desc: "Built-in SEO best practices to ensure your products rank high on Google from day one.", icon: <Globe className="w-6 h-6" /> },
-  { title: "Conversion Focus", desc: "Every pixel is placed with conversion in mind, reducing cart abandonment and boosting AOV.", icon: <BarChart3 className="w-6 h-6" /> },
+  { title: "Unique Creativity", desc: "We create Shopify stores that balance structure, performance, and a clear user experience.", icon: <Figma className="w-6 h-6" /> },
+  { title: "Experts Only", desc: "Our Shopify Experts bring focused experience, a strong track record, and deep expertise in store development.", icon: <Code2 className="w-6 h-6" /> },
+  { title: "Globally Active", desc: "We support businesses across different markets, product catalog sizes, and growth stages.", icon: <Globe className="w-6 h-6" /> },
+  { title: "Premier Shopify Development Partner", desc: "WebestOne operates as a premier partner delivering scalable ecommerce platform solutions and long-term growth systems.", icon: <CheckCircle2 className="w-6 h-6" /> },
 ];
 
 const processSteps = [
-  { step: "01", title: "Strategy & Audit", desc: "We analyze your business goals and current store performance to create a roadmap." },
-  { step: "02", title: "UX/UI Design", desc: "High-fidelity mockups focusing on brand identity and customer journey." },
-  { step: "03", title: "Liquid Development", desc: "Clean, performant code following Shopify's latest standards." },
-  { step: "04", title: "App & Tech Stack", desc: "Configuring the best apps and integrations for your specific needs." },
-  { step: "05", title: "QA & Testing", desc: "Rigorous testing across browsers and devices to ensure a flawless launch." },
-  { step: "06", title: "Launch & Support", desc: "Ongoing maintenance and optimization to keep your store growing." },
+  { step: "01", title: "Concept", desc: "We define your goals, store structure, product categories, and overall strategy services before development begins." },
+  { step: "02", title: "Design", desc: "We create layouts focused on usability, clarity, and a consistent shopping experience." },
+  { step: "03", title: "Development", desc: "We build your Shopify store with clean structure, strong functionality, and scalable architecture." },
+  { step: "04", title: "Testing", desc: "We review performance, functionality, and user experience across devices and use cases." },
+  { step: "05", title: "Deployment", desc: "We launch your Shopify store with stability, readiness, and full operational control." },
+  { step: "06", title: "Maintenance", desc: "We provide ongoing support to improve performance, manage updates, and maintain long-term stability." },
 ];
 
 const faqs = [
-  { q: "Why should I choose Shopify over WooCommerce?", a: "Shopify is a hosted platform, meaning you don't have to worry about server maintenance, security updates, or technical glitches. It's built specifically for commerce and scales effortlessly." },
-  { q: "Can you migrate my existing store to Shopify?", a: "Yes, we specialize in migrating data, SEO equity, and design from platforms like WooCommerce, Magento, and Wix to Shopify with zero downtime." },
-  { q: "Do you build custom Shopify apps?", a: "Absolutely. If a public app doesn't meet your needs, we build private Shopify apps tailored to your specific business logic." },
-  { q: "How long does it take to launch a store?", a: "A custom Shopify project typically takes 4 to 8 weeks depending on complexity, while a theme-based setup can be launched in 2 to 3 weeks." },
+  { q: "What does Shopify website development service include?", a: "It includes custom Shopify development, store setup, integrations, optimization, and ongoing support tailored to your business needs." },
+  { q: "What kind of post-launch support do you offer?", a: "We provide expert assistance for updates, performance improvements, and ongoing online store management." },
+  { q: "Can you assist with migrating my existing online store to Shopify?", a: "Yes. We handle migration from platforms such as WooCommerce with full data protection and minimal disruption." },
+  { q: "What is the typical cost of developing a Shopify store?", a: "The cost depends on your store requirements, functionality, product catalog size, and level of customization." },
 ];
 
 function FaqItem({ q, a }: { q: string; a: string }) {
@@ -109,7 +140,7 @@ export default function ShopifyDevelopmentPage() {
     <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-emerald-500/30">
       
       {/* 1. HERO SECTION (UPGRADED) */}
-      <section className="relative z-10 pt-40 pb-20 min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
+      <section className="relative z-10 pt-4 lg:pt-6 pb-8 lg:pb-12 px-6 overflow-hidden">
         {/* Animated Mesh Gradients */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <motion.div 
@@ -132,51 +163,53 @@ export default function ShopifyDevelopmentPage() {
           />
         </div>
 
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10 mt-12 lg:mt-16">
           {/* Left Side: Content */}
-          <div className="text-left space-y-8">
+          <div className="text-left space-y-4">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-sm font-semibold backdrop-blur-md"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-semibold backdrop-blur-md"
             >
-              <ShoppingBag className="w-4 h-4" />
-              Scale to 7-Figures with Shopify Plus
+              <ShoppingBag className="w-3 h-3" />
+              Built to Scale and Grow
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-6xl md:text-8xl font-black leading-[0.95] tracking-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight tracking-tight"
             >
-              Build Your <br />
+              Shopify website development service built for <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-400">
-                Empire.
+                performance, scalability, and growth.
               </span>
             </motion.h1>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.8 }}
-              className="text-lg md:text-xl text-neutral-400 max-w-xl leading-relaxed"
+              className="space-y-3 text-sm md:text-base text-neutral-400 max-w-xl leading-relaxed"
             >
-              We don't just build websites; we architect high-conversion e-commerce engines. Engineered for speed, designed for luxury, and optimized for maximum profit.
-            </motion.p>
+              <p className="text-white font-bold border-l-2 border-[#87E65C]/40 pl-3">
+                 At WebestOne, we deliver a Shopify website development service designed to build stores that perform, handle growth, and support real business demand.
+              </p>
+              <p>
+                 Our team focuses on custom Shopify development and Shopify ecommerce solutions, creating stores that are structured, fast, and built to scale. From setup to full Shopify store development, every detail is planned to help you launch with clarity, manage your Shopify store efficiently, and grow without unnecessary limitations.
+              </p>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-3 pt-2"
             >
-              <Link to="/contact" className="px-10 py-5 bg-[#87E65C] text-black font-bold rounded-full hover:scale-105 transition-all flex items-center gap-2 shadow-[0_0_50px_rgba(135,230,92,0.25)]">
-                Launch My Project <ArrowRight className="w-5 h-5" />
+              <Link to="/contact" className="px-6 py-3 bg-[#87E65C] text-black font-bold rounded-full hover:scale-105 transition-all flex items-center gap-2 shadow-[0_0_50px_rgba(135,230,92,0.25)] text-sm">
+                Get a quote <ArrowRight className="w-4 h-4" />
               </Link>
-              <button className="px-10 py-5 border border-white/20 text-white font-bold rounded-full hover:bg-white/5 transition-all backdrop-blur-sm">
-                View Showcase
-              </button>
             </motion.div>
           </div>
 
@@ -260,13 +293,19 @@ export default function ShopifyDevelopmentPage() {
                 viewport={{ once: true }}
                 className="text-emerald-500 font-mono text-sm font-bold tracking-[0.3em] uppercase mb-4"
               >
-                Our Expertise
+                Services
               </motion.div>
-              <h2 className="text-5xl md:text-7xl font-black mb-4 tracking-tighter">Shopify <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Capabilities.</span></h2>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tighter">How can we help you with your <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Shopify business?</span></h2>
             </div>
-            <p className="text-neutral-400 text-lg max-w-md pb-4">
-              We leverage the full power of Shopify's infrastructure to build scalable, high-performance commerce engines.
-            </p>
+            <div className="text-neutral-400 text-base md:text-lg max-w-md pb-4 space-y-3">
+              <p className="text-white font-bold">Most Shopify stores are built to look good. Very few are built to work well.</p>
+              <p>
+                As a trusted Shopify development agency, WebestOne provides Shopify store development service solutions that improve functionality, enhance the shopping experience, and support long-term performance.
+              </p>
+              <p>
+                We also deliver scalable systems through an AI-driven Shopify website approach, supporting businesses with larger product catalogs, higher volumes, and evolving ecommerce demands.
+              </p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
@@ -357,7 +396,7 @@ export default function ShopifyDevelopmentPage() {
       <section className="py-24 px-6 relative z-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">The Platform of <br /><span className="text-emerald-400">Future E-commerce</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">Why <br /><span className="text-emerald-400">Choose Us</span></h2>
             <div className="space-y-8">
               {features.map((f, i) => (
                 <div key={i} className="flex gap-6 group">
@@ -393,10 +432,13 @@ export default function ShopifyDevelopmentPage() {
               viewport={{ once: true }}
               className="text-emerald-500 font-mono text-sm font-bold tracking-[0.4em] uppercase mb-4"
             >
-              Execution Strategy
+              Process
             </motion.div>
-            <h2 className="text-5xl md:text-7xl font-black mb-6">Our Battle-Tested <br /><span className="text-emerald-400">Roadmap.</span></h2>
-            <p className="text-neutral-400 max-w-2xl mx-auto text-lg">From initial discovery to a global scale-up, we follow a precise methodology to ensure your store's success.</p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">Our Shopify <br /><span className="text-emerald-400">Development Process.</span></h2>
+            <div className="text-neutral-400 max-w-2xl mx-auto text-base md:text-lg space-y-4">
+              <p>At WebestOne, our Shopify website development service follows a structured process designed to keep everything clear, efficient, and focused on results.</p>
+              <p>We build Shopify stores that integrate with CRM systems, support inventory management, and handle growing product catalogs without performance loss.</p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-white/10 rounded-[3rem] overflow-hidden bg-white/[0.02]">
@@ -600,8 +642,11 @@ export default function ShopifyDevelopmentPage() {
       <section className="pb-32 px-6 relative z-10">
         <div className="max-w-6xl mx-auto rounded-[3rem] overflow-hidden bg-[#0A0A0A] border border-white/5 py-24 px-12 text-center relative">
           <div className="absolute inset-0 bg-emerald-500/5 blur-[100px] -z-10" />
-          <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">Ready to Build Your <br /><span className="text-emerald-400">Empire?</span></h2>
-          <p className="text-neutral-400 text-lg max-w-2xl mx-auto mb-12">Let's build a Shopify store that stands out, scales effortlessly, and drives massive revenue.</p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 tracking-tight">Ready to build a Shopify store that <br /><span className="text-emerald-400">actually performs?</span></h2>
+          <div className="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto mb-12 space-y-4">
+            <p className="text-neutral-200 font-bold text-lg">If your current store is slow, hard to manage, or not converting, the issue is not your product. It is how your store is built.</p>
+            <p>WebestOne delivers a Shopify website development service designed to build, optimize, and scale your Shopify store with confidence.</p>
+          </div>
           <Link to="/contact" className="inline-flex items-center gap-2 px-10 py-5 bg-[#87E65C] text-black font-bold rounded-full hover:scale-105 transition-all shadow-[0_0_50px_rgba(135,230,92,0.3)]">
             Get Started Now <ArrowRight className="w-5 h-5" />
           </Link>

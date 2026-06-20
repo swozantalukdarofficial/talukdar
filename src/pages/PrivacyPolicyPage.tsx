@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, ArrowLeft } from "lucide-react";
+import { ShieldCheck, ArrowLeft, Mail, Phone, MapPin } from "lucide-react";
 import { useEffect } from "react";
 
 type Section = {
@@ -15,7 +15,7 @@ const sections: Section[] = [
 	{
 		id: 1,
 		title: "Introduction",
-		content: `This Privacy Policy applies to all visitors, clients, and users of WeBestOne and its related services. The purpose of this document is to ensure complete transparency about how we handle your personal and business information in accordance with data protection regulations.`,
+		content: `The policies outlined here apply to individuals, businesses, and organizations interacting with WeBestOne websites, platforms, and digital services. This document is intended to clarify how information is processed, stored, and managed while supporting responsible data protection practices.`,
 	},
 	{
 		id: 2,
@@ -23,8 +23,7 @@ const sections: Section[] = [
 		content: `We collect both personal and non-personal information in order to provide and improve our services.`,
 		subGroups: [
 			{
-				label:
-					"Personal Information — includes any information that can identify you as an individual, such as:",
+				label: "Personal Information: Personal information may include details connected directly to an identifiable individual, including:",
 				bullets: [
 					"Full name",
 					"Email address",
@@ -35,8 +34,7 @@ const sections: Section[] = [
 				],
 			},
 			{
-				label:
-					"Non-Personal Information — data that cannot be used to personally identify you, such as:",
+				label: "Non-Personal Information: This includes data that cannot be used to personally identify you, such as:",
 				bullets: [
 					"Browser type",
 					"Device type",
@@ -49,73 +47,74 @@ const sections: Section[] = [
 	},
 	{
 		id: 3,
-		title: "How We Use the Information",
-		content: `The information we collect is used to:`,
+		title: "How Information Supports Our Services",
+		content: `Collected information may be used for purposes including:`,
 		bullets: [
 			"Communicate with you regarding inquiries, projects, and services.",
 			"Personalize your experience and provide content relevant to your interests.",
 			"Process transactions and deliver purchased services.",
 			"Send administrative updates, promotional messages, or newsletters (only with your consent).",
-			"Analyze user behavior to improve our website's performance and user experience.",
+			"Analyze user behavior to improve our website’s performance and user experience.",
 		],
-		afterBullets:
-			"We do not sell, rent, or trade your personal information to any third party for marketing purposes.",
+		afterBullets: "Personal information provided through our services is not exchanged, rented, or sold to outside organizations for independent marketing use.",
 	},
 	{
 		id: 4,
-		title: "Cookies and Tracking Technologies",
-		content: `Our website uses cookies and similar tracking technologies to improve user experience and website functionality. Cookies are small text files stored on your device that help us recognize your browser and store preferences. You may choose to disable cookies through your browser settings, although certain parts of the website may not function properly as a result. We also use analytics tools, such as Google Analytics, to understand how visitors interact with our website. These tools may collect anonymized data, such as page visits, traffic sources, and time spent on pages.`,
+		title: "Cookies, Analytics, and Browser Technologies",
+		content: `Certain browser technologies and tracking tools are used to improve platform functionality, analyze usage patterns, and support a smoother browsing experience. Cookies help websites remember browser activity, session preferences, and interaction settings across future visits. You may choose to disable cookies through your browser settings, although certain parts of the website may not function properly as a result. We may use analytics tools like Google Analytics to better understand how visitors use and interact with our website. These tools may collect anonymized data, such as page visits, traffic sources, and time spent on pages.`,
 	},
 	{
 		id: 5,
-		title: "Data Protection and Security",
-		content: `WeBestOne takes data security very seriously. We implement appropriate physical, digital, and managerial measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. All sensitive information transmitted online (such as payment details) is encrypted using Secure Socket Layer (SSL) technology. Access to personal information within our organization is restricted to authorized team members who require it for project purposes.`,
+		title: "How We Protect Your Information",
+		content: `WeBestOne takes data security very seriously. We use a combination of security practices and systems to help protect your information from unauthorized access, misuse, or disclosure. All sensitive information transmitted online (such as payment details) is encrypted using Secure Socket Layer (SSL) technology. Access to personal information within our organization is restricted to authorized team members who require it for project purposes.`,
 	},
 	{
 		id: 6,
 		title: "Sharing of Information",
-		content: `We may share your information with trusted third parties only in the following situations:`,
+		content: `In some cases, we may share information with trusted third-party providers, including:`,
 		bullets: [
 			"When required to complete a project, such as hosting providers, payment gateways, or technical partners.",
 			"When required by law, regulation, or a valid legal request.",
-			"When necessary to protect the rights, property, or safety of WeBestOne, our clients, or the public.",
+			"When needed to help protect the safety, rights, or security of WeBestOne, our clients, or others.",
 		],
-		afterBullets:
-			"All third-party partners who receive data from WeBestOne are bound by confidentiality and data protection agreements.",
+		afterBullets: "All third-party partners who receive data from WeBestOne are bound by confidentiality and data protection agreements.",
 	},
 	{
 		id: 7,
 		title: "Data Retention",
-		content: `We retain personal information only for as long as necessary to fulfill the purposes outlined in this policy or as required by applicable law. Once the data is no longer required, it will be securely deleted or anonymized. Clients may request deletion of their personal information at any time by contacting our Data Protection Officer through the details provided below.`,
+		content: `We keep personal information only for as long as needed to provide services, meet legal requirements, or support business operations. When the information is no longer needed, it will be securely removed or anonymized. You may request the removal of your personal information by contacting us through the details listed below.`,
 	},
 	{
 		id: 8,
 		title: "Your Rights",
 		content: `Depending on your location, you may have certain rights under data protection laws, including:`,
 		bullets: [
-			"The right to access your personal data.",
-			"The right to correct inaccurate or incomplete information.",
-			"The right to request deletion of your data.",
-			"The right to withdraw consent for marketing communication.",
-			"The right to request data portability.",
+			"Request access to the personal information we hold about you.",
+			"Ask us to remove your personal information where applicable.",
+			"Unsubscribe from marketing emails or promotional communication at any time.",
+			"Request a copy of your eligible personal data where supported by law.",
 		],
-		afterBullets:
-			"To exercise any of these rights, please contact our team using the details listed in Section 11.",
+		afterBullets: "To exercise any of these rights, please contact our team using the details listed in Section 11.",
 	},
 	{
 		id: 9,
-		title: "Links to Other Websites",
-		content: `Our website may contain links to third-party websites or resources. These external sites are not operated by WeBestOne, and we are not responsible for their privacy policies or content. We encourage users to review the privacy practices of any third-party site they visit.`,
+		title: "Third-Party Websites",
+		content: `Some pages on our website may include links to external websites or platforms. WeBestOne does not control these external websites and is not responsible for their content or privacy practices. We encourage users to review the privacy practices of any third-party site they visit.`,
 	},
 	{
 		id: 10,
-		title: "Updates to This Privacy Policy",
-		content: `WeBestOne reserves the right to update or modify this Privacy Policy at any time. All changes will be published on this page with an updated effective date. We encourage you to review this policy periodically to stay informed about how we protect your information.`,
+		title: "Changes to This Privacy Policy",
+		content: `WeBestOne reserves the right to update or modify this Privacy Policy at any time. Any updates will be posted on this page along with the revised effective date. We recommend checking this page occasionally to stay informed about how your information is handled.`,
 	},
 	{
 		id: 11,
+		title: "Contact Information",
+		content: `If you have questions about this Privacy Policy or how your information is handled, please contact us:`,
+	},
+	{
+		id: 12,
 		title: "Consent",
-		content: `By using our website and services, you consent to the terms of this Privacy Policy and agree to the collection and use of information as described above.`,
+		content: `By using our website or services, you agree to the information practices described in this Privacy Policy.`,
 	},
 ];
 
@@ -125,7 +124,7 @@ export default function PrivacyPolicyPage() {
 	}, []);
 
 	return (
-		<main className="relative min-h-screen pt-32 pb-24">
+		<main className="relative min-h-screen pt-32 pb-24 bg-black text-white">
 			{/* Background glows */}
 			<div className="absolute top-0 left-1/4 w-96 h-96 bg-neon-green/5 rounded-full blur-[120px] pointer-events-none" />
 			<div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
@@ -153,16 +152,11 @@ export default function PrivacyPolicyPage() {
 						<span className="font-semibold text-neutral-300">
 							Effective Date:
 						</span>{" "}
-						February 22, 2025
+						June 20, 2026
 					</p>
 					<p className="text-neutral-400 mt-4 leading-relaxed">
-						At <span className="text-neon-green font-semibold">WeBestOne</span>,
-						we respect your privacy and are committed to protecting the personal
-						information you share with us. This Privacy Policy explains how we
-						collect, use, store, and safeguard your data when you visit our
-						website or use our digital services. By using our website or
-						engaging with our services, you agree to the practices described in
-						this Privacy Policy.
+						Protecting user information and maintaining responsible data practices remain important priorities across all WeBestOne platforms and services. This policy outlines how information is collected, managed, processed, and protected when individuals interact with the WeBestOne website, platforms, or related digital services. 
+						Continued use of our website or services indicates acknowledgment of the practices and data-handling procedures described in this policy. 
 					</p>
 				</div>
 
@@ -184,6 +178,33 @@ export default function PrivacyPolicyPage() {
 									<p className="text-neutral-400 leading-relaxed">
 										{section.content}
 									</p>
+
+									{/* Custom details for Section 11 (Contact Information) */}
+									{section.id === 11 && (
+										<div className="mt-6 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-4 max-w-lg">
+											<a
+												href="mailto:privacy@webestone.com"
+												className="flex items-center gap-3 text-neutral-300 hover:text-neon-green transition-colors"
+											>
+												<Mail className="w-5 h-5 text-neon-green" />
+												<span>privacy@webestone.com</span>
+											</a>
+											<a
+												href="tel:+8801333600272"
+												className="flex items-center gap-3 text-neutral-300 hover:text-neon-green transition-colors"
+											>
+												<Phone className="w-5 h-5 text-neon-green" />
+												<span>+880 1333 600 272</span>
+											</a>
+											<div className="flex items-center gap-3 text-neutral-300">
+												<MapPin className="w-5 h-5 text-neon-green" />
+												<span>Dhaka, Bangladesh</span>
+											</div>
+											<p className="text-neutral-500 text-xs pt-2 border-t border-white/5">
+												Our Data Protection Officer will respond to all legitimate requests within a reasonable timeframe.
+											</p>
+										</div>
+									)}
 
 									{/* Sub-groups (Section 2) */}
 									{section.subGroups && (
@@ -234,42 +255,6 @@ export default function PrivacyPolicyPage() {
 							<div className="mt-8 border-b border-white/5" />
 						</section>
 					))}
-				</div>
-
-				{/* Contact section */}
-				<div className="mt-14 p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-					<h2 className="text-xl font-bold text-white mb-4">
-						12. Contact Information
-					</h2>
-					<p className="text-neutral-400 mb-6">
-						If you have any questions, requests, or concerns about this Privacy
-						Policy or the way we handle your information, please contact us:
-					</p>
-					<div className="space-y-3">
-						<a
-							href="mailto:privacy@webestone.com"
-							className="flex items-center gap-3 text-neutral-300 hover:text-neon-green transition-colors"
-						>
-							<span className="text-lg">📧</span>
-							<span>privacy@webestone.com</span>
-						</a>
-						<p className="flex items-center gap-3 text-neutral-300">
-							<span className="text-lg">📍</span>
-							<span>Dhaka, Bangladesh</span>
-						</p>
-					</div>
-					<p className="text-neutral-500 text-sm mt-4">
-						Our Data Protection Officer will respond to all legitimate requests
-						within a reasonable timeframe.
-					</p>
-					<div className="mt-6 pt-6 border-t border-white/10">
-						<Link
-							to="/contact"
-							className="inline-flex items-center gap-2 bg-neon-green hover:bg-neon-green/90 text-blue-900 font-bold px-6 py-3 rounded-lg transition-colors"
-						>
-							Contact Us
-						</Link>
-					</div>
 				</div>
 			</div>
 		</main>

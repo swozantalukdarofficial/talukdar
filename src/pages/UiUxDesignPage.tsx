@@ -35,46 +35,83 @@ const tools = [
 
 const philosophy = [
   {
+    icon: <Search className="w-6 h-6" />,
+    title: "01 Visibility defines who gets chosen",
+    desc: "If your website is unclear, users leave instantly. Strong responsive design, information architecture, and accessibility ensure your message is understood without effort.",
+  },
+  {
     icon: <Users className="w-6 h-6" />,
-    title: "User-Centric First",
-    desc: "We design for the people who actually use your product, ensuring intuitive navigation and seamless workflows.",
+    title: "02 Engagement decides who stays",
+    desc: "Users do not explore. They decide quickly. Weak structure loses them. Strong user journeys, supported by user research and usability testing, keep them moving forward.",
   },
   {
-    icon: <TrendingUp className="w-6 h-6" />,
-    title: "Data-Driven Decisions",
-    desc: "We don't guess. We use heatmaps, A/B testing, and analytics to drive every single pixel and interaction.",
+    icon: <ShieldCheck className="w-6 h-6" />,
+    title: "03 Trust is built in seconds",
+    desc: "Design signals trust before words do. Weak visual design creates doubt. Structured design builds confidence.",
   },
   {
-    icon: <Sparkles className="w-6 h-6" />,
-    title: "Aesthetic Excellence",
-    desc: "A beautiful UI builds immediate trust. We craft visually stunning interfaces that elevate your brand's perceived value.",
-  },
+    icon: <MonitorSmartphone className="w-6 h-6" />,
+    title: "04 Performance shapes every experience",
+    desc: "If your website fails across devices, your growth fails with it. Consistent responsive design ensures stability everywhere.",
+  }
+];
+
+const processSteps = [
+  { num: "01", title: "Discovery", desc: "We define direction using structured user personas." },
+  { num: "02", title: "Research", desc: "We identify friction through UX audits and heuristic evaluation." },
+  { num: "03", title: "Strategy", desc: "We build a clear UX strategy supported by strong information architecture." },
+  { num: "04", title: "Wireframing", desc: "We create wireframes that define flow before design begins." },
+  { num: "05", title: "UI design", desc: "We design using Figma, Adobe XD, Sketch, and InVision." },
+  { num: "06", title: "UX optimization", desc: "We refine through usability testing to remove hesitation." },
+  { num: "07", title: "Content alignment", desc: "We align messaging with how users think and decide." },
+  { num: "08", title: "Development", desc: "We build stable, scalable digital systems." },
+  { num: "09", title: "Quality assurance", desc: "We test usability, performance, and consistency." },
+  { num: "10", title: "Analytics and setup", desc: "We implement tracking to measure behavior and outcomes." },
+  { num: "11", title: "Launch and scale", desc: "We improve continuously based on real user data." },
 ];
 
 const services = [
   {
     icon: <Component className="w-8 h-8 text-pink-400" />,
-    title: "Design Systems",
-    desc: "Scalable component libraries (Atoms, Molecules, Organisms) built in Figma for perfect developer handoff.",
+    title: "01 UI and UX design",
+    desc: "We deliver custom UI UX solutions that remove confusion and guide action.",
     span: "md:col-span-2 md:row-span-2 bg-gradient-to-br from-pink-900/20 to-black border-pink-500/20"
   },
   {
     icon: <MonitorSmartphone className="w-6 h-6 text-violet-400" />,
-    title: "Web & Mobile UI",
-    desc: "Pixel-perfect interfaces for SaaS, Dashboards, and Apps.",
+    title: "02 Interface structure",
+    desc: "We organize content using strong information architecture.",
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
     icon: <Search className="w-6 h-6 text-cyan-400" />,
-    title: "Prototyping",
-    desc: "Interactive, high-fidelity prototypes to test user flows.",
+    title: "03 Conversion pages",
+    desc: "We build pages that reduce friction and increase decisions.",
+    span: "md:col-span-1 bg-black border-white/10"
+  },
+  {
+    icon: <ShoppingBag className="w-6 h-6 text-emerald-400" />,
+    title: "04 Ecommerce experience",
+    desc: "Our ecommerce web design services simplify buying and reduce drop-offs.",
+    span: "md:col-span-1 bg-black border-white/10"
+  },
+  {
+    icon: <HeartPulse className="w-6 h-6 text-rose-400" />,
+    title: "05 Mobile interaction design",
+    desc: "We design for real behavior, not assumptions.",
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
     icon: <Wand2 className="w-8 h-8 text-yellow-400" />,
-    title: "AI-Enhanced UX",
-    desc: "Leveraging generative AI for dynamic layouts and personalized user journeys.",
-    span: "md:col-span-2 bg-gradient-to-r from-neutral-900 to-black border-white/10"
+    title: "06 User movement planning",
+    desc: "We map user journeys using interaction design principles.",
+    span: "md:col-span-1 bg-black border-white/10"
+  },
+  {
+    icon: <Building2 className="w-8 h-8 text-blue-400" />,
+    title: "07 Advanced Solutions",
+    desc: "We also deliver advanced custom web design service solutions for dashboards, platforms, and complex environments.",
+    span: "md:col-span-1 md:col-start-1 md:col-end-4 bg-gradient-to-r from-neutral-900 to-black border-white/10"
   },
 ];
 
@@ -96,20 +133,32 @@ const industries = [
 
 const faqs = [
   {
-    q: "What tools do you use for UI/UX design?",
-    a: "We primarily use Figma for UI design, prototyping, and design systems. We also leverage AI tools like Midjourney for ideation, and tools like Miro for UX flows.",
+    q: "01 How much does a custom website project cost?",
+    a: "Costs depend on structure and complexity. Every project is scoped based on actual requirements.",
   },
   {
-    q: "Do you design for both Web and Mobile?",
-    a: "Yes, we create fully responsive web applications and native iOS/Android mobile app interfaces.",
+    q: "02 How long does it take to design a website?",
+    a: "Most projects are completed within a few weeks depending on size and scope.",
   },
   {
-    q: "Do you also do the development?",
-    a: "We are a full-service agency. We can seamlessly transition your approved Figma designs into React, Next.js, or WordPress code.",
+    q: "03 Do you provide custom UI UX solutions?",
+    a: "Yes. Every project is built using custom UI UX solutions aligned with user behavior and business goals.",
   },
   {
-    q: "How long does a UI/UX project take?",
-    a: "A typical medium-sized app or website design takes 3 to 6 weeks, depending on the complexity of the user flows and the number of screens.",
+    q: "04 Will my website be mobile friendly?",
+    a: "Yes. Every build includes full responsive design support.",
+  },
+  {
+    q: "05 Is your design SEO friendly?",
+    a: "Yes. The structure supports speed, clarity, and modern search performance.",
+  },
+  {
+    q: "06 Do you provide ecommerce web design services?",
+    a: "Yes. Our ecommerce web design services are built to reduce friction and improve conversions.",
+  },
+  {
+    q: "07 Do you offer ongoing support after launch?",
+    a: "Yes. We continuously refine performance and user experience after launch.",
   },
 ];
 
@@ -169,7 +218,7 @@ export default function UiUxDesignPage() {
       <section className="relative z-10 pt-40 pb-20 min-h-[95vh] flex flex-col items-center justify-center px-6">
         <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
-          <div className="space-y-8 relative z-20">
+          <div className="space-y-6 relative z-20">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -184,22 +233,28 @@ export default function UiUxDesignPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.8 }}
-              className="text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight"
             >
-              Design That <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400">
-                Captivates & Converts.
+              Web Design Service That <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 block mt-1">
+                Controls How Users Think, Move, and Act.
               </span>
             </motion.h1>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-lg md:text-xl text-neutral-400 leading-relaxed max-w-lg"
+              className="space-y-3"
             >
-              We craft intuitive, data-driven, and visually stunning digital experiences. From complex SaaS dashboards to seamless e-commerce flows, we design for the user.
-            </motion.p>
+              <h2 className="text-lg font-semibold text-white">Modern websites shaped with intention and precision</h2>
+              <p className="text-base text-neutral-400 leading-relaxed max-w-lg">
+                This is not a typical web design service. Most websites are built to look good. <span className="text-white font-semibold">Very few are built to work.</span>
+              </p>
+              <p className="text-sm text-neutral-500 leading-relaxed max-w-lg">
+                At WebestOne, design is not decoration. It is control. As a custom UI UX design agency, we design experiences that shape how users see, understand, and decide without confusion.
+              </p>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -292,11 +347,11 @@ export default function UiUxDesignPage() {
       <section className="py-24 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Design <span className="text-purple-400">Philosophy</span></h2>
-            <p className="text-neutral-400 max-w-2xl mx-auto">We don't just make things look pretty. We architect experiences that solve complex user problems.</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Why professional <span className="text-purple-400">web design matters</span></h2>
+            <p className="text-neutral-400 max-w-2xl mx-auto">Everything is intentional. Every click, every section, every flow. Structure that aligns with real user behavior.</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {philosophy.map((p, i) => (
               <motion.div 
                 key={i}
@@ -323,7 +378,8 @@ export default function UiUxDesignPage() {
       <section className="py-24 px-6 relative z-10 bg-white/[0.01]">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">UI/UX <br /><span className="text-pink-400">Capabilities.</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our web design <br /><span className="text-pink-400">services.</span></h2>
+            <p className="text-neutral-400 max-w-lg mt-4">Design is not what users see. It is what they do next.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[250px]">
@@ -609,13 +665,22 @@ export default function UiUxDesignPage() {
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
-            Let's Build Interfaces That <span className="text-[#87E65C] block md:inline">Grow</span><br className="hidden md:block" />
-            <span className="text-[#87E65C]">Your Business</span>
+            We move with speed.<br className="hidden md:block" />
+            <span className="text-[#87E65C]">Your business keeps up.</span>
           </h2>
           
-          <p className="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
-            Whether you need a full app redesign, a comprehensive design system, or a high-converting website, our team is ready to deliver.
+          <p className="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+            Slow execution costs visibility, leads, and growth. As a performance-focused partner, we build structured websites designed to perform from day one.
           </p>
+
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-12">
+            {["Unlimited revisions", "Dedicated manager", "Clear timelines", "Transparent communication"].map(feature => (
+              <div key={feature} className="flex items-center gap-2 text-sm text-neutral-300">
+                <CheckCircle2 className="w-4 h-4 text-[#87E65C]" />
+                {feature}
+              </div>
+            ))}
+          </div>
           
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full">
             <Link 

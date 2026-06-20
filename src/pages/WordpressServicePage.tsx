@@ -25,30 +25,30 @@ import {
 /* ─── Data ─── */
 const whyChoose = [
   {
-    icon: <Code2 className="w-8 h-8" />,
-    title: "Custom Theme Development",
-    desc: "We build lightweight, scalable themes from scratch. No bloated page builders, ensuring maximum performance and zero unnecessary code.",
+    icon: <Zap className="w-8 h-8" />,
+    title: "Speed Optimization",
+    desc: "Speed using WP Rocket, Cloudflare, and content delivery networks (CDN).",
     span: "md:col-span-2 md:row-span-2 bg-gradient-to-br from-blue-900/40 to-black border-blue-500/30",
     iconColor: "text-blue-400"
   },
   {
-    icon: <Zap className="w-6 h-6" />,
-    title: "Blazing Fast Speed",
-    desc: "Optimized database queries and media delivery for sub-second load times.",
+    icon: <Database className="w-6 h-6" />,
+    title: "Scalable Architecture",
+    desc: "Scalability with clean architecture and optimized databases.",
     span: "md:col-span-1 bg-black border-white/10",
     iconColor: "text-yellow-400"
   },
   {
-    icon: <ShieldCheck className="w-6 h-6" />,
-    title: "Hardened Security",
-    desc: "Proactive firewall setups, malware scanning, and vulnerability patching.",
+    icon: <MonitorSmartphone className="w-6 h-6" />,
+    title: "Usability & Design",
+    desc: "Usability through structured layouts and responsive design.",
     span: "md:col-span-1 bg-black border-white/10",
     iconColor: "text-emerald-400"
   },
   {
     icon: <Search className="w-8 h-8" />,
-    title: "Built for SEO",
-    desc: "Semantic HTML, proper schema markup, and deeply integrated technical SEO.",
+    title: "Search Visibility",
+    desc: "SEO-ready builds using schema markup and XML sitemap integration.",
     span: "md:col-span-2 bg-gradient-to-r from-neutral-900 to-black border-white/10",
     iconColor: "text-purple-400"
   },
@@ -56,33 +56,32 @@ const whyChoose = [
 
 const services = [
   {
-    title: "Bespoke WordPress Themes",
-    desc: "Pixel-perfect, fully custom themes designed in Figma and coded cleanly to reflect your brand's unique identity without the heavy overhead of commercial themes.",
-    icon: <LayoutTemplate className="w-10 h-10" />,
-  },
-  {
     title: "WooCommerce Solutions",
-    desc: "Scalable e-commerce stores with custom checkout flows, inventory synchronization, subscription management, and secure payment integrations.",
+    desc: "WooCommerce development for ecommerce growth. Scalable stores with custom checkout flows.",
     icon: <ShoppingCart className="w-10 h-10" />,
   },
   {
-    title: "Plugin Customization",
-    desc: "When off-the-shelf plugins don't fit, we develop custom WordPress plugins to handle your specific business logic and API integrations.",
-    icon: <Wrench className="w-10 h-10" />,
+    title: "Multilingual Setups",
+    desc: "Multilingual setups using WPML to reach a global audience with localized content.",
+    icon: <Globe className="w-10 h-10" />,
   },
   {
-    title: "Migration & Maintenance",
-    desc: "Seamlessly migrate from any CMS to WordPress. We also provide continuous maintenance, daily backups, and security monitoring.",
+    title: "Secure Environments",
+    desc: "Secure environments using WordPress security plugins like Wordfence and Sucuri.",
+    icon: <ShieldCheck className="w-10 h-10" />,
+  },
+  {
+    title: "Performance Optimization",
+    desc: "Performance optimization using caching layers and hosting environments like SiteGround and WP Engine.",
     icon: <Server className="w-10 h-10" />,
   },
 ];
 
 const processSteps = [
-  { num: "01", title: "Discovery", desc: "Understanding goals and planning the exact tech stack." },
-  { num: "02", title: "UI/UX Design", desc: "Wireframing and high-fidelity mockups in Figma." },
-  { num: "03", title: "Development", desc: "Clean, headless or monolithic WordPress coding." },
-  { num: "04", title: "Optimization", desc: "Speed tuning, SEO setup, and security hardening." },
-  { num: "05", title: "Launch", desc: "Final QA, deployment, and backend training." },
+  { num: "01", title: "Briefing", desc: "We define structure, business goals, and technical direction." },
+  { num: "02", title: "Design", desc: "We build layouts using Elementor, Elementor Pro, and Divi Builder." },
+  { num: "03", title: "Development", desc: "Structured environments using WP themes, ACF, and scalable frameworks." },
+  { num: "04", title: "Testing", desc: "We test performance, responsiveness using PageSpeed Insights and real devices." },
 ];
 
 const portfolio = [
@@ -116,22 +115,52 @@ const portfolio = [
   }
 ];
 
+const whyPartner = [
+  {
+    num: "01",
+    title: "Built for performance and stability",
+    desc: "Every layer is optimized using caching systems like Varnish Cache, CDN networks, and performance tuning."
+  },
+  {
+    num: "02",
+    title: "Ongoing support and optimization",
+    desc: "We maintain and improve your website using tools like Jetpack, performance tracking systems, and continuous updates."
+  },
+  {
+    num: "03",
+    title: "Results-driven development",
+    desc: "From structure to speed, every decision supports rankings, engagement, and conversions."
+  }
+];
+
 const faqs = [
   {
-    q: "Why should we choose WordPress over Shopify or Wix?",
-    a: "WordPress offers absolute ownership of your data, infinite scalability, and no monthly platform fees. Unlike locked-in SaaS builders, we can customize every single line of code in WordPress.",
+    q: "How long does WordPress website development take?",
+    a: "Most projects take 4 to 8 weeks depending on complexity, integrations like WooCommerce, and custom features.",
   },
   {
-    q: "Do you use premium page builders like Elementor?",
-    a: "While we can work with Elementor if requested, we strongly recommend and specialize in Custom Gutenberg Blocks. This provides the same visual editing experience but with 3x faster load times.",
+    q: "Can I manage my website after development?",
+    a: "Yes. We structure your backend using tools like Elementor so updates are simple and controlled.",
   },
   {
-    q: "Is WordPress truly secure for enterprise?",
-    a: "Yes. Major organizations like the White House and Time Magazine use WordPress. We implement strict security layers, hide login paths, and use server-level firewalls to ensure enterprise-grade security.",
+    q: "Do you offer WordPress plugin development?",
+    a: "Yes. We build and customize plugins to extend functionality based on your business needs.",
   },
   {
-    q: "Do you provide hosting?",
-    a: "We offer premium managed WordPress hosting on ultra-fast cloud servers, complete with Redis caching, Cloudflare CDN integration, and daily automated backups.",
+    q: "Can you improve my existing WordPress website?",
+    a: "Yes. We optimize speed, usability, and structure using audits, caching, and performance tools.",
+  },
+  {
+    q: "Why choose WordPress over platforms like Shopify?",
+    a: "WordPress offers flexibility, control, and scalability, while platforms like Shopify are more limited for customization-heavy environments.",
+  },
+  {
+    q: "Do you provide ongoing optimization and maintenance?",
+    a: "Yes. We continuously improve performance, security, and usability after launch.",
+  },
+  {
+    q: "What makes your WordPress website development services different?",
+    a: "We build structured systems, not just websites, focusing on performance, usability, and long-term scalability.",
   },
 ];
 
@@ -202,7 +231,7 @@ export default function WordpressServicePage() {
               transition={{ delay: 0.1 }}
               className="text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight"
             >
-              Custom WordPress{" "}
+              WordPress Website{" "}
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent block">
                 Development Services
               </span>
@@ -215,12 +244,12 @@ export default function WordpressServicePage() {
               transition={{ delay: 0.2 }}
               className="space-y-4"
             >
+              <h2 className="text-xl font-semibold text-white">Built for performance, structure, and long-term growth</h2>
               <p className="text-neutral-400 text-base leading-relaxed">
-                Unlock the true potential of the world's most powerful CMS. We build{" "}
-                <span className="text-white font-semibold">custom WordPress themes and plugins</span> from scratch. No bloated page builders, no slow templates. Just clean code, blazing-fast performance, and enterprise-grade security.
+                Most WordPress websites exist. <span className="text-white font-semibold">Very few actually perform.</span> That is the difference. At WebestOne, our WordPress website development services are built as systems that support speed, usability, and scalability.
               </p>
               <p className="text-neutral-500 text-sm leading-relaxed">
-                Whether you need a high-converting WooCommerce store, a scalable corporate portal, or a secure news magazine, we deliver tailored WordPress solutions that give you complete control over your content.
+                As a professional WordPress development agency, we combine structure, clean code, and performance optimization to create websites that do more than sit online. They work.
               </p>
             </motion.div>
 
@@ -356,8 +385,8 @@ export default function WordpressServicePage() {
       <section className="py-24 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Uncompromising <br /><span className="text-neutral-500">Standards.</span></h2>
-            <p className="text-neutral-400 max-w-lg">We engineer WordPress sites that outpace the competition in speed, scalability, and design flexibility.</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Your business deserves <br /><span className="text-blue-500">more than a basic setup.</span></h2>
+            <p className="text-neutral-400 max-w-lg">Most WordPress websites fail for a simple reason. They rely on default themes, unstructured layouts, and no real performance planning. Our services go beyond templates.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[250px]">
@@ -469,15 +498,15 @@ export default function WordpressServicePage() {
       <section className="py-32 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">The Build <span className="text-blue-500">Process</span></h2>
-            <p className="text-neutral-400">A streamlined engineering lifecycle designed for transparency and speed.</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">WordPress Development <span className="text-blue-500">Workflow</span></h2>
+            <p className="text-neutral-400">This is not random execution. It is a controlled build process designed to remove risk and support performance.</p>
           </div>
 
           <div className="relative">
             {/* Connecting Line */}
             <div className="absolute top-8 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent hidden lg:block" />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-6 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6 relative z-10">
               {processSteps.map((step, i) => (
                 <div key={i} className="flex flex-col items-center text-center group">
                   <div className="w-16 h-16 rounded-full bg-black border-2 border-white/10 flex items-center justify-center text-xl font-bold font-mono text-neutral-500 mb-6 group-hover:border-blue-500 group-hover:text-blue-400 transition-colors shadow-xl">
@@ -488,6 +517,27 @@ export default function WordpressServicePage() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          4.5 WHY PARTNER WITH US
+      ══════════════════════════════════════════ */}
+      <section className="py-24 px-6 relative z-10 border-t border-white/5 bg-white/[0.01]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Why partner with <span className="text-blue-500">WebestOne</span></h2>
+            <p className="text-neutral-400 max-w-2xl mx-auto">Our WordPress website development services are built to ensure your website performs from day one and continues to improve over time.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {whyPartner.map((item, i) => (
+              <div key={i} className="p-8 rounded-3xl bg-neutral-900/50 border border-white/5 hover:border-blue-500/30 transition-colors group">
+                <div className="text-5xl font-black text-white/5 mb-6 group-hover:text-blue-500/10 transition-colors">{item.num}</div>
+                <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                <p className="text-neutral-400 leading-relaxed text-sm">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -571,30 +621,33 @@ export default function WordpressServicePage() {
           
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#87E65C]/20 bg-[#87E65C]/10 text-[#87E65C] text-sm font-medium mb-8">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-            Ready to Start?
+            Ready to perform, scale, and adapt
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
-            Let's Build WordPress Sites That <span className="text-[#87E65C] block md:inline">Grows</span><br className="hidden md:block" />
-            <span className="text-[#87E65C]">Your Business</span>
+            We move with speed.<br className="hidden md:block" />
+            <span className="text-[#87E65C]">Your business keeps up.</span>
           </h2>
           
-          <p className="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
-            Whether you need a custom theme or a high-converting WooCommerce store, our team is ready to deliver. Let's get your brand the platform it deserves.
+          <p className="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+            Delays cost visibility, leads, and growth. As a WordPress web development agency, we deliver systems that work.
           </p>
+
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-12">
+            {["Unlimited revisions", "Dedicated manager", "Clear timelines", "Transparent communication"].map(feature => (
+              <div key={feature} className="flex items-center gap-2 text-sm text-neutral-300">
+                <CheckCircle2 className="w-4 h-4 text-[#87E65C]" />
+                {feature}
+              </div>
+            ))}
+          </div>
           
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full">
             <Link 
               to="/contact" 
               className="w-full sm:w-auto px-8 py-4 bg-[#87E65C] text-black font-bold rounded-full hover:bg-[#87E65C]/90 hover:scale-105 transition-all shadow-[0_0_30px_rgba(135,230,92,0.25)] flex items-center justify-center gap-2"
             >
-              Request a Free Quote <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link 
-              to="/contact" 
-              className="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 text-white font-bold rounded-full hover:bg-white/5 transition-all flex items-center justify-center"
-            >
-              Book a Discovery Call
+              Get a quote <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         </div>
