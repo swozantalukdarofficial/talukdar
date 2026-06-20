@@ -194,6 +194,7 @@ export default function ContactPage() {
 												setFormState({
 													name: "",
 													email: "",
+													phone: "",
 													company: "",
 													service: "",
 													message: "",
