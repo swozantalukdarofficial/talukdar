@@ -12,9 +12,7 @@ export default function BlogsPage() {
   const navigate = useNavigate();
 
   const featuredPost = blogPosts.find((p) => p.featured) || blogPosts[0];
-  const regularPosts = blogPosts.filter(
-    (p) => p.id !== featuredPost.id
-  );
+  const regularPosts = blogPosts;
 
   // Take the top articles to populate a gorgeous infinite WebGL carousel!
   const featuredPosts = useMemo(() => {
