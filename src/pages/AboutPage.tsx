@@ -78,8 +78,8 @@ export default function AboutPage() {
   return (
     <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white pt-20 overflow-x-hidden selection:bg-neon-green/30">
       <SEO 
-        title="About Us - WeBestOne Agency" 
-        description="Learn about WeBestOne, a team of digital creators and SEO experts pushing the boundaries of AI marketing and modern web technologies." 
+        title="AI powered agency | Webestone About us" 
+        description="Leading AI powered agency providing AI SEO, SMM, Web Design, Development, Motion Graphics & Video Editing to transform your brand with AI solutions." 
       />
       
       {/* 1. HERO SECTION */}

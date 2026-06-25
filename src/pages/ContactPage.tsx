@@ -76,8 +76,8 @@ export default function ContactPage() {
 	return (
 		<main className="relative min-h-screen text-white pt-20 overflow-hidden">
 			<SEO 
-				title="Contact WeBestOne - Get in Touch" 
-				description="Ready to scale your business? Contact WeBestOne today for a free SEO audit, custom web development quote, or marketing consultation." 
+				title="AI-powered digital marketing Agency | Webestone Contact Us" 
+				description="A leading AI-powered digital marketing agency - contact us to get expert AI solutions and start your brand transformation with our advanced team." 
 			/>
 			{/* Background Effects */}
 			<div className="absolute inset-0 z-0">

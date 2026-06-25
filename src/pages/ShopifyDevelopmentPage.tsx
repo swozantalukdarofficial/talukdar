@@ -140,8 +140,8 @@ export default function ShopifyDevelopmentPage() {
   return (
     <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-emerald-500/30">
       <SEO 
-        title="Custom Shopify Store Development Agency - WeBestOne" 
-        description="Get a high-speed, custom-designed Shopify store built for conversions, scalability, and seamless checkout experiences." 
+        title="Shopify website Development Service | Shopify Store Development Experts" 
+        description="Shopify website Development Service focusing on custom features, product catalog, Shopify store development and scaling brands via strategies from Shopify Experts." 
       />
       
       {/* 1. HERO SECTION (UPGRADED) */}

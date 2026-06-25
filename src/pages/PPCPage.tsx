@@ -92,8 +92,8 @@ export default function PPCPage() {
   return (
     <main className="min-h-screen bg-black text-white pt-16 md:pt-20 overflow-hidden">
       <SEO 
-        title="PPC Ads Management & Paid Acquisition - WeBestOne" 
-        description="Maximize ROI with strategic Google Ads, Meta Ads, and PPC campaigns structured for optimal acquisition costs." 
+        title="PPC Management Services | Expert Paid Advertising Agency" 
+        description="Advanced PPC Management Services scaling brands with AI-driven strategies, audience targeting, expert keyword bidding and high performing paid search advertising." 
       />
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
