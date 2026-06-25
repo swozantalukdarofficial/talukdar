@@ -2,7 +2,7 @@ export const categories = ["All", "AI & Tech", "Design", "Development", "Marketi
 
 export const blogPosts = [
     {
-        id: "9",
+        id: "best-digital-marketing-agency-in-bangladesh",
         title: "Best Digital Marketing Agency in Bangladesh: The Complete 2026 Guide",
         excerpt: "Looking for the best digital marketing agency in Bangladesh? This complete guide covers what separates great agencies from average ones and why WeBestOne leads the pack in 2026.",
         content: `
@@ -141,7 +141,7 @@ export const blogPosts = [
                 </li>
             </ul>
 
-            <p class="my-8">You can read more about how we analyze other agencies in our post on the <a href="/blogs/7" class="text-[#87E65C] hover:underline font-semibold">Top 10 Digital Marketing Agency in Bangladesh</a> or check out our guide on finding the <a href="/blogs/8" class="text-[#87E65C] hover:underline font-semibold">Best SEO Service Provider in Bangladesh</a> to see how we stack up.</p>
+            <p class="my-8">You can read more about how we analyze other agencies in our post on the <a href="/blogs/top-10-digital-marketing-agency-in-bangladesh-2026" class="text-[#87E65C] hover:underline font-semibold">Top 10 Digital Marketing Agency in Bangladesh</a> or check out our guide on finding the <a href="/blogs/best-seo-service-provider-in-bangladesh" class="text-[#87E65C] hover:underline font-semibold">Best SEO Service Provider in Bangladesh</a> to see how we stack up.</p>
 
             <h2>WeBestOne's Full-Service Digital Marketing Process</h2>
             <p>Great results come from a structured process. Here is how we work with you:</p>
@@ -232,7 +232,7 @@ export const blogPosts = [
                   "@type": "ListItem",
                   "position": 3,
                   "name": "Best Digital Marketing Agency in Bangladesh: The Complete 2026 Guide",
-                  "item": "https://webestone.com/blogs/9"
+                  "item": "https://webestone.com/blogs/best-digital-marketing-agency-in-bangladesh"
                 }
               ]
             },
@@ -240,7 +240,7 @@ export const blogPosts = [
               "@type": "NewsArticle",
               "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": "https://webestone.com/blogs/9"
+                "@id": "https://webestone.com/blogs/best-digital-marketing-agency-in-bangladesh"
               },
               "headline": "Best Digital Marketing Agency in Bangladesh: The Complete 2026 Guide",
               "image": [
@@ -304,7 +304,7 @@ export const blogPosts = [
         }
     },
     {
-        id: "8",
+        id: "best-seo-service-provider-in-bangladesh",
         title: "Best SEO Service Provider in Bangladesh: The 2026 Buyer's Guide",
         excerpt: "Looking for the best SEO service provider in Bangladesh? Here's how AI changed SEO in 2026 and how to pick an agency that ranks you on Google, SGE, and Perplexity.",
         content: `
@@ -682,7 +682,7 @@ export const blogPosts = [
                   "@type": "ListItem",
                   "position": 3,
                   "name": "Best SEO Service Provider in Bangladesh: The 2026 Buyer's Guide",
-                  "item": "https://webestone.com/blogs/8"
+                  "item": "https://webestone.com/blogs/best-seo-service-provider-in-bangladesh"
                 }
               ]
             },
@@ -690,7 +690,7 @@ export const blogPosts = [
               "@type": "NewsArticle",
               "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": "https://webestone.com/blogs/8"
+                "@id": "https://webestone.com/blogs/best-seo-service-provider-in-bangladesh"
               },
               "headline": "Best SEO Service Provider in Bangladesh: The 2026 Buyer's Guide",
               "image": [
@@ -794,7 +794,7 @@ export const blogPosts = [
         }
     },
     {
-        id: "7",
+        id: "top-10-digital-marketing-agency-in-bangladesh-2026",
         title: "Top 10 Digital Marketing Agency in Bangladesh (2026 Honest Ranking)",
         excerpt: "Looking for the best digital marketing agency in Bangladesh? Here's the honest 2026 ranking of the top 10 agencies based on results, services, and ROI.",
         content: `
@@ -1160,7 +1160,7 @@ export const blogPosts = [
                   "@type": "ListItem",
                   "position": 3,
                   "name": "Top 10 Digital Marketing Agency in Bangladesh (2026 Honest Ranking)",
-                  "item": "https://webestone.com/blogs/7"
+                  "item": "https://webestone.com/blogs/top-10-digital-marketing-agency-in-bangladesh-2026"
                 }
               ]
             },
@@ -1168,7 +1168,7 @@ export const blogPosts = [
               "@type": "NewsArticle",
               "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": "https://webestone.com/blogs/7"
+                "@id": "https://webestone.com/blogs/top-10-digital-marketing-agency-in-bangladesh-2026"
               },
               "headline": "Top 10 Digital Marketing Agency in Bangladesh (2026 Honest Ranking)",
               "image": [
