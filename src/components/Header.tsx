@@ -210,9 +210,9 @@ export default function Header() {
 													<service.icon className="w-5 h-5" />
 												</div>
 												<div>
-													<h4 className="text-white font-bold text-sm mb-0.5 group-hover/item:text-neon-green transition-colors">
+													<p className="text-white font-bold text-sm mb-0.5 group-hover/item:text-neon-green transition-colors">
 														{service.title}
-													</h4>
+													</p>
                           <p className="text-[10px] text-neutral-500 line-clamp-1 group-hover/item:text-neutral-400 transition-colors">
                             {service.description}
                           </p>

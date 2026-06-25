@@ -69,7 +69,7 @@ export default function Testimonials() {
                   <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold">{item.name}</h4>
+                  <p className="text-white font-bold">{item.name}</p>
                   <p className="text-xs text-neutral-500">{item.role}</p>
                 </div>
               </div>

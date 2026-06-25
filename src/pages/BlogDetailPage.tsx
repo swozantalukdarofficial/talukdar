@@ -301,7 +301,7 @@ export default function BlogDetailPage() {
               {post.author ? post.author.split(" ").map(w => w[0]).join("") : "WT"}
             </div>
             <div className="space-y-2 text-center sm:text-left">
-              <h4 className="text-lg font-bold text-white">{post.author || "Sarah Jenkins"}</h4>
+              <p className="text-lg font-bold text-white">{post.author || "Sarah Jenkins"}</p>
               <p className="text-[#87E65C] text-xs font-bold uppercase tracking-wider">{post.authorRole || "Senior Tech Lead"}</p>
               <p className="text-neutral-400 text-sm leading-relaxed max-w-xl">
                 Passionate about scaling web architectures, integrating machine-learning automations, and helping businesses optimize digital user experiences at scale.
@@ -316,9 +316,9 @@ export default function BlogDetailPage() {
                 <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
                 <span>All Articles</span>
               </div>
-              <h4 className="text-lg font-bold text-white group-hover:text-[#87E65C] transition-colors leading-tight">
+              <p className="text-lg font-bold text-white group-hover:text-[#87E65C] transition-colors leading-tight">
                 Read Next Insights
-              </h4>
+              </p>
             </Link>
             <Link
               to="/contact"
@@ -335,9 +335,9 @@ export default function BlogDetailPage() {
             
             {headings.length > 0 && (
               <div className="space-y-4">
-                <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-neutral-500">
+                <p className="text-xs font-bold uppercase tracking-[0.25em] text-neutral-500">
                   On this page
-                </h4>
+                </p>
                 <nav className="flex flex-col gap-3">
                   {headings.map((h, idx) => {
                     const isActive = activeHeading === h;
