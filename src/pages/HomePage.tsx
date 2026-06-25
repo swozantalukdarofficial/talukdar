@@ -76,6 +76,51 @@ const homeSchema = {
       "publisher": {
         "@id": "https://webestone.com/#organization"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does it take to see results?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Paid campaigns on Google Ads and Meta Ads typically show measurable results in 4 to 6 weeks. Organic Search Engine Optimization and content marketing build compounding returns over 3 to 6 months. We share weekly performance updates from day one so you always know where you stand."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer custom AI marketing plans?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every plan is built around your specific industry, audience, budget, and goals. No templates. No copy-paste strategies. Every campaign we run is tailored after a discovery audit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a Free Marketing Audit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A no-commitment review of your website performance, SEO health, social media engagement, and ad spend efficiency. You receive a clear report identifying exactly where you are losing revenue and what to fix first."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you track success?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Through real-time dashboards connected to Google Analytics, Google Search Console, Meta Ads Manager, and our internal AI reporting tools. You see every metric live, 24/7. No monthly PDF surprises."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which industries do you specialize in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "E-Commerce, SaaS & Tech, and Ed-Tech are our strongest verticals with proven case studies. We also work with Real Estate, Energy, and NGO clients on a project basis."
+          }
+        }
+      ]
     }
   ]
 };

@@ -464,6 +464,109 @@ function FaqItem({ q, a }: { q: string; a: string }) {
   );
 }
 
+const customWebDevSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://webestone.com/services/web-development#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://webestone.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://webestone.com/services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Custom Web Development",
+          "item": "https://webestone.com/services/web-development"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "serviceType": "Custom Web Development Services",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "WeBestOne",
+        "url": "https://webestone.com",
+        "logo": "https://webestone.com/favicon.png"
+      },
+      "areaServed": "BD",
+      "description": "High-performance custom web development services specializing in React, Node.js, PHP, Laravel, Shopify, and MySQL to scale digital presence."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much do custom web development services cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The cost depends on integrations, features, and system complexity. We provide a clear estimate based on your exact requirements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long do custom web development services take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most projects take between four to twelve weeks depending on scope and complexity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide ongoing support after launch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We provide maintenance, updates, and continuous system improvements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What technologies do you use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We use HTML5, CSS3, JavaScript, React, Node.js, PHP, and MySQL, along with modern frameworks depending on project needs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide Shopify web development services and ecommerce platforms?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We provide Shopify web development services along with custom ecommerce systems using WooCommerce and Magento, depending on your business model and scalability needs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer React web development services?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We provide React web development services for scalable and high-performance applications."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you rebuild an existing system?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We restructure and rebuild systems that are limiting growth or performance."
+          }
+        }
+      ]
+    }
+  ]
+};
+
 /* ─── Page ─── */
 export default function WordpressDevelopmentPage() {
   return (
@@ -471,6 +574,7 @@ export default function WordpressDevelopmentPage() {
       <SEO 
         title="Custom Web Development Services | Expert CMS Web Development" 
         description="Expert Custom web development services provide best Custom website solutions and specialize in Magento, Laravel, Shopify and React to scale your digital presence" 
+        schemaMarkup={customWebDevSchema}
       />
       {/* Global background */}
       <div className="fixed inset-0 pointer-events-none z-0">

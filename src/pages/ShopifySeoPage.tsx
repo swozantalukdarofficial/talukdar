@@ -4,6 +4,93 @@ import { useState } from "react";
 import { ChevronDown, ArrowRight, CheckCircle2 } from "lucide-react";
 import SEO from "../components/SEO";
 
+const shopifySeoSchema = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "BreadcrumbList",
+			"@id": "https://webestone.com/services/shopify-seo#breadcrumb",
+			"itemListElement": [
+				{
+					"@type": "ListItem",
+					"position": 1,
+					"name": "Home",
+					"item": "https://webestone.com"
+				},
+				{
+					"@type": "ListItem",
+					"position": 2,
+					"name": "Services",
+					"item": "https://webestone.com/services"
+				},
+				{
+					"@type": "ListItem",
+					"position": 3,
+					"name": "Shopify SEO Services",
+					"item": "https://webestone.com/services/shopify-seo"
+				}
+			]
+		},
+		{
+			"@type": "Service",
+			"serviceType": "Shopify SEO Services",
+			"provider": {
+				"@type": "LocalBusiness",
+				"name": "WeBestOne",
+				"url": "https://webestone.com",
+				"logo": "https://webestone.com/favicon.png"
+			},
+			"areaServed": "BD",
+			"description": "Professional Shopify SEO services to optimize product & collection pages, fix technical SEO issues, and drive targeted organic traffic."
+		},
+		{
+			"@type": "FAQPage",
+			"mainEntity": [
+				{
+					"@type": "Question",
+					"name": "What does a Shopify SEO service include?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Our Shopify SEO services include keyword research, product and collection page optimization, technical SEO fixes, content strategy, and ongoing performance tracking."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "How long does Shopify SEO take to show results?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Initial improvements can appear within weeks, but consistent growth in organic traffic requires continuous optimization and authority building."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Why hire a Shopify SEO service agency?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "A Shopify SEO service agency ensures your store is optimized for search visibility, user experience, and conversion rate optimization, which most stores fail to achieve on their own."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What tools do you use for Shopify SEO?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "We use Google Analytics, Google Search Console, Ahrefs, and SEMrush to analyze data, track performance, and improve SEO results."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "How does Shopify SEO improve conversions?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Shopify SEO improves conversions by aligning content with search intent, improving user experience, optimizing product pages, and increasing targeted organic traffic."
+					}
+				}
+			]
+		}
+	]
+};
+
 export default function ShopifySeoPage() {
 	const [activeFaq, setActiveFaq] = useState<number | null>(0);
 
@@ -39,6 +126,7 @@ export default function ShopifySeoPage() {
 			<SEO 
 				title="Shopify SEO Service Agency | Shopify store Optimization services" 
 				description="Shopify SEO Service Agency driving growth through AI-driven Shopify SEO expert team, keyword research and high-performing Shopify store Optimization services." 
+				schemaMarkup={shopifySeoSchema}
 			/>
 			{/* 1. Hero Section */}
 			<section className="relative pt-4 lg:pt-8 pb-12 lg:pb-20 px-6 z-10">

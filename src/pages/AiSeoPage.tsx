@@ -6,6 +6,101 @@ import { MagneticButton } from "../components/ui/MagneticButton";
 import aiRobotImg from "../assets/ai-robot.png";
 import SEO from "../components/SEO";
 
+const aiSeoSchema = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "BreadcrumbList",
+			"@id": "https://webestone.com/services/ai-seo#breadcrumb",
+			"itemListElement": [
+				{
+					"@type": "ListItem",
+					"position": 1,
+					"name": "Home",
+					"item": "https://webestone.com"
+				},
+				{
+					"@type": "ListItem",
+					"position": 2,
+					"name": "Services",
+					"item": "https://webestone.com/services"
+				},
+				{
+					"@type": "ListItem",
+					"position": 3,
+					"name": "AI SEO Services",
+					"item": "https://webestone.com/services/ai-seo"
+				}
+			]
+		},
+		{
+			"@type": "Service",
+			"serviceType": "AI SEO & GEO Services",
+			"provider": {
+				"@type": "LocalBusiness",
+				"name": "WeBestOne",
+				"url": "https://webestone.com",
+				"logo": "https://webestone.com/favicon.png"
+			},
+			"areaServed": "BD",
+			"description": "Generative Engine Optimization (GEO) & AI SEO services to dominate next-gen AI search platforms like Google SGE, Perplexity, and Gemini."
+		},
+		{
+			"@type": "FAQPage",
+			"mainEntity": [
+				{
+					"@type": "Question",
+					"name": "Why choose an AI SEO service agency like WebestOne?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Because visibility without results is wasted. We operate as a proven AI SEO company focused on real growth and strong AI search visibility."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Do you offer AI-based SEO services for Google SGE?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Yes. Our AI-based SEO services are designed for Google SGE, AI Overviews, and modern AI search systems."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What makes your AI SEO solutions different?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "We focus on clarity, intent, and LLM optimization, not just rankings."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Can AI SEO improve visibility on Perplexity AI and Gemini?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Yes. We improve LLM visibility across both platforms."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "How long does it take to see results?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "You will see early changes in months, with stronger results over time."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Do you guarantee rankings?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "No. We guarantee clear execution, transparency, and continuous improvement."
+					}
+				}
+			]
+		}
+	]
+};
+
 export default function AiSeoPage() {
 	const [activeFaq, setActiveFaq] = useState<number | null>(0);
 

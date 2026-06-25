@@ -60,6 +60,77 @@ const heroItem = {
 	},
 };
 
+const digitalMarketingSchema = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "BreadcrumbList",
+			"@id": "https://webestone.com/services/digital-marketing#breadcrumb",
+			"itemListElement": [
+				{
+					"@type": "ListItem",
+					"position": 1,
+					"name": "Home",
+					"item": "https://webestone.com"
+				},
+				{
+					"@type": "ListItem",
+					"position": 2,
+					"name": "Services",
+					"item": "https://webestone.com/services"
+				},
+				{
+					"@type": "ListItem",
+					"position": 3,
+					"name": "Digital Marketing",
+					"item": "https://webestone.com/services/digital-marketing"
+				}
+			]
+		},
+		{
+			"@type": "Service",
+			"serviceType": "Digital Marketing Services",
+			"provider": {
+				"@type": "LocalBusiness",
+				"name": "WeBestOne",
+				"url": "https://webestone.com",
+				"logo": "https://webestone.com/favicon.png"
+			},
+			"areaServed": "BD",
+			"description": "Premium results-driven digital marketing services including AI SEO, PPC, Google Ads, content strategy and conversion focused campaigns."
+		},
+		{
+			"@type": "FAQPage",
+			"mainEntity": [
+				{
+					"@type": "Question",
+					"name": "What does digital marketing include?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Digital marketing covers SEO, PPC, social media, content writing, web design, and analytics. At WebestOne, these services work together as an integrated growth system."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "How long does it take to see results?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Paid campaigns typically show measurable results in 4 to 6 weeks. SEO and content marketing build compounding returns over 3 to 6 months."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Do you offer custom digital marketing plans?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Yes. Every plan is built around your specific industry, audience, budget, and goals. No templates. No copy-paste strategies."
+					}
+				}
+			]
+		}
+	]
+};
+
 export default function DigitalMarketingPage() {
 	const [activeReason, setActiveReason] = useState(0);
 	const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -75,6 +146,7 @@ export default function DigitalMarketingPage() {
 			<SEO 
 				title="Digital Marketing Agency | Expert Digital Marketing Solutions" 
 				description="Leading Digital Marketing Agency offering AI powered digital marketing services specializing in AI SEO, Google Ads, content strategy and conversion focused campaigns" 
+				schemaMarkup={digitalMarketingSchema}
 			/>
 			{/* Background Effects */}
 			<div className="absolute inset-0 z-0 pointer-events-none">
