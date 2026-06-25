@@ -149,6 +149,7 @@ export default function VideoSection() {
 												setInputUrl("");
 											}}
 											className="p-3 rounded-xl border border-white/10 text-neutral-500 hover:text-white hover:border-white/20 transition-all duration-200"
+											aria-label="Close URL input"
 										>
 											<X className="w-4 h-4" />
 										</button>
@@ -327,3 +328,4 @@ export default function VideoSection() {
 		</section>
 	);
 }
+

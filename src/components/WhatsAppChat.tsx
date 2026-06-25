@@ -38,6 +38,7 @@ export default function WhatsAppChat() {
 							<button
 								onClick={() => setIsOpen(false)}
 								className="text-white/80 hover:text-white transition-colors"
+								aria-label="Close chat"
 							>
 								<X className="w-5 h-5" />
 							</button>
@@ -62,6 +63,7 @@ export default function WhatsAppChat() {
 								<button
 									onClick={handleSend}
 									className="absolute right-2 bottom-2 p-2 bg-[#25D366] text-white rounded-full hover:bg-[#20bd5a] transition-colors shadow-md"
+									aria-label="Send message to WhatsApp"
 								>
 									<Send className="w-4 h-4" />
 								</button>
@@ -77,6 +79,7 @@ export default function WhatsAppChat() {
 				whileTap={{ scale: 0.9 }}
 				onClick={() => setIsOpen(!isOpen)}
 				className="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-shadow"
+				aria-label={isOpen ? "Close WhatsApp chat" : "Open WhatsApp chat"}
 			>
 				{isOpen ?
 					<X className="w-7 h-7 text-white" />
