@@ -28,91 +28,151 @@ export const blogPosts = [
 
             <h2>The Top 10 Digital Marketing Agency in Bangladesh in 2026</h2>
             
-            <h3>1. WeBestOne</h3>
-            <p>WeBestOne is a creative and AI-powered agency built for one job: turning your online presence into real revenue. While most agencies still chase likes and impressions, WeBestOne focuses on what actually grows a business. Conversion. Customer engagement. Profit.</p>
-            <p>What makes them the best digital marketing agency in Bangladesh for 2026 is the combination of three things you rarely find together.</p>
-            <ul>
-                <li>First, deep AI integration. Every campaign uses <a href="/services/seo">AI SEO</a>, smart audience targeting, and automated reporting. That means faster results and less wasted ad spend.</li>
-                <li>Second, full service execution. From Search Engine Optimization and <a href="/services/shopify-seo">Shopify SEO</a> to performance marketing, branding, and web development, you get one team handling everything. No vendor circus.</li>
-                <li>Third, direct access. You talk to the experts running your campaigns, not a layer of account managers. When something needs to change, it changes that day.</li>
-            </ul>
-            <p>Their <a href="/work">case studies</a> show real wins. One e-commerce client saw a 300 percent jump in user retention. Another cut their cost per lead by 12 times after a funnel rebuild.</p>
-            <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-6 text-sm">
-                <p class="mb-2"><strong>Best for:</strong> Growing brands and SMEs in e-commerce, SaaS, Ed-Tech, and Real Estate that want measurable ROI without the slow, bureaucratic process of bigger firms.</p>
-                <p class="mb-2"><strong>Services:</strong> SEO, AI SEO, PPC, Social Media Marketing, Shopify SEO, Web Development, Content Marketing, Video Editing, Motion Graphics.</p>
-                <p class="mb-0"><strong>Why they stand out:</strong> Speed, transparency, and a stubborn focus on revenue over vanity metrics.</p>
+            <!-- Agency 1 -->
+            <div class="my-10 p-6 md:p-8 rounded-3xl border border-white/10 bg-neutral-950/40 hover:border-[#87E65C]/30 transition-all duration-300">
+                <h3 class="text-xl md:text-2xl font-extrabold text-white flex items-center gap-3 mb-4">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#87E65C]/10 text-[#87E65C] text-sm md:text-base font-bold">1</span>
+                    WeBestOne
+                </h3>
+                <p>WeBestOne is a creative and AI-powered agency built for one job: turning your online presence into real revenue. While most agencies still chase likes and impressions, WeBestOne focuses on what actually grows a business. Conversion. Customer engagement. Profit.</p>
+                <p>What makes them the best digital marketing agency in Bangladesh for 2026 is the combination of three things you rarely find together.</p>
+                <ul>
+                    <li>First, deep AI integration. Every campaign uses <a href="/services/seo">AI SEO</a>, smart audience targeting, and automated reporting. That means faster results and less wasted ad spend.</li>
+                    <li>Second, full service execution. From Search Engine Optimization and <a href="/services/shopify-seo">Shopify SEO</a> to performance marketing, branding, and web development, you get one team handling everything. No vendor circus.</li>
+                    <li>Third, direct access. You talk to the experts running your campaigns, not a layer of account managers. When something needs to change, it changes that day.</li>
+                </ul>
+                <p>Their <a href="/work">case studies</a> show real wins. One e-commerce client saw a 300 percent jump in user retention. Another cut their cost per lead by 12 times after a funnel rebuild.</p>
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-0 text-sm">
+                    <p class="mb-2"><strong>Best for:</strong> Growing brands and SMEs in e-commerce, SaaS, Ed-Tech, and Real Estate that want measurable ROI without the slow, bureaucratic process of bigger firms.</p>
+                    <p class="mb-2"><strong>Services:</strong> SEO, AI SEO, PPC, Social Media Marketing, Shopify SEO, Web Development, Content Marketing, Video Editing, Motion Graphics.</p>
+                    <p class="mb-0"><strong>Why they stand out:</strong> Speed, transparency, and a stubborn focus on revenue over vanity metrics.</p>
+                </div>
             </div>
 
-            <h3>2. Magnito Digital</h3>
-            <p>Magnito Digital is one of the oldest and most established names in Bangladeshi digital marketing. They have worked with major corporate brands and built a strong reputation for full-scale campaigns. If you are a large enterprise looking for traditional agency structure and big-name client experience, Magnito is a safe pick.</p>
-            <p>The trade-off is what you might expect from a big agency. Slower turnaround, layered communication, and pricing that reflects their size rather than your stage. For startups and small businesses, this can feel heavy.</p>
-            <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-6 text-sm">
-                <p class="mb-2"><strong>Best for:</strong> Large enterprises and corporate brands with bigger budgets.</p>
-                <p class="mb-0"><strong>Services:</strong> Branding, digital strategy, social media marketing, content production, media buying.</p>
+            <!-- Agency 2 -->
+            <div class="my-10 p-6 md:p-8 rounded-3xl border border-white/10 bg-neutral-950/40 hover:border-[#87E65C]/30 transition-all duration-300">
+                <h3 class="text-xl md:text-2xl font-extrabold text-white flex items-center gap-3 mb-4">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#87E65C]/10 text-[#87E65C] text-sm md:text-base font-bold">2</span>
+                    Magnito Digital
+                </h3>
+                <p>Magnito Digital is one of the oldest and most established names in Bangladeshi digital marketing. They have worked with major corporate brands and built a strong reputation for full-scale campaigns. If you are a large enterprise looking for traditional agency structure and big-name client experience, Magnito is a safe pick.</p>
+                <p>The trade-off is what you might expect from a big agency. Slower turnaround, layered communication, and pricing that reflects their size rather than your stage. For startups and small businesses, this can feel heavy.</p>
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-0 text-sm">
+                    <p class="mb-2"><strong>Best for:</strong> Large enterprises and corporate brands with bigger budgets.</p>
+                    <p class="mb-0"><strong>Services:</strong> Branding, digital strategy, social media marketing, content production, media buying.</p>
+                </div>
             </div>
 
-            <h3>3. Notionhive</h3>
-            <p>Notionhive is a creative digital agency in Bangladesh known for visually strong campaigns and bold brand storytelling. They lean heavily into the creative side, producing campaigns that look beautiful and feel polished. Their work for established brands has won attention across the region.</p>
-            <p>Where they sometimes get challenged is on the performance side. Pretty creative does not always equal conversion. If your top priority is data-driven campaigns and measurable ROI, you may need to push them on the analytics.</p>
-            <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-6 text-sm">
-                <p class="mb-2"><strong>Best for:</strong> Brands that need strong visual identity, video marketing, and creative-led campaigns.</p>
-                <p class="mb-0"><strong>Services:</strong> Branding, creative production, social media management, content, digital ads.</p>
+            <!-- Agency 3 -->
+            <div class="my-10 p-6 md:p-8 rounded-3xl border border-white/10 bg-neutral-950/40 hover:border-[#87E65C]/30 transition-all duration-300">
+                <h3 class="text-xl md:text-2xl font-extrabold text-white flex items-center gap-3 mb-4">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#87E65C]/10 text-[#87E65C] text-sm md:text-base font-bold">3</span>
+                    Notionhive
+                </h3>
+                <p>Notionhive is a creative digital agency in Bangladesh known for visually strong campaigns and bold brand storytelling. They lean heavily into the creative side, producing campaigns that look beautiful and feel polished. Their work for established brands has won attention across the region.</p>
+                <p>Where they sometimes get challenged is on the performance side. Pretty creative does not always equal conversion. If your top priority is data-driven campaigns and measurable ROI, you may need to push them on the analytics.</p>
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-0 text-sm">
+                    <p class="mb-2"><strong>Best for:</strong> Brands that need strong visual identity, video marketing, and creative-led campaigns.</p>
+                    <p class="mb-0"><strong>Services:</strong> Branding, creative production, social media management, content, digital ads.</p>
+                </div>
             </div>
 
-            <h3>4. WebAble Digital</h3>
-            <p>WebAble Digital has built a steady reputation in Bangladesh, especially for clients in e-commerce and lifestyle brands. They offer the standard set of digital marketing services and have a decent track record on social media campaigns. Their team is known for being responsive and easy to work with.</p>
-            <p>The downside some clients mention is service depth in advanced areas like technical SEO and AI-powered automation. They cover the basics well, but the cutting edge is not always where they live.</p>
-            <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-6 text-sm">
-                <p class="mb-2"><strong>Best for:</strong> Mid-sized brands needing reliable social and content support.</p>
-                <p class="mb-0"><strong>Services:</strong> Social media marketing, content, paid ads on Meta and Google, basic SEO.</p>
+            <!-- Agency 4 -->
+            <div class="my-10 p-6 md:p-8 rounded-3xl border border-white/10 bg-neutral-950/40 hover:border-[#87E65C]/30 transition-all duration-300">
+                <h3 class="text-xl md:text-2xl font-extrabold text-white flex items-center gap-3 mb-4">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#87E65C]/10 text-[#87E65C] text-sm md:text-base font-bold">4</span>
+                    WebAble Digital
+                </h3>
+                <p>WebAble Digital has built a steady reputation in Bangladesh, especially for clients in e-commerce and lifestyle brands. They offer the standard set of digital marketing services and have a decent track record on social media campaigns. Their team is known for being responsive and easy to work with.</p>
+                <p>The downside some clients mention is service depth in advanced areas like technical SEO and AI-powered automation. They cover the basics well, but the cutting edge is not always where they live.</p>
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-0 text-sm">
+                    <p class="mb-2"><strong>Best for:</strong> Mid-sized brands needing reliable social and content support.</p>
+                    <p class="mb-0"><strong>Services:</strong> Social media marketing, content, paid ads on Meta and Google, basic SEO.</p>
+                </div>
             </div>
 
-            <h3>5. BEAR MY BRAND</h3>
-            <p>BEAR MY BRAND positions itself as a branding and marketing agency in Bangladesh with a focus on building brand identity from the ground up. If you are a new business that needs a logo, brand voice, visual system, and launch campaign all together, they are a sensible option.</p>
-            <p>Their strength is branding. Their weakness, based on what clients have shared, is the performance marketing side. For paid ad scaling and SEO that compounds over time, you may need additional support.</p>
-            <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-6 text-sm">
-                <p class="mb-2"><strong>Best for:</strong> Startups and new brands that need identity and launch packaging.</p>
-                <p class="mb-0"><strong>Services:</strong> Branding, creative design, basic digital marketing.</p>
+            <!-- Agency 5 -->
+            <div class="my-10 p-6 md:p-8 rounded-3xl border border-white/10 bg-neutral-950/40 hover:border-[#87E65C]/30 transition-all duration-300">
+                <h3 class="text-xl md:text-2xl font-extrabold text-white flex items-center gap-3 mb-4">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#87E65C]/10 text-[#87E65C] text-sm md:text-base font-bold">5</span>
+                    BEAR MY BRAND
+                </h3>
+                <p>BEAR MY BRAND positions itself as a branding and marketing agency in Bangladesh with a focus on building brand identity from the ground up. If you are a new business that needs a logo, brand voice, visual system, and launch campaign all together, they are a sensible option.</p>
+                <p>Their strength is branding. Their weakness, based on what clients have shared, is the performance marketing side. For paid ad scaling and SEO that compounds over time, you may need additional support.</p>
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-0 text-sm">
+                    <p class="mb-2"><strong>Best for:</strong> Startups and new brands that need identity and launch packaging.</p>
+                    <p class="mb-0"><strong>Services:</strong> Branding, creative design, basic digital marketing.</p>
+                </div>
             </div>
 
-            <h3>6. Red Sparrow Digital</h3>
-            <p>Red Sparrow Digital is a smaller, boutique-style digital agency that focuses on personalized service. They do social media management, paid ads on Facebook and Instagram, and basic SEO. Clients often appreciate the close communication and flexibility.</p>
-            <p>That said, smaller teams come with smaller capacity. If you scale fast or need multiple service lines running at once, you may outgrow them quickly.</p>
-            <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-6 text-sm">
-                <p class="mb-2"><strong>Best for:</strong> Small businesses and solo founders who want a hands-on agency relationship.</p>
-                <p class="mb-0"><strong>Services:</strong> Social media marketing, PPC, content.</p>
+            <!-- Agency 6 -->
+            <div class="my-10 p-6 md:p-8 rounded-3xl border border-white/10 bg-neutral-950/40 hover:border-[#87E65C]/30 transition-all duration-300">
+                <h3 class="text-xl md:text-2xl font-extrabold text-white flex items-center gap-3 mb-4">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#87E65C]/10 text-[#87E65C] text-sm md:text-base font-bold">6</span>
+                    Red Sparrow Digital
+                </h3>
+                <p>Red Sparrow Digital is a smaller, boutique-style digital agency that focuses on personalized service. They do social media management, paid ads on Facebook and Instagram, and basic SEO. Clients often appreciate the close communication and flexibility.</p>
+                <p>That said, smaller teams come with smaller capacity. If you scale fast or need multiple service lines running at once, you may outgrow them quickly.</p>
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-0 text-sm">
+                    <p class="mb-2"><strong>Best for:</strong> Small businesses and solo founders who want a hands-on agency relationship.</p>
+                    <p class="mb-0"><strong>Services:</strong> Social media marketing, PPC, content.</p>
+                </div>
             </div>
 
-            <h3>7. Bizcope</h3>
-            <p>Bizcope is known for its SEO focus and is often mentioned among expert SEO agencies in Bangladesh. They put strong weight on keyword research, on-page optimization, and link building. If you need to climb the Google Search rankings, they have done that work before.</p>
-            <p>Where they are weaker is in the full creative and branding side. Pure SEO firms often struggle when a client also needs strong design and content marketing assets to support the rankings.</p>
-            <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-6 text-sm">
-                <p class="mb-2"><strong>Best for:</strong> Businesses that need pure SEO firepower and search visibility.</p>
-                <p class="mb-0"><strong>Services:</strong> SEO, on-page optimization, link building, local SEO.</p>
+            <!-- Agency 7 -->
+            <div class="my-10 p-6 md:p-8 rounded-3xl border border-white/10 bg-neutral-950/40 hover:border-[#87E65C]/30 transition-all duration-300">
+                <h3 class="text-xl md:text-2xl font-extrabold text-white flex items-center gap-3 mb-4">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#87E65C]/10 text-[#87E65C] text-sm md:text-base font-bold">7</span>
+                    Bizcope
+                </h3>
+                <p>Bizcope is known for its SEO focus and is often mentioned among expert SEO agencies in Bangladesh. They put strong weight on keyword research, on-page optimization, and link building. If you need to climb the Google Search rankings, they have done that work before.</p>
+                <p>Where they are weaker is in the full creative and branding side. Pure SEO firms often struggle when a client also needs strong design and content marketing assets to support the rankings.</p>
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-0 text-sm">
+                    <p class="mb-2"><strong>Best for:</strong> Businesses that need pure SEO firepower and search visibility.</p>
+                    <p class="mb-0"><strong>Services:</strong> SEO, on-page optimization, link building, local SEO.</p>
+                </div>
             </div>
 
-            <h3>8. Purplebot Digital</h3>
-            <p>Purplebot Digital is a newer name in the Bangladesh digital marketing scene and has been growing steadily. They focus on performance marketing and data-backed campaigns. Their pricing tends to be friendlier than the giants, which makes them attractive to growing businesses.</p>
-            <p>Being newer, their case study library is still building. So if you want a long track record with major brands, they may not be your first stop. But for fresh thinking and hungry execution, they are worth a conversation.</p>
-            <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-6 text-sm">
-                <p class="mb-2"><strong>Best for:</strong> Growing businesses that want performance marketing on a leaner budget.</p>
-                <p class="mb-0"><strong>Services:</strong> Paid ads, social media, basic SEO, content.</p>
+            <!-- Agency 8 -->
+            <div class="my-10 p-6 md:p-8 rounded-3xl border border-white/10 bg-neutral-950/40 hover:border-[#87E65C]/30 transition-all duration-300">
+                <h3 class="text-xl md:text-2xl font-extrabold text-white flex items-center gap-3 mb-4">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#87E65C]/10 text-[#87E65C] text-sm md:text-base font-bold">8</span>
+                    Purplebot Digital
+                </h3>
+                <p>Purplebot Digital is a newer name in the Bangladesh digital marketing scene and has been growing steadily. They focus on performance marketing and data-backed campaigns. Their pricing tends to be friendlier than the giants, which makes them attractive to growing businesses.</p>
+                <p>Being newer, their case study library is still building. So if you want a long track record with major brands, they may not be your first stop. But for fresh thinking and hungry execution, they are worth a conversation.</p>
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-0 text-sm">
+                    <p class="mb-2"><strong>Best for:</strong> Growing businesses that want performance marketing on a leaner budget.</p>
+                    <p class="mb-0"><strong>Services:</strong> Paid ads, social media, basic SEO, content.</p>
+                </div>
             </div>
 
-            <h3>9. VISER X</h3>
-            <p>VISER X is a digital advertising agency in Bangladesh that offers a mix of social media marketing, paid ads, and content support. They have worked with both local SMEs and some larger clients. Their service catalog is broad, which can be a plus or a minus depending on what you need.</p>
-            <p>Broad service offerings sometimes mean shallow expertise in each area. If you have a specific complex challenge like Shopify SEO at scale or advanced conversion rate optimization, ask them for proof of work in that exact area before signing.</p>
-            <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-6 text-sm">
-                <p class="mb-2"><strong>Best for:</strong> Local businesses needing a generalist digital agency.</p>
-                <p class="mb-0"><strong>Services:</strong> Digital marketing, branding, social media.</p>
+            <!-- Agency 9 -->
+            <div class="my-10 p-6 md:p-8 rounded-3xl border border-white/10 bg-neutral-950/40 hover:border-[#87E65C]/30 transition-all duration-300">
+                <h3 class="text-xl md:text-2xl font-extrabold text-white flex items-center gap-3 mb-4">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#87E65C]/10 text-[#87E65C] text-sm md:text-base font-bold">9</span>
+                    VISER X
+                </h3>
+                <p>VISER X is a digital advertising agency in Bangladesh that offers a mix of social media marketing, paid ads, and content support. They have worked with both local SMEs and some larger clients. Their service catalog is broad, which can be a plus or a minus depending on what you need.</p>
+                <p>Broad service offerings sometimes mean shallow expertise in each area. If you have a specific complex challenge like Shopify SEO at scale or advanced conversion rate optimization, ask them for proof of work in that exact area before signing.</p>
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-0 text-sm">
+                    <p class="mb-2"><strong>Best for:</strong> Local businesses needing a generalist digital agency.</p>
+                    <p class="mb-0"><strong>Services:</strong> Digital marketing, branding, social media.</p>
+                </div>
             </div>
 
-            <h3>10. Marketorr BD</h3>
-            <p>Marketorr BD rounds out the list as an emerging digital marketing company in Bangladesh. They focus on small businesses and offer accessible pricing. For founders just starting their online presence, they can be a reasonable entry point.</p>
-            <p>Their newer status means smaller team, lighter portfolio, and fewer advanced capabilities. Suitable as a starter agency, but most growing brands will outgrow them within a year.</p>
-            <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-6 text-sm">
-                <p class="mb-2"><strong>Best for:</strong> Very small businesses and first-time digital marketing buyers.</p>
-                <p class="mb-0"><strong>Services:</strong> Social media, basic content, simple ad campaigns.</p>
+            <!-- Agency 10 -->
+            <div class="my-10 p-6 md:p-8 rounded-3xl border border-white/10 bg-neutral-950/40 hover:border-[#87E65C]/30 transition-all duration-300">
+                <h3 class="text-xl md:text-2xl font-extrabold text-white flex items-center gap-3 mb-4">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#87E65C]/10 text-[#87E65C] text-sm md:text-base font-bold">10</span>
+                    Marketorr BD
+                </h3>
+                <p>Marketorr BD rounds out the list as an emerging digital marketing company in Bangladesh. They focus on small businesses and offer accessible pricing. For founders just starting their online presence, they can be a reasonable entry point.</p>
+                <p>Their newer status means smaller team, lighter portfolio, and fewer advanced capabilities. Suitable as a starter agency, but most growing brands will outgrow them within a year.</p>
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10 mb-0 text-sm">
+                    <p class="mb-2"><strong>Best for:</strong> Very small businesses and first-time digital marketing buyers.</p>
+                    <p class="mb-0"><strong>Services:</strong> Social media, basic content, simple ad campaigns.</p>
+                </div>
             </div>
 
             <h2>Quick Comparison: Which Agency Fits Your Business?</h2>
@@ -192,20 +252,77 @@ export const blogPosts = [
             <p>For brands in e-commerce, SaaS, Ed-Tech, and Real Estate looking for a creative digital agency in Bangladesh that delivers performance, WeBestOne is built for that exact match.</p>
 
             <h2>Frequently Asked Questions</h2>
-            <h3>Which is the best digital marketing agency in Bangladesh?</h3>
-            <p>WeBestOne ranks as the top digital marketing agency in Bangladesh for 2026 because of its AI-powered approach, focus on ROI, and full-stack service model. Other strong options include Magnito Digital for enterprise clients and Notionhive for creative-led work.</p>
-            <h3>How much does a digital marketing agency in Bangladesh cost?</h3>
-            <p>Pricing varies widely. Small agencies start around 25,000 to 50,000 taka per month for basic social media support. Mid-tier agencies range from 1 lakh to 3 lakh taka monthly for full digital marketing services. Enterprise-level firms can charge 5 lakh taka or more per month for large-scale campaigns.</p>
-            <h3>How long does it take to see results from a digital marketing agency?</h3>
-            <p>Paid ads on Meta Ads and Google Ads usually show measurable results in 4 to 6 weeks. Search Engine Optimization and content marketing take 3 to 6 months to compound. Brand-building and customer engagement work shows the strongest results after 6 to 12 months of consistent effort.</p>
-            <h3>Do I need a full service digital marketing agency or a specialist?</h3>
-            <p>If you need only one channel like SEO or Facebook ads, a specialist works fine. But most growing brands need SEO, social, content, web development, and branding to work together. A full service digital marketing agency keeps everything aligned and avoids the cost of managing multiple vendors.</p>
-            <h3>What services should a top digital marketing agency in Bangladesh offer?</h3>
-            <p>A complete digital advertising agency in Bangladesh should cover SEO, social media marketing on Meta and LinkedIn, YouTube and TikTok video marketing, content marketing, PPC, email marketing, branding, web development on WordPress and Shopify, and analytics on tools like Google Analytics and Google Search Console.</p>
-            <h3>Where are the best digital marketing companies in Bangladesh located?</h3>
-            <p>Most leading agencies are based in Dhaka, with a growing number now also operating from Chattogram. Location matters less in 2026 because most agencies work remotely with clients across the country and abroad.</p>
-            <h3>How do I check if a digital marketing agency is trustworthy?</h3>
-            <p>Check verified reviews on Clutch, GoodFirms, Upwork, and the agency's Google Business Profile. Ask for live access to a current client's dashboard during your sales conversation. Real agencies will say yes.</p>
+            <div class="space-y-6 mt-8">
+                <div class="p-6 rounded-2xl border border-white/5 bg-neutral-900/30 hover:border-[#87E65C]/20 transition-all duration-300">
+                    <h3 class="text-lg md:text-xl font-bold text-white flex items-start gap-3 mb-3">
+                        <span class="text-[#87E65C] font-extrabold">Q.</span>
+                        Which is the best digital marketing agency in Bangladesh?
+                    </h3>
+                    <p class="text-neutral-400 pl-7 leading-relaxed mb-0">
+                        WeBestOne ranks as the top digital marketing agency in Bangladesh for 2026 because of its AI-powered approach, focus on ROI, and full-stack service model. Other strong options include Magnito Digital for enterprise clients and Notionhive for creative-led work.
+                    </p>
+                </div>
+                
+                <div class="p-6 rounded-2xl border border-white/5 bg-neutral-900/30 hover:border-[#87E65C]/20 transition-all duration-300">
+                    <h3 class="text-lg md:text-xl font-bold text-white flex items-start gap-3 mb-3">
+                        <span class="text-[#87E65C] font-extrabold">Q.</span>
+                        How much does a digital marketing agency in Bangladesh cost?
+                    </h3>
+                    <p class="text-neutral-400 pl-7 leading-relaxed mb-0">
+                        Pricing varies widely. Small agencies start around 25,000 to 50,000 taka per month for basic social media support. Mid-tier agencies range from 1 lakh to 3 lakh taka monthly for full digital marketing services. Enterprise-level firms can charge 5 lakh taka or more per month for large-scale campaigns.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-white/5 bg-neutral-900/30 hover:border-[#87E65C]/20 transition-all duration-300">
+                    <h3 class="text-lg md:text-xl font-bold text-white flex items-start gap-3 mb-3">
+                        <span class="text-[#87E65C] font-extrabold">Q.</span>
+                        How long does it take to see results from a digital marketing agency?
+                    </h3>
+                    <p class="text-neutral-400 pl-7 leading-relaxed mb-0">
+                        Paid ads on Meta Ads and Google Ads usually show measurable results in 4 to 6 weeks. Search Engine Optimization and content marketing take 3 to 6 months to compound. Brand-building and customer engagement work shows the strongest results after 6 to 12 months of consistent effort.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-white/5 bg-neutral-900/30 hover:border-[#87E65C]/20 transition-all duration-300">
+                    <h3 class="text-lg md:text-xl font-bold text-white flex items-start gap-3 mb-3">
+                        <span class="text-[#87E65C] font-extrabold">Q.</span>
+                        Do I need a full service digital marketing agency or a specialist?
+                    </h3>
+                    <p class="text-neutral-400 pl-7 leading-relaxed mb-0">
+                        If you need only one channel like SEO or Facebook ads, a specialist works fine. But most growing brands need SEO, social, content, web development, and branding to work together. A full service digital marketing agency keeps everything aligned and avoids the cost of managing multiple vendors.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-white/5 bg-neutral-900/30 hover:border-[#87E65C]/20 transition-all duration-300">
+                    <h3 class="text-lg md:text-xl font-bold text-white flex items-start gap-3 mb-3">
+                        <span class="text-[#87E65C] font-extrabold">Q.</span>
+                        What services should a top digital marketing agency in Bangladesh offer?
+                    </h3>
+                    <p class="text-neutral-400 pl-7 leading-relaxed mb-0">
+                        A complete digital advertising agency in Bangladesh should cover SEO, social media marketing on Meta and LinkedIn, YouTube and TikTok video marketing, content marketing, PPC, email marketing, branding, web development on WordPress and Shopify, and analytics on tools like Google Analytics and Google Search Console.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-white/5 bg-neutral-900/30 hover:border-[#87E65C]/20 transition-all duration-300">
+                    <h3 class="text-lg md:text-xl font-bold text-white flex items-start gap-3 mb-3">
+                        <span class="text-[#87E65C] font-extrabold">Q.</span>
+                        Where are the best digital marketing companies in Bangladesh located?
+                    </h3>
+                    <p class="text-neutral-400 pl-7 leading-relaxed mb-0">
+                        Most leading agencies are based in Dhaka, with a growing number now also operating from Chattogram. Location matters less in 2026 because most agencies work remotely with clients across the country and abroad.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-white/5 bg-neutral-900/30 hover:border-[#87E65C]/20 transition-all duration-300">
+                    <h3 class="text-lg md:text-xl font-bold text-white flex items-start gap-3 mb-3">
+                        <span class="text-[#87E65C] font-extrabold">Q.</span>
+                        How do I check if a digital marketing agency is trustworthy?
+                    </h3>
+                    <p class="text-neutral-400 pl-7 leading-relaxed mb-0">
+                        Check verified reviews on Clutch, GoodFirms, Upwork, and the agency's Google Business Profile. Ask for live access to a current client's dashboard during your sales conversation. Real agencies will say yes.
+                    </p>
+                </div>
+            </div>
 
             <div class="p-8 my-12 rounded-3xl border border-[#87E65C]/30 bg-gradient-to-r from-neutral-950 to-neutral-900 text-center space-y-6 relative overflow-hidden">
                 <div class="absolute inset-0 bg-[#87E65C]/5 pointer-events-none blur-3xl rounded-full"></div>
