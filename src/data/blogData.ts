@@ -1132,7 +1132,7 @@ export const blogPosts = [
         date: "June 25, 2026",
         category: "Marketing",
         readTime: "8 min read",
-        image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1200&auto=format&fit=crop",
+        image: "/top-10-digital-marketing-agency-in-bangladesh.png",
         author: "Webestone Team",
         authorRole: "Digital Growth Experts",
         featured: true,
@@ -1172,7 +1172,7 @@ export const blogPosts = [
               },
               "headline": "Top 10 Digital Marketing Agency in Bangladesh (2026 Honest Ranking)",
               "image": [
-                "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1200&auto=format&fit=crop"
+                "https://webestone.com/top-10-digital-marketing-agency-in-bangladesh.png"
               ],
               "datePublished": "2026-06-25T23:59:00+06:00",
               "dateModified": "2026-06-25T23:59:00+06:00",
