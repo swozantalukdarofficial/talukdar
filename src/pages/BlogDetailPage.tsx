@@ -16,6 +16,7 @@ import {
   BookOpen
 } from "lucide-react";
 import { blogPosts } from "../data/blogData";
+import SEO from "../components/SEO";
 
 export default function BlogDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -71,6 +72,15 @@ export default function BlogDetailPage() {
 
   return (
     <article className="min-h-screen bg-black text-white relative pb-24">
+      <SEO 
+        title={post.seoTitle || `${post.title} - WeBestOne`} 
+        description={post.seoDescription || post.excerpt} 
+      />
+      {post.schemaMarkup && (
+        <script type="application/ld+json">
+          {JSON.stringify(post.schemaMarkup)}
+        </script>
+      )}
       {/* Top Thin Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-[#87E65C] origin-left z-50 shadow-[0_0_10px_rgba(135,230,92,0.5)]"
