@@ -352,7 +352,7 @@ export const blogPosts = [
         date: "June 26, 2026",
         category: "Marketing",
         readTime: "9 min read",
-        image: "https://images.unsplash.com/photo-1542744094-3a31f103e35f?q=80&w=1200&auto=format&fit=crop",
+        image: "/seo-guide-blog.png",
         author: "Webestone Team",
         authorRole: "SEO Specialists",
         featured: true,
@@ -392,7 +392,7 @@ export const blogPosts = [
               },
               "headline": "Best SEO Service Provider in Bangladesh: The 2026 Buyer's Guide",
               "image": [
-                "https://images.unsplash.com/photo-1542744094-3a31f103e35f?q=80&w=1200&auto=format&fit=crop"
+                "https://webestone.com/seo-guide-blog.png"
               ],
               "datePublished": "2026-06-26T00:00:00+06:00",
               "dateModified": "2026-06-26T00:00:00+06:00",
