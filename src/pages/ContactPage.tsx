@@ -155,10 +155,10 @@ export default function ContactPage() {
 									You can reach us through any of our social platforms or send us a direct message on WhatsApp for instant assistance.
 								</p>
 								<div className="flex flex-col gap-4 mb-8">
-                                    <a href="#" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">🌐 Facebook: facebook.com/webestone</a>
-                                    <a href="#" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">📸 Instagram: instagram.com/webestone</a>
-                                    <a href="#" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">💼 LinkedIn: linkedin.com/company/webestone</a>
-                                    <a href="#" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">▶️ YouTube: youtube.com/webestone</a>
+                                    <a href="https://www.facebook.com/profile.php?id=61586166715142" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">🌐 Facebook: WeBestOne</a>
+                                    <a href="https://www.instagram.com/webest_one/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">📸 Instagram: @webest_one</a>
+                                    <a href="https://www.linkedin.com/company/webestone" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">💼 LinkedIn: WeBestOne</a>
+                                    <a href="https://www.youtube.com/@webestone" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">▶️ YouTube: @webestone</a>
                                 </div>
 								<a
 									href={`https://wa.me/8801333600272?text=Hi, I want to discuss a project.`}

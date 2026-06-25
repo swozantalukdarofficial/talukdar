@@ -22,10 +22,10 @@ const services = [
 ];
 
 const socials = {
-	facebook: "https://facebook.com/webestone",
-	instagram: "https://instagram.com/webestone",
-	linkedin: "https://linkedin.com/company/webestone",
-	youtube: "https://youtube.com/@webestone",
+	facebook: "https://www.facebook.com/profile.php?id=61586166715142",
+	instagram: "https://www.instagram.com/webest_one/",
+	linkedin: "https://www.linkedin.com/company/webestone",
+	youtube: "https://www.youtube.com/@webestone",
 	whatsapp: "+8801333600272",
 	email: "webestone@gmail.com",
 };
