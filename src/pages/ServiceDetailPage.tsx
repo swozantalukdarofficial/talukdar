@@ -2,6 +2,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Play, CheckCircle2 } from "lucide-react";
 import servicePages from "../data/service-pages.json";
+import SEO from "../components/SEO";
 
 export default function ServiceDetailPage() {
 	const { slug } = useParams<{ slug: string }>();
@@ -23,8 +24,15 @@ export default function ServiceDetailPage() {
 
 	// For slugs without a detail page, show a fallback
 	if (!page) {
+		const formattedSlug = slug
+			?.replace(/-/g, " ")
+			.replace(/\b\w/g, (c) => c.toUpperCase()) || "Service";
 		return (
 			<main className="relative min-h-screen text-white pt-20 overflow-hidden bg-black">
+				<SEO 
+					title={`${formattedSlug} - WeBestOne`} 
+					description={`We provide world-class ${slug?.replace(/-/g, " ") || "service"} services tailored to your business goals.`} 
+				/>
 				<div className="absolute inset-0 z-0">
 					<div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-green/5 rounded-full blur-[150px]" />
 					<div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-[150px]" />
@@ -57,6 +65,10 @@ export default function ServiceDetailPage() {
 
 	return (
 		<main className="relative min-h-screen text-white pt-20 overflow-hidden bg-black">
+			<SEO 
+				title={page.metaTitle || `${page.h1} - WeBestOne`} 
+				description={page.metaDescription || page.description || ""} 
+			/>
 			{/* Background Effects */}
 			<div className="absolute inset-0 z-0">
 				<div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-green/5 rounded-full blur-[150px]" />

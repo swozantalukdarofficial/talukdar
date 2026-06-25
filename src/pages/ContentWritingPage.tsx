@@ -25,6 +25,7 @@ import {
   Award,
 } from "lucide-react";
 import { useState } from "react";
+import SEO from "../components/SEO";
 
 /* ─── Animation Variants ─── */
 const fadeUp = {
@@ -350,6 +351,10 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 export default function ContentWritingPage() {
   return (
     <main className="relative min-h-screen text-white bg-black overflow-hidden">
+      <SEO 
+        title="Content Writing Services | Creative Content Writing Agency" 
+        description="Expert Content Writing Services are designed to scale your brand with SEO optimized blogs, authority-building articles and a creative content writing team." 
+      />
       {/* Global background */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-neon-green/5 rounded-full blur-[150px]" />

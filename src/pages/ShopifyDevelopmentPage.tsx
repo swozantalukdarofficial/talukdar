@@ -19,6 +19,7 @@ import Awards from "../components/Awards";
 import TestimonialSlider from "../components/TestimonialSlider";
 import Counter from "../components/Counter";
 import ShopifyPortfolio from "../components/ShopifyPortfolio";
+import SEO from "../components/SEO";
 
 const services = [
   {
@@ -138,6 +139,10 @@ export default function ShopifyDevelopmentPage() {
   
   return (
     <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-emerald-500/30">
+      <SEO 
+        title="Custom Shopify Store Development Agency - WeBestOne" 
+        description="Get a high-speed, custom-designed Shopify store built for conversions, scalability, and seamless checkout experiences." 
+      />
       
       {/* 1. HERO SECTION (UPGRADED) */}
       <section className="relative z-10 pt-4 lg:pt-6 pb-8 lg:pb-12 px-6 overflow-hidden">

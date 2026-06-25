@@ -19,6 +19,7 @@ import seoDashboardImg from "../assets/seo-dashboard.png";
 import aiLettersImg from "../assets/ai-letters.png";
 import circuitBoardImg from "../assets/circuit-board.png";
 import aiBrainImg from "../assets/ai-brain.png";
+import SEO from "../components/SEO";
 
 const offers = [
   {
@@ -110,6 +111,10 @@ export default function SeoPage() {
 
   return (
     <main className="min-h-screen bg-black text-white pt-24 overflow-hidden">
+      <SEO 
+        title="AI SEO Service Agency | Advanced AI Driven SEO Solutions" 
+        description="Leading AI SEO Service Agency helping brands grow visibility in AI search through LLM optimization, AI SEO, semantic search and high-impact content strategies." 
+      />
       {/* 1. Hero Section - Standardized Sizes */}
       <section className="relative z-10 px-6 lg:px-20 pt-4 pb-12 md:pt-8 md:pb-16 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">

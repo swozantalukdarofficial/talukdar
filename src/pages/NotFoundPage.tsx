@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Home, ArrowLeft } from "lucide-react";
+import SEO from "../components/SEO";
 
 export default function NotFoundPage() {
 	return (
 		<main className="min-h-screen flex items-center justify-center text-white px-6 relative">
+			<SEO 
+				title="Page Not Found - WeBestOne" 
+				description="The page you are looking for does not exist." 
+			/>
 			<div className="absolute inset-0 z-0 pointer-events-none">
 				<div className="absolute top-1/3 left-1/3 w-64 h-64 bg-neon-green/10 rounded-full blur-[100px]" />
 				<div className="absolute bottom-1/3 right-1/3 w-64 h-64 bg-blue-500/10 rounded-full blur-[100px]" />

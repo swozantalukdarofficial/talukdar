@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Search, ArrowRight, Sparkles, Filter, Calendar, Clock } from "lucide-react";
 import { blogPosts, categories } from "../data/blogData";
 import CircularGallery from "../components/CircularGallery";
+import SEO from "../components/SEO";
 
 export default function BlogsPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -60,6 +61,10 @@ export default function BlogsPage() {
 
   return (
     <main className="min-h-screen bg-black text-white pt-24 pb-24 overflow-hidden relative">
+      <SEO 
+        title="SEO & Marketing Insights Blog - WeBestOne" 
+        description="Stay ahead of the curve with insights on AI SEO, content strategies, custom development, and digital marketing from the WeBestOne experts." 
+      />
       {/* Immersive Background Elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-br from-neon-green/5 to-purple-600/5 rounded-full blur-[140px] pointer-events-none z-0" />
       <div className="absolute top-[80vh] right-0 w-[400px] h-[400px] bg-blue-500/[0.02] rounded-full blur-[120px] pointer-events-none z-0" />

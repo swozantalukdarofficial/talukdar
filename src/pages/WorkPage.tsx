@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import DomeGallery from "../components/DomeGallery";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 const PORTFOLIO_IMAGES = [
   {
@@ -58,6 +59,10 @@ const PORTFOLIO_IMAGES = [
 export default function WorkPage() {
   return (
     <main className="min-h-screen bg-black overflow-hidden relative pb-24">
+      <SEO 
+        title="Our Work & Case Studies - WeBestOne" 
+        description="Explore our portfolio of successful projects, including web development, AI SEO campaigns, and branding that drive revenue." 
+      />
       {/* Dynamic Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-neon-green/5 rounded-full blur-[150px] pointer-events-none z-0" />
       <div className="absolute bottom-20 left-1/4 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[150px] pointer-events-none z-0" />

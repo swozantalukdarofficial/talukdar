@@ -19,8 +19,8 @@ import {
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { MagneticButton } from "../components/ui/MagneticButton";
-
 import pageData from "../data/digital-marketing-page.json";
+import SEO from "../components/SEO";
 
 const iconMap: Record<string, React.ComponentType<any>> = {
 	Play,
@@ -72,6 +72,10 @@ export default function DigitalMarketingPage() {
 
 	return (
 		<main className="relative min-h-screen text-white pt-20 overflow-hidden bg-black">
+			<SEO 
+				title="Digital Marketing Agency | Expert Digital Marketing Solutions" 
+				description="Leading Digital Marketing Agency offering AI powered digital marketing services specializing in AI SEO, Google Ads, content strategy and conversion focused campaigns" 
+			/>
 			{/* Background Effects */}
 			<div className="absolute inset-0 z-0 pointer-events-none">
 				<div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-green/5 rounded-full blur-[150px]" />

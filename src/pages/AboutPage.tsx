@@ -24,6 +24,7 @@ import Awards from "../components/Awards";
 import Counter from "../components/Counter";
 import FAQ from "../components/FAQ";
 import servicesData from "../data/services.json";
+import SEO from "../components/SEO";
 
 // --- Sub-components for better modularity ---
 
@@ -76,6 +77,10 @@ export default function AboutPage() {
 
   return (
     <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white pt-20 overflow-x-hidden selection:bg-neon-green/30">
+      <SEO 
+        title="About Us - WeBestOne Agency" 
+        description="Learn about WeBestOne, a team of digital creators and SEO experts pushing the boundaries of AI marketing and modern web technologies." 
+      />
       
       {/* 1. HERO SECTION */}
       <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">

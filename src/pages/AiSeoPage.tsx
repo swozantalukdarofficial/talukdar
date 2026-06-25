@@ -4,6 +4,7 @@ import { Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { MagneticButton } from "../components/ui/MagneticButton";
 import aiRobotImg from "../assets/ai-robot.png";
+import SEO from "../components/SEO";
 
 export default function AiSeoPage() {
 	const [activeFaq, setActiveFaq] = useState<number | null>(0);
@@ -108,6 +109,10 @@ export default function AiSeoPage() {
 
 	return (
 		<main className="min-h-screen bg-black text-white pt-24 overflow-hidden">
+			<SEO 
+				title="Generative Engine Optimization (GEO) & AI SEO - WeBestOne" 
+				description="Dominate next-gen AI search platforms (Google SGE, Perplexity, Gemini) with modern generative engine optimization." 
+			/>
 			{/* 1. Hero Section - Exact match to screenshot */}
 			<section className="relative z-10 px-6 lg:px-20 pt-4 pb-12 md:pt-8 md:pb-16 max-w-7xl mx-auto">
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">

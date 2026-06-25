@@ -10,6 +10,7 @@ import {
 	MessageCircle,
 	ArrowRight,
 } from "lucide-react";
+import SEO from "../components/SEO";
 
 const contactInfo = {
 	address: "Dhaka, Bangladesh",
@@ -74,6 +75,10 @@ export default function ContactPage() {
 
 	return (
 		<main className="relative min-h-screen text-white pt-20 overflow-hidden">
+			<SEO 
+				title="Contact WeBestOne - Get in Touch" 
+				description="Ready to scale your business? Contact WeBestOne today for a free SEO audit, custom web development quote, or marketing consultation." 
+			/>
 			{/* Background Effects */}
 			<div className="absolute inset-0 z-0">
 				<div className="absolute top-0 right-1/4 w-96 h-96 bg-neon-green/5 rounded-full blur-[150px]" />

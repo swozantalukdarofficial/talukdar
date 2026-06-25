@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ChevronDown, ArrowRight, CheckCircle2 } from "lucide-react";
+import SEO from "../components/SEO";
 
 export default function ShopifySeoPage() {
 	const [activeFaq, setActiveFaq] = useState<number | null>(0);
@@ -35,6 +36,10 @@ export default function ShopifySeoPage() {
 
 	return (
 		<main className="min-h-screen bg-black text-white pt-24 overflow-x-hidden">
+			<SEO 
+				title="Shopify SEO Service Agency | Shopify store Optimization services" 
+				description="Shopify SEO Service Agency driving growth through AI-driven Shopify SEO expert team, keyword research and high-performing Shopify store Optimization services." 
+			/>
 			{/* 1. Hero Section */}
 			<section className="relative pt-4 lg:pt-8 pb-12 lg:pb-20 px-6 z-10">
 				{/* Background Glow */}

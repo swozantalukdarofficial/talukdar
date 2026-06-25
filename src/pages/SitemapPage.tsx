@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 import { 
   Home, 
   Info, 
@@ -66,6 +67,10 @@ const links = [
 export default function SitemapPage() {
   return (
     <main className="min-h-screen bg-black text-white pt-32 pb-24 px-6 relative overflow-hidden">
+      <SEO 
+        title="HTML Sitemap - WeBestOne" 
+        description="Find all pages and services on the WeBestOne website. Easy navigation for users and search engines." 
+      />
       {/* Background Glows */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-neon-green/5 blur-[150px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 blur-[150px] rounded-full pointer-events-none" />

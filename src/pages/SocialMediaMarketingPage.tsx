@@ -24,6 +24,7 @@ import {
   Twitter
 } from "lucide-react";
 import { MagneticButton } from "../components/ui/MagneticButton";
+import SEO from "../components/SEO";
 
 const processSteps = [
   {
@@ -128,6 +129,10 @@ export default function SocialMediaMarketingPage() {
 
   return (
     <main className="relative min-h-screen text-white pt-20 overflow-hidden bg-black">
+      <SEO 
+        title="Social Media Marketing Agency | Social Media Advertising Experts" 
+        description="Trusted Social Media Marketing Agency driving growth through AI-driven strategies, Meta Business Suite, LinkedIn Campaign Manager and high-performing paid campaigns" 
+      />
       {/* Background Effects */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-purple-600/5 rounded-full blur-[150px]" />

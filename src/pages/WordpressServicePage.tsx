@@ -21,6 +21,7 @@ import {
   CheckCircle2,
   Star
 } from "lucide-react";
+import SEO from "../components/SEO";
 
 /* ─── Data ─── */
 const whyChoose = [
@@ -205,6 +206,10 @@ export default function WordpressServicePage() {
 
   return (
     <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white selection:bg-blue-500/30">
+      <SEO 
+        title="WordPress website development services | AI powered Agency" 
+        description="Advanced WordPress website development services featuring custom WordPress themes, security plugins and growth-focused WordPress web development agency strategies." 
+      />
       
       {/* ══════════════════════════════════════════
           1. 2-COLUMN HERO WITH ABSTRACT MOCKUP

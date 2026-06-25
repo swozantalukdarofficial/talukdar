@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence, useInView, animate, useMotionValue, useSpring, useTransform } from "framer-motion";
+import SEO from "../components/SEO";
 import {
   Code2,
   Globe,
@@ -467,6 +468,10 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 export default function WordpressDevelopmentPage() {
   return (
     <main className="relative min-h-screen text-white bg-black overflow-hidden">
+      <SEO 
+        title="Custom Web Development Services | Expert CMS Web Development" 
+        description="Expert Custom web development services provide best Custom website solutions and specialize in Magento, Laravel, Shopify and React to scale your digital presence" 
+      />
       {/* Global background */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[150px]" />

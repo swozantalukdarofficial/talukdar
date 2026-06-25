@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Scale, ArrowLeft, Mail, Phone, MapPin } from "lucide-react";
 import { useEffect } from "react";
+import SEO from "../components/SEO";
 
 type Section = {
 	id: number;
@@ -91,6 +92,10 @@ export default function TermsAndConditionsPage() {
 
 	return (
 		<main className="relative min-h-screen pt-32 pb-24 bg-black text-white">
+			<SEO 
+				title="Terms and Conditions - WeBestOne" 
+				description="Read the terms and conditions for using WeBestOne's digital marketing and web development services." 
+			/>
 			{/* Background glows */}
 			<div className="absolute top-0 left-1/4 w-96 h-96 bg-neon-green/5 rounded-full blur-[120px] pointer-events-none" />
 			<div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />

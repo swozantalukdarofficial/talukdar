@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
+import SEO from "../components/SEO";
 
 const ppcServices = [
   {
@@ -90,6 +91,10 @@ export default function PPCPage() {
 
   return (
     <main className="min-h-screen bg-black text-white pt-16 md:pt-20 overflow-hidden">
+      <SEO 
+        title="PPC Ads Management & Paid Acquisition - WeBestOne" 
+        description="Maximize ROI with strategic Google Ads, Meta Ads, and PPC campaigns structured for optimal acquisition costs." 
+      />
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-emerald-500/10 rounded-full blur-[160px]" />

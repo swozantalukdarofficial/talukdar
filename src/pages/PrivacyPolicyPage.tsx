@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ShieldCheck, ArrowLeft, Mail, Phone, MapPin } from "lucide-react";
 import { useEffect } from "react";
+import SEO from "../components/SEO";
 
 type Section = {
 	id: number;
@@ -125,6 +126,10 @@ export default function PrivacyPolicyPage() {
 
 	return (
 		<main className="relative min-h-screen pt-32 pb-24 bg-black text-white">
+			<SEO 
+				title="Privacy Policy - WeBestOne" 
+				description="Learn how WeBestOne collects, uses, and protects your personal data when using our website and services." 
+			/>
 			{/* Background glows */}
 			<div className="absolute top-0 left-1/4 w-96 h-96 bg-neon-green/5 rounded-full blur-[120px] pointer-events-none" />
 			<div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />

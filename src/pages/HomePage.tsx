@@ -15,6 +15,7 @@ import ToolsLogoBar from "../components/ToolsLogoBar";
 import Comparison from "../components/Comparison";
 
 import NewsletterCTA from "../components/NewsletterCTA";
+import SEO from "../components/SEO";
 import servicesData from "../data/services.json";
 import { blogPosts } from "../data/blogData";
 
@@ -24,6 +25,10 @@ export default function HomePage() {
 
   return (
     <main>
+      <SEO 
+        title="AI-Powered Solutions & Digital Marketing Agency | WeBestOne" 
+        description="Advanced AI powered solutions by an expert AI agency delivering full digital marketing, web development, uiux design and tech solutions for better Google rankings and growth." 
+      />
       <Hero />
       <TrustedPlatforms />
       <MarketAnalysis />

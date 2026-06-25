@@ -6,6 +6,7 @@ import TestimonialSlider from "../components/TestimonialSlider";
 import Counter from "../components/Counter";
 import ProcessSection from "../components/ProcessSection";
 import PortfolioSlider from "../components/PortfolioSlider";
+import SEO from "../components/SEO";
 import {
   MonitorSmartphone,
   Figma,
@@ -204,6 +205,10 @@ export default function UiUxDesignPage() {
   
   return (
     <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-pink-500/30">
+      <SEO 
+        title="Web Design Service | Custom UI UX Design service Agency" 
+        description="Expert Web Design Service offering Custom UI UX Solutions, UX Strategy and Usability Testing to ensure high-performing results from our Web Design Agency." 
+      />
       
       {/* Background Ambient */}
       <div className="fixed inset-0 z-0 pointer-events-none">

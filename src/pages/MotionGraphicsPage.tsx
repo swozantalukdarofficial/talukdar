@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import SEO from "../components/SEO";
 
 const services = [
   {
@@ -123,6 +124,10 @@ export default function MotionGraphicsPage() {
 
   return (
     <main className="min-h-screen bg-black text-white pt-24 lg:pt-28 overflow-x-hidden">
+      <SEO 
+        title="Motion Graphics Services Company | 3D Animation services" 
+        description="Advanced Motion Graphics Services Company specializes in Explainer Videos, 3D Motion Graphics, visual Storytelling and Animated Transitions that scale your brand." 
+      />
       {/* 1. HERO SECTION (UPGRADED) */}
       <section className="relative px-6 lg:px-20 pt-4 pb-8 max-w-7xl mx-auto overflow-visible">
         {/* Animated Mesh Gradients */}

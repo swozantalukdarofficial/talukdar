@@ -5,6 +5,7 @@ import {
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { ChevronDown, ArrowRight } from "lucide-react";
+import SEO from "../components/SEO";
 
 export default function VideoEditingPage() {
 	// FAQs Data
@@ -132,6 +133,10 @@ export default function VideoEditingPage() {
 
 	return (
 		<main className="min-h-screen bg-black text-white pt-16 md:pt-20 overflow-hidden">
+			<SEO 
+				title="Professional video editing services | Production Experts" 
+				description="Professional video editing services help to build your brand with a video production agency that uses AI-driven strategies to deliver high-performing video content." 
+			/>
 			{/* 1. Hero Section */}
 			<section className="relative pt-6 pb-12 md:pt-10 md:pb-16 px-6 z-10">
 				{/* Background Glow */}
