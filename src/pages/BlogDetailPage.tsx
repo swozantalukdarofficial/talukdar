@@ -76,6 +76,7 @@ export default function BlogDetailPage() {
         title={post.seoTitle || `${post.title} - WeBestOne`} 
         description={post.seoDescription || post.excerpt} 
         schemaMarkup={post.schemaMarkup}
+        canonical={`https://webestone.com/blogs/${post.id}`}
       />
       {/* Top Thin Progress Bar */}
       <motion.div
