@@ -19,6 +19,31 @@ const contactInfo = {
 	workingHours: "Mon - Fri: 9AM - 6PM",
 };
 
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "https://webestone.com/contact#webpage",
+      "url": "https://webestone.com/contact",
+      "name": "Contact WeBestOne - Discuss Your Growth Project"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "WeBestOne",
+      "telephone": "+8801333600272",
+      "email": "webestone@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Mirpur, Dhaka",
+        "addressLocality": "Dhaka",
+        "postalCode": "1216",
+        "addressCountry": "BD"
+      }
+    }
+  ]
+};
+
 export default function ContactPage() {
 	const [formState, setFormState] = useState({
 		name: "",
@@ -78,6 +103,7 @@ export default function ContactPage() {
 			<SEO 
 				title="AI-powered digital marketing Agency | Webestone Contact Us" 
 				description="A leading AI-powered digital marketing agency - contact us to get expert AI solutions and start your brand transformation with our advanced team." 
+				schemaMarkup={contactSchema}
 			/>
 			{/* Background Effects */}
 			<div className="absolute inset-0 z-0">

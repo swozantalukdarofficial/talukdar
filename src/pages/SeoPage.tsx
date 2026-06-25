@@ -106,6 +106,48 @@ const faqs = [
   }
 ];
 
+const seoServiceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://webestone.com/services/seo#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://webestone.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://webestone.com/services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "SEO Services",
+          "item": "https://webestone.com/services/seo"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "serviceType": "Search Engine Optimization (SEO)",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "WeBestOne",
+        "url": "https://webestone.com",
+        "logo": "https://webestone.com/favicon.png"
+      },
+      "areaServed": "BD",
+      "description": "Premium result-oriented SEO services in Bangladesh incorporating AI Search Optimization, SGE ranking, and ROI-based link building strategies."
+    }
+  ]
+};
+
 export default function SeoPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -114,6 +156,7 @@ export default function SeoPage() {
       <SEO 
         title="AI SEO Service Agency | Advanced AI Driven SEO Solutions" 
         description="Leading AI SEO Service Agency helping brands grow visibility in AI search through LLM optimization, AI SEO, semantic search and high-impact content strategies." 
+        schemaMarkup={seoServiceSchema}
       />
       {/* 1. Hero Section - Standardized Sizes */}
       <section className="relative z-10 px-6 lg:px-20 pt-4 pb-12 md:pt-8 md:pb-16 max-w-7xl mx-auto">
