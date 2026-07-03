@@ -31,10 +31,10 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased bg-[#faf9f6] text-stone-900" suppressHydrationWarning>
+      <body className="antialiased bg-[#faf9f6] text-stone-900 overflow-x-hidden w-full relative" suppressHydrationWarning>
         <CartProvider>
           <Header categories={categories} />
-          <main>{children}</main>
+          <main className="overflow-x-hidden w-full relative">{children}</main>
           <Footer />
           <Toaster position="bottom-right" theme="light" />
         </CartProvider>

@@ -48,10 +48,14 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.6;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   html {
     scroll-behavior: smooth;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   /* Warm scrollbar */
