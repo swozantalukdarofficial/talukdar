@@ -1,26 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* ── Warm White Light Theme ── */
+    --background: 40 30% 98%;        /* warm off-white #FAFAF7 */
+    --foreground: 25 15% 12%;        /* warm near-black */
+    --card: 0 0% 100%;
+    --card-foreground: 25 15% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 15% 12%;
+    --primary: 145 55% 30%;          /* deep forest green */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 40 20% 94%;         /* warm light gray */
+    --secondary-foreground: 25 15% 25%;
+    --muted: 40 15% 93%;
+    --muted-foreground: 25 10% 48%;
+    --accent: 145 55% 30%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 35 20% 88%;            /* warm subtle border */
+    --input: 35 20% 91%;
+    --ring: 145 55% 35%;
+    --radius: 0.875rem;
+
+    /* ── Custom Brand Tokens ── */
+    --brand-green: #1a6b3c;
+    --brand-green-light: #22c55e;
+    --brand-green-pale: #dcfce7;
+    --brand-warm-bg: #faf9f6;
+    --brand-warm-card: #ffffff;
+    --brand-warm-border: #e8e3da;
+    --brand-text: #1c1917;
+    --brand-muted: #78716c;
+  }
+
+  * {
+    box-sizing: border-box;
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: var(--brand-warm-bg);
+    color: var(--brand-text);
+    font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Warm scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f5f3ef;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #c9c1b6;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1a6b3c;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: #dcfce7;
+    color: #14532d;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── Utility animations ── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.animate-fade-up  { animation: fade-up  0.5s ease both; }
+.animate-fade-in  { animation: fade-in  0.4s ease both; }
+
+/* Skeleton shimmer */
+.skeleton {
+  background: linear-gradient(90deg, #f0ece6 25%, #e8e3da 50%, #f0ece6 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+/* Premium card hover */
+.card-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px -8px rgba(26, 107, 60, 0.15), 0 4px 16px -4px rgba(0,0,0,0.08);
+}
+
+/* Smooth image zoom on hover */
+.img-zoom img {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.img-zoom:hover img {
+  transform: scale(1.06);
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid #1a6b3c;
+  outline-offset: 2px;
 }

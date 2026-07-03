@@ -1,0 +1,1871 @@
+Category,Subcategories,Name,Price,URL,Description,Images,Spec: Specification,Spec: Brand,Spec: Model,Spec: Product Type,Spec: Rated Power,Spec: Max PV Input,Spec: Max PV Voltage,Spec: MPPT,Spec: Battery Voltage,Spec: Battery Type,Spec: Max Efficiency,Spec: Display,Spec: Communication,Spec: Protection,Spec: Weight,Spec: Country of Brand,Spec: Parameter,Spec: Model Name,Spec: AC Input Voltage,Spec: Voltage Range,Spec: Output Power Factor,Spec: Waveform,Spec: Max. Efficiency (Peak),Spec: Charger Type,Spec: Max PV Input Power,Spec: PV Voltage Range,Spec: Max PV Input Current,Spec: Dimension (W*H*D),Spec: Net Weight,Spec: Operating Temp.,Spec: Storage Temp.,Spec: Inverter Type,Spec: Rated Output Power,Spec: Recommended PV Array Size,Spec: Maximum Usable PV Power,Spec: Maximum PV Voltage,Spec: MPPT Voltage Range,Spec: PV Strings,Spec: Maximum Charge Current,Spec: Maximum Efficiency,Spec: Grid Voltage,Spec: Frequency,Spec: Protection Rating,Spec: Cooling,Spec: Technical Data,Spec: Max. PV Input Power,Spec: Max. Input Voltage,Spec: Start-up Voltage,Spec: Max. Input Current per MPPT,Spec: Max. Short Circuit Current per MPPT,Spec: Number of MPPT,Spec: Nominal Input Voltage,Spec: Input Voltage Range,Spec: Max. Input Current,Spec: Nominal Input Power,Spec: AC Frequency Range,Spec: Nominal Battery Voltage,Spec: Battery Voltage Range,Spec: Max. Discharge Current,Spec: Max. Charge/Discharge Power,Spec: Li-ion Battery Activation,Spec: Li-ion Battery Communication,Spec: Max. Solar Charge Current,Spec: Max. AC Charge Current,Spec: Max. Charge Current (PV+AC),Spec: Nominal Output Power,Spec: Peak Apparent AC Power,Spec: Nominal AC Voltage,Spec: Nominal Grid Frequency,Spec: Voltage Waveform,Spec: Transfer Time,Spec: Max. Output Current,Spec: Overload Protection,Spec: THDv (@linear load),Spec: Peak Efficiency,Spec: MPPT Efficiency,Spec: DC Surge Protection,Spec: AC Surge Protection,Spec: AC Short Circuit Protection,Spec: Relative Humidity,Spec: Operating Temperature Range,Spec: Noise Emission,Spec: Altitude,Spec: Cooling Method,Spec: Ingress Protection,Spec: Number of AC Output,Spec: Communication Interface,Spec: Parallel Capability,Spec: Rated Voltage,Spec: Rated Frequency,Spec: Current (Maximum Continuous),Spec: Power Factor,Spec: Wave Form,Spec: Switch Time,Spec: Inverter Efficiency (Peak),Spec: Maximum Output Overcurrent Protection,Spec: Rated Battery Voltage,Spec: Max Charge Current,Spec: No. of MPPT Tracker / Strings,Spec: Max PV Array Power,Spec: Max DC Voltage,Spec: MPPT Maximum Charge Current,Spec: Max Input Current,Spec: Isc PV (Absolute Maximum),Spec: Parallel Function,Spec: Protection Degree,Spec: Certifications,Spec: Other Protection,Spec: Storage Temperature,Spec: Operating Temperature,Spec: Humidity,Spec: Operating Altitude,Spec: Noise,Spec: Machine Dimensions (W*H*D),Spec: Machine Weight,Spec: Interface,Spec: PV Inputs,Spec: Maximum Charge/Discharge Current
+Inverter,Off Grid Hybrid Inverter,Solis S6-EO1P 6K-48 6kW Single Phase Off Grid Hybrid Inverter,"29,000৳",https://solar.com.bd/product/solis-s6-eo1p-6k-48-6kw-single-phase-off-grid-hybrid-inverter/,"Solis S6-EO1P 6K-48 6kW Single Phase Off Grid Hybrid Inverter
+The 
+Solis S6-EO1P 6K-48 6kW Single Phase Off Grid Hybrid Inverter
+ is a powerful energy storage solution designed for residential, commercial, agricultural, and remote off-grid solar applications. Built with advanced hybrid inverter technology, this inverter combines solar generation, battery storage, and backup power management in one compact and reliable unit.
+Designed to deliver uninterrupted power, the Solis S6-EO1P 6K-48 supports both lithium-ion and lead-acid batteries, features a high-voltage PV input of up to 500V, and offers outstanding conversion efficiency of up to 96.6%. Whether you need backup power for a home, office, shop, hospital, educational institution, or industrial facility, this inverter provides dependable performance and intelligent energy management.
+Key Features of Solis S6-EO1P 6K-48 6kW Hybrid Inverter
+High-Efficiency Energy Conversion
+The inverter achieves up to 
+96.6% peak efficiency
+, maximizing solar energy utilization and reducing electricity costs.
+Supports Multiple Battery Technologies
+Compatible with:
+Lithium Iron Phosphate (LiFePO4)
+Lithium-ion Batteries
+Lead-Acid Batteries
+AGM Batteries
+Gel Batteries
+Tubular Batteries
+This flexibility allows users to select the most suitable battery solution for their energy requirements.
+Powerful Solar Input Capability
+Maximum PV Input Power: 6.5kW
+Maximum Input Voltage: 500V
+Rated PV Voltage: 360V
+Start-Up Voltage: 90V
+MPPT Voltage Range: 90V – 430V
+MPPT Trackers: 1
+Maximum Input Strings: 2
+The wide MPPT range ensures excellent solar harvesting performance throughout the day.
+Generator Compatible
+The inverter can operate seamlessly with diesel and petrol generators, providing additional backup power security during prolonged outages.
+Intelligent Load Management
+Supports dual backup loads with intelligent prioritization, ensuring critical appliances receive power first.
+Parallel Expansion Capability
+Supports up to 
+6 units in parallel
+, making it suitable for larger energy storage and backup systems.
+Fast Charging Function
+One-click fast charging mode helps quickly recharge batteries during emergencies or low sunlight conditions.
+Technical Specifications
+Solar Charger
+Model: S6-EO1P 6K-48
+Maximum PV Input Power: 6.5kW
+Maximum Input Voltage: 500V
+Rated Voltage: 360V
+Start-Up Voltage: 90V
+MPPT Voltage Range: 90V – 430V
+Maximum Input Current: 16A / 16A
+Maximum Short Circuit Current: 40A
+Maximum Solar Charge Current: 120A
+MPPT Number / Strings: 1 / 2
+Battery
+Battery Type: Lithium-ion / Lead-acid
+Battery Voltage Range: 40V – 60V
+Maximum Charge Power: 6kW
+Maximum Discharge Power: 6kW
+Maximum Charge / Discharge Current: 120A
+Communication: CAN
+Inverter Output
+Rated Output Power: 6kVA / 6kW
+Rated Voltage: 230V
+Frequency: 50Hz / 60Hz
+Surge Capacity: 12kVA
+Maximum Output Current: 30A
+Waveform: Pure Sine Wave
+Transfer Time: 10ms Typical
+THDv: Less Than 3%
+AC Charger
+Maximum AC Input Power: 7kW
+Input Voltage Range: 90V – 280V
+Maximum AC Input Current: 30A
+Maximum AC Charge Current: 80A
+Advanced Protection Features
+The Solis S6-EO1P 6K-48 includes comprehensive protection mechanisms:
+Output Over Voltage Protection
+Output Over Current Protection
+Short Circuit Protection
+Surge Protection
+Temperature Protection
+Optional AFCI 2.0 Arc Fault Protection
+These features help ensure safe and reliable operation under various environmental and electrical conditions.
+Smart Monitoring and Communication
+The inverter supports various communication options including:
+CAN
+BMS Communication
+Dry Contact
+Bluetooth
+Optional WiFi Monitoring
+Users can monitor system performance, battery status, and energy production in real time.
+Compact and Durable Design
+Dimensions: 340 × 480 × 170 mm
+Weight: 13.8 kg
+Protection Rating: IP21
+Operating Temperature: -10°C to +60°C
+Storage Temperature: -25°C to +60°C
+Relative Humidity: 5% – 95%
+Maximum Operating Altitude: 2000m
+Its compact design simplifies installation while ensuring long-term reliability.
+Applications
+The Solis S6-EO1P 6K-48 6kW Single Phase Off Grid Hybrid Inverter is ideal for:
+Residential Solar Systems
+Homes and Villas
+Offices
+Retail Shops
+Hospitals and Clinics
+Educational Institutions
+Farms and Irrigation Systems
+Remote Off-Grid Locations
+Telecom Sites
+Small Industrial Facilities
+Solar Energy Storage Projects
+Why Choose Solis S6-EO1P 6K-48?
+✔ 6kW Pure Sine Wave Output
+
+✔ 96.6% Peak Efficiency
+
+✔ 500V High Voltage PV Input
+
+✔ 48V Battery System Support
+
+✔ Lithium & Lead-Acid Compatible
+
+✔ Generator Integration Support
+
+✔ Intelligent Load Prioritization
+
+✔ Fast Battery Charging Mode
+
+✔ Up to 6 Units Parallel Operation
+
+✔ Advanced Protection Features
+
+✔ Trusted Solis Global Technology
+Buy Solis S6-EO1P 6K-48 6kW Single Phase Off Grid Hybrid Inverter in Bangladesh
+If you are looking for a reliable and high-performance solar hybrid inverter in Bangladesh, the 
+Solis S6-EO1P 6K-48 6kW Single Phase Off Grid Hybrid Inverter
+ is an excellent choice. Its advanced battery compatibility, high-voltage solar input, intelligent energy management, and robust protection features make it a dependable solution for both residential and commercial solar power systems.
+Order now from Solar.com.bd and build a smarter, more reliable solar energy system with Solis technology.",Inverter_Solis_S6_EO1P_6K_48_6kW_Single_Phase_Off_Grid_Hybr_0.webp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,Off Grid Hybrid Inverter,SAKO E-SUN 3KVA 24V Off Grid Hybrid Inverter,"22,500৳",https://solar.com.bd/product/sako-e-sun-3-0kw-24v-mppt-solar-inverter/,"The 
+SAKO E-SUN 3KVA 24V Off Grid Hybrid Inverter
+ represents the definitive pinnacle of hybrid power technology, expertly engineered to provide seamless, reliable, and high-capacity electrical backup. Classified as a multi-function inverter/charger, this unit skillfully combines the indispensable roles of a robust inverter, an intelligent MPPT solar charge controller, and a versatile battery charger into one robust, compact, and aesthetically pleasing chassis. It is the ideal, high-capacity solution for larger residential settings, demanding small office environments, or light commercial operations in regions, like Bangladesh, characterized by inconsistent utility power and a growing reliance on renewable energy sources. This model’s powerful output and advanced features solidify its position as a top-tier choice for securing energy independence.
+High Capacity and Pure Sine Wave Output (3000VA / 2500W)
+This specific model delivers a formidable continuous power output of 
+3000VA / 2500W
+ while operating on an efficient 
+24V DC battery system
+. This higher voltage configuration is optimally suited for minimizing internal current draw, significantly reducing losses across cables, and maximizing overall system efficiency in high-power applications. This robust capacity ensures that you can power a wide array of appliances simultaneously—from standard lighting and fans to energy-intensive equipment such as dedicated AC units (within capacity limits), refrigerators, and water pumps.
+Crucially, the output is strictly 
+Pure Sine Wave
+. This means the electricity generated is clean, stable, and perfectly identical in quality to that supplied by the public utility grid. This uncompromising power quality is vital for safeguarding all connected appliances, particularly sensitive electronics (like computers, modern televisions, and diagnostic equipment) and high-inductance motor loads. Using Pure Sine Wave power protects these valuable assets from the operational stress, overheating, and damage often associated with the less refined output of modified sine wave inverters, thereby extending their operational lifespan and minimizing replacement costs.
+Revolutionizing Energy Harvest with Advanced MPPT Technology
+The core of the SAKO E-SUN 3KVA’s high solar efficiency is the integrated 
+Maximum Power Point Tracking (MPPT) solar charge controller
+. This technology represents a significant leap over older Pulse Width Modulation (PWM) methods. The MPPT controller constantly scans the photovoltaic (PV) array’s electrical characteristics to precisely locate and operate at the point where maximum power can be extracted, ensuring an impressive efficiency rate that often exceeds 98%. This results in you harvesting more power from your solar panels throughout the day.
+The unit boasts a remarkably 
+Wide PV Input Range of 30Vdc to 400Vdc
+  granting substantial flexibility in solar array design. This wide range simplifies installation and allows for more cost-effective string sizing across rooftops of varying sizes and orientations. A vital feature for maximizing power yield during marginal hours is its low start-up capability: the inverter is designed so that 
+Only 1pcs 36V solar panel can start the solar inverter
+, guaranteeing effective charging initiation even under minimal solar irradiance or during the challenging transition periods of dawn and dusk. This maximized daily energy yield directly translates into faster battery charging and greater long-term operational cost savings.
+Intelligent Customization and Versatile Battery Integration
+The SAKO E-SUN 3.0KW is designed for modern users who demand precise, granular control over their energy usage. Control over the system is managed through a comprehensive LCD display and user-friendly control buttons. This interface allows for highly personalized energy management settings:
+Configurable Charger Priority:
+ Users can easily set the system to prioritize charging from the solar array (maximizing the use of free, renewable energy) or revert to using the AC utility/generator source (ensuring the batteries are always topped up).
+Battery Chemistry Compatibility:
+ Utilizing a smart battery charger design, the unit is fully compatible with a diverse range of battery chemistries, including traditional flooded, AGM, and Gel batteries, as well as the powerful and long-lasting 
+Lithium-ion (LiFePo4) batteries
+. This future-proof compatibility ensures the system remains relevant as energy storage technology advances.
+Adjustable Charging Current:
+ The charging current can be precisely configured to optimally match the specific capacity and health of the connected battery bank, a feature crucial for optimizing battery health and extending its service life.
+Input Range Flexibility:
+ The unit allows users to set different acceptable AC input voltage ranges for either sensitive loads (UPS Mode) or standard appliances, tailoring protection precisely to the load requirement.
+Uncompromising Reliability, Safety, and Connectivity
+Reliability is a cornerstone of the SAKO E-SUN 3.0KVA’s design. The system is engineered to seamlessly manage power input from both the 
+mains utility and a generator
+, providing flexible and reliable options for battery replenishment.
+Safety is paramount, with comprehensive features built in:
+Protection Suite:
+ Integrated safeguards against 
+Overload, Over temperature, and Short circuit protection
+ ensure both the longevity of the inverter and the safety of all connected loads.
+Operational Continuity:
+ Key features include 
+Auto restart while AC is recovering
+ for hands-free transition back to grid power, and a 
+Cold Start function
+, which allows the inverter to be powered on directly from the batteries even when no external AC input is present.
+Optional Monitoring:
+ For sophisticated users, the SAKO E-SUN 3.0KW supports optional 
+WIFI/GPRS monitoring
+, enabling remote access to system status, historical data, and setting adjustments via a smartphone or PC, providing unparalleled oversight of your power system.
+Product Features
+MPPT Solar Charge Controller Inside
+Wide PV Input Range 30-400Vdc
+Smart battery protection. Compatible with LiFePo4
+Configurable battery & AC/Solar priority via LCD setting
+Reliable quality, economic design
+Only 1pcs 36V solar panel can start solar inverter
+Pure Sine Wave Output
+Auto restart while AC is recovering
+Cold Start function
+Compatible with mains voltage or generator power
+Overload/ Over temperature/ short circuit protection","Inverter_SAKO_E_SUN_3KVA_24V_Off_Grid_Hybrid_Inverter_0.webp, Inverter_SAKO_E_SUN_3KVA_24V_Off_Grid_Hybrid_Inverter_1.webp, Inverter_SAKO_E_SUN_3KVA_24V_Off_Grid_Hybrid_Inverter_2.webp, Inverter_SAKO_E_SUN_3KVA_24V_Off_Grid_Hybrid_Inverter_3.webp, Inverter_SAKO_E_SUN_3KVA_24V_Off_Grid_Hybrid_Inverter_4.webp",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,On Grid Hybrid Inverter,Solis 12kW Single Phase Hybrid Inverter S6-EH1P12K03-NV-YD-L,"129,999৳",https://solar.com.bd/product/solis12kw-single-phase-hybrid-inverter-s6-eh1p12k03-nv-yd-l/,"Solis 12kW Single Phase Hybrid Inverter S6-EH1P12K03-NV-YD-L
+The 
+Solis 12kW Single Phase Hybrid Inverter S6-EH1P12K03-NV-YD-L
+ is a next-generation low-voltage hybrid solar inverter designed for residential homes, commercial buildings, villas, offices, farms, and industrial backup systems. Built with advanced hybrid technology, this inverter offers outstanding energy efficiency, intelligent battery management, seamless grid interaction, and reliable backup power.
+Supporting up to 
+24kW solar PV input
+, the Solis 12kW Hybrid Inverter maximizes solar energy generation while maintaining exceptional conversion efficiency of up to 
+97.6%
+. It is compatible with 
+48V (40-60V) Lithium-ion and Lead-acid batteries
+, making it suitable for a wide variety of energy storage solutions.
+The inverter features ultra-fast 
+less than 10ms switching time
+, ensuring uninterrupted power during grid failures. Whether you are looking to reduce electricity bills, increase energy independence, or build a complete solar backup solution, the 
+Solis 12kW Single Phase Hybrid Inverter S6-EH1P12K03-NV-YD-L
+ is an excellent choice for the Bangladesh market.
+Specification
+Details
+Brand
+Solis
+Model
+S6-EH1P12K03-NV-YD-L
+Product Type
+Single Phase Hybrid Solar Inverter
+Rated Power
+12kW
+Max PV Input
+24kW
+Max PV Voltage
+550V
+MPPT
+3
+Battery Voltage
+40V–60V
+Battery Type
+Lithium-ion / Lead Acid
+Max Efficiency
+97.6%
+Display
+7″ LCD + Bluetooth
+Communication
+RS485, WiFi, LAN, Cellular (Optional)
+Protection
+IP66
+Weight
+55.5kg
+Country of Brand
+China
+Key Features
+Model: 
+S6-EH1P12K03-NV-YD-L
+Rated Output Power: 
+12kW
+Single Phase Hybrid Solar Inverter
+Supports up to 
+24kW PV Array
+Maximum usable PV power: 
+19.2kW
+Maximum PV Voltage: 
+550V
+MPPT Voltage Range: 
+80V–520V
+3 MPPT with 6 PV String Inputs
+Compatible with 
+40V-60V Lithium & Lead Acid Batteries
+Maximum Charge/Discharge Current: 
+250A
+Generator Compatible
+Supports Existing Grid-Tied PV Systems
+Intelligent Smart Load Management
+UPS Switching Time <10ms
+Supports Pure PV Off-Grid Operation
+Supports Up to 6 Inverters in Parallel
+AI Optimization through SolisCloud
+Built-in Bluetooth + 7-inch LCD Display
+IP66 Waterproof Protection
+Intelligent Fan Cooling
+Surge Protection
+DC Reverse Polarity Protection
+Ground Fault Monitoring
+Optional AFCI Protection
+Why Choose Solis 12kW Single Phase Hybrid Inverter?
+The 
+Solis 12kW Single Phase Hybrid Inverter S6-EH1P12K03-NV-YD-L
+ combines advanced inverter technology with smart energy management. It intelligently prioritizes solar energy, battery storage, and grid power to maximize savings and ensure uninterrupted electricity.
+Unlike conventional inverters, this hybrid model allows battery charging directly from solar panels while also supporting generator charging when needed. The inverter is ideal for areas with unstable electricity supply, making it perfect for Bangladesh.
+Its support for parallel operation allows future system expansion without replacing the existing inverter.
+Advanced Solar Performance
+This inverter supports:
+Up to 160% oversized PV installation
+High-current 20A solar panels
+3 Independent MPPTs
+6 PV Inputs
+High efficiency energy harvesting
+Maximum efficiency of 97.6%
+These features help users harvest more solar energy throughout the day.
+Smart Battery Management
+The inverter supports:
+Lithium-ion Battery
+Lead Acid Battery
+Battery Voltage: 40V-60V
+Maximum Charge Current: 250A
+CAN Communication
+RS485 Communication
+Users can customize battery backup levels according to their energy requirements.
+Reliable Backup Power
+One of the biggest advantages of the 
+Solis 12kW Single Phase Hybrid Inverter S6-EH1P12K03-NV-YD-L
+ is its uninterrupted backup performance.
+Features include:
+Less than 10ms transfer time
+Stable operation during grid failure
+Smart Load Management
+Motor starting capability
+Air conditioner startup support
+Water pump startup support
+200% overload for 10 seconds
+These features ensure continuous operation of critical household appliances.
+Generator Integration
+The inverter provides flexible generator support.
+Benefits include:
+Automatic Generator Start
+Generator Charging
+Generator Backup
+Intelligent Generator Control
+This is especially useful in remote areas where grid power is unavailable.
+SolisCloud Smart Monitoring
+The inverter connects with SolisCloud for intelligent monitoring.
+Users can:
+Monitor solar production
+View battery status
+Check electricity consumption
+Receive fault notifications
+AI performance optimization
+Remote troubleshooting
+Remote firmware updates
+Protection Features
+Safety has always been one of Solis’ strongest advantages.
+The inverter includes:
+Surge Protection
+Ground Fault Monitoring
+Reverse Polarity Protection
+Optional AFCI
+IP66 Waterproof Design
+Intelligent Cooling
+Wide Temperature Operation (-25°C to +60°C)
+These protections ensure long-term reliability.
+Technical Specifications
+Product Model
+S6-EH1P12K03-NV-YD-L
+Rated Output Power
+12kW
+PV Input
+Maximum PV Array: 24kW
+Maximum Usable PV Power: 19.2kW
+Maximum Voltage: 550V
+Start Voltage: 100V
+MPPT Range: 80V-520V
+MPPT: 3
+PV Inputs: 6
+Battery
+Battery Type: Lithium-ion / Lead Acid
+Voltage Range: 40V-60V
+Maximum Charge Current: 250A
+Grid Output
+Rated Voltage: 220V / 230V
+Frequency: 50Hz / 60Hz
+Rated Output Power: 12kW
+Efficiency
+Maximum Efficiency: 97.6%
+EU Efficiency: 97.0%
+Display
+7-inch LCD
+Bluetooth
+Mobile APP
+Communication
+RS485
+WiFi (Optional)
+LAN (Optional)
+Cellular (Optional)
+Protection
+IP66
+AFCI (Optional)
+Surge Protection
+Ground Fault Monitoring
+Cooling
+Intelligent Fan Cooling
+Weight
+55.5kg
+Applications
+The 
+Solis 12kW Single Phase Hybrid Inverter S6-EH1P12K03-NV-YD-L
+ is ideal for:
+Residential Solar Systems
+Large Homes
+Villas
+Commercial Buildings
+Offices
+Restaurants
+Clinics
+Hospitals
+Schools
+Mosques
+Poultry Farms
+Dairy Farms
+Agricultural Irrigation
+Shops
+Small Industries
+Off-Grid Solar Systems
+Hybrid Solar Systems
+Why Buy from Solar.com.bd?
+When you purchase from 
+Solar.com.bd
+, you receive:
+Genuine Solis Products
+Competitive Price in Bangladesh
+Official Warranty Support
+Professional Technical Assistance
+Nationwide Delivery
+Installation Support
+Expert After-Sales Service",Inverter_Solis_12kW_Single_Phase_Hybrid_Inverter_S6_EH1P12K_0.webp,Details,Solis,S6-EH1P12K03-NV-YD-L,Single Phase Hybrid Solar Inverter,12kW,24kW,550V,3,40V–60V,Lithium-ion / Lead Acid,97.6%,7″ LCD + Bluetooth,"RS485, WiFi, LAN, Cellular (Optional)",IP66,55.5kg,China,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,Off Grid Hybrid Inverter,GoodWe 5kW Off Grid Hybrid Inverter,"186,981৳",https://solar.com.bd/product/goodwe-5kw-off-grid-hybrid-inverter/,"GoodWe 5kW Off Grid Hybrid Inverter GW5K-EO-G20 Price in Bangladesh
+The GoodWe 5kW Off Grid Hybrid Inverter GW5K-EO-G20 is a powerful and intelligent solar inverter designed to provide reliable energy for homes, offices, shops, farms, and commercial applications. As part of GoodWe’s advanced EO G2 Series, this inverter combines solar power generation, battery storage, grid support, and generator compatibility in one efficient system.
+Designed for modern energy needs, the GoodWe 5kW Off Grid Hybrid Inverter GW5K-EO-G20 delivers exceptional performance with up to 98.6% efficiency, dual MPPT technology, WiFi and Bluetooth monitoring, and seamless backup switching. Whether you live in an area with frequent power outages or want complete energy independence, this inverter offers a dependable and scalable solution.
+Key Features of GoodWe 5kW Off Grid Hybrid Inverter GW5K-EO-G20
+High Solar Input Capacity
+The GoodWe 5kW Off Grid Hybrid Inverter GW5K-EO-G20 supports up to 10kW of solar panel input power, allowing users to maximize solar energy production and reduce electricity costs. The inverter supports up to 200% PV oversizing, helping achieve higher energy yields and better return on investment.
+Dual MPPT Technology
+This model features:
+2 MPPT Trackers
+MPPT Voltage Range: 50V – 480V
+Maximum Input Voltage: 530V
+Maximum MPPT Current: 21A + 21A
+Dual MPPT technology allows flexible solar panel configurations and maximizes energy generation even when panels face different directions.
+Exceptional Efficiency
+The inverter delivers industry-leading performance with:
+Maximum Efficiency: 98.6%
+European Efficiency: 96.8%
+MPPT Efficiency: 99.9%
+These efficiency levels ensure more solar energy is converted into usable electricity while minimizing power losses.
+Supports Lithium and Lead-Acid Batteries
+The GoodWe 5kW Off Grid Hybrid Inverter GW5K-EO-G20 is compatible with:
+Lithium-Ion Batteries
+LiFePO4 Batteries
+Lead-Acid Batteries
+Operating on a 48V battery system, it offers intelligent battery management and communication through CAN protocol for optimized charging and battery protection.
+Smart Monitoring System
+Built-in communication features include:
+WiFi Connectivity
+Bluetooth Connectivity
+Mobile App Monitoring
+Remote Firmware Updates
+Real-Time System Monitoring
+Users can monitor energy production, battery status, and system performance anytime from their smartphone.
+Generator Integration
+The inverter supports direct generator connection, ensuring uninterrupted power supply during extended cloudy weather or low battery conditions.
+Fast Backup Switching
+With a switching time of less than 4 milliseconds, the inverter provides seamless backup power for sensitive devices such as computers, routers, CCTV systems, medical equipment, and home appliances.
+Expandable Design
+The GoodWe 5kW Off Grid Hybrid Inverter GW5K-EO-G20 supports parallel operation of up to 10 units, making it suitable for future expansion and larger energy storage systems.
+Advanced Protection Features
+The inverter includes comprehensive protection functions to ensure safe and reliable operation:
+PV Reverse Polarity Protection
+PV String Current Monitoring
+Residual Current Monitoring
+Anti-Islanding Protection
+AC Overcurrent Protection
+AC Short Circuit Protection
+AC Overvoltage Protection
+PV Insulation Resistance Detection
+DC Surge Protection Type III
+AC Surge Protection Type II
+Built-in GFCI Protection
+These advanced safety features protect both the inverter and connected equipment.
+Technical Specifications
+Battery Side
+Battery Type: Lithium-Ion / Lead-Acid
+Nominal Battery Voltage: 48V
+Battery Voltage Range: 40V – 60V
+Start-Up Voltage: 44.2V
+Maximum Charging Current: 120A
+Maximum Discharging Current: 120A
+Maximum Charging Power: 5kW
+Maximum Discharging Power: 5.5kW
+PV Side
+Maximum PV Input Power: 10kW
+Maximum Input Voltage: 530V
+MPPT Voltage Range: 50V – 480V
+Nominal Input Voltage: 360V
+Number of MPPTs: 2
+Maximum MPPT Current: 21A + 21A
+AC Output
+Rated Output Power: 5kW
+Maximum Output Power: 5.5kW
+Rated Voltage: 220V / 230V
+Frequency: 50Hz / 60Hz
+Maximum Grid Current: 35A
+Backup Output
+Rated Backup Power: 5kVA
+Maximum Backup Power: 5.5kVA
+Peak Backup Capacity: 12kVA for 10 Seconds
+Switching Time: ≤4ms
+General Specifications
+Maximum Efficiency: 98.6%
+MPPT Efficiency: 99.9%
+Communication: RS485, WiFi, Bluetooth
+BMS Communication: CAN
+Display: LCD Screen
+Weight: Less Than 13kg
+Dimensions: 337 × 456 × 201 mm
+Protection Rating: IP66
+Installation Type: Wall Mounted
+Cooling Method: Smart Fan Cooling
+Operating Temperature: -35°C to +60°C
+Applications
+The GoodWe 5kW Off Grid Hybrid Inverter GW5K-EO-G20 is suitable for:
+Residential Solar Systems
+Commercial Solar Installations
+Rural Electrification Projects
+Farm Houses
+Small Industries
+Shops and Offices
+Energy Storage Systems
+Backup Power Solutions
+Why Choose GoodWe 5kW Off Grid Hybrid Inverter GW5K-EO-G20?
+GoodWe is recognized worldwide for manufacturing reliable, efficient, and innovative solar energy products. The GoodWe 5kW Off Grid Hybrid Inverter GW5K-EO-G20 offers advanced hybrid functionality, intelligent monitoring, dual MPPT technology, battery flexibility, and strong protection features, making it one of the best choices for solar energy systems in Bangladesh.
+With support for lithium batteries, generator integration, fast backup switching, and expandable system architecture, this inverter is built to provide long-term energy security and maximum solar performance.
+Order the GoodWe 5kW Off Grid Hybrid Inverter GW5K-EO-G20 today from Solar BD and build a reliable, efficient, and future-ready solar power system.",Inverter_GoodWe_5kW_Off_Grid_Hybrid_Inverter_0.webp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,Off Grid Hybrid Inverter,SAKO E SUN 4.2KVA 24V Off Grid Hybrid Inverter,"45,500৳",https://solar.com.bd/product/sako-e-sun-4-2kva-24v-off-grid-hybrid-inverter/,"The 
+SAKO E SUN 4.2KVA 24V Off Grid Hybrid Inverter
+ represents the definitive pinnacle of hybrid power technology, expertly engineered to provide seamless, reliable, and high-capacity electrical backup. Classified as a multi-function inverter/charger, this unit skill fully combines the indispensable roles of a robust inverter, an intelligent MPPT solar charge controller, and a versatile battery charger into one robust, compact, and aesthetically pleasing chassis. It is the ideal, high-capacity solution for larger residential settings, demanding small office environments, or light commercial operations in regions, like Bangladesh, characterized by inconsistent utility power and a growing reliance on renewable energy sources. This model’s powerful output and advanced features solidify its position as a top-tier choice for securing energy independence.
+High Capacity and Pure Sine Wave Output (4.2KVA / 3500W)
+This specific model delivers a formidable continuous power output of 4.2KVA / 3500W while operating on an efficient 24V DC battery system. This higher voltage configuration is optimally suited for minimizing internal current draw, significantly reducing losses across cables, and maximizing overall system efficiency in high-power applications. This robust capacity ensures that you can power a wide array of appliances simultaneously—from standard lighting and fans to energy-intensive equipment such as dedicated AC units (within capacity limits), refrigerators, and water pumps.
+Crucially, the output is strictly Pure Sine Wave. This means the electricity generated is clean, stable, and perfectly identical in quality to that supplied by the public utility grid. This uncompromising power quality is vital for safeguarding all connected appliances, particularly sensitive electronics (like computers, modern televisions, and diagnostic equipment) and high-inductance motor loads. Using Pure Sine Wave power protects these valuable assets from the operational stress, overheating, and damage often associated with the less refined output of modified sine wave inverters, thereby extending their operational lifespan and minimizing replacement costs.
+Revolutionizing Energy Harvest with Advanced MPPT Technology
+The core of the SAKO E-SUN 4.2KVA’s high solar efficiency is the integrated Maximum Power Point Tracking (MPPT) solar charge controller. This technology represents a significant leap over older Pulse Width Modulation (PWM) methods. The MPPT controller constantly scans the photovoltaic (PV) array’s electrical characteristics to precisely locate and operate at the point where maximum power can be extracted, ensuring an impressive efficiency rate that often exceeds 98%. This results in you harvesting more power from your solar panels throughout the day.
+The unit boasts a remarkably Wide PV Input Range of 45Vdc to 450Vdc  granting substantial flexibility in solar array design. This wide range simplifies installation and allows for more cost-effective string sizing across rooftops of varying sizes and orientations. A vital feature for maximizing power yield during marginal hours is its low start-up capability: the inverter is designed so that Only 1pcs 36V solar panel can start the solar inverter, guaranteeing effective charging initiation even under minimal solar irradiance or during the challenging transition periods of dawn and dusk. This maximized daily energy yield directly translates into faster battery charging and greater long-term operational cost savings.
+Intelligent Customization and Versatile Battery Integration
+The SAKO E-SUN 3.0KW is designed for modern users who demand precise, granular control over their energy usage. Control over the system is managed through a comprehensive LCD display and user-friendly control buttons. This interface allows for highly personalized energy management settings:
+Configurable Charger Priority: Users can easily set the system to prioritize charging from the solar array (maximizing the use of free, renewable energy) or revert to using the AC utility/generator source (ensuring the batteries are always topped up).
+Battery Chemistry Compatibility: Utilizing a smart battery charger design, the unit is fully compatible with a diverse range of battery chemistries, including traditional flooded, AGM, and Gel batteries, as well as the powerful and long-lasting Lithium-ion (LiFePo4) batteries. This future-proof compatibility ensures the system remains relevant as energy storage technology advances.
+Adjustable Charging Current: The charging current can be precisely configured to optimally match the specific capacity and health of the connected battery bank, a feature crucial for optimizing battery health and extending its service life.
+Input Range Flexibility: The unit allows users to set different acceptable AC input voltage ranges for either sensitive loads (UPS Mode) or standard appliances, tailoring protection precisely to the load requirement.
+Uncompromising Reliability, Safety, and Connectivity
+Reliability is a cornerstone of the SAKO E-SUN 4.2KVA’s design. The system is engineered to seamlessly manage power input from both the mains utility and a generator, providing flexible and reliable options for battery replenishment.
+Safety is paramount, with comprehensive features built in:
+Protection Suite: Integrated safeguards against Overload, Over temperature, and Short circuit protection ensure both the longevity of the inverter and the safety of all connected loads.
+Operational Continuity: Key features include Auto restart while AC is recovering for hands-free transition back to grid power, and a Cold Start function, which allows the inverter to be powered on directly from the batteries even when no external AC input is present.
+Optional Monitoring: For sophisticated users, the SAKO E SUN 4.2KVA supports optional WIFI/GPRS monitoring, enabling remote access to system status, historical data, and setting adjustments via a smartphone or PC, providing unparalleled oversight of your power system.
+Product Features
+
+
+102A MPPT Solar Charge Controller Inside
+Wide PV Input Range 45-400Vdc
+Smart battery protection. Compatible with LiFePo4
+Configurable battery & AC/Solar priority via LCD setting
+Reliable quality, economic design
+Only 1pcs 36V solar panel can start solar inverter
+Pure Sine Wave Output
+Auto restart while AC is recovering
+Cold Start function
+Compatible with mains voltage or generator power
+Overload/ Over temperature/ short circuit protection","Inverter_SAKO_E_SUN_4_2KVA_24V_Off_Grid_Hybrid_Inverter_0.webp, Inverter_SAKO_E_SUN_4_2KVA_24V_Off_Grid_Hybrid_Inverter_1.webp, Inverter_SAKO_E_SUN_4_2KVA_24V_Off_Grid_Hybrid_Inverter_2.webp, Inverter_SAKO_E_SUN_4_2KVA_24V_Off_Grid_Hybrid_Inverter_3.webp, Inverter_SAKO_E_SUN_4_2KVA_24V_Off_Grid_Hybrid_Inverter_4.webp",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,Off Grid Hybrid Inverter,Crown Micro ARCEUS-6.5KW 48V PV-7800W MPPT Solar Inverter,"659,368৳",https://solar.com.bd/product/crownmicro-arceus-6-5kw-48v-pv-7800w-mppt-solar-inverter/,"CrownMicro ARCEUS-6.5KW 48V PV-7800W MPPT Solar Inverter – Overview
+The CrownMicro ARCEUS-6.5KW 48V PV-7800W inverter is a high-performance pure sine wave solar inverter with integrated MPPT technology. Designed for flexible residential and commercial use, it supports both grid-tied and off-grid applications, with or without batteries. Built-in Wi-Fi, advanced BMS, and multiple protection features ensure reliable and efficient solar power conversion.
+Key Benefits
+Pure sine wave MPPT inverter with high efficiency of 94%.
+Wide MPPT voltage range (90VDC – 550VDC) for versatile solar setups.
+Dual output for smart load management and priority power supply.
+Compatible with AC mains or generator input for backup solutions.
+Advanced protection against overload, short-circuit, and DC faults.
+Built-in Wi-Fi and BMS for monitoring and intelligent system control.
+Parallel operation up to 4 units (optional for 6.5)
+For best performance, pair this inverter with high-efficiency solar panels and a reliable 
+battery bank
+, ensuring long-term stability and power security.
+Technical Specifications
+Parameter
+Value
+Model Name
+ARCEUS-6.5KW
+Rated Power
+6500VA / 6500W
+AC Input Voltage
+220 / 230 / 240 VAC ± 3%
+Voltage Range
+90–280VAC (single phase)
+Output Power Factor
+1.0
+Waveform
+Pure sine wave
+Max. Efficiency (Peak)
+94%
+Charger Type
+MPPT
+Max PV Input Power
+7800W
+PV Voltage Range
+90–550VDC
+Max PV Input Current
+27A
+Battery Voltage
+48VDC
+Battery Type
+Lithium / Lead-acid
+Display
+5.2” LCD, multifunction
+Communication
+RS485 / CAN / USB / Wi-Fi
+Dimension (W*H*D)
+375*570*200 mm
+Net Weight
+9.2 kg
+Operating Temp.
+0°C to 40°C
+Storage Temp.
+-15°C to 60°C
+Download Datasheet
+ | For manufacturer details, see the official page: 
+CrownMicro ARCEUS-6.5KW",Inverter_Crown_Micro_ARCEUS_6_5KW_48V_PV_7800W_MPPT_Solar_I_0.png,,,,,6500VA / 6500W,,,,48VDC,Lithium / Lead-acid,,"5.2” LCD, multifunction",RS485 / CAN / USB / Wi-Fi,,,,Value,ARCEUS-6.5KW,220 / 230 / 240 VAC ± 3%,90–280VAC (single phase),1.0,Pure sine wave,94%,MPPT,7800W,90–550VDC,27A,375*570*200 mm,9.2 kg,0°C to 40°C,-15°C to 60°C,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,Off Grid Hybrid Inverter,SAKO SUNON V 4.5K 24V Off Grid Hybrid Inverter,"42,000৳",https://solar.com.bd/product/sako-sunon-v-4-5k-24v-off-grid-hybrid-inverter/,"SAKO SUNON V 4.5K 24V Off Grid Hybrid Inverter – 4.5KVA 4.2KW Smart Solar Power Solution with Built-in WiFi
+SAKO SUNON V 4.5K 24V Off Grid Hybrid Inverter
+ is a powerful, intelligent, and highly efficient solar inverter designed for modern homes, shops, and small businesses. With advanced hybrid technology, this inverter ensures uninterrupted electricity by combining solar power, battery backup, and grid electricity into one smart system.
+This model comes with 
+4.5KVA / 4.2KW rated power
+, making it strong enough to run essential home appliances such as fans, lights, refrigerators, televisions, computers, and small office equipment without any interruption.
+It is specially designed for the Bangladesh solar market where load shedding and electricity instability are common problems.
+⚡ What is SAKO SUNON V 4.5K 24V Off Grid Hybrid Inverter?
+The 
+SAKO SUNON V 4.5K 24V Off Grid Hybrid Inverter
+ is a next-generation solar power system that works intelligently with three energy sources:
+Solar panel energy
+Battery backup power
+Grid electricity
+It automatically switches between these sources based on availability and load demand. This ensures continuous and stable power supply 24/7 without manual switching.
+This smart hybrid system helps users reduce electricity costs while increasing energy independence.
+🔥 Built-in WiFi Smart Monitoring System
+One of the most powerful features of the 
+SAKO SUNON V 4.5K 24V Off Grid Hybrid Inverter
+ is its 
+built-in WiFi connectivity
+.
+With this feature, users can:
+Monitor real-time solar performance
+Check battery status anytime
+Track energy consumption
+Control inverter settings from mobile app
+Get system alerts and updates
+This smart feature makes energy management easy and fully digital. You can control your solar system from anywhere using your smartphone.
+🔋 Key Features of SAKO SUNON V 4.5K 24V Off Grid Hybrid Inverter
+4.5KVA / 4.2KW high power output
+24V battery system support
+Pure sine wave output for safe appliances
+Built-in MPPT solar charge controller
+Smart hybrid energy management system
+Built-in WiFi for mobile monitoring
+LCD display for real-time system status
+Automatic switching between solar, battery, and grid
+Overload, short circuit, and over-temperature protection
+Supports lithium-ion and lead-acid batteries
+High efficiency up to 93%+
+⚙️ Technical Specifications
+Product Name: SAKO SUNON V 4.5K 24V Off Grid Hybrid Inverter
+Focus Keyword: SAKO SUNON V 4.5K 24V Off Grid Hybrid Inverter
+Rated Power: 4.5KVA / 4.2KW
+Battery Voltage: 24V
+Output Waveform: Pure Sine Wave
+Solar Charge Controller: MPPT
+Communication: Built-in WiFi + LCD Display
+Efficiency: Up to 93%
+Protection: Overload / Short Circuit / Over Temperature
+Battery Compatibility: Lithium & Lead-Acid
+🏠 Applications
+The 
+SAKO SUNON V 4.5K 24V Off Grid Hybrid Inverter
+ is suitable for:
+Residential homes
+Small and medium businesses
+Shops and supermarkets
+Offices and clinics
+Rural off-grid solar systems
+Educational institutions
+Backup power systems
+🌟 Why Choose SAKO SUNON V 4.5K 24V Off Grid Hybrid Inverter?
+There are many solar inverters available, but this model stands out because of its advanced hybrid system and smart features.
+✔️ 1. Powerful Performance (4.5KVA / 4.2KW)
+Easily supports essential appliances without voltage drops or interruptions.
+✔️ 2. Smart Hybrid Technology
+Automatically manages solar, battery, and grid power for maximum efficiency.
+✔️ 3. Built-in WiFi Monitoring
+Control and monitor your solar system from anywhere using your mobile phone.
+✔️ 4. Electricity Bill Savings
+Reduces electricity costs by using solar energy efficiently.
+✔️ 5. Reliable Backup Power
+Ensures uninterrupted electricity during load shedding.
+✔️ 6. Safe for Appliances
+Pure sine wave output protects sensitive electronics.
+🌱 Benefits of This Inverter
+Long-term electricity cost reduction
+Eco-friendly renewable energy usage
+Low maintenance system
+Smart automation and remote control
+High efficiency solar energy conversion
+Stable and reliable power supply
+🔧 Installation Guide
+For best performance, professional installation is recommended.
+Basic Setup Steps:
+Connect solar panels to MPPT input
+Connect 24V battery bank
+Connect household or business load
+Configure system using LCD or mobile app
+Enable WiFi monitoring system
+System will run automatically
+📌 Why It is Perfect for Bangladesh
+In Bangladesh, power cuts and rising electricity prices are common issues. The 
+SAKO SUNON V 4.5K 24V Off Grid Hybrid Inverter
+ is an ideal solution because it:
+Reduces dependency on grid electricity
+Provides stable backup power
+Uses free solar energy
+Saves long-term electricity cost
+Works efficiently in rural and urban areas","Inverter_SAKO_SUNON_V_4_5K_24V_Off_Grid_Hybrid_Inverter_0.webp, Inverter_SAKO_SUNON_V_4_5K_24V_Off_Grid_Hybrid_Inverter_1.webp",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,Off Grid Hybrid Inverter,Growatt SPF 3500 ES 3.5KW 48V Off Grid Hybrid Solar Inverter,"35,000৳",https://solar.com.bd/product/growatt-spf-3500-es-3-5kw-48v-off-grid-hybrid-solar-inverter/,"🔋 Growatt SPF 3500 ES 3.5KW 48V Off Grid Hybrid Solar Inverter
+The Growatt SPF 3500 ES 3.5KW 48V Off-Grid Hybrid Solar Inverter is a powerful, efficient, and intelligent solar energy solution designed for homes, small businesses, and off-grid applications. With advanced hybrid technology, this inverter integrates solar power, battery storage, and grid supply to ensure uninterrupted electricity—especially important for Bangladesh where load shedding and low voltage are common.
+This inverter combines three essential components in one unit: a pure sine wave inverter, an MPPT solar charge controller, and a battery charger. This all-in-one system reduces installation cost and simplifies operation while maximizing energy efficiency. It supports both on-grid backup and off-grid operation, making it highly flexible for different usage scenarios.
+The built-in MPPT (Maximum Power Point Tracking) technology ensures maximum solar energy harvesting from panels, even in low sunlight conditions. With a wide MPPT voltage range, the inverter optimizes solar performance and improves overall system efficiency.
+It supports lithium (LiFePO4), lead-acid, and GEL batteries, giving users flexibility based on budget and performance needs. Additionally, it can operate with or without batteries, allowing direct solar usage during the day and battery backup at night or during outages.
+The inverter delivers a pure sine wave output, ensuring safe operation for sensitive electronics like TVs, computers, refrigerators, and other appliances. With high efficiency and intelligent power management, it reduces electricity bills and increases energy savings.
+⚙️ GENERAL INFORMATION
+DC/AC ratio up to 1.2 for optimized system design
+2× peak power capability for handling heavy load startup
+Output power factor up to 1.0 for maximum usable power
+Parallel operation support up to 6 units (expandable system)
+Multiple customizable working modes for different scenarios
+Compatible with Lithium, Lead-acid, and GEL batteries
+Supports WiFi & GPRS remote monitoring
+PVkeeper platform support for easy setup and configuration
+Timer-based charging and load control system
+Comprehensive Growatt warranty support (2 years)
+🔧 Basic Specifications of Growatt SPF 3500 ES
+Rated Power:
+ 3500W
+Battery Voltage:
+ 48V DC
+Max PV Array Power:
+ 4500W
+MPPT Voltage Range:
+ 120V – 430V DC
+Max Charge Current:
+ 60A
+Efficiency:
+ Up to 93%
+Surge Power:
+ 7000W
+Dimensions (W×H×D):
+ 330 × 485 × 135 mm
+Weight:
+ 11.5 kg
+Protection Level:
+ IP20
+⚡ Performance & Smart Features
+The Growatt SPF 3500 ES is designed with intelligent energy management. It supports dual input sources—solar and grid—and automatically prioritizes solar power to reduce electricity costs. When solar energy is insufficient, the system seamlessly switches to battery or grid supply without interruption.
+The inverter also supports parallel connection of up to 6 units, allowing system expansion as your energy demand increases. This makes it a future-proof investment for both residential and commercial users.
+Its LCD display provides real-time monitoring of system performance, including battery status, load consumption, and solar generation. Optional WiFi/GPRS modules allow remote monitoring via mobile apps, giving users full control from anywhere.
+🏠 Ideal Applications
+Home solar system
+Load shedding backup
+Small office or shop
+Rural off-grid electrification
+Small solar irrigation system","Inverter_Growatt_SPF_3500_ES_3_5KW_48V_Off_Grid_Hybrid_Sola_0.webp, Inverter_Growatt_SPF_3500_ES_3_5KW_48V_Off_Grid_Hybrid_Sola_1.webp, Inverter_Growatt_SPF_3500_ES_3_5KW_48V_Off_Grid_Hybrid_Sola_2.webp",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,On Grid Hybrid Inverter,Solis 16kW Single Phase Hybrid Inverter S6-EH1P16K03-NV-YD-L,"260,000৳",https://solar.com.bd/product/solis-16kw-single-phase-hybrid-inverter-s6-eh1p16k03-nv-yd-l/,"Solis 16kW Single Phase Hybrid Inverter S6-EH1P16K03-NV-YD-L
+The 
+Solis 16kW Single Phase Hybrid Inverter S6-EH1P16K03-NV-YD-L
+ is a next-generation low-voltage hybrid inverter engineered for high-performance residential, villa, commercial, office, agricultural, and industrial solar power systems. Designed with advanced hybrid technology, it intelligently manages solar energy, battery storage, grid power, and generator input to deliver maximum energy independence and lower electricity costs.
+Supporting a 
+recommended PV array size of 32kW
+ and 
+25.6kW maximum usable PV input
+, the inverter allows users to harvest more solar energy throughout the day. Its 
+3 independent MPPT trackers
+ and 
+6 PV string inputs
+ improve energy production even when solar panels are installed on different roof orientations or experience partial shading. The inverter also supports high-current PV modules, making it compatible with the latest generation of high-power solar panels. These specifications are provided in the official Solis datasheet.
+Built for modern energy storage systems, the 
+Solis 16kW Single Phase Hybrid Inverter S6-EH1P16K03-NV-YD-L
+ is compatible with 
+40V–60V Lithium-ion and Lead-acid batteries
+. It provides up to 
+290A maximum charge/discharge current
+, ensuring fast battery charging and reliable backup performance. Users can customize battery reserve capacity to prioritize critical loads during power outages while maximizing self-consumption of solar energy.
+One of the standout features of this inverter is its 
+ultra-fast backup switching time of less than 10 milliseconds
+, allowing connected appliances to continue operating almost seamlessly during grid failures. In off-grid mode, the inverter can deliver 
+200% overload capacity for up to 10 seconds
+, making it suitable for starting heavy loads such as water pumps, refrigerators, air conditioners, and electric motors.
+The inverter also supports 
+generator integration
+, enabling flexible operation in areas where grid electricity is unreliable. With intelligent generator control, automatic charging, and support for existing grid-tied PV systems, users can build highly reliable hybrid power solutions without replacing existing solar installations. Additionally, up to 
+6 inverters can operate in parallel
+, making future system expansion simple and cost-effective.
+For monitoring and management, the inverter features a 
+7-inch industrial-grade LCD touchscreen
+, built-in Bluetooth, and compatibility with the 
+SolisCloud
+ platform. Users can remotely monitor solar production, battery status, electricity consumption, fault alarms, and system performance using a smartphone or computer. AI-powered optimization and remote diagnostics further simplify maintenance and improve system efficiency.
+Designed to withstand harsh environments, the inverter features an 
+IP66-rated enclosure
+, intelligent fan cooling, surge protection, reverse polarity protection, ground fault monitoring, and optional AFCI protection. With a 
+maximum efficiency of 97.6%
+ and 
+97.0% European efficiency
+, it ensures reliable, long-term operation while maximizing the return on your solar investment.
+Whether you are planning a high-capacity home solar system, a commercial rooftop installation, a factory backup solution, or an agricultural energy storage project, the 
+Solis 16kW Single Phase Hybrid Inverter S6-EH1P16K03-NV-YD-L
+ delivers exceptional performance, intelligent energy management, and dependable backup power.
+Key Features
+Brand: Solis
+Model: 
+S6-EH1P16K03-NV-YD-L
+Rated Output Power: 
+16kW
+Single Phase Hybrid Solar Inverter
+Supports 
+32kW Recommended PV Array
+25.6kW Maximum Usable PV Input
+Maximum PV Voltage: 
+550V
+3 MPPT Trackers
+6 PV Inputs
+Compatible with 
+40V–60V Lithium-ion & Lead-acid Batteries
+Maximum Charge/Discharge Current: 
+290A
+Maximum Efficiency: 
+97.6%
+Generator Compatible
+Smart Load Management
+Less than 10ms UPS Switching
+Supports PV-only Off-grid Operation
+Parallel Operation Up to 6 Units
+SolisCloud Smart Monitoring
+AI Performance Optimization
+7-inch LCD Touchscreen
+Bluetooth Built-in
+RS485 Communication
+Optional Wi-Fi, LAN & Cellular
+Intelligent Fan Cooling
+IP66 Protection
+Surge Protection
+Reverse Polarity Protection
+Ground Fault Monitoring
+Optional AFCI
+Technical Specifications
+Specification
+Details
+Brand
+Solis
+Model
+S6-EH1P16K03-NV-YD-L
+Inverter Type
+Single Phase Hybrid
+Rated Output Power
+16kW
+Recommended PV Array Size
+32kW
+Maximum Usable PV Power
+25.6kW
+Maximum PV Voltage
+550V
+MPPT Voltage Range
+80V–520V
+MPPT
+3
+PV Strings
+6
+Battery Voltage
+40V–60V
+Battery Type
+Lithium-ion / Lead-acid
+Maximum Charge Current
+290A
+Maximum Efficiency
+97.6%
+Grid Voltage
+220V / 230V
+Frequency
+50Hz / 60Hz
+Display
+7-inch LCD + Bluetooth
+Communication
+RS485, Wi-Fi (Optional), LAN (Optional), Cellular (Optional)
+Protection Rating
+IP66
+Cooling
+Intelligent Fan Cooling
+Weight
+55.5kg
+Why Buy from Solar.com.bd?
+100% Genuine Solis Products
+Official Price in Bangladesh
+Manufacturer Warranty
+Professional Installation Support
+Nationwide Delivery
+Expert Technical Assistance
+Reliable After-Sales Service
+Competitive Market Price
+Trusted Solar Solution Provider in Bangladesh",Inverter_Solis_16kW_Single_Phase_Hybrid_Inverter_S6_EH1P16K_0.webp,Details,Solis,S6-EH1P16K03-NV-YD-L,,,,,3,40V–60V,Lithium-ion / Lead-acid,,7-inch LCD + Bluetooth,"RS485, Wi-Fi (Optional), LAN (Optional), Cellular (Optional)",,55.5kg,,,,,,,,,,,,,,,,,Single Phase Hybrid,16kW,32kW,25.6kW,550V,80V–520V,6,290A,97.6%,220V / 230V,50Hz / 60Hz,IP66,Intelligent Fan Cooling,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,Off Grid Hybrid Inverter,SAKO E-SUN 1.2KVA 12V Off-Grid Hybrid  Inverter,"31,500৳",https://solar.com.bd/product/sako-e-sun-1-2kva-12v-off-grid-hybrid-inverter/,"The 
+SAKO E-SUN 1.2KVA 12V Off-Grid Hybrid Inverter
+ is a reliable, energy-efficient, and modern power solution designed for small homes, shops, offices, and off-grid solar systems in Bangladesh. Built with advanced inverter technology and an integrated MPPT solar charge controller, this inverter ensures stable power output, maximum solar energy utilization, and long-term system reliability even in challenging grid conditions.
+With a rated capacity of 
+1000VA
+, the SAKO E-SUN 1K inverter is ideal for running essential electrical appliances such as lights, fans, televisions, routers, computers, CCTV systems, and other low-to-medium power devices. Its 
+pure sine wave output
+ delivers clean and smooth electricity, making it safe for sensitive electronics and ensuring improved performance and longer lifespan of connected equipment.
+One of the key strengths of this inverter is its 
+built-in MPPT (Maximum Power Point Tracking) solar charge controller
+. MPPT technology allows the inverter to extract the maximum possible power from solar panels by continuously tracking the optimal voltage and current. This results in higher solar charging efficiency compared to traditional PWM controllers, especially during low sunlight conditions or partial shading. As a result, users benefit from faster battery charging and better overall solar system performance.
+The inverter supports a 
+12V battery system
+, making it compatible with a wide range of batteries including 
+LiFePO₄ lithium batteries, tubular batteries, sealed lead-acid batteries, and AGM batteries
+. Intelligent battery management features protect against over-charging, deep discharge, short circuits, and overloads, helping to extend battery life and improve system safety.
+The 
+SAKO E-SUN 1K Off-Grid Inverter
+ is designed to handle Bangladesh’s unstable grid conditions. It accepts a wide AC input voltage range and automatically switches between solar, battery, and grid power based on availability. With a fast transfer time, the inverter ensures uninterrupted power supply, making it suitable for backup applications where power continuity is critical.
+Its 
+high surge capacity
+ allows the inverter to handle the starting current of appliances such as fans, small pumps, and refrigerators. This makes it more versatile than conventional inverters in real-world applications. The inverter also features high conversion efficiency, reducing power loss and saving energy over time.
+The compact and lightweight design makes installation easy in both residential and commercial environments. The inverter operates efficiently in high temperatures and humid conditions, making it well-suited for Bangladesh’s climate. Clear LED or LCD indicators provide real-time system status, including battery level, solar charging, and load conditions, allowing users to monitor performance easily.
+Whether you are setting up a small solar home system, upgrading an existing off-grid solution, or ensuring backup power for essential devices, the 
+SAKO E-SUN 1K Off-Grid MPPT Solar Inverter
+ offers a dependable, efficient, and cost-effective solution. It is an excellent choice for users looking for clean energy, lower electricity costs, and reliable backup power.
+Product Data Sheet – SAKO E-SUN 1.2KVA Off-Grid Hybrid Inverter
+Brand:
+ SAKO
+Model:
+ E-SUN 1K
+Product Type:
+ Off-Grid MPPT Solar Inverter
+Rated Capacity:
+ 1000VA
+Rated Power:
+ Approx. 800–850W
+Battery Voltage:
+ 12V DC
+Output Waveform:
+ Pure Sine Wave
+Output Voltage:
+ 230V AC ±5%
+Frequency:
+ 50Hz / 60Hz (Auto Sensing)
+Surge Power:
+ Up to 2000VA
+Efficiency:
+ >90%
+Solar Charging System:
+Built-in MPPT Solar Charge Controller
+PV Input Voltage Range: Wide range for flexible panel configuration
+Maximum PV Power Support: Suitable for high-efficiency solar arrays
+High solar charging efficiency for faster battery charging
+AC Input:
+Wide input voltage range for unstable grid conditions
+Automatic changeover between solar, battery, and grid
+Battery Protection:
+Over-charge protection
+Over-discharge protection
+Over-load protection
+Short-circuit protection
+Temperature protection
+Transfer Time:
+Fast automatic switching for uninterrupted power
+Display & Monitoring:
+Status indicators for solar, battery, load, and fault conditions
+Operating Temperature:
+Suitable for hot and humid environments
+Installation Type:
+Wall-mounted / Indoor installation
+Applications:
+Home solar system
+Shop and office backup
+Off-grid solar installations
+Lighting, fan, TV, router, CCTV, computer
+Small appliances and electronics","Inverter_SAKO_E_SUN_1_2KVA_12V_Off_Grid_Hybrid__Inverter_0.webp, Inverter_SAKO_E_SUN_1_2KVA_12V_Off_Grid_Hybrid__Inverter_1.webp, Inverter_SAKO_E_SUN_1_2KVA_12V_Off_Grid_Hybrid__Inverter_2.webp, Inverter_SAKO_E_SUN_1_2KVA_12V_Off_Grid_Hybrid__Inverter_3.webp, Inverter_SAKO_E_SUN_1_2KVA_12V_Off_Grid_Hybrid__Inverter_4.webp",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,Off Grid Hybrid Inverter,LVTOPSUN 4KW 24V Solar Off-Grid Hybrid Inverter,"45,450৳",https://solar.com.bd/product/lvtopsun-4kw-24v-solar-off-grid-hybrid-inverter/,"LVTOPSUN 4KW 24V Solar Off-Grid Hybrid Inverter – Overview
+The LVTOPSUN 4KW 24V Solar Off-Grid Hybrid Solar Inverter is a powerful off-grid hybrid solution designed to run home and business loads with stable pure sine wave output, strong PV charging support, and integrated grid/generator input for backup operation.
+Key Benefits
+Delivers 4000W nominal output power for dependable daily load support.
+Supports high PV input power up to 4400W for faster solar charging.
+Wide MPPT voltage range helps capture more solar energy across seasons.
+Pure sine wave output ensures safe operation for sensitive electronics.
+Fast UPS-level transfer time (10ms) improves backup performance.
+Works with Li-ion and Lead-acid batteries for flexible system design.
+High charge/discharge capability supports heavy battery-based loads.
+Built-in protections for surge and short-circuit improve system safety.
+For complete system setup, pair this inverter with quality 
+solar panels
+ and a compatible 
+battery bank
+ to build a reliable off-grid hybrid power system for day and night usage.
+Technical Specifications
+Parameter
+Value
+Technical Data
+AO-4KSL-G2
+Max. PV Input Power
+4400W
+Max. Input Voltage
+550V
+Start-up Voltage
+120V
+MPPT Voltage Range
+90V~450V
+Max. Input Current per MPPT
+18A
+Max. Short Circuit Current per MPPT
+25A
+Number of MPPT
+1
+Nominal Input Voltage
+230Vac, L/N/PE
+Input Voltage Range
+90~280Vac (APL); 170~280Vac (UPS)
+Max. Input Current
+35A
+Nominal Input Power
+8050W
+AC Frequency Range
+40~65Hz
+Battery Type
+Li-ion/Lead-acid
+Nominal Battery Voltage
+24V
+Battery Voltage Range
+20~30V
+Max. Discharge Current
+137A
+Max. Charge/Discharge Power
+3300W
+Li-ion Battery Activation
+Yes
+Li-ion Battery Communication
+CAN/RS485
+Max. Solar Charge Current
+120A
+Max. AC Charge Current
+100A
+Max. Charge Current (PV+AC)
+120A
+Nominal Output Power
+4000W
+Peak Apparent AC Power
+8000VA
+Nominal AC Voltage
+230V
+Nominal Grid Frequency
+50/60Hz (Auto Sensing)
+Voltage Waveform
+Pure Sine Wave
+Transfer Time
+10ms
+Max. Output Current
+18A
+Overload Protection
+30s@102%-110% load; 10s@110%-130% load; 5s@130%-200% load
+THDv (@linear load)
+<3%
+Peak Efficiency
+94%
+MPPT Efficiency
+>99.9%
+DC Surge Protection
+Yes
+AC Surge Protection
+Yes
+AC Short Circuit Protection
+Yes
+Dimension (W*H*D)
+333*505*120mm
+Weight
+10.6kg
+Relative Humidity
+5%~95% (Non-condensing)
+Operating Temperature Range
+-10°C~50°C
+Noise Emission
+<50dB
+Altitude
+4000m
+Cooling Method
+Fan Cooling
+Ingress Protection
+IP20
+Number of AC Output
+2
+Display
+LCD&LED&APP
+Communication Interface
+RS485/ USB /CAN/ Wi-Fi
+Download Datasheet
+ | For manufacturer details, see the official page: 
+LVTOPSUN LVTS-4KW-HYD",Inverter_LVTOPSUN_4KW_24V_Solar_Off_Grid_Hybrid_Inverter_0.png,,,,,,,,,,Li-ion/Lead-acid,,LCD&LED&APP,,,10.6kg,,Value,,,,,,,,,,,333*505*120mm,,,,,,,,,90V~450V,,,,,,,,AO-4KSL-G2,4400W,550V,120V,18A,25A,1,"230Vac, L/N/PE",90~280Vac (APL); 170~280Vac (UPS),35A,8050W,40~65Hz,24V,20~30V,137A,3300W,Yes,CAN/RS485,120A,100A,120A,4000W,8000VA,230V,50/60Hz (Auto Sensing),Pure Sine Wave,10ms,18A,30s@102%-110% load; 10s@110%-130% load; 5s@130%-200% load,<3%,94%,>99.9%,Yes,Yes,Yes,5%~95% (Non-condensing),-10°C~50°C,<50dB,4000m,Fan Cooling,IP20,2,RS485/ USB /CAN/ Wi-Fi,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,Off Grid Hybrid Inverter,GoodWe 6kW Off Grid Hybrid Inverter,"59,880৳",https://solar.com.bd/product/goodwe-6kw-off-grid-hybrid-inverter/,"GoodWe 6kW Off Grid Hybrid Inverter GW6K-EO-G20 Price in Bangladesh
+The GoodWe 6kW Off Grid Hybrid Inverter GW6K-EO-G20 is a powerful and intelligent solar energy solution designed for residential, commercial, and industrial applications. Built with advanced hybrid technology, this inverter seamlessly integrates solar panels, battery storage, utility grid power, and generator backup into a single smart energy management system.
+As part of the advanced GoodWe EO G2 Series, the GoodWe 6kW Off Grid Hybrid Inverter GW6K-EO-G20 offers outstanding efficiency, flexible installation, dual MPPT technology, smart monitoring, and reliable backup power. Whether you are looking to reduce electricity costs, overcome frequent load shedding, or build a complete off-grid solar system, this inverter delivers exceptional performance and long-term reliability.
+Key Features of GoodWe 6kW Off Grid Hybrid Inverter GW6K-EO-G20
+High PV Input Capacity
+The GoodWe 6kW Off Grid Hybrid Inverter GW6K-EO-G20 supports up to 12kW of solar panel input power, allowing users to maximize solar energy production. With support for 200% PV oversizing, homeowners and businesses can install larger solar arrays and increase energy generation without upgrading inverter capacity.
+Advanced Dual MPPT Technology
+The inverter is equipped with:
+2 Independent MPPT Trackers
+MPPT Voltage Range: 50V – 480V
+Maximum PV Input Voltage: 530V
+Maximum MPPT Current: 21A + 21A
+Dual MPPT functionality ensures optimal solar harvesting even when solar panels are installed on different roof orientations or experience partial shading.
+Exceptional Energy Conversion Efficiency
+The GoodWe 6kW Off Grid Hybrid Inverter GW6K-EO-G20 offers:
+Maximum Efficiency: 98.6%
+European Efficiency: 96.8%
+MPPT Efficiency: 99.9%
+These industry-leading efficiency ratings ensure more solar energy is converted into usable electricity, helping users maximize savings and system performance.
+Compatible with Lithium and Lead-Acid Batteries
+This hybrid inverter supports:
+Lithium-Ion Batteries
+LiFePO4 Batteries
+Lead-Acid Batteries
+The inverter operates with a 48V battery system and provides intelligent battery communication through CAN protocol, ensuring safe charging, battery protection, and extended battery lifespan.
+Built-in WiFi and Bluetooth Monitoring
+Users can easily monitor and control the system through:
+Built-in WiFi
+Bluetooth Connectivity
+Mobile Application Monitoring
+Real-Time Energy Tracking
+Remote Firmware Updates
+This smart monitoring capability allows users to view solar production, battery status, energy consumption, and system performance from anywhere.
+Generator Support
+The GoodWe 6kW Off Grid Hybrid Inverter GW6K-EO-G20 supports direct generator integration, making it ideal for areas with unreliable grid electricity or extended periods of cloudy weather.
+Seamless Backup Power
+With an ultra-fast switching time of less than 4 milliseconds, the inverter provides uninterrupted power to sensitive appliances, including:
+Computers
+Networking Equipment
+CCTV Systems
+Medical Devices
+Refrigerators
+Home Appliances
+Scalable System Expansion
+The inverter supports parallel operation of up to 10 units, allowing users to expand their solar energy system as energy requirements grow.
+Advanced Safety and Protection Features
+The GoodWe 6kW Off Grid Hybrid Inverter GW6K-EO-G20 includes comprehensive protection functions:
+PV Reverse Polarity Protection
+Anti-Islanding Protection
+AC Overcurrent Protection
+AC Short Circuit Protection
+AC Overvoltage Protection
+Residual Current Monitoring
+PV Insulation Resistance Detection
+PV String Current Monitoring
+DC Surge Protection Type III
+AC Surge Protection Type II
+Built-in GFCI Protection
+These advanced safety mechanisms ensure reliable operation and protect both the inverter and connected electrical equipment.
+Technical Specifications
+Battery Side
+Battery Type: Lithium-Ion / Lead-Acid
+Nominal Battery Voltage: 48V
+Battery Voltage Range: 40V – 60V
+Start-Up Voltage: 44.2V
+Maximum Charging Current: 130A
+Maximum Discharging Current: 130A
+Maximum Charging Power: 6kW
+Maximum Discharging Power: 6.6kW
+PV Input Side
+Maximum PV Input Power: 12kW
+Maximum PV Input Voltage: 530V
+MPPT Voltage Range: 50V – 480V
+Nominal PV Voltage: 360V
+Number of MPPTs: 2
+Maximum MPPT Current: 21A + 21A
+AC Output Side
+Rated Output Power: 6kW
+Maximum Output Power: 6.6kW
+Rated Voltage: 220V / 230V
+Frequency: 50Hz / 60Hz
+Maximum Grid Current: 35A
+Backup Output
+Rated Backup Power: 6kVA
+Maximum Backup Power: 6.6kVA
+Peak Backup Capacity: 12kVA for 10 Seconds
+Switching Time: ≤4ms
+General Specifications
+Maximum Efficiency: 98.6%
+MPPT Efficiency: 99.9%
+Communication: RS485, WiFi, Bluetooth
+BMS Communication: CAN
+Display: LCD Touchscreen
+Cooling Method: Smart Fan Cooling
+Weight: Less Than 13kg
+Dimensions: 337 × 456 × 201 mm
+Protection Rating: IP66
+Mounting Type: Wall Mounted
+Operating Temperature: -35°C to +60°C
+Maximum Operating Altitude: 3000m
+Applications
+The GoodWe 6kW Off Grid Hybrid Inverter GW6K-EO-G20 is ideal for:
+Residential Solar Systems
+Commercial Buildings
+Small Industries
+Offices and Shops
+Rural Electrification Projects
+Agricultural Solar Systems
+Energy Storage Applications
+Backup Power Systems
+Off-Grid Solar Installations
+Why Choose GoodWe 6kW Off Grid Hybrid Inverter GW6K-EO-G20?
+GoodWe is one of the world’s most trusted solar inverter manufacturers, recognized for innovation, quality, and reliability. The GoodWe 6kW Off Grid Hybrid Inverter GW6K-EO-G20 combines advanced hybrid technology, dual MPPT solar optimization, intelligent battery management, smart monitoring, generator compatibility, and powerful backup capabilities.
+Its high efficiency, robust safety protections, expandable design, and support for modern lithium battery systems make it an excellent choice for homes and businesses seeking dependable solar energy solutions in Bangladesh.
+If you are planning to build a future-ready solar power system, the GoodWe 6kW Off Grid Hybrid Inverter GW6K-EO-G20 offers outstanding performance, energy independence, and long-term value.
+Order the GoodWe 6kW Off Grid Hybrid Inverter GW6K-EO-G20 today from Solar BD and enjoy reliable, efficient, and uninterrupted solar power for years to come.",Inverter_GoodWe_6kW_Off_Grid_Hybrid_Inverter_0.webp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,Off Grid Hybrid Inverter,LVTOPSUN 12KW 48V Solar Off-Grid Hybrid Inverter,"38,950৳",https://solar.com.bd/product/https-solar-com-bd-product-lvtopsun-12kw-48v-solar-off-grid-hybrid-inverter/,"The 
+LVTOPSUN 12KW 48V Solar Off-Grid Hybrid Inverter
+  is a high-performance power solution designed for homes, offices, shops, farms, and commercial solar systems in Bangladesh. Built with advanced hybrid inverter technology, this unit combines 
+solar power, battery storage, and AC utility/grid charging
+ into one intelligent system.
+With a strong 
+12KW continuous output
+, this inverter can easily run heavy appliances such as air conditioners, refrigerators, deep freezers, water pumps, computers, printers, lighting systems, fans, TVs, and office equipment simultaneously.
+This model uses a 
+48V battery system
+, making it ideal for lithium batteries, LiFePO4 batteries, tubular batteries, and deep-cycle battery banks. A 48V system helps reduce cable loss, improve efficiency, and support high-power loads better than lower-voltage systems.
+The inverter includes an intelligent 
+MPPT solar charge controller
+, which maximizes solar panel performance and increases charging speed. MPPT technology tracks the best voltage point from your solar panels, helping produce more usable energy during cloudy and sunny conditions.
+Its 
+pure sine wave output
+ ensures stable electricity for sensitive devices such as laptops, networking equipment, LED TVs, CCTV systems, routers, and medical devices.
+The inverter features a smart LCD display showing:
+Battery voltage
+Solar charging status
+Load percentage
+AC input/output
+Fault alerts
+System mode
+Multiple protection systems are built in, including:
+Overload protection
+Short circuit protection
+Over temperature protection
+Low battery protection
+Overcharge protection
+Auto restart function
+Whether you need backup during load shedding or a full off-grid solar system, the 
+LVTOPSUN 12KW 48V Hybrid Inverter
+ is a dependable and efficient long-term solution.
+Key Features
+12KW Pure Sine Wave Output
+48V Battery Bank Support
+Built-in MPPT Solar Charger
+Solar + Battery + Grid Hybrid Operation
+Supports Lithium / LiFePO4 Batteries
+Smart LCD Display
+Heavy Load Support
+Intelligent Cooling Fan
+Multiple Safety Protections
+Ideal for Home & Commercial Use
+Suitable For
+Large Home Backup
+Office Power Backup
+Shops & Showrooms
+Farms & Irrigation
+Clinics & Hospitals
+Schools & Coaching Centers
+Off-Grid Solar Projects
+Small Factory Backup Systems
+LVTOPSUN 12KW 48V Solar Off-Grid Hybrid Inverter",Inverter_LVTOPSUN_12KW_48V_Solar_Off_Grid_Hybrid_Inverter_0.webp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,Battery > Lithium Battery,SOLIS S6-EO1P 5K-48 5kW Single Phase Off Grid Hybrid  Inverter,"97,500৳",https://solar.com.bd/product/solis-s6-eo1p-5k-48-5kw-single-phase-off-grid-hybrid-inverter/,"Solis S6-EO1P 5K-48 5kW Single Phase Off Grid Hybrid Inverter
+The 
+Solis S6-EO1P 5K-48 5kW Single Phase Off Grid Hybrid Inverter
+ is a powerful and intelligent energy storage inverter designed for residential, commercial, and remote off-grid solar applications. Developed by the globally recognized Solis brand, this inverter combines solar power generation, battery storage, and backup power management into a single efficient solution.
+With a rated output power of 
+5kW
+, support for 
+48V battery systems
+, advanced MPPT technology, and compatibility with both lithium-ion and lead-acid batteries, the Solis S6-EO1P 5K-48 provides reliable electricity even during grid outages. Whether you need uninterrupted power for your home, office, shop, clinic, or industrial facility, this inverter offers exceptional performance and flexibility.
+Key Features of Solis S6-EO1P 5K-48 5kW Hybrid Inverter
+High Efficiency Performance
+The inverter delivers a maximum efficiency of 
+96.6%
+, ensuring maximum utilization of solar energy and reducing electricity costs.
+Supports Lithium and Lead-Acid Batteries
+Compatible with a wide range of battery technologies including:
+Lithium Iron Phosphate (LiFePO4)
+Lithium-ion Batteries
+Tubular Batteries
+AGM Batteries
+Gel Batteries
+Lead-Acid Batteries
+Powerful Solar Input Capability
+Maximum PV Input Power: 6.5kW
+Maximum Input Voltage: 500V
+MPPT Voltage Range: 90V – 430V
+Dual Solar String Support
+These features allow greater solar panel flexibility and higher energy harvesting.
+Intelligent Energy Management
+The inverter intelligently manages solar power, battery charging, and backup loads to maximize energy savings and ensure continuous power availability.
+Generator Compatibility
+The Solis S6-EO1P 5K-48 can work with diesel or petrol generators, making it ideal for locations with unreliable grid power.
+Parallel Expansion Support
+Up to 
+6 units
+ can be connected in parallel, allowing future system expansion without replacing existing equipment.
+Fast Battery Charging
+Supports one-click fast charging mode and advanced battery charging control for improved battery performance and longer lifespan.
+Dual Backup Load Support
+The inverter supports intelligent load prioritization, ensuring critical appliances receive power first during outages.
+Technical Specifications
+Solar Input
+Model: S6-EO1P 5K-48
+Maximum PV Input Power: 6.5kW
+Maximum Input Voltage: 500V
+Rated Voltage: 360V
+Start-Up Voltage: 90V
+MPPT Voltage Range: 90V – 430V
+Maximum Input Current: 16A / 16A
+MPPT Trackers: 1
+Maximum Strings: 2
+Battery Specifications
+Battery Type: Lithium-ion / Lead-acid
+Battery Voltage Range: 40V – 60V
+Maximum Charge Power: 5kW
+Maximum Discharge Power: 5kW
+Maximum Charge Current: 120A
+Communication: CAN
+AC Output
+Rated Output Power: 5kW
+Rated Output Voltage: 230V
+Frequency: 50Hz / 60Hz
+Surge Capacity: 10kVA
+Maximum Output Current: 25A
+Waveform: Pure Sine Wave
+Transfer Time: 10ms Typical
+THDv: Less than 3%
+AC Charging
+Maximum AC Input Power: 7kW
+Maximum AC Charge Current: 80A
+Input Voltage Range: 90V – 280V
+Protection Features
+Over Voltage Protection
+Over Current Protection
+Short Circuit Protection
+Surge Protection
+Temperature Protection
+Optional AFCI 2.0 Protection
+Advanced Communication Options
+The inverter supports multiple communication interfaces:
+CAN
+BMS Communication
+Dry Contact
+Bluetooth
+Optional WiFi Monitoring
+This allows real-time monitoring and remote system management.
+Compact and Durable Design
+Dimensions: 340 × 480 × 170 mm
+Weight: 13.8 kg
+Protection Rating: IP21
+Operating Temperature: -10°C to +60°C
+Maximum Altitude: 2000m
+The compact design makes installation simple while maintaining excellent durability.
+Applications
+The Solis S6-EO1P 5K-48 5kW Single Phase Off Grid Hybrid Inverter is suitable for:
+Residential Solar Systems
+Homes and Apartments
+Offices
+Shops and Retail Stores
+Hospitals and Clinics
+Educational Institutions
+Farms and Agricultural Projects
+Remote Off-Grid Locations
+Telecom Backup Systems
+Small Industrial Facilities
+Why Choose Solis S6-EO1P 5K-48?
+✔ 5kW Pure Sine Wave Output
+✔ 96.6% High Efficiency
+✔ 500V High PV Input Voltage
+✔ Lithium Battery Compatible
+✔ Generator Support
+✔ Parallel Operation up to 6 Units
+✔ Intelligent Load Management
+✔ Fast Battery Charging
+✔ Reliable Backup Power Solution
+✔ Trusted Global Solis Technology
+Buy Solis S6-EO1P 5K-48 5kW Single Phase Off Grid Hybrid Inverter in Bangladesh
+Looking for a reliable and high-performance off-grid hybrid inverter in Bangladesh? The 
+Solis S6-EO1P 5K-48 5kW Single Phase Off Grid Hybrid Inverter
+ is an ideal solution for ensuring uninterrupted electricity while maximizing solar energy utilization. Its advanced features, battery compatibility, generator support, and intelligent energy management make it one of the best choices for modern solar power systems.",Inverter_SOLIS_S6_EO1P_5K_48_5kW_Single_Phase_Off_Grid_Hybr_0.webp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,Off Grid Hybrid Inverter,SAKO E-SUN 2KVA 12V Off Grid Hybrid Inverter,"75,642৳",https://solar.com.bd/product/sako-e-sun-2kva-12v-off-grid-hybrid-inverter/,"SAKO E-SUN 2KVA 12V Off Grid Hybrid Inverter : The Ultimate Power Solution for Your Home in Bangladesh
+Achieve True Energy Independence with the Best Solar IPS
+In a market saturated with solar power solutions, the SAKO E-SUN 2KVA 12V Off Grid Hybrid Inverter stands out as a top-tier, all-in-one device perfectly tailored for the specific challenges and demands of the power landscape in Bangladesh. Rated at a robust 
+2000VA / 1800W
+, this intelligent hybrid inverter is the heart of a reliable energy system, designed to eliminate power disruptions and drastically reduce your electricity bills. It seamlessly combines three essential functions: a high-quality inverter, an advanced MPPT solar charge controller, and a smart utility battery charger. Whether you are setting up a new solar system or upgrading your existing backup solution, the SAKO E-SUN 2K offers a blend of performance, safety, and configurability that few competitors can match. When searching for the ideal 
+Solar IPS Price in Bangladesh
+, consider the long-term value and efficiency that this SAKO model delivers.
+Revolutionary Efficiency with True MPPT Technology
+The core differentiator of the SAKO E-SUN 2K is its built-in 
+Maximum Power Point Tracking (MPPT) solar charge controller
+. This technology is vital for extracting the absolute maximum energy from your solar panels, especially during periods of low light or fluctuating temperatures.
+Maximized Solar Harvest:
+ Unlike standard PWM (Pulse Width Modulation) chargers, the SAKO MPPT controller constantly tracks the most efficient operating point of the solar array, ensuring an industry-leading conversion efficiency of up to 98%. This high performance is crucial for users who wish to maximize their battery charge in the shortest time.
+High Power Handling:
+ The unit supports a maximum PV array power of 
+2000W
+, allowing you to connect a substantial solar panel setup. This is a significant advantage for users looking to power multiple essential appliances or charge their batteries quickly.
+Wide Input Voltage Flexibility:
+ The wide PV input voltage range, which can handle up to 
+400 VDC
+ open circuit voltage (with an MPPT operation range typically starting from 30VDC), provides immense flexibility in solar array design. This makes installation simpler and allows for optimal solar string sizing, ensuring you get the most out of your panels regardless of your rooftop configuration.
+Pure Sine Wave Output: Power Quality You Can Trust
+The output quality of your inverter directly impacts the lifespan and performance of your appliances. The SAKO E-SUN 2K guarantees a 
+Pure Sine Wave
+ output, delivering power that is cleaner and more stable than the utility grid itself.
+Total Appliance Safety:
+ This clean, consistent power is essential for sensitive electronics, including high-definition televisions, desktop computers, Wi-Fi routers, and medical equipment. Say goodbye to the annoying humming noise and potential damage caused by square-wave or modified sine wave inverters.
+Robust Power Delivery:
+ With a continuous output of 
+1800W
+, the inverter effortlessly powers your home essentials. Furthermore, its impressive surge power rating (up to 2000VA peak) handles the high instantaneous current required to start motor-type appliances like ceiling fans, refrigerators, and small air conditioners without tripping the system.
+Smart Management and Comprehensive System Flexibility
+Category
+Parameter
+Detail
+Inverter Output
+Rated Power
+1800W / 2000VA
+AC Output Voltage Regulation
+230VAC 
+$pm$
+ 5%
+Surge Power
+2000VA (Peak)
+Waveform
+Pure Sine Wave
+Peak Efficiency
+> 90%
+Transfer Time
+10ms (UPS) / 20ms (Appliances)
+AC Input
+Voltage
+230 VAC
+Selectable Voltage Range
+170-280 VAC (UPS) / 90-280 VAC (Appliance)
+Frequency Range
+50Hz/60Hz (Auto sensing)
+Battery System
+DC Voltage
+12 VDC
+Low Battery Alarming Voltage
+11VDC
+Floating Charge Voltage
+13.5VDC
+Overcharge Protection
+16VDC
+Max AC Charge Current
+60A
+Solar Charger (MPPT)
+Maximum PV Array Power
+2000W
+MPPT Range @ Operation Vol.
+50 – 400 VDC
+Max PV Array Open Circuit Vol.
+400VDC
+Maximum Charge Current (Solar)
+80A
+Max Efficiency
+98%
+General
+Communication Ports
+BMS/ USB, RS232 (WIFI optional)
+Operating Temperature
+-10ºC – 50ºC
+Humidity
+5% to 95% Relative Humidity (Non-condensing)
+The SAKO E-SUN 2K is designed for intelligent power management, giving the user complete control through a user-friendly LCD control panel:
+Configurable Charging Priorities:
+ Tailor your energy strategy to your needs. Easily set the battery charging current and choose the 
+AC/Solar Charger Priority
+ to either prioritize free solar energy or rely on the grid when sunlight is insufficient.
+Universal Power Source Compatibility:
+ The inverter is fully compatible with both standard 
+mains voltage
+ and 
+generator power
+, ensuring that you have multiple options for backup charging when solar power is unavailable. It even includes an 
+Auto Restart
+ function after AC recovery, providing a completely hands-free operation.
+Advanced Battery Compatibility:
+ Equipped with a 
+smart battery charger design
+ for optimized performance, this unit supports all major battery chemistries, including traditional Flooded, AGM, and Gel batteries, and the increasingly popular, high-cycle 
+Lithium-ion (LiFePO4) batteries
+. This flexibility ensures that your investment remains future-proof.
+Safety, Durability, and Connectivity
+Built with quality and durability in mind, the SAKO E-SUN 2K incorporates crucial safety and monitoring features:
+All-Around Protection:
+ The inverter includes comprehensive safety measures, such as 
+overload, over-temperature, and short circuit protection
+, safeguarding both the unit and your connected loads against common electrical faults.
+Optional Remote Monitoring:
+ For tech-savvy users, the E-SUN 2K is ready for remote management. It supports connectivity via USB, RS232, and RS485 ports, and offers optional 
+WIFI/GPRS monitoring
+ accessories (sold separately) for checking system status and adjusting settings from your smartphone or PC.
+Choose the SAKO E-SUN 2KVA 12V Off Grid Hybrid Inverter for a powerful, efficient, and reliable solar backup system. Invest in the best Solar IPS solution for your home in Bangladesh today!","Inverter_SAKO_E_SUN_2KVA_12V_Off_Grid_Hybrid_Inverter_0.webp, Inverter_SAKO_E_SUN_2KVA_12V_Off_Grid_Hybrid_Inverter_1.webp, Inverter_SAKO_E_SUN_2KVA_12V_Off_Grid_Hybrid_Inverter_2.webp, Inverter_SAKO_E_SUN_2KVA_12V_Off_Grid_Hybrid_Inverter_3.webp, Inverter_SAKO_E_SUN_2KVA_12V_Off_Grid_Hybrid_Inverter_4.webp",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,Off Grid Hybrid Inverter,LVTOPSUN 6KW 48V Solar Off-Grid Hybrid Inverter,"17,500৳",https://solar.com.bd/product/lvtopsun-6kw-48v-solar-off-grid-hybrid-inverter/,"LVTOPSUN 6KW 48V Solar Off-Grid Hybrid Inverter – Overview
+The LVTOPSUN 6KW 48V Solar Off-Grid Hybrid Solar Inverter is a powerful off-grid hybrid solution designed to run home and business loads with stable pure sine wave output, strong PV charging support, and integrated grid/generator input for backup operation.
+Key Benefits
+Delivers 6000W nominal output power for dependable daily load support.
+Supports high PV input power up to 7800W for faster solar charging.
+Wide MPPT voltage range helps capture more solar energy across seasons.
+Pure sine wave output ensures safe operation for sensitive electronics.
+Fast UPS-level transfer time (10ms) improves backup performance.
+Works with Li-ion and Lead-acid batteries for flexible system design.
+High charge/discharge capability supports heavy battery-based loads.
+Built-in protections for surge and short-circuit improve system safety.
+Supports parallel capability up to 9 units for scalable power expansion.
+For complete system setup, pair this inverter with quality 
+solar panels
+ and a compatible 
+battery bank
+ to build a reliable off-grid hybrid power system for day and night usage.
+Technical Specifications
+Parameter
+Value
+Technical Data
+AO-6KSL-G2
+Max. PV Input Power
+7800W
+Max. Input Voltage
+550V
+Start-up Voltage
+120V
+MPPT Voltage Range
+90V~500V
+Max. Input Current per MPPT
+27A
+Max. Short Circuit Current per MPPT
+32A
+Number of MPPT
+1
+Nominal Input Voltage
+230Vac, L/N/PE
+Input Voltage Range
+90~280Vac (APL); 170~280Vac (UPS)
+Max. Input Current
+35A
+Nominal Input Power
+8050W
+AC Frequency Range
+40~65Hz
+Battery Type
+Li-ion/Lead-acid
+Nominal Battery Voltage
+48V
+Battery Voltage Range
+42~60V
+Max. Discharge Current
+137A
+Max. Charge/Discharge Power
+6000W
+Li-ion Battery Activation
+Yes
+Li-ion Battery Communication
+CAN/RS485
+Max. Solar Charge Current
+120A
+Max. AC Charge Current
+100A
+Max. Charge Current (PV+AC)
+120A
+Nominal Output Power
+6000W
+Peak Apparent AC Power
+12000VA
+Nominal AC Voltage
+230V
+Nominal Grid Frequency
+50/60Hz (Auto Sensing)
+Voltage Waveform
+Pure Sine Wave
+Transfer Time
+10ms
+Max. Output Current
+27A
+Overload Protection
+30s@102%-110% load; 10s@110%-130% load; 5s@130%-200% load
+THDv (@linear load)
+<3%
+Peak Efficiency
+94%
+MPPT Efficiency
+>99.9%
+DC Surge Protection
+Yes
+AC Surge Protection
+Yes
+AC Short Circuit Protection
+Yes
+Dimension (W*H*D)
+333*505*120mm
+Weight
+10.6kg
+Relative Humidity
+5%~95% (Non-condensing)
+Operating Temperature Range
+-10°C~50°C
+Noise Emission
+<50dB
+Altitude
+4000m
+Cooling Method
+Fan Cooling
+Ingress Protection
+IP20
+Number of AC Output
+2
+Display
+LCD&LED&APP
+Communication Interface
+RS485/ USB /CAN/ Wi-Fi
+Parallel Capability
+9
+Download Datasheet
+ | For manufacturer details, see the official page: 
+LVTOPSUN LVTS-6KW-HYD",Inverter_LVTOPSUN_6KW_48V_Solar_Off_Grid_Hybrid_Inverter_0.png,,,,,,,,,,Li-ion/Lead-acid,,LCD&LED&APP,,,10.6kg,,Value,,,,,,,,,,,333*505*120mm,,,,,,,,,90V~500V,,,,,,,,AO-6KSL-G2,7800W,550V,120V,27A,32A,1,"230Vac, L/N/PE",90~280Vac (APL); 170~280Vac (UPS),35A,8050W,40~65Hz,48V,42~60V,137A,6000W,Yes,CAN/RS485,120A,100A,120A,6000W,12000VA,230V,50/60Hz (Auto Sensing),Pure Sine Wave,10ms,27A,30s@102%-110% load; 10s@110%-130% load; 5s@130%-200% load,<3%,94%,>99.9%,Yes,Yes,Yes,5%~95% (Non-condensing),-10°C~50°C,<50dB,4000m,Fan Cooling,IP20,2,RS485/ USB /CAN/ Wi-Fi,9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Inverter,Off Grid Hybrid Inverter,SOSEN 5.5KW 48V Solar Off-Grid Hybrid Inverter,"37,500৳",https://solar.com.bd/product/sosen-5-5kw-48v-solar-off-grid-hybrid-inverter/,"SOSEN 5.5KW 48V Solar Off-Grid Hybrid Inverter – Overview
+The SOSEN 5.5KW 48V Solar Off-Grid Hybrid Inverter is a high-performance single-phase hybrid inverter designed for residential solar energy storage systems. Built for reliability and efficiency, it supports powerful PV input, intelligent battery management, and seamless grid or generator integration for complete off-grid independence.
+Key Benefits
+Provides stable 5.5KW pure sine wave output for residential and commercial loads.
+Supports up to 6000W maximum PV input power for faster solar charging.
+48V battery system compatible with lithium and lead-acid batteries.
+Wide MPPT voltage range improves solar harvesting efficiency.
+Combined PV and utility load support ensures uninterrupted power supply.
+Fast transfer time under 10ms for UPS-level backup performance.
+Remote Wi-Fi monitoring for real-time system tracking.
+RS485, CAN, and Dry Contact communication interfaces available.
+This inverter can integrate seamlessly with 
+solar panels
+ and other compatible 
+inverter
+ systems, ensuring efficient energy generation, smart power management, and reliable performance for off-grid applications.
+Technical Specifications
+Parameter
+Value (SSA-HL5K5-P1EU)
+Model
+SSA-HL5K5-P1EU
+AC INPUT
+Rated Voltage
+208 / 220 / 230 / 240Vac, L+N+PE
+Rated Frequency
+50 / 60 Hz
+Current (Maximum Continuous)
+40 Aac
+INVERTER OUTPUT
+Rated Power
+5.5 kW
+Rated Voltage
+208 / 220 / 230 / 240Vac, L+N+PE
+Power Factor
+1
+Wave Form
+Pure Sine Wave
+Switch Time
+<10ms (Typical)
+Inverter Efficiency (Peak)
+94% @ 48V d.c.
+Current (Maximum Continuous)
+25 Aac
+Maximum Output Overcurrent Protection
+102%~110% 1min / 110%~130% 10s / 130%~150% 3s / 150% 0.2s
+BATTERY
+Battery Type
+Lithium / Lead-acid
+Rated Battery Voltage
+48 V d.c.
+Battery Voltage Range
+42 ~ 56.4 V d.c.
+Max Charge Current
+100 A d.c.
+PV INPUT
+No. of MPPT Tracker / Strings
+1 / 1
+Max PV Array Power
+6 kW
+Max DC Voltage
+500 V d.c.
+MPPT Voltage Range
+120 ~ 430 V d.c.
+Start-up Voltage
+120 V d.c.
+MPPT Maximum Charge Current
+100 A d.c.
+Max Input Current
+18 A d.c.
+Isc PV (Absolute Maximum)
+22 A d.c.
+PROTECTION & FEATURE
+Parallel Function
+No
+Protection Degree
+IP20, Indoor only
+Certifications
+IEC 62109-1/2, EN IEC 61000-6-1, EN IEC 61000-6-3
+Other Protection
+Overload, Over temperature, Short circuit
+GENERAL PARAMETER
+Storage Temperature
+-15°C ~ +60°C
+Operating Temperature
+-10°C ~ +50°C
+Humidity
+20% ~ 95% (Non-condensing)
+Operating Altitude
+4000m (>1000m Derating)
+Noise
+<50 dB
+Machine Dimensions (W*H*D)
+315*470*120 mm
+Machine Weight
+8.6 kg
+DISPLAY & COMMUNICATION
+Display
+LCD Display (Running Mode, Loads / Input / Output etc.)
+Interface
+RS485 / CAN / Dry Contact / WiFi (Optional)
+Download Datasheet
+ | For manufacturer details, see the official page: 
+SSA-HL5K5-P1EU","Inverter_SOSEN_5_5KW_48V_Solar_Off_Grid_Hybrid_Inverter_0.png, Inverter_SOSEN_5_5KW_48V_Solar_Off_Grid_Hybrid_Inverter_1.png, Inverter_SOSEN_5_5KW_48V_Solar_Off_Grid_Hybrid_Inverter_2.png, Inverter_SOSEN_5_5KW_48V_Solar_Off_Grid_Hybrid_Inverter_3.png, Inverter_SOSEN_5_5KW_48V_Solar_Off_Grid_Hybrid_Inverter_4.png, Inverter_SOSEN_5_5KW_48V_Solar_Off_Grid_Hybrid_Inverter_5.png",,,SSA-HL5K5-P1EU,,5.5 kW,,,,,Lithium / Lead-acid,,"LCD Display (Running Mode, Loads / Input / Output etc.)",,,,,Value (SSA-HL5K5-P1EU),,,,,,,,,,,,,,,,,,,,120 ~ 430 V d.c.,,,,,,,,,,,120 V d.c.,,,,,,,,,,42 ~ 56.4 V d.c.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"208 / 220 / 230 / 240Vac, L+N+PE",50 / 60 Hz,25 Aac,1,Pure Sine Wave,<10ms (Typical),94% @ 48V d.c.,102%~110% 1min / 110%~130% 10s / 130%~150% 3s / 150% 0.2s,48 V d.c.,100 A d.c.,1 / 1,6 kW,500 V d.c.,100 A d.c.,18 A d.c.,22 A d.c.,No,"IP20, Indoor only","IEC 62109-1/2, EN IEC 61000-6-1, EN IEC 61000-6-3","Overload, Over temperature, Short circuit",-15°C ~ +60°C,-10°C ~ +50°C,20% ~ 95% (Non-condensing),4000m (>1000m Derating),<50 dB,315*470*120 mm,8.6 kg,RS485 / CAN / Dry Contact / WiFi (Optional),,
+Inverter,On Grid Hybrid Inverter,Solis 18kW Single Phase Hybrid Inverter S6-EH1P18K03-NV-YD-L,"281,500৳",https://solar.com.bd/product/solis-18kw-single-phase-hybrid-inverter-s6-eh1p18k03-nv-yd-l/,"Solis 18kW Single Phase Hybrid Inverter S6-EH1P18K03-NV-YD-L
+The 
+Solis 18kW Single Phase Hybrid Inverter S6-EH1P18K03-NV-YD-L
+ is Solis’ most powerful low-voltage single-phase hybrid inverter, designed for large residential properties, luxury villas, commercial buildings, offices, farms, factories, and high-capacity energy storage systems. Combining advanced hybrid inverter technology with intelligent battery management, this inverter seamlessly manages solar panels, batteries, utility power, and generators to maximize energy savings while ensuring uninterrupted electricity even during grid outages.
+Supporting a 
+recommended PV array size of 36kW
+ and 
+28.8kW maximum usable PV input
+, the inverter extracts maximum energy from your solar panels throughout the day. Equipped with 
+3 independent MPPT trackers
+ and 
+6 PV string inputs
+, it delivers excellent performance even when solar panels are installed in different directions or under partial shading conditions. It also supports up to 
+20A PV input current
+, making it compatible with the latest high-power solar modules.
+The 
+Solis 18kW Single Phase Hybrid Inverter S6-EH1P18K03-NV-YD-L
+ supports both 
+Lithium-ion and Lead-acid batteries
+ operating between 
+40V and 60V
+. With a maximum 
+320A battery charge/discharge current
+, it provides fast charging, efficient energy storage, and reliable backup for critical loads. Advanced battery management ensures longer battery life while allowing users to customize battery reserve levels according to their power requirements.
+Designed for uninterrupted power, the inverter provides 
+UPS-level switching in less than 10 milliseconds
+, ensuring computers, medical equipment, networking devices, security systems, and other sensitive electronics continue operating without interruption. During off-grid operation, it supports 
+200% overload for up to 10 seconds
+, making it suitable for heavy inductive loads such as water pumps, air conditioners, compressors, and electric motors.
+Generator compatibility provides additional flexibility, allowing automatic generator operation during extended power outages. The inverter also supports existing grid-tied PV systems, enabling cost-effective upgrades to hybrid energy storage without replacing current solar installations. Users can connect 
+up to 6 inverters in parallel
+, making future expansion simple and economical.
+For intelligent monitoring, the inverter features a 
+7-inch industrial-grade LCD touchscreen
+, Bluetooth connectivity, and full integration with 
+SolisCloud
+, enabling users to monitor energy generation, battery status, load consumption, and system performance remotely through a smartphone or PC. AI-powered optimization and remote troubleshooting further enhance system reliability.
+The inverter offers outstanding durability with an 
+IP66-rated enclosure
+, intelligent fan cooling, surge protection, reverse polarity protection, ground fault monitoring, and optional AFCI protection. With a 
+maximum efficiency of 97.6%
+, it delivers reliable, long-term performance in Bangladesh’s challenging climate.
+Whether you are building a premium home solar system, commercial rooftop project, industrial backup solution, or agricultural solar installation, the 
+Solis 18kW Single Phase Hybrid Inverter S6-EH1P18K03-NV-YD-L
+ provides exceptional performance, smart energy management, and dependable backup power.
+Key Features
+Brand: Solis
+Model: 
+S6-EH1P18K03-NV-YD-L
+Rated Output Power: 
+18kW
+Single Phase Hybrid Solar Inverter
+Recommended PV Array Size: 
+36kW
+Maximum Usable PV Power: 
+28.8kW
+Maximum PV Voltage: 
+550V
+3 Independent MPPT Trackers
+6 PV Inputs
+Supports up to 20A PV Input Current
+Compatible with 40V–60V Lithium-ion & Lead-acid Batteries
+Maximum Charge/Discharge Current: 
+320A
+Maximum Efficiency: 
+97.6%
+Generator Compatible
+Smart Load Management
+Less than 10ms UPS Switching
+Supports PV-only Off-grid Operation
+Parallel Operation up to 6 Units
+SolisCloud Smart Monitoring
+AI Energy Optimization
+7-inch LCD Touchscreen
+Bluetooth Built-in
+RS485 Communication
+Optional Wi-Fi, LAN & Cellular
+Intelligent Fan Cooling
+IP66 Protection
+Surge Protection
+Ground Fault Monitoring
+Optional AFCI
+Technical Specifications
+Specification
+Details
+Brand
+Solis
+Model
+S6-EH1P18K03-NV-YD-L
+Inverter Type
+Single Phase Hybrid
+Rated Output Power
+18kW
+Recommended PV Array Size
+36kW
+Maximum Usable PV Power
+28.8kW
+Maximum PV Voltage
+550V
+MPPT Voltage Range
+80V–520V
+MPPT
+3
+PV Inputs
+6
+Battery Voltage
+40V–60V
+Battery Type
+Lithium-ion / Lead-acid
+Maximum Charge/Discharge Current
+320A
+Maximum Efficiency
+97.6%
+Grid Voltage
+220V / 230V
+Frequency
+50Hz / 60Hz
+Display
+7-inch LCD + Bluetooth
+Communication
+RS485, Optional Wi-Fi, LAN & Cellular
+Protection Rating
+IP66
+Cooling
+Intelligent Fan Cooling
+Weight
+55.5kg
+Why Buy from Solar.com.bd?
+100% Genuine Solis Products
+Official Price in Bangladesh
+Official Manufacturer Warranty
+Nationwide Delivery
+Professional Installation Support
+Expert Technical Assistance
+Reliable After-Sales Service
+Trusted Solar Solution Provider in Bangladesh",Inverter_Solis_18kW_Single_Phase_Hybrid_Inverter_S6_EH1P18K_0.webp,Details,Solis,S6-EH1P18K03-NV-YD-L,,,,,3,40V–60V,Lithium-ion / Lead-acid,,7-inch LCD + Bluetooth,"RS485, Optional Wi-Fi, LAN & Cellular",,55.5kg,,,,,,,,,,,,,,,,,Single Phase Hybrid,18kW,36kW,28.8kW,550V,80V–520V,,,97.6%,220V / 230V,50Hz / 60Hz,IP66,Intelligent Fan Cooling,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,6,320A
