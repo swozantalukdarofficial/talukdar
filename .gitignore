@@ -42,3 +42,8 @@ next-env.d.ts
 
 # temp upload assets
 /upload
+
+# credentials and keys
+service_account.json
+credentials.json
+*.local.json
