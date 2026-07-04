@@ -44,7 +44,7 @@ const SLIDES = [
     description:
       "High-performance electric auto-rickshaws, pickups, and utility vehicles designed for maximum ROI and reliability.",
     cta: { label: "Shop Commercial", href: "/products?category=commercial" },
-    ctaSecondary: { label: "Learn More", href: "/products" },
+    ctaSecondary: { label: "Explore Products", href: "/products" },
     image: "/iso_commercial.png",
     bgGradient: "bg-gradient-to-r from-blue-50/40 to-indigo-50/40",
     stats: [
