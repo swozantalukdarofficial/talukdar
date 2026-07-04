@@ -8,6 +8,7 @@ import { ProductGridSkeleton } from "@/components/Skeletons";
 import Pagination from "@/components/Pagination";
 import CollectionSEOContent from "@/components/CollectionSEOContent";
 import type { Metadata } from "next";
+import { SITE_URL } from "@/config/seo";
 import CollectionSchema from "@/components/CollectionSchema";
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   description:
     "Browse our full range of e-bikes, batteries, parts, and accessories. Filter by category and price.",
   alternates: {
-    canonical: "https://yourdomain.com/products",
+    canonical: `${SITE_URL}/products`,
   },
 };
 

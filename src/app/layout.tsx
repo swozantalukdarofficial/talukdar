@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/config/seo";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import Header from "@/components/Header";
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     google: "gYyToJWYPZh08hUUVbtWQMU_DfsLWfx_v_0i4oIrRsA",
   },
   alternates: {
-    canonical: "https://yourdomain.com",
+    canonical: SITE_URL,
   },
 };
 

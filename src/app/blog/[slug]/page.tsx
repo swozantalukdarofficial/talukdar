@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/config/seo";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,17 +22,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: post.metaTitle,
     description: post.metaDesc,
     alternates: {
-      canonical: `https://yourdomain.com/blog/${post.slug}`,
+      canonical: `${SITE_URL}/blog/${post.slug}`,
     },
     openGraph: {
       title: post.metaTitle,
       description: post.metaDesc,
-      url: `https://yourdomain.com/blog/${post.slug}`,
+      url: `${SITE_URL}/blog/${post.slug}`,
       type: "article",
       publishedTime: new Date(post.date).toISOString(),
       images: [
         {
-          url: post.image.startsWith("http") ? post.image : `https://yourdomain.com${post.image}`,
+          url: post.image.startsWith("http") ? post.image : `${SITE_URL}${post.image}`,
           width: 1200,
           height: 630,
           alt: post.title,
@@ -62,25 +63,25 @@ export default async function BlogPostPage({ params }: Props) {
     "@type": "BlogPosting",
     "headline": post.title,
     "description": post.metaDesc,
-    "image": post.image.startsWith("http") ? post.image : `https://yourdomain.com${post.image}`,
+    "image": post.image.startsWith("http") ? post.image : `${SITE_URL}${post.image}`,
     "datePublished": new Date(post.date).toISOString(),
     "dateModified": new Date(post.date).toISOString(),
     "author": {
       "@type": "Organization",
       "name": "EV Store Bangladesh",
-      "url": "https://yourdomain.com",
+      "url": SITE_URL,
     },
     "publisher": {
       "@type": "Organization",
       "name": "EV Store Bangladesh",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yourdomain.com/icon.svg",
+        "url": `${SITE_URL}/icon.svg`,
       },
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://yourdomain.com/blog/${post.slug}`,
+      "@id": `${SITE_URL}/blog/${post.slug}`,
     },
   };
 

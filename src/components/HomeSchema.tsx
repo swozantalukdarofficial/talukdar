@@ -1,7 +1,8 @@
 import React from "react";
+import { SITE_URL } from "@/config/seo";
 
 export default function HomeSchema() {
-  const baseUrl = "https://yourdomain.com";
+  const baseUrl = SITE_URL;
 
   // 1. Organization Schema
   const organizationJsonLd = {

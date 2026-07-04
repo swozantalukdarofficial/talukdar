@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/config/seo";
 import { RefreshCw, CheckCircle2, ShieldAlert, Truck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Return & Refund Policy | EVStore Bangladesh",
   description: "Read our comprehensive Return and Refund Policy. Learn about warranty claims on lithium batteries, replacement terms for e-bike controllers, and transit damage policies.",
   alternates: {
-    canonical: "https://yourdomain.com/return-policy",
+    canonical: `${SITE_URL}/return-policy`,
   },
 };
 

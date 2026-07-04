@@ -3,6 +3,7 @@ import { getProductBySlug, getRelatedProducts } from "@/lib/products";
 import ProductDetailClient from "@/components/ProductDetailClient";
 import ProductCarousel from "@/components/ProductCarousel";
 import type { Metadata } from "next";
+import { SITE_URL } from "@/config/seo";
 import ProductSchema from "@/components/ProductSchema";
 
 export const dynamic = "force-dynamic";
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       product.description ??
       `Buy ${product.name} at the best price in Bangladesh.`,
     alternates: {
-      canonical: `https://yourdomain.com/products/${product.slug}`,
+      canonical: `${SITE_URL}/products/${product.slug}`,
     },
     openGraph: {
       title: product.name,

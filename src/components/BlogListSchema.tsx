@@ -1,8 +1,9 @@
 import React from "react";
+import { SITE_URL } from "@/config/seo";
 import { POSTS } from "@/lib/blogs";
 
 export default function BlogListSchema() {
-  const baseUrl = "https://yourdomain.com";
+  const baseUrl = SITE_URL;
 
   // 1. Blog Schema listing all posts
   const blogJsonLd = {

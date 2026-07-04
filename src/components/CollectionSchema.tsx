@@ -1,4 +1,5 @@
 import React from "react";
+import { SITE_URL } from "@/config/seo";
 import type { Product } from "@/lib/types";
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
 }
 
 export default function CollectionSchema({ products, categoryName, categorySlug }: Props) {
-  const baseUrl = "https://yourdomain.com";
+  const baseUrl = SITE_URL;
   const url = categorySlug === "all" ? `${baseUrl}/products` : `${baseUrl}/products?category=${categorySlug}`;
 
   // 1. CollectionPage Schema

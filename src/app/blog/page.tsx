@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/config/seo";
 import Link from "next/link";
 import Image from "next/image";
 import { POSTS } from "@/lib/blogs";
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
   title: "EV Store Blog — Electric Bikes & Scooter Tech Journal",
   description: "Read expert buying guides, battery comparison charts, energy tips, and electric vehicle updates in Bangladesh. Stay ahead in the green mobility revolution.",
   alternates: {
-    canonical: "https://yourdomain.com/blog",
+    canonical: `${SITE_URL}/blog`,
   },
 };
 

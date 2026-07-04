@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/config/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, Zap, Leaf, HeartHandshake } from "lucide-react";
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
   title: "About Us | EVStore Bangladesh - Leading Smart EV & Solar Platform",
   description: "Learn about EVStore Bangladesh. We are the premier marketplace for electric bikes, high-performance lithium battery packs, solar energy solutions, and OEM electric vehicle spare parts in Bangladesh.",
   alternates: {
-    canonical: "https://yourdomain.com/about",
+    canonical: `${SITE_URL}/about`,
   },
 };
 

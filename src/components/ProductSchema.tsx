@@ -1,4 +1,5 @@
 import React from "react";
+import { SITE_URL } from "@/config/seo";
 import type { Product } from "@/lib/types";
 
 interface Props {
@@ -6,7 +7,7 @@ interface Props {
 }
 
 export default function ProductSchema({ product }: Props) {
-  const baseUrl = "https://yourdomain.com";
+  const baseUrl = SITE_URL;
 
   // 1. Product Schema
   const productJsonLd = {

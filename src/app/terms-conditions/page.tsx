@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/config/seo";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions | EVStore Bangladesh",
   description: "Read the official Terms of Service and Conditions of EVStore Bangladesh, covering product usage regulations, warranty claims, and shipping policies.",
   alternates: {
-    canonical: "https://yourdomain.com/terms-conditions",
+    canonical: `${SITE_URL}/terms-conditions`,
   },
 };
 
