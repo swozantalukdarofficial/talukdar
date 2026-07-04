@@ -186,6 +186,7 @@ export default function Header({ categories = [] }: { categories?: Category[] })
             {/* Cart Button */}
             <button
               onClick={openCart}
+              aria-label="Shopping Cart"
               className="relative flex items-center gap-2 px-3 py-2 text-stone-700 bg-stone-50 hover:bg-stone-100 rounded-lg border border-stone-200 transition-colors"
             >
               <ShoppingCart className="h-4 w-4 text-emerald-700" />
@@ -200,6 +201,7 @@ export default function Header({ categories = [] }: { categories?: Category[] })
             {/* Login button */}
             <Link
               href="/admin/products"
+              aria-label="Admin Dashboard Login"
               className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-stone-700 bg-stone-50 hover:bg-stone-100 rounded-lg border border-stone-200 transition-colors uppercase tracking-wider"
             >
               <User className="h-3.5 w-3.5" />
