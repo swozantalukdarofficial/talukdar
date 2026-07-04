@@ -36,7 +36,9 @@ export default function Header({ categories = [] }: { categories?: Category[] })
   // Debounced autocomplete search suggestion fetch
   useEffect(() => {
     if (searchQuery.trim().length < 2) {
-      setSuggestions([]);
+      if (suggestions.length > 0) {
+        setSuggestions([]);
+      }
       return;
     }
 
@@ -156,7 +158,7 @@ export default function Header({ categories = [] }: { categories?: Category[] })
                       }}
                       className="w-full text-center py-2.5 text-xs font-bold text-emerald-800 hover:text-emerald-900 bg-emerald-50/30 hover:bg-emerald-50 transition-colors block border-t border-stone-100"
                     >
-                      See all search results for "{searchQuery}"
+                      See all search results for &quot;{searchQuery}&quot;
                     </button>
                   </>
                 )}
@@ -186,8 +188,8 @@ export default function Header({ categories = [] }: { categories?: Category[] })
             {/* Cart Button */}
             <button
               onClick={openCart}
-              aria-label="Shopping Cart"
               className="relative flex items-center gap-2 px-3 py-2 text-stone-700 bg-stone-50 hover:bg-stone-100 rounded-lg border border-stone-200 transition-colors"
+              aria-label="Shopping Cart"
             >
               <ShoppingCart className="h-4 w-4 text-emerald-700" />
               <span className="hidden sm:inline text-xs font-bold uppercase tracking-wider">Cart</span>
@@ -201,8 +203,8 @@ export default function Header({ categories = [] }: { categories?: Category[] })
             {/* Login button */}
             <Link
               href="/admin/products"
-              aria-label="Admin Dashboard Login"
               className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-stone-700 bg-stone-50 hover:bg-stone-100 rounded-lg border border-stone-200 transition-colors uppercase tracking-wider"
+              aria-label="Admin Portal"
             >
               <User className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Login</span>
@@ -239,7 +241,7 @@ export default function Header({ categories = [] }: { categories?: Category[] })
                        onChange={(e) => setSearchQuery(e.target.value)}
                        className="flex-1 px-3 py-2 border border-stone-200 border-r-0 rounded-l-lg text-sm bg-stone-50 focus:outline-none"
                      />
-                     <button type="submit" className="px-3 py-2 bg-stone-100 border border-stone-200 rounded-r-lg text-stone-700">
+                     <button type="submit" className="px-3 py-2 bg-stone-100 border border-stone-200 rounded-r-lg text-stone-700" aria-label="Search">
                        <Search className="h-4 w-4" />
                      </button>
                    </form>
