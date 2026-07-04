@@ -27,12 +27,19 @@ function makeRequest(urlStr, options, bodyData = null) {
     const client = url.protocol === "https:" ? https : http;
     const defaultPort = url.protocol === "https:" ? 443 : 80;
 
+    const reqHeaders = { ...(options.headers || {}) };
+    let bodyStr = null;
+    if (bodyData) {
+      bodyStr = typeof bodyData === "string" ? bodyData : JSON.stringify(bodyData);
+      reqHeaders["Content-Length"] = Buffer.byteLength(bodyStr);
+    }
+
     const reqOptions = {
       hostname: url.hostname,
       port: url.port || defaultPort,
       path: url.pathname + url.search,
       method: options.method || "GET",
-      headers: options.headers || {},
+      headers: reqHeaders,
     };
 
     const req = client.request(reqOptions, (res) => {
@@ -53,8 +60,8 @@ function makeRequest(urlStr, options, bodyData = null) {
       reject(err);
     });
 
-    if (bodyData) {
-      req.write(typeof bodyData === "string" ? bodyData : JSON.stringify(bodyData));
+    if (bodyStr) {
+      req.write(bodyStr);
     }
     req.end();
   });
