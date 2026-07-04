@@ -5,7 +5,7 @@ const https = require("https");
 const http = require("http");
 
 // Configuration
-const DEFAULT_DOMAIN = "https://yourdomain.com"; // User will update or pass as argument
+const DEFAULT_DOMAIN = "https://shipon.tech"; // User will update or pass as argument
 const INDEXNOW_KEY = "75fb482d8c36417fae4b1029c0a6b98e";
 
 // JWT signing helper for Google Service Account using native node crypto
