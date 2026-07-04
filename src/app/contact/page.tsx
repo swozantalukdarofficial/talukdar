@@ -11,10 +11,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactPage() {
-  const PHONE_1 = "01341-757541";
+import { getStoreSettings } from "@/lib/settings";
+
+export default async function ContactPage() {
+  const settings = await getStoreSettings();
+  const PHONE_1 = settings.support_phone;
   const PHONE_2 = "01725-667788"; // Secondary phone
-  const EMAIL = "support@evstorebd.com";
+  const EMAIL = settings.support_email;
 
   return (
     <main className="min-h-screen bg-[#faf9f6] text-stone-900 pb-16 md:pb-24" id="contact-us-page">

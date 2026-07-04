@@ -20,6 +20,7 @@ import Link from "next/link";
 import type { PaymentMethod, OrderPayload } from "@/lib/types";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { getStoreSettings } from "@/lib/settings";
 
 const PAYMENT_METHODS: {
   id: PaymentMethod;
@@ -103,16 +104,21 @@ export default function CheckoutPage() {
   const [showPaymentModal, setShowPaymentModal] = useState<"bkash" | "nagad" | null>(null);
   const [bkashNumber, setBkashNumber] = useState("01333600272");
   const [nagadNumber, setNagadNumber] = useState("01333600272");
+  const [shippingFee, setShippingFee] = useState(150);
 
   useEffect(() => {
-    const savedBkash = localStorage.getItem("ev_bkash_number");
-    const savedNagad = localStorage.getItem("ev_nagad_number");
-    if (savedBkash) setBkashNumber(savedBkash);
-    if (savedNagad) setNagadNumber(savedNagad);
+    async function loadSettings() {
+      const data = await getStoreSettings();
+      if (data) {
+        setBkashNumber(data.bkash_number);
+        setNagadNumber(data.nagad_number);
+        setShippingFee(data.shipping_fee);
+      }
+    }
+    loadSettings();
   }, []);
 
   const subtotal = totalPrice;
-  const shippingFee = 150;
   const total = subtotal + shippingFee;
 
   function update(field: keyof FormData, value: string) {

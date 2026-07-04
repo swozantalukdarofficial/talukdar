@@ -1,19 +1,22 @@
 import React from "react";
 import { SITE_URL } from "@/config/seo";
 
-export default function HomeSchema() {
+import { getStoreSettings } from "@/lib/settings";
+
+export default async function HomeSchema() {
+  const settings = await getStoreSettings();
   const baseUrl = SITE_URL;
 
   // 1. Organization Schema
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Talukdar EV",
+    "name": settings.store_name,
     "url": baseUrl,
     "logo": `${baseUrl}/logo.svg`,
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "09638001122",
+      "telephone": settings.support_phone,
       "contactType": "customer service",
       "areaServed": "BD",
       "availableLanguage": ["Bengali", "English"],

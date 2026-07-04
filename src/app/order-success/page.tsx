@@ -10,9 +10,13 @@ interface Props {
   searchParams: Promise<{ id?: string }>;
 }
 
+import { getStoreSettings } from "@/lib/settings";
+
 export default async function OrderSuccessPage({ searchParams }: Props) {
   const params = await searchParams;
   const orderId = params.id ?? "N/A";
+  const settings = await getStoreSettings();
+  const supportPhone = settings.support_phone;
 
   return (
     <main className="min-h-screen bg-[#faf9f6] pt-24 flex items-center justify-center px-4">
@@ -90,10 +94,10 @@ export default async function OrderSuccessPage({ searchParams }: Props) {
         <p className="mt-6 text-xs text-stone-400">
           প্রশ্ন বা অনুসন্ধানের জন্য?{" "}
           <a
-            href="tel:09638001122"
+            href={`tel:${supportPhone}`}
             className="text-emerald-700 hover:text-emerald-800 font-semibold underline"
           >
-            Call support: 09638001122
+            Call support: {supportPhone}
           </a>
         </p>
       </div>

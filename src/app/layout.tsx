@@ -33,13 +33,17 @@ export const metadata: Metadata = {
 };
 
 import { getAllCategories } from "@/lib/categories";
+import { getStoreSettings } from "@/lib/settings";
 
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const categories = await getAllCategories();
+  const [categories, settings] = await Promise.all([
+    getAllCategories(),
+    getStoreSettings(),
+  ]);
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -59,10 +63,11 @@ export default async function RootLayout({
         <CartProvider>
           <Header categories={categories} />
           <main className="overflow-x-hidden w-full relative">{children}</main>
-          <Footer />
+          <Footer settings={settings} />
           <Toaster position="bottom-right" theme="light" />
         </CartProvider>
       </body>
     </html>
   );
 }
+

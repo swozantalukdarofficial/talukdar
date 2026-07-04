@@ -3,12 +3,18 @@
 import { useState, useRef, useEffect } from "react";
 import { X, Send, MessageSquare } from "lucide-react";
 
-export default function WhatsAppWidget() {
+interface WhatsAppWidgetProps {
+  whatsappNumber?: string;
+}
+
+export default function WhatsAppWidget({ whatsappNumber }: WhatsAppWidgetProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("Hi! I am interested in your EV products.");
   const widgetRef = useRef<HTMLDivElement>(null);
 
-  const WHATSAPP_NUMBER = "8801341757541"; // User's mobile number: 01341-757541
+  const rawNumber = whatsappNumber || "8801333600272";
+  const cleanNumber = rawNumber.replace(/[^0-9]/g, "");
+  const WHATSAPP_NUMBER = cleanNumber.startsWith("0") ? `88${cleanNumber}` : cleanNumber;
 
   const handleSendMessage = (e?: React.FormEvent) => {
     if (e) e.preventDefault();

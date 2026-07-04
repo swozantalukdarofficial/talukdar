@@ -6,10 +6,26 @@ import { Phone, MapPin, Copy, ArrowRight, MessageSquare } from "lucide-react";
 import { toast } from "sonner";
 import WhatsAppWidget from "./WhatsAppWidget";
 
-export default function Footer() {
-  const phone1 = "09638001122";
-  const phone2 = "+880 9638 001122";
-  const whatsappNumber = "8801341757541";
+import { StoreSettings } from "@/lib/settings";
+
+interface FooterProps {
+  settings?: StoreSettings;
+}
+
+export default function Footer({ settings }: FooterProps) {
+  const rawPhone = settings?.support_phone || "01333600272";
+  const phone1 = rawPhone;
+  const phone2 = rawPhone.startsWith("+") 
+    ? rawPhone 
+    : rawPhone.startsWith("880") 
+      ? `+${rawPhone}` 
+      : rawPhone.startsWith("0") 
+        ? `+88${rawPhone}` 
+        : `+880${rawPhone}`;
+
+  const rawWhatsapp = settings?.whatsapp_number || "8801333600272";
+  const cleanWhatsapp = rawWhatsapp.replace(/[^0-9]/g, "");
+  const whatsappNumber = cleanWhatsapp.startsWith("0") ? `88${cleanWhatsapp}` : cleanWhatsapp;
 
   function copyToClipboard(num: string) {
     navigator.clipboard.writeText(num);
@@ -293,7 +309,7 @@ export default function Footer() {
       </div>
 
       {/* Floating WhatsApp Chat Widget */}
-      <WhatsAppWidget />
+      <WhatsAppWidget whatsappNumber={whatsappNumber} />
     </footer>
   );
 }

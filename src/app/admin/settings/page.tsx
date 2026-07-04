@@ -3,12 +3,14 @@
 import { useState, useEffect } from "react";
 import { Settings as SettingsIcon, Store, Truck, CreditCard, Save, Loader2, Shield } from "lucide-react";
 import { toast } from "sonner";
+import { getStoreSettings, updateStoreSettings } from "@/lib/settings";
 
 export default function AdminSettingsPage() {
   const [loading, setLoading] = useState(false);
   const [storeName, setStoreName] = useState("Talukdar EV");
   const [supportEmail, setSupportEmail] = useState("support@evstorebd.com");
-  const [supportPhone, setSupportPhone] = useState("+880 1333-600272");
+  const [supportPhone, setSupportPhone] = useState("01333600272");
+  const [whatsappNumber, setWhatsappNumber] = useState("01333600272");
   const [shippingFee, setShippingFee] = useState(150);
   const [enableCod, setEnableCod] = useState(true);
   const [enableBkash, setEnableBkash] = useState(true);
@@ -16,49 +18,51 @@ export default function AdminSettingsPage() {
   const [bkashNumber, setBkashNumber] = useState("01333600272");
   const [nagadNumber, setNagadNumber] = useState("01333600272");
 
-  // Load from localStorage on mount
+  // Load from Supabase on mount
   useEffect(() => {
-    const savedName = localStorage.getItem("ev_store_name");
-    const savedEmail = localStorage.getItem("ev_support_email");
-    const savedPhone = localStorage.getItem("ev_support_phone");
-    const savedShipping = localStorage.getItem("ev_shipping_fee");
-    const savedCod = localStorage.getItem("ev_enable_cod");
-    const savedBkash = localStorage.getItem("ev_enable_bkash");
-    const savedNagad = localStorage.getItem("ev_enable_nagad");
-    const savedBkashNum = localStorage.getItem("ev_bkash_number");
-    const savedNagadNum = localStorage.getItem("ev_nagad_number");
-
-    if (savedName) setStoreName(savedName);
-    if (savedEmail) setSupportEmail(savedEmail);
-    if (savedPhone) setSupportPhone(savedPhone);
-    if (savedShipping) setShippingFee(Number(savedShipping));
-    if (savedCod) setEnableCod(savedCod === "true");
-    if (savedBkash) setEnableBkash(savedBkash === "true");
-    if (savedNagad) setEnableNagad(savedNagad === "true");
-    if (savedBkashNum) setBkashNumber(savedBkashNum);
-    if (savedNagadNum) setNagadNumber(savedNagadNum);
+    async function loadSettings() {
+      const data = await getStoreSettings();
+      if (data) {
+        setStoreName(data.store_name);
+        setSupportEmail(data.support_email);
+        setSupportPhone(data.support_phone);
+        setWhatsappNumber(data.whatsapp_number);
+        setShippingFee(data.shipping_fee);
+        setEnableCod(data.enable_cod);
+        setEnableBkash(data.enable_bkash);
+        setEnableNagad(data.enable_nagad);
+        setBkashNumber(data.bkash_number);
+        setNagadNumber(data.nagad_number);
+      }
+    }
+    loadSettings();
   }, []);
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate saving process
-    await new Promise((resolve) => setTimeout(resolve, 800));
+    const { error } = await updateStoreSettings({
+      store_name: storeName,
+      support_email: supportEmail,
+      support_phone: supportPhone,
+      whatsapp_number: whatsappNumber,
+      shipping_fee: shippingFee,
+      enable_cod: enableCod,
+      enable_bkash: enableBkash,
+      enable_nagad: enableNagad,
+      bkash_number: bkashNumber,
+      nagad_number: nagadNumber,
+    });
 
-    localStorage.setItem("ev_store_name", storeName);
-    localStorage.setItem("ev_support_email", supportEmail);
-    localStorage.setItem("ev_support_phone", supportPhone);
-    localStorage.setItem("ev_shipping_fee", shippingFee.toString());
-    localStorage.setItem("ev_enable_cod", enableCod.toString());
-    localStorage.setItem("ev_enable_bkash", enableBkash.toString());
-    localStorage.setItem("ev_enable_nagad", enableNagad.toString());
-    localStorage.setItem("ev_bkash_number", bkashNumber);
-    localStorage.setItem("ev_nagad_number", nagadNumber);
-
-    toast.success("Settings saved successfully!");
+    if (error) {
+      toast.error(`Failed to save settings: ${error}`);
+    } else {
+      toast.success("Settings saved successfully!");
+    }
     setLoading(false);
   }
+
 
   return (
     <div className="p-4 md:p-8 space-y-6">
@@ -110,12 +114,23 @@ export default function AdminSettingsPage() {
                 />
               </div>
 
-              <div className="md:col-span-2">
+              <div>
                 <label className="block text-xs font-bold text-stone-500 mb-1.5 uppercase">Support Hotline</label>
                 <input
                   type="text"
                   value={supportPhone}
                   onChange={(e) => setSupportPhone(e.target.value)}
+                  className="w-full bg-white border border-stone-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-stone-500 mb-1.5 uppercase">WhatsApp Number</label>
+                <input
+                  type="text"
+                  value={whatsappNumber}
+                  onChange={(e) => setWhatsappNumber(e.target.value)}
                   className="w-full bg-white border border-stone-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
                   required
                 />
