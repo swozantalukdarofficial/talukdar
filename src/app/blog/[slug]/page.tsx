@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { POSTS } from "@/lib/blogs";
-import { Clock, ArrowLeft, Calendar, Share2, BookOpen, ArrowRight } from "lucide-react";
+import { Clock, ArrowLeft, Calendar, BookOpen, ArrowRight } from "lucide-react";
+import ShareButton from "@/components/ShareButton";
 
 interface Props {
   params: Promise<{ slug: string }> | { slug: string };
@@ -275,13 +276,7 @@ export default async function BlogPostPage({ params }: Props) {
               <p className="text-[11px] text-stone-500 font-semibold leading-relaxed">
                 Share this page with other EV owners and commuters in Bangladesh to help them save fuel and find charging hubs.
               </p>
-              <button 
-                onClick={() => {}}
-                className="w-full flex items-center justify-center gap-2 bg-stone-50 hover:bg-stone-100 border border-stone-200 text-stone-800 py-2.5 rounded-xl text-xs font-bold transition-all"
-              >
-                <Share2 className="w-4 h-4" />
-                Share Link
-              </button>
+              <ShareButton />
             </div>
 
             {/* Recent Posts Box */}
