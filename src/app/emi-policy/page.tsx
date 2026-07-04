@@ -4,6 +4,9 @@ import { CreditCard, Landmark, CheckCircle2, ShieldCheck } from "lucide-react";
 export const metadata: Metadata = {
   title: "EMI Policy & Payment Options | EVStore Bangladesh",
   description: "Browse flexible 0% interest EMI installment plans for e-bikes, lithium batteries, and solar panel packages at EVStore. Available with 18+ leading banks in Bangladesh.",
+  alternates: {
+    canonical: "https://yourdomain.com/emi-policy",
+  },
 };
 
 export default function EmiPolicyPage() {

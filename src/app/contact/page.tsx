@@ -5,6 +5,9 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact Us | EVStore Bangladesh - Customer Service & Technical Support",
   description: "Get in touch with EVStore Bangladesh. Reach out to our technical support team for lithium batteries, e-bike conversions, and solar installation queries. Visit our Dhaka head office.",
+  alternates: {
+    canonical: "https://yourdomain.com/contact",
+  },
 };
 
 export default function ContactPage() {

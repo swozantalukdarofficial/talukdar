@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   verification: {
     google: "gYyToJWYPZh08hUUVbtWQMU_DfsLWfx_v_0i4oIrRsA",
   },
+  alternates: {
+    canonical: "https://yourdomain.com",
+  },
 };
 
 import { getAllCategories } from "@/lib/categories";

@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy | EVStore Bangladesh",
   description: "Understand how EVStore Bangladesh collects, protects, and handles your customer registration data, order history, and online transactions securely.",
+  alternates: {
+    canonical: "https://yourdomain.com/privacy-policy",
+  },
 };
 
 export default function PrivacyPolicyPage() {

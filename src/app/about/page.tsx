@@ -6,6 +6,9 @@ import { ArrowRight, ShieldCheck, Zap, Leaf, HeartHandshake } from "lucide-react
 export const metadata: Metadata = {
   title: "About Us | EVStore Bangladesh - Leading Smart EV & Solar Platform",
   description: "Learn about EVStore Bangladesh. We are the premier marketplace for electric bikes, high-performance lithium battery packs, solar energy solutions, and OEM electric vehicle spare parts in Bangladesh.",
+  alternates: {
+    canonical: "https://yourdomain.com/about",
+  },
 };
 
 export default function AboutPage() {

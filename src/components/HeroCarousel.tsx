@@ -106,15 +106,27 @@ export default function HeroCarousel() {
                       </div>
 
                       {/* Headline */}
-                      <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-[72px] font-extrabold tracking-tight text-stone-900 leading-[1.05] mb-6">
-                        {slide.headline}
-                        <br />
-                        <span
-                          className={`bg-gradient-to-r ${slide.subGradient} bg-clip-text text-transparent`}
-                        >
-                          {slide.sub}
-                        </span>
-                      </h1>
+                      {slide.id === 1 ? (
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-[72px] font-extrabold tracking-tight text-stone-900 leading-[1.05] mb-6">
+                          {slide.headline}
+                          <br />
+                          <span
+                            className={`bg-gradient-to-r ${slide.subGradient} bg-clip-text text-transparent`}
+                          >
+                            {slide.sub}
+                          </span>
+                        </h1>
+                      ) : (
+                        <h2 className="text-4xl sm:text-5xl md:text-6xl xl:text-[72px] font-extrabold tracking-tight text-stone-900 leading-[1.05] mb-6">
+                          {slide.headline}
+                          <br />
+                          <span
+                            className={`bg-gradient-to-r ${slide.subGradient} bg-clip-text text-transparent`}
+                          >
+                            {slide.sub}
+                          </span>
+                        </h2>
+                      )}
 
                       <p className="text-base md:text-lg text-stone-600 max-w-lg leading-relaxed mb-10">
                         {slide.description}

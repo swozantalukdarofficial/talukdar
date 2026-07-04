@@ -4,6 +4,7 @@ import CategorySection from "@/components/CategorySection";
 import ProductCarousel from "@/components/ProductCarousel";
 import FlashSaleSection from "@/components/FlashSaleSection";
 import ProductCard from "@/components/ProductCard";
+import HomeSchema from "@/components/HomeSchema";
 import {
   getFeaturedProducts,
   getProductsByCategory,
@@ -35,6 +36,9 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* Schema Markup for Homepage */}
+      <HomeSchema />
+
       {/* 1. Full-screen hero carousel */}
       <HeroCarousel />
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { POSTS } from "@/lib/blogs";
 import { Clock, BookOpen, ArrowRight } from "lucide-react";
+import BlogListSchema from "@/components/BlogListSchema";
 
 export const metadata: Metadata = {
   title: "EV Store Blog — Electric Bikes & Scooter Tech Journal",
@@ -19,6 +20,9 @@ export default function BlogLandingPage() {
 
   return (
     <main className="min-h-screen bg-[#faf9f6] text-stone-900 pb-20">
+      {/* Blog List Schema Markup */}
+      <BlogListSchema />
+
       {/* 1. Header Banner */}
       <section className="bg-stone-900 py-16 md:py-24 relative overflow-hidden text-center text-white">
         <div className="absolute inset-0 z-0 opacity-20">

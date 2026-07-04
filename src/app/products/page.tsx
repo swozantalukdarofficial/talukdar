@@ -8,11 +8,15 @@ import { ProductGridSkeleton } from "@/components/Skeletons";
 import Pagination from "@/components/Pagination";
 import CollectionSEOContent from "@/components/CollectionSEOContent";
 import type { Metadata } from "next";
+import CollectionSchema from "@/components/CollectionSchema";
 
 export const metadata: Metadata = {
   title: "All Products | EVStore Bangladesh",
   description:
     "Browse our full range of e-bikes, batteries, parts, and accessories. Filter by category and price.",
+  alternates: {
+    canonical: "https://yourdomain.com/products",
+  },
 };
 
 export const dynamic = "force-dynamic";
@@ -100,6 +104,9 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
 
   return (
     <main className="min-h-screen bg-[#faf9f6] pt-0">
+      {/* Schema Markup for search engines */}
+      <CollectionSchema products={paginatedProducts} categoryName={activeCategory} categorySlug={category ?? "all"} />
+
       {/* Page header */}
       <div className="border-b border-stone-200 bg-white">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 py-6 md:py-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
