@@ -3,6 +3,7 @@ import { getProductBySlug, getRelatedProducts } from "@/lib/products";
 import ProductDetailClient from "@/components/ProductDetailClient";
 import ProductCarousel from "@/components/ProductCarousel";
 import type { Metadata } from "next";
+import ProductSchema from "@/components/ProductSchema";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +22,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description:
       product.description ??
       `Buy ${product.name} at the best price in Bangladesh.`,
+    alternates: {
+      canonical: `https://yourdomain.com/products/${product.slug}`,
+    },
     openGraph: {
       title: product.name,
       description: product.description ?? "",
@@ -59,6 +63,9 @@ export default async function ProductDetailPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-[#faf9f6] pt-0">
+      {/* Schema Markup for search engines */}
+      <ProductSchema product={product} />
+
       {/* Breadcrumb */}
       <div className="border-b border-stone-200 bg-white shadow-sm shadow-stone-100/50">
         <div className="max-w-7xl mx-auto px-4 py-3.5">
