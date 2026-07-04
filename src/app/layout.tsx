@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   verification: {
+    // Google Search Console & Merchant Center site verification codes
     google: [
       "gYyToJWYPZh08hUUVbtWQMU_DfsLWfx_v_0i4oIrRsA",
       "ERO7jOqnZyavsXgg_ZiFramikyAwMLViDy7WKxPjSXs"
