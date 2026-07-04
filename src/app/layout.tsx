@@ -21,7 +21,10 @@ export const metadata: Metadata = {
     type: "website",
   },
   verification: {
-    google: "gYyToJWYPZh08hUUVbtWQMU_DfsLWfx_v_0i4oIrRsA",
+    google: [
+      "gYyToJWYPZh08hUUVbtWQMU_DfsLWfx_v_0i4oIrRsA",
+      "ERO7jOqnZyavsXgg_ZiFramikyAwMLViDy7WKxPjSXs"
+    ],
   },
   alternates: {
     canonical: SITE_URL,
