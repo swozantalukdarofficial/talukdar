@@ -313,6 +313,10 @@ export default function Header({ categories = [] }: { categories?: Category[] })
                     <h3 className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-3">Quick Links</h3>
                     <nav className="flex flex-col gap-1">
                       <Link href="/products" onClick={() => setMobileOpen(false)} className="px-3 py-2.5 text-sm font-medium text-stone-600 hover:text-stone-900 rounded-lg hover:bg-stone-100">All Products</Link>
+                      <Link href="/blog" onClick={() => setMobileOpen(false)} className="px-3 py-2.5 text-sm font-medium text-stone-600 hover:text-stone-900 rounded-lg hover:bg-stone-100 flex items-center gap-2">
+                        <BookOpen className="w-4 h-4 text-emerald-700" />
+                        Blog & Articles
+                      </Link>
                       <Link href="/about" onClick={() => setMobileOpen(false)} className="px-3 py-2.5 text-sm font-medium text-stone-600 hover:text-stone-900 rounded-lg hover:bg-stone-100">About Us</Link>
                       <Link href="/contact" onClick={() => setMobileOpen(false)} className="px-3 py-2.5 text-sm font-medium text-stone-600 hover:text-stone-900 rounded-lg hover:bg-stone-100">Contact Us</Link>
                     </nav>
@@ -349,6 +353,14 @@ export default function Header({ categories = [] }: { categories?: Category[] })
                   <span>{cat.name}</span>
                 </Link>
               ))}
+              <span className="text-stone-300">|</span>
+              <Link
+                href="/blog"
+                className="hover:text-emerald-850 transition-colors flex items-center gap-1 text-emerald-800 font-bold"
+              >
+                <BookOpen className="w-3.5 h-3.5" />
+                Blog
+              </Link>
             </nav>
           </div>
 

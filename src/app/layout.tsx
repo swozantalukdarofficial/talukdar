@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     description: "Premium E-Bikes, Batteries & Parts",
     type: "website",
   },
+  verification: {
+    google: "gYyToJWYPZh08hUUVbtWQMU_DfsLWfx_v_0i4oIrRsA",
+  },
 };
 
 import { getAllCategories } from "@/lib/categories";

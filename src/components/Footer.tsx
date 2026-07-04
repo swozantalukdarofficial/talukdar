@@ -124,6 +124,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/blog" className="hover:text-emerald-850 transition-colors">
+                  Blog & Articles
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="hover:text-emerald-850 transition-colors">
                   Contact Us
                 </Link>
