@@ -4,10 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, MapPin, Copy, ArrowRight, MessageSquare } from "lucide-react";
 import { toast } from "sonner";
+import WhatsAppWidget from "./WhatsAppWidget";
 
 export default function Footer() {
   const phone1 = "09638001122";
   const phone2 = "+880 9638 001122";
+  const whatsappNumber = "8801341757541";
 
   function copyToClipboard(num: string) {
     navigator.clipboard.writeText(num);
@@ -69,7 +71,7 @@ export default function Footer() {
 
               {/* WhatsApp */}
               <a
-                href={`https://wa.me/${phone1.replace(/[^0-9]/g, "")}`}
+                href={`https://wa.me/${whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-3 py-2 bg-white border border-stone-200 rounded-xl hover:border-stone-400 hover:shadow-sm transition-all group"
@@ -290,15 +292,8 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Floating Orange Chat Button */}
-      <a
-        href={`https://wa.me/${phone1.replace(/[^0-9]/g, "")}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 w-12 h-12 bg-[#ff5c00] hover:bg-[#e05100] text-white rounded-full shadow-lg shadow-[#ff5c00]/25 flex items-center justify-center transition-all hover:scale-105 z-50 border-0"
-      >
-        <MessageSquare className="w-5 h-5 fill-white" />
-      </a>
+      {/* Floating WhatsApp Chat Widget */}
+      <WhatsAppWidget />
     </footer>
   );
 }
