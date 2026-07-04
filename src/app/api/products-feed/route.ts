@@ -30,7 +30,7 @@ export async function GET() {
     xml += `    <description>Bangladesh's leading e-bike, battery and EV parts store.</description>\n`;
 
     for (const p of products) {
-      const id = p.slug || p.id;
+      const id = p.id;
       const title = escapeXml(p.name);
       const description = escapeXml(p.description || p.name);
       const link = `${SITE_URL}/products/${p.slug}`;
