@@ -11,17 +11,6 @@ import type { Metadata } from "next";
 import { SITE_URL } from "@/config/seo";
 import CollectionSchema from "@/components/CollectionSchema";
 
-export const metadata: Metadata = {
-  title: "All Products | EVStore Bangladesh",
-  description:
-    "Browse our full range of e-bikes, batteries, parts, and accessories. Filter by category and price.",
-  alternates: {
-    canonical: `${SITE_URL}/products`,
-  },
-};
-
-export const dynamic = "force-dynamic";
-
 interface ProductsPageProps {
   searchParams: Promise<{
     category?: string;
@@ -35,6 +24,36 @@ interface ProductsPageProps {
     tag?: string;
   }>;
 }
+
+export async function generateMetadata({ searchParams }: ProductsPageProps): Promise<Metadata> {
+  const params = await searchParams;
+  const category = params.category;
+  
+  if (category) {
+    const categories = await getAllCategories();
+    const activeCategoryObj = categories.find(c => c.slug === category);
+    
+    if (activeCategoryObj) {
+      return {
+        title: `${activeCategoryObj.name} — Premium E-Bike & EV Parts`,
+        description: `Shop premium ${activeCategoryObj.name.toLowerCase()} in Bangladesh. We offer original products with warranty, best price, and instant delivery.`,
+        alternates: {
+          canonical: `${SITE_URL}/products?category=${category}`,
+        },
+      };
+    }
+  }
+
+  return {
+    title: "All Products — Premium EV Parts & Accessories",
+    description: "Browse our full range of e-bikes, lithium batteries, chargers, and parts. High-quality products with warranty and fast delivery across Bangladesh.",
+    alternates: {
+      canonical: `${SITE_URL}/products`,
+    },
+  };
+}
+
+export const dynamic = "force-dynamic";
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
   const params = await searchParams;
