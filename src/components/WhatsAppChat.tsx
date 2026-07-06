@@ -27,7 +27,7 @@ export default function WhatsAppChat() {
 					<div className="flex items-center gap-3">
 						<MessageCircle className="text-white w-6 h-6" />
 						<div>
-							<h3 className="text-white font-bold text-sm">Chat with us</h3>
+							<p className="text-white font-bold text-sm">Chat with us</p>
 							<p className="text-white/80 text-xs">
 								We typically reply instantly
 							</p>
