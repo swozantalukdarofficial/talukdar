@@ -1,20 +1,23 @@
+import { lazy, Suspense } from "react";
 import Hero from "../components/Hero";
-import AboutUs from "../components/AboutUs";
 import TrustedPlatforms from "../components/TrustedPlatforms";
-import ServiceGrid from "../components/ServiceGrid";
-import WhyChooseUs from "../components/WhyChooseUs";
-import LatestInsights from "../components/LatestInsights";
-import MarketAnalysis from "../components/MarketAnalysis";
-import AuditCTA from "../components/AuditCTA";
-import IndustryExpertise from "../components/IndustryExpertise";
-import SuccessStories from "../components/SuccessStories";
-import Testimonials from "../components/Testimonials";
-import WorkingProcess from "../components/WorkingProcess";
-import FAQ from "../components/FAQ";
-import ToolsLogoBar from "../components/ToolsLogoBar";
-import Comparison from "../components/Comparison";
 
-import NewsletterCTA from "../components/NewsletterCTA";
+// Lazy load offscreen components to shrink initial bundle size
+const MarketAnalysis = lazy(() => import("../components/MarketAnalysis"));
+const ToolsLogoBar = lazy(() => import("../components/ToolsLogoBar"));
+const ServiceGrid = lazy(() => import("../components/ServiceGrid"));
+const Comparison = lazy(() => import("../components/Comparison"));
+const AuditCTA = lazy(() => import("../components/AuditCTA"));
+const WhyChooseUs = lazy(() => import("../components/WhyChooseUs"));
+const IndustryExpertise = lazy(() => import("../components/IndustryExpertise"));
+const SuccessStories = lazy(() => import("../components/SuccessStories"));
+const Testimonials = lazy(() => import("../components/Testimonials"));
+const WorkingProcess = lazy(() => import("../components/WorkingProcess"));
+const AboutUs = lazy(() => import("../components/AboutUs"));
+const FAQ = lazy(() => import("../components/FAQ"));
+const NewsletterCTA = lazy(() => import("../components/NewsletterCTA"));
+const LatestInsights = lazy(() => import("../components/LatestInsights"));
+
 import SEO from "../components/SEO";
 import servicesData from "../data/services.json";
 import { blogPosts } from "../data/blogData";
@@ -142,59 +145,87 @@ export default function HomePage() {
       <TrustedPlatforms />
 
       <DeferredSection minHeight="500px">
-        <MarketAnalysis />
+        <Suspense fallback={null}>
+          <MarketAnalysis />
+        </Suspense>
       </DeferredSection>
 
       <DeferredSection minHeight="150px">
-        <ToolsLogoBar />
+        <Suspense fallback={null}>
+          <ToolsLogoBar />
+        </Suspense>
       </DeferredSection>
 
       <DeferredSection minHeight="600px">
-        <ServiceGrid initialServices={services} />
+        <Suspense fallback={null}>
+          <ServiceGrid initialServices={services} />
+        </Suspense>
       </DeferredSection>
 
       <DeferredSection minHeight="500px">
-        <Comparison />
+        <Suspense fallback={null}>
+          <Comparison />
+        </Suspense>
       </DeferredSection>
 
       <DeferredSection minHeight="300px">
-        <AuditCTA />
+        <Suspense fallback={null}>
+          <AuditCTA />
+        </Suspense>
       </DeferredSection>
 
       <DeferredSection minHeight="500px">
-        <WhyChooseUs />
+        <Suspense fallback={null}>
+          <WhyChooseUs />
+        </Suspense>
       </DeferredSection>
 
       <DeferredSection minHeight="400px">
-        <IndustryExpertise />
+        <Suspense fallback={null}>
+          <IndustryExpertise />
+        </Suspense>
       </DeferredSection>
 
       <DeferredSection minHeight="500px">
-        <SuccessStories />
+        <Suspense fallback={null}>
+          <SuccessStories />
+        </Suspense>
       </DeferredSection>
 
       <DeferredSection minHeight="400px">
-        <Testimonials />
+        <Suspense fallback={null}>
+          <Testimonials />
+        </Suspense>
       </DeferredSection>
 
       <DeferredSection minHeight="600px">
-        <WorkingProcess />
+        <Suspense fallback={null}>
+          <WorkingProcess />
+        </Suspense>
       </DeferredSection>
 
       <DeferredSection minHeight="500px">
-        <AboutUs />
+        <Suspense fallback={null}>
+          <AboutUs />
+        </Suspense>
       </DeferredSection>
 
       <DeferredSection minHeight="500px">
-        <FAQ />
+        <Suspense fallback={null}>
+          <FAQ />
+        </Suspense>
       </DeferredSection>
 
       <DeferredSection minHeight="250px">
-        <NewsletterCTA />
+        <Suspense fallback={null}>
+          <NewsletterCTA />
+        </Suspense>
       </DeferredSection>
 
       <DeferredSection minHeight="500px">
-        <LatestInsights initialPosts={posts} />
+        <Suspense fallback={null}>
+          <LatestInsights initialPosts={posts} />
+        </Suspense>
       </DeferredSection>
     </main>
   );
