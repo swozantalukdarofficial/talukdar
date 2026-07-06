@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/Webestone-Logo.png";
+import logo from "../assets/Webestone-Logo.webp";
 import {
 	Facebook,
 	Instagram,

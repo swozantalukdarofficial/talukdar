@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import logo from "../assets/Webestone-Logo.png";
+import logo from "../assets/Webestone-Logo.webp";
 import {
 	Menu,
 	X,

@@ -4,7 +4,7 @@ import { ArrowRight, Play, Search, TrendingUp, BarChart3 } from "lucide-react";
 import { useState } from "react";
 
 // ── Local thumbnail — eliminates external CDN dependency for LCP
-const LOCAL_THUMBNAIL = "/hero-thumbnail.jpg";
+const LOCAL_THUMBNAIL = "/hero-thumbnail.webp";
 const EMBED_URL = "https://www.youtube.com/embed/MnLd2G198U8?autoplay=1&rel=0&modestbranding=1";
 
 function HeroVideoPlayer() {
