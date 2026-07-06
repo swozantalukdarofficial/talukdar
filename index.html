@@ -17,11 +17,11 @@
 		<link rel="dns-prefetch" href="https://www.youtube.com" />
 		<link rel="dns-prefetch" href="https://i.ytimg.com" />
 
-		<!-- Preload LCP image (YouTube hero thumbnail) -->
+		<!-- Preload LCP image (local hero thumbnail — eliminates external CDN delay) -->
 		<link
 			rel="preload"
 			as="image"
-			href="https://img.youtube.com/vi/MnLd2G198U8/maxresdefault.jpg"
+			href="/hero-thumbnail.jpg"
 			fetchpriority="high"
 		/>
 
