@@ -125,3 +125,46 @@ body {
 .animate-float-orb-3 {
 	animation: float-orb-3 15s ease-in-out infinite;
 }
+
+@keyframes fade-in-up {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fade-in-scale {
+	0% {
+		opacity: 0;
+		transform: scale(0.97);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.animate-fade-in-up {
+	animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-scale {
+	animation: fade-in-scale 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+
+@keyframes float-card {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(-6px); }
+}
+
+.animate-float-card {
+	animation: float-card 4s ease-in-out infinite;
+}
+
+.animate-float-card-slow {
+	animation: float-card 5s ease-in-out infinite 0.5s;
+}

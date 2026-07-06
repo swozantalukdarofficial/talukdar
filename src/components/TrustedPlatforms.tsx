@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 const platforms = [
   { name: "Upwork", sub: "Top Rated Plus", color: "text-emerald-500" },
   { name: "Clutch", sub: "5.0 ★ Rating", color: "text-blue-500" },
@@ -19,14 +17,8 @@ export default function TrustedPlatforms() {
       </div>
 
       <div className="relative flex overflow-x-hidden">
-        <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            duration: 35,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="flex whitespace-nowrap gap-16 md:gap-24 items-center pr-16 md:pr-24"
+        <div
+          className="flex whitespace-nowrap gap-16 md:gap-24 items-center pr-16 md:pr-24 animate-marquee"
         >
           {[...platforms, ...platforms].map((platform, index) => (
             <div key={index} className="flex flex-col items-center gap-1 group cursor-default">
@@ -38,7 +30,7 @@ export default function TrustedPlatforms() {
               </span>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Gradient Overlays for smooth fade */}
         <div className="absolute inset-y-0 left-0 w-24 md:w-48 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />

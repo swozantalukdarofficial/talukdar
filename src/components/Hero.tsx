@@ -1,4 +1,3 @@
-import { motion, AnimatePresence } from "framer-motion";
 import { MagneticButton } from "./ui/MagneticButton";
 import { ArrowRight, Play, Search, TrendingUp, BarChart3 } from "lucide-react";
 import { useState } from "react";
@@ -15,58 +14,48 @@ function HeroVideoPlayer() {
       <div className="absolute -inset-[3px] rounded-2xl bg-gradient-to-r from-neon-green via-cyan-400 to-blue-500 opacity-20 blur-xl group-hover:opacity-40 transition-all duration-700" />
       <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/60 shadow-2xl">
         <div className="relative aspect-video w-full">
-          <AnimatePresence mode="wait">
-            {!isPlaying ? (
-              <motion.div
-                key="thumb"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, transition: { duration: 0.15 } }}
-                className="absolute inset-0 cursor-pointer"
-                onClick={() => setIsPlaying(true)}
-              >
-                {/* Local image — eliminates YouTube CDN round-trip for LCP */}
-                <img
-                  src={LOCAL_THUMBNAIL}
-                  alt="AI powered digital marketing solutions by WeBestOne agency Bangladesh"
-                  className="w-full h-full object-cover"
-                  fetchPriority="high"
-                  loading="eager"
-                  decoding="sync"
-                  width="1280"
-                  height="720"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-                {/* Play button */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative flex items-center justify-center">
-                    <span className="absolute inline-flex h-24 w-24 rounded-full bg-neon-green/30 animate-ping" />
-                    <div className="relative w-16 h-16 bg-neon-green rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(135,230,92,0.5)] group-hover:scale-110 transition-all duration-300">
-                      <Play className="w-6 h-6 text-black fill-black ml-1" />
-                    </div>
+          {!isPlaying ? (
+            <div
+              className="absolute inset-0 cursor-pointer"
+              onClick={() => setIsPlaying(true)}
+            >
+              {/* Local image — eliminates YouTube CDN round-trip for LCP */}
+              <img
+                src={LOCAL_THUMBNAIL}
+                alt="AI powered digital marketing solutions by WeBestOne agency Bangladesh"
+                className="w-full h-full object-cover"
+                fetchPriority="high"
+                loading="eager"
+                decoding="sync"
+                width="1280"
+                height="720"
+              />
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
+              {/* Play button */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="relative flex items-center justify-center">
+                  <span className="absolute inline-flex h-24 w-24 rounded-full bg-neon-green/30 animate-ping" />
+                  <div className="relative w-16 h-16 bg-neon-green rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(135,230,92,0.5)] group-hover:scale-110 transition-all duration-300">
+                    <Play className="w-6 h-6 text-black fill-black ml-1" />
                   </div>
                 </div>
-              </motion.div>
-            ) : (
-              <iframe
-                className="absolute inset-0 w-full h-full"
-                src={EMBED_URL}
-                title="WeBestOne AI Marketing Solutions"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-                loading="lazy"
-              />
-            )}
-          </AnimatePresence>
+              </div>
+            </div>
+          ) : (
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              src={EMBED_URL}
+              title="WeBestOne AI Marketing Solutions"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+              loading="lazy"
+            />
+          )}
         </div>
       </div>
     </div>
   );
 }
-
-// ── Reduced animation complexity to lower TBT
-const fadeLeft = { hidden: { opacity: 0, x: -24 }, show: { opacity: 1, x: 0, transition: { duration: 0.6 } } };
-const fadeScale = { hidden: { opacity: 0, scale: 0.97 }, show: { opacity: 1, scale: 1, transition: { duration: 0.7, delay: 0.15 } } };
 
 export default function Hero() {
   return (
@@ -77,12 +66,7 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
         {/* Left — Text */}
-        <motion.div
-          variants={fadeLeft}
-          initial="hidden"
-          animate="show"
-          className="space-y-5 md:space-y-6"
-        >
+        <div className="space-y-5 md:space-y-6 opacity-0 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neon-green/10 border border-neon-green/20">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-green opacity-75" />
@@ -114,23 +98,14 @@ export default function Hero() {
               <span>See Our Success</span>
             </button>
           </div>
-        </motion.div>
+        </div>
 
         {/* Right — Video + Floating Cards */}
-        <motion.div
-          variants={fadeScale}
-          initial="hidden"
-          animate="show"
-          className="relative"
-        >
+        <div className="relative opacity-0 animate-fade-in-scale">
           <HeroVideoPlayer />
 
           {/* Floating Card 1 */}
-          <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-6 -left-6 hidden md:flex items-center gap-3.5 p-4 rounded-2xl bg-black/80 border border-white/10 shadow-2xl z-20"
-          >
+          <div className="absolute -bottom-6 -left-6 hidden md:flex items-center gap-3.5 p-4 rounded-2xl bg-black/80 border border-white/10 shadow-2xl z-20 animate-float-card">
             <div className="w-9 h-9 rounded-xl bg-neon-green/20 flex items-center justify-center shrink-0">
               <TrendingUp className="w-4 h-4 text-neon-green" />
             </div>
@@ -138,14 +113,10 @@ export default function Hero() {
               <div className="text-[9px] font-bold text-white/50 uppercase tracking-widest leading-none mb-1">Conversion Boost</div>
               <div className="text-base font-black text-neon-green">+145%</div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Floating Card 2 */}
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            className="absolute -top-6 -right-6 hidden md:flex items-center gap-3.5 p-4 rounded-2xl bg-black/80 border border-white/10 shadow-2xl z-20"
-          >
+          <div className="absolute -top-6 -right-6 hidden md:flex items-center gap-3.5 p-4 rounded-2xl bg-black/80 border border-white/10 shadow-2xl z-20 animate-float-card-slow">
             <div className="w-9 h-9 rounded-xl bg-blue-500/20 flex items-center justify-center shrink-0">
               <BarChart3 className="w-4 h-4 text-blue-400" />
             </div>
@@ -153,14 +124,10 @@ export default function Hero() {
               <div className="text-[9px] font-bold text-white/50 uppercase tracking-widest leading-none mb-1">Organic Traffic</div>
               <div className="text-base font-black text-blue-400">+250%</div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Floating Card 3 */}
-          <motion.div
-            animate={{ x: [0, 6, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-12 -right-8 hidden md:flex items-center gap-3 p-4 rounded-2xl bg-black/80 border border-white/10 shadow-2xl z-20"
-          >
+          <div className="absolute bottom-12 -right-8 hidden md:flex items-center gap-3 p-4 rounded-2xl bg-black/80 border border-white/10 shadow-2xl z-20 animate-float-card">
             <div className="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center shrink-0">
               <Search className="w-4 h-4 text-orange-400" />
             </div>
@@ -168,8 +135,8 @@ export default function Hero() {
               <div className="text-[9px] font-bold text-white/50 uppercase tracking-widest leading-none mb-1">GA4 Verified</div>
               <div className="text-xs font-black text-white">Data-Driven Growth</div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import logo from "../assets/Webestone-Logo.webp";
 import {
@@ -122,7 +121,6 @@ export default function Header() {
 		},
 	];
 
-  // Need to import Layout and ShoppingBag
 	const navLinks = [
 		{ name: "Home", href: "/" },
 		{ name: "Work", href: "/work" },
@@ -186,55 +184,51 @@ export default function Header() {
 							</Link>
 
 							{/* Mega Menu for Services */}
-							<AnimatePresence>
-								{link.name === "Services" && isServicesHovered && (
-									<motion.div
-										initial={{ opacity: 0, y: 10 }}
-										animate={{ opacity: 1, y: 0 }}
-										exit={{ opacity: 0, y: 10 }}
-										transition={{ duration: 0.2 }}
-										className="absolute top-full left-1/2 -translate-x-1/2 w-[900px] p-8 bg-neutral-900/98 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl grid grid-cols-3 gap-x-8 gap-y-4 z-50 mt-2"
+							<div
+								className={`absolute top-full left-1/2 -translate-x-1/2 w-[900px] p-8 bg-neutral-900/98 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl grid grid-cols-3 gap-x-8 gap-y-4 z-50 mt-2 transition-all duration-200 origin-top transform ${
+									link.name === "Services" && isServicesHovered
+										? "opacity-100 scale-100 translate-y-0"
+										: "opacity-0 scale-95 -translate-y-2 pointer-events-none"
+								}`}
+							>
+								{/* Decorative Glow */}
+								<div className="absolute -top-10 left-1/2 -translate-x-1/2 w-48 h-48 bg-neon-green/10 rounded-full blur-[80px] pointer-events-none"></div>
+
+								{servicesList.map((service, index) => (
+									<Link
+										key={index}
+										to={service.href}
+										className="group/item flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-all border border-transparent hover:border-white/5"
 									>
-										{/* Decorative Glow */}
-										<div className="absolute -top-10 left-1/2 -translate-x-1/2 w-48 h-48 bg-neon-green/10 rounded-full blur-[80px] pointer-events-none"></div>
-
-										{servicesList.map((service, index) => (
-											<Link
-												key={index}
-												to={service.href}
-												className="group/item flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-all border border-transparent hover:border-white/5"
-											>
-												<div
-													className={`w-10 h-10 shrink-0 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-neutral-400 group-hover/item:bg-neon-green group-hover/item:text-black transition-all duration-300`}
-												>
-													<service.icon className="w-5 h-5" />
-												</div>
-												<div>
-													<p className="text-white font-bold text-sm mb-0.5 group-hover/item:text-neon-green transition-colors">
-														{service.title}
-													</p>
-                          <p className="text-[10px] text-neutral-500 line-clamp-1 group-hover/item:text-neutral-400 transition-colors">
-                            {service.description}
-                          </p>
-												</div>
-											</Link>
-										))}
-
-										<div className="col-span-3 pt-6 mt-2 border-t border-white/5 flex justify-between items-center px-4">
-											<span className="text-[10px] text-neutral-500 uppercase tracking-[0.2em] font-mono font-bold">
-												Explore all our capabilities
-											</span>
-											<Link
-												to="/services"
-												className="text-sm font-bold text-neon-green hover:underline flex items-center gap-2 group/link"
-											>
-												View All Services
-												<ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-											</Link>
+										<div
+											className={`w-10 h-10 shrink-0 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-neutral-400 group-hover/item:bg-neon-green group-hover/item:text-black transition-all duration-300`}
+										>
+											<service.icon className="w-5 h-5" />
 										</div>
-									</motion.div>
-								)}
-							</AnimatePresence>
+										<div>
+											<p className="text-white font-bold text-sm mb-0.5 group-hover/item:text-neon-green transition-colors">
+												{service.title}
+											</p>
+											<p className="text-[10px] text-neutral-500 line-clamp-1 group-hover/item:text-neutral-400 transition-colors">
+												{service.description}
+											</p>
+										</div>
+									</Link>
+								))}
+
+								<div className="col-span-3 pt-6 mt-2 border-t border-white/5 flex justify-between items-center px-4">
+									<span className="text-[10px] text-neutral-500 uppercase tracking-[0.2em] font-mono font-bold">
+										Explore all our capabilities
+									</span>
+									<Link
+										to="/services"
+										className="text-sm font-bold text-neon-green hover:underline flex items-center gap-2 group/link"
+									>
+										View All Services
+										<ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+									</Link>
+								</div>
+							</div>
 						</div>
 					))}
 				</nav>
@@ -262,43 +256,40 @@ export default function Header() {
 			</div>
 
 			{/* Mobile Nav */}
-			<AnimatePresence>
-				{isOpen && (
-					<motion.div
-						initial={{ opacity: 0, height: 0 }}
-						animate={{ opacity: 1, height: "auto" }}
-						exit={{ opacity: 0, height: 0 }}
-						className="md:hidden absolute top-20 left-0 right-0 bg-neutral-950 border-b border-white/10 overflow-hidden"
-					>
-						<nav className="flex flex-col p-6 gap-6">
-							{navLinks.map((link) => (
-								<Link
-									key={link.name}
-									to={link.href}
-									className={`text-xl font-bold transition-colors ${
-										(
-											link.href === "/" ?
-												pathname === "/"
-											:	pathname.startsWith(link.href)
-										) ?
-											"text-neon-green"
-										:	"text-neutral-300 hover:text-neon-green"
-									}`}
-									onClick={() => setIsOpen(false)}
-								>
-									{link.name}
-								</Link>
-							))}
-							<Link to="/contact-us" onClick={() => setIsOpen(false)}>
-								<button className="w-full py-4 bg-neon-green text-black font-bold rounded-xl flex items-center justify-center gap-2">
-									<span>Get a Proposal</span>
-									<ArrowRight className="w-5 h-5" />
-								</button>
-							</Link>
-						</nav>
-					</motion.div>
-				)}
-			</AnimatePresence>
+			<div
+				className={`md:hidden absolute top-20 left-0 right-0 bg-neutral-950 border-b border-white/10 overflow-hidden transition-all duration-300 origin-top transform ${
+					isOpen
+						? "max-h-[500px] opacity-100 visible"
+						: "max-h-0 opacity-0 invisible pointer-events-none"
+				}`}
+			>
+				<nav className="flex flex-col p-6 gap-6">
+					{navLinks.map((link) => (
+						<Link
+							key={link.name}
+							to={link.href}
+							className={`text-xl font-bold transition-colors ${
+								(
+									link.href === "/" ?
+										pathname === "/"
+									:	pathname.startsWith(link.href)
+								) ?
+									"text-neon-green"
+								:	"text-neutral-300 hover:text-neon-green"
+							}`}
+							onClick={() => setIsOpen(false)}
+						>
+							{link.name}
+						</Link>
+					))}
+					<Link to="/contact-us" onClick={() => setIsOpen(false)}>
+						<button className="w-full py-4 bg-neon-green text-black font-bold rounded-xl flex items-center justify-center gap-2">
+							<span>Get a Proposal</span>
+							<ArrowRight className="w-5 h-5" />
+						</button>
+					</Link>
+				</nav>
+			</div>
 		</header>
 	);
 }
