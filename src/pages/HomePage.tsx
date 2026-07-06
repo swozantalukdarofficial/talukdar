@@ -125,6 +125,8 @@ const homeSchema = {
   ]
 };
 
+import DeferredSection from "../components/DeferredSection";
+
 export default function HomePage() {
   const services = servicesData.filter((s) => s.description); 
   const posts = blogPosts.slice(0, 3);
@@ -138,20 +140,62 @@ export default function HomePage() {
       />
       <Hero />
       <TrustedPlatforms />
-      <MarketAnalysis />
-      <ToolsLogoBar />
-      <ServiceGrid initialServices={services} />
-      <Comparison />
-      <AuditCTA />
-      <WhyChooseUs />
-      <IndustryExpertise />
-      <SuccessStories />
-      <Testimonials />
-      <WorkingProcess />
-      <AboutUs />
-      <FAQ />
-      <NewsletterCTA />
-      <LatestInsights initialPosts={posts} />
+
+      <DeferredSection minHeight="500px">
+        <MarketAnalysis />
+      </DeferredSection>
+
+      <DeferredSection minHeight="150px">
+        <ToolsLogoBar />
+      </DeferredSection>
+
+      <DeferredSection minHeight="600px">
+        <ServiceGrid initialServices={services} />
+      </DeferredSection>
+
+      <DeferredSection minHeight="500px">
+        <Comparison />
+      </DeferredSection>
+
+      <DeferredSection minHeight="300px">
+        <AuditCTA />
+      </DeferredSection>
+
+      <DeferredSection minHeight="500px">
+        <WhyChooseUs />
+      </DeferredSection>
+
+      <DeferredSection minHeight="400px">
+        <IndustryExpertise />
+      </DeferredSection>
+
+      <DeferredSection minHeight="500px">
+        <SuccessStories />
+      </DeferredSection>
+
+      <DeferredSection minHeight="400px">
+        <Testimonials />
+      </DeferredSection>
+
+      <DeferredSection minHeight="600px">
+        <WorkingProcess />
+      </DeferredSection>
+
+      <DeferredSection minHeight="500px">
+        <AboutUs />
+      </DeferredSection>
+
+      <DeferredSection minHeight="500px">
+        <FAQ />
+      </DeferredSection>
+
+      <DeferredSection minHeight="250px">
+        <NewsletterCTA />
+      </DeferredSection>
+
+      <DeferredSection minHeight="500px">
+        <LatestInsights initialPosts={posts} />
+      </DeferredSection>
     </main>
   );
 }
