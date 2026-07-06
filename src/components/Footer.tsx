@@ -65,7 +65,7 @@ export default function Footer() {
 
 						<div className="space-y-4">
 							<div>
-								<h3 className="text-white font-bold text-lg">Location</h3>
+								<p className="text-white font-bold text-lg">Location</p>
 								<p className="text-neutral-400">Dhaka, Bangladesh</p>
 							</div>
 							{/* Mini Map */}
@@ -90,7 +90,7 @@ export default function Footer() {
 
 					{/* Column 2: Core Services (3 cols) */}
 					<div className="lg:col-span-3 space-y-6">
-						<h3 className="text-white font-bold text-lg">Core Services</h3>
+						<p className="text-white font-bold text-lg">Core Services</p>
 						<ul className="space-y-3">
 							{services.map((service, index) => (
 								<li key={index}>
@@ -108,7 +108,7 @@ export default function Footer() {
 					{/* Column 3: Our Work & About (2 cols) */}
 					<div className="lg:col-span-2 space-y-10">
 						<div className="space-y-6">
-							<h3 className="text-white font-bold text-lg">Our Work</h3>
+							<p className="text-white font-bold text-lg">Our Work</p>
 							<ul className="space-y-3">
 								<li>
 									<Link
@@ -130,7 +130,7 @@ export default function Footer() {
 						</div>
 
 						<div className="space-y-6">
-							<h3 className="text-white font-bold text-lg">About Us</h3>
+							<p className="text-white font-bold text-lg">About Us</p>
 							<ul className="space-y-3">
 								<li>
 									<Link
@@ -144,7 +144,7 @@ export default function Footer() {
 						</div>
 
 						<div className="space-y-6">
-							<h3 className="text-white font-bold text-lg">Legal</h3>
+							<p className="text-white font-bold text-lg">Legal</p>
 							<ul className="space-y-3">
 								<li>
 									<Link
@@ -177,7 +177,7 @@ export default function Footer() {
 					{/* Column 4: Socials & Button (3 cols) */}
 					<div className="lg:col-span-3 space-y-8 flex flex-col justify-between">
 						<div className="space-y-6">
-							<h3 className="text-white font-bold text-lg">Get in Touch</h3>
+							<p className="text-white font-bold text-lg">Get in Touch</p>
 							<div className="flex items-center gap-4">
 								<a
 									href={socials.facebook}
