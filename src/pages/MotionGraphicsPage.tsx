@@ -14,6 +14,75 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import SEO from "../components/SEO";
 
+const motionGraphicsSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://webestone.com/services/motion-graphics#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webestone.com" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://webestone.com/services" },
+        { "@type": "ListItem", "position": 3, "name": "Motion Graphics Services", "item": "https://webestone.com/services/motion-graphics" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://webestone.com/services/motion-graphics#service",
+      "serviceType": "Motion Graphics & 3D Animation",
+      "name": "Motion Graphics Services",
+      "description": "Professional motion graphics and 3D animation services including explainer videos, logo animations, product demos, cinematic intros, and animated social media content.",
+      "url": "https://webestone.com/services/motion-graphics",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "WeBestOne",
+        "url": "https://webestone.com",
+        "logo": "https://webestone.com/favicon.png",
+        "telephone": "+8801333600272",
+        "email": "webestone@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
+      },
+      "areaServed": ["BD", "US", "GB", "AU", "CA"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Motion Graphics Packages",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Explainer Video Animation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Logo Animation & Intro" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "3D Product Animation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Animated Social Media Content" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kinetic Typography" } }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What motion graphics software do you use?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We use Adobe After Effects, Cinema 4D, Blender, and Adobe Premiere Pro for motion graphics and 3D animation projects of all scales and styles." }
+        },
+        {
+          "@type": "Question",
+          "name": "What file formats do you deliver?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We deliver finished animations in MP4, MOV, WebM, GIF, and transparent PNG sequences depending on your usage requirements for web, social media, or broadcast." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a motion graphics project take?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A 30-60 second explainer or logo animation typically takes 5-10 business days. Complex 3D product animations or longer productions may require 2-4 weeks." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you match our brand style and guidelines?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We incorporate your brand colors, typography, logo, and visual tone into every animation to ensure consistency with your existing identity across all platforms." }
+        }
+      ]
+    }
+  ]
+};
+
 const services = [
   {
     title: "Social media motion graphics",
@@ -127,6 +196,7 @@ export default function MotionGraphicsPage() {
       <SEO 
         title="Motion Graphics Services Company | 3D Animation services" 
         description="Advanced Motion Graphics Services Company specializes in Explainer Videos, 3D Motion Graphics, visual Storytelling and Animated Transitions that scale your brand." 
+        schemaMarkup={motionGraphicsSchema}
       />
       {/* 1. HERO SECTION (UPGRADED) */}
       <section className="relative px-6 lg:px-20 pt-28 pb-16 overflow-visible min-h-screen flex items-center w-full">

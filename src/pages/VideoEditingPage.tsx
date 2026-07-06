@@ -7,6 +7,75 @@ import { useState, useRef } from "react";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import SEO from "../components/SEO";
 
+const videoEditingSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://webestone.com/services/video-editing#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webestone.com" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://webestone.com/services" },
+        { "@type": "ListItem", "position": 3, "name": "Video Editing Services", "item": "https://webestone.com/services/video-editing" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://webestone.com/services/video-editing#service",
+      "serviceType": "Video Editing & Video Production",
+      "name": "Professional Video Editing Services",
+      "description": "Professional video editing services including YouTube videos, social media reels, corporate films, motion graphics, and brand storytelling content.",
+      "url": "https://webestone.com/services/video-editing",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "WeBestOne",
+        "url": "https://webestone.com",
+        "logo": "https://webestone.com/favicon.png",
+        "telephone": "+8801333600272",
+        "email": "webestone@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
+      },
+      "areaServed": ["BD", "US", "GB", "AU", "CA"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Video Editing Service Packages",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "YouTube Video Editing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media Reels & Shorts" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corporate Video Production" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Motion Graphics & Animation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand Story Videos" } }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What video editing formats do you support?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We support all major formats including MP4, MOV, AVI, and MKV. Our editors work with footage from DSLR cameras, smartphones, drones, and screen recordings." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does video editing take?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Turnaround time depends on video length and complexity. A standard 3-5 minute promotional video typically takes 2-4 business days. Rush delivery is available upon request." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you add motion graphics and subtitles?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We offer motion graphics, animated titles, lower thirds, custom subtitles, color grading, sound design, and voiceover integration as part of our video editing service." }
+        },
+        {
+          "@type": "Question",
+          "name": "What software do you use for video editing?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Our editors use Adobe Premiere Pro, After Effects, DaVinci Resolve, and CapCut for various types of video projects depending on complexity and output requirements." }
+        }
+      ]
+    }
+  ]
+};
+
 export default function VideoEditingPage() {
 	// FAQs Data
 	const faqs = [
@@ -136,6 +205,7 @@ export default function VideoEditingPage() {
 			<SEO 
 				title="Professional video editing services | Production Experts" 
 				description="Professional video editing services help to build your brand with a video production agency that uses AI-driven strategies to deliver high-performing video content." 
+				schemaMarkup={videoEditingSchema}
 			/>
 			{/* 1. Hero Section */}
 			<section className="relative min-h-screen flex items-center pt-28 pb-16 px-6 z-10">

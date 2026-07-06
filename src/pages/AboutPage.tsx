@@ -26,6 +26,73 @@ import FAQ from "../components/FAQ";
 import servicesData from "../data/services.json";
 import SEO from "../components/SEO";
 
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://webestone.com/about-us#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webestone.com" },
+        { "@type": "ListItem", "position": 2, "name": "About Us", "item": "https://webestone.com/about-us" }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://webestone.com/#organization",
+      "name": "WeBestOne",
+      "alternateName": "Webestone",
+      "url": "https://webestone.com",
+      "logo": "https://webestone.com/favicon.png",
+      "image": "https://webestone.com/uploads/1770469463115-Webestone-icon.png",
+      "description": "WeBestOne is a premium AI-powered digital marketing and web development agency in Bangladesh specializing in SEO, PPC, Social Media Marketing, UI/UX Design, and Custom Web Applications.",
+      "foundingDate": "2024",
+      "foundingLocation": { "@type": "Place", "name": "Dhaka, Bangladesh" },
+      "telephone": "+8801333600272",
+      "email": "webestone@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Mirpur, Dhaka",
+        "addressLocality": "Dhaka",
+        "addressRegion": "Dhaka Division",
+        "postalCode": "1216",
+        "addressCountry": "BD"
+      },
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61586166715142",
+        "https://www.instagram.com/webest_one/",
+        "https://www.linkedin.com/company/webestone",
+        "https://www.youtube.com/@webestone"
+      ],
+      "knowsAbout": [
+        "AI SEO", "Search Engine Optimization", "Digital Marketing", "PPC Advertising",
+        "Social Media Marketing", "UI/UX Design", "Web Development", "Shopify Development",
+        "WordPress Development", "Content Marketing", "Video Editing", "Motion Graphics"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "WeBestOne Digital Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI SEO Services" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PPC Management" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media Marketing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UI/UX Design" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Web Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Video Editing & Motion Graphics" } }
+        ]
+      }
+    },
+    {
+      "@type": "AboutPage",
+      "@id": "https://webestone.com/about-us#page",
+      "url": "https://webestone.com/about-us",
+      "name": "About WeBestOne - AI Digital Marketing Agency",
+      "description": "Learn about WeBestOne, a results-driven AI digital marketing agency based in Dhaka, Bangladesh. Discover our team, values, and mission to transform brands with AI-powered marketing.",
+      "publisher": { "@id": "https://webestone.com/#organization" }
+    }
+  ]
+};
+
 // --- Sub-components for better modularity ---
 
 const DynamicIcon = ({
@@ -80,6 +147,7 @@ export default function AboutPage() {
       <SEO 
         title="AI powered agency | Webestone About us" 
         description="Leading AI powered agency providing AI SEO, SMM, Web Design, Development, Motion Graphics & Video Editing to transform your brand with AI solutions." 
+        schemaMarkup={aboutSchema}
       />
       
       {/* 1. HERO SECTION */}

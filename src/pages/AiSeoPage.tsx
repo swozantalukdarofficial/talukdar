@@ -4,6 +4,7 @@ import { Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { MagneticButton } from "../components/ui/MagneticButton";
 import aiRobotImg from "../assets/ai-robot.png";
+
 import SEO from "../components/SEO";
 
 const aiSeoSchema = {
@@ -207,6 +208,7 @@ export default function AiSeoPage() {
 			<SEO 
 				title="Generative Engine Optimization (GEO) & AI SEO - WeBestOne" 
 				description="Dominate next-gen AI search platforms (Google SGE, Perplexity, Gemini) with modern generative engine optimization." 
+				schemaMarkup={aiSeoSchema}
 			/>
 			<section className="relative z-10 px-6 lg:px-20 pt-28 pb-16 min-h-screen flex items-center w-full">
 				<div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">

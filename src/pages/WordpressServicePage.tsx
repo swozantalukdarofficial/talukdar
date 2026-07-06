@@ -23,6 +23,75 @@ import {
 } from "lucide-react";
 import SEO from "../components/SEO";
 
+const wordpressSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://webestone.com/services/wordpress-development#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webestone.com" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://webestone.com/services" },
+        { "@type": "ListItem", "position": 3, "name": "WordPress Development", "item": "https://webestone.com/services/wordpress-development" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://webestone.com/services/wordpress-development#service",
+      "serviceType": "WordPress Website Development",
+      "name": "WordPress Development Services",
+      "description": "Custom WordPress website development including theme customization, plugin development, WooCommerce setup, speed optimization, and security hardening.",
+      "url": "https://webestone.com/services/wordpress-development",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "WeBestOne",
+        "url": "https://webestone.com",
+        "logo": "https://webestone.com/favicon.png",
+        "telephone": "+8801333600272",
+        "email": "webestone@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
+      },
+      "areaServed": ["BD", "US", "GB", "AU", "CA"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "WordPress Service Packages",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom WordPress Theme Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "WooCommerce Store Setup" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "WordPress Plugin Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "WordPress Speed & Core Web Vitals Optimization" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "WordPress Security Hardening" } }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What WordPress services do you offer?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We offer custom WordPress theme design and development, plugin customization, WooCommerce setup, website speed optimization, security hardening, SEO configuration, and ongoing WordPress maintenance." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you migrate my website to WordPress?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We handle full website migrations to WordPress from any platform including Wix, Squarespace, Joomla, Drupal, or custom-built websites while preserving your SEO rankings and content." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a WordPress website take to build?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A standard WordPress website takes 2-4 weeks. Complex e-commerce or multi-page sites with custom functionality may require 6-10 weeks depending on design and feature requirements." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide WordPress maintenance after launch?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We offer ongoing maintenance packages including plugin and theme updates, security monitoring, daily backups, uptime monitoring, and performance optimization." }
+        }
+      ]
+    }
+  ]
+};
+
 /* ─── Data ─── */
 const whyChoose = [
   {
@@ -209,6 +278,7 @@ export default function WordpressServicePage() {
       <SEO 
         title="WordPress website development services | AI powered Agency" 
         description="Advanced WordPress website development services featuring custom WordPress themes, security plugins and growth-focused WordPress web development agency strategies." 
+        schemaMarkup={wordpressSchema}
       />
       
       {/* ══════════════════════════════════════════

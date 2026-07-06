@@ -23,6 +23,75 @@ import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import SEO from "../components/SEO";
 
+const ppcSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://webestone.com/services/ppc-management#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webestone.com" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://webestone.com/services" },
+        { "@type": "ListItem", "position": 3, "name": "PPC Management Services", "item": "https://webestone.com/services/ppc-management" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://webestone.com/services/ppc-management#service",
+      "serviceType": "PPC Management & Paid Advertising",
+      "name": "PPC Management Services",
+      "description": "Expert PPC Management Services including Google Ads, Meta Ads, YouTube Ads, and Bing Ads. AI-driven bid strategies, audience targeting, and conversion-focused campaigns.",
+      "url": "https://webestone.com/services/ppc-management",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "WeBestOne",
+        "url": "https://webestone.com",
+        "logo": "https://webestone.com/favicon.png",
+        "telephone": "+8801333600272",
+        "email": "webestone@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
+      },
+      "areaServed": ["BD", "US", "GB", "AU", "CA"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "PPC Service Packages",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Search Ads" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Meta Ads (Facebook & Instagram)" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "YouTube Video Ads" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Shopping Ads" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Remarketing & Retargeting Campaigns" } }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is PPC management?",
+          "acceptedAnswer": { "@type": "Answer", "text": "PPC management involves creating, optimizing, and monitoring paid advertising campaigns on platforms like Google Ads and Meta Ads to maximize ROI. It includes keyword bidding, ad copy creation, audience targeting, and ongoing performance optimization." }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does PPC management cost?",
+          "acceptedAnswer": { "@type": "Answer", "text": "PPC management fees vary based on ad spend, platforms, and campaign complexity. WeBestOne offers flexible pricing based on your monthly ad budget and business goals." }
+        },
+        {
+          "@type": "Question",
+          "name": "How quickly can PPC campaigns generate results?",
+          "acceptedAnswer": { "@type": "Answer", "text": "PPC campaigns can generate traffic and leads within days of launch. However, optimal performance typically requires 4-8 weeks of data collection and optimization to maximize ROI." }
+        },
+        {
+          "@type": "Question",
+          "name": "What platforms do you run PPC campaigns on?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We run paid campaigns on Google Search, Google Display, Google Shopping, YouTube, Facebook, Instagram, LinkedIn, and Microsoft Bing Ads depending on your target audience." }
+        }
+      ]
+    }
+  ]
+};
+
 const ppcServices = [
   {
     title: "Google Search Ads",
@@ -94,6 +163,7 @@ export default function PPCPage() {
       <SEO 
         title="PPC Management Services | Expert Paid Advertising Agency" 
         description="Advanced PPC Management Services scaling brands with AI-driven strategies, audience targeting, expert keyword bidding and high performing paid search advertising." 
+        schemaMarkup={ppcSchema}
       />
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

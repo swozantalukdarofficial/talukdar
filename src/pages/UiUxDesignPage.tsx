@@ -29,6 +29,76 @@ import {
   ShieldCheck
 } from "lucide-react";
 
+const uiUxSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://webestone.com/services/ui-ux-design#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webestone.com" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://webestone.com/services" },
+        { "@type": "ListItem", "position": 3, "name": "UI/UX Design Service", "item": "https://webestone.com/services/ui-ux-design" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://webestone.com/services/ui-ux-design#service",
+      "serviceType": "UI/UX Design & Web Design",
+      "name": "Custom UI/UX Design Services",
+      "description": "Premium UI/UX design services including user research, wireframing, prototyping, usability testing, and conversion-focused interface design for web and mobile.",
+      "url": "https://webestone.com/services/ui-ux-design",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "WeBestOne",
+        "url": "https://webestone.com",
+        "logo": "https://webestone.com/favicon.png",
+        "telephone": "+8801333600272",
+        "email": "webestone@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
+      },
+      "areaServed": ["BD", "US", "GB", "AU", "CA"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "UI/UX Design Service Packages",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "User Research & UX Strategy" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wireframing & Prototyping" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web App UI Design" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile App UI/UX Design" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Design System Creation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Usability Testing & CRO" } }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What tools do you use for UI/UX design?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Our designers work primarily in Figma for UI design and prototyping, supplemented by Adobe XD, Framer, Miro for UX mapping, and Maze for usability testing." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between UI and UX design?",
+          "acceptedAnswer": { "@type": "Answer", "text": "UI (User Interface) design focuses on the visual elements and layout users interact with. UX (User Experience) design focuses on the overall journey, usability, and how users feel while navigating a product." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a UI/UX design project take?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A typical web or app UI/UX design project takes 3-8 weeks depending on scope. This includes discovery, wireframes, visual design, and prototyping phases." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide design handoff to developers?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We deliver design files with developer handoff through Figma with complete specifications, component libraries, and documentation to ensure smooth implementation." }
+        }
+      ]
+    }
+  ]
+};
+
 /* ─── Data ─── */
 const tools = [
   "Figma", "Sketch", "Adobe XD", "Framer", "Webflow", "Midjourney AI", "ChatGPT", "Miro", "InVision", "Protopie", "Zeplin", "Google Analytics"
@@ -208,6 +278,7 @@ export default function UiUxDesignPage() {
       <SEO 
         title="Web Design Service | Custom UI UX Design service Agency" 
         description="Expert Web Design Service offering Custom UI UX Solutions, UX Strategy and Usability Testing to ensure high-performing results from our Web Design Agency." 
+        schemaMarkup={uiUxSchema}
       />
       
       {/* Background Ambient */}

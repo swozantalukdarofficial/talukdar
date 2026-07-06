@@ -2,6 +2,76 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+const smmSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://webestone.com/services/social-media-marketing#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webestone.com" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://webestone.com/services" },
+        { "@type": "ListItem", "position": 3, "name": "Social Media Marketing", "item": "https://webestone.com/services/social-media-marketing" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://webestone.com/services/social-media-marketing#service",
+      "serviceType": "Social Media Marketing & Advertising",
+      "name": "Social Media Marketing Agency Services",
+      "description": "Expert social media marketing services including Meta Ads, Instagram growth, LinkedIn marketing, TikTok campaigns, and AI-driven audience targeting strategies.",
+      "url": "https://webestone.com/services/social-media-marketing",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "WeBestOne",
+        "url": "https://webestone.com",
+        "logo": "https://webestone.com/favicon.png",
+        "telephone": "+8801333600272",
+        "email": "webestone@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
+      },
+      "areaServed": ["BD", "US", "GB", "AU", "CA"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Social Media Marketing Packages",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Facebook & Instagram Ads" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media Content Creation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "LinkedIn Marketing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "TikTok Growth Strategy" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Community Management" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Influencer Marketing" } }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What social media platforms do you manage?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We manage Facebook, Instagram, LinkedIn, TikTok, YouTube, Twitter/X, and Pinterest. We build a tailored platform strategy based on where your audience spends time and where your industry has the highest engagement." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you measure social media marketing results?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We track reach, engagement rate, follower growth, click-through rate, cost per lead, ROAS, and conversions using Meta Business Suite, LinkedIn Analytics, and third-party tools like Hootsuite and Sprout Social." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long until we see social media marketing results?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Paid social campaigns can deliver measurable results within 7-14 days. Organic social media growth typically shows consistent improvement within 2-3 months of consistent posting and community engagement." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you create content for social media?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We produce graphics, short-form videos, reels, carousels, and copy tailored to each platform's best practices and your brand's visual identity." }
+        }
+      ]
+    }
+  ]
+};
+
 import { 
   Plus, 
   Share2, 
@@ -134,6 +204,7 @@ export default function SocialMediaMarketingPage() {
       <SEO 
         title="Social Media Marketing Agency | Social Media Advertising Experts" 
         description="Trusted Social Media Marketing Agency driving growth through AI-driven strategies, Meta Business Suite, LinkedIn Campaign Manager and high-performing paid campaigns." 
+        schemaMarkup={smmSchema}
       />
       {/* Background Effects */}
       <div className="absolute inset-0 z-0 pointer-events-none">

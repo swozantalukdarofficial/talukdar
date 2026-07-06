@@ -21,6 +21,76 @@ import Counter from "../components/Counter";
 import ShopifyPortfolio from "../components/ShopifyPortfolio";
 import SEO from "../components/SEO";
 
+const shopifyDevSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://webestone.com/services/shopify-development#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webestone.com" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://webestone.com/services" },
+        { "@type": "ListItem", "position": 3, "name": "Shopify Development", "item": "https://webestone.com/services/shopify-development" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://webestone.com/services/shopify-development#service",
+      "serviceType": "Shopify Store Development",
+      "name": "Shopify Website Development Services",
+      "description": "Expert Shopify store development including custom Liquid themes, app integrations, conversion optimization, headless commerce setup, and Shopify Plus solutions.",
+      "url": "https://webestone.com/services/shopify-development",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "WeBestOne",
+        "url": "https://webestone.com",
+        "logo": "https://webestone.com/favicon.png",
+        "telephone": "+8801333600272",
+        "email": "webestone@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
+      },
+      "areaServed": ["BD", "US", "GB", "AU", "CA"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Shopify Development Packages",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Shopify Theme Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Shopify App Integration" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Shopify Store Migration" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Shopify Plus Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Shopify Speed Optimization" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Headless Shopify Development" } }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Shopify development?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Shopify development involves building custom e-commerce stores on the Shopify platform. It includes custom Liquid theme development, app integrations, product catalog setup, payment gateway configuration, and conversion rate optimization." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you migrate my store to Shopify?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We migrate stores from WooCommerce, Magento, BigCommerce, Wix, and other platforms to Shopify while preserving product data, customer records, order history, and SEO structure." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a Shopify store take to build?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A standard Shopify store takes 2-4 weeks. A fully custom theme with advanced features typically requires 6-10 weeks. Timeline depends on product volume and customization requirements." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you work with Shopify Plus?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We develop enterprise-grade solutions on Shopify Plus including custom checkout flows, B2B wholesale portals, multi-store setups, and advanced automation using Shopify Flow." }
+        }
+      ]
+    }
+  ]
+};
+
 const services = [
   {
     title: "UI/UX Design",
@@ -142,6 +212,7 @@ export default function ShopifyDevelopmentPage() {
       <SEO 
         title="Shopify website Development Service | Shopify Store Development Experts" 
         description="Shopify website Development Service focusing on custom features, product catalog, Shopify store development and scaling brands via strategies from Shopify Experts." 
+        schemaMarkup={shopifyDevSchema}
       />
       
       {/* 1. HERO SECTION (UPGRADED) */}

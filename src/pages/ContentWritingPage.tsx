@@ -27,6 +27,76 @@ import {
 import { useState } from "react";
 import SEO from "../components/SEO";
 
+const contentWritingSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://webestone.com/services/content-writing#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webestone.com" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://webestone.com/services" },
+        { "@type": "ListItem", "position": 3, "name": "Content Writing Services", "item": "https://webestone.com/services/content-writing" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://webestone.com/services/content-writing#service",
+      "serviceType": "Content Writing & SEO Content Marketing",
+      "name": "Content Writing Services",
+      "description": "Expert SEO content writing services including blog posts, long-form articles, website copy, product descriptions, email sequences, and AI-powered content strategy.",
+      "url": "https://webestone.com/services/content-writing",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "WeBestOne",
+        "url": "https://webestone.com",
+        "logo": "https://webestone.com/favicon.png",
+        "telephone": "+8801333600272",
+        "email": "webestone@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
+      },
+      "areaServed": ["BD", "US", "GB", "AU", "CA"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Content Writing Service Packages",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SEO Blog Writing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website Copywriting" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Long-Form Article Writing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Product Description Writing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Email Marketing Copy" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Content Strategy & Planning" } }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What content writing services do you provide?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We provide SEO blog posts, long-form articles, website copy, landing page content, product descriptions, social media captions, email sequences, and AI-assisted content strategy tailored to your target audience." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is your content SEO optimized?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every piece of content is researched and written with target keyword integration, semantic search optimization, proper heading structure, meta descriptions, and E-E-A-T principles to support Google rankings." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you ensure content quality?",
+          "acceptedAnswer": { "@type": "Answer", "text": "All content goes through a multi-stage quality process including topic research, outline review, AI-assisted drafting, human expert editing, plagiarism checking, and SEO scoring before delivery." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you write in multiple languages?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We primarily write in English with native-level quality. We also offer content in Bengali and can coordinate multilingual content projects through our partner network." }
+        }
+      ]
+    }
+  ]
+};
+
 /* ─── Animation Variants ─── */
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -354,6 +424,7 @@ export default function ContentWritingPage() {
       <SEO 
         title="Content Writing Services | Creative Content Writing Agency" 
         description="Expert Content Writing Services are designed to scale your brand with SEO optimized blogs, authority-building articles and a creative content writing team." 
+        schemaMarkup={contentWritingSchema}
       />
       {/* Global background */}
       <div className="fixed inset-0 pointer-events-none z-0">
