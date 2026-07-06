@@ -25,7 +25,16 @@ function HeroVideoPlayer() {
                 className="absolute inset-0 cursor-pointer"
                 onClick={() => setIsPlaying(true)}
               >
-                <img src={thumbnail} alt="AI powered solutions" className="w-full h-full object-cover" />
+                <img
+                  src={thumbnail}
+                  alt="AI powered solutions by WeBestOne digital marketing agency"
+                  className="w-full h-full object-cover"
+                  fetchPriority="high"
+                  loading="eager"
+                  decoding="async"
+                  width="1280"
+                  height="720"
+                />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="relative flex items-center justify-center">
