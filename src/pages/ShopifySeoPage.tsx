@@ -192,7 +192,7 @@ export default function ShopifySeoPage() {
 						className="relative z-10 flex justify-center lg:justify-end"
 					>
 						<img
-							src="/shopify_seo_hero.png"
+							src="/shopify_seo_hero.webp"
 							alt="Shopify SEO Service Agency"
 							className="w-full max-w-sm md:max-w-md lg:max-w-lg drop-shadow-[0_0_50px_rgba(135,230,92,0.25)] hover:-translate-y-4 transition-transform duration-700"
 						/>

@@ -876,7 +876,7 @@ export default function PPCPage() {
                   className="relative w-full max-w-[400px] aspect-square rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl"
                 >
                   <img 
-                    src="/ppc_cta.png" 
+                    src="/ppc_cta.webp" 
                     alt="PPC Success" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />

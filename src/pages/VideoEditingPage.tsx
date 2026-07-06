@@ -111,10 +111,10 @@ export default function VideoEditingPage() {
 
 	// Slider Services
 	const sliderServices = [
-		{ image: "/video_post.png", title: "Post Production" },
-		{ image: "/video_corporate.png", title: "Corporate Videos" },
-		{ image: "/video_reels.png", title: "Social Media Videos" },
-		{ image: "/video_commercial.png", title: "Commercial Videos" },
+		{ image: "/video_post.webp", title: "Post Production" },
+		{ image: "/video_corporate.webp", title: "Corporate Videos" },
+		{ image: "/video_reels.webp", title: "Social Media Videos" },
+		{ image: "/video_commercial.webp", title: "Commercial Videos" },
 		{ image: "/video_brand.png", title: "Brand Story Videos" },
 		{ image: "/video_promo.png", title: "Promotional Videos" }
 	];
@@ -267,7 +267,7 @@ export default function VideoEditingPage() {
 						className="relative z-10 flex justify-center lg:justify-end"
 					>
 						<img
-							src="/video_editing_hero.png"
+							src="/video_editing_hero.webp"
 							alt="Professional video editing services"
 							className="w-full max-w-md md:max-w-lg lg:max-w-2xl drop-shadow-[0_0_40px_rgba(135,230,92,0.2)] hover:scale-[1.02] transition-transform duration-700"
 						/>

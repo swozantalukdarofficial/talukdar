@@ -204,7 +204,7 @@ export const blogPosts = [
         date: "June 26, 2026",
         category: "Marketing",
         readTime: "10 min read",
-        image: "/digital-marketing-guide.png",
+        image: "/digital-marketing-guide.webp",
         author: "Webestone Team",
         authorRole: "Marketing Specialists",
         featured: true,
@@ -244,7 +244,7 @@ export const blogPosts = [
               },
               "headline": "Best Digital Marketing Agency in Bangladesh: The Complete 2026 Guide",
               "image": [
-                "https://webestone.com/digital-marketing-guide.png"
+                "https://webestone.com/digital-marketing-guide.webp"
               ],
               "datePublished": "2026-06-26T00:00:00+06:00",
               "dateModified": "2026-06-26T00:00:00+06:00",
@@ -258,7 +258,7 @@ export const blogPosts = [
                 "name": "WeBestOne",
                 "logo": {
                   "@type": "ImageObject",
-                  "url": "https://webestone.com/assets/Webestone-Logo.png"
+                  "url": "https://webestone.com/assets/Webestone-Logo.webp"
                 }
               },
               "description": "Looking for the best digital marketing agency in Bangladesh? This complete guide covers what separates great agencies from average ones and why WeBestOne leads the pack in 2026."
@@ -654,7 +654,7 @@ export const blogPosts = [
         date: "June 26, 2026",
         category: "Marketing",
         readTime: "9 min read",
-        image: "/seo-guide-blog.png",
+        image: "/seo-guide-blog.webp",
         author: "Webestone Team",
         authorRole: "SEO Specialists",
         featured: true,
@@ -694,7 +694,7 @@ export const blogPosts = [
               },
               "headline": "Best SEO Service Provider in Bangladesh: The 2026 Buyer's Guide",
               "image": [
-                "https://webestone.com/seo-guide-blog.png"
+                "https://webestone.com/seo-guide-blog.webp"
               ],
               "datePublished": "2026-06-26T00:00:00+06:00",
               "dateModified": "2026-06-26T00:00:00+06:00",
@@ -708,7 +708,7 @@ export const blogPosts = [
                 "name": "WeBestOne",
                 "logo": {
                   "@type": "ImageObject",
-                  "url": "https://webestone.com/assets/Webestone-Logo.png"
+                  "url": "https://webestone.com/assets/Webestone-Logo.webp"
                 }
               },
               "description": "Looking for the best SEO service provider in Bangladesh? Here's how AI changed SEO in 2026 and how to pick an agency that ranks you on Google, SGE, and Perplexity."
@@ -1132,7 +1132,7 @@ export const blogPosts = [
         date: "June 25, 2026",
         category: "Marketing",
         readTime: "8 min read",
-        image: "/top-10-digital-marketing-agency-in-bangladesh.png",
+        image: "/top-10-digital-marketing-agency-in-bangladesh.webp",
         author: "Webestone Team",
         authorRole: "Digital Growth Experts",
         featured: true,
@@ -1172,7 +1172,7 @@ export const blogPosts = [
               },
               "headline": "Top 10 Digital Marketing Agency in Bangladesh (2026 Honest Ranking)",
               "image": [
-                "https://webestone.com/top-10-digital-marketing-agency-in-bangladesh.png"
+                "https://webestone.com/top-10-digital-marketing-agency-in-bangladesh.webp"
               ],
               "datePublished": "2026-06-25T23:59:00+06:00",
               "dateModified": "2026-06-25T23:59:00+06:00",
@@ -1186,7 +1186,7 @@ export const blogPosts = [
                 "name": "WeBestOne",
                 "logo": {
                   "@type": "ImageObject",
-                  "url": "https://webestone.com/assets/Webestone-Logo.png"
+                  "url": "https://webestone.com/assets/Webestone-Logo.webp"
                 }
               },
               "description": "Looking for the best digital marketing agency in Bangladesh? Here's the honest 2026 ranking of the top 10 agencies based on results, services, and ROI."

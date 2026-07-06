@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { MagneticButton } from "../components/ui/MagneticButton";
-import aiRobotImg from "../assets/ai-robot.png";
+import aiRobotImg from "../assets/ai-robot.webp";
 
 import SEO from "../components/SEO";
 

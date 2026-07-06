@@ -712,7 +712,7 @@ export default function WordpressDevelopmentPage() {
             {/* Main Center Image */}
             <div className="absolute inset-0 flex items-center justify-center z-0">
               <img 
-                src="/web_dev_hero.png" 
+                src="/web_dev_hero.webp" 
                 alt="Custom Web Development Services" 
                 className="w-[90%] md:w-[80%] lg:w-full h-auto max-h-full object-contain mix-blend-lighten opacity-90 drop-shadow-[0_0_30px_rgba(59,130,246,0.3)] animate-[pulse_6s_ease-in-out_infinite]" 
               />

@@ -299,7 +299,7 @@ export default function MotionGraphicsPage() {
             </motion.div>
 
             <div className="relative aspect-video w-full rounded-[2rem] overflow-hidden border border-white/10 group bg-neutral-900 shadow-2xl">
-              <img src="/motion_hero.png" alt="Motion Graphics Services Company" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <img src="/motion_hero.webp" alt="Motion Graphics Services Company" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500 flex items-center justify-center">
                 <div className="w-20 h-20 rounded-full bg-neon-green flex items-center justify-center shadow-[0_0_50px_rgba(135,230,92,0.6)] cursor-pointer group-hover:scale-110 transition-transform">
                   <Play className="w-8 h-8 text-black fill-black ml-1" />

@@ -14,11 +14,11 @@ import {
   CheckCircle2
 } from "lucide-react";
 import { MagneticButton } from "../components/ui/MagneticButton";
-import aiRobotImg from "../assets/ai-robot.png";
-import seoDashboardImg from "../assets/seo-dashboard.png";
-import aiLettersImg from "../assets/ai-letters.png";
-import circuitBoardImg from "../assets/circuit-board.png";
-import aiBrainImg from "../assets/ai-brain.png";
+import aiRobotImg from "../assets/ai-robot.webp";
+import seoDashboardImg from "../assets/seo-dashboard.webp";
+import aiLettersImg from "../assets/ai-letters.webp";
+import circuitBoardImg from "../assets/circuit-board.webp";
+import aiBrainImg from "../assets/ai-brain.webp";
 import SEO from "../components/SEO";
 
 const offers = [
