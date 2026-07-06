@@ -12,39 +12,40 @@ export default defineConfig({
 	},
 	build: {
 		sourcemap: true,
-		// Raise warning threshold — 500kb → 1000kb
 		chunkSizeWarningLimit: 1000,
 		rollupOptions: {
 			output: {
 				manualChunks: {
-					// Core React runtime — smallest possible first-load
+					// Core React runtime
 					"vendor-react": ["react", "react-dom", "react-router-dom"],
-					// Framer Motion — large library, separate chunk
+					// Framer Motion
 					"vendor-framer": ["framer-motion"],
-					// Lucide icons — large icon set, lazy-loadable
-					"vendor-lucide": ["lucide-react"],
-					// All page-level components split out from main bundle
+					// Service pages
 					"pages-services": [
 						"./src/pages/SeoPage",
 						"./src/pages/AiSeoPage",
 						"./src/pages/PPCPage",
 						"./src/pages/ShopifySeoPage",
 					],
+					// Design pages
 					"pages-design": [
 						"./src/pages/UiUxDesignPage",
 						"./src/pages/CustomwebsiteDevelopmentPage",
 						"./src/pages/ShopifyDevelopmentPage",
 						"./src/pages/WordpressServicePage",
 					],
+					// Marketing pages
 					"pages-marketing": [
 						"./src/pages/SocialMediaMarketingPage",
 						"./src/pages/DigitalMarketingPage",
 						"./src/pages/ContentWritingPage",
 					],
+					// Media pages
 					"pages-media": [
 						"./src/pages/VideoEditingPage",
 						"./src/pages/MotionGraphicsPage",
 					],
+					// Info pages
 					"pages-info": [
 						"./src/pages/AboutPage",
 						"./src/pages/ContactPage",
