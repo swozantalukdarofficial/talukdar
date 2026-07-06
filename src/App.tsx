@@ -40,25 +40,25 @@ export default function App() {
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/work" element={<WorkPage />} />
-					<Route path="/about" element={<AboutPage />} />
-					<Route path="/contact" element={<ContactPage />} />
+					<Route path="/about-us" element={<AboutPage />} />
+					<Route path="/contact-us" element={<ContactPage />} />
 					<Route path="/blogs" element={<BlogsPage />} />
 					<Route path="/blogs/:id" element={<BlogDetailPage />} />
 					<Route path="/services" element={<ServicesPage />} />
 					
 					{/* Specific Service Pages */}
-					<Route path="/services/digital-marketing" element={<DigitalMarketingPage />} />
-					<Route path="/services/seo" element={<SeoPage />} />
-					<Route path="/services/shopify-seo" element={<ShopifySeoPage />} />
-					<Route path="/services/video-editing" element={<VideoEditingPage />} />
-					<Route path="/services/ppc" element={<PPCPage />} />
-					<Route path="/services/social-media-marketing" element={<SocialMediaMarketingPage />} />
-					<Route path="/services/shopify-development" element={<ShopifyDevelopmentPage />} />
-					<Route path="/services/web-development" element={<WordpressDevelopmentPage />} />
-					<Route path="/services/wordpress-development" element={<WordpressServicePage />} />
-					<Route path="/services/content-writing" element={<ContentWritingPage />} />
-					<Route path="/services/motion-graphics" element={<MotionGraphicsPage />} />
-					<Route path="/services/ui-ux-design" element={<UiUxDesignPage />} />
+					<Route path="/services/digital-marketing-agency" element={<DigitalMarketingPage />} />
+					<Route path="/services/AI-SEO-Service-Agency" element={<SeoPage />} />
+					<Route path="/services/shopify-seo-service-agency" element={<ShopifySeoPage />} />
+					<Route path="/services/professional-video-editing-services" element={<VideoEditingPage />} />
+					<Route path="/services/ppc-management-services" element={<PPCPage />} />
+					<Route path="/services/social-media-marketing-agency" element={<SocialMediaMarketingPage />} />
+					<Route path="/services/shopify-website-development-service" element={<ShopifyDevelopmentPage />} />
+					<Route path="/services/custom-web-development-services" element={<WordpressDevelopmentPage />} />
+					<Route path="/services/wordpress-website-development-services" element={<WordpressServicePage />} />
+					<Route path="/services/content-writing-services" element={<ContentWritingPage />} />
+					<Route path="/services/motion-graphics-services-company" element={<MotionGraphicsPage />} />
+					<Route path="/services/web-design-service" element={<UiUxDesignPage />} />
 					
 					{/* Dynamic Service Detail Page (Catch-all for other services) */}
 					<Route path="/services/:slug" element={<ServiceDetailPage />} />

@@ -86,6 +86,7 @@ export default function ContactPage() {
 	});
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [isSubmitted, setIsSubmitted] = useState(false);
+	const [error, setError] = useState<string | null>(null);
 
 	const handleChange = (
 		e: React.ChangeEvent<
@@ -98,18 +99,45 @@ export default function ContactPage() {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setIsSubmitting(true);
+		setError(null);
 
-		// Simulate submission then open mailto
-		await new Promise((resolve) => setTimeout(resolve, 1000));
+		try {
+			const response = await fetch("/api/contact", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formState),
+			});
 
-		const mailtoBody = `Name: ${formState.name}%0AEmail: ${formState.email}%0APhone: ${formState.phone}%0ACompany: ${formState.company}%0AService: ${formState.service}%0A%0AMessage:%0A${formState.message}`;
-		window.open(
-			`mailto:${contactInfo.email}?subject=Project Inquiry from ${formState.name}&body=${mailtoBody}`,
-			"_blank",
-		);
+			let data: any = {};
+			const contentType = response.headers.get("content-type");
+			if (contentType && contentType.includes("application/json")) {
+				data = await response.json();
+			}
 
-		setIsSubmitting(false);
-		setIsSubmitted(true);
+			if (!response.ok) {
+				if (response.status === 404 || (contentType && contentType.includes("text/html"))) {
+					throw new Error("Vercel serverless API is not executed by 'npm run dev'. To test locally, please run 'vercel dev' (requires vercel CLI). Once deployed on Vercel, it works automatically!");
+				}
+				throw new Error(data.error || "Failed to send message. Please try again.");
+			}
+
+			setIsSubmitted(true);
+			setFormState({
+				name: "",
+				email: "",
+				phone: "",
+				company: "",
+				service: "",
+				message: "",
+			});
+		} catch (err: any) {
+			console.error("Contact form error:", err);
+			setError(err.message || "Something went wrong. Please try again later.");
+		} finally {
+			setIsSubmitting(false);
+		}
 	};
 
 	const contactItems = [
@@ -130,7 +158,7 @@ export default function ContactPage() {
 	];
 
 	return (
-		<main className="relative min-h-screen text-white pt-20 overflow-hidden">
+		<main className="relative min-h-screen text-white overflow-hidden">
 			<SEO 
 				title="AI-powered digital marketing Agency | Webestone Contact Us" 
 				description="A leading AI-powered digital marketing agency - contact us to get expert AI solutions and start your brand transformation with our advanced team." 
@@ -142,19 +170,22 @@ export default function ContactPage() {
 				<div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-[150px]" />
 			</div>
 
-			<section className="relative py-24 px-6 z-10">
-				<div className="max-w-7xl mx-auto">
+			<section className="relative min-h-screen flex items-center pt-28 pb-16 px-6 z-10">
+				<div className="max-w-7xl mx-auto w-full">
 					{/* Heading */}
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8 }}
-						className="text-center mb-20 space-y-6"
+						className="text-center mb-12 space-y-6"
 					>
 						<span className="inline-block px-4 py-2 bg-neon-green/10 text-neon-green rounded-full text-sm font-bold border border-neon-green/30 uppercase tracking-wide">
 							📞 Contact Us | WeBestOne
 						</span>
 						<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl mx-auto leading-tight">
+							<span className="text-neon-green font-semibold text-sm md:text-base block mb-2 tracking-[0.15em] uppercase">
+								AI-powered digital marketing Agency
+							</span>
 							Let Us Build Something <br className="hidden md:block"/>
 							<span className="bg-gradient-to-r from-neon-green to-blue-400 bg-clip-text text-transparent">
 								Great Together
@@ -247,8 +278,7 @@ export default function ContactPage() {
 											Message Sent!
 										</h3>
 										<p className="text-neutral-400">
-											Your email client should have opened. We'll get back to
-											you soon.
+											Thank you for reaching out! Your message has been sent successfully. We will get back to you shortly.
 										</p>
 										<button
 											onClick={() => {
@@ -373,6 +403,12 @@ export default function ContactPage() {
 												className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-neon-green/50 transition-colors resize-none"
 											/>
 										</div>
+
+										{error && (
+											<div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-sm font-medium">
+												⚠️ {error}
+											</div>
+										)}
 
 										<button
 											type="submit"

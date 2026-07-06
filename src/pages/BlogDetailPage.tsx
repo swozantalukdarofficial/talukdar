@@ -322,7 +322,7 @@ export default function BlogDetailPage() {
               </p>
             </Link>
             <Link
-              to="/contact"
+              to="/contact-us"
               className="px-6 py-3 bg-[#87E65C] text-black font-bold rounded-full text-xs uppercase tracking-wider hover:scale-105 transition-transform"
             >
               Book a Strategy Session
@@ -372,7 +372,7 @@ export default function BlogDetailPage() {
                 Build high-performance web systems and automated marketing funnels directly backed by the Webestone development team.
               </p>
               <Link
-                to="/contact"
+                to="/contact-us"
                 className="inline-flex items-center gap-1 text-[#87E65C] hover:underline font-bold text-xs uppercase tracking-widest pt-2"
               >
                 <span>Let's talk</span>

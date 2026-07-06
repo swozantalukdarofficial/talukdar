@@ -11,10 +11,12 @@
 		"ping-indexnow": "node scripts/ping-indexnow.js"
 	},
 	"dependencies": {
+		"@types/nodemailer": "^8.0.1",
 		"@use-gesture/react": "^10.3.1",
 		"clsx": "^2.1.1",
 		"framer-motion": "^12.33.0",
 		"lucide-react": "^0.563.0",
+		"nodemailer": "^9.0.3",
 		"ogl": "^1.0.11",
 		"react": "^19.2.3",
 		"react-dom": "^19.2.3",

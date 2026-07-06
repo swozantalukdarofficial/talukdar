@@ -117,7 +117,7 @@ export default function AboutUs() {
           </p>
 
           <div className="pt-4">
-            <Link to="/contact" className="inline-flex px-8 py-4 bg-gradient-to-r from-rose-500 to-orange-500 text-white font-bold rounded-full hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] transition-all items-center gap-2 group">
+            <Link to="/contact-us" className="inline-flex px-8 py-4 bg-gradient-to-r from-rose-500 to-orange-500 text-white font-bold rounded-full hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] transition-all items-center gap-2 group">
               <span>Let Us Work Together</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>

@@ -132,56 +132,56 @@ export default function VideoEditingPage() {
 	];
 
 	return (
-		<main className="min-h-screen bg-black text-white pt-16 md:pt-20 overflow-hidden">
+		<main className="min-h-screen bg-black text-white overflow-hidden">
 			<SEO 
 				title="Professional video editing services | Production Experts" 
 				description="Professional video editing services help to build your brand with a video production agency that uses AI-driven strategies to deliver high-performing video content." 
 			/>
 			{/* 1. Hero Section */}
-			<section className="relative pt-6 pb-12 md:pt-10 md:pb-16 px-6 z-10">
+			<section className="relative min-h-screen flex items-center pt-28 pb-16 px-6 z-10">
 				{/* Background Glow */}
 				<div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[-1]">
 					<div className="absolute top-20 left-10 w-[500px] h-[500px] bg-neon-green/10 blur-[120px] rounded-full"></div>
 					<div className="absolute bottom-20 right-10 w-[400px] h-[400px] bg-purple-500/10 blur-[120px] rounded-full"></div>
 				</div>
 
-				<div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.22fr_0.78fr] gap-12 lg:gap-16 items-center">
+				<div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.22fr_0.78fr] gap-12 lg:gap-16 items-center">
 					<motion.div
 						initial={{ opacity: 0, x: -30 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8, ease: "easeOut" }}
-						className="space-y-6 md:space-y-7"
+						className="space-y-4 md:space-y-5"
 					>
 						{/* Badge */}
-						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neon-green/10 border border-neon-green/20 text-[#87E65C] text-[10px] font-black uppercase tracking-[0.2em]">
+						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neon-green/10 border border-neon-green/20 text-[#87E65C] text-[10px] font-black uppercase tracking-[0.15em]">
 							<span className="w-1.5 h-1.5 rounded-full bg-[#87E65C] animate-pulse" />
 							Video Editing
 						</div>
 
 						{/* Main Heading */}
 						<div className="space-y-2">
-							<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.85rem] xl:text-[3.25rem] font-black leading-[1.2] tracking-tight">
+							<h1 className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-[1.15] tracking-tight">
 								Professional Video Editing Services <br className="hidden md:inline" />
 								<span className="text-neon-green">That Make People Stop, Watch, and Act</span>
 							</h1>
 						</div>
 
 						{/* Description */}
-						<div className="space-y-4 text-sm md:text-base text-neutral-400 max-w-xl leading-relaxed font-medium">
-							<p className="text-neutral-300 font-bold border-l-2 border-[#87E65C]/40 pl-3">
+						<div className="space-y-2.5 text-sm md:text-base text-neutral-400 max-w-xl leading-relaxed font-medium">
+							<p className="text-neutral-300 font-bold border-l-2 border-[#87E65C]/40 pl-3 py-0.5">
 								Every day, your audience watches something else. <br />
 								Not because it is better. <span className="text-white font-semibold">Because it holds attention longer.</span>
 							</p>
-							<p>
+							<p className="text-sm">
 								WeBestOne delivers professional video editing services as a video production agency focused on capturing attention, holding it, and turning it into action.
 							</p>
 						</div>
 
 						{/* CTA Button */}
-						<div className="pt-2">
+						<div className="pt-1">
 							<Link
-								to="/contact"
-								className="inline-flex items-center gap-2.5 px-8 py-4 bg-neon-green text-black font-black text-sm uppercase tracking-wider rounded-full shadow-[0_10px_30px_rgba(135,230,92,0.2)] hover:scale-[1.03] hover:shadow-[0_15px_35px_rgba(135,230,92,0.35)] transition-all duration-300 group"
+								to="/contact-us"
+								className="inline-flex items-center gap-2.5 px-8 py-3.5 bg-neon-green text-black font-black text-sm uppercase tracking-wider rounded-full shadow-[0_10px_30px_rgba(135,230,92,0.2)] hover:scale-[1.03] hover:shadow-[0_15px_35px_rgba(135,230,92,0.35)] transition-all duration-300 group"
 							>
 								Get a quote
 								<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -198,7 +198,7 @@ export default function VideoEditingPage() {
 					>
 						<img
 							src="/video_editing_hero.png"
-							alt="Video Production Editor Illustration"
+							alt="Professional video editing services"
 							className="w-full max-w-md md:max-w-lg lg:max-w-2xl drop-shadow-[0_0_40px_rgba(135,230,92,0.2)] hover:scale-[1.02] transition-transform duration-700"
 						/>
 					</motion.div>
@@ -206,7 +206,7 @@ export default function VideoEditingPage() {
 			</section>
 
 			{/* 2. Services We Offer (Continuous Slider) */}
-			<section className="py-24 relative z-10 bg-neutral-950/50 border-y border-white/5 overflow-hidden">
+			<section className="py-12 md:py-16 relative z-10 bg-neutral-950/50 border-y border-white/5 overflow-hidden">
 				<div className="max-w-7xl mx-auto px-6 text-center space-y-4 mb-16">
 					<motion.h2
 						initial={{ opacity: 0, y: 20 }}
@@ -389,7 +389,7 @@ export default function VideoEditingPage() {
 							</p>
 						</div>
 						<div className="pt-4">
-							<Link to="/contact" className="inline-flex items-center gap-2.5 px-10 py-5 bg-neon-green text-black font-black text-lg rounded-full hover:scale-105 transition-all shadow-[0_10px_40px_rgba(135,230,92,0.3)] group">
+							<Link to="/contact-us" className="inline-flex items-center gap-2.5 px-10 py-5 bg-neon-green text-black font-black text-lg rounded-full hover:scale-105 transition-all shadow-[0_10px_40px_rgba(135,230,92,0.3)] group">
 								Get a quote <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
 							</Link>
 						</div>
@@ -490,7 +490,7 @@ export default function VideoEditingPage() {
 								</p>
 							</div>
 							<div className="pt-4">
-								<Link to="/contact" className="inline-flex items-center gap-2.5 px-10 py-5 bg-neon-green text-black font-black text-lg rounded-full hover:scale-105 transition-all shadow-[0_10px_40px_rgba(135,230,92,0.3)] group">
+								<Link to="/contact-us" className="inline-flex items-center gap-2.5 px-10 py-5 bg-neon-green text-black font-black text-lg rounded-full hover:scale-105 transition-all shadow-[0_10px_40px_rgba(135,230,92,0.3)] group">
 									Get a Quote
 									<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
 								</Link>

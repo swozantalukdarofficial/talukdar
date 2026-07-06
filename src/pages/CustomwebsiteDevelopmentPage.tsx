@@ -469,7 +469,7 @@ const customWebDevSchema = {
   "@graph": [
     {
       "@type": "BreadcrumbList",
-      "@id": "https://webestone.com/services/web-development#breadcrumb",
+      "@id": "https://webestone.com/services/custom-web-development-services#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -487,7 +487,7 @@ const customWebDevSchema = {
           "@type": "ListItem",
           "position": 3,
           "name": "Custom Web Development",
-          "item": "https://webestone.com/services/web-development"
+          "item": "https://webestone.com/services/custom-web-development-services"
         }
       ]
     },
@@ -586,18 +586,18 @@ export default function WordpressDevelopmentPage() {
       {/* ══════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 pt-32 pb-24 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="relative z-10 min-h-screen flex items-center pt-28 pb-16 px-6">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* ── Left: Text ── */}
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-5">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.04] text-neutral-300 text-xs font-semibold tracking-wider uppercase"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-neutral-300 text-xs font-semibold tracking-wider uppercase"
             >
-              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
               High-Performance Web Solutions
             </motion.div>
 
@@ -606,9 +606,9 @@ export default function WordpressDevelopmentPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-[3.25rem] font-black leading-[1.15] tracking-tight"
+              className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-[1.15] tracking-tight"
             >
-              <span className="text-blue-400 font-semibold text-sm md:text-base block mb-2 tracking-[0.15em] uppercase">
+              <span className="text-blue-400 font-semibold text-xs md:text-sm block mb-1 tracking-[0.15em] uppercase">
                 Custom Web Development Services
               </span>
               Build Systems Your Business Can{" "}
@@ -669,14 +669,14 @@ export default function WordpressDevelopmentPage() {
               className="flex flex-col sm:flex-row gap-4 pt-2"
             >
               <Link
-                to="/contact"
+                to="/contact-us"
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-500 text-white font-bold rounded-full shadow-[0_0_25px_rgba(59,130,246,0.35)] hover:shadow-[0_0_40px_rgba(59,130,246,0.55)] hover:scale-105 transition-all duration-300 text-sm"
               >
                 Discuss Your Project
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                to="/contact"
+                to="/contact-us"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-neutral-300 font-medium hover:border-white/30 hover:text-white transition-all duration-300 text-sm"
               >
                 View Our Work
@@ -713,7 +713,7 @@ export default function WordpressDevelopmentPage() {
             <div className="absolute inset-0 flex items-center justify-center z-0">
               <img 
                 src="/web_dev_hero.png" 
-                alt="Web Development Mockup" 
+                alt="Custom Web Development Services" 
                 className="w-[90%] md:w-[80%] lg:w-full h-auto max-h-full object-contain mix-blend-lighten opacity-90 drop-shadow-[0_0_30px_rgba(59,130,246,0.3)] animate-[pulse_6s_ease-in-out_infinite]" 
               />
             </div>
@@ -830,7 +830,7 @@ export default function WordpressDevelopmentPage() {
       {/* ══════════════════════════════════════════
           2. WHY CHOOSE WEBESTIONE
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 py-24 px-6 bg-white/[0.02]">
+      <section className="relative z-10 py-12 md:py-16 px-6 bg-white/[0.02]">
         <div className="max-w-6xl mx-auto">
           <motion.div
             variants={fadeUp}
@@ -1165,7 +1165,7 @@ export default function WordpressDevelopmentPage() {
             className="text-center mt-10"
           >
             <Link
-              to="/contact"
+              to="/contact-us"
               className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-cyan-400/40 text-cyan-400 font-semibold hover:bg-cyan-400/10 transition-all duration-300"
             >
               View Full Tech Portfolio <ArrowRight className="w-4 h-4" />
@@ -1337,7 +1337,7 @@ export default function WordpressDevelopmentPage() {
               </p>
               <div className="pt-4">
                 <Link
-                  to="/contact"
+                  to="/contact-us"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white text-blue-600 font-bold rounded-full hover:scale-105 transition-transform duration-300 shadow-xl"
                 >
                   👉 Book a strategy call <ArrowRight className="w-5 h-5" />

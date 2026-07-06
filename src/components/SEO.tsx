@@ -15,7 +15,7 @@ export default function SEO({ title, description, schemaMarkup, canonical }: SEO
   const { pathname } = useLocation();
 
   // Resolve canonical: explicit prop wins, otherwise build from current path
-  const canonicalUrl = canonical ?? `${BASE_URL}${pathname === "/" ? "" : pathname}`;
+  const canonicalUrl = canonical ?? `${BASE_URL}${pathname}`;
 
   // ── Title + Description ──────────────────────────────────────────────────
   useEffect(() => {

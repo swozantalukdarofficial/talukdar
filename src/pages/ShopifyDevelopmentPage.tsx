@@ -145,7 +145,7 @@ export default function ShopifyDevelopmentPage() {
       />
       
       {/* 1. HERO SECTION (UPGRADED) */}
-      <section className="relative z-10 pt-4 lg:pt-6 pb-8 lg:pb-12 px-6 overflow-hidden">
+      <section className="relative z-10 min-h-screen flex items-center pt-28 pb-16 px-6 overflow-hidden">
         {/* Animated Mesh Gradients */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <motion.div 
@@ -168,7 +168,7 @@ export default function ShopifyDevelopmentPage() {
           />
         </div>
 
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10 mt-12 lg:mt-16">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10">
           {/* Left Side: Content */}
           <div className="text-left space-y-4">
             <motion.div
@@ -184,7 +184,7 @@ export default function ShopifyDevelopmentPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight tracking-tight"
+              className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-tight tracking-tight"
             >
               Shopify website development service built for <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-400">
@@ -212,7 +212,7 @@ export default function ShopifyDevelopmentPage() {
               transition={{ delay: 0.2, duration: 0.8 }}
               className="flex flex-wrap gap-3 pt-2"
             >
-              <Link to="/contact" className="px-6 py-3 bg-[#87E65C] text-black font-bold rounded-full hover:scale-105 transition-all flex items-center gap-2 shadow-[0_0_50px_rgba(135,230,92,0.25)] text-sm">
+              <Link to="/contact-us" className="px-6 py-3 bg-[#87E65C] text-black font-bold rounded-full hover:scale-105 transition-all flex items-center gap-2 shadow-[0_0_50px_rgba(135,230,92,0.25)] text-sm">
                 Get a quote <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
@@ -288,7 +288,7 @@ export default function ShopifyDevelopmentPage() {
       <Awards />
 
       {/* 3. SERVICES BENTO SECTION (UPGRADED) */}
-      <section className="py-24 px-6 relative z-10">
+      <section className="py-12 md:py-16 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="max-w-2xl">
@@ -652,7 +652,7 @@ export default function ShopifyDevelopmentPage() {
             <p className="text-neutral-200 font-bold text-lg">If your current store is slow, hard to manage, or not converting, the issue is not your product. It is how your store is built.</p>
             <p>WebestOne delivers a Shopify website development service designed to build, optimize, and scale your Shopify store with confidence.</p>
           </div>
-          <Link to="/contact" className="inline-flex items-center gap-2 px-10 py-5 bg-[#87E65C] text-black font-bold rounded-full hover:scale-105 transition-all shadow-[0_0_50px_rgba(135,230,92,0.3)]">
+          <Link to="/contact-us" className="inline-flex items-center gap-2 px-10 py-5 bg-[#87E65C] text-black font-bold rounded-full hover:scale-105 transition-all shadow-[0_0_50px_rgba(135,230,92,0.3)]">
             Get Started Now <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

@@ -90,7 +90,7 @@ export default function PPCPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-black text-white pt-16 md:pt-20 overflow-hidden">
+    <main className="min-h-screen bg-black text-white overflow-hidden">
       <SEO 
         title="PPC Management Services | Expert Paid Advertising Agency" 
         description="Advanced PPC Management Services scaling brands with AI-driven strategies, audience targeting, expert keyword bidding and high performing paid search advertising." 
@@ -101,45 +101,44 @@ export default function PPCPage() {
         <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-blue-500/5 rounded-full blur-[160px]" />
       </div>
 
-      {/* 1. Hero Section - Exact match to screenshot */}
-      <section className="relative z-10 px-6 lg:px-16 pt-6 pb-12 md:pt-10 md:pb-16 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.22fr_0.78fr] gap-12 lg:gap-16 items-center">
+      <section className="relative z-10 px-6 lg:px-16 pt-28 pb-16 min-h-screen flex items-center w-full">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center w-full">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-6 md:space-y-7"
+            className="space-y-4 md:space-y-5"
           >
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em]">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-[0.15em]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               Pay Per Click
             </div>
 
             {/* Main Heading */}
             <div className="space-y-2">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.85rem] xl:text-[3.25rem] font-black leading-[1.2] tracking-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-[1.15] tracking-tight">
                 PPC Management Services <br className="hidden md:inline" />
                 <span className="text-emerald-400">That Turn Paid Traffic Into Predictable Growth</span>
               </h1>
             </div>
 
             {/* Description */}
-            <div className="space-y-4 text-sm md:text-base text-neutral-400 max-w-xl leading-relaxed font-medium">
-              <p className="text-neutral-300 font-bold border-l-2 border-emerald-500/40 pl-3">
+            <div className="space-y-2.5 text-sm md:text-base text-neutral-400 max-w-xl leading-relaxed font-medium">
+              <p className="text-neutral-300 font-bold border-l-2 border-emerald-500/40 pl-3 py-0.5">
                 If your pay per click campaigns are not generating revenue, they are draining your budget.
               </p>
-              <p>
+              <p className="text-sm">
                 Most businesses think they have a traffic problem. <strong className="text-white font-semibold">They actually have a performance problem.</strong>
               </p>
-              <p>
+              <p className="text-sm">
                 At WeBestOne, we deliver PPC management services built to control cost per click, improve conversion rate, and turn paid traffic into consistent, measurable growth.
               </p>
             </div>
 
             {/* CTA Button */}
-            <div className="pt-2">
-              <Link to="/contact" className="inline-flex items-center gap-2.5 px-8 py-4 bg-emerald-500 text-black font-black text-sm uppercase tracking-wider rounded-full shadow-[0_10px_30px_rgba(16,185,129,0.2)] hover:scale-[1.03] hover:shadow-[0_15px_35px_rgba(16,185,129,0.35)] transition-all duration-300 group">
+            <div className="pt-1">
+              <Link to="/contact-us" className="inline-flex items-center gap-2.5 px-8 py-3.5 bg-emerald-500 text-black font-black text-sm uppercase tracking-wider rounded-full shadow-[0_10px_30px_rgba(16,185,129,0.2)] hover:scale-[1.03] hover:shadow-[0_15px_35px_rgba(16,185,129,0.35)] transition-all duration-300 group">
                 Get in touch
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -151,9 +150,39 @@ export default function PPCPage() {
             initial={{ opacity: 0, scale: 0.9, x: 30 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            className="relative w-full"
           >
-            <div className="relative aspect-video w-full rounded-[2.5rem] bg-neutral-900 border border-white/10 overflow-hidden group shadow-2xl">
+            {/* Top-Left Floating Badge */}
+            <motion.div
+              animate={{ y: [-10, 10, -10] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-6 -left-6 z-30 flex items-center gap-3 bg-neutral-950/90 border border-emerald-500/30 px-5 py-3 rounded-2xl shadow-[0_15px_30px_rgba(0,0,0,0.5)] backdrop-blur-md"
+            >
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/30">
+                <TrendingUp className="w-5 h-5 text-emerald-400" />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Average ROAS</p>
+                <p className="text-lg font-black text-white">5.8x ROAS</p>
+              </div>
+            </motion.div>
+
+            {/* Bottom-Right Floating Badge */}
+            <motion.div
+              animate={{ y: [10, -10, 10] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -bottom-6 -right-6 z-30 flex items-center gap-3 bg-neutral-950/90 border border-white/10 px-5 py-3 rounded-2xl shadow-[0_15px_30px_rgba(0,0,0,0.5)] backdrop-blur-md"
+            >
+              <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center border border-blue-500/30">
+                <Target className="w-5 h-5 text-blue-400" />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Growth</p>
+                <p className="text-lg font-black text-white">+420% Conv.</p>
+              </div>
+            </motion.div>
+
+            <div className="relative aspect-video w-full rounded-[2.5rem] bg-neutral-900 border border-white/10 overflow-hidden group shadow-2xl hover:border-emerald-500/30 transition-all duration-300">
               <AnimatePresence mode="wait">
                 {!isPlaying ? (
                   <motion.div
@@ -166,7 +195,7 @@ export default function PPCPage() {
                   >
                     <img 
                       src={`https://img.youtube.com/vi/${PPC_VIDEO_ID}/maxresdefault.jpg`} 
-                      alt="PPC Strategy Thumbnail" 
+                      alt="PPC Management Services" 
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-105" 
                     />
                     <div className="absolute inset-0 bg-black/40 group-hover/thumb:bg-black/20 transition-colors duration-300" />
@@ -215,7 +244,7 @@ export default function PPCPage() {
       </section>
 
       {/* Proof Section - Brand New & Premium */}
-      <section className="relative z-10 py-20 px-6 bg-neutral-950/50 border-y border-white/5">
+      <section className="relative z-10 py-12 md:py-16 px-6 bg-neutral-950/50 border-y border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
             
@@ -763,7 +792,7 @@ export default function PPCPage() {
                   </p>
                 </div>
                 <div className="pt-4">
-                  <Link to="/contact" className="inline-flex items-center gap-3 px-10 py-5 bg-neon-green text-black font-black text-lg rounded-full hover:scale-105 transition-all shadow-[0_10px_40px_rgba(135,230,92,0.3)]">
+                  <Link to="/contact-us" className="inline-flex items-center gap-3 px-10 py-5 bg-neon-green text-black font-black text-lg rounded-full hover:scale-105 transition-all shadow-[0_10px_40px_rgba(135,230,92,0.3)]">
                     👉 contact us
                   </Link>
                 </div>

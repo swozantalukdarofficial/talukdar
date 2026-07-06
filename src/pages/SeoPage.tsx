@@ -111,7 +111,7 @@ const seoServiceSchema = {
   "@graph": [
     {
       "@type": "BreadcrumbList",
-      "@id": "https://webestone.com/services/seo#breadcrumb",
+      "@id": "https://webestone.com/services/AI-SEO-Service-Agency#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -129,7 +129,7 @@ const seoServiceSchema = {
           "@type": "ListItem",
           "position": 3,
           "name": "SEO Services",
-          "item": "https://webestone.com/services/seo"
+          "item": "https://webestone.com/services/AI-SEO-Service-Agency"
         }
       ]
     },
@@ -205,25 +205,24 @@ export default function SeoPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
-    <main className="min-h-screen bg-black text-white pt-24 overflow-hidden">
+    <main className="min-h-screen bg-black text-white overflow-hidden">
       <SEO 
         title="AI SEO Service Agency | Advanced AI Driven SEO Solutions" 
         description="Leading AI SEO Service Agency helping brands grow visibility in AI search through LLM optimization, AI SEO, semantic search and high-impact content strategies." 
         schemaMarkup={seoServiceSchema}
       />
-      {/* 1. Hero Section - Standardized Sizes */}
-      <section className="relative z-10 px-6 lg:px-20 pt-4 pb-12 md:pt-8 md:pb-16 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <section className="relative z-10 px-6 lg:px-20 pt-28 pb-16 min-h-screen flex items-center w-full">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-8"
+            className="space-y-4 md:space-y-5"
           >
 
             {/* Main Heading */}
             <div className="space-y-2">
-              <h1 className="text-3xl md:text-5xl lg:text-5xl font-black leading-tight tracking-tight uppercase">
+              <h1 className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-tight tracking-tight uppercase">
                 AI SEO Service Agency <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
                   That Turns Visibility <br />Into Predictable Growth
@@ -232,19 +231,19 @@ export default function SeoPage() {
             </div>
 
             {/* Description */}
-            <p className="text-base md:text-lg text-neutral-300 max-w-lg leading-relaxed font-medium">
+            <p className="text-sm md:text-base text-neutral-300 max-w-lg leading-relaxed font-medium">
               WebestOne is not a typical AI SEO service agency. We build search systems that place your brand inside decisions before your competitors are even considered.
             </p>
 
             {/* Subtext */}
-            <p className="text-[10px] text-neutral-500 uppercase tracking-[0.2em] font-bold max-w-lg leading-relaxed">
+            <p className="text-[10px] text-neutral-500 uppercase tracking-[0.15em] font-bold max-w-lg leading-relaxed">
               RECOGNIZED AND TRUSTED BY BRANDS THAT EXPECT SEARCH TO DRIVE RESULTS
             </p>
 
             {/* CTA Button */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-              <Link to="/contact">
-                <MagneticButton className="mt-4 px-8 py-3 bg-neon-green text-black font-bold rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)] transition-shadow hover:bg-[#87E65C]">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }} className="pt-1">
+              <Link to="/contact-us">
+                <MagneticButton className="px-8 py-3.5 bg-neon-green text-black font-bold text-sm rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)] transition-shadow hover:bg-[#87E65C]">
                   Get In Touch
                 </MagneticButton>
               </Link>
@@ -261,7 +260,7 @@ export default function SeoPage() {
             <div className="relative rounded-[3rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/5">
               <img 
                 src={aiRobotImg} 
-                alt="AI SEO Robot" 
+                alt="AI SEO Service Agency" 
                 className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
@@ -275,7 +274,7 @@ export default function SeoPage() {
       </section>
 
       {/* 2. Visibility & Strategy Section */}
-      <section className="py-24 px-6 relative z-10 bg-[#050505]">
+      <section className="py-12 md:py-16 px-6 relative z-10 bg-[#050505]">
         <div className="max-w-7xl mx-auto space-y-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <motion.div
@@ -369,7 +368,7 @@ export default function SeoPage() {
               ))}
             </ul>
             <div className="pt-4">
-              <Link to="/contact">
+              <Link to="/contact-us">
                 <button className="px-8 py-4 bg-neon-green text-black font-bold rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_rgba(135,230,92,0.2)]">
                   Book a consultation and see where you are losing ground.
                 </button>
@@ -429,7 +428,7 @@ export default function SeoPage() {
               </ul>
             </div>
             <div className="pt-4">
-              <Link to="/contact">
+              <Link to="/contact-us">
                 <button className="px-8 py-4 bg-neon-green text-black font-bold rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_rgba(135,230,92,0.2)]">
                   Schedule a consultation and review your data clearly.
                 </button>
@@ -509,7 +508,7 @@ export default function SeoPage() {
               </p>
             </div>
             <div className="pt-4">
-              <Link to="/contact">
+              <Link to="/contact-us">
                 <button className="px-10 py-5 bg-neon-green text-black font-bold rounded-full hover:scale-105 transition-transform shadow-[0_0_30px_rgba(135,230,92,0.3)]">
                   Get Started Today
                 </button>
@@ -701,7 +700,7 @@ export default function SeoPage() {
             Ready to lead the <br />
             <span className="text-neon-green">automated world?</span>
           </h2>
-          <Link to="/contact">
+          <Link to="/contact-us">
             <MagneticButton className="px-10 py-5 bg-neon-green text-black font-bold rounded-full hover:scale-105 transition-transform">
                Get Your Free Audit <ArrowRight className="inline-block ml-2 w-5 h-5" />
             </MagneticButton>

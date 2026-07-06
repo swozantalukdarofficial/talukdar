@@ -10,15 +10,15 @@ import {
 } from "lucide-react";
 
 const services = [
-	{ name: "Full Stack Digital Marketing", href: "/services/digital-marketing" },
-	{ name: "AI SEO Services", href: "/services/seo" },
-	{ name: "Social Media Management", href: "/services/social-media-marketing" },
-	{ name: "PPC Advertising", href: "/services/ppc" },
-	{ name: "Web Development", href: "/services/web-development" },
-	{ name: "UI/UX Design", href: "/services/ui-ux-design" },
-	{ name: "Video Editing", href: "/services/video-editing" },
-	{ name: "Motion Graphics", href: "/services/motion-graphics" },
-	{ name: "Shopify Development", href: "/services/shopify-development" },
+	{ name: "Full Stack Digital Marketing", href: "/services/digital-marketing-agency" },
+	{ name: "AI SEO Services", href: "/services/AI-SEO-Service-Agency" },
+	{ name: "Social Media Management", href: "/services/social-media-marketing-agency" },
+	{ name: "PPC Advertising", href: "/services/ppc-management-services" },
+	{ name: "Web Development", href: "/services/custom-web-development-services" },
+	{ name: "UI/UX Design", href: "/services/web-design-service" },
+	{ name: "Video Editing", href: "/services/professional-video-editing-services" },
+	{ name: "Motion Graphics", href: "/services/motion-graphics-services-company" },
+	{ name: "Shopify Development", href: "/services/shopify-website-development-service" },
 ];
 
 const socials = {
@@ -134,7 +134,7 @@ export default function Footer() {
 							<ul className="space-y-3">
 								<li>
 									<Link
-										to="/about"
+										to="/about-us"
 										className="hover:text-neon-green transition-colors text-sm"
 									>
 										Who are we

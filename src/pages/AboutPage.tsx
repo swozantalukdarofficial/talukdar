@@ -76,14 +76,14 @@ export default function AboutPage() {
   const containerRef = useRef(null);
 
   return (
-    <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white pt-20 overflow-x-hidden selection:bg-neon-green/30">
+    <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-neon-green/30">
       <SEO 
         title="AI powered agency | Webestone About us" 
         description="Leading AI powered agency providing AI SEO, SMM, Web Design, Development, Motion Graphics & Video Editing to transform your brand with AI solutions." 
       />
       
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+      <section className="relative min-h-screen flex items-center pt-28 pb-16 px-6 overflow-hidden">
         {/* Background Parallax Text */}
         <motion.div 
           initial={{ opacity: 0, y: 100 }}
@@ -91,9 +91,9 @@ export default function AboutPage() {
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0"
         >
-          <h1 className="text-[20vw] md:text-[25vw] font-black text-white leading-none tracking-tighter opacity-100">
+          <div className="text-[20vw] md:text-[25vw] font-black text-white leading-none tracking-tighter opacity-100">
             WE<span className="text-transparent border-t-2 border-b-2 border-white/20">BEST</span>ONE
-          </h1>
+          </div>
         </motion.div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -113,6 +113,9 @@ export default function AboutPage() {
               transition={{ duration: 1 }}
               className="text-6xl md:text-9xl font-black leading-[0.9] tracking-tighter"
             >
+              <span className="text-neon-green font-semibold text-sm md:text-base block mb-2 tracking-[0.15em] uppercase">
+                AI Powered Agency
+              </span>
               WE ARE <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green via-teal-400 to-blue-500">
                 OUTLIERS.
@@ -134,7 +137,7 @@ export default function AboutPage() {
               transition={{ delay: 0.4 }}
               className="flex flex-wrap gap-6"
             >
-              <Link to="/contact" className="px-10 py-5 bg-neon-green text-black font-black rounded-full hover:scale-105 transition-all shadow-[0_0_50px_rgba(16,185,129,0.3)]">
+              <Link to="/contact-us" className="px-10 py-5 bg-neon-green text-black font-black rounded-full hover:scale-105 transition-all shadow-[0_0_50px_rgba(16,185,129,0.3)]">
                 Start Your Legacy
               </Link>
               <button className="px-10 py-5 border border-white/20 text-white font-black rounded-full hover:bg-white/5 transition-all backdrop-blur-sm">
@@ -173,7 +176,7 @@ export default function AboutPage() {
       </section>
 
       {/* 2. STATS OVERVIEW */}
-      <section className="py-24 px-6 relative z-10 bg-white/[0.01] border-y border-white/5">
+      <section className="py-12 md:py-16 px-6 relative z-10 bg-white/[0.01] border-y border-white/5">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
           <StatItem value={50} suffix="+" label="Global Clients" icon={Globe} />
           <StatItem value={120} suffix="+" label="Projects Done" icon={CheckCircle2} />
@@ -183,13 +186,13 @@ export default function AboutPage() {
       </section>
 
       {/* 3. GENESIS (OUR STORY) */}
-      <section className="py-20 px-6 relative z-10">
+      <section className="py-12 md:py-16 px-6 relative z-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="relative aspect-square rounded-[3rem] overflow-hidden border border-white/10 group">
              <div className="absolute inset-0 bg-gradient-to-br from-neon-green/20 to-transparent z-10" />
              <img 
                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000" 
-               alt="Team Collaboration" 
+               alt="AI powered agency" 
                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
              />
              <div className="absolute bottom-10 left-10 p-8 bg-black/60 backdrop-blur-xl border border-white/10 rounded-3xl z-20">
@@ -622,11 +625,11 @@ export default function AboutPage() {
              className="p-20 rounded-[4rem] bg-gradient-to-br from-neon-green to-teal-600 text-black relative overflow-hidden"
            >
               <div className="relative z-10">
-                 <h2 className="text-5xl md:text-8xl font-black mb-8 tracking-tighter">Ready to become <br /> an Outlier?</h2>
+                 <h2 className="text-5xl md:text-8xl font-black mb-8 tracking-tighter"><span>AI Powered Agency</span> <br /> Ready to become <br /> an Outlier?</h2>
                  <p className="text-black/70 text-xl md:text-2xl mb-12 max-w-2xl mx-auto font-medium">
                     Stop following the crowd. Let's build a digital presence that sets the trend.
                  </p>
-                 <Link to="/contact" className="px-12 py-6 bg-black text-white font-black rounded-full hover:scale-110 transition-all inline-flex items-center gap-3 text-lg">
+                 <Link to="/contact-us" className="px-12 py-6 bg-black text-white font-black rounded-full hover:scale-110 transition-all inline-flex items-center gap-3 text-lg">
                     Start Your Project <ArrowRight className="w-5 h-5" />
                  </Link>
               </div>

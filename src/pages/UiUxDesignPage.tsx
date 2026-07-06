@@ -220,17 +220,17 @@ export default function UiUxDesignPage() {
       {/* ══════════════════════════════════════════
           SECTION 1: HERO
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 pt-40 pb-20 min-h-[95vh] flex flex-col items-center justify-center px-6">
+      <section className="relative z-10 min-h-screen flex items-center pt-28 pb-16 px-6">
         <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
-          <div className="space-y-6 relative z-20">
+          <div className="space-y-4 md:space-y-5 relative z-20">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-pink-500/30 bg-pink-500/10 text-pink-400 text-sm font-semibold tracking-wide backdrop-blur-md"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-pink-500/30 bg-pink-500/10 text-pink-400 text-xs font-semibold tracking-wide backdrop-blur-md uppercase"
             >
-              <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-3.5 h-3.5" />
               Award-Winning UI/UX Agency
             </motion.div>
 
@@ -238,7 +238,7 @@ export default function UiUxDesignPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.8 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight"
+              className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-[1.15] tracking-tight"
             >
               Web Design Service That <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 block mt-1">
@@ -250,10 +250,10 @@ export default function UiUxDesignPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="space-y-3"
+              className="space-y-2.5"
             >
-              <h2 className="text-lg font-semibold text-white">Modern websites shaped with intention and precision</h2>
-              <p className="text-base text-neutral-400 leading-relaxed max-w-lg">
+              <h2 className="text-base md:text-lg font-semibold text-white">Modern websites shaped with intention and precision</h2>
+              <p className="text-sm md:text-base text-neutral-400 leading-relaxed max-w-lg">
                 This is not a typical web design service. Most websites are built to look good. <span className="text-white font-semibold">Very few are built to work.</span>
               </p>
               <p className="text-sm text-neutral-500 leading-relaxed max-w-lg">
@@ -267,7 +267,7 @@ export default function UiUxDesignPage() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="flex flex-wrap gap-4 pt-4"
             >
-              <Link to="/contact" className="px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform flex items-center gap-2 shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+              <Link to="/contact-us" className="px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform flex items-center gap-2 shadow-[0_0_40px_rgba(255,255,255,0.2)]">
                 Start Design Project <ArrowRight className="w-5 h-5" />
               </Link>
               <Link to="#portfolio" className="px-8 py-4 border border-white/20 text-white font-bold rounded-full hover:bg-white/5 transition-colors">
@@ -689,13 +689,13 @@ export default function UiUxDesignPage() {
           
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full">
             <Link 
-              to="/contact" 
+              to="/contact-us" 
               className="w-full sm:w-auto px-8 py-4 bg-[#87E65C] text-black font-bold rounded-full hover:bg-[#87E65C]/90 hover:scale-105 transition-all shadow-[0_0_30px_rgba(135,230,92,0.25)] flex items-center justify-center gap-2"
             >
               Request a Free Quote <ArrowRight className="w-5 h-5" />
             </Link>
             <Link 
-              to="/contact" 
+              to="/contact-us" 
               className="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 text-white font-bold rounded-full hover:bg-white/5 transition-all flex items-center justify-center"
             >
               Book a Discovery Call

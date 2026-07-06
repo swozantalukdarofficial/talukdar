@@ -20,48 +20,21 @@ export default function ServiceDetailPage() {
 			ctaTitle?: string;
 		}
 	>;
-	const page = slug ? pages[slug] : null;
+	const formattedSlug = slug
+		?.replace(/-/g, " ")
+		.replace(/\b\w/g, (c) => c.toUpperCase()) || "Service";
 
-	// For slugs without a detail page, show a fallback
-	if (!page) {
-		const formattedSlug = slug
-			?.replace(/-/g, " ")
-			.replace(/\b\w/g, (c) => c.toUpperCase()) || "Service";
-		return (
-			<main className="relative min-h-screen text-white pt-20 overflow-hidden bg-black">
-				<SEO 
-					title={`${formattedSlug} - WeBestOne`} 
-					description={`We provide world-class ${slug?.replace(/-/g, " ") || "service"} services tailored to your business goals.`} 
-				/>
-				<div className="absolute inset-0 z-0">
-					<div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-green/5 rounded-full blur-[150px]" />
-					<div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-[150px]" />
-				</div>
-				<section className="relative py-32 px-6 z-10 text-center">
-					<div className="max-w-4xl mx-auto space-y-8">
-						<span className="inline-block px-4 py-2 bg-purple-600/20 text-purple-400 rounded-full text-sm font-bold border border-purple-500/30 uppercase tracking-wide">
-							Specialized Service
-						</span>
-						<h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
-							{slug
-								?.replace(/-/g, " ")
-								.replace(/\b\w/g, (c) => c.toUpperCase())}
-						</h1>
-						<p className="text-neutral-400 text-xl max-w-2xl mx-auto leading-relaxed">
-							We provide world-class {slug?.replace(/-/g, " ")} services
-							tailored to your business goals.
-						</p>
-						<Link
-							to="/contact"
-							className="inline-block px-8 py-4 bg-neon-green text-black font-bold rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)] transition-all transform hover:scale-105"
-						>
-							Get In Touch
-						</Link>
-					</div>
-				</section>
-			</main>
-		);
-	}
+	const page = slug && pages[slug] ? pages[slug] : {
+		h1: `World-class ${formattedSlug} solutions tailored to your brand`,
+		h1Highlight: `${formattedSlug} solutions`,
+		metaTitle: `${formattedSlug} Services - WeBestOne`,
+		metaDescription: `We provide world-class ${formattedSlug} services tailored to your business goals.`,
+		subheadline: "Specialized Service",
+		description: `At WeBestOne, we deliver premium ${formattedSlug} strategies designed to drive visibility, engagement, and measurable business growth across digital platforms.`,
+		whyTitle: `Why choose WeBestOne for ${formattedSlug}?`,
+		whyContent: `We combine strategy, creativity, and data-driven insights to deliver high-performing results. Our expert team leverages cutting-edge technology to help your brand grow and succeed in today's competitive landscape.`,
+		ctaTitle: `Ready to scale your ${formattedSlug} strategy?`
+	};
 
 	return (
 		<main className="relative min-h-screen text-white pt-20 overflow-hidden bg-black">
@@ -114,7 +87,7 @@ export default function ServiceDetailPage() {
 							transition={{ delay: 0.3 }}
 						>
 							<Link
-								to="/contact"
+								to="/contact-us"
 								className="inline-block px-8 py-3 bg-neon-green text-black font-bold rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)] transition-all transform hover:scale-105"
 							>
 								Get In Touch
@@ -213,13 +186,13 @@ export default function ServiceDetailPage() {
 					</h2>
 					<div className="flex flex-col sm:flex-row justify-center gap-4">
 						<Link
-							to="/contact"
+							to="/contact-us"
 							className="px-8 py-4 bg-neon-green text-black font-bold rounded-full hover:scale-105 transition-transform"
 						>
 							Book a discovery call
 						</Link>
 						<Link
-							to="/contact"
+							to="/contact-us"
 							className="px-8 py-4 bg-transparent border border-neon-green text-neon-green font-bold rounded-full hover:bg-neon-green/10 transition-colors"
 						>
 							Contact us

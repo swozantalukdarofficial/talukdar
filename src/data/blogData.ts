@@ -195,7 +195,7 @@ export const blogPosts = [
                     Stop throwing money at agencies that only deliver likes and reach reports. Partner with an agency focused on your bottom line. WeBestOne builds growth systems that deliver measurable sales and high-quality leads.
                 </p>
                 <div class="pt-4">
-                    <a href="/contact" style="color: #000000 !important; text-decoration: none !important;" class="inline-flex items-center gap-2 px-8 py-4 bg-[#87E65C] text-black font-extrabold rounded-full hover:scale-105 transition-all shadow-[0_0_30px_rgba(135,230,92,0.2)]">
+                    <a href="/contact-us" style="color: #000000 !important; text-decoration: none !important;" class="inline-flex items-center gap-2 px-8 py-4 bg-[#87E65C] text-black font-extrabold rounded-full hover:scale-105 transition-all shadow-[0_0_30px_rgba(135,230,92,0.2)]">
                         Claim Your Free Digital Marketing Audit Today
                     </a>
                 </div>
@@ -645,7 +645,7 @@ export const blogPosts = [
                     SEO has changed. The agencies still selling 2018 tactics will keep losing ground while AI engines redirect traffic and Google rewrites the rules. The brands that win in 2026 are the ones working with an SEO partner who understands the full game. WeBestOne is that partner. Want to know exactly where you stand? Book a free SEO audit. You walk away with a clear plan and zero obligation.
                 </p>
                 <div class="pt-4">
-                    <a href="/contact" style="color: #000000 !important; text-decoration: none !important;" class="inline-flex items-center gap-2 px-8 py-4 bg-[#87E65C] text-black font-extrabold rounded-full hover:scale-105 transition-all shadow-[0_0_30px_rgba(135,230,92,0.2)]">
+                    <a href="/contact-us" style="color: #000000 !important; text-decoration: none !important;" class="inline-flex items-center gap-2 px-8 py-4 bg-[#87E65C] text-black font-extrabold rounded-full hover:scale-105 transition-all shadow-[0_0_30px_rgba(135,230,92,0.2)]">
                         Get Your Free SEO Audit Today
                     </a>
                 </div>
@@ -1123,7 +1123,7 @@ export const blogPosts = [
                     Most digital marketing agencies in Bangladesh will sell you a service. WeBestOne builds you a growth system. If you want a partner that combines AI, design, and data to actually move your revenue, book a free growth audit. The team will look at your website, SEO health, social presence, and ad strategy, then show you exactly where you are leaking money and how to fix it. No commitment. No fluff. Just a clear plan.
                 </p>
                 <div class="pt-4">
-                    <a href="/contact" style="color: #000000 !important; text-decoration: none !important;" class="inline-flex items-center gap-2 px-8 py-4 bg-[#87E65C] text-black font-extrabold rounded-full hover:scale-105 transition-all shadow-[0_0_30px_rgba(135,230,92,0.2)]">
+                    <a href="/contact-us" style="color: #000000 !important; text-decoration: none !important;" class="inline-flex items-center gap-2 px-8 py-4 bg-[#87E65C] text-black font-extrabold rounded-full hover:scale-105 transition-all shadow-[0_0_30px_rgba(135,230,92,0.2)]">
                         Get Your Free Growth Audit Today
                     </a>
                 </div>

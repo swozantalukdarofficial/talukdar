@@ -214,18 +214,18 @@ export default function WordpressServicePage() {
       {/* ══════════════════════════════════════════
           1. 2-COLUMN HERO WITH ABSTRACT MOCKUP
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 pt-32 pb-24 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="relative z-10 min-h-screen flex items-center pt-28 pb-16 px-6">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* ── Left: Text ── */}
-          <div className="space-y-7">
+          <div className="space-y-4 md:space-y-5">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.04] text-neutral-300 text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-neutral-300 text-xs font-medium uppercase tracking-wider"
             >
-              <Database className="w-4 h-4 text-blue-500" />
+              <Database className="w-3.5 h-3.5 text-blue-500" />
               Enterprise WordPress Solutions
             </motion.div>
 
@@ -234,7 +234,7 @@ export default function WordpressServicePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight"
+              className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-[1.15] tracking-tight"
             >
               WordPress Website{" "}
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent block">
@@ -247,10 +247,10 @@ export default function WordpressServicePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="space-y-4"
+              className="space-y-3"
             >
-              <h2 className="text-xl font-semibold text-white">Built for performance, structure, and long-term growth</h2>
-              <p className="text-neutral-400 text-base leading-relaxed">
+              <h2 className="text-lg font-semibold text-white">Built for performance, structure, and long-term growth</h2>
+              <p className="text-neutral-400 text-sm md:text-base leading-relaxed">
                 Most WordPress websites exist. <span className="text-white font-semibold">Very few actually perform.</span> That is the difference. At WebestOne, our WordPress website development services are built as systems that support speed, usability, and scalability.
               </p>
               <p className="text-neutral-500 text-sm leading-relaxed">
@@ -266,7 +266,7 @@ export default function WordpressServicePage() {
               className="flex flex-col sm:flex-row gap-4 pt-2"
             >
               <Link
-                to="/contact"
+                to="/contact-us"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-blue-600 text-white font-bold rounded-full shadow-[0_0_25px_rgba(37,99,235,0.35)] hover:shadow-[0_0_40px_rgba(37,99,235,0.55)] hover:scale-105 transition-all duration-300 text-sm"
               >
                 Discuss Your Project
@@ -387,7 +387,7 @@ export default function WordpressServicePage() {
       {/* ══════════════════════════════════════════
           2. BENTO BOX: WHY CHOOSE US
       ══════════════════════════════════════════ */}
-      <section className="py-24 px-6 relative z-10">
+      <section className="py-12 md:py-16 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Your business deserves <br /><span className="text-blue-500">more than a basic setup.</span></h2>
@@ -557,7 +557,7 @@ export default function WordpressServicePage() {
               <h2 className="text-4xl md:text-5xl font-bold mb-4">Recent <span className="text-cyan-400">Shipments</span></h2>
               <p className="text-neutral-400">Explore complex WordPress architectures we've successfully deployed.</p>
             </div>
-            <Link to="/contact" className="text-blue-400 font-bold hover:underline flex items-center gap-2">
+            <Link to="/contact-us" className="text-blue-400 font-bold hover:underline flex items-center gap-2">
               View All Projects <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -649,7 +649,7 @@ export default function WordpressServicePage() {
           
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full">
             <Link 
-              to="/contact" 
+              to="/contact-us" 
               className="w-full sm:w-auto px-8 py-4 bg-[#87E65C] text-black font-bold rounded-full hover:bg-[#87E65C]/90 hover:scale-105 transition-all shadow-[0_0_30px_rgba(135,230,92,0.25)] flex items-center justify-center gap-2"
             >
               Get a quote <ArrowRight className="w-5 h-5" />

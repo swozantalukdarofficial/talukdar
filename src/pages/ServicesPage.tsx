@@ -20,7 +20,7 @@ export default function ServicesPage() {
 	const services = servicesData.filter((s) => s.description);
 
 	return (
-		<main className="min-h-screen text-white pt-20">
+		<main className="min-h-screen text-white">
 			<SEO 
 				title="Our Services - Digital & Technical Solutions" 
 				description="Discover WeBestOne's suite of digital solutions, including AI SEO, social media marketing, content writing, video editing, and custom web development." 
@@ -31,8 +31,7 @@ export default function ServicesPage() {
 				<div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[150px]" />
 			</div>
 
-			{/* Header */}
-			<section className="relative py-24 px-6 text-center z-10">
+			<section className="relative pt-36 md:pt-40 pb-12 px-6 text-center z-10">
 				<motion.div
 					initial={{ opacity: 0, y: 30 }}
 					animate={{ opacity: 1, y: 0 }}
@@ -105,7 +104,7 @@ export default function ServicesPage() {
 						goals.
 					</p>
 					<Link
-						to="/contact"
+						to="/contact-us"
 						className="inline-block px-8 py-4 bg-neon-green text-black font-bold rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)] transition-all"
 					>
 						Get In Touch

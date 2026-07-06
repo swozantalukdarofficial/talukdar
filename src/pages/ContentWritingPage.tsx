@@ -365,18 +365,18 @@ export default function ContentWritingPage() {
       {/* ══════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 pt-32 pb-24 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="relative z-10 min-h-screen flex items-center pt-28 pb-16 px-6">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* ── Left: Text ── */}
-          <div className="space-y-7">
+          <div className="space-y-4 md:space-y-5">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.04] text-neutral-300 text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-neutral-300 text-xs font-semibold uppercase tracking-wider"
             >
-              <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse" />
               Words That Work. Content That Converts.
             </motion.div>
 
@@ -385,7 +385,7 @@ export default function ContentWritingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight"
+              className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-[1.15] tracking-tight"
             >
               Content Writing Services That Make{" "}
               <span className="bg-gradient-to-r from-neon-green to-cyan-400 bg-clip-text text-transparent block">
@@ -398,17 +398,17 @@ export default function ContentWritingPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="space-y-6"
+              className="space-y-3"
             >
-              <p className="text-neutral-400 text-base md:text-lg leading-relaxed">
+              <p className="text-neutral-400 text-sm md:text-base leading-relaxed">
                 Most brands are posting constantly.<br />
                 Blogs. Emails. Captions. Landing pages.<br />
                 And almost all of it disappears five seconds later. Not because people hate content. Because most content sounds exactly the same.
               </p>
-              <p className="text-neutral-300 text-base leading-relaxed">
+              <p className="text-neutral-300 text-sm md:text-base leading-relaxed">
                 <strong>WeBestOne</strong> builds content writing services designed to make people stop, feel something, and keep reading. We combine audience psychology, search behavior, and sharp messaging to create content that feels impossible to skim past.
               </p>
-              <p className="text-neon-green font-bold text-base tracking-wide border-l-2 border-neon-green pl-4">
+              <p className="text-neon-green font-bold text-sm tracking-wide border-l-2 border-neon-green pl-3 py-0.5">
                 Because good content gets seen. Great content gets remembered.
               </p>
             </motion.div>
@@ -418,17 +418,17 @@ export default function ContentWritingPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 pt-2"
+              className="flex flex-col sm:flex-row gap-4 pt-1"
             >
               <Link
-                to="/contact"
+                to="/contact-us"
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-neon-green text-black font-bold rounded-full shadow-[0_0_25px_rgba(135,230,92,0.35)] hover:shadow-[0_0_40px_rgba(135,230,92,0.55)] hover:scale-105 transition-all duration-300 text-sm"
               >
                 Get a Free Content Strategy
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                to="/contact"
+                to="/contact-us"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-neutral-300 font-medium hover:border-white/30 hover:text-white transition-all duration-300 text-sm"
               >
                 View Samples
@@ -573,7 +573,7 @@ export default function ContentWritingPage() {
       {/* ══════════════════════════════════════════
           2. WHY CHOOSE WEBESTIONE
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 py-24 px-6 bg-white/[0.02]">
+      <section className="relative z-10 py-12 md:py-16 px-6 bg-white/[0.02]">
         <div className="max-w-6xl mx-auto">
           <motion.div
             variants={fadeUp}
@@ -853,7 +853,7 @@ export default function ContentWritingPage() {
             className="text-center mt-10"
           >
             <Link
-              to="/contact"
+              to="/contact-us"
               className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-orange-400/40 text-orange-400 font-semibold hover:bg-orange-400/10 transition-all duration-300"
             >
               Request Full Portfolio <ArrowRight className="w-4 h-4" />
@@ -1051,14 +1051,14 @@ export default function ContentWritingPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
-                    to="/contact"
+                    to="/contact-us"
                     className="inline-flex items-center gap-2 px-8 py-4 bg-neon-green text-black font-bold rounded-full shadow-[0_0_25px_rgba(135,230,92,0.4)] hover:shadow-[0_0_40px_rgba(135,230,92,0.6)] hover:scale-105 transition-all duration-300"
                   >
                     Request a Free Quote
                     <ArrowRight className="w-5 h-5" />
                   </Link>
                   <Link
-                    to="/contact"
+                    to="/contact-us"
                     className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/20 text-white font-semibold hover:border-neon-green/50 hover:bg-neon-green/5 transition-all duration-300"
                   >
                     Start Your Project Today

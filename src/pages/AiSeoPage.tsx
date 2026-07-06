@@ -203,24 +203,23 @@ export default function AiSeoPage() {
 	);
 
 	return (
-		<main className="min-h-screen bg-black text-white pt-24 overflow-hidden">
+		<main className="min-h-screen bg-black text-white overflow-hidden">
 			<SEO 
 				title="Generative Engine Optimization (GEO) & AI SEO - WeBestOne" 
 				description="Dominate next-gen AI search platforms (Google SGE, Perplexity, Gemini) with modern generative engine optimization." 
 			/>
-			{/* 1. Hero Section - Exact match to screenshot */}
-			<section className="relative z-10 px-6 lg:px-20 pt-4 pb-12 md:pt-8 md:pb-16 max-w-7xl mx-auto">
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+			<section className="relative z-10 px-6 lg:px-20 pt-28 pb-16 min-h-screen flex items-center w-full">
+				<div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
 					<motion.div 
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8, ease: "easeOut" }}
-						className="space-y-8"
+						className="space-y-4 md:space-y-5"
 					>
 
 						{/* Main Heading */}
 						<div className="space-y-2">
-							<h1 className="text-3xl md:text-5xl lg:text-5xl font-black leading-tight tracking-tight uppercase">
+							<h1 className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-tight tracking-tight uppercase">
 								AI SEO Service Agency <br />
 								<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
 									That Turns Visibility <br />Into Predictable Growth
@@ -229,19 +228,19 @@ export default function AiSeoPage() {
 						</div>
 
 						{/* Description */}
-						<p className="text-base md:text-lg text-neutral-300 max-w-lg leading-relaxed font-medium">
+						<p className="text-sm md:text-base text-neutral-300 max-w-lg leading-relaxed font-medium">
 							WebestOne is not a typical AI SEO service agency. We build search systems that place your brand inside decisions before your competitors are even considered.
 						</p>
 
 						{/* Subtext */}
-						<p className="text-[10px] text-neutral-500 uppercase tracking-[0.2em] font-bold max-w-lg leading-relaxed">
+						<p className="text-[10px] text-neutral-500 uppercase tracking-[0.15em] font-bold max-w-lg leading-relaxed">
 							RECOGNIZED AND TRUSTED BY BRANDS THAT EXPECT SEARCH TO DRIVE RESULTS
 						</p>
 
 						{/* CTA Button */}
-						<motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-							<Link to="/contact">
-								<MagneticButton className="mt-4 px-8 py-3 bg-neon-green text-black font-bold rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)] transition-shadow hover:bg-[#87E65C]">
+						<motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }} className="pt-1">
+							<Link to="/contact-us">
+								<MagneticButton className="px-8 py-3.5 bg-neon-green text-black font-bold text-sm rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)] transition-shadow hover:bg-[#87E65C]">
 									Get In Touch
 								</MagneticButton>
 							</Link>
@@ -272,11 +271,11 @@ export default function AiSeoPage() {
 			</section>
 
 			{/* Divider / Transition */}
-			<div className="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent my-12"></div>
+			<div className="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent my-6"></div>
 
 
 			{/* 2. Workflow Timeline Track */}
-			<section className="py-24 px-6 relative z-10 bg-neutral-950 text-white border-b border-white/5">
+			<section className="py-12 md:py-16 px-6 relative z-10 bg-neutral-950 text-white border-b border-white/5">
 				<div className="max-w-7xl mx-auto space-y-16">
 					<div className="text-center relative">
 						<SectionHeading

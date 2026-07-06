@@ -65,7 +65,7 @@ const digitalMarketingSchema = {
 	"@graph": [
 		{
 			"@type": "BreadcrumbList",
-			"@id": "https://webestone.com/services/digital-marketing#breadcrumb",
+			"@id": "https://webestone.com/services/digital-marketing-agency#breadcrumb",
 			"itemListElement": [
 				{
 					"@type": "ListItem",
@@ -83,7 +83,7 @@ const digitalMarketingSchema = {
 					"@type": "ListItem",
 					"position": 3,
 					"name": "Digital Marketing",
-					"item": "https://webestone.com/services/digital-marketing"
+					"item": "https://webestone.com/services/digital-marketing-agency"
 				}
 			]
 		},
@@ -142,10 +142,10 @@ export default function DigitalMarketingPage() {
 	};
 
 	return (
-		<main className="relative min-h-screen text-white pt-20 overflow-hidden bg-black">
+		<main className="relative min-h-screen text-white overflow-hidden bg-black">
 			<SEO 
 				title="Digital Marketing Agency | Expert Digital Marketing Solutions" 
-				description="Leading Digital Marketing Agency offering AI powered digital marketing services specializing in AI SEO, Google Ads, content strategy and conversion focused campaigns" 
+				description="Leading Digital Marketing Agency offering AI powered digital marketing services specializing in AI SEO, Google Ads, content strategy and conversion focused campaigns." 
 				schemaMarkup={digitalMarketingSchema}
 			/>
 			{/* Background Effects */}
@@ -155,48 +155,51 @@ export default function DigitalMarketingPage() {
 				<div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.05]"></div>
 			</div>
 
-			{/* --- Hero Section --- */}
-			<section className="relative pt-8 pb-20 md:pt-12 md:pb-24 px-6 z-10">
+			<section className="relative min-h-screen flex items-center pt-28 pb-16 px-6 z-10">
 				<motion.div
 					variants={heroContainer}
 					initial="hidden"
 					animate="show"
-					className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+					className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
 				>
-					<div className="space-y-6">
+					<div className="space-y-4 md:space-y-5">
 
 						<motion.h1
 							variants={heroItem}
-							className="text-4xl md:text-5xl lg:text-[3.5rem] font-black leading-[1.15] tracking-tight"
+							className="text-3xl md:text-4xl lg:text-[42px] xl:text-[46px] font-black leading-[1.15] tracking-tight uppercase"
 						>
-							{pageData.hero.titleNormal1} <br className="hidden sm:block" />
-							Where <span className="text-neon-green">{pageData.hero.titleHighlight1}</span> <br />
-							<span className="text-neon-green">{pageData.hero.titleHighlight2}</span> {pageData.hero.titleNormal2}
+							<span className="text-white">
+								{pageData.hero.titleNormal1}
+							</span> <br />
+							Where <span className="text-neon-green">{pageData.hero.titleHighlight1} {pageData.hero.titleHighlight2}</span> {pageData.hero.titleNormal2}
 						</motion.h1>
+
 						<motion.p
 							variants={heroItem}
-							className="text-neutral-400 text-lg leading-relaxed max-w-lg"
+							className="text-sm md:text-base text-neutral-400 max-w-xl leading-relaxed"
 						>
 							{pageData.hero.description}
 						</motion.p>
+
 						<motion.p
 							variants={heroItem}
-							className="text-white font-semibold text-lg leading-relaxed max-w-lg"
+							className="text-sm md:text-base font-bold text-white max-w-xl"
 						>
-							{pageData.hero.outcomeText}
+							{pageData.hero.subtext}
 						</motion.p>
-						<motion.div variants={heroItem}>
-							<Link to={pageData.hero.ctaLink}>
-								<MagneticButton className="px-8 py-3 bg-neon-green text-black font-bold rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)] transition-shadow hover:bg-[#87E65C]">
-									{pageData.hero.ctaText}
+
+						<motion.div variants={heroItem} className="pt-2">
+							<Link to="/contact-us">
+								<MagneticButton className="px-8 py-3.5 bg-neon-green text-black font-bold text-sm rounded-full shadow-[0_10px_30px_rgba(135,230,92,0.2)] hover:scale-105 transition-all">
+									Get In Touch
 								</MagneticButton>
 							</Link>
 						</motion.div>
 					</div>
 
 					<motion.div
-						initial={{ opacity: 0, x: 50 }}
-						animate={{ opacity: 1, x: 0 }}
+						initial={{ opacity: 0, scale: 0.9, x: 20 }}
+						animate={{ opacity: 1, scale: 1, x: 0 }}
 						transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
 						className="relative group"
 					>
@@ -217,8 +220,8 @@ export default function DigitalMarketingPage() {
 										onClick={() => setIsPlayingHero(true)}
 									>
 										<img 
-											src="https://img.youtube.com/vi/MnLd2G198U8/maxresdefault.jpg" 
-											alt="Digital Marketing Hero Thumbnail" 
+											src="https://img.youtube.com/vi/Zey6npEA0KA/maxresdefault.jpg" 
+											alt="Digital Marketing Agency" 
 											className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-105" 
 										/>
 										<div className="absolute inset-0 bg-black/40 group-hover/thumb:bg-black/20 transition-colors duration-300" />
@@ -234,7 +237,7 @@ export default function DigitalMarketingPage() {
 								) : (
 									<iframe
 										className="absolute inset-0 w-full h-full"
-										src="https://www.youtube.com/embed/MnLd2G198U8?autoplay=1&controls=1&modestbranding=1&rel=0"
+										src="https://www.youtube.com/embed/Zey6npEA0KA?autoplay=1&controls=1&modestbranding=1&rel=0"
 										title="Digital Marketing Hero Video"
 										frameBorder="0"
 										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -254,7 +257,7 @@ export default function DigitalMarketingPage() {
 			</section>
 
 			{/* --- Why Use Digital Marketing --- */}
-			<section className="py-20 px-6 relative z-10 bg-neutral-900/30">
+			<section className="py-12 md:py-16 px-6 relative z-10 bg-neutral-900/30">
 				<div className="max-w-7xl mx-auto space-y-12">
 					<div className="text-center md:text-left">
 						<div
@@ -697,7 +700,7 @@ export default function DigitalMarketingPage() {
 									{pkg.desc}
 								</p>
 
-								<Link to="/contact">
+								<Link to="/contact-us">
 									<button className="px-6 py-2 bg-neon-green text-black text-xs font-bold rounded-full transition-colors cursor-pointer hover:bg-[#87E65C]">
 										Learn More
 									</button>

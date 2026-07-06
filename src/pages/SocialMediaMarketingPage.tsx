@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 import { 
   Plus, 
   Share2, 
@@ -21,7 +22,8 @@ import {
   Music,
   CheckCircle2,
   Facebook,
-  Twitter
+  Twitter,
+  Heart
 } from "lucide-react";
 import { MagneticButton } from "../components/ui/MagneticButton";
 import SEO from "../components/SEO";
@@ -128,10 +130,10 @@ export default function SocialMediaMarketingPage() {
   }, []);
 
   return (
-    <main className="relative min-h-screen text-white pt-20 overflow-hidden bg-black">
+    <main className="relative min-h-screen text-white overflow-hidden bg-black">
       <SEO 
         title="Social Media Marketing Agency | Social Media Advertising Experts" 
-        description="Trusted Social Media Marketing Agency driving growth through AI-driven strategies, Meta Business Suite, LinkedIn Campaign Manager and high-performing paid campaigns" 
+        description="Trusted Social Media Marketing Agency driving growth through AI-driven strategies, Meta Business Suite, LinkedIn Campaign Manager and high-performing paid campaigns." 
       />
       {/* Background Effects */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -140,103 +142,199 @@ export default function SocialMediaMarketingPage() {
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.05]"></div>
       </div>
 
-      {/* Hero Section - Balanced sizes */}
-      <section className="relative z-10 px-6 lg:px-20 py-12 md:py-20 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <section className="relative z-10 px-6 lg:px-20 pt-28 pb-16 min-h-screen flex items-center w-full">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-6 md:space-y-8 flex flex-col justify-center w-full"
           >
-            <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight uppercase">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-[10px] font-black uppercase tracking-[0.15em] w-fit">
+              <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-pulse" />
+              SMM Platform
+            </div>
+
+            <div className="space-y-2">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-black leading-[1.1] tracking-tight uppercase">
                 <span className="text-neon-green">Social Media</span> <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
-                  Marketing Service
+                  Marketing Agency
                 </span>
               </h1>
             </div>
 
-            <p className="text-base md:text-lg text-neutral-300 max-w-lg leading-relaxed font-medium">
+            <p className="text-base md:text-lg text-neutral-300 leading-relaxed max-w-xl font-medium">
               By combining strategy and creativity, Webestone operates as a Social Media Marketing Agency that converts social engagement into steady, measurable business growth across digital platforms worldwide.
             </p>
 
-            <p className="text-xs md:text-sm text-pink-500 font-bold tracking-[0.2em] uppercase">
-              CONNECTION THAT BUILDS REAL GROWTH
-            </p>
+            <div className="font-mono text-xs md:text-sm text-pink-500 uppercase tracking-widest font-black">
+              connection that builds real growth
+            </div>
 
-            <div className="pt-2">
-              <Link to="/contact">
-                <MagneticButton className="px-8 py-4 bg-neon-green text-black font-bold text-base rounded-full shadow-[0_10px_30px_rgba(135,230,92,0.2)] hover:scale-105 transition-all">
+            <div className="pt-2 flex flex-wrap gap-4 items-center">
+              <Link to="/contact-us">
+                <MagneticButton className="px-8 py-3.5 bg-neon-green text-black font-bold text-sm rounded-full shadow-[0_10px_30px_rgba(135,230,92,0.2)] hover:scale-105 transition-all">
                   Begin smarter growth
                 </MagneticButton>
               </Link>
             </div>
           </motion.div>
 
-          {/* Right Side: Smartphone Frame UI - Standard Size */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: 50 }}
+          {/* Right Side: Mockup / Illustration (Vertical Smartphone Frame) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, x: 30 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative flex justify-center lg:justify-end"
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="relative flex justify-center w-full"
           >
-            {/* Phone Frame */}
-            <div className="relative w-[240px] h-[480px] md:w-[280px] md:h-[560px] bg-neutral-900 rounded-[2.5rem] border-[6px] border-neutral-800 shadow-2xl overflow-hidden">
-              {/* Internal Screen Content - YouTube Video */}
-              <div className="absolute inset-0 bg-black">
-                <AnimatePresence mode="wait">
-                  {!isVideoPlaying ? (
-                    <motion.div
-                      key="thumb"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="absolute inset-0 cursor-pointer group/thumb"
-                      onClick={() => setIsVideoPlaying(true)}
-                    >
-                      <img 
-                        src="https://img.youtube.com/vi/MnLd2G198U8/maxresdefault.jpg" 
-                        alt="Social Media Marketing Thumbnail" 
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-105" 
-                      />
-                      <div className="absolute inset-0 bg-black/40 group-hover/thumb:bg-black/20 transition-colors duration-300" />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-neon-green rounded-full flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-all duration-300">
-                          <Play className="w-6 h-6 text-black fill-black ml-1" />
-                        </div>
-                      </div>
-                    </motion.div>
-                  ) : (
-                    <iframe
-                      className="w-full h-full"
-                      src="https://www.youtube.com/embed/MnLd2G198U8?autoplay=1&controls=1&modestbranding=1&rel=0"
-                      title="Social Media Marketing"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    ></iframe>
-                  )}
-                </AnimatePresence>
-                
-                {/* Overlay to catch clicks and maintain aesthetics if needed */}
-                <div className="absolute inset-0 pointer-events-none border-[12px] border-transparent rounded-[2rem]"></div>
+            {/* Background Glows for Depth */}
+            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-pink-500/10 blur-[80px] rounded-full"></div>
+            <div className="absolute -z-10 top-1/3 right-1/4 w-[250px] h-[250px] bg-neon-green/10 blur-[80px] rounded-full"></div>
+
+            {/* Smartphone Container */}
+            <div className="relative w-[280px] h-[560px] bg-neutral-950 rounded-[3rem] p-3 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8)] border-4 border-neutral-800 ring-1 ring-white/10 flex flex-col justify-between overflow-hidden group hover:border-neon-green/30 hover:ring-neon-green/20 transition-all duration-500">
+              
+              {/* Dynamic Island / Notch */}
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-5 bg-neutral-900 rounded-full z-30 flex items-center justify-between px-3 border border-white/5">
+                <div className="w-2.5 h-2.5 rounded-full bg-neutral-850 border border-white/5 flex items-center justify-center">
+                  <div className="w-1 h-1 rounded-full bg-blue-500/80 animate-pulse"></div>
+                </div>
+                <div className="w-4 h-1 bg-neutral-850 rounded-full"></div>
               </div>
 
-              {/* Phone Frame Shine */}
-              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-white/5 to-transparent pointer-events-none"></div>
+              {/* Screen Content Wrapper */}
+              <div className="relative w-full h-full rounded-[2.2rem] overflow-hidden bg-neutral-900 border border-white/5 flex flex-col justify-between p-4">
+                
+                {/* Screen Video / Thumbnail Area */}
+                <div className="absolute inset-0 z-0">
+                  <AnimatePresence mode="wait">
+                    {!isVideoPlaying ? (
+                      <motion.div
+                        key="thumb"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 cursor-pointer group/thumb"
+                        onClick={() => setIsVideoPlaying(true)}
+                      >
+                        <img 
+                          src="https://img.youtube.com/vi/MnLd2G198U8/maxresdefault.jpg" 
+                          alt="Social Media Marketing Agency" 
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/thumb:scale-105" 
+                        />
+                        {/* Dark Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+                        
+                        {/* Centered Play Button */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <motion.div
+                            whileHover={{ scale: 1.1 }}
+                            className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/30 transition-transform shadow-[0_0_30px_rgba(255,255,255,0.15)] relative z-10"
+                          >
+                            <Play className="w-6 h-6 text-white fill-current ml-1" />
+                          </motion.div>
+                        </div>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="video"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="absolute inset-0"
+                      >
+                        <iframe
+                          src="https://www.youtube.com/embed/MnLd2G198U8?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1"
+                          title="Social Media Marketing"
+                          className="w-full h-full object-cover pointer-events-none"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                        {/* Overlay to allow clicking to pause/stop */}
+                        <div 
+                          className="absolute inset-0 bg-transparent cursor-pointer"
+                          onClick={() => setIsVideoPlaying(false)}
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Simulated Social Interface Overlay */}
+                <div className="relative z-10 w-full flex justify-between items-center text-[10px] font-semibold text-white/50 pt-6">
+                  <span>9:41</span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[8px] opacity-70">5G</span>
+                    <div className="w-5 h-2.5 border border-white/20 rounded-sm p-0.5 flex items-center">
+                      <div className="h-full w-3 bg-white rounded-2xs"></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom UI Layout */}
+                <div className="relative z-10 w-full mt-auto space-y-3 pb-2">
+                  {/* User info */}
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-full border border-white/20 overflow-hidden bg-neutral-900 flex items-center justify-center">
+                      <img src="/favicon.png" className="w-full h-full object-cover" alt="WeBestOne Icon" />
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-bold text-white">@webestone</p>
+                      <p className="text-[9px] text-neutral-400">Social Architects</p>
+                    </div>
+                  </div>
+
+                  {/* Caption */}
+                  <p className="text-[10px] text-neutral-200 leading-normal line-clamp-2">
+                    How we turn viral engagement into high-paying conversions. 🚀🔥 #socialmediamarketing #growth
+                  </p>
+
+                  {/* Horizontal Bar Spacer */}
+                  <div className="h-1 bg-white/20 rounded-full w-24 mx-auto mt-2"></div>
+                </div>
+
+              </div>
             </div>
 
+            {/* Floating Engagement Card */}
+            <motion.div 
+              animate={{ y: [-8, 8, -8] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-16 -left-12 bg-neutral-900/90 backdrop-blur-xl border border-white/10 p-4 rounded-2xl z-20 shadow-2xl flex items-center gap-3 hidden sm:flex"
+            >
+              <div className="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center">
+                <Heart className="w-5 h-5 text-pink-500 fill-pink-500" />
+              </div>
+              <div>
+                <p className="text-[10px] text-neutral-400 font-bold uppercase tracking-wider">Engagement</p>
+                <p className="text-sm font-black text-white">+280% Likes</p>
+              </div>
+            </motion.div>
+
+            {/* Floating Reach Card */}
+            <motion.div 
+              animate={{ y: [8, -8, 8] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute bottom-16 -right-12 bg-neutral-900/90 backdrop-blur-xl border border-white/10 p-4 rounded-2xl z-20 shadow-2xl flex items-center gap-3 hidden sm:flex"
+            >
+              <div className="w-10 h-10 rounded-full bg-neon-green/20 flex items-center justify-center">
+                <Share2 className="w-5 h-5 text-neon-green" />
+              </div>
+              <div>
+                <p className="text-[10px] text-neutral-400 font-bold uppercase tracking-wider">Reach</p>
+                <p className="text-sm font-black text-white">1.2M+ Views</p>
+              </div>
+            </motion.div>
+
             {/* Decorative glows */}
-            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-blue-600/5 blur-[100px] rounded-full"></div>
+            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-600/5 blur-[100px] rounded-full"></div>
           </motion.div>
         </div>
       </section>
 
 
       {/* 2. Process Slider Section */}
-      <section className="py-24 px-6 relative z-10 bg-[#050505]">
+      <section className="py-12 md:py-16 px-6 relative z-10 bg-[#050505]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 space-y-4">
             <span className="text-neon-green font-mono text-xs tracking-[0.3em] uppercase block">
@@ -494,7 +592,7 @@ export default function SocialMediaMarketingPage() {
             </div>
 
             <div className="pt-8">
-              <Link to="/contact">
+              <Link to="/contact-us">
                 <MagneticButton className="px-10 py-4 bg-neon-green text-black font-bold text-base rounded-full shadow-[0_10px_30px_rgba(135,230,92,0.2)] hover:scale-105 transition-all mx-auto">
                   Begin smarter growth
                 </MagneticButton>
@@ -511,7 +609,7 @@ export default function SocialMediaMarketingPage() {
             Ready to dominate <br />
             <span className="text-purple-400">every feed?</span>
           </h2>
-          <Link to="/contact">
+          <Link to="/contact-us">
             <MagneticButton className="px-10 py-5 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform flex items-center gap-2 mx-auto">
                Launch Your Strategy <ArrowRight className="w-5 h-5" />
             </MagneticButton>

@@ -123,13 +123,13 @@ export default function MotionGraphicsPage() {
   const [hoveredStep, setHoveredStep] = useState<number>(2); // Default to Design (index 2)
 
   return (
-    <main className="min-h-screen bg-black text-white pt-24 lg:pt-28 overflow-x-hidden">
+    <main className="min-h-screen bg-black text-white overflow-x-hidden">
       <SEO 
         title="Motion Graphics Services Company | 3D Animation services" 
         description="Advanced Motion Graphics Services Company specializes in Explainer Videos, 3D Motion Graphics, visual Storytelling and Animated Transitions that scale your brand." 
       />
       {/* 1. HERO SECTION (UPGRADED) */}
-      <section className="relative px-6 lg:px-20 pt-4 pb-8 max-w-7xl mx-auto overflow-visible">
+      <section className="relative px-6 lg:px-20 pt-28 pb-16 overflow-visible min-h-screen flex items-center w-full">
         {/* Animated Mesh Gradients */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <motion.div 
@@ -152,7 +152,7 @@ export default function MotionGraphicsPage() {
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10 mt-2">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 xl:gap-24 items-center relative z-10 w-full">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -182,7 +182,7 @@ export default function MotionGraphicsPage() {
               </p>
             </div>
             <div className="pt-2 flex flex-wrap gap-4 items-center">
-              <Link to="/contact" className="inline-flex items-center gap-3 px-6 py-3.5 bg-neon-green text-black font-bold text-sm rounded-full shadow-[0_0_30px_rgba(135,230,92,0.3)] hover:shadow-[0_0_50px_rgba(135,230,92,0.5)] hover:scale-105 transition-all">
+              <Link to="/contact-us" className="inline-flex items-center gap-3 px-6 py-3.5 bg-neon-green text-black font-bold text-sm rounded-full shadow-[0_0_30px_rgba(135,230,92,0.3)] hover:shadow-[0_0_50px_rgba(135,230,92,0.5)] hover:scale-105 transition-all">
                 👉 start a project <ArrowRight className="w-5 h-5" />
               </Link>
               <div className="flex items-center gap-4 text-sm font-bold text-neutral-400">
@@ -199,7 +199,7 @@ export default function MotionGraphicsPage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9, x: 30 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
-            className="relative mt-10 lg:mt-0"
+            className="relative mt-10 lg:mt-0 lg:pl-10"
           >
             {/* Floating Element 1 */}
             <motion.div 
@@ -229,7 +229,7 @@ export default function MotionGraphicsPage() {
             </motion.div>
 
             <div className="relative aspect-video w-full rounded-[2rem] overflow-hidden border border-white/10 group bg-neutral-900 shadow-2xl">
-              <img src="/motion_hero.png" alt="Motion Graphics Mockup" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <img src="/motion_hero.png" alt="Motion Graphics Services Company" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500 flex items-center justify-center">
                 <div className="w-20 h-20 rounded-full bg-neon-green flex items-center justify-center shadow-[0_0_50px_rgba(135,230,92,0.6)] cursor-pointer group-hover:scale-110 transition-transform">
                   <Play className="w-8 h-8 text-black fill-black ml-1" />
@@ -399,7 +399,7 @@ export default function MotionGraphicsPage() {
                 As a motion graphics services company, WebestOne builds motion that captures attention, explains clearly, and drives action.
             </p>
             <div className="pt-4">
-              <Link to="/contact" className="inline-flex items-center gap-3 px-10 py-5 bg-neon-green text-black font-bold text-lg rounded-full shadow-[0_10px_30px_rgba(135,230,92,0.2)] hover:scale-105 transition-all">
+              <Link to="/contact-us" className="inline-flex items-center gap-3 px-10 py-5 bg-neon-green text-black font-bold text-lg rounded-full shadow-[0_10px_30px_rgba(135,230,92,0.2)] hover:scale-105 transition-all">
                 👉 start a project <ArrowRight className="w-5 h-5" />
               </Link>
             </div>

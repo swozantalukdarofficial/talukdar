@@ -52,73 +52,73 @@ export default function Header() {
 			title: "Full Stack Digital Marketing",
 			description: "Full-Service Strategy",
 			icon: Megaphone,
-			href: "/services/digital-marketing",
+			href: "/services/digital-marketing-agency",
 		},
 		{
 			title: "AI Driven SEO",
 			description: "Search Engine Optimization",
 			icon: Search,
-			href: "/services/seo",
+			href: "/services/AI-SEO-Service-Agency",
 		},
 		{
 			title: "SMM (Social Media)",
 			description: "Marketing Campaigns",
 			icon: Share2,
-			href: "/services/social-media-marketing",
+			href: "/services/social-media-marketing-agency",
 		},
 		{
 			title: "PPC (Ads)",
 			description: "Paid Advertising",
 			icon: MousePointerClick,
-			href: "/services/ppc",
+			href: "/services/ppc-management-services",
 		},
 		{
 			title: "Shopify SEO",
 			description: "Store Optimization",
 			icon: Globe,
-			href: "/services/shopify-seo",
+			href: "/services/shopify-seo-service-agency",
 		},
 		{
 			title: "Content Writing",
 			description: "Persuasive Copy",
 			icon: Edit3,
-			href: "/services/content-writing",
+			href: "/services/content-writing-services",
 		},
 		{
 			title: "Video Editing",
 			description: "Cinematic Content",
 			icon: MonitorPlay,
-			href: "/services/video-editing",
+			href: "/services/professional-video-editing-services",
 		},
 		{
 			title: "Motion Graphics",
 			description: "Modern Animations",
 			icon: Mountain,
-			href: "/services/motion-graphics",
+			href: "/services/motion-graphics-services-company",
 		},
 		{
 			title: "Website Development",
 			description: "Responsive Websites",
 			icon: Zap,
-			href: "/services/web-development",
+			href: "/services/custom-web-development-services",
 		},
 		{
 			title: "WordPress Web",
 			description: "CMS Solutions",
 			icon: Layout, 
-			href: "/services/wordpress-development",
+			href: "/services/wordpress-website-development-services",
 		},
 		{
 			title: "Web Design (UI UX)",
 			description: "User-Focused Design",
 			icon: PenTool,
-			href: "/services/ui-ux-design",
+			href: "/services/web-design-service",
 		},
 		{
 			title: "Shopify Development",
 			description: "E-commerce Solutions",
 			icon: ShoppingBag,
-			href: "/services/shopify-development",
+			href: "/services/shopify-website-development-service",
 		},
 	];
 
@@ -128,8 +128,8 @@ export default function Header() {
 		{ name: "Work", href: "/work" },
 		{ name: "Services", href: "/services" },
 		{ name: "Blogs", href: "/blogs" },
-		{ name: "Contact", href: "/contact" },
-		{ name: "About us", href: "/about" },
+		{ name: "Contact", href: "/contact-us" },
+		{ name: "About us", href: "/about-us" },
 	];
 
 	return (
@@ -241,7 +241,7 @@ export default function Header() {
 
 				{/* CTA Button */}
 				<div className="hidden lg:flex items-center gap-4">
-					<Link to="/contact">
+					<Link to="/contact-us">
 						<MagneticButton className="px-6 py-2.5 bg-[#87E65C] text-black font-bold text-sm rounded-full hover:bg-[#87E65C]/90 transition-all flex items-center gap-2">
 							<span>Get a Proposal</span>
 							<ArrowRight className="w-4 h-4" />
@@ -289,7 +289,7 @@ export default function Header() {
 									{link.name}
 								</Link>
 							))}
-							<Link to="/contact" onClick={() => setIsOpen(false)}>
+							<Link to="/contact-us" onClick={() => setIsOpen(false)}>
 								<button className="w-full py-4 bg-neon-green text-black font-bold rounded-xl flex items-center justify-center gap-2">
 									<span>Get a Proposal</span>
 									<ArrowRight className="w-5 h-5" />

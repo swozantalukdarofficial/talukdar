@@ -9,7 +9,7 @@ const shopifySeoSchema = {
 	"@graph": [
 		{
 			"@type": "BreadcrumbList",
-			"@id": "https://webestone.com/services/shopify-seo#breadcrumb",
+			"@id": "https://webestone.com/services/shopify-seo-service-agency#breadcrumb",
 			"itemListElement": [
 				{
 					"@type": "ListItem",
@@ -27,7 +27,7 @@ const shopifySeoSchema = {
 					"@type": "ListItem",
 					"position": 3,
 					"name": "Shopify SEO Services",
-					"item": "https://webestone.com/services/shopify-seo"
+					"item": "https://webestone.com/services/shopify-seo-service-agency"
 				}
 			]
 		},
@@ -122,43 +122,42 @@ export default function ShopifySeoPage() {
 	];
 
 	return (
-		<main className="min-h-screen bg-black text-white pt-24 overflow-x-hidden">
+		<main className="min-h-screen bg-black text-white overflow-x-hidden">
 			<SEO 
 				title="Shopify SEO Service Agency | Shopify store Optimization services" 
 				description="Shopify SEO Service Agency driving growth through AI-driven Shopify SEO expert team, keyword research and high-performing Shopify store Optimization services." 
 				schemaMarkup={shopifySeoSchema}
 			/>
-			{/* 1. Hero Section */}
-			<section className="relative pt-4 lg:pt-8 pb-12 lg:pb-20 px-6 z-10">
+			<section className="relative min-h-screen flex items-center pt-28 pb-16 px-6 z-10">
 				{/* Background Glow */}
 				<div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[-1]">
 					<div className="absolute top-10 left-10 w-[500px] h-[500px] bg-neon-green/10 blur-[120px] rounded-full"></div>
 					<div className="absolute top-20 right-10 w-[400px] h-[400px] bg-emerald-500/10 blur-[100px] rounded-full"></div>
 				</div>
 
-				<div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+				<div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 					<motion.div
 						initial={{ opacity: 0, x: -50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8 }}
-						className="space-y-8"
+						className="space-y-4 md:space-y-5"
 					>
-						<h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight">
+						<h1 className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-tight">
 							Shopify SEO service agency focused on <br className="hidden md:inline" />
 							<span className="text-neon-green">rankings, traffic, and revenue growth</span>
 						</h1>
 
-						<div className="space-y-4 text-base md:text-lg text-neutral-300 leading-relaxed font-medium">
+						<div className="space-y-2.5 text-sm md:text-base text-neutral-300 leading-relaxed font-medium">
 							<p className="text-white font-bold border-l-2 border-[#87E65C]/40 pl-3">
 								Getting traffic to your Shopify store is not the problem. <br />
 								<span className="text-neon-green">Getting the right traffic that converts is.</span>
 							</p>
-							<p>
+							<p className="text-sm">
 								As a Shopify SEO service agency, WebestOne helps your store rank higher on Google, attract high-intent buyers, and turn organic traffic into consistent revenue.
 							</p>
 						</div>
 
-						<ul className="space-y-3 pt-2">
+						<ul className="space-y-2.5 pt-1">
 							{[
 								"More organic traffic that converts into revenue",
 								"Outrank competitors and strengthen your market position",
@@ -166,21 +165,21 @@ export default function ShopifySeoPage() {
 							].map((item, idx) => (
 								<li
 									key={idx}
-									className="flex items-center gap-3 text-neutral-200 font-medium"
+									className="flex items-center gap-3 text-neutral-200 text-sm font-medium"
 								>
-									<CheckCircle2 className="w-5 h-5 text-neon-green flex-shrink-0" />
+									<CheckCircle2 className="w-4 h-4 text-neon-green flex-shrink-0" />
 									{item}
 								</li>
 							))}
 						</ul>
 
-						<div className="pt-6">
+						<div className="pt-2">
 							<Link
-								to="/contact"
-								className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-green text-black font-bold text-lg rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(135,230,92,0.3)] transition-all duration-300 hover:bg-[#87E65C]"
+								to="/contact-us"
+								className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-neon-green text-black font-bold text-sm rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(135,230,92,0.3)] transition-all duration-300 hover:bg-[#87E65C]"
 							>
 								Get a quote
-								<ArrowRight className="w-5 h-5" />
+								<ArrowRight className="w-4 h-4" />
 							</Link>
 						</div>
 					</motion.div>
@@ -194,7 +193,7 @@ export default function ShopifySeoPage() {
 					>
 						<img
 							src="/shopify_seo_hero.png"
-							alt="Shopify SEO E-commerce Illustration"
+							alt="Shopify SEO Service Agency"
 							className="w-full max-w-sm md:max-w-md lg:max-w-lg drop-shadow-[0_0_50px_rgba(135,230,92,0.25)] hover:-translate-y-4 transition-transform duration-700"
 						/>
 					</motion.div>
@@ -202,7 +201,7 @@ export default function ShopifySeoPage() {
 			</section>
 
 			{/* 2. Grow Your eCommerce Business Section */}
-			<section className="py-24 px-6 relative z-10 bg-neutral-950/50 border-y border-white/5">
+			<section className="py-12 md:py-16 px-6 relative z-10 bg-neutral-950/50 border-y border-white/5">
 				<div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 					{/* Left Image */}
 					<motion.div
@@ -302,7 +301,7 @@ export default function ShopifySeoPage() {
 
 								<div className="mt-8">
 									<Link
-										to="/contact"
+										to="/contact-us"
 										className="inline-block px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full transition-colors font-sm w-max"
 									>
 										Get started
@@ -473,7 +472,7 @@ export default function ShopifySeoPage() {
 								</p>
 							</div>
 							<div className="pt-4">
-								<Link to="/contact" className="inline-flex items-center gap-2.5 px-10 py-5 bg-neon-green text-black font-black text-lg rounded-full hover:scale-105 transition-all shadow-[0_10px_40px_rgba(135,230,92,0.3)] group">
+								<Link to="/contact-us" className="inline-flex items-center gap-2.5 px-10 py-5 bg-neon-green text-black font-black text-lg rounded-full hover:scale-105 transition-all shadow-[0_10px_40px_rgba(135,230,92,0.3)] group">
 									Get a quote
 									<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
 								</Link>

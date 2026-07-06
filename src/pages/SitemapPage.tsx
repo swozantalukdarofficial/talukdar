@@ -27,32 +27,32 @@ const links = [
     title: "Main Pages",
     items: [
       { name: "Home", href: "/", icon: Home },
-      { name: "About Us", href: "/about", icon: Info },
+      { name: "About Us", href: "/about-us", icon: Info },
       { name: "Services", href: "/services", icon: Briefcase },
-      { name: "Contact", href: "/contact", icon: Mail },
+      { name: "Contact", href: "/contact-us", icon: Mail },
       { name: "Blogs", href: "/blogs", icon: FileText },
     ]
   },
   {
     title: "Digital Marketing Services",
     items: [
-      { name: "Full Stack Digital Marketing", href: "/services/digital-marketing", icon: Megaphone },
-      { name: "AI Driven SEO", href: "/services/seo", icon: Search },
-      { name: "SMM (Social Media)", href: "/services/social-media-marketing", icon: Share2 },
-      { name: "PPC (Ads)", href: "/services/ppc", icon: MousePointerClick },
-      { name: "Shopify SEO", href: "/services/shopify-seo", icon: Globe },
-      { name: "Content Writing", href: "/services/content-writing", icon: FileText },
+      { name: "Full Stack Digital Marketing", href: "/services/digital-marketing-agency", icon: Megaphone },
+      { name: "AI Driven SEO", href: "/services/AI-SEO-Service-Agency", icon: Search },
+      { name: "SMM (Social Media)", href: "/services/social-media-marketing-agency", icon: Share2 },
+      { name: "PPC (Ads)", href: "/services/ppc-management-services", icon: MousePointerClick },
+      { name: "Shopify SEO", href: "/services/shopify-seo-service-agency", icon: Globe },
+      { name: "Content Writing", href: "/services/content-writing-services", icon: FileText },
     ]
   },
   {
     title: "Creative & Development",
     items: [
-      { name: "Video Editing", href: "/services/video-editing", icon: MonitorPlay },
-      { name: "Motion Graphics", href: "/services/motion-graphics", icon: Mountain },
-      { name: "Website Development", href: "/services/web-development", icon: Zap },
-      { name: "WordPress Web", href: "/services/wordpress-development", icon: Layout },
-      { name: "Web Design (UI UX)", href: "/services/ui-ux-design", icon: PenTool },
-      { name: "Shopify Development", href: "/services/shopify-development", icon: ShoppingBag },
+      { name: "Video Editing", href: "/services/professional-video-editing-services", icon: MonitorPlay },
+      { name: "Motion Graphics", href: "/services/motion-graphics-services-company", icon: Mountain },
+      { name: "Website Development", href: "/services/custom-web-development-services", icon: Zap },
+      { name: "WordPress Web", href: "/services/wordpress-website-development-services", icon: Layout },
+      { name: "Web Design (UI UX)", href: "/services/web-design-service", icon: PenTool },
+      { name: "Shopify Development", href: "/services/shopify-website-development-service", icon: ShoppingBag },
     ]
   },
   {
