@@ -311,7 +311,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                         fill
                         className="object-cover"
                         sizes="300px"
-                        unoptimized={imagePreview.startsWith("blob:")}
+                        unoptimized={true}
                       />
                       {/* Overlay on hover */}
                       <div className="absolute inset-0 bg-stone-900/60 backdrop-blur-[2px] opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -393,7 +393,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                 <div className="grid grid-cols-3 gap-2 mb-3">
                   {galleryImages.map((url, i) => (
                     <div key={i} className="relative aspect-square rounded-lg overflow-hidden border border-stone-200">
-                      <Image src={url} alt="Variation" fill className="object-cover" />
+                      <Image src={url} alt="Variation" fill className="object-cover" unoptimized={true} />
                       <button
                         type="button"
                         onClick={() => setGalleryImages(prev => prev.filter((_, idx) => idx !== i))}
