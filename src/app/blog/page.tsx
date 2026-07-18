@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { SITE_URL } from "@/config/seo";
 import Link from "next/link";
 import Image from "next/image";
-import { POSTS } from "@/lib/blogs";
+import { fetchBlogs } from "@/lib/blogs";
 import { Clock, BookOpen, ArrowRight } from "lucide-react";
 import BlogListSchema from "@/components/BlogListSchema";
+
+export const revalidate = 0; // Force dynamic fetching to get newly uploaded posts instantly
 
 export const metadata: Metadata = {
   title: "EV Store Blog — Electric Bikes & Scooter Tech Journal",
@@ -14,15 +16,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogLandingPage() {
-  const sortedPosts = [...POSTS].reverse();
-  const featuredPost = sortedPosts[0]; // Newest post is featured
-  const regularPosts = sortedPosts.slice(1);
+export default async function BlogLandingPage() {
+  const posts = await fetchBlogs();
+  const sortedPosts = [...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const featuredPost = posts.find(p => p.id === 4 || p.id === '4') || sortedPosts[0]; // Pin the Buyer's Guide as the featured blog
+  const regularPosts = sortedPosts.filter(p => p.id !== featuredPost.id);
 
   return (
     <main className="min-h-screen bg-[#faf9f6] text-stone-900 pb-20">
       {/* Blog List Schema Markup */}
-      <BlogListSchema />
+      <BlogListSchema posts={posts} />
 
       {/* 1. Header Banner */}
       <section className="bg-stone-900 py-16 md:py-24 relative overflow-hidden text-center text-white">

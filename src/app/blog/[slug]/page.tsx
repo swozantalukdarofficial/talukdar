@@ -3,9 +3,11 @@ import { SITE_URL } from "@/config/seo";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { POSTS } from "@/lib/blogs";
+import { fetchBlogs } from "@/lib/blogs";
 import { Clock, ArrowLeft, Calendar, BookOpen, ArrowRight } from "lucide-react";
 import ShareButton from "@/components/ShareButton";
+
+export const revalidate = 0; // Force dynamic fetching for newly created blog pages
 
 interface Props {
   params: Promise<{ slug: string }> | { slug: string };
@@ -14,7 +16,8 @@ interface Props {
 // ─── DYNAMIC SEO METADATA ─────────────────────────────────────────
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedParams = await params;
-  const post = POSTS.find((p) => p.slug === resolvedParams.slug);
+  const posts = await fetchBlogs();
+  const post = posts.find((p) => p.slug === resolvedParams.slug);
 
   if (!post) return {};
 
@@ -44,14 +47,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // ─── STATIC PATHS GENERATION ─────────────────────────────────────
 export async function generateStaticParams() {
-  return POSTS.map((post) => ({
+  const posts = await fetchBlogs();
+  return posts.map((post) => ({
     slug: post.slug,
   }));
 }
 
 export default async function BlogPostPage({ params }: Props) {
   const resolvedParams = await params;
-  const post = POSTS.find((p) => p.slug === resolvedParams.slug);
+  const posts = await fetchBlogs();
+  const post = posts.find((p) => p.slug === resolvedParams.slug);
 
   if (!post) {
     notFound();
@@ -287,7 +292,7 @@ export default async function BlogPostPage({ params }: Props) {
                 Recent Reads
               </h4>
               <div className="space-y-4">
-                {POSTS.filter((p) => p.slug !== post.slug)
+                {posts.filter((p) => p.slug !== post.slug)
                   .slice(0, 3)
                   .map((rp) => (
                     <Link

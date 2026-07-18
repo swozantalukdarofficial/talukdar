@@ -1,8 +1,12 @@
 import React from "react";
 import { SITE_URL } from "@/config/seo";
-import { POSTS } from "@/lib/blogs";
+import { POSTS, type BlogPost } from "@/lib/blogs";
 
-export default function BlogListSchema() {
+interface BlogListSchemaProps {
+  posts?: BlogPost[];
+}
+
+export default function BlogListSchema({ posts = POSTS }: BlogListSchemaProps) {
   const baseUrl = SITE_URL;
 
   // 1. Blog Schema listing all posts
@@ -17,7 +21,7 @@ export default function BlogListSchema() {
       "name": "Talukdar EV",
       "logo": `${baseUrl}/logo.svg`,
     },
-    "blogPost": POSTS.map((post) => ({
+    "blogPost": posts.map((post) => ({
       "@type": "BlogPosting",
       "headline": post.title,
       "description": post.desc,

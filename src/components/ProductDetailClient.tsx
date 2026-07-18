@@ -300,6 +300,59 @@ function renderBlogStyleDescription(description: string) {
   );
 }
 
+function parseOptionLine(l: string): { name: string; price: number } {
+  const line = l.trim();
+  if (!line) return { name: "", price: 0 };
+
+  // 1. Try splitting by colon (:)
+  if (line.includes(':')) {
+    const idx = line.lastIndexOf(':');
+    const name = line.substring(0, idx).trim();
+    const priceStr = line.substring(idx + 1).trim();
+    const price = parseFloat(priceStr.replace(/[^\d.]/g, '')) || 0;
+    return { name, price };
+  }
+
+  // 2. Try splitting by hyphen (-) from right to left
+  const parts = line.split('-');
+  if (parts.length > 1) {
+    for (let i = parts.length - 1; i > 0; i--) {
+      const possiblePricePart = parts[i].trim();
+      const numMatch = possiblePricePart.match(/^(\d+(?:,\d+)*(?:\.\d+)?)/);
+      if (numMatch) {
+        const price = parseFloat(numMatch[1].replace(/,/g, ''));
+        const lowerPart = possiblePricePart.toLowerCase();
+        
+        // Ignore units typically found in specification lines (e.g. warranty, range, speed)
+        const isSpec = lowerPart.includes('year') || 
+                       lowerPart.includes('month') || 
+                       lowerPart.includes('day') || 
+                       lowerPart.includes('km') || 
+                       lowerPart.includes('watt') || 
+                       lowerPart.includes('volt') ||
+                       (lowerPart.includes('ah') && !lowerPart.includes('charge')) ||
+                       (lowerPart.includes('v') && !/^\d+\s*(?:\/-)?$/.test(lowerPart));
+                       
+        if (!isSpec && price > 0) {
+          let name = parts.slice(0, i).join('-').trim();
+          
+          const remainingInPart = possiblePricePart.substring(numMatch[0].length).trim();
+          const subsequentParts = parts.slice(i + 1).join('-');
+          const fullRemaining = [remainingInPart, subsequentParts].filter(Boolean).join('-');
+          const cleanRemaining = fullRemaining.replace(/^[\s\/\\#,-]+/, '').trim();
+          
+          if (cleanRemaining) {
+            name = `${name} (${cleanRemaining})`;
+          }
+          return { name, price };
+        }
+      }
+    }
+  }
+
+  return { name: line, price: 0 };
+}
+
 export default function ProductDetailClient({
   product,
 }: {
@@ -324,15 +377,8 @@ export default function ProductDetailClient({
   const rawVariations = (product.specs?._variations as string) || "";
   const rawAddons = (product.specs?._addons as string) || "";
   
-  const parsedVariations = rawVariations.split('\n').map(l => l.trim()).filter(Boolean).map(l => {
-    const [name, price] = l.split(':').map(s => s.trim());
-    return { name, price: parseFloat(price) || 0 };
-  });
-
-  const parsedAddons = rawAddons.split('\n').map(l => l.trim()).filter(Boolean).map(l => {
-    const [name, price] = l.split(':').map(s => s.trim());
-    return { name, price: parseFloat(price) || 0 };
-  });
+  const parsedVariations = rawVariations.split('\n').map(l => l.trim()).filter(Boolean).map(parseOptionLine);
+  const parsedAddons = rawAddons.split('\n').map(l => l.trim()).filter(Boolean).map(parseOptionLine);
 
   const hasDynamicOptions = parsedVariations.length > 0 || parsedAddons.length > 0;
 
@@ -386,7 +432,7 @@ export default function ProductDetailClient({
     if (parsedVariations.length > 0) {
       const v = parsedVariations[selectedVariationIdx];
       if (v) {
-        currentPrice = v.price; // Variation replaces base price
+        currentPrice = v.price || product.price; // Variation replaces base price (fallback to base price if 0)
         customizedName += ` - ${v.name}`;
       }
     }
@@ -740,7 +786,7 @@ export default function ProductDetailClient({
                       >
                         <div>
                           <p className="text-[11px] font-bold text-stone-850">{v.name}</p>
-                          <p className="text-[9px] text-emerald-600 mt-0.5 font-bold font-mono">৳{v.price.toLocaleString("en-BD")}</p>
+                          <p className="text-[9px] text-emerald-600 mt-0.5 font-bold font-mono">৳{(v.price || product.price).toLocaleString("en-BD")}</p>
                         </div>
                         <div className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${selectedVariationIdx === idx ? "border-emerald-600 bg-emerald-600" : "border-stone-300 bg-white"}`}>
                           {selectedVariationIdx === idx && <Check className="w-2 h-2 text-white" />}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Package, ShoppingBag, LayoutDashboard, Settings, ArrowLeft } from "lucide-react";
+import { Package, ShoppingBag, LayoutDashboard, Settings, ArrowLeft, FileText } from "lucide-react";
 import type { Metadata } from "next";
 import AdminClientGuard from "@/components/AdminClientGuard";
 import AdminLogoutButton from "@/components/AdminLogoutButton";
@@ -39,6 +39,10 @@ export default function AdminLayout({
             <Link href="/admin/categories" className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-stone-700 hover:bg-stone-50 font-semibold text-sm transition-colors shrink-0">
               <LayoutDashboard className="w-5 h-5 text-purple-500" />
               Categories
+            </Link>
+            <Link href="/admin/blogs" className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-stone-700 hover:bg-stone-50 font-semibold text-sm transition-colors shrink-0">
+              <FileText className="w-5 h-5 text-teal-500" />
+              Blogs
             </Link>
             <Link href="/admin/settings" className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-stone-700 hover:bg-stone-50 font-semibold text-sm transition-colors shrink-0 md:mt-auto">
               <Settings className="w-5 h-5 text-stone-400" />
