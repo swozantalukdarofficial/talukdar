@@ -22,6 +22,7 @@ import {
 import Link from "next/link";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import ProductOptionsManager from "@/components/ProductOptionsManager";
 
 interface SpecRow {
   key: string;
@@ -484,47 +485,35 @@ export default function AddProductPage() {
                 </div>
 
                 {/* Variations & Addons */}
-                <div className="grid sm:grid-cols-2 gap-4 mt-4 pt-4 border-t border-stone-100">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
-                      Variations (Name:Price)
-                    </label>
-                    <textarea
-                      placeholder="Red: 120000&#10;Blue: 125000"
-                      rows={3}
-                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 resize-none"
-                      onChange={(e) => {
-                        const val = e.target.value;
-                        const specIdx = specs.findIndex(s => s.key === "_variations");
-                        if (specIdx >= 0) {
-                          updateSpec(specIdx, "value", val);
-                        } else {
-                          setSpecs([...specs, { key: "_variations", value: val }]);
-                        }
-                      }}
-                    />
-                    <p className="text-[10px] text-stone-500 font-medium">Add one per line. Use exact format: <b>Name: Price</b></p>
-                  </div>
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
-                      Add-ons (Name:Price)
-                    </label>
-                    <textarea
-                      placeholder="Extended Warranty: 2500&#10;Bike Cover: 500"
-                      rows={3}
-                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 resize-none"
-                      onChange={(e) => {
-                        const val = e.target.value;
-                        const specIdx = specs.findIndex(s => s.key === "_addons");
-                        if (specIdx >= 0) {
-                          updateSpec(specIdx, "value", val);
-                        } else {
-                          setSpecs([...specs, { key: "_addons", value: val }]);
-                        }
-                      }}
-                    />
-                    <p className="text-[10px] text-stone-500 font-medium">Add one per line. Use exact format: <b>Name: Price</b></p>
-                  </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 pt-4 border-t border-stone-100">
+                  <ProductOptionsManager
+                    label="Variations"
+                    value={specs.find((s) => s.key === "_variations")?.value || ""}
+                    placeholderName="e.g. ONLY BODY PRICE / WITH BATTERY"
+                    placeholderPrice="120000"
+                    onChange={(val) => {
+                      const specIdx = specs.findIndex((s) => s.key === "_variations");
+                      if (specIdx >= 0) {
+                        updateSpec(specIdx, "value", val);
+                      } else {
+                        setSpecs([...specs, { key: "_variations", value: val }]);
+                      }
+                    }}
+                  />
+                  <ProductOptionsManager
+                    label="Add-ons (Optional)"
+                    value={specs.find((s) => s.key === "_addons")?.value || ""}
+                    placeholderName="e.g. WARRANTY-1 YEARS-MOTOR,CONTROLLER"
+                    placeholderPrice="5000"
+                    onChange={(val) => {
+                      const specIdx = specs.findIndex((s) => s.key === "_addons");
+                      if (specIdx >= 0) {
+                        updateSpec(specIdx, "value", val);
+                      } else {
+                        setSpecs([...specs, { key: "_addons", value: val }]);
+                      }
+                    }}
+                  />
                 </div>
               </div>
 
