@@ -221,7 +221,7 @@ export default function ShopifyDevelopmentPage() {
       />
       
       {/* 1. HERO SECTION (UPGRADED) */}
-      <section className="relative z-10 min-h-screen flex items-center pt-28 pb-16 px-6 overflow-hidden">
+      <section className="relative z-10 min-h-[calc(100vh-5rem)] flex items-center pt-20 lg:pt-24 pb-16 px-6 overflow-hidden">
         {/* Animated Mesh Gradients */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <motion.div 

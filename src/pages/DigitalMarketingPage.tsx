@@ -166,7 +166,7 @@ export default function DigitalMarketingPage() {
 				<div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.05]"></div>
 			</div>
 
-			<section className="relative pt-32 pb-12 md:pb-16 px-6 z-10">
+			<section className="relative pt-20 lg:pt-24 pb-12 md:pb-16 px-6 z-10">
 				<motion.div
 					variants={heroContainer}
 					initial="hidden"

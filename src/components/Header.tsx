@@ -240,78 +240,13 @@ export default function Header() {
 					<MagneticButton 
 						onClick={(e) => {
 							e.stopPropagation();
-							setIsProposalOpen(!isProposalOpen);
+							setIsProposalOpen(true);
 						}}
 						className="px-6 py-2.5 bg-[#87E65C] text-black font-bold text-sm rounded-full hover:bg-[#87E65C]/90 transition-all flex items-center gap-2 shadow-[0_4px_20px_rgba(135,230,92,0.15)]"
 					>
 						<span>Get a Proposal</span>
-						<ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isProposalOpen ? 'rotate-180' : ''}`} />
+						<ArrowRight className="w-4 h-4" />
 					</MagneticButton>
-
-					{/* Dropdown Menu */}
-					{isProposalOpen && (
-						<>
-							{/* Invisible overlay to close dropdown on click outside */}
-							<div className="fixed inset-0 z-40" onClick={() => setIsProposalOpen(false)} />
-							
-							<div className="absolute right-0 mt-3 w-80 bg-neutral-950/95 backdrop-blur-xl border border-white/10 rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-50 animate-in fade-in slide-in-from-top-2 duration-300 overflow-hidden">
-								{/* Decorative subtle light */}
-								<div className="absolute -top-12 -right-12 w-24 h-24 bg-[#87E65C]/10 rounded-full blur-xl pointer-events-none" />
-								
-								<button 
-									onClick={() => {
-										setIsProposalOpen(false);
-										if (site.fullStackProposalUrl) {
-											window.open(site.fullStackProposalUrl, "_blank", "noopener,noreferrer");
-										} else {
-											alert("Proposal document not uploaded yet.");
-										}
-									}}
-									className="w-full group flex items-center gap-3.5 p-3 rounded-xl hover:bg-white/5 transition-all text-left relative z-10"
-								>
-									<div className="w-10 h-10 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-neutral-400 group-hover:bg-[#87E65C] group-hover:text-black group-hover:scale-105 transition-all duration-300 shrink-0">
-										<TrendingUp className="w-4 h-4" />
-									</div>
-									<div className="flex-1 min-w-0">
-										<span className="block text-white font-extrabold text-xs group-hover:text-[#87E65C] transition-colors">
-											Full Stack Digital Marketing
-										</span>
-										<span className="block text-[10px] text-neutral-500 mt-0.5 leading-normal">
-											Roadmap & strategy document
-										</span>
-									</div>
-									<ArrowRight className="w-3.5 h-3.5 text-neutral-600 group-hover:text-[#87E65C] group-hover:translate-x-1 transition-all shrink-0" />
-								</button>
-
-								<div className="h-px bg-white/5 my-1.5" />
-
-								<button 
-									onClick={() => {
-										setIsProposalOpen(false);
-										if (site.generalProposalUrl) {
-											window.open(site.generalProposalUrl, "_blank", "noopener,noreferrer");
-										} else {
-											alert("Proposal document not uploaded yet.");
-										}
-									}}
-									className="w-full group flex items-center gap-3.5 p-3 rounded-xl hover:bg-white/5 transition-all text-left relative z-10"
-								>
-									<div className="w-10 h-10 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-neutral-400 group-hover:bg-[#87E65C] group-hover:text-black group-hover:scale-105 transition-all duration-300 shrink-0">
-										<FileText className="w-4 h-4" />
-									</div>
-									<div className="flex-1 min-w-0">
-										<span className="block text-white font-extrabold text-xs group-hover:text-[#87E65C] transition-colors">
-											General Proposal
-										</span>
-										<span className="block text-[10px] text-neutral-500 mt-0.5 leading-normal">
-											Standard services & pricing overview
-										</span>
-									</div>
-									<ArrowRight className="w-3.5 h-3.5 text-neutral-600 group-hover:text-[#87E65C] group-hover:translate-x-1 transition-all shrink-0" />
-								</button>
-							</div>
-						</>
-					)}
 				</div>
 
 				{/* Mobile Menu Button */}
@@ -353,62 +288,20 @@ export default function Header() {
 							{link.name}
 						</Link>
 					))}
-					<div className="flex flex-col gap-2">
-						<button 
-							onClick={() => setIsProposalOpen(!isProposalOpen)}
-							className="w-full py-4 bg-neon-green text-black font-bold rounded-xl flex items-center justify-center gap-2"
-						>
-							<span>Get a Proposal</span>
-							<ChevronDown className={`w-5 h-5 transition-transform duration-200 ${isProposalOpen ? 'rotate-180' : ''}`} />
-						</button>
-						{isProposalOpen && (
-							<div className="flex flex-col gap-2 mt-2 bg-neutral-900 border border-white/10 rounded-xl p-2 animate-in fade-in slide-in-from-top-1 duration-200">
-								<button 
-									onClick={() => {
-										setIsProposalOpen(false);
-										setIsOpen(false);
-										if (site.fullStackProposalUrl) {
-											window.open(site.fullStackProposalUrl, "_blank", "noopener,noreferrer");
-										} else {
-											alert("Proposal not uploaded yet.");
-										}
-									}}
-									className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-all text-left w-full"
-								>
-									<div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-neutral-400 shrink-0">
-										<TrendingUp className="w-4 h-4" />
-									</div>
-									<div className="flex-1 min-w-0">
-										<span className="block text-white font-extrabold text-sm">Full Stack Digital Marketing</span>
-										<span className="block text-[10px] text-neutral-500 mt-0.5">Roadmap & strategy document</span>
-									</div>
-								</button>
-								<div className="h-px bg-white/5 my-0.5" />
-								<button 
-									onClick={() => {
-										setIsProposalOpen(false);
-										setIsOpen(false);
-										if (site.generalProposalUrl) {
-											window.open(site.generalProposalUrl, "_blank", "noopener,noreferrer");
-										} else {
-											alert("Proposal not uploaded yet.");
-										}
-									}}
-									className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-all text-left w-full"
-								>
-									<div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-neutral-400 shrink-0">
-										<FileText className="w-4 h-4" />
-									</div>
-									<div className="flex-1 min-w-0">
-										<span className="block text-white font-extrabold text-sm">General Proposal</span>
-										<span className="block text-[10px] text-neutral-500 mt-0.5">Standard services & pricing overview</span>
-									</div>
-								</button>
-							</div>
-						)}
-					</div>
+					<button 
+						onClick={() => {
+							setIsOpen(false);
+							setIsProposalOpen(true);
+						}}
+						className="w-full py-4 bg-neon-green text-black font-bold rounded-xl flex items-center justify-center gap-2"
+					>
+						<span>Get a Proposal</span>
+						<ArrowRight className="w-5 h-5" />
+					</button>
 				</nav>
 			</div>
+			{/* Proposal Modal — renders for both desktop and mobile */}
+			<ProposalModal isOpen={isProposalOpen} onClose={() => setIsProposalOpen(false)} />
 		</header>
 	);
 }

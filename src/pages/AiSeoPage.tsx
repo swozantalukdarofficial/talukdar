@@ -215,7 +215,7 @@ export default function AiSeoPage() {
 				description="Dominate next-gen AI search platforms (Google SGE, Perplexity, Gemini) with modern generative engine optimization." 
 				schemaMarkup={aiSeoSchema}
 			/>
-			<section className="relative z-10 px-6 lg:px-20 pt-28 pb-16 min-h-screen flex items-center w-full">
+			<section className="relative z-10 px-6 lg:px-20 pt-20 lg:pt-24 pb-16 min-h-[calc(100vh-5rem)] flex items-center w-full">
 				<div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
 					<motion.div 
 						initial={{ opacity: 0, y: 20 }}

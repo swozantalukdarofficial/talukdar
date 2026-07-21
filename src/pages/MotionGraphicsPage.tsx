@@ -204,7 +204,7 @@ export default function MotionGraphicsPage() {
         schemaMarkup={motionGraphicsSchema}
       />
       {/* 1. HERO SECTION (UPGRADED) */}
-      <section className="relative px-6 lg:px-20 pt-28 pb-16 overflow-visible min-h-screen flex items-center w-full">
+      <section className="relative px-6 lg:px-20 pt-20 lg:pt-24 pb-16 overflow-visible min-h-[calc(100vh-5rem)] flex items-center w-full">
         {/* Animated Mesh Gradients */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <motion.div 

@@ -296,7 +296,7 @@ export default function UiUxDesignPage() {
       {/* ══════════════════════════════════════════
           SECTION 1: HERO
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 min-h-screen flex items-center pt-20 lg:pt-28 pb-16 px-6">
+      <section className="relative z-10 min-h-[calc(100vh-5rem)] flex items-center pt-20 lg:pt-24 pb-16 px-6">
         <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           <div className="space-y-4 md:space-y-5 relative z-20 order-2 lg:order-1 mt-10 lg:mt-0">
