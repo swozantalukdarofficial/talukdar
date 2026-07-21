@@ -8,11 +8,18 @@ import {
   PenTool,
   Mic2,
   Edit3,
-  Rocket
+  Rocket,
+  Sparkles,
+  Mail,
+  Layers,
+  Video,
+  Smartphone
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import SEO from "../components/SEO";
+import { useContent } from "../context/ContentContext";
+import AdminServiceImageEditor from "../components/admin/AdminServiceImageEditor";
 
 const motionGraphicsSchema = {
   "@context": "https://schema.org",
@@ -38,7 +45,7 @@ const motionGraphicsSchema = {
         "name": "WeBestOne",
         "url": "https://webestone.com",
         "logo": "https://webestone.com/favicon.png",
-        "telephone": "+8801333600272",
+        "telephone": "+8801815025322",
         "email": "webestone@gmail.com",
         "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
       },
@@ -87,37 +94,32 @@ const services = [
   {
     title: "Social media motion graphics",
     desc: "As a motion graphics agency, WebestOne creates social media motion graphics using kinetic typography, animated transitions, and infographics animation. Every piece is built to stop scrolling and hold attention.",
-    icon: "https://cdn-icons-png.flaticon.com/512/3670/3670151.png"
+    icon: <Sparkles className="w-8 h-8" />
   },
   {
     title: "Email motion graphics",
     desc: "We turn static communication into motion-driven experiences using digital animation and compositing. This improves engagement and response without increasing complexity.",
-    icon: "https://cdn-icons-png.flaticon.com/512/281/281769.png"
+    icon: <Mail className="w-8 h-8" />
   },
   {
     title: "Logo animation",
     desc: "Our logo motion graphics service transforms static branding into dynamic identity. Using vector animation, keyframing, and motion tracking, we build visuals people remember.",
-    icon: "https://cdn-icons-png.flaticon.com/512/3242/3242337.png"
+    icon: <Layers className="w-8 h-8" />
   },
   {
     title: "Explainer video motion graphics",
     desc: "We deliver explainer video motion graphics using storyboarding and visual storytelling. This is where clarity meets engagement.",
-    icon: "https://cdn-icons-png.flaticon.com/512/4233/4233830.png"
+    icon: <Video className="w-8 h-8" />
   },
   {
     title: "UI motion design",
     desc: "As a professional motion graphics studio, we create UI motion design using animated transitions and interaction-based animation that improves usability and flow.",
-    icon: "https://cdn-icons-png.flaticon.com/512/2311/2311516.png"
-  },
-  {
-    title: "Lottie and performance animation",
-    desc: "We create lightweight animation built for speed using vector animation and optimized assets. This keeps performance high without sacrificing experience.",
-    icon: "https://cdn-icons-png.flaticon.com/512/8106/8106518.png"
+    icon: <Smartphone className="w-8 h-8" />
   },
   {
     title: "Promo video motion graphics",
     desc: "Our Promo Video Motion Graphics Service is built to make offers clearer, faster to understand, and harder to ignore. We combine motion, pacing, and visual hierarchy to move viewers toward action.",
-    icon: "https://cdn-icons-png.flaticon.com/512/4180/4180860.png"
+    icon: <Megaphone className="w-8 h-8" />
   }
 ];
 
@@ -127,31 +129,31 @@ const processSteps = [
     title: "Strategy",
     desc: "We analyze your audience, positioning, and communication gaps to define direction.",
     icon: <Megaphone className="w-8 h-8" />,
-    color: "bg-pink-900/20 text-pink-500",
-    border: "border-pink-500/20"
+    color: "bg-neon-green/10 text-neon-green",
+    border: "border-neon-green/20"
   },
   {
     num: "02",
     title: "Concept and storyboarding",
     desc: "We structure your message using storyboarding and visual hierarchy so everything flows naturally.",
     icon: <Lightbulb className="w-8 h-8" />,
-    color: "bg-blue-900/20 text-blue-500",
-    border: "border-blue-500/20"
+    color: "bg-emerald-950/30 text-emerald-400",
+    border: "border-emerald-500/20"
   },
   {
     num: "03",
     title: "Design and animation",
     desc: "We build using 2D animation and 3D motion graphics supported by tools like adobe after effects, cinema 4d, blender, adobe illustrator, and photoshop.",
     icon: <PenTool className="w-8 h-8" />,
-    color: "bg-purple-900/20 text-purple-500",
-    border: "border-purple-500/20"
+    color: "bg-neon-green/10 text-neon-green",
+    border: "border-neon-green/20"
   },
   {
     num: "04",
     title: "Production and editing",
     desc: "We refine using visual effects, compositing, and motion tracking along with adobe premiere pro to deliver a complete output.",
     icon: <Edit3 className="w-8 h-8" />,
-    color: "bg-emerald-900/20 text-emerald-500",
+    color: "bg-emerald-950/30 text-emerald-400",
     border: "border-emerald-500/20"
   },
   {
@@ -159,8 +161,8 @@ const processSteps = [
     title: "Optimization and delivery",
     desc: "We optimize for platforms including corporate motion graphics, social media motion graphics, promo video graphics, and educational video graphics.",
     icon: <Rocket className="w-8 h-8" />,
-    color: "bg-amber-900/20 text-amber-500",
-    border: "border-amber-500/20"
+    color: "bg-neon-green/10 text-neon-green",
+    border: "border-neon-green/20"
   }
 ];
 
@@ -188,12 +190,15 @@ const faqs = [
 ];
 
 export default function MotionGraphicsPage() {
+  const { serviceImages } = useContent();
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
   const [hoveredStep, setHoveredStep] = useState<number>(2); // Default to Design (index 2)
 
   return (
-    <main className="min-h-screen bg-black text-white overflow-x-hidden">
+    <main className="min-h-screen bg-black text-white overflow-x-hidden relative">
+      <AdminServiceImageEditor serviceId="motion-graphics-services-company" />
       <SEO 
+        pageKey="motion-graphics-services-company"
         title="Motion Graphics Services Company | 3D Animation services" 
         description="Advanced Motion Graphics Services Company specializes in Explainer Videos, 3D Motion Graphics, visual Storytelling and Animated Transitions that scale your brand." 
         schemaMarkup={motionGraphicsSchema}
@@ -218,7 +223,7 @@ export default function MotionGraphicsPage() {
               y: [0, -30, 0]
             }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-pink-600/10 blur-[120px]" 
+            className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-emerald-600/10 blur-[120px]" 
           />
         </div>
 
@@ -237,9 +242,9 @@ export default function MotionGraphicsPage() {
               Premium Animation Studio
             </motion.div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-[2.6rem] font-black leading-tight tracking-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-black leading-[1.1] tracking-tight">
               Motion graphics services company that turns visuals into <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green via-teal-400 to-emerald-300">
+              <span className="text-neon-green">
                 attention and action
               </span>
             </h1>
@@ -277,8 +282,8 @@ export default function MotionGraphicsPage() {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -top-10 -left-10 bg-neutral-900/80 backdrop-blur-xl border border-white/10 p-4 rounded-2xl z-20 shadow-2xl flex items-center gap-4"
             >
-              <div className="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center">
-                <Rocket className="w-6 h-6 text-pink-500" />
+              <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                <Rocket className="w-6 h-6 text-emerald-400" />
               </div>
               <div>
                 <p className="text-xs text-neutral-400 font-bold uppercase tracking-wider">Engagement</p>
@@ -299,7 +304,7 @@ export default function MotionGraphicsPage() {
             </motion.div>
 
             <div className="relative aspect-video w-full rounded-[2rem] overflow-hidden border border-white/10 group bg-neutral-900 shadow-2xl">
-              <img src="/motion_hero.webp" alt="Motion Graphics Services Company" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <img src={serviceImages["motion-graphics-services-company"] || "/motion_hero.webp"} alt="Motion Graphics Services Company" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500 flex items-center justify-center">
                 <div className="w-20 h-20 rounded-full bg-neon-green flex items-center justify-center shadow-[0_0_50px_rgba(135,230,92,0.6)] cursor-pointer group-hover:scale-110 transition-transform">
                   <Play className="w-8 h-8 text-black fill-black ml-1" />
@@ -329,8 +334,8 @@ export default function MotionGraphicsPage() {
                 transition={{ delay: i * 0.1 }}
                 className="p-10 rounded-[2.5rem] bg-neutral-900/40 border border-white/5 hover:border-neon-green/30 transition-all group"
               >
-                <div className="w-20 h-20 rounded-2xl bg-neutral-800 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                  <img src={service.icon} alt={service.title} className="w-10 h-10 object-contain" />
+                <div className="w-20 h-20 rounded-2xl bg-neutral-800 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform text-neon-green">
+                  {service.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-4 group-hover:text-neon-green transition-colors">{service.title}</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed">{service.desc}</p>
@@ -344,9 +349,9 @@ export default function MotionGraphicsPage() {
       <section className="py-24 px-6 relative z-10 bg-neutral-950/50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-6 mb-20">
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-pink-500 px-4 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/20">PROCESS</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-neon-green px-4 py-1.5 rounded-full bg-neon-green/10 border border-neon-green/20">PROCESS</span>
             <h2 className="text-4xl md:text-5xl font-bold text-white max-w-4xl mx-auto leading-tight">
-              Built for <span className="text-pink-500">clarity.</span> Designed for performance.
+              Built for <span className="text-neon-green">clarity.</span> Designed for performance.
             </h2>
             <p className="text-neutral-400 max-w-2xl mx-auto leading-relaxed">
               As a motion graphics services company, WebestOne follows a structured workflow that connects creativity with execution.

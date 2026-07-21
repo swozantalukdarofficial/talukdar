@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
 	MapPin,
@@ -11,71 +11,12 @@ import {
 	ArrowRight,
 } from "lucide-react";
 import SEO from "../components/SEO";
+import { useContent } from "../context/ContentContext";
 
-const contactInfo = {
-	address: "Dhaka, Bangladesh",
-	phone: "+880 1333 600 272",
-	email: "contact@webestone.com",
-	workingHours: "Mon - Fri: 9AM - 6PM",
-};
 
-const contactSchema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "ContactPage",
-      "@id": "https://webestone.com/contact#webpage",
-      "url": "https://webestone.com/contact",
-      "name": "Contact WeBestOne - Discuss Your Growth Project"
-    },
-    {
-      "@type": "LocalBusiness",
-      "name": "WeBestOne",
-      "url": "https://webestone.com",
-      "logo": "https://webestone.com/favicon.png",
-      "image": "https://webestone.com/uploads/1770469463115-Webestone-icon.png",
-      "description": "WeBestOne is a premium AI-powered digital marketing and web development agency in Bangladesh specializing in SEO, PPC, and Custom Web Applications.",
-      "telephone": "+8801333600272",
-      "email": "webestone@gmail.com",
-      "priceRange": "$$",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Mirpur, Dhaka",
-        "addressLocality": "Dhaka",
-        "addressRegion": "Dhaka Division",
-        "postalCode": "1216",
-        "addressCountry": "BD"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "23.8018",
-        "longitude": "90.3572"
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
-        "opens": "00:00",
-        "closes": "23:59"
-      },
-      "sameAs": [
-        "https://www.facebook.com/profile.php?id=61586166715142",
-        "https://www.instagram.com/webest_one/",
-        "https://www.linkedin.com/company/webestone",
-        "https://www.youtube.com/@webestone"
-      ]
-    }
-  ]
-};
 
 export default function ContactPage() {
+	const { contact, socials, seo } = useContent();
 	const [formState, setFormState] = useState({
 		name: "",
 		email: "",
@@ -87,6 +28,62 @@ export default function ContactPage() {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+
+	const contactSchema = useMemo(() => ({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "ContactPage",
+				"@id": "https://webestone.com/contact#webpage",
+				"url": "https://webestone.com/contact",
+				"name": seo.contact?.title || "Contact WeBestOne - Discuss Your Growth Project"
+			},
+			{
+				"@type": "LocalBusiness",
+				"name": "WeBestOne",
+				"url": "https://webestone.com",
+				"logo": "https://webestone.com/favicon.png",
+				"image": "https://webestone.com/uploads/1770469463115-Webestone-icon.png",
+				"description": seo.contact?.description || "WeBestOne is a premium AI-powered digital marketing and web development agency specializing in SEO, PPC, and Custom Web Applications.",
+				"telephone": contact.phone,
+				"email": contact.email,
+				"priceRange": "$$",
+				"address": {
+					"@type": "PostalAddress",
+					"streetAddress": contact.address.split(",")[0] || "25 The Avenue",
+					"addressLocality": contact.address.split(",")[1]?.trim() || "Crawley",
+					"addressRegion": "Western Australia",
+					"postalCode": "6009",
+					"addressCountry": "AU"
+				},
+				"geo": {
+					"@type": "GeoCoordinates",
+					"latitude": "-31.9774",
+					"longitude": "115.8208"
+				},
+				"openingHoursSpecification": {
+					"@type": "OpeningHoursSpecification",
+					"dayOfWeek": [
+						"Monday",
+						"Tuesday",
+						"Wednesday",
+						"Thursday",
+						"Friday",
+						"Saturday",
+						"Sunday"
+					],
+					"opens": "00:00",
+					"closes": "23:59"
+				},
+				"sameAs": [
+					socials.facebook,
+					socials.instagram,
+					socials.linkedin,
+					socials.youtube
+				]
+			}
+		]
+	}), [contact, socials, seo]);
 
 	const handleChange = (
 		e: React.ChangeEvent<
@@ -118,7 +115,7 @@ export default function ContactPage() {
 
 			if (!response.ok) {
 				if (response.status === 404 || (contentType && contentType.includes("text/html"))) {
-					throw new Error("Vercel serverless API is not executed by 'npm run dev'. To test locally, please run 'vercel dev' (requires vercel CLI). Once deployed on Vercel, it works automatically!");
+					throw new Error("Unable to connect to WeBestOne servers. Please try again later.");
 				}
 				throw new Error(data.error || "Failed to send message. Please try again.");
 			}
@@ -141,27 +138,28 @@ export default function ContactPage() {
 	};
 
 	const contactItems = [
-		{ icon: MapPin, title: "Our Location", detail: contactInfo.address },
+		{ icon: MapPin, title: "Our Location", detail: contact.address },
 		{
 			icon: Phone,
 			title: "Phone",
-			detail: contactInfo.phone,
-			href: `tel:${contactInfo.phone}`,
+			detail: contact.phone,
+			href: `tel:${contact.phone}`,
 		},
 		{
 			icon: Mail,
 			title: "Email",
-			detail: contactInfo.email,
-			href: `mailto:${contactInfo.email}`,
+			detail: contact.email,
+			href: `mailto:${contact.email}`,
 		},
-		{ icon: Clock, title: "Working Hours", detail: contactInfo.workingHours },
+		{ icon: Clock, title: "Working Hours", detail: "Mon - Fri: 9AM - 6PM" },
 	];
 
 	return (
-		<main className="relative min-h-screen text-white overflow-hidden">
+		<main className="relative min-h-screen text-white overflow-x-hidden">
 			<SEO 
-				title="AI-powered digital marketing Agency | Webestone Contact Us" 
-				description="A leading AI-powered digital marketing agency - contact us to get expert AI solutions and start your brand transformation with our advanced team." 
+				pageKey="contact"
+				title="Contact Us | WeBestOne" 
+				description="Get in touch with WeBestOne for AI-powered digital marketing, web development, and growth solutions." 
 				schemaMarkup={contactSchema}
 			/>
 			{/* Background Effects */}
@@ -243,13 +241,13 @@ export default function ContactPage() {
 									You can reach us through any of our social platforms or send us a direct message on WhatsApp for instant assistance.
 								</p>
 								<div className="flex flex-col gap-4 mb-8">
-                                    <a href="https://www.facebook.com/profile.php?id=61586166715142" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">🌐 Facebook: WeBestOne</a>
-                                    <a href="https://www.instagram.com/webest_one/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">📸 Instagram: @webest_one</a>
-                                    <a href="https://www.linkedin.com/company/webestone" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">💼 LinkedIn: WeBestOne</a>
-                                    <a href="https://www.youtube.com/@webestone" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">▶️ YouTube: @webestone</a>
+                                    <a href={socials.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">🌐 Facebook: WeBestOne</a>
+                                    <a href={socials.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">📸 Instagram: @webest_one</a>
+                                    <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">💼 LinkedIn: WeBestOne</a>
+                                    <a href={socials.youtube} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">▶️ YouTube: @webestone</a>
                                 </div>
 								<a
-									href={`https://wa.me/8801333600272?text=Hi, I want to discuss a project.`}
+									href={`https://wa.me/${socials.whatsapp.replace(/[^0-9+]/g, "")}?text=Hi,%20I%20want%20to%20discuss%20a%20project.`}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white font-bold rounded-full hover:bg-[#20BD5A] hover:scale-105 transition-all text-sm shadow-[0_0_30px_rgba(37,211,102,0.3)]"
@@ -362,7 +360,7 @@ export default function ContactPage() {
 													value={formState.phone}
 													onChange={handleChange}
                                                     required
-													placeholder="+880 1333..."
+													placeholder="+880 1815..."
 													className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-neon-green/50 transition-colors"
 												/>
 											</div>
@@ -379,12 +377,9 @@ export default function ContactPage() {
 												className="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-green/50 transition-colors"
 											>
 												<option value="" disabled>Select a service</option>
-												<option value="SEO">SEO</option>
-												<option value="Social Media Marketing">Social Media Marketing</option>
-												<option value="Web Development">Web Development</option>
-												<option value="Branding">Branding</option>
-												<option value="Video Editing">Video Editing</option>
-												<option value="AI Solutions">AI Solutions</option>
+												{contact.formOptions.map((opt) => (
+													<option key={opt} value={opt}>{opt}</option>
+												))}
 												<option value="Other">Other</option>
 											</select>
 										</div>
@@ -444,7 +439,7 @@ export default function ContactPage() {
                             </p>
                             <div className="h-64 md:h-80 w-full rounded-3xl overflow-hidden border border-white/10 relative">
                                 <iframe 
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116834.00977782162!2d90.33728811442223!3d23.78063646549237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka%2C%20Bangladesh!5e0!3m2!1sen!2sus!4v1717000000000!5m2!1sen!2sus" 
+                                    src="https://maps.google.com/maps?q=25%20The%20Avenue,%20Crawley,%20Perth,%20WA,%20Australia&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                                     width="100%" 
                                     height="100%" 
                                     style={{ border: 0, filter: "grayscale(100%) invert(90%) contrast(80%)" }} 

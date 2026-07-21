@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
+import { useContent } from "../context/ContentContext";
 
 const testimonials = [
   {
@@ -11,7 +12,7 @@ const testimonials = [
   {
     name: "Sarah Ahmed",
     role: "CEO, Arch Leather",
-    content: "The best AI digital marketing agency in Bangladesh, period. Their data-backed approach to social media advertising and Meta Ads gave us our best sales quarter ever.",
+    content: "The best AI digital marketing agency, period. Their data-backed approach to social media advertising and Meta Ads gave us our best sales quarter ever.",
     image: "https://i.pravatar.cc/150?u=sarah",
   },
   {
@@ -23,6 +24,18 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const { testimonials: dynamicTestimonials } = useContent();
+
+  const displayTestimonials = dynamicTestimonials && dynamicTestimonials.length > 0
+    ? dynamicTestimonials.map(t => ({
+        name: t.name,
+        role: t.company ? `${t.role}, ${t.company}` : t.role,
+        content: t.text,
+        image: t.avatar,
+        rating: t.rating || 5
+      }))
+    : testimonials.map(t => ({ ...t, rating: 5 }));
+
   return (
     <section className="py-24 px-6 bg-black/30">
       <div className="max-w-7xl mx-auto">
@@ -43,7 +56,7 @@ export default function Testimonials() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((item, index) => (
+          {displayTestimonials.map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -55,7 +68,7 @@ export default function Testimonials() {
               <Quote className="absolute top-6 right-8 w-10 h-10 text-white/5 group-hover:text-neon-green/10 transition-colors" />
               
               <div className="flex gap-1 mb-6">
-                {[...Array(5)].map((_, i) => (
+                {[...Array(Math.min(5, Math.max(0, Math.round(Number(item.rating) || 5))))].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-neon-green text-neon-green" />
                 ))}
               </div>

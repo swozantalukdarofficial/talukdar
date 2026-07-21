@@ -8,29 +8,11 @@ import {
 	MessageCircle,
 	Mail,
 } from "lucide-react";
-
-const services = [
-	{ name: "Full Stack Digital Marketing", href: "/services/digital-marketing-agency" },
-	{ name: "AI SEO Services", href: "/services/AI-SEO-Service-Agency" },
-	{ name: "Social Media Management", href: "/services/social-media-marketing-agency" },
-	{ name: "PPC Advertising", href: "/services/ppc-management-services" },
-	{ name: "Web Development", href: "/services/custom-web-development-services" },
-	{ name: "UI/UX Design", href: "/services/web-design-service" },
-	{ name: "Video Editing", href: "/services/professional-video-editing-services" },
-	{ name: "Motion Graphics", href: "/services/motion-graphics-services-company" },
-	{ name: "Shopify Development", href: "/services/shopify-website-development-service" },
-];
-
-const socials = {
-	facebook: "https://www.facebook.com/profile.php?id=61586166715142",
-	instagram: "https://www.instagram.com/webest_one/",
-	linkedin: "https://www.linkedin.com/company/webestone",
-	youtube: "https://www.youtube.com/@webestone",
-	whatsapp: "+8801333600272",
-	email: "webestone@gmail.com",
-};
+import { useContent } from "../context/ContentContext";
 
 export default function Footer() {
+	const { socials, contact, footer, site } = useContent();
+
 	return (
 		<footer className="relative bg-black/40 backdrop-blur-xl border-t border-white/5 pt-20 pb-10 overflow-hidden text-neutral-300">
 			{/* Bottom Left Green Glow */}
@@ -46,8 +28,8 @@ export default function Footer() {
 						<div className="space-y-6">
 							<div className="h-12 flex items-center">
 								<img
-									src={logo}
-									alt="Webestone Logo"
+									src={site?.logoUrl || logo}
+									alt={site?.logoText || "Webestone Logo"}
 									className="h-full w-auto object-contain"
 								/>
 							</div>
@@ -55,10 +37,10 @@ export default function Footer() {
 							<div className="space-y-1">
 								<p className="text-white font-medium text-sm">Drop us an email</p>
 								<a
-									href={`mailto:${socials.email}`}
+									href={`mailto:${socials?.email || ""}`}
 									className="text-lg text-white font-bold hover:text-neon-green transition-colors block"
 								>
-									{socials.email}
+									{socials?.email || ""}
 								</a>
 							</div>
 						</div>
@@ -66,13 +48,13 @@ export default function Footer() {
 						<div className="space-y-4">
 							<div>
 								<p className="text-white font-bold text-lg">Location</p>
-								<p className="text-neutral-400">Dhaka, Bangladesh</p>
+								<p className="text-neutral-400">{contact?.address || ""}</p>
 							</div>
 							{/* Mini Map */}
 							<div className="relative group/map overflow-hidden rounded-2xl h-40 w-full border border-white/5 bg-neutral-900 shadow-2xl">
 								<div className="absolute inset-0 bg-black/60 group-hover/map:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
 								<iframe
-									src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233667.8223908687!2d90.279237!3d23.7808875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087021c81%3A0x629533f81156637e!2sDhaka!5e0!3m2!1sen!2sbd!4v1707292200000!5m2!1sen!2sbd"
+									src={contact?.mapUrl || ""}
 									width="100%"
 									height="100%"
 									style={{
@@ -92,7 +74,7 @@ export default function Footer() {
 					<div className="lg:col-span-3 space-y-6">
 						<p className="text-white font-bold text-lg">Core Services</p>
 						<ul className="space-y-3">
-							{services.map((service, index) => (
+							{(footer?.serviceLinks || []).map((service, index) => (
 								<li key={index}>
 									<Link
 										to={service.href}
@@ -180,7 +162,7 @@ export default function Footer() {
 							<p className="text-white font-bold text-lg">Get in Touch</p>
 							<div className="flex items-center gap-4">
 								<a
-									href={socials.facebook}
+									href={socials?.facebook || "#"}
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label="Facebook"
@@ -189,7 +171,7 @@ export default function Footer() {
 									<Facebook className="w-5 h-5 fill-current" />
 								</a>
 								<a
-									href={socials.instagram}
+									href={socials?.instagram || "#"}
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label="Instagram"
@@ -198,7 +180,7 @@ export default function Footer() {
 									<Instagram className="w-5 h-5" />
 								</a>
 								<a
-									href={`https://wa.me/${socials.whatsapp}`}
+									href={socials?.whatsapp ? `https://wa.me/${socials.whatsapp}` : "#"}
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label="WhatsApp"
@@ -207,7 +189,7 @@ export default function Footer() {
 									<MessageCircle className="w-5 h-5 fill-current" />
 								</a>
 								<a
-									href={socials.linkedin}
+									href={socials?.linkedin || "#"}
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label="LinkedIn"
@@ -216,7 +198,7 @@ export default function Footer() {
 									<Linkedin className="w-5 h-5 fill-current" />
 								</a>
 								<a
-									href={socials.youtube}
+									href={socials?.youtube || "#"}
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label="YouTube"
@@ -230,7 +212,7 @@ export default function Footer() {
 						{/* Email Button Widget */}
 						<div className="self-start lg:self-end mt-8 lg:mt-auto">
 							<a
-								href={`mailto:${socials.email}`}
+								href={`mailto:${socials?.email || ""}`}
 								className="inline-flex items-center gap-3 bg-[#87E65C] hover:bg-[#87E65C]/90 text-blue-900 px-6 py-3 rounded-lg font-bold transition-colors shadow-lg shadow-[#87E65C]/20"
 							>
 								<div className="p-1 bg-white/20 rounded">
@@ -248,7 +230,7 @@ export default function Footer() {
 				</div>
 
 				<div className="mt-20 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-neutral-600 text-sm">
-					<p>© {new Date().getFullYear()} WeBestOne. All rights reserved.</p>
+					<p>{footer?.copyright || `© ${new Date().getFullYear()} WeBestOne. All rights reserved.`}</p>
 					<div className="flex items-center gap-4">
 						<Link
 							to="/terms-and-conditions"

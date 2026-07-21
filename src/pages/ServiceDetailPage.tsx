@@ -37,7 +37,7 @@ export default function ServiceDetailPage() {
 	};
 
 	return (
-		<main className="relative min-h-screen text-white pt-20 overflow-hidden bg-black">
+		<main className="relative min-h-screen text-white pt-20 overflow-x-hidden bg-black">
 			<SEO 
 				title={page.metaTitle || `${page.h1} - WeBestOne`} 
 				description={page.metaDescription || page.description || ""} 

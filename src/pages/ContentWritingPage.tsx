@@ -26,6 +26,8 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import SEO from "../components/SEO";
+import { useContent } from "../context/ContentContext";
+import AdminServiceImageEditor from "../components/admin/AdminServiceImageEditor";
 
 const contentWritingSchema = {
   "@context": "https://schema.org",
@@ -51,7 +53,7 @@ const contentWritingSchema = {
         "name": "WeBestOne",
         "url": "https://webestone.com",
         "logo": "https://webestone.com/favicon.png",
-        "telephone": "+8801333600272",
+        "telephone": "+8801815025322",
         "email": "webestone@gmail.com",
         "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
       },
@@ -146,56 +148,36 @@ const services = [
     icon: <Globe className="w-7 h-7" />,
     title: "Website Copywriting",
     desc: "Clear website messaging designed to improve trust, engagement, and conversions from the very first interaction.",
-    color: "from-blue-500/20 to-purple-500/20",
-    border: "border-blue-500/30",
     tags: ["Website content writing services", "Business copywriting agency", "Homepage copywriting", "Conversion copywriting"]
   },
   {
     icon: <Search className="w-7 h-7" />,
     title: "Blog and SEO Content Writing",
     desc: "Search-focused blog writing built around search intent, keyword strategy, and long-term organic traffic growth.",
-    color: "from-emerald-500/20 to-cyan-500/20",
-    border: "border-emerald-500/30",
     tags: ["SEO content writing", "Expert blog writing agency", "Keyword optimization", "Long-form content marketing"]
   },
   {
     icon: <Megaphone className="w-7 h-7" />,
     title: "Social Media Copywriting",
     desc: "Short-form messaging designed to stop scrolling, increase engagement, and strengthen brand personality.",
-    color: "from-violet-500/20 to-indigo-500/20",
-    border: "border-violet-500/30",
     tags: ["Social media marketing", "Caption writing", "Ad copy", "Campaign messaging"]
   },
   {
     icon: <ShoppingCart className="w-7 h-7" />,
     title: "E-commerce and Product Copywriting",
     desc: "Conversion-focused product content designed for Shopify, WordPress, and growing online stores.",
-    color: "from-orange-500/20 to-red-500/20",
-    border: "border-orange-500/30",
     tags: ["E-commerce content writing", "Product description service", "Shopify copywriting", "Sales copywriting"]
   },
   {
     icon: <Mail className="w-7 h-7" />,
     title: "Email and Newsletter Campaigns",
     desc: "Strategic email marketing content designed to nurture leads, strengthen customer retention, and keep audiences engaged.",
-    color: "from-pink-500/20 to-rose-500/20",
-    border: "border-pink-500/30",
     tags: ["Email copywriting", "Newsletter campaigns", "Drip sequences", "Retention emails"]
-  },
-  {
-    icon: <FileText className="w-7 h-7" />,
-    title: "Video Scriptwriting",
-    desc: "Structured scripts for advertisements, explainers, YouTube videos, and branded campaigns that hold attention naturally.",
-    color: "from-teal-500/20 to-green-500/20",
-    border: "border-teal-500/30",
-    tags: ["Video scriptwriting", "Creative writing", "Storytelling scripts", "Video campaign writing"]
   },
   {
     icon: <BookOpen className="w-7 h-7" />,
     title: "Content Strategy and Planning",
     desc: "Structured content strategy services designed around SEO, consistency, and scalable long-term growth.",
-    color: "from-purple-500/20 to-pink-500/20",
-    border: "border-purple-500/30",
     tags: ["Content strategy services", "Editorial calendar", "SEO strategy", "Content ecosystems"]
   }
 ];
@@ -247,29 +229,29 @@ const steps = [
     num: "02",
     title: "Strategy Development",
     desc: "We build a content roadmap around search intent, positioning, and messaging direction before writing begins.",
-    color: "text-cyan-400",
-    bg: "bg-cyan-400/10 border-cyan-400/30",
+    color: "text-emerald-400",
+    bg: "bg-emerald-400/10 border-emerald-400/30",
   },
   {
     num: "03",
     title: "Creation and Optimization",
     desc: "Our writers create content that balances readability, SEO structure, engagement, and conversion-focused storytelling.",
-    color: "text-blue-400",
-    bg: "bg-blue-400/10 border-blue-400/30",
+    color: "text-neon-green",
+    bg: "bg-neon-green/10 border-neon-green/30",
   },
   {
     num: "04",
     title: "Review and Refinement",
     desc: "Every piece is reviewed for tone, clarity, grammar, and brand consistency before delivery.",
-    color: "text-purple-400",
-    bg: "bg-purple-400/10 border-purple-400/30",
+    color: "text-emerald-400",
+    bg: "bg-emerald-400/10 border-emerald-400/30",
   },
   {
     num: "05",
     title: "Delivery and Performance Tracking",
     desc: "We deliver polished content with performance-focused recommendations designed for long-term growth.",
-    color: "text-pink-400",
-    bg: "bg-pink-400/10 border-pink-400/30",
+    color: "text-neon-green",
+    bg: "bg-neon-green/10 border-neon-green/30",
   },
 ];
 
@@ -281,7 +263,7 @@ const portfolio = [
     preview:
       "A 2,500-word SEO blog targeting 'AI IT solutions' — ranked page 1 on Google within 60 days, driving 4,200+ monthly organic visits.",
     tag: "Technology",
-    color: "border-neon-green/30 bg-neon-green/5",
+    color: "border-white/[0.08] bg-white/[0.02] hover:border-neon-green/30",
     tagColor: "bg-neon-green/20 text-neon-green",
   },
   {
@@ -291,8 +273,8 @@ const portfolio = [
     preview:
       "Complete website copy overhaul for a skincare brand — conversion rate improved by 38% within the first month after launch.",
     tag: "E-Commerce",
-    color: "border-blue-500/30 bg-blue-500/5",
-    tagColor: "bg-blue-500/20 text-blue-400",
+    color: "border-white/[0.08] bg-white/[0.02] hover:border-neon-green/30",
+    tagColor: "bg-neon-green/20 text-neon-green",
   },
   {
     type: "Email Sequence",
@@ -301,8 +283,8 @@ const portfolio = [
     preview:
       "Nurture sequence for an EdTech SaaS platform — average open rate of 62% and 28% trial-to-paid conversion rate.",
     tag: "Education",
-    color: "border-purple-500/30 bg-purple-500/5",
-    tagColor: "bg-purple-500/20 text-purple-400",
+    color: "border-white/[0.08] bg-white/[0.02] hover:border-neon-green/30",
+    tagColor: "bg-neon-green/20 text-neon-green",
   },
   {
     type: "Product Descriptions",
@@ -311,8 +293,8 @@ const portfolio = [
     preview:
       "Bulk product description writing for a tech e-commerce store — organic product page traffic increased by 210% in 3 months.",
     tag: "Retail",
-    color: "border-orange-500/30 bg-orange-500/5",
-    tagColor: "bg-orange-500/20 text-orange-400",
+    color: "border-white/[0.08] bg-white/[0.02] hover:border-neon-green/30",
+    tagColor: "bg-neon-green/20 text-neon-green",
   },
 ];
 
@@ -328,22 +310,22 @@ const metrics = [
     icon: <Users className="w-8 h-8" />,
     title: "User Engagement",
     desc: "Sharper messaging that increases interaction and audience retention.",
-    color: "text-cyan-400",
-    borderColor: "hover:border-cyan-400/30"
+    color: "text-emerald-400",
+    borderColor: "hover:border-emerald-400/30"
   },
   {
     icon: <Award className="w-8 h-8" />,
     title: "Brand Authority",
     desc: "Strategic positioning that strengthens credibility and trust.",
-    color: "text-purple-400",
-    borderColor: "hover:border-purple-400/30"
+    color: "text-neon-green",
+    borderColor: "hover:border-neon-green/30"
   },
   {
     icon: <BarChart3 className="w-8 h-8" />,
     title: "Conversion Growth",
     desc: "Clearer messaging designed to support stronger conversion rates and lead quality.",
-    color: "text-pink-400",
-    borderColor: "hover:border-pink-400/30"
+    color: "text-emerald-400",
+    borderColor: "hover:border-emerald-400/30"
   }
 ];
 
@@ -419,11 +401,14 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 
 /* ─── Page ─── */
 export default function ContentWritingPage() {
+  const { serviceImages } = useContent();
   return (
-    <main className="relative min-h-screen text-white bg-black overflow-hidden">
-      <SEO 
-        title="Content Writing Services | Creative Content Writing Agency" 
-        description="Expert Content Writing Services are designed to scale your brand with SEO optimized blogs, authority-building articles and a creative content writing team." 
+    <main className="relative min-h-screen text-white bg-black overflow-x-hidden">
+      <AdminServiceImageEditor serviceId="content-writing-services" />
+      <SEO
+        pageKey="content-writing-services"
+        title="Content Writing Services | Creative Content Writing Agency"
+        description="Expert Content Writing Services are designed to scale your brand with SEO optimized blogs, authority-building articles and a creative content writing team."
         schemaMarkup={contentWritingSchema}
       />
       {/* Global background */}
@@ -456,10 +441,10 @@ export default function ContentWritingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-[1.15] tracking-tight"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-black leading-[1.1] tracking-tight"
             >
               Content Writing Services That Make{" "}
-              <span className="bg-gradient-to-r from-neon-green to-cyan-400 bg-clip-text text-transparent block">
+              <span className="bg-gradient-to-r from-neon-green to-emerald-400 bg-clip-text text-transparent block">
                 Brands Sound Worth Paying Attention To
               </span>
             </motion.h1>
@@ -469,17 +454,15 @@ export default function ContentWritingPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="space-y-3"
+              className="text-neutral-400 text-sm md:text-base leading-relaxed space-y-4 max-w-xl font-medium"
             >
-              <p className="text-neutral-400 text-sm md:text-base leading-relaxed">
-                Most brands are posting constantly.<br />
-                Blogs. Emails. Captions. Landing pages.<br />
-                And almost all of it disappears five seconds later. Not because people hate content. Because most content sounds exactly the same.
+              <p>
+                <span className="text-white font-semibold">Most brands are posting constantly. Blogs, emails, captions, landing pages. Yet almost all of it disappears five seconds later.</span> Not because people hate content, but because most content sounds exactly the same.
               </p>
-              <p className="text-neutral-300 text-sm md:text-base leading-relaxed">
-                <strong>WeBestOne</strong> builds content writing services designed to make people stop, feel something, and keep reading. We combine audience psychology, search behavior, and sharp messaging to create content that feels impossible to skim past.
+              <p>
+                <span className="text-white font-semibold">WeBestOne builds content writing services designed to make people stop, feel something and keep reading.</span> We combine audience psychology, search behavior and sharp messaging to create content that feels impossible to skim past.
               </p>
-              <p className="text-neon-green font-bold text-sm tracking-wide border-l-2 border-neon-green pl-3 py-0.5">
+              <p className="text-neon-green font-bold text-sm tracking-wide border-l-2 border-neon-green pl-3 py-0.5 mt-2">
                 Because good content gets seen. Great content gets remembered.
               </p>
             </motion.div>
@@ -530,112 +513,122 @@ export default function ContentWritingPage() {
             className="relative h-[420px] flex items-center justify-center"
           >
             {/* Ambient glow */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-blue-500/10 to-purple-500/10 rounded-full blur-[80px] pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-neon-green/10 via-emerald-500/10 to-neutral-900/10 rounded-full blur-[80px] pointer-events-none" />
 
-            {/* ── Card 1: SEO Optimization ── */}
-            <motion.div
-              animate={{ y: [-8, 8, -8] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-[10%] left-[5%] w-[62%] p-4 rounded-2xl bg-neutral-900/80 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-lg bg-neon-green/15 border border-neon-green/30 flex items-center justify-center">
-                  <Search className="w-4 h-4 text-neon-green" />
-                </div>
-                <div>
-                  <p className="text-white text-sm font-semibold">SEO Optimization</p>
-                  <p className="text-neon-green text-[10px] font-bold tracking-widest uppercase">Ranking 1st</p>
-                </div>
-              </div>
-              {/* Progress bar */}
-              <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+            {serviceImages["content-writing-services"] ? (
+              <img
+                src={serviceImages["content-writing-services"]}
+                alt="Content Writing Services"
+                className="w-[90%] md:w-[80%] max-h-full object-contain rounded-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-20"
+              />
+            ) : (
+              <>
+                {/* ── Card 1: SEO Optimization ── */}
                 <motion.div
-                  initial={{ width: "0%" }}
-                  animate={{ width: "92%" }}
-                  transition={{ duration: 1.5, delay: 0.8, ease: "easeOut" }}
-                  className="h-full bg-gradient-to-r from-neon-green to-cyan-400 rounded-full"
-                />
-              </div>
-              <div className="flex justify-between mt-1">
-                <span className="text-neutral-500 text-[10px]">Organic Rank Score</span>
-                <span className="text-neon-green text-[10px] font-mono">92%</span>
-              </div>
-            </motion.div>
+                  animate={{ y: [-8, 8, -8] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute top-[10%] left-[5%] w-[62%] p-4 rounded-2xl bg-neutral-900/80 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-neon-green/15 border border-neon-green/30 flex items-center justify-center">
+                      <Search className="w-4 h-4 text-neon-green" />
+                    </div>
+                    <div>
+                      <p className="text-white text-sm font-semibold">SEO Optimization</p>
+                      <p className="text-neon-green text-[10px] font-bold tracking-widest uppercase">Ranking 1st</p>
+                    </div>
+                  </div>
+                  {/* Progress bar */}
+                  <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: "0%" }}
+                      animate={{ width: "92%" }}
+                      transition={{ duration: 1.5, delay: 0.8, ease: "easeOut" }}
+                      className="h-full bg-gradient-to-r from-neon-green to-emerald-400 rounded-full"
+                    />
+                  </div>
+                  <div className="flex justify-between mt-1">
+                    <span className="text-neutral-500 text-[10px]">Organic Rank Score</span>
+                    <span className="text-neon-green text-[10px] font-mono">92%</span>
+                  </div>
+                </motion.div>
 
-            {/* ── Card 2: Website Copy ── */}
-            <motion.div
-              animate={{ y: [8, -8, 8] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute bottom-[12%] right-[3%] w-[58%] p-4 rounded-2xl bg-neutral-900/80 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-500/15 border border-blue-500/30 flex items-center justify-center">
-                  <PenTool className="w-4 h-4 text-blue-400" />
-                </div>
-                <div>
-                  <p className="text-white text-sm font-semibold">Website Copy</p>
-                  <p className="text-blue-400 text-[10px] font-bold tracking-widest uppercase">Converting</p>
-                </div>
-              </div>
-              <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                {/* ── Card 2: Website Copy ── */}
                 <motion.div
-                  initial={{ width: "0%" }}
-                  animate={{ width: "78%" }}
-                  transition={{ duration: 1.5, delay: 1.0, ease: "easeOut" }}
-                  className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
-                />
-              </div>
-              <div className="flex justify-between mt-1">
-                <span className="text-neutral-500 text-[10px]">Conversion Rate</span>
-                <span className="text-blue-400 text-[10px] font-mono">+38%</span>
-              </div>
-            </motion.div>
+                  animate={{ y: [8, -8, 8] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                  className="absolute bottom-[12%] right-[3%] w-[58%] p-4 rounded-2xl bg-neutral-900/80 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-neon-green/15 border border-neon-green/30 flex items-center justify-center">
+                      <PenTool className="w-4 h-4 text-neon-green" />
+                    </div>
+                    <div>
+                      <p className="text-white text-sm font-semibold">Website Copy</p>
+                      <p className="text-neon-green text-[10px] font-bold tracking-widest uppercase">Converting</p>
+                    </div>
+                  </div>
+                  <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: "0%" }}
+                      animate={{ width: "78%" }}
+                      transition={{ duration: 1.5, delay: 1.0, ease: "easeOut" }}
+                      className="h-full bg-gradient-to-r from-neon-green to-emerald-400 rounded-full"
+                    />
+                  </div>
+                  <div className="flex justify-between mt-1">
+                    <span className="text-neutral-500 text-[10px]">Conversion Rate</span>
+                    <span className="text-neon-green text-[10px] font-mono">+38%</span>
+                  </div>
+                </motion.div>
 
-            {/* ── Card 3: Blog Traffic (small) ── */}
-            <motion.div
-              animate={{ y: [-5, 10, -5] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute top-[38%] right-[2%] w-[44%] p-3.5 rounded-2xl bg-neutral-900/80 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-            >
-              <div className="flex items-center gap-2.5 mb-2.5">
-                <div className="w-7 h-7 rounded-lg bg-purple-500/15 border border-purple-500/30 flex items-center justify-center">
-                  <TrendingUp className="w-3.5 h-3.5 text-purple-400" />
-                </div>
-                <div>
-                  <p className="text-white text-xs font-semibold">Blog Traffic</p>
-                  <p className="text-purple-400 text-[10px] font-bold tracking-widest uppercase">Growing</p>
-                </div>
-              </div>
-              <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                {/* ── Card 3: Blog Traffic (small) ── */}
                 <motion.div
-                  initial={{ width: "0%" }}
-                  animate={{ width: "85%" }}
-                  transition={{ duration: 1.5, delay: 1.2, ease: "easeOut" }}
-                  className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
-                />
-              </div>
-              <div className="flex justify-between mt-1">
-                <span className="text-neutral-500 text-[10px]">Traffic Growth</span>
-                <span className="text-purple-400 text-[10px] font-mono">320%</span>
-              </div>
-            </motion.div>
+                  animate={{ y: [-5, 10, -5] }}
+                  transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  className="absolute top-[38%] right-[2%] w-[44%] p-3.5 rounded-2xl bg-neutral-900/80 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                >
+                  <div className="flex items-center gap-2.5 mb-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
+                      <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+                    </div>
+                    <div>
+                      <p className="text-white text-xs font-semibold">Blog Traffic</p>
+                      <p className="text-emerald-400 text-[10px] font-bold tracking-widest uppercase">Growing</p>
+                    </div>
+                  </div>
+                  <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: "0%" }}
+                      animate={{ width: "85%" }}
+                      transition={{ duration: 1.5, delay: 1.2, ease: "easeOut" }}
+                      className="h-full bg-gradient-to-r from-emerald-400 to-neon-green rounded-full"
+                    />
+                  </div>
+                  <div className="flex justify-between mt-1">
+                    <span className="text-neutral-500 text-[10px]">Traffic Growth</span>
+                    <span className="text-emerald-400 text-[10px] font-mono">320%</span>
+                  </div>
+                </motion.div>
 
-            {/* ── Floating icon badge ── */}
-            <motion.div
-              animate={{ x: [0, 8, 0], y: [0, -6, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-[8%] right-[8%] w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.2)]"
-            >
-              <TrendingUp className="w-5 h-5 text-cyan-400" />
-            </motion.div>
+                {/* ── Floating icon badge ── */}
+                <motion.div
+                  animate={{ x: [0, 8, 0], y: [0, -6, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute top-[8%] right-[8%] w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.2)]"
+                >
+                  <TrendingUp className="w-5 h-5 text-cyan-400" />
+                </motion.div>
 
-            <motion.div
-              animate={{ x: [0, -6, 0], y: [0, 8, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute bottom-[8%] left-[8%] w-9 h-9 rounded-xl bg-neon-green/15 border border-neon-green/30 flex items-center justify-center"
-            >
-              <FileText className="w-4 h-4 text-neon-green" />
-            </motion.div>
+                <motion.div
+                  animate={{ x: [0, -6, 0], y: [0, 8, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  className="absolute bottom-[8%] left-[8%] w-9 h-9 rounded-xl bg-neon-green/15 border border-neon-green/30 flex items-center justify-center"
+                >
+                  <FileText className="w-4 h-4 text-neon-green" />
+                </motion.div>
+              </>
+            )}
           </motion.div>
 
         </div>
@@ -693,7 +686,7 @@ export default function ContentWritingPage() {
       {/* ══════════════════════════════════════════
           3. CORE SERVICES
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 py-24 px-6">
+      <section className="relative z-10 pt-16 pb-12 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
             variants={fadeUp}
@@ -703,12 +696,12 @@ export default function ContentWritingPage() {
             className="text-center mb-14 space-y-4"
           >
             <div className="flex items-center justify-center gap-3">
-              <span className="w-8 h-[1px] bg-cyan-400/60" />
-              <span className="text-cyan-400 font-mono text-xs tracking-[0.25em] uppercase">What We Write</span>
-              <span className="w-8 h-[1px] bg-cyan-400/60" />
+              <span className="w-8 h-[1px] bg-neon-green/60" />
+              <span className="text-neon-green font-mono text-xs tracking-[0.25em] uppercase">What We Write</span>
+              <span className="w-8 h-[1px] bg-neon-green/60" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold">
-              Our Core <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Content Writing Services</span>
+              Our Core <span className="text-neon-green">Content Writing Services</span>
             </h2>
             <p className="text-neutral-400 max-w-3xl mx-auto leading-relaxed text-base md:text-lg">
               Content is no longer just a marketing task. It shapes how people see your brand before they ever contact you. That is why we build content systems designed for visibility, authority, engagement, and long-term growth across search, social, websites, and campaigns.
@@ -726,10 +719,10 @@ export default function ContentWritingPage() {
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className={`p-6 rounded-2xl border ${s.border} bg-gradient-to-br ${s.color} hover:scale-[1.02] transition-all duration-300 group flex flex-col justify-between`}
+                className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.02] hover:border-neon-green/30 hover:bg-neon-green/[0.02] hover:scale-[1.02] transition-all duration-300 group flex flex-col justify-between"
               >
                 <div>
-                  <div className="text-white mb-4 group-hover:scale-110 transition-transform duration-300">{s.icon}</div>
+                  <div className="text-neon-green mb-4 group-hover:scale-110 transition-transform duration-300">{s.icon}</div>
                   <h3 className="text-white font-bold text-lg mb-2">{s.title}</h3>
                   <p className="text-neutral-400 text-sm leading-relaxed mb-4">{s.desc}</p>
                 </div>
@@ -751,7 +744,7 @@ export default function ContentWritingPage() {
       {/* ══════════════════════════════════════════
           4. INDUSTRIES
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 py-24 px-6 bg-white/[0.02]">
+      <section className="relative z-10 pt-12 pb-12 px-6 bg-white/[0.02]">
         <div className="max-w-5xl mx-auto">
           <motion.div
             variants={fadeUp}
@@ -761,12 +754,12 @@ export default function ContentWritingPage() {
             className="text-center mb-14 space-y-4"
           >
             <div className="flex items-center justify-center gap-3">
-              <span className="w-8 h-[1px] bg-blue-400/60" />
-              <span className="text-blue-400 font-mono text-xs tracking-[0.25em] uppercase">Industries We Serve</span>
-              <span className="w-8 h-[1px] bg-blue-400/60" />
+              <span className="w-8 h-[1px] bg-neon-green/60" />
+              <span className="text-neon-green font-mono text-xs tracking-[0.25em] uppercase">Industries We Serve</span>
+              <span className="w-8 h-[1px] bg-neon-green/60" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold">
-              Industries <span className="text-blue-400">WeBestOne Supports</span>
+              Industries <span className="text-neon-green">WeBestOne Supports</span>
             </h2>
             <p className="text-neutral-400 max-w-3xl mx-auto leading-relaxed text-base md:text-lg">
               Every industry has its own tone, pace, and audience behavior. We shape content around how people actually search, think, compare, and decide so brands feel relevant inside their market instead of sounding generic everywhere.
@@ -784,10 +777,10 @@ export default function ContentWritingPage() {
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:border-blue-400/30 hover:bg-blue-400/[0.04] transition-all duration-300 group flex flex-col gap-3"
+                className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:border-neon-green/30 hover:bg-neon-green/[0.04] transition-all duration-300 group flex flex-col gap-3"
               >
                 <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-5 h-5 text-blue-400 shrink-0 group-hover:scale-110 transition-transform" />
+                  <CheckCircle2 className="w-5 h-5 text-neon-green shrink-0 group-hover:scale-110 transition-transform" />
                   <h3 className="text-white font-bold text-sm md:text-base">{ind.title}</h3>
                 </div>
                 <p className="text-neutral-400 text-xs leading-relaxed">{ind.desc}</p>
@@ -801,9 +794,9 @@ export default function ContentWritingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-16 text-center max-w-2xl mx-auto p-8 rounded-3xl border border-blue-500/10 bg-blue-500/[0.02]"
+            className="mt-16 text-center max-w-2xl mx-auto p-8 rounded-3xl border border-neon-green/10 bg-neon-green/[0.02]"
           >
-            <Quote className="w-8 h-8 text-blue-400 mx-auto mb-4 opacity-40" />
+            <Quote className="w-8 h-8 text-neon-green mx-auto mb-4 opacity-40" />
             <p className="text-lg md:text-xl font-medium text-neutral-300 italic">
               “Every industry has its own rhythm. Great content sounds like it belongs there naturally.”
             </p>
@@ -814,7 +807,7 @@ export default function ContentWritingPage() {
       {/* ══════════════════════════════════════════
           5. OUR PROCESS
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 py-24 px-6">
+      <section className="relative z-10 pt-12 pb-12 px-6">
         <div className="max-w-5xl mx-auto">
           <motion.div
             variants={fadeUp}
@@ -824,12 +817,12 @@ export default function ContentWritingPage() {
             className="text-center mb-16 space-y-4"
           >
             <div className="flex items-center justify-center gap-3">
-              <span className="w-8 h-[1px] bg-purple-400/60" />
-              <span className="text-purple-400 font-mono text-xs tracking-[0.25em] uppercase">How We Work</span>
-              <span className="w-8 h-[1px] bg-purple-400/60" />
+              <span className="w-8 h-[1px] bg-neon-green/60" />
+              <span className="text-neon-green font-mono text-xs tracking-[0.25em] uppercase">How We Work</span>
+              <span className="w-8 h-[1px] bg-neon-green/60" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold">
-              Our Process: From <span className="text-purple-400">Strategy</span> to Search Visibility
+              Our Process: From <span className="text-neon-green">Strategy</span> to Search Visibility
             </h2>
             <p className="text-neutral-400 max-w-2xl mx-auto leading-relaxed text-base md:text-lg">
               Strong content is never random. Every project follows a structured process designed to balance visibility, clarity, engagement, and business goals without losing the human side of the writing.
@@ -838,7 +831,7 @@ export default function ContentWritingPage() {
 
           <div className="relative">
             {/* Connecting line */}
-            <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-neon-green via-cyan-400 via-blue-400 via-purple-400 to-pink-400 opacity-30 hidden sm:block" />
+            <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-neon-green via-emerald-400 to-neon-green opacity-30 hidden sm:block" />
 
             <div className="space-y-8">
               {steps.map((step, i) => (
@@ -856,7 +849,7 @@ export default function ContentWritingPage() {
                   </div>
                   {/* Content */}
                   <div className={`flex-1 p-6 rounded-2xl border border-white/[0.08] bg-white/[0.02] hover:border-white/20 transition-colors duration-300 ${i % 2 !== 0 ? "md:text-right" : ""}`}>
-                    <h3 className={`text-white font-bold text-lg mb-2 ${step.color}`}>{step.title}</h3>
+                    <h3 className={`font-bold text-lg mb-2 ${step.color}`}>{step.title}</h3>
                     <p className="text-neutral-400 text-sm leading-relaxed">{step.desc}</p>
                   </div>
                 </motion.div>
@@ -869,7 +862,7 @@ export default function ContentWritingPage() {
       {/* ══════════════════════════════════════════
           6. CONTENT PORTFOLIO
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 py-24 px-6 bg-white/[0.02]">
+      <section className="relative z-10 pt-12 pb-12 px-6 bg-white/[0.02]">
         <div className="max-w-6xl mx-auto">
           <motion.div
             variants={fadeUp}
@@ -879,13 +872,13 @@ export default function ContentWritingPage() {
             className="text-center mb-14 space-y-3"
           >
             <div className="flex items-center justify-center gap-3">
-              <span className="w-8 h-[1px] bg-orange-400/60" />
-              <span className="text-orange-400 font-mono text-xs tracking-[0.25em] uppercase">Portfolio</span>
-              <span className="w-8 h-[1px] bg-orange-400/60" />
+              <span className="w-8 h-[1px] bg-neon-green/60" />
+              <span className="text-neon-green font-mono text-xs tracking-[0.25em] uppercase">Portfolio</span>
+              <span className="w-8 h-[1px] bg-neon-green/60" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold">
               Content Writing{" "}
-              <span className="text-orange-400">Samples & Results</span>
+              <span className="text-neon-green">Samples & Results</span>
             </h2>
             <p className="text-neutral-400 max-w-xl mx-auto">
               Real work. Real results. A glimpse into what we've created for our clients.
@@ -903,7 +896,7 @@ export default function ContentWritingPage() {
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className={`p-6 rounded-2xl border ${p.color} hover:scale-[1.01] transition-all duration-300`}
+                className={`p-6 rounded-2xl ${p.color} hover:scale-[1.01] transition-all duration-300`}
               >
                 <div className="flex items-center gap-3 mb-4">
                   <span className={`text-xs font-bold px-3 py-1 rounded-full ${p.tagColor}`}>{p.type}</span>
@@ -925,7 +918,7 @@ export default function ContentWritingPage() {
           >
             <Link
               to="/contact-us"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-orange-400/40 text-orange-400 font-semibold hover:bg-orange-400/10 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-neon-green/40 text-neon-green font-semibold hover:bg-neon-green/10 transition-all duration-300"
             >
               Request Full Portfolio <ArrowRight className="w-4 h-4" />
             </Link>
@@ -936,7 +929,7 @@ export default function ContentWritingPage() {
       {/* ══════════════════════════════════════════
           7. RESULTS / METRICS
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 py-24 px-6">
+      <section className="relative z-10 pt-12 pb-12 px-6">
         <div className="max-w-5xl mx-auto">
           <motion.div
             variants={fadeUp}
@@ -999,7 +992,7 @@ export default function ContentWritingPage() {
       {/* ══════════════════════════════════════════
           8. TESTIMONIALS
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 py-24 px-6 bg-white/[0.02]">
+      <section className="relative z-10 pt-12 pb-12 px-6 bg-white/[0.02]">
         <div className="max-w-6xl mx-auto">
           <motion.div
             variants={fadeUp}
@@ -1009,13 +1002,13 @@ export default function ContentWritingPage() {
             className="text-center mb-14 space-y-3"
           >
             <div className="flex items-center justify-center gap-3">
-              <span className="w-8 h-[1px] bg-pink-400/60" />
-              <span className="text-pink-400 font-mono text-xs tracking-[0.25em] uppercase">Client Feedback</span>
-              <span className="w-8 h-[1px] bg-pink-400/60" />
+              <span className="w-8 h-[1px] bg-neon-green/60" />
+              <span className="text-neon-green font-mono text-xs tracking-[0.25em] uppercase">Client Feedback</span>
+              <span className="w-8 h-[1px] bg-neon-green/60" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold">
               What Our{" "}
-              <span className="text-pink-400">Clients Say</span>
+              <span className="text-neon-green">Clients Say</span>
             </h2>
           </motion.div>
 
@@ -1030,9 +1023,9 @@ export default function ContentWritingPage() {
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:border-pink-400/30 transition-all duration-300 flex flex-col gap-4"
+                className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:border-neon-green/30 transition-all duration-300 flex flex-col gap-4"
               >
-                <Quote className="w-8 h-8 text-pink-400/60" />
+                <Quote className="w-8 h-8 text-neon-green/60" />
                 <p className="text-neutral-300 text-sm leading-relaxed flex-1">"{t.quote}"</p>
                 <div className="flex items-center gap-1 mb-1">
                   {Array.from({ length: t.rating }).map((_, s) => (
@@ -1052,7 +1045,7 @@ export default function ContentWritingPage() {
       {/* ══════════════════════════════════════════
           9. FAQ
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 py-24 px-6">
+      <section className="relative z-10 pt-12 pb-12 px-6">
         <div className="max-w-3xl mx-auto">
           <motion.div
             variants={fadeUp}
@@ -1062,9 +1055,9 @@ export default function ContentWritingPage() {
             className="text-center mb-14 space-y-3"
           >
             <div className="flex items-center justify-center gap-3">
-              <span className="w-8 h-[1px] bg-cyan-400/60" />
-              <span className="text-cyan-400 font-mono text-xs tracking-[0.25em] uppercase">FAQ</span>
-              <span className="w-8 h-[1px] bg-cyan-400/60" />
+              <span className="w-8 h-[1px] bg-neon-green/60" />
+              <span className="text-neon-green font-mono text-xs tracking-[0.25em] uppercase">FAQ</span>
+              <span className="w-8 h-[1px] bg-neon-green/60" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold">Frequently Asked Questions</h2>
             <p className="text-neutral-400">Everything you need to know before getting started.</p>
@@ -1089,7 +1082,7 @@ export default function ContentWritingPage() {
       {/* ══════════════════════════════════════════
           10. FINAL CTA
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 py-24 px-6">
+      <section className="relative z-10 pt-12 pb-24 px-6">
         <motion.div
           variants={fadeUp}
           initial="hidden"

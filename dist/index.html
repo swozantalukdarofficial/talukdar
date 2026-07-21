@@ -41,10 +41,59 @@
 				rel="stylesheet"
 			/>
 		</noscript>
-		<script type="module" crossorigin src="/assets/index-B9EH2Jc9.js"></script>
-		<link rel="modulepreload" crossorigin href="/assets/vendor-react-tk5S7hXq.js">
-		<link rel="modulepreload" crossorigin href="/assets/vendor-framer-yiHyuUU3.js">
-		<link rel="stylesheet" crossorigin href="/assets/index-CDb9JcRP.css">
+		<script>
+			window.addEventListener('error', function(e) {
+				var root = document.getElementById('root');
+				if (root && (!root.innerHTML || root.innerHTML.trim() === "")) {
+					var div = document.createElement('div');
+					div.style.position = 'fixed';
+					div.style.top = '0';
+					div.style.left = '0';
+					div.style.width = '100%';
+					div.style.height = '100%';
+					div.style.background = '#0a0000';
+					div.style.color = '#ff4a4a';
+					div.style.zIndex = '999999';
+					div.style.padding = '30px';
+					div.style.fontFamily = 'monospace';
+					div.style.whiteSpace = 'pre-wrap';
+					div.style.overflow = 'auto';
+					div.innerHTML = '<h2 style="color:white;margin-bottom:15px;font-size:22px;">❌ Global Script Error</h2>' + 
+						'<strong>Message:</strong> ' + e.message + '\n' +
+						'<strong>Source:</strong> ' + e.filename + ':' + e.lineno + ':' + e.colno + '\n\n' +
+						'<strong>Stack Trace:</strong>\n' + (e.error ? e.error.stack : 'N/A') + '\n\n' +
+						'<button onclick="location.reload()" style="background:#ff4a4a;color:white;border:none;padding:10px 20px;border-radius:5px;cursor:pointer;font-weight:bold;margin-top:15px;">Reload</button>';
+					document.body.appendChild(div);
+				}
+			});
+			window.addEventListener('unhandledrejection', function(e) {
+				var root = document.getElementById('root');
+				if (root && (!root.innerHTML || root.innerHTML.trim() === "")) {
+					var div = document.createElement('div');
+					div.style.position = 'fixed';
+					div.style.top = '0';
+					div.style.left = '0';
+					div.style.width = '100%';
+					div.style.height = '100%';
+					div.style.background = '#0a0000';
+					div.style.color = '#ff9f4a';
+					div.style.zIndex = '999999';
+					div.style.padding = '30px';
+					div.style.fontFamily = 'monospace';
+					div.style.whiteSpace = 'pre-wrap';
+					div.style.overflow = 'auto';
+					div.innerHTML = '<h2 style="color:white;margin-bottom:15px;font-size:22px;">⚠️ Unhandled Promise Rejection</h2>' + 
+						'<strong>Reason:</strong> ' + e.reason + '\n\n' +
+						'<strong>Stack Trace:</strong>\n' + (e.reason && e.reason.stack ? e.reason.stack : 'N/A') + '\n\n' +
+						'<button onclick="location.reload()" style="background:#ff9f4a;color:black;border:none;padding:10px 20px;border-radius:5px;cursor:pointer;font-weight:bold;margin-top:15px;">Reload</button>';
+					document.body.appendChild(div);
+				}
+			});
+		</script>
+		<script type="module" crossorigin src="/assets/index-C-lFK8BN.js"></script>
+		<link rel="modulepreload" crossorigin href="/assets/vendor-react-BonmjELg.js">
+		<link rel="modulepreload" crossorigin href="/assets/vendor-framer-C7IZiF01.js">
+		<link rel="stylesheet" crossorigin href="/assets/index-CMQHFuFV.css">
 	</head>
 	<body>
 		<div id="root"></div>

@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
+import { useContent } from "../context/ContentContext";
 
 export default function WhatsAppChat() {
+	const { socials } = useContent();
 	const [isOpen, setIsOpen] = useState(false);
 	const [message, setMessage] = useState("Hi, I want to discuss a project.");
 
-	const phoneNumber = "+8801333600272";
+	const phoneNumber = socials.whatsapp || "+8801815025322";
 
 	const handleSend = () => {
-		const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+		const cleanNumber = phoneNumber.replace(/[^0-9+]/g, "");
+		const url = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`;
 		window.open(url, "_blank");
 		setIsOpen(false);
 	};

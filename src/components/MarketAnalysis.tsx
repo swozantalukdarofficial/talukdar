@@ -4,15 +4,15 @@ import { TrendingUp, Users, Globe, BarChart2 } from "lucide-react";
 const stats = [
   {
     icon: Users,
-    value: "67M+",
+    value: "5.4B+",
     label: "Active Internet Users",
-    description: "Bangladesh holds one of South Asia's largest digital audiences. The brands that show up first in search and social capture the market.",
+    description: "The global market holds one of the largest digital audiences in history. The brands that show up first in search and social capture the market.",
     color: "text-blue-500",
     bg: "bg-blue-500/10",
   },
   {
     icon: Globe,
-    value: "45M+",
+    value: "5.0B+",
     label: "Social Media Users",
     description: "Daily active users across Facebook, Instagram, TikTok, LinkedIn, and YouTube. Massive reach for precision-targeted social media marketing campaigns.",
     color: "text-rose-500",

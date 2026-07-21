@@ -20,13 +20,15 @@ import aiLettersImg from "../assets/ai-letters.webp";
 import circuitBoardImg from "../assets/circuit-board.webp";
 import aiBrainImg from "../assets/ai-brain.webp";
 import SEO from "../components/SEO";
+import { useContent } from "../context/ContentContext";
+import AdminServiceImageEditor from "../components/admin/AdminServiceImageEditor";
 
 const offers = [
   {
     title: "AI SEO Strategy",
     desc: "Smart planning powered by AI search optimization for long-term, predictable growth.",
     icon: Zap,
-    color: "text-yellow-400"
+    color: "text-neon-green"
   },
   {
     title: "AI Search Consultancy",
@@ -38,37 +40,37 @@ const offers = [
     title: "GEO SEO",
     desc: "Visibility across generative discovery systems including Google SGE, Gemini, and Perplexity.",
     icon: Globe,
-    color: "text-emerald-400"
+    color: "text-neon-green"
   },
   {
     title: "AEO SEO",
     desc: "Content built for answer-based search so your brand appears where questions get answered.",
     icon: Target,
-    color: "text-rose-400"
+    color: "text-blue-400"
   },
   {
     title: "Entity Optimization",
     desc: "Clear signals across AI and search engines through structured data and knowledge graph integration.",
     icon: ShieldCheck,
-    color: "text-purple-400"
+    color: "text-neon-green"
   },
   {
     title: "Technical SEO",
     desc: "Fast, clean, and optimized performance with deep-level site health checks for crawlers.",
     icon: LineChart,
-    color: "text-orange-400"
+    color: "text-blue-400"
   },
   {
     title: "Digital PR",
     desc: "Authority building through link building and strategic brand mention outreach.",
     icon: Globe,
-    color: "text-cyan-400"
+    color: "text-neon-green"
   },
   {
     title: "LLM Performance Tracking",
     desc: "Track how AI systems surface your brand across ChatGPT, Gemini, Perplexity, and beyond.",
     icon: BarChart3,
-    color: "text-pink-400"
+    color: "text-blue-400"
   }
 ];
 
@@ -142,8 +144,8 @@ const seoServiceSchema = {
         "url": "https://webestone.com",
         "logo": "https://webestone.com/favicon.png"
       },
-      "areaServed": "BD",
-      "description": "Premium result-oriented SEO services in Bangladesh incorporating AI Search Optimization, SGE ranking, and ROI-based link building strategies."
+      "areaServed": "Global",
+      "description": "Premium result-oriented SEO services incorporating AI Search Optimization, SGE ranking, and ROI-based link building strategies."
     },
     {
       "@type": "FAQPage",
@@ -202,11 +204,18 @@ const seoServiceSchema = {
 };
 
 export default function SeoPage() {
+  const { serviceImages } = useContent();
+  const dashboardImg = serviceImages?.["AI-SEO-Service-Agency_dashboard"] || seoDashboardImg;
+  const lettersImg = serviceImages?.["AI-SEO-Service-Agency_letters"] || aiLettersImg;
+  const circuitImg = serviceImages?.["AI-SEO-Service-Agency_circuit"] || circuitBoardImg;
+  const brainImg = serviceImages?.["AI-SEO-Service-Agency_brain"] || aiBrainImg;
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
-    <main className="min-h-screen bg-black text-white overflow-hidden">
+    <main className="min-h-screen bg-black text-white overflow-x-hidden relative">
+      <AdminServiceImageEditor serviceId="AI-SEO-Service-Agency" />
       <SEO 
+        pageKey="AI-SEO-Service-Agency"
         title="AI SEO Service Agency | Advanced AI Driven SEO Solutions" 
         description="Leading AI SEO Service Agency helping brands grow visibility in AI search through LLM optimization, AI SEO, semantic search and high-impact content strategies." 
         schemaMarkup={seoServiceSchema}
@@ -224,7 +233,7 @@ export default function SeoPage() {
             <div className="space-y-2">
               <h1 className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-tight tracking-tight uppercase">
                 AI SEO Service Agency <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green via-teal-400 to-blue-500">
                   That Turns Visibility <br />Into Predictable Growth
                 </span>
               </h1>
@@ -259,7 +268,7 @@ export default function SeoPage() {
           >
             <div className="relative rounded-[3rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/5">
               <img 
-                src={aiRobotImg} 
+                src={serviceImages["AI-SEO-Service-Agency"] || aiRobotImg} 
                 alt="AI SEO Service Agency" 
                 className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
               />
@@ -267,8 +276,8 @@ export default function SeoPage() {
             </div>
             
             {/* Subtle Glows */}
-            <div className="absolute -z-10 -top-20 -right-20 w-80 h-80 bg-blue-600/10 blur-[120px] rounded-full"></div>
-            <div className="absolute -z-10 -bottom-20 -left-20 w-80 h-80 bg-purple-600/10 blur-[120px] rounded-full"></div>
+            <div className="absolute -z-10 -top-20 -right-20 w-80 h-80 bg-neon-green/10 blur-[120px] rounded-full"></div>
+            <div className="absolute -z-10 -bottom-20 -left-20 w-80 h-80 bg-blue-600/10 blur-[120px] rounded-full"></div>
           </motion.div>
         </div>
       </section>
@@ -284,7 +293,7 @@ export default function SeoPage() {
               className="space-y-8"
             >
               <div className="rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
-                <img src={seoDashboardImg} alt="SEO Dashboard" className="w-full h-auto" />
+                <img src={dashboardImg} alt="SEO Dashboard" className="w-full h-auto" />
               </div>
               <div className="space-y-6">
                 <h2 className="text-3xl md:text-4xl font-bold leading-tight">
@@ -312,12 +321,12 @@ export default function SeoPage() {
               className="space-y-8 lg:pt-12"
             >
               <div className="space-y-6">
-                <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-                  SEO That Drives <br />
+                 <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+                  <span className="text-neon-green">SEO</span> That Drives <br />
                   Real Business <br />
                   Outcomes
                 </h2>
-                <div className="w-24 h-1 bg-blue-600"></div>
+                <div className="w-24 h-1 bg-neon-green"></div>
                 <div className="space-y-4 text-neutral-400 text-sm md:text-base leading-relaxed">
                   <p>
                     Traffic does not grow a business. Decisions do. WebestOne works as an AI SEO service agency and a proven AI SEO company for businesses that want results tied to revenue, not reports.
@@ -327,8 +336,8 @@ export default function SeoPage() {
                   </p>
                 </div>
               </div>
-              <div className="p-8 rounded-2xl bg-blue-600/10 border border-blue-500/20">
-                <p className="text-blue-400 font-bold leading-relaxed">
+              <div className="p-8 rounded-2xl bg-neon-green/10 border border-neon-green/20">
+                <p className="text-neon-green font-bold leading-relaxed">
                   Show up early. Stay trusted. Win the decision through AI search optimization.
                 </p>
               </div>
@@ -348,7 +357,7 @@ export default function SeoPage() {
           >
             <div className="space-y-4">
               <h2 className="text-4xl md:text-5xl font-bold">
-                <span className="text-blue-500">AI SEO</span> Services
+                <span className="text-neon-green">AI SEO</span> Services
               </h2>
               <p className="text-xl font-bold text-white">SEO should not feel uncertain. It should feel controlled.</p>
             </div>
@@ -385,7 +394,7 @@ export default function SeoPage() {
             viewport={{ once: true }}
             className="rounded-[3rem] overflow-hidden shadow-2xl border border-white/5"
           >
-            <img src={aiLettersImg} alt="AI 3D" className="w-full h-auto" />
+            <img src={lettersImg} alt="AI 3D" className="w-full h-auto" />
           </motion.div>
         </div>
       </section>
@@ -402,7 +411,7 @@ export default function SeoPage() {
             <div className="space-y-4">
               <h2 className="text-4xl md:text-5xl font-bold">
                 Behind the success of our <br />
-                <span className="text-blue-500">AI SEO solutions</span>
+                <span className="text-neon-green">AI SEO solutions</span>
               </h2>
               <p className="text-lg font-bold text-white max-w-lg leading-snug">
                 This is not SEO with AI added later. It was built this way from the start.
@@ -421,7 +430,7 @@ export default function SeoPage() {
                   "Strategy adapts fast"
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-sm md:text-base text-neutral-300 font-medium">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-neon-green" />
                     {item}
                   </li>
                 ))}
@@ -445,7 +454,7 @@ export default function SeoPage() {
             viewport={{ once: true }}
             className="rounded-[3rem] overflow-hidden shadow-2xl border border-white/5"
           >
-            <img src={seoDashboardImg} alt="Success Analytics" className="w-full h-auto" />
+            <img src={dashboardImg} alt="Success Analytics" className="w-full h-auto" />
           </motion.div>
         </div>
       </section>
@@ -459,7 +468,7 @@ export default function SeoPage() {
             viewport={{ once: true }}
             className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/5 order-2 lg:order-1"
           >
-            <img src={circuitBoardImg} alt="AI Search Platforms" className="w-full h-auto" />
+            <img src={circuitImg} alt="AI Search Platforms" className="w-full h-auto" />
           </motion.div>
 
           <motion.div
@@ -469,8 +478,8 @@ export default function SeoPage() {
             className="space-y-8 order-1 lg:order-2"
           >
             <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              AI Search Platforms We <br />
-              Optimise For
+              <span className="text-neon-green">AI Search Platforms</span> <br />
+              We Optimise For
             </h2>
             <div className="space-y-6 text-neutral-400 leading-relaxed text-sm md:text-base">
               <p>
@@ -495,7 +504,7 @@ export default function SeoPage() {
           >
             <div className="space-y-4">
               <h2 className="text-4xl md:text-5xl font-bold uppercase">
-                GEO & AI SEO Services
+                <span className="text-neon-green">GEO & AI SEO</span> Services
               </h2>
               <p className="text-lg font-bold text-white">Generative Engine Optimization is now essential.</p>
             </div>
@@ -525,7 +534,7 @@ export default function SeoPage() {
             viewport={{ once: true }}
             className="rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-neutral-900/50 p-4"
           >
-            <img src={aiBrainImg} alt="GEO AI SEO" className="w-full h-auto rounded-[2rem]" />
+            <img src={brainImg} alt="GEO AI SEO" className="w-full h-auto rounded-[2rem]" />
           </motion.div>
         </div>
       </section>
@@ -534,7 +543,9 @@ export default function SeoPage() {
       <section className="py-24 px-6 relative z-10 bg-neutral-900/30 border-y border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">What We Offer</h2>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-neon-green via-teal-400 to-blue-500">
+              What We Offer
+            </h2>
             <div className="w-24 h-1 bg-neon-green mx-auto"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -564,11 +575,11 @@ export default function SeoPage() {
       <section className="py-24 px-6 relative z-10 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20 space-y-4">
-            <span className="text-purple-500 font-mono text-sm tracking-[0.3em] uppercase block">
+            <span className="text-neon-green font-mono text-sm tracking-[0.3em] uppercase block">
               —— How We Work ——
             </span>
             <h2 className="text-4xl md:text-6xl font-bold text-white">
-              Our <span className="text-purple-500">5-Step SEO</span> Process
+              Our <span className="text-neon-green">5-Step SEO</span> Process
             </h2>
             <p className="text-neutral-500 max-w-2xl mx-auto">
               A proven system that ensures every piece of strategy is strategic, polished, and results-driven.
@@ -606,7 +617,7 @@ export default function SeoPage() {
                   num: "04",
                   title: "Review & Refinement",
                   desc: "Every element goes through auditing, plagiarism checks, and SEO scoring. You get revision rounds to ensure it hits the mark.",
-                  color: "border-purple-500/30 text-purple-500 bg-purple-500/10",
+                  color: "border-neon-green/30 text-neon-green bg-neon-green/10",
                   align: "right"
                 },
                 {

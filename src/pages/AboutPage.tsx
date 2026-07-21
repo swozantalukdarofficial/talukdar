@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import * as LucideIcons from "lucide-react";
 import { 
   Users, 
@@ -23,75 +23,8 @@ import { Link } from "react-router-dom";
 import Awards from "../components/Awards";
 import Counter from "../components/Counter";
 import FAQ from "../components/FAQ";
-import servicesData from "../data/services.json";
 import SEO from "../components/SEO";
-
-const aboutSchema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://webestone.com/about-us#breadcrumb",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webestone.com" },
-        { "@type": "ListItem", "position": 2, "name": "About Us", "item": "https://webestone.com/about-us" }
-      ]
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://webestone.com/#organization",
-      "name": "WeBestOne",
-      "alternateName": "Webestone",
-      "url": "https://webestone.com",
-      "logo": "https://webestone.com/favicon.png",
-      "image": "https://webestone.com/uploads/1770469463115-Webestone-icon.png",
-      "description": "WeBestOne is a premium AI-powered digital marketing and web development agency in Bangladesh specializing in SEO, PPC, Social Media Marketing, UI/UX Design, and Custom Web Applications.",
-      "foundingDate": "2024",
-      "foundingLocation": { "@type": "Place", "name": "Dhaka, Bangladesh" },
-      "telephone": "+8801333600272",
-      "email": "webestone@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Mirpur, Dhaka",
-        "addressLocality": "Dhaka",
-        "addressRegion": "Dhaka Division",
-        "postalCode": "1216",
-        "addressCountry": "BD"
-      },
-      "sameAs": [
-        "https://www.facebook.com/profile.php?id=61586166715142",
-        "https://www.instagram.com/webest_one/",
-        "https://www.linkedin.com/company/webestone",
-        "https://www.youtube.com/@webestone"
-      ],
-      "knowsAbout": [
-        "AI SEO", "Search Engine Optimization", "Digital Marketing", "PPC Advertising",
-        "Social Media Marketing", "UI/UX Design", "Web Development", "Shopify Development",
-        "WordPress Development", "Content Marketing", "Video Editing", "Motion Graphics"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "WeBestOne Digital Services",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI SEO Services" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PPC Management" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media Marketing" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UI/UX Design" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Web Development" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Video Editing & Motion Graphics" } }
-        ]
-      }
-    },
-    {
-      "@type": "AboutPage",
-      "@id": "https://webestone.com/about-us#page",
-      "url": "https://webestone.com/about-us",
-      "name": "About WeBestOne - AI Digital Marketing Agency",
-      "description": "Learn about WeBestOne, a results-driven AI digital marketing agency based in Dhaka, Bangladesh. Discover our team, values, and mission to transform brands with AI-powered marketing.",
-      "publisher": { "@id": "https://webestone.com/#organization" }
-    }
-  ]
-};
+import { useContent } from "../context/ContentContext";
 
 // --- Sub-components for better modularity ---
 
@@ -141,12 +74,81 @@ function SectionHeading({ badge, title, desc, center = false }: { badge: string;
 
 export default function AboutPage() {
   const containerRef = useRef(null);
+  const { contact, socials, seo, services } = useContent();
+
+  const aboutSchema = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://webestone.com/about-us#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webestone.com" },
+          { "@type": "ListItem", "position": 2, "name": "About Us", "item": "https://webestone.com/about-us" }
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://webestone.com/#organization",
+        "name": "WeBestOne",
+        "alternateName": "Webestone",
+        "url": "https://webestone.com",
+        "logo": "https://webestone.com/favicon.png",
+        "image": "https://webestone.com/uploads/1770469463115-Webestone-icon.png",
+        "description": seo.about?.description || "WeBestOne is a premium AI-powered digital marketing and web development agency specializing in SEO, PPC, Social Media Marketing, UI/UX Design, and Custom Web Applications.",
+        "foundingDate": "2024",
+        "foundingLocation": { "@type": "Place", "name": "Perth, Australia" },
+        "telephone": contact.phone,
+        "email": contact.email,
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": contact.address.split(",")[0] || "25 The Avenue",
+          "addressLocality": contact.address.split(",")[1]?.trim() || "Crawley",
+          "addressRegion": "Western Australia",
+          "postalCode": "6009",
+          "addressCountry": "AU"
+        },
+        "sameAs": [
+          socials.facebook,
+          socials.instagram,
+          socials.linkedin,
+          socials.youtube
+        ],
+        "knowsAbout": [
+          "AI SEO", "Search Engine Optimization", "Digital Marketing", "PPC Advertising",
+          "Social Media Marketing", "UI/UX Design", "Web Development", "Shopify Development",
+          "WordPress Development", "Content Marketing", "Video Editing", "Motion Graphics"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "WeBestOne Digital Services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI SEO Services" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PPC Management" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media Marketing" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UI/UX Design" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Web Development" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Video Editing & Motion Graphics" } }
+          ]
+        }
+      },
+      {
+        "@type": "AboutPage",
+        "@id": "https://webestone.com/about-us#page",
+        "url": "https://webestone.com/about-us",
+        "name": seo.about?.title || "About WeBestOne - AI Digital Marketing Agency",
+        "description": seo.about?.description || "Learn about WeBestOne, a results-driven AI digital marketing agency based in Perth, Australia. Discover our team, values, and mission to transform brands with AI-powered marketing.",
+        "publisher": { "@id": "https://webestone.com/#organization" }
+      }
+    ]
+  }), [contact, socials, seo]);
 
   return (
     <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-neon-green/30">
       <SEO 
-        title="AI powered agency | Webestone About us" 
-        description="Leading AI powered agency providing AI SEO, SMM, Web Design, Development, Motion Graphics & Video Editing to transform your brand with AI solutions." 
+        pageKey="about"
+        title="About Us | WeBestOne - AI-Powered Digital Agency" 
+        description="Learn about WeBestOne, a full-service AI-powered digital agency helping businesses grow smarter, faster, and stronger." 
         schemaMarkup={aboutSchema}
       />
       
@@ -172,7 +174,7 @@ export default function AboutPage() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neon-green/30 bg-neon-green/10 text-neon-green text-sm font-bold backdrop-blur-md"
             >
               <Award className="w-4 h-4" />
-              Award Winning Digital Agency
+              Who We Are
             </motion.div>
 
             <motion.h1 
@@ -184,9 +186,9 @@ export default function AboutPage() {
               <span className="text-neon-green font-semibold text-sm md:text-base block mb-2 tracking-[0.15em] uppercase">
                 AI Powered Agency
               </span>
-              WE ARE <br />
+              MORE THAN <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green via-teal-400 to-blue-500">
-                OUTLIERS.
+                AN AGENCY.
               </span>
             </motion.h1>
 
@@ -196,7 +198,16 @@ export default function AboutPage() {
               transition={{ delay: 0.2, duration: 1 }}
               className="text-lg md:text-2xl text-neutral-400 max-w-xl leading-relaxed"
             >
-              Obsessed with perfection, fueled by innovation. We don't just follow digital trends—we create them.
+              We are a full-service destination for artificial intelligence powered digital solutions designed to help businesses grow smarter, faster, and stronger.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 1 }}
+              className="text-base text-neutral-500 max-w-xl leading-relaxed"
+            >
+              Our approach is built on three essential pillars: innovation, intelligence, and creativity. Every idea we develop is guided by data, inspired by creativity, and executed with precision.
             </motion.p>
 
             <motion.div 
@@ -265,16 +276,16 @@ export default function AboutPage() {
              />
              <div className="absolute bottom-10 left-10 p-8 bg-black/60 backdrop-blur-xl border border-white/10 rounded-3xl z-20">
                 <div className="text-4xl font-black text-white">Est. 2019</div>
-                <div className="text-neutral-400 text-sm">Founded in Dhaka, Scaling Globally.</div>
+                <div className="text-neutral-400 text-sm">Founded in Dhaka. Scaling Globally.</div>
              </div>
           </div>
           <div className="space-y-8">
             <SectionHeading badge="The Genesis" title="From a Bedroom to a Global Force." />
             <p className="text-neutral-400 text-xl leading-relaxed">
-              WeBestOne started with a simple observation: most digital agencies were stuck in the past. We saw an opportunity to fuse high-end design with cutting-edge AI and engineering to create something truly unique.
+              WeBestOne did not start in a boardroom. It started with a problem that would not go away. Businesses were spending real money on digital agencies and getting mediocre results wrapped in polished reports. We decided the industry needed a reset, so we built one.
             </p>
             <p className="text-neutral-400 text-lg leading-relaxed">
-              Today, we serve clients from New York to Dubai, helping them navigate the complex digital landscape with precision and creativity.
+              We threw out the old agency playbook and replaced it with something sharper. AI at the core, creativity at the surface, and a relentless obsession with outcomes that actually show up in revenue. The bedroom is long gone. The obsession never left.
             </p>
             <div className="flex items-center gap-6 pt-6">
                <div className="flex -space-x-4">
@@ -298,9 +309,12 @@ export default function AboutPage() {
             className="p-12 rounded-[3rem] bg-gradient-to-br from-neon-green/10 to-transparent border border-neon-green/20"
           >
             <Target className="w-16 h-16 text-neon-green mb-8" />
-            <h3 className="text-4xl font-bold mb-6">Our Mission</h3>
-            <p className="text-neutral-400 text-lg leading-relaxed">
-              To empower the world's most ambitious brands by building digital products that are not only beautiful but also functionally superior and commercially dominant.
+            <h3 className="text-4xl font-bold mb-4">Our Mission</h3>
+            <p className="text-white/80 text-lg italic mb-6 font-medium leading-relaxed">
+              "To combine creativity and intelligence to deliver artificial intelligence powered results that truly make an impact."
+            </p>
+            <p className="text-neutral-400 text-base leading-relaxed">
+              Our mission reflects our commitment to bridging creativity with technology. We develop strategies that combine human creativity with intelligent systems to create digital experiences designed for clarity, performance, and measurable business impact.
             </p>
           </motion.div>
           <motion.div 
@@ -308,9 +322,12 @@ export default function AboutPage() {
             className="p-12 rounded-[3rem] bg-gradient-to-br from-blue-500/10 to-transparent border border-blue-500/20"
           >
             <Lightbulb className="w-16 h-16 text-blue-400 mb-8" />
-            <h3 className="text-4xl font-bold mb-6">Our Vision</h3>
-            <p className="text-neutral-400 text-lg leading-relaxed">
-              To become the global gold standard for digital innovation, where every project we touch sets a new benchmark for what's possible in the digital realm.
+            <h3 className="text-4xl font-bold mb-4">Our Vision</h3>
+            <p className="text-white/80 text-lg italic mb-6 font-medium leading-relaxed">
+              "To become the leading one stop hub for artificial intelligence enhanced digital growth across the world."
+            </p>
+            <p className="text-neutral-400 text-base leading-relaxed">
+              We envision a future where every business, regardless of its size or industry, can access innovative digital tools that empower growth through automation, analytics, and design intelligence.
             </p>
           </motion.div>
         </div>
@@ -326,10 +343,10 @@ export default function AboutPage() {
                viewport={{ once: true }}
                className="space-y-6"
              >
-                <div className="text-neon-green font-mono text-sm font-bold tracking-[0.4em] uppercase">Service Ecosystem</div>
+                <div className="text-neon-green font-mono text-sm font-bold tracking-[0.4em] uppercase">What We Offer</div>
                 <h2 className="text-5xl md:text-7xl font-black leading-tight tracking-tighter">Our <span className="text-neon-green">Expertise.</span></h2>
                 <p className="text-neutral-400 text-xl leading-relaxed">
-                  At WeBestOne, we provide complete digital marketing and creative solutions under one unified strategy. Our core services are engineered for maximum impact and consistent growth.
+                  At WeBestOne, we provide complete digital marketing and creative solutions under one unified strategy. Every service we offer is structured to help brands connect with the right audience, communicate clearly, and convert consistently.
                 </p>
              </motion.div>
           </div>
@@ -346,10 +363,10 @@ export default function AboutPage() {
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
             className="flex gap-6 w-max px-6"
           >
-             {[...Array(2)].map((_, listIndex) => (
-               <div key={listIndex} className="flex gap-6">
-                 {servicesData.map((service, i) => (
-                   <Link
+              {[...Array(2)].map((_, listIndex) => (
+                <div key={listIndex} className="flex gap-6">
+                  {services.filter(s => s.description).map((service, i) => (
+                    <Link
                      to={service.href}
                      key={i}
                      className="group w-72 md:w-80 p-8 md:p-10 rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:border-neon-green/30 transition-all text-center relative overflow-hidden"
@@ -378,14 +395,14 @@ export default function AboutPage() {
           <div className="relative z-10">
             <SectionHeading badge="Innovation Lab" title="The Arsenal Behind the Art." />
             <p className="text-neutral-400 text-lg mb-10 leading-relaxed max-w-xl">
-              At WeBestOne, we blend cutting-edge technology with creative strategy to deliver digital solutions that don't just exist—they dominate. Our arsenal is engineered to turn your brand into a market leader.
+              Pretty does not pay the bills. At WeBestOne, every creative decision is backed by technology built to perform under pressure. We do not separate art from intelligence. We weaponise both. The result is a brand experience your competitors will study and your customers will not forget.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                {[
-                 { title: "AI SEO Mastery", desc: "Dominating search rankings with intelligence." },
-                 { title: "Shopify Excellence", desc: "High-conversion stores built for global scale." },
-                 { title: "Premium UI/UX", desc: "Immersive designs that wow your customers." },
-                 { title: "Scalable Tech", desc: "Future-proof architectures for peak performance." }
+                 { title: "AI SEO Mastery", desc: "Your competitors are guessing. We are not. Every ranking we chase is calculated, every keyword we target is intentional, and every search engine, including the AI-powered ones, knows exactly who you are." },
+                 { title: "Shopify Excellence", desc: "Your store should work as hard as you do. We build Shopify experiences that load fast, rank high, and turn browsers into buyers before they have a reason to leave." },
+                 { title: "Premium UI/UX", desc: "First impressions are decided in milliseconds. We design interfaces that stop the scroll, earn the click, and make every visit feel like it was built specifically for the person taking it." },
+                 { title: "Scalable Tech", desc: "Built for where you are going, not just where you are. Our technology foundation absorbs growth, handles pressure, and never becomes the reason your brand hits a ceiling." }
                ].map((tech, i) => (
                  <div key={i} className="flex items-start gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 group hover:border-neon-green/30 transition-all">
                     <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-neon-green transition-all">
@@ -451,10 +468,10 @@ export default function AboutPage() {
           <SectionHeading badge="The Outliers" title="Why Choose WeBestOne." />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
              {[
-               { icon: Users, title: "One Stop Partner", desc: "Every essential digital service coordinated under one roof for seamless execution." },
-               { icon: Zap, title: "AI-Driven Innovation", desc: "Predicting trends and optimizing campaigns in real time with advanced AI models." },
-               { icon: Star, title: "Creativity with Impact", desc: "Designs that evoke emotion, strengthen engagement, and drive conversions." },
-               { icon: Target, title: "Growth Focused", desc: "Every campaign is aligned with clear performance goals and measurable ROI." }
+               { icon: Users, title: "One Stop Partner", desc: "Every service your brand needs lives under one roof, one strategy, and one team that actually talks to each other." },
+               { icon: Zap, title: "AI-Driven Innovation", desc: "We do not wait for trends to arrive. We spot them early, act on them fast, and use AI to keep your campaigns optimised before the competition catches up." },
+               { icon: Star, title: "Creativity with Impact", desc: "We do not make things that look good in a presentation. We make things that work in the wild, where attention is scarce and first impressions decide everything." },
+               { icon: Target, title: "Growth Focused", desc: "Likes do not pay salaries. Every campaign we run is tied to a number that matters, whether that is leads, revenue, or return on every dollar you spend." }
              ].map((item, i) => (
                <div key={i} className="p-10 rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:border-neon-green/20 transition-all group flex gap-8 items-start">
                   <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-neon-green transition-all">
@@ -476,12 +493,15 @@ export default function AboutPage() {
             <div className="w-20 h-20 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-10">
                <Heart className="w-10 h-10 text-blue-400" />
             </div>
-            <h2 className="text-4xl md:text-6xl font-black mb-8">Our Promise</h2>
+            <h2 className="text-4xl md:text-6xl font-black mb-4">Our Promise</h2>
+            <p className="text-neutral-400 text-lg leading-relaxed max-w-2xl mx-auto mb-12">
+              WeBestOne is not simply a service provider. We work alongside businesses with a focus on sustained growth, strategic consistency, and measurable progress over time.
+            </p>
             <div className="space-y-4 text-left max-w-2xl mx-auto mb-20">
                {[
                  "To create innovative solutions that deliver real results.",
                  "To stay committed to transparency, quality, and measurable growth.",
-                 "To continuously evolve our strategies through AI and creative excellence."
+                 "To continuously evolve our strategies through artificial intelligence and creative excellence."
                ].map((p, i) => (
                  <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-4 hover:border-neon-green/30 transition-all">
                     <CheckCircle2 className="w-6 h-6 text-neon-green shrink-0" />
@@ -544,7 +564,7 @@ export default function AboutPage() {
       {/* 11. GLOBAL FOOTPRINT */}
       <section className="py-32 px-6 relative z-10 overflow-hidden bg-white/[0.01]">
         <div className="max-w-7xl mx-auto">
-           <SectionHeading badge="Global Footprint" title="Scaling Across Borders." center />
+           <SectionHeading badge="Global Footprint" title="Scaling Across Borders." desc="One agency. Four cities. Zero compromise on results." center />
            <div className="relative h-[650px] md:h-[700px] w-full bg-neutral-900/10 rounded-[3rem] md:rounded-[4rem] border border-white/5 overflow-hidden">
               <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-30">
                  <motion.path

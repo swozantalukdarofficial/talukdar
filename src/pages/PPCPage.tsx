@@ -1,12 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  TrendingUp, 
-  Target, 
-  Search, 
-  BarChart3, 
-  MousePointer2, 
-  Zap, 
-  DollarSign, 
+import {
+  TrendingUp,
+  Target,
+  Search,
+  BarChart3,
+  MousePointer2,
+  Zap,
+  DollarSign,
   LineChart,
   ShieldCheck,
   ChevronRight,
@@ -17,11 +17,15 @@ import {
   ChevronLeft,
   Settings,
   ChevronDown,
-  Check
+  Check,
+  AlertTriangle
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import SEO from "../components/SEO";
+import { MagneticButton } from "../components/ui/MagneticButton";
+import { useContent } from "../context/ContentContext";
+import AdminServiceImageEditor from "../components/admin/AdminServiceImageEditor";
 
 const ppcSchema = {
   "@context": "https://schema.org",
@@ -47,7 +51,7 @@ const ppcSchema = {
         "name": "WeBestOne",
         "url": "https://webestone.com",
         "logo": "https://webestone.com/favicon.png",
-        "telephone": "+8801333600272",
+        "telephone": "+8801815025322",
         "email": "webestone@gmail.com",
         "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
       },
@@ -128,6 +132,9 @@ const ppcStats = [
 const PPC_VIDEO_ID = "MnLd2G198U8"; // YouTube video
 
 export default function PPCPage() {
+  const { serviceImages } = useContent();
+  const videoId = serviceImages?.["ppc-management-services_video"] || PPC_VIDEO_ID;
+  const ctaImg = serviceImages?.["ppc-management-services_cta_img"] || "/ppc_cta.webp";
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -138,13 +145,13 @@ export default function PPCPage() {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth, scrollWidth } = scrollRef.current;
       let scrollTo;
-      
+
       if (direction === 'right' && scrollLeft + clientWidth >= scrollWidth - 10) {
         scrollTo = 0; // Reset to beginning
       } else {
         scrollTo = direction === 'left' ? scrollLeft - clientWidth / 2 : scrollLeft + clientWidth / 2;
       }
-      
+
       scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
     }
   };
@@ -159,59 +166,68 @@ export default function PPCPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-black text-white overflow-hidden">
-      <SEO 
-        title="PPC Management Services | Expert Paid Advertising Agency" 
-        description="Advanced PPC Management Services scaling brands with AI-driven strategies, audience targeting, expert keyword bidding and high performing paid search advertising." 
+    <main className="min-h-screen bg-black text-white overflow-x-hidden relative">
+      <AdminServiceImageEditor serviceId="ppc-management-services" />
+      <SEO
+        pageKey="ppc-management-services"
+        title="PPC Management Services | Expert Paid Advertising Agency"
+        description="Advanced PPC Management Services scaling brands with AI-driven strategies, audience targeting, expert keyword bidding and high performing paid search advertising."
         schemaMarkup={ppcSchema}
       />
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-emerald-500/10 rounded-full blur-[160px]" />
+        <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-neon-green/10 rounded-full blur-[160px]" />
         <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-blue-500/5 rounded-full blur-[160px]" />
       </div>
 
       <section className="relative z-10 px-6 lg:px-16 pt-28 pb-16 min-h-screen flex items-center w-full">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center w-full">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="space-y-4 md:space-y-5"
           >
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-[0.15em]">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Pay Per Click
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neon-green/10 border border-neon-green/20">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-green opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-neon-green" />
+              </span>
+              <span className="text-[10px] font-bold text-neon-green uppercase tracking-wider">
+                Pay Per Click
+              </span>
             </div>
 
             {/* Main Heading */}
             <div className="space-y-2">
-              <h1 className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-[1.15] tracking-tight">
-                PPC Management Services <br className="hidden md:inline" />
-                <span className="text-emerald-400">That Turn Paid Traffic Into Predictable Growth</span>
+              <h1 className="text-4xl md:text-5xl lg:text-[58px] font-black text-white leading-[1.12] tracking-tight">
+                PPC Management Services <br className="hidden sm:inline" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green via-teal-400 to-blue-500">
+                  That Turn Paid Traffic Into Predictable Growth
+                </span>
               </h1>
             </div>
 
             {/* Description */}
-            <div className="space-y-2.5 text-sm md:text-base text-neutral-400 max-w-xl leading-relaxed font-medium">
-              <p className="text-neutral-300 font-bold border-l-2 border-emerald-500/40 pl-3 py-0.5">
-                If your pay per click campaigns are not generating revenue, they are draining your budget.
+            <div className="space-y-5 text-base text-neutral-400 max-w-xl leading-relaxed">
+              <p className="text-lg md:text-xl text-white font-bold border-l-2 border-neon-green pl-4 py-1 leading-snug">
+                Most businesses think they have a traffic problem. <br />
+                <span className="text-neon-green">They actually have a performance problem.</span>
               </p>
-              <p className="text-sm">
-                Most businesses think they have a traffic problem. <strong className="text-white font-semibold">They actually have a performance problem.</strong>
-              </p>
-              <p className="text-sm">
-                At WeBestOne, we deliver PPC management services built to control cost per click, improve conversion rate, and turn paid traffic into consistent, measurable growth.
+              <p className="text-neutral-400 text-sm md:text-base pl-4">
+                If your campaigns are not generating revenue, they are draining your budget. We deliver PPC management services built to control cost per click, improve conversion rate, and turn paid traffic into consistent, measurable growth.
               </p>
             </div>
 
             {/* CTA Button */}
-            <div className="pt-1">
-              <Link to="/contact-us" className="inline-flex items-center gap-2.5 px-8 py-3.5 bg-emerald-500 text-black font-black text-sm uppercase tracking-wider rounded-full shadow-[0_10px_30px_rgba(16,185,129,0.2)] hover:scale-[1.03] hover:shadow-[0_15px_35px_rgba(16,185,129,0.35)] transition-all duration-300 group">
-                Get in touch
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+            <div className="pt-1 flex">
+              <MagneticButton className="px-8 py-4 bg-neon-green text-black font-black text-base rounded-full flex items-center gap-2 shadow-[0_0_25px_rgba(135,230,92,0.35)] hover:scale-105 transition-all group">
+                <Link to="/contact-us" className="inline-flex items-center gap-2">
+                  <span>Get in Touch</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </MagneticButton>
             </div>
           </motion.div>
 
@@ -226,10 +242,10 @@ export default function PPCPage() {
             <motion.div
               animate={{ y: [-10, 10, -10] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-6 -left-6 z-30 flex items-center gap-3 bg-neutral-950/90 border border-emerald-500/30 px-5 py-3 rounded-2xl shadow-[0_15px_30px_rgba(0,0,0,0.5)] backdrop-blur-md"
+              className="absolute -top-6 -left-6 z-30 flex items-center gap-3 bg-neutral-950/90 border border-neon-green/30 px-5 py-3 rounded-2xl shadow-[0_15px_30px_rgba(0,0,0,0.5)] backdrop-blur-md"
             >
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/30">
-                <TrendingUp className="w-5 h-5 text-emerald-400" />
+              <div className="w-10 h-10 rounded-xl bg-neon-green/10 flex items-center justify-center border border-neon-green/30">
+                <TrendingUp className="w-5 h-5 text-neon-green" />
               </div>
               <div>
                 <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Average ROAS</p>
@@ -252,7 +268,7 @@ export default function PPCPage() {
               </div>
             </motion.div>
 
-            <div className="relative aspect-video w-full rounded-[2.5rem] bg-neutral-900 border border-white/10 overflow-hidden group shadow-2xl hover:border-emerald-500/30 transition-all duration-300">
+            <div className="relative aspect-video w-full rounded-[2.5rem] bg-neutral-900 border border-white/10 overflow-hidden group shadow-2xl hover:border-neon-green/30 transition-all duration-300">
               <AnimatePresence mode="wait">
                 {!isPlaying ? (
                   <motion.div
@@ -263,19 +279,19 @@ export default function PPCPage() {
                     className="absolute inset-0 cursor-pointer group/thumb"
                     onClick={() => setIsPlaying(true)}
                   >
-                    <img 
-                      src={`https://img.youtube.com/vi/${PPC_VIDEO_ID}/maxresdefault.jpg`} 
-                      alt="PPC Management Services" 
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-105" 
+                    <img
+                      src={serviceImages["ppc-management-services"] || `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                      alt="PPC Management Services"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/40 group-hover/thumb:bg-black/20 transition-colors duration-300" />
                     <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                      <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 transition-transform shadow-[0_0_40px_rgba(255,255,255,0.2)] relative z-10"
-                      >
-                        <Play className="w-8 h-8 text-white fill-current ml-1" />
-                      </motion.div>
+                      <div className="relative flex items-center justify-center z-10">
+                        <span className="absolute inline-flex h-24 w-24 rounded-full bg-neon-green/30 animate-ping" />
+                        <div className="relative w-16 h-16 bg-neon-green rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(135,230,92,0.5)] group-hover:scale-110 transition-all duration-300">
+                          <Play className="w-6 h-6 text-black fill-black ml-1" />
+                        </div>
+                      </div>
                       <div className="mt-8 space-y-2 relative z-10">
                         <p className="text-sm font-bold text-white uppercase tracking-widest bg-black/50 px-4 py-1.5 rounded-full backdrop-blur-sm">
                           Watch How We Maximize PPC ROI
@@ -291,7 +307,7 @@ export default function PPCPage() {
                     className="absolute inset-0"
                   >
                     <iframe
-                      src={`https://www.youtube.com/embed/${PPC_VIDEO_ID}?autoplay=1&controls=1&modestbranding=1&rel=0`}
+                      src={`https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&modestbranding=1&rel=0`}
                       title="PPC Success Strategy"
                       className="w-full h-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -300,7 +316,7 @@ export default function PPCPage() {
                   </motion.div>
                 )}
               </AnimatePresence>
-              
+
               {/* Shine effect */}
               {!isPlaying && (
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-white/5 to-transparent pointer-events-none z-20"></div>
@@ -308,7 +324,7 @@ export default function PPCPage() {
             </div>
 
             {/* Decorative glows */}
-            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-emerald-600/5 blur-[100px] rounded-full"></div>
+            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-neon-green/5 blur-[100px] rounded-full"></div>
           </motion.div>
         </div>
       </section>
@@ -317,15 +333,15 @@ export default function PPCPage() {
       <section className="relative z-10 py-12 md:py-16 px-6 bg-neutral-950/50 border-y border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-            
+
             {/* Left Col: Header info */}
             <div className="space-y-4 lg:col-span-1">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold tracking-widest uppercase">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neon-green/10 border border-neon-green/20 text-neon-green text-[10px] font-bold tracking-widest uppercase">
                 Real Performance
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
                 Real performance. <br />
-                <span className="text-emerald-400">Not assumptions.</span>
+                <span className="text-neon-green">Not assumptions.</span>
               </h2>
               <p className="text-neutral-400 text-sm md:text-base leading-relaxed font-medium">
                 Most agencies talk about clicks. <strong className="text-white">We focus on outcomes.</strong> Recent campaign improvements achieved by WebestOne prove our structured approach works.
@@ -340,8 +356,8 @@ export default function PPCPage() {
                 { title: "2x - 3x CR", label: "Improved Conversion Rate", desc: "Enhanced conversions across landing funnels by 2 to 3 times." },
                 { title: "Scaled ROAS", label: "Profitable Ad Scaling", desc: "Scaled active campaigns while maintaining strong ROAS across platforms." }
               ].map((stat, i) => (
-                <div key={i} className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.02] hover:border-emerald-500/30 transition-all duration-300 group">
-                  <div className="text-3xl font-bold text-emerald-400 mb-2 group-hover:scale-105 transition-transform duration-300 origin-left">{stat.title}</div>
+                <div key={i} className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.02] hover:border-neon-green/30 transition-all duration-300 group">
+                  <div className="text-3xl font-bold text-neon-green mb-2 group-hover:scale-105 transition-transform duration-300 origin-left">{stat.title}</div>
                   <div className="text-white font-semibold text-sm mb-1">{stat.label}</div>
                   <div className="text-neutral-400 text-xs leading-relaxed font-medium">{stat.desc}</div>
                 </div>
@@ -360,7 +376,7 @@ export default function PPCPage() {
       <section className="py-24 px-6 relative z-10 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-6 mb-20">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white">
               Why you <span className="relative inline-block">
                 <span className="text-neon-green">Need this Service</span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 400 20" fill="none">
@@ -368,17 +384,10 @@ export default function PPCPage() {
                 </svg>
               </span>
             </h2>
-            <div className="text-neutral-400 text-lg max-w-4xl mx-auto leading-relaxed font-medium space-y-4">
-              <p className="text-neutral-300 font-bold">
-                Right now, your PPC campaign is either producing profit or losing money. There is no middle ground.
-              </p>
-              <p>
-                Most campaigns fail at the foundation. Poor keyword bidding. Low quality score. Weak targeting. No conversion strategy.
-              </p>
-              <p>
-                As a PPC marketing service provider and paid search management agency, WeBestOne rebuilds your system to eliminate waste and improve performance.
-              </p>
-            </div>
+
+            <p className="text-neutral-500 max-w-2xl mx-auto leading-relaxed mt-6">
+              <span className="text-white font-semibold">Right now, your PPC campaign is either producing profit or losing money. There is no middle ground.</span> Most campaigns fail at the foundation: poor keyword bidding, low quality score, weak targeting, and no conversion strategy. As a PPC marketing service provider and paid search management agency, WeBestOne rebuilds your system to eliminate waste and improve performance.
+            </p>
           </div>
 
           <div className="max-w-6xl mx-auto p-12 rounded-[3rem] bg-neutral-900/30 border border-white/5 backdrop-blur-xl">
@@ -392,17 +401,17 @@ export default function PPCPage() {
                   { id: "07", title: "Track real performance metrics", desc: "Guessing leads to loss. We use google tag manager and google analytics to track click through rate, conversions, and ROI with precision." }
                 ].map((item, i) => (
                   <div key={i} className="border-b border-white/5 last:border-0">
-                    <button 
+                    <button
                       onClick={() => setOpenFaq(openFaq === i * 2 ? null : i * 2)}
                       className="w-full py-6 flex items-center justify-between group text-left"
                     >
                       <div className="flex items-center gap-4">
-                        <span className="text-emerald-500 font-bold text-lg font-mono">{item.id}.</span>
-                        <span className="text-white font-bold text-lg group-hover:text-emerald-400 transition-colors">
+                        <span className="text-neon-green font-bold text-lg font-mono">{item.id}.</span>
+                        <span className="text-white font-bold text-lg group-hover:text-neon-green transition-colors">
                           {item.title}
                         </span>
                       </div>
-                      <ChevronRight className={`w-5 h-5 text-neutral-600 transition-transform duration-300 ${openFaq === i * 2 ? 'rotate-90 text-emerald-500' : ''}`} />
+                      <ChevronRight className={`w-5 h-5 text-neutral-600 transition-transform duration-300 ${openFaq === i * 2 ? 'rotate-90 text-neon-green' : ''}`} />
                     </button>
                     <AnimatePresence>
                       {openFaq === i * 2 && (
@@ -433,17 +442,17 @@ export default function PPCPage() {
                   const actualIdx = i * 2 + 1;
                   return (
                     <div key={i} className="border-b border-white/5 last:border-0">
-                      <button 
+                      <button
                         onClick={() => setOpenFaq(openFaq === actualIdx ? null : actualIdx)}
                         className="w-full py-6 flex items-center justify-between group text-left"
                       >
                         <div className="flex items-center gap-4">
-                          <span className="text-emerald-500 font-bold text-lg font-mono">{item.id}.</span>
-                          <span className="text-white font-bold text-lg group-hover:text-emerald-400 transition-colors">
+                          <span className="text-neon-green font-bold text-lg font-mono">{item.id}.</span>
+                          <span className="text-white font-bold text-lg group-hover:text-neon-green transition-colors">
                             {item.title}
                           </span>
                         </div>
-                        <ChevronRight className={`w-5 h-5 text-neutral-600 transition-transform duration-300 ${openFaq === actualIdx ? 'rotate-90 text-emerald-500' : ''}`} />
+                        <ChevronRight className={`w-5 h-5 text-neutral-600 transition-transform duration-300 ${openFaq === actualIdx ? 'rotate-90 text-neon-green' : ''}`} />
                       </button>
                       <AnimatePresence>
                         {openFaq === actualIdx && (
@@ -485,15 +494,15 @@ export default function PPCPage() {
                 Trusted by industry leaders and certified by top platforms to deliver exceptional results across all marketing channels.
               </p>
             </div>
-            
+
             <div className="flex gap-4">
-              <button 
+              <button
                 onClick={() => scroll('left')}
                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors group"
               >
                 <ChevronLeft className="w-5 h-5 text-neutral-400 group-hover:text-white" />
               </button>
-              <button 
+              <button
                 onClick={() => scroll('right')}
                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors group"
               >
@@ -502,70 +511,70 @@ export default function PPCPage() {
             </div>
           </div>
 
-          <div 
+          <div
             ref={scrollRef}
             className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide no-scrollbar"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {[
-              { 
-                title: "SEO Certified In", 
-                sub: "8+ SEO Focuses", 
+              {
+                title: "SEO Certified In",
+                sub: "8+ SEO Focuses",
                 icon: (
                   <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 )
               },
-              { 
-                title: "Google Analytics", 
-                sub: "Advanced User", 
+              {
+                title: "Google Analytics",
+                sub: "Advanced User",
                 icon: (
                   <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 18V12M12 18V6M18.75 18V14.25" stroke="#F9AB00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M3 21H21" stroke="#F9AB00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M5.25 18V12M12 18V6M18.75 18V14.25" stroke="#F9AB00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M3 21H21" stroke="#F9AB00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 )
               },
-              { 
-                title: "Google Ads", 
-                sub: "Certified", 
+              {
+                title: "Google Ads",
+                sub: "Certified",
                 icon: (
                   <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.5 3.5L3.5 18.5H12.5V3.5Z" fill="#4285F4"/>
-                    <path d="M20.5 18.5L12.5 3.5V18.5H20.5Z" fill="#34A853"/>
-                    <path d="M12.5 18.5L15.5 13.5H9.5L12.5 18.5Z" fill="#FBBC05"/>
+                    <path d="M12.5 3.5L3.5 18.5H12.5V3.5Z" fill="#4285F4" />
+                    <path d="M20.5 18.5L12.5 3.5V18.5H20.5Z" fill="#34A853" />
+                    <path d="M12.5 18.5L15.5 13.5H9.5L12.5 18.5Z" fill="#FBBC05" />
                   </svg>
                 )
               },
-              { 
-                title: "Masters Of", 
-                sub: "Science In Marketing Strategy", 
+              {
+                title: "Masters Of",
+                sub: "Science In Marketing Strategy",
                 icon: (
                   <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 3L4 9L12 15L20 9L12 3Z" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M4 14L12 20L20 14" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12 3L4 9L12 15L20 9L12 3Z" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M4 14L12 20L20 14" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 )
               },
-              { 
-                title: "Facebook Ads", 
-                sub: "Certified", 
+              {
+                title: "Facebook Ads",
+                sub: "Certified",
                 icon: (
                   <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" fill="#1877F2"/>
+                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" fill="#1877F2" />
                   </svg>
                 )
               },
-              { 
-                title: "Certified Consumer", 
-                sub: "Psychology Experts", 
+              {
+                title: "Certified Consumer",
+                sub: "Psychology Experts",
                 icon: (
                   <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="#87E65C" strokeWidth="2"/>
-                    <circle cx="12" cy="12" r="6" stroke="#87E65C" strokeWidth="2"/>
-                    <circle cx="12" cy="12" r="2" fill="#87E65C"/>
+                    <circle cx="12" cy="12" r="10" stroke="#87E65C" strokeWidth="2" />
+                    <circle cx="12" cy="12" r="6" stroke="#87E65C" strokeWidth="2" />
+                    <circle cx="12" cy="12" r="2" fill="#87E65C" />
                   </svg>
                 )
               }
@@ -581,10 +590,10 @@ export default function PPCPage() {
               >
                 <div className="relative w-28 h-28 mx-auto mb-10">
                   {/* Diamond Shape */}
-                  <motion.div 
+                  <motion.div
                     whileHover={{ rotate: 135 }}
                     transition={{ duration: 0.6 }}
-                    className="absolute inset-0 bg-neutral-800 rotate-45 rounded-2xl border border-white/10 group-hover:border-neon-green/30 group-hover:bg-neutral-800 transition-colors shadow-2xl" 
+                    className="absolute inset-0 bg-neutral-800 rotate-45 rounded-2xl border border-white/10 group-hover:border-neon-green/30 group-hover:bg-neutral-800 transition-colors shadow-2xl"
                   />
                   <div className="relative h-full flex items-center justify-center text-white/40 group-hover:text-neon-green transition-colors">
                     {card.icon}
@@ -613,17 +622,17 @@ export default function PPCPage() {
               onMouseLeave={() => setHoveredIdx(null)}
               className="relative group cursor-pointer"
             >
-              <div className="h-full bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-[3rem] p-10 backdrop-blur-md transition-all duration-500 group-hover:border-emerald-500/30 group-hover:-translate-y-2">
+              <div className="h-full bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-[3rem] p-10 backdrop-blur-md transition-all duration-500 group-hover:border-neon-green/30 group-hover:-translate-y-2">
                 <div className={`w-16 h-16 rounded-[1.5rem] ${service.color} flex items-center justify-center text-white mb-8 shadow-2xl transform transition-transform group-hover:rotate-12`}>
                   {service.icon}
                 </div>
-                <h3 className="text-3xl font-bold mb-6 group-hover:text-emerald-400 transition-colors">
+                <h3 className="text-3xl font-bold mb-6 group-hover:text-neon-green transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-slate-400 text-lg leading-relaxed mb-8">
                   {service.description}
                 </p>
-                <div className="flex items-center gap-3 font-bold text-emerald-400 group/btn">
+                <div className="flex items-center gap-3 font-bold text-neon-green group/btn">
                   Launch Campaign
                   <ChevronRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
                 </div>
@@ -636,7 +645,7 @@ export default function PPCPage() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="absolute inset-0 bg-emerald-500/10 blur-[80px] -z-10 rounded-full"
+                    className="absolute inset-0 bg-neon-green/10 blur-[80px] -z-10 rounded-full"
                   />
                 )}
               </AnimatePresence>
@@ -645,27 +654,27 @@ export default function PPCPage() {
         </div>
 
         {/* Content Section: ROI Driven Process */}
-        <div className="bg-gradient-to-b from-slate-900 to-slate-950 border border-white/5 rounded-[4rem] p-12 md:p-20 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-emerald-500/5 blur-[120px] pointer-events-none" />
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="bg-gradient-to-b from-slate-900 to-slate-950 border border-white/5 rounded-[2.5rem] sm:rounded-[4rem] p-6 sm:p-12 md:p-20 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-neon-green/5 blur-[120px] pointer-events-none" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                  Our <span className="text-emerald-400">Approach</span>
-                </h2>
-                <div className="text-neutral-400 mb-8 max-w-md text-sm md:text-base leading-relaxed font-medium space-y-3">
-                  <p className="text-neutral-300 font-bold">We do not run ads. We engineer performance.</p>
-                  <p>As a PPC management services provider, WeBestOne focuses on outcomes, not activity.</p>
-                </div>
-                <div className="space-y-8">
-                  {[
-                    { step: "01", title: "Strategy first", desc: "We identify where your system is losing money before scaling." },
-                    { step: "02", title: "Precision targeting", desc: "We eliminate waste and focus on high-conversion segments." },
-                    { step: "03", title: "Conversion-focused execution", desc: "We align ads, keywords, and landing experience to drive action." },
-                    { step: "04", title: "Continuous optimization", desc: "Performance improves through structured iteration and data analysis." }
-                  ].map((item, idx) => (
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                Our <span className="text-neon-green">Approach</span>
+              </h2>
+              <div className="text-neutral-400 mb-8 max-w-md text-sm md:text-base leading-relaxed font-medium space-y-3">
+                <p className="text-neutral-300 font-bold">We do not run ads. We engineer performance.</p>
+                <p>As a PPC management services provider, WeBestOne focuses on outcomes, not activity.</p>
+              </div>
+              <div className="space-y-8">
+                {[
+                  { step: "01", title: "Strategy first", desc: "We identify where your system is losing money before scaling." },
+                  { step: "02", title: "Precision targeting", desc: "We eliminate waste and focus on high-conversion segments." },
+                  { step: "03", title: "Conversion-focused execution", desc: "We align ads, keywords, and landing experience to drive action." },
+                  { step: "04", title: "Continuous optimization", desc: "Performance improves through structured iteration and data analysis." }
+                ].map((item, idx) => (
                   <div key={idx} className="flex gap-6 group">
-                    <div className="text-3xl font-black text-white/10 group-hover:text-emerald-500/50 transition-colors">{item.step}</div>
+                    <div className="text-3xl font-black text-white/10 group-hover:text-neon-green/50 transition-colors">{item.step}</div>
                     <div>
                       <h4 className="text-xl font-bold mb-2">{item.title}</h4>
                       <p className="text-slate-400 leading-relaxed font-medium">{item.desc}</p>
@@ -677,37 +686,37 @@ export default function PPCPage() {
 
             <div className="relative">
               <div className="bg-slate-800/40 rounded-3xl border border-white/10 p-4 backdrop-blur-3xl">
-                <div className="flex items-center justify-between mb-8 px-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 rounded-full bg-red-500" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-8 px-2 sm:px-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
                   </div>
-                  <div className="text-sm font-mono text-slate-500 tracking-widest">REALTIME_ROAS_TRACKER</div>
+                  <div className="text-[10px] sm:text-xs font-mono text-slate-500 tracking-wide sm:tracking-widest">REALTIME_ROAS_TRACKER</div>
                 </div>
-                
+
                 <div className="space-y-6">
                   {[85, 60, 95].map((w, i) => (
-                    <div key={i} className="space-y-2 px-4">
-                      <div className="flex justify-between text-sm mb-1">
-                        <span className="text-slate-400">Campaign Layer 0{i+1}</span>
-                        <span className="text-emerald-400 font-bold">{w}% Efficiency</span>
+                    <div key={i} className="space-y-2 px-2 sm:px-4">
+                      <div className="flex justify-between text-xs sm:text-sm mb-1">
+                        <span className="text-slate-400">Campaign Layer 0{i + 1}</span>
+                        <span className="text-neon-green font-bold">{w}% Efficiency</span>
                       </div>
                       <div className="h-3 w-full bg-slate-700/50 rounded-full overflow-hidden">
-                        <motion.div 
+                        <motion.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${w}%` }}
                           transition={{ duration: 1.5, delay: i * 0.2 }}
-                          className="h-full bg-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.5)]" 
+                          className="h-full bg-neon-green shadow-[0_0_20px_rgba(135,230,92,0.5)]"
                         />
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-12 p-8 bg-emerald-500/10 border border-emerald-500/20 rounded-[2rem] text-center">
-                  <div className="text-slate-400 text-sm uppercase mb-2">Estimated Monthly Revenue</div>
-                  <div className="text-5xl font-black text-emerald-400">$2,450+</div>
+                <div className="mt-8 p-6 sm:p-8 bg-neon-green/10 border border-neon-green/20 rounded-[2rem] text-center">
+                  <div className="text-slate-400 text-xs sm:text-sm uppercase mb-2">Estimated Monthly Revenue</div>
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-black text-neon-green">$2,450+</div>
                 </div>
               </div>
             </div>
@@ -716,16 +725,16 @@ export default function PPCPage() {
       </div>
 
       {/* 4. OWN THE TOPIC SECTION */}
-      <section className="py-24 px-6 relative z-10 bg-black">
+      <section className="pt-24 pb-12 px-6 relative z-10 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <div className="flex items-center justify-center gap-4 text-emerald-400 font-mono text-xs tracking-[0.3em] uppercase">
-              <div className="w-12 h-[1px] bg-emerald-500/30" />
+            <div className="flex items-center justify-center gap-4 text-neon-green font-mono text-xs tracking-[0.3em] uppercase">
+              <div className="w-12 h-[1px] bg-neon-green/30" />
               SYSTEM CONTROL
-              <div className="w-12 h-[1px] bg-emerald-500/30" />
+              <div className="w-12 h-[1px] bg-neon-green/30" />
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-white">
-              We control the variables that <span className="text-emerald-400">decide PPC success.</span>
+              We control the variables that <span className="text-neon-green">decide PPC success.</span>
             </h2>
             <div className="text-neutral-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed font-medium space-y-2">
               <p className="text-neutral-300 font-bold">Most campaigns fail because they ignore fundamentals.</p>
@@ -741,14 +750,16 @@ export default function PPCPage() {
               "conversion rate optimization across landing pages",
               "cost per acquisition control",
               "multi-platform execution across google ads and microsoft advertising",
-              "full tracking using google tag manager and google analytics"
+              "full tracking using google tag manager and google analytics",
+              "ad copy A/B testing and creative optimization",
+              "audience segmentation and retargeting strategy"
             ].map((variable, i) => (
               <motion.div
                 key={i}
-                whileHover={{ scale: 1.03, backgroundColor: "rgba(16, 185, 129, 0.05)", borderColor: "rgba(16, 185, 129, 0.3)" }}
+                whileHover={{ scale: 1.03, backgroundColor: "rgba(135, 230, 92, 0.05)", borderColor: "rgba(135, 230, 92, 0.3)" }}
                 className="flex items-start gap-4 p-6 rounded-2xl bg-neutral-900/50 border border-white/5 transition-all cursor-default group"
               >
-                <div className="w-6 h-6 rounded-full border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-black transition-all shrink-0 mt-0.5">
+                <div className="w-6 h-6 rounded-full border border-neon-green/30 flex items-center justify-center text-neon-green group-hover:bg-neon-green group-hover:text-black transition-all shrink-0 mt-0.5">
                   <Check className="w-3.5 h-3.5" />
                 </div>
                 <span className="text-neutral-300 font-bold text-sm md:text-base group-hover:text-white transition-colors leading-relaxed">{variable}</span>
@@ -756,18 +767,18 @@ export default function PPCPage() {
             ))}
           </div>
 
-          <div className="mt-16 text-center text-base md:text-lg font-mono text-emerald-400/80 font-bold">
+          <div className="mt-10 text-center text-base md:text-lg font-mono text-neon-green/80 font-bold">
             “ This is not random testing. This is system control. ”
           </div>
         </div>
       </section>
 
       {/* 5. FAQ Section - Moved to last */}
-      <section className="py-32 px-6 relative z-10 bg-black">
+      <section className="pt-12 pb-12 px-6 relative z-10 bg-black">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center space-y-4 mb-20">
+          <div className="text-center space-y-4 mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-white">
-              Common <span className="text-neon-green">Questions</span>
+              Frequently Asked <span className="text-neon-green">Questions</span>
             </h2>
             <p className="text-neutral-500 text-lg">
               Everything you need to know about our PPC advertising services.
@@ -797,8 +808,8 @@ export default function PPCPage() {
                 a: "Initial traction can appear quickly, but consistent performance comes from ongoing optimization and structured testing."
               }
             ].map((faq, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="rounded-[2rem] bg-neutral-900/30 border border-white/5 overflow-hidden transition-all hover:border-white/10"
               >
                 <button
@@ -833,12 +844,12 @@ export default function PPCPage() {
       </section>
 
       {/* Final CTA Section - Redesigned */}
-      <section className="py-32 px-6 relative z-10 bg-black">
+      <section className="pt-12 pb-32 px-6 relative z-10 bg-black">
         <div className="max-w-6xl mx-auto">
           <div className="relative p-12 md:p-20 rounded-[3rem] bg-neutral-900/40 border border-white/5 overflow-hidden group">
             {/* Background Glow */}
             <div className="absolute -bottom-1/2 -left-1/4 w-full h-full bg-neon-green/5 blur-[120px] pointer-events-none" />
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
               <div className="space-y-8">
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
@@ -875,15 +886,15 @@ export default function PPCPage() {
                   transition={{ duration: 0.8 }}
                   className="relative w-full max-w-[400px] aspect-square rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl"
                 >
-                  <img 
-                    src="/ppc_cta.webp" 
-                    alt="PPC Success" 
+                  <img
+                    src={ctaImg}
+                    alt="PPC Success"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   {/* Overlay for better integration */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
                 </motion.div>
-                
+
                 {/* Extra glow behind image */}
                 <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-neon-green/10 blur-[100px] rounded-full" />
               </div>

@@ -18,7 +18,7 @@ export default function ProcessSection() {
   return (
     <section className="py-32 px-6 relative z-10 bg-[#050505] overflow-hidden">
       {/* Background Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-neon-green/5 blur-[120px] rounded-full pointer-events-none" />
       
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-24">
@@ -28,7 +28,7 @@ export default function ProcessSection() {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold mb-6 tracking-tight"
           >
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">web design process</span>
+            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green to-[#63b93a]">web design process</span>
           </motion.h2>
           <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
             This is not random execution. It is a structured system. Every stage exists to remove friction and guide decisions.
@@ -37,7 +37,7 @@ export default function ProcessSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
           {/* Vertical/Horizontal Connectors (Hidden on Mobile) */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent -translate-y-1/2 pointer-events-none" />
+          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-neon-green/20 to-transparent -translate-y-1/2 pointer-events-none" />
           
           {processSteps.map((step, i) => (
             <motion.div 
@@ -46,17 +46,17 @@ export default function ProcessSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="relative group p-8 rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:border-indigo-500/30 transition-all duration-500 hover:bg-white/[0.04]"
+              className="relative group p-8 rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:border-neon-green/30 transition-all duration-500 hover:bg-white/[0.04]"
             >
               {/* Number Badge */}
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-2xl font-black text-white mb-8 shadow-lg shadow-indigo-500/20 group-hover:scale-110 group-hover:rotate-6 transition-transform">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-neon-green to-[#63b93a] flex items-center justify-center text-2xl font-black text-black mb-8 shadow-lg shadow-neon-green/20 group-hover:scale-110 group-hover:rotate-6 transition-transform">
                 {step.num}
               </div>
 
               {/* Decorative Line */}
-              <div className="absolute top-12 left-24 right-8 h-[1px] bg-white/5 hidden lg:block group-hover:bg-indigo-500/20 transition-colors" />
+              <div className="absolute top-12 left-24 right-8 h-[1px] bg-white/5 hidden lg:block group-hover:bg-neon-green/20 transition-colors" />
 
-              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-indigo-400 transition-colors">
+              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-neon-green transition-colors">
                 {step.title}
               </h3>
               <p className="text-neutral-400 leading-relaxed text-sm md:text-base">
@@ -64,7 +64,7 @@ export default function ProcessSection() {
               </p>
 
               {/* Bottom Glow */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-neon-green to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
           ))}
         </div>

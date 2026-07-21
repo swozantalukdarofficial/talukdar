@@ -7,6 +7,8 @@ import Counter from "../components/Counter";
 import ProcessSection from "../components/ProcessSection";
 import PortfolioSlider from "../components/PortfolioSlider";
 import SEO from "../components/SEO";
+import { useContent } from "../context/ContentContext";
+import AdminServiceImageEditor from "../components/admin/AdminServiceImageEditor";
 import {
   MonitorSmartphone,
   Figma,
@@ -53,7 +55,7 @@ const uiUxSchema = {
         "name": "WeBestOne",
         "url": "https://webestone.com",
         "logo": "https://webestone.com/favicon.png",
-        "telephone": "+8801333600272",
+        "telephone": "+8801815025322",
         "email": "webestone@gmail.com",
         "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
       },
@@ -143,43 +145,43 @@ const processSteps = [
 
 const services = [
   {
-    icon: <Component className="w-8 h-8 text-pink-400" />,
+    icon: <Component className="w-8 h-8 text-neon-green" />,
     title: "01 UI and UX design",
     desc: "We deliver custom UI UX solutions that remove confusion and guide action.",
-    span: "md:col-span-2 md:row-span-2 bg-gradient-to-br from-pink-900/20 to-black border-pink-500/20"
+    span: "md:col-span-2 md:row-span-2 bg-gradient-to-br from-neon-green/10 to-black border-neon-green/20"
   },
   {
-    icon: <MonitorSmartphone className="w-6 h-6 text-violet-400" />,
+    icon: <MonitorSmartphone className="w-6 h-6 text-neon-green" />,
     title: "02 Interface structure",
     desc: "We organize content using strong information architecture.",
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
-    icon: <Search className="w-6 h-6 text-cyan-400" />,
+    icon: <Search className="w-6 h-6 text-neon-green" />,
     title: "03 Conversion pages",
     desc: "We build pages that reduce friction and increase decisions.",
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
-    icon: <ShoppingBag className="w-6 h-6 text-emerald-400" />,
+    icon: <ShoppingBag className="w-6 h-6 text-neon-green" />,
     title: "04 Ecommerce experience",
     desc: "Our ecommerce web design services simplify buying and reduce drop-offs.",
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
-    icon: <HeartPulse className="w-6 h-6 text-rose-400" />,
+    icon: <HeartPulse className="w-6 h-6 text-neon-green" />,
     title: "05 Mobile interaction design",
     desc: "We design for real behavior, not assumptions.",
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
-    icon: <Wand2 className="w-8 h-8 text-yellow-400" />,
+    icon: <Wand2 className="w-8 h-8 text-neon-green" />,
     title: "06 User movement planning",
     desc: "We map user journeys using interaction design principles.",
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
-    icon: <Building2 className="w-8 h-8 text-blue-400" />,
+    icon: <Building2 className="w-8 h-8 text-neon-green" />,
     title: "07 Advanced Solutions",
     desc: "We also deliver advanced custom web design service solutions for dashboards, platforms, and complex environments.",
     span: "md:col-span-1 md:col-start-1 md:col-end-4 bg-gradient-to-r from-neutral-900 to-black border-white/10"
@@ -194,12 +196,12 @@ const stats = [
 ];
 
 const industries = [
-  { name: "SaaS & Tech", icon: <BoxSelect className="w-6 h-6 text-indigo-400" />, desc: "Complex dashboards, B2B software, and AI interfaces designed for maximum productivity." },
-  { name: "E-Commerce", icon: <ShoppingBag className="w-6 h-6 text-pink-400" />, desc: "High-converting shopping experiences that reduce cart abandonment and boost sales." },
-  { name: "FinTech", icon: <Briefcase className="w-6 h-6 text-cyan-400" />, desc: "Secure, trustworthy, and intuitive interfaces for banking, crypto, and financial tools." },
-  { name: "Healthcare", icon: <HeartPulse className="w-6 h-6 text-rose-400" />, desc: "Accessible and clear UI for telemedicine, patient portals, and health tracking apps." },
-  { name: "EdTech", icon: <GraduationCap className="w-6 h-6 text-yellow-400" />, desc: "Engaging and distraction-free learning management systems and course platforms." },
-  { name: "Real Estate", icon: <Building2 className="w-6 h-6 text-emerald-400" />, desc: "Immersive property listings and seamless search experiences for buyers and agents." },
+  { name: "SaaS & Tech", icon: <BoxSelect className="w-6 h-6 text-neon-green" />, desc: "Complex dashboards, B2B software, and AI interfaces designed for maximum productivity." },
+  { name: "E-Commerce", icon: <ShoppingBag className="w-6 h-6 text-neon-green" />, desc: "High-converting shopping experiences that reduce cart abandonment and boost sales." },
+  { name: "FinTech", icon: <Briefcase className="w-6 h-6 text-neon-green" />, desc: "Secure, trustworthy, and intuitive interfaces for banking, crypto, and financial tools." },
+  { name: "Healthcare", icon: <HeartPulse className="w-6 h-6 text-neon-green" />, desc: "Accessible and clear UI for telemedicine, patient portals, and health tracking apps." },
+  { name: "EdTech", icon: <GraduationCap className="w-6 h-6 text-neon-green" />, desc: "Engaging and distraction-free learning management systems and course platforms." },
+  { name: "Real Estate", icon: <Building2 className="w-6 h-6 text-neon-green" />, desc: "Immersive property listings and seamless search experiences for buyers and agents." },
 ];
 
 const faqs = [
@@ -234,10 +236,10 @@ const faqs = [
 ];
 
 const deliverables = [
-  { title: "Full UI Audit", desc: "We analyze your current product for friction points and usability gaps before we start.", icon: <Search className="w-6 h-6 text-pink-400" /> },
-  { title: "Weekly Syncs", desc: "Stay updated with live design reviews and collaborative Figma sessions every week.", icon: <Users className="w-6 h-6 text-purple-400" /> },
-  { title: "Source Files", desc: "You get full ownership of the Figma source files, including the organized design system.", icon: <Figma className="w-6 h-6 text-indigo-400" /> },
-  { title: "Dev Handoff", desc: "Detailed documentation and redlines to make development a breeze for your engineers.", icon: <Code2 className="w-6 h-6 text-emerald-400" /> },
+  { title: "Full UI Audit", desc: "We analyze your current product for friction points and usability gaps before we start.", icon: <Search className="w-6 h-6 text-neon-green" /> },
+  { title: "Weekly Syncs", desc: "Stay updated with live design reviews and collaborative Figma sessions every week.", icon: <Users className="w-6 h-6 text-neon-green" /> },
+  { title: "Source Files", desc: "You get full ownership of the Figma source files, including the organized design system.", icon: <Figma className="w-6 h-6 text-neon-green" /> },
+  { title: "Dev Handoff", desc: "Detailed documentation and redlines to make development a breeze for your engineers.", icon: <Code2 className="w-6 h-6 text-neon-green" /> },
 ];
 
 function FaqItem({ q, a }: { q: string; a: string }) {
@@ -249,8 +251,8 @@ function FaqItem({ q, a }: { q: string; a: string }) {
       className="border-b border-white/10 py-5 cursor-pointer group"
     >
       <div className="flex items-center justify-between gap-4">
-        <h4 className="text-lg font-medium text-white group-hover:text-pink-400 transition-colors">{q}</h4>
-        <div className={`w-8 h-8 rounded-full border border-white/20 flex items-center justify-center transition-all ${open ? 'bg-pink-500 border-pink-500 text-white rotate-180' : 'text-neutral-400'}`}>
+        <h4 className="text-lg font-medium text-white group-hover:text-neon-green transition-colors">{q}</h4>
+        <div className={`w-8 h-8 rounded-full border border-white/20 flex items-center justify-center transition-all ${open ? 'bg-neon-green border-neon-green text-black rotate-180' : 'text-neutral-400'}`}>
           <ChevronDown className="w-4 h-4" />
         </div>
       </div>
@@ -271,11 +273,14 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 }
 
 export default function UiUxDesignPage() {
+  const { serviceImages } = useContent();
   const containerRef = useRef(null);
   
   return (
-    <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-pink-500/30">
+    <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-neon-green/30">
+      <AdminServiceImageEditor serviceId="web-design-service" />
       <SEO 
+        pageKey="web-design-service"
         title="Web Design Service | Custom UI UX Design service Agency" 
         description="Expert Web Design Service offering Custom UI UX Solutions, UX Strategy and Usability Testing to ensure high-performing results from our Web Design Agency." 
         schemaMarkup={uiUxSchema}
@@ -283,11 +288,11 @@ export default function UiUxDesignPage() {
       
       {/* Background Ambient */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-violet-600/10 blur-[150px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-pink-600/10 blur-[150px]" />
+        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-neon-green/5 blur-[150px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-neon-green/5 blur-[150px]" />
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03]" />
       </div>
-
+      
       {/* ══════════════════════════════════════════
           SECTION 1: HERO
       ══════════════════════════════════════════ */}
@@ -299,7 +304,7 @@ export default function UiUxDesignPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-pink-500/30 bg-pink-500/10 text-pink-400 text-xs font-semibold tracking-wide backdrop-blur-md uppercase"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon-green/30 bg-neon-green/10 text-neon-green text-xs font-semibold tracking-wide backdrop-blur-md uppercase"
             >
               <Sparkles className="w-3.5 h-3.5" />
               Award-Winning UI/UX Agency
@@ -312,7 +317,7 @@ export default function UiUxDesignPage() {
               className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-[1.15] tracking-tight"
             >
               Web Design Service That <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 block mt-1">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green to-[#63b93a] block mt-1">
                 Controls How Users Think, Move, and Act.
               </span>
             </motion.h1>
@@ -338,7 +343,7 @@ export default function UiUxDesignPage() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="flex flex-wrap gap-4 pt-4"
             >
-              <Link to="/contact-us" className="px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform flex items-center gap-2 shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+              <Link to="/contact-us" className="px-8 py-4 bg-[#87E65C] text-black font-bold rounded-full hover:scale-105 transition-transform flex items-center gap-2 shadow-[0_0_40px_rgba(135,230,92,0.25)]">
                 Start Design Project <ArrowRight className="w-5 h-5" />
               </Link>
               <Link to="#portfolio" className="px-8 py-4 border border-white/20 text-white font-bold rounded-full hover:bg-white/5 transition-colors">
@@ -351,51 +356,61 @@ export default function UiUxDesignPage() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 1 }}
-            className="relative h-[500px] w-full perspective-1000"
+            className="relative h-[500px] w-full perspective-1000 flex items-center justify-center"
           >
-             <motion.div 
-               animate={{ rotateY: [-5, 5, -5], rotateX: [5, -5, 5] }}
-               transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-               className="absolute inset-0 bg-white/[0.03] backdrop-blur-2xl border border-white/20 rounded-3xl shadow-[0_0_80px_rgba(236,72,153,0.15)] flex flex-col overflow-hidden transform-gpu"
-             >
-                <div className="h-16 border-b border-white/10 flex items-center justify-between px-6 bg-white/[0.01]">
-                   <div className="flex gap-2">
-                      <div className="w-3 h-3 rounded-full bg-rose-500" />
-                      <div className="w-3 h-3 rounded-full bg-amber-500" />
-                      <div className="w-3 h-3 rounded-full bg-emerald-500" />
-                   </div>
-                   <div className="flex gap-4">
-                      <div className="h-2 w-12 rounded bg-white/20" />
-                      <div className="h-2 w-12 rounded bg-white/20" />
-                   </div>
-                </div>
-                <div className="flex-1 p-8 flex gap-6">
-                   <div className="w-1/3 flex flex-col gap-4">
-                      <div className="w-full aspect-square rounded-2xl bg-gradient-to-br from-pink-500/20 to-purple-500/20 border border-white/10" />
-                      <div className="h-4 w-3/4 rounded bg-white/10" />
-                      <div className="h-2 w-1/2 rounded bg-white/5" />
-                   </div>
-                   <div className="flex-1 flex flex-col gap-4">
-                      <div className="h-32 w-full rounded-2xl bg-white/5 border border-white/10" />
-                      <div className="flex gap-4">
-                        <div className="h-20 flex-1 rounded-xl bg-white/5" />
-                        <div className="h-20 flex-1 rounded-xl bg-white/5" />
-                      </div>
-                      <div className="mt-auto h-10 w-full rounded-full bg-gradient-to-r from-pink-500 to-violet-500" />
-                   </div>
-                </div>
-             </motion.div>
+            {serviceImages["web-design-service"] ? (
+              <img
+                src={serviceImages["web-design-service"]}
+                alt="UI/UX Web Design Service"
+                className="w-full h-auto max-h-full object-contain rounded-3xl border border-white/20 shadow-[0_0_80px_rgba(135,230,92,0.15)] z-20"
+              />
+            ) : (
+              <>
+                 <motion.div 
+                   animate={{ rotateY: [-5, 5, -5], rotateX: [5, -5, 5] }}
+                   transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                   className="absolute inset-0 bg-white/[0.03] backdrop-blur-2xl border border-white/20 rounded-3xl shadow-[0_0_80px_rgba(135,230,92,0.15)] flex flex-col overflow-hidden transform-gpu"
+                 >
+                    <div className="h-16 border-b border-white/10 flex items-center justify-between px-6 bg-white/[0.01]">
+                       <div className="flex gap-2">
+                          <div className="w-3 h-3 rounded-full bg-rose-500" />
+                          <div className="w-3 h-3 rounded-full bg-amber-500" />
+                          <div className="w-3 h-3 rounded-full bg-emerald-500" />
+                       </div>
+                       <div className="flex gap-4">
+                          <div className="h-2 w-12 rounded bg-white/20" />
+                          <div className="h-2 w-12 rounded bg-white/20" />
+                       </div>
+                    </div>
+                    <div className="flex-1 p-8 flex gap-6">
+                       <div className="w-1/3 flex flex-col gap-4">
+                          <div className="w-full aspect-square rounded-2xl bg-gradient-to-br from-neon-green/10 to-neon-green/20 border border-white/10" />
+                          <div className="h-4 w-3/4 rounded bg-white/10" />
+                          <div className="h-2 w-1/2 rounded bg-white/5" />
+                       </div>
+                       <div className="flex-1 flex flex-col gap-4">
+                          <div className="h-32 w-full rounded-2xl bg-white/5 border border-white/10" />
+                          <div className="flex gap-4">
+                            <div className="h-20 flex-1 rounded-xl bg-white/5" />
+                            <div className="h-20 flex-1 rounded-xl bg-white/5" />
+                          </div>
+                          <div className="mt-auto h-10 w-full rounded-full bg-gradient-to-r from-neon-green to-[#63b93a]" />
+                       </div>
+                    </div>
+                 </motion.div>
 
-             <motion.div 
-               animate={{ x: [0, 150, 50, 0], y: [0, -50, 100, 0] }}
-               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute top-1/2 left-1/4 z-30 pointer-events-none"
-             >
-               <div className="w-6 h-6 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black border-2 border-white transform rotate-[-20deg] shadow-lg" />
-               <div className="ml-4 px-3 py-1 bg-pink-500 text-white text-[10px] font-bold rounded-full shadow-xl">
-                 Designing...
-               </div>
-             </motion.div>
+                 <motion.div 
+                   animate={{ x: [0, 150, 50, 0], y: [0, -50, 100, 0] }}
+                   transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                   className="absolute top-1/2 left-1/4 z-30 pointer-events-none"
+                 >
+                    <div className="w-6 h-6 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black border-2 border-white transform rotate-[-20deg] shadow-lg" />
+                    <div className="ml-4 px-3 py-1 bg-neon-green text-black text-[10px] font-bold rounded-full shadow-xl">
+                      Designing...
+                    </div>
+                 </motion.div>
+              </>
+            )}
           </motion.div>
         </div>
       </section>
@@ -412,7 +427,7 @@ export default function UiUxDesignPage() {
         
         <div className="flex w-max items-center gap-10 md:gap-20 whitespace-nowrap px-10 animate-marquee text-neutral-500 font-bold text-xl md:text-3xl tracking-widest uppercase hover:[animation-play-state:paused]">
           {[...tools, ...tools].map((tool, i) => (
-            <span key={i} className="hover:text-pink-400 transition-colors cursor-default">{tool}</span>
+            <span key={i} className="hover:text-neon-green transition-colors cursor-default">{tool}</span>
           ))}
         </div>
       </section>
@@ -423,7 +438,7 @@ export default function UiUxDesignPage() {
       <section className="py-24 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Why professional <span className="text-purple-400">web design matters</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Why professional <span className="text-neon-green">web design matters</span></h2>
             <p className="text-neutral-400 max-w-2xl mx-auto">Everything is intentional. Every click, every section, every flow. Structure that aligns with real user behavior.</p>
           </div>
           
@@ -435,9 +450,9 @@ export default function UiUxDesignPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-3xl bg-neutral-900/40 border border-white/5 text-center group hover:bg-neutral-900 hover:border-purple-500/30 transition-all"
+                className="p-8 rounded-3xl bg-neutral-900/40 border border-white/5 text-center group hover:bg-neutral-900 hover:border-neon-green/30 transition-all"
               >
-                <div className="w-16 h-16 mx-auto rounded-2xl bg-white/5 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 group-hover:bg-purple-500/10 transition-all">
+                <div className="w-16 h-16 mx-auto rounded-2xl bg-white/5 flex items-center justify-center text-neon-green mb-6 group-hover:scale-110 group-hover:bg-neon-green/10 transition-all">
                   {p.icon}
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">{p.title}</h3>
@@ -454,7 +469,7 @@ export default function UiUxDesignPage() {
       <section className="py-24 px-6 relative z-10 bg-white/[0.01]">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our web design <br /><span className="text-pink-400">services.</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our web design <br /><span className="text-neon-green">services.</span></h2>
             <p className="text-neutral-400 max-w-lg mt-4">Design is not what users see. It is what they do next.</p>
           </div>
 
@@ -473,9 +488,9 @@ export default function UiUxDesignPage() {
                 {i === 0 && (
                   <div className="absolute top-10 right-10 w-48 h-48 pointer-events-none opacity-30 group-hover:opacity-60 transition-opacity duration-700">
                     <div className="grid grid-cols-2 gap-2">
-                      <div className="w-full h-12 bg-pink-500/20 rounded border border-pink-500/40" />
-                      <div className="w-full h-12 bg-purple-500/20 rounded border border-purple-500/40" />
-                      <div className="col-span-2 h-8 bg-blue-500/20 rounded border border-blue-500/40" />
+                      <div className="w-full h-12 bg-neon-green/20 rounded border border-neon-green/40" />
+                      <div className="w-full h-12 bg-neon-green/20 rounded border border-neon-green/40" />
+                      <div className="col-span-2 h-8 bg-neon-green/20 rounded border border-neon-green/40" />
                       <div className="col-span-2 h-16 bg-white/10 rounded border border-white/20 flex items-center justify-center">
                          <span className="text-xs text-white/50 font-mono">Component_Button</span>
                       </div>
@@ -509,7 +524,7 @@ export default function UiUxDesignPage() {
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-bold mb-16"
           >
-            The True Value of <span className="text-cyan-400">Great Design</span>
+            The True Value of <span className="text-neon-green">Great Design</span>
           </motion.h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
@@ -521,7 +536,7 @@ export default function UiUxDesignPage() {
                 transition={{ delay: i * 0.15 }}
                 className="flex flex-col items-center"
               >
-                <div className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-cyan-400 to-blue-600 mb-4">
+                <div className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-neon-green to-[#63b93a] mb-4">
                   <Counter 
                     value={stat.value} 
                     prefix={stat.prefix} 
@@ -549,7 +564,7 @@ export default function UiUxDesignPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Scalable <br /><span className="text-amber-400">Design Systems</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Scalable <br /><span className="text-neon-green">Design Systems</span></h2>
             <p className="text-neutral-400 text-lg mb-8 leading-relaxed">
               We don't just design pages; we build exhaustive component libraries. Colors, typography, spacing tokens, and atomic components all meticulously organized in Figma.
             </p>
@@ -563,7 +578,7 @@ export default function UiUxDesignPage() {
                   transition={{ delay: i * 0.1 + 0.4 }}
                   className="flex items-center gap-3 text-neutral-300"
                 >
-                  <CheckCircle2 className="w-5 h-5 text-amber-500" /> {item}
+                  <CheckCircle2 className="w-5 h-5 text-neon-green" /> {item}
                 </motion.li>
               ))}
             </ul>
@@ -576,16 +591,16 @@ export default function UiUxDesignPage() {
             transition={{ duration: 0.8 }}
             className="relative aspect-square w-full max-w-md mx-auto"
           >
-             <div className="absolute inset-0 bg-amber-500/10 rounded-full blur-[80px]" />
+             <div className="absolute inset-0 bg-neon-green/10 rounded-full blur-[80px]" />
              <div className="relative z-10 h-full w-full bg-neutral-900 border border-white/10 rounded-3xl p-6 shadow-2xl flex flex-col gap-4">
                 <div className="h-6 w-32 bg-white/10 rounded mb-4" />
                 <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-500" />
-                  <div className="w-12 h-12 rounded-full bg-pink-500" />
-                  <div className="w-12 h-12 rounded-full bg-amber-500" />
+                  <div className="w-12 h-12 rounded-full bg-neon-green" />
+                  <div className="w-12 h-12 rounded-full bg-emerald-600" />
+                  <div className="w-12 h-12 rounded-full bg-white" />
                 </div>
                 <div className="mt-4 grid grid-cols-2 gap-4">
-                   <div className="px-4 py-2 rounded-lg bg-blue-500 text-white text-center text-sm font-medium">Primary Button</div>
+                   <div className="px-4 py-2 rounded-lg bg-neon-green text-black text-center text-sm font-medium">Primary Button</div>
                    <div className="px-4 py-2 rounded-lg border border-white/20 text-white text-center text-sm font-medium">Secondary</div>
                 </div>
                 <div className="mt-4 p-4 rounded-xl bg-black border border-white/5 space-y-3">
@@ -609,7 +624,7 @@ export default function UiUxDesignPage() {
               viewport={{ once: true }}
               className="text-4xl md:text-5xl font-bold mb-4"
             >
-              What You <span className="text-pink-400">Actually Get</span>
+              What You <span className="text-neon-green">Actually Get</span>
             </motion.h2>
             <p className="text-neutral-400">We go beyond just 'screens'. We provide the full infrastructure for your product's success.</p>
           </div>
@@ -622,7 +637,7 @@ export default function UiUxDesignPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-3xl bg-[#0a0a0a] border border-white/5 hover:border-pink-500/30 transition-all group"
+                className="p-8 rounded-3xl bg-[#0a0a0a] border border-white/5 hover:border-neon-green/30 transition-all group"
               >
                 <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-all">
                   {item.icon}
@@ -649,7 +664,7 @@ export default function UiUxDesignPage() {
               viewport={{ once: true }}
               className="text-4xl md:text-5xl font-bold mb-4"
             >
-              Industries <span className="text-blue-400">We Serve</span>
+              Industries <span className="text-neon-green">We Serve</span>
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -670,9 +685,9 @@ export default function UiUxDesignPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-3xl bg-neutral-900/40 border border-white/5 group hover:bg-neutral-900 hover:border-blue-500/30 transition-all"
+                className="p-8 rounded-3xl bg-neutral-900/40 border border-white/5 group hover:bg-neutral-900 hover:border-neon-green/30 transition-all"
               >
-                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-500/10 transition-all">
+                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-neon-green/10 transition-all">
                   {ind.icon}
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">{ind.name}</h3>
@@ -689,14 +704,14 @@ export default function UiUxDesignPage() {
           SATISFACTION & TRUST BANNER
       ══════════════════════════════════════════ */}
       <section className="py-20 px-6 relative z-10">
-        <div className="max-w-5xl mx-auto rounded-[2rem] bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-indigo-500/10 border border-white/10 p-10 md:p-16 text-center">
+        <div className="max-w-5xl mx-auto rounded-[2rem] bg-gradient-to-r from-neon-green/5 via-[#63b93a]/5 to-black border border-white/10 p-10 md:p-16 text-center">
            <motion.div
              initial={{ opacity: 0, scale: 0.9 }}
              whileInView={{ opacity: 1, scale: 1 }}
              viewport={{ once: true }}
            >
               <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-6">
-                <ShieldCheck className="w-8 h-8 text-pink-500" />
+                <ShieldCheck className="w-8 h-8 text-neon-green" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Our Satisfaction Guarantee</h2>
               <p className="text-neutral-400 text-lg max-w-2xl mx-auto mb-8">
@@ -704,13 +719,13 @@ export default function UiUxDesignPage() {
               </p>
               <div className="flex flex-wrap justify-center gap-6 md:gap-12">
                 <div className="flex items-center gap-2 text-white font-medium text-sm md:text-base">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500" /> 100% Satisfaction
+                  <CheckCircle2 className="w-5 h-5 text-neon-green" /> 100% Satisfaction
                 </div>
                 <div className="flex items-center gap-2 text-white font-medium text-sm md:text-base">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500" /> Transparent Pricing
+                  <CheckCircle2 className="w-5 h-5 text-neon-green" /> Transparent Pricing
                 </div>
                 <div className="flex items-center gap-2 text-white font-medium text-sm md:text-base">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500" /> 24/7 Support
+                  <CheckCircle2 className="w-5 h-5 text-neon-green" /> 24/7 Support
                 </div>
               </div>
            </motion.div>

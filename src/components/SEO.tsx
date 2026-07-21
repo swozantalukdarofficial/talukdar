@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useContent } from "../context/ContentContext";
 
 const BASE_URL = "https://webestone.com";
 
@@ -9,28 +10,34 @@ interface SEOProps {
   schemaMarkup?: object | string;
   /** Override canonical URL. If omitted, auto-derived from current path. */
   canonical?: string;
+  pageKey?: string;
 }
 
-export default function SEO({ title, description, schemaMarkup, canonical }: SEOProps) {
+export default function SEO({ title, description, schemaMarkup, canonical, pageKey }: SEOProps) {
   const { pathname } = useLocation();
+  const { seo } = useContent();
 
   // Resolve canonical: explicit prop wins, otherwise build from current path
   const canonicalUrl = canonical ?? `${BASE_URL}${pathname}`;
 
+  // Get dynamic title/description if pageKey matches in context, otherwise fall back to props
+  const finalTitle = (pageKey && seo?.[pageKey]?.title) || title;
+  const finalDescription = (pageKey && seo?.[pageKey]?.description) || description;
+
   // ── Title + Description ──────────────────────────────────────────────────
   useEffect(() => {
-    document.title = title;
+    document.title = finalTitle;
 
     let metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute("content", description);
+      metaDescription.setAttribute("content", finalDescription);
     } else {
       metaDescription = document.createElement("meta");
       metaDescription.setAttribute("name", "description");
-      metaDescription.setAttribute("content", description);
+      metaDescription.setAttribute("content", finalDescription);
       document.head.appendChild(metaDescription);
     }
-  }, [title, description]);
+  }, [finalTitle, finalDescription]);
 
   // ── Canonical Tag ────────────────────────────────────────────────────────
   useEffect(() => {

@@ -3,6 +3,7 @@ import DomeGallery from "../components/DomeGallery";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { useContent } from "../context/ContentContext";
 
 const PORTFOLIO_IMAGES = [
   {
@@ -57,9 +58,15 @@ const PORTFOLIO_IMAGES = [
 
 
 export default function WorkPage() {
+  const { portfolio: dynamicPortfolio } = useContent();
+  const displayImages = dynamicPortfolio && dynamicPortfolio.length > 0
+    ? dynamicPortfolio.map(p => ({ src: p.src, alt: p.alt }))
+    : PORTFOLIO_IMAGES;
+
   return (
-    <main className="min-h-screen bg-black overflow-hidden relative pb-24">
+    <main className="min-h-screen bg-black overflow-x-hidden relative pb-24">
       <SEO 
+        pageKey="work"
         title="Our Work & Case Studies - WeBestOne" 
         description="Explore our portfolio of successful projects, including web development, AI SEO campaigns, and branding that drive revenue." 
       />
@@ -101,7 +108,7 @@ export default function WorkPage() {
       {/* Immersive 3D Gallery Viewport */}
       <section className="relative z-10 w-full h-[620px] md:h-[680px] border-y border-white/5 bg-neutral-950/20">
         <DomeGallery
-          images={PORTFOLIO_IMAGES}
+          images={displayImages}
           fit={0.85}
           minRadius={580}
           maxVerticalRotationDeg={10}

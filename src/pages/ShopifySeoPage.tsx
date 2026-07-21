@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ChevronDown, ArrowRight, CheckCircle2 } from "lucide-react";
 import SEO from "../components/SEO";
+import { useContent } from "../context/ContentContext";
+import AdminServiceImageEditor from "../components/admin/AdminServiceImageEditor";
 
 const shopifySeoSchema = {
 	"@context": "https://schema.org",
@@ -92,7 +94,14 @@ const shopifySeoSchema = {
 };
 
 export default function ShopifySeoPage() {
+	const { serviceImages } = useContent();
 	const [activeFaq, setActiveFaq] = useState<number | null>(0);
+
+	const growthImg = serviceImages?.["shopify-seo-service-agency_growth"] || "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop";
+	const masonry1 = serviceImages?.["shopify-seo-service-agency_masonry_1"] || "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600&auto=format&fit=crop";
+	const masonry2 = serviceImages?.["shopify-seo-service-agency_masonry_2"] || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400&auto=format&fit=crop";
+	const masonry3 = serviceImages?.["shopify-seo-service-agency_masonry_3"] || "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop";
+	const masonry4 = serviceImages?.["shopify-seo-service-agency_masonry_4"] || "https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=600&auto=format&fit=crop";
 
 	// FAQs Data
 	const faqs = [
@@ -115,15 +124,17 @@ export default function ShopifySeoPage() {
 
 	// Masonry Grid Data
 	const masonryItems = [
-		{ title: "Performance-focused Shopify SEO approach", desc: "As a Shopify SEO service agency, we focus on performance, not generic execution.", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600&auto=format&fit=crop", className: "md:col-span-2 md:row-span-2" },
-		{ title: "Revenue-focused strategy", desc: "Our Shopify website optimization service is built to improve conversion rate, not just increase traffic.", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400&auto=format&fit=crop", className: "md:col-span-1 md:row-span-1" },
-		{ title: "Data-driven optimization", desc: "We use data from Google, analytics tools, and search behavior to guide every decision.", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop", className: "md:col-span-1 md:row-span-1" },
-		{ title: "Continuous Shopify store optimization services", desc: "Our Shopify store optimization services improve user experience, rankings, and long-term scalability.", image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=600&auto=format&fit=crop", className: "md:col-span-2 md:row-span-1" },
+		{ title: "Performance-focused Shopify SEO approach", desc: "As a Shopify SEO service agency, we focus on performance, not generic execution.", image: masonry1, className: "md:col-span-2 md:row-span-2" },
+		{ title: "Revenue-focused strategy", desc: "Our Shopify website optimization service is built to improve conversion rate, not just increase traffic.", image: masonry2, className: "md:col-span-1 md:row-span-1" },
+		{ title: "Data-driven optimization", desc: "We use data from Google, analytics tools, and search behavior to guide every decision.", image: masonry3, className: "md:col-span-1 md:row-span-1" },
+		{ title: "Continuous Shopify store optimization services", desc: "Our Shopify store optimization services improve user experience, rankings, and long-term scalability.", image: masonry4, className: "md:col-span-2 md:row-span-1" },
 	];
 
 	return (
-		<main className="min-h-screen bg-black text-white overflow-x-hidden">
+		<main className="min-h-screen bg-black text-white overflow-x-hidden relative">
+			<AdminServiceImageEditor serviceId="shopify-seo-service-agency" />
 			<SEO 
+				pageKey="shopify-seo-service-agency"
 				title="Shopify SEO Service Agency | Shopify store Optimization services" 
 				description="Shopify SEO Service Agency driving growth through AI-driven Shopify SEO expert team, keyword research and high-performing Shopify store Optimization services." 
 				schemaMarkup={shopifySeoSchema}
@@ -192,7 +203,7 @@ export default function ShopifySeoPage() {
 						className="relative z-10 flex justify-center lg:justify-end"
 					>
 						<img
-							src="/shopify_seo_hero.webp"
+							src={serviceImages["shopify-seo-service-agency"] || "/shopify_seo_hero.webp"}
 							alt="Shopify SEO Service Agency"
 							className="w-full max-w-sm md:max-w-md lg:max-w-lg drop-shadow-[0_0_50px_rgba(135,230,92,0.25)] hover:-translate-y-4 transition-transform duration-700"
 						/>
@@ -212,7 +223,7 @@ export default function ShopifySeoPage() {
 					>
 						<div className="absolute inset-0 bg-gradient-to-tr from-neon-green/10 to-transparent blur-2xl rounded-full"></div>
 						<img
-							src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
+							src={growthImg}
 							alt="Shopify E-commerce Growth Dashboard"
 							className="w-full max-w-md lg:max-w-lg relative z-10 drop-shadow-2xl hover:scale-105 transition-transform duration-700"
 						/>
@@ -302,7 +313,7 @@ export default function ShopifySeoPage() {
 								<div className="mt-8">
 									<Link
 										to="/contact-us"
-										className="inline-block px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full transition-colors font-sm w-max"
+										className="inline-block px-6 py-2.5 bg-neon-green text-black font-bold rounded-full hover:scale-105 hover:shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:bg-[#87E65C] transition-all duration-300 font-sm w-max"
 									>
 										Get started
 									</Link>

@@ -26,7 +26,7 @@ const smmSchema = {
         "name": "WeBestOne",
         "url": "https://webestone.com",
         "logo": "https://webestone.com/favicon.png",
-        "telephone": "+8801333600272",
+        "telephone": "+8801815025322",
         "email": "webestone@gmail.com",
         "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
       },
@@ -97,6 +97,8 @@ import {
 } from "lucide-react";
 import { MagneticButton } from "../components/ui/MagneticButton";
 import SEO from "../components/SEO";
+import { useContent } from "../context/ContentContext";
+import AdminServiceImageEditor from "../components/admin/AdminServiceImageEditor";
 
 const processSteps = [
   {
@@ -178,6 +180,8 @@ const stats = [
 ];
 
 export default function SocialMediaMarketingPage() {
+  const { serviceImages } = useContent();
+  const videoId = serviceImages?.["social-media-marketing-agency_video"] || "MnLd2G198U8";
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [activeStep, setActiveStep] = useState(0);
   const [activePlatform, setActivePlatform] = useState(0);
@@ -200,8 +204,10 @@ export default function SocialMediaMarketingPage() {
   }, []);
 
   return (
-    <main className="relative min-h-screen text-white overflow-hidden bg-black">
+    <main className="relative min-h-screen text-white overflow-x-hidden bg-black">
+      <AdminServiceImageEditor serviceId="social-media-marketing-agency" />
       <SEO 
+        pageKey="social-media-marketing-agency"
         title="Social Media Marketing Agency | Social Media Advertising Experts" 
         description="Trusted Social Media Marketing Agency driving growth through AI-driven strategies, Meta Business Suite, LinkedIn Campaign Manager and high-performing paid campaigns." 
         schemaMarkup={smmSchema}
@@ -290,7 +296,7 @@ export default function SocialMediaMarketingPage() {
                         onClick={() => setIsVideoPlaying(true)}
                       >
                         <img 
-                          src="https://img.youtube.com/vi/MnLd2G198U8/maxresdefault.jpg" 
+                          src={serviceImages["social-media-marketing-agency"] || `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`} 
                           alt="Social Media Marketing Agency" 
                           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/thumb:scale-105" 
                         />
@@ -315,7 +321,7 @@ export default function SocialMediaMarketingPage() {
                         className="absolute inset-0"
                       >
                         <iframe
-                          src="https://www.youtube.com/embed/MnLd2G198U8?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1"
+                          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&modestbranding=1&rel=0&loop=1`}
                           title="Social Media Marketing"
                           className="w-full h-full object-cover pointer-events-none"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

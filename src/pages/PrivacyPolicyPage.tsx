@@ -188,22 +188,22 @@ export default function PrivacyPolicyPage() {
 									{section.id === 11 && (
 										<div className="mt-6 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-4 max-w-lg">
 											<a
-												href="mailto:privacy@webestone.com"
+												href="mailto:webestone@gmail.com"
 												className="flex items-center gap-3 text-neutral-300 hover:text-neon-green transition-colors"
 											>
 												<Mail className="w-5 h-5 text-neon-green" />
-												<span>privacy@webestone.com</span>
+												<span>webestone@gmail.com</span>
 											</a>
 											<a
-												href="tel:+8801333600272"
+												href="tel:+8801815025322"
 												className="flex items-center gap-3 text-neutral-300 hover:text-neon-green transition-colors"
 											>
 												<Phone className="w-5 h-5 text-neon-green" />
-												<span>+880 1333 600 272</span>
+												<span>+880 1815-025322</span>
 											</a>
 											<div className="flex items-center gap-3 text-neutral-300">
 												<MapPin className="w-5 h-5 text-neon-green" />
-												<span>Dhaka, Bangladesh</span>
+												<span>25 The Avenue, Crawley, Perth, WA</span>
 											</div>
 											<p className="text-neutral-500 text-xs pt-2 border-t border-white/5">
 												Our Data Protection Officer will respond to all legitimate requests within a reasonable timeframe.

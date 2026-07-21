@@ -14,13 +14,16 @@ import {
 	CheckCircle2,
 	Star, 
 	Map,
-	Edit3
+	Edit3,
+	ShoppingBag
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { MagneticButton } from "../components/ui/MagneticButton";
 import pageData from "../data/digital-marketing-page.json";
 import SEO from "../components/SEO";
+import { useContent } from "../context/ContentContext";
+import AdminServiceImageEditor from "../components/admin/AdminServiceImageEditor";
 
 const iconMap: Record<string, React.ComponentType<any>> = {
 	Play,
@@ -37,7 +40,8 @@ const iconMap: Record<string, React.ComponentType<any>> = {
 	CheckCircle2,
 	Star,
 	Map,
-	Edit3
+	Edit3,
+	ShoppingBag
 };
 
 const heroContainer = {
@@ -132,18 +136,25 @@ const digitalMarketingSchema = {
 };
 
 export default function DigitalMarketingPage() {
+	const { serviceImages } = useContent();
 	const [activeReason, setActiveReason] = useState(0);
 	const [openFaq, setOpenFaq] = useState<number | null>(null);
 	const [isPlayingHero, setIsPlayingHero] = useState(false);
 	const [isPlayingWhy, setIsPlayingWhy] = useState(false);
+
+	const heroVideoId = serviceImages?.["digital-marketing-agency_video"] || "Zey6npEA0KA";
+	const whyVideoId = serviceImages?.["digital-marketing-agency_why_video"] || "MnLd2G198U8";
+	const whyThumbUrl = serviceImages?.["digital-marketing-agency_why_thumb"] || `https://img.youtube.com/vi/${whyVideoId}/maxresdefault.jpg`;
 
 	const toggleFaq = (index: number) => {
 		setOpenFaq(openFaq === index ? null : index);
 	};
 
 	return (
-		<main className="relative min-h-screen text-white overflow-hidden bg-black">
+		<main className="relative min-h-screen text-white overflow-x-hidden bg-black">
+			<AdminServiceImageEditor serviceId="digital-marketing-agency" />
 			<SEO 
+				pageKey="digital-marketing-agency"
 				title="Digital Marketing Agency | Expert Digital Marketing Solutions" 
 				description="Leading Digital Marketing Agency offering AI powered digital marketing services specializing in AI SEO, Google Ads, content strategy and conversion focused campaigns." 
 				schemaMarkup={digitalMarketingSchema}
@@ -155,7 +166,7 @@ export default function DigitalMarketingPage() {
 				<div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.05]"></div>
 			</div>
 
-			<section className="relative min-h-screen flex items-center pt-28 pb-16 px-6 z-10">
+			<section className="relative pt-32 pb-12 md:pb-16 px-6 z-10">
 				<motion.div
 					variants={heroContainer}
 					initial="hidden"
@@ -220,7 +231,7 @@ export default function DigitalMarketingPage() {
 										onClick={() => setIsPlayingHero(true)}
 									>
 										<img 
-											src="https://img.youtube.com/vi/Zey6npEA0KA/maxresdefault.jpg" 
+											src={serviceImages["digital-marketing-agency"] || "https://img.youtube.com/vi/Zey6npEA0KA/maxresdefault.jpg"} 
 											alt="Digital Marketing Agency" 
 											className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-105" 
 										/>
@@ -237,7 +248,7 @@ export default function DigitalMarketingPage() {
 								) : (
 									<iframe
 										className="absolute inset-0 w-full h-full"
-										src="https://www.youtube.com/embed/Zey6npEA0KA?autoplay=1&controls=1&modestbranding=1&rel=0"
+										src={`https://www.youtube.com/embed/${heroVideoId}?autoplay=1&controls=1&modestbranding=1&rel=0`}
 										title="Digital Marketing Hero Video"
 										frameBorder="0"
 										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -310,7 +321,7 @@ export default function DigitalMarketingPage() {
 										onClick={() => setIsPlayingWhy(true)}
 									>
 										<img 
-											src="https://img.youtube.com/vi/MnLd2G198U8/maxresdefault.jpg" 
+											src={whyThumbUrl} 
 											alt="Why Digital Marketing Thumbnail" 
 											className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
 										/>
@@ -322,7 +333,7 @@ export default function DigitalMarketingPage() {
 								) : (
 									<iframe
 										className="absolute inset-0 w-full h-full"
-										src="https://www.youtube.com/embed/MnLd2G198U8?autoplay=1&controls=1&modestbranding=1&rel=0"
+										src={`https://www.youtube.com/embed/${whyVideoId}?autoplay=1&controls=1&modestbranding=1&rel=0`}
 										title="Why Digital Marketing Video"
 										frameBorder="0"
 										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -394,73 +405,6 @@ export default function DigitalMarketingPage() {
 				</div>
 			</section>
 
-			{/* --- Results Driven Marketing (Visual Section) --- */}
-			<section className="py-24 px-6 relative overflow-hidden">
-				<div className="absolute inset-0 bg-blue-900/10 z-0"></div>
-				<div className="max-w-7xl mx-auto relative z-10 text-center space-y-12">
-					<div
-						className="inline-block"
-					>
-						<span className="text-neon-green font-mono text-sm tracking-widest uppercase block mb-4">
-							{pageData.performance.subLabel}
-						</span>
-						<h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white relative inline-block">
-							{pageData.performance.title}
-							<svg
-								className="absolute w-full h-3 -bottom-2 text-neon-green/50 left-0"
-								viewBox="0 0 200 9"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M2.00025 6.99996C18.4475 2.66663 80.9167 -2.49997 197.99 1.99996"
-									stroke="currentColor"
-									strokeWidth="3"
-									strokeLinecap="round"
-								></path>
-							</svg>
-						</h2>
-					</div>
-
-					<div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-						{pageData.performance.items.map((item, i) => {
-							const IconComponent = iconMap[item.icon] || Monitor;
-							return (
-								<motion.div
-									key={i}
-									whileHover={{ y: -10 }}
-									className="bg-black/40 backdrop-blur-sm p-8 rounded-2xl border border-white/10 flex flex-col items-center text-center space-y-4 hover:border-neon-green/50 transition-colors"
-								>
-									<div className="p-4 rounded-full bg-white/5 border border-white/10 text-neon-green">
-										<IconComponent className="w-8 h-8" />
-									</div>
-									<h3 className="text-xl font-bold">{item.title}</h3>
-									<p className="text-sm text-neutral-400">{item.desc}</p>
-								</motion.div>
-							);
-						})}
-					</div>
-
-					<div className="bg-yellow-500/20 border border-yellow-500/30 rounded-2xl p-8 max-w-sm mx-auto mt-8 backdrop-blur-sm relative overflow-hidden group">
-						<div className="absolute -right-10 -top-10 w-32 h-32 bg-yellow-500/20 rounded-full blur-[40px] pointer-events-none"></div>
-						<div className="relative z-10 space-y-4">
-							<div className="w-12 h-12 bg-yellow-500 text-black rounded-lg flex items-center justify-center mx-auto mb-4">
-								{(() => {
-									const SocialIcon = iconMap[pageData.performance.socialMediaBox.icon] || Share2;
-									return <SocialIcon className="w-6 h-6" />;
-								})()}
-							</div>
-							<h3 className="text-2xl font-bold text-yellow-400">
-								{pageData.performance.socialMediaBox.title}
-							</h3>
-							<p className="text-neutral-300 text-sm">
-								{pageData.performance.socialMediaBox.desc}
-							</p>
-						</div>
-					</div>
-				</div>
-			</section>
-
 			{/* --- Detailed Services Grid --- */}
 			<section className="py-24 px-6 bg-neutral-900/50 relative z-10">
 				<div className="max-w-7xl mx-auto text-center space-y-16">
@@ -498,27 +442,28 @@ export default function DigitalMarketingPage() {
 						{pageData.ourServices.services.map((service, index) => {
 							const IconComponent = iconMap[service.icon] || Monitor;
 							return (
-								<motion.div
-									key={index}
-									initial={{ opacity: 0, y: 20 }}
-									whileInView={{ opacity: 1, y: 0 }}
-									viewport={{ once: true }}
-									transition={{ delay: index * 0.05 }}
-									whileHover={{ y: -5 }}
-									className="bg-white/5 border border-white/10 p-8 rounded-2xl text-left hover:bg-white/10 transition-colors group"
-								>
-									<div className="flex items-center gap-4 mb-4">
-										<div className="p-2 bg-blue-500/10 text-blue-400 rounded-lg group-hover:bg-blue-500 group-hover:text-white transition-colors">
-											<IconComponent className="w-6 h-6" />
+								<Link to={service.link} key={index} className="block group">
+									<motion.div
+										initial={{ opacity: 0, y: 20 }}
+										whileInView={{ opacity: 1, y: 0 }}
+										viewport={{ once: true }}
+										transition={{ delay: index * 0.05 }}
+										whileHover={{ y: -5 }}
+										className="bg-white/5 border border-white/10 p-8 rounded-2xl text-left hover:bg-white/10 transition-colors h-full"
+									>
+										<div className="flex items-center gap-4 mb-4">
+											<div className="p-2 bg-blue-500/10 text-blue-400 rounded-lg group-hover:bg-blue-500 group-hover:text-white transition-colors">
+												<IconComponent className="w-6 h-6" />
+											</div>
+											<h3 className="font-bold text-lg text-white group-hover:text-blue-400 transition-colors underline decoration-transparent group-hover:decoration-blue-400 underline-offset-4">
+												{service.title}
+											</h3>
 										</div>
-										<h3 className="font-bold text-lg text-white group-hover:text-blue-400 transition-colors underline decoration-transparent group-hover:decoration-blue-400 underline-offset-4">
-											{service.title}
-										</h3>
-									</div>
-									<p className="text-sm text-neutral-400 leading-relaxed">
-										{service.desc}
-									</p>
-								</motion.div>
+										<p className="text-sm text-neutral-400 leading-relaxed">
+											{service.desc}
+										</p>
+									</motion.div>
+								</Link>
 							);
 						})}
 					</div>

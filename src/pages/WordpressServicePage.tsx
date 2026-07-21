@@ -22,6 +22,8 @@ import {
   Star
 } from "lucide-react";
 import SEO from "../components/SEO";
+import { useContent } from "../context/ContentContext";
+import AdminServiceImageEditor from "../components/admin/AdminServiceImageEditor";
 
 const wordpressSchema = {
   "@context": "https://schema.org",
@@ -47,7 +49,7 @@ const wordpressSchema = {
         "name": "WeBestOne",
         "url": "https://webestone.com",
         "logo": "https://webestone.com/favicon.png",
-        "telephone": "+8801333600272",
+        "telephone": "+8801815025322",
         "email": "webestone@gmail.com",
         "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
       },
@@ -98,8 +100,8 @@ const whyChoose = [
     icon: <Zap className="w-8 h-8" />,
     title: "Speed Optimization",
     desc: "Speed using WP Rocket, Cloudflare, and content delivery networks (CDN).",
-    span: "md:col-span-2 md:row-span-2 bg-gradient-to-br from-blue-900/40 to-black border-blue-500/30",
-    iconColor: "text-blue-400"
+    span: "md:col-span-2 md:row-span-2 bg-gradient-to-br from-neon-green/10 to-black border-neon-green/30",
+    iconColor: "text-neon-green"
   },
   {
     icon: <Database className="w-6 h-6" />,
@@ -113,14 +115,14 @@ const whyChoose = [
     title: "Usability & Design",
     desc: "Usability through structured layouts and responsive design.",
     span: "md:col-span-1 bg-black border-white/10",
-    iconColor: "text-emerald-400"
+    iconColor: "text-neon-green"
   },
   {
     icon: <Search className="w-8 h-8" />,
     title: "Search Visibility",
     desc: "SEO-ready builds using schema markup and XML sitemap integration.",
     span: "md:col-span-2 bg-gradient-to-r from-neutral-900 to-black border-white/10",
-    iconColor: "text-purple-400"
+    iconColor: "text-neon-green"
   },
 ];
 
@@ -159,29 +161,29 @@ const portfolio = [
     client: "TechStore BD",
     title: "WooCommerce Electronics Hub",
     type: "E-Commerce",
-    bg: "bg-blue-500/10",
-    border: "border-blue-500/20"
+    bg: "bg-neon-green/10",
+    border: "border-neon-green/20"
   },
   {
     client: "Daily News Insight",
     title: "High-Traffic News Portal",
     type: "Publishing",
-    bg: "bg-indigo-500/10",
-    border: "border-indigo-500/20"
+    bg: "bg-neon-green/10",
+    border: "border-neon-green/20"
   },
   {
     client: "Learn Academy",
     title: "Custom LMS Integration",
     type: "Education",
-    bg: "bg-purple-500/10",
-    border: "border-purple-500/20"
+    bg: "bg-neon-green/10",
+    border: "border-neon-green/20"
   },
   {
     client: "Elite Estates",
     title: "Real Estate Listing Platform",
     type: "Corporate",
-    bg: "bg-teal-500/10",
-    border: "border-teal-500/20"
+    bg: "bg-neon-green/10",
+    border: "border-neon-green/20"
   }
 ];
 
@@ -243,8 +245,8 @@ function FaqItem({ q, a }: { q: string; a: string }) {
       className="border-b border-white/10 py-5 cursor-pointer group"
     >
       <div className="flex items-center justify-between gap-4">
-        <h4 className="text-lg font-medium text-white group-hover:text-blue-400 transition-colors">{q}</h4>
-        <div className={`w-8 h-8 rounded-full border border-white/20 flex items-center justify-center transition-all ${open ? 'bg-blue-500 border-blue-500 text-white rotate-180' : 'text-neutral-400'}`}>
+        <h4 className="text-lg font-medium text-white group-hover:text-neon-green transition-colors">{q}</h4>
+        <div className={`w-8 h-8 rounded-full border border-white/20 flex items-center justify-center transition-all ${open ? 'bg-neon-green border-neon-green text-black rotate-180' : 'text-neutral-400'}`}>
           <ChevronDown className="w-4 h-4" />
         </div>
       </div>
@@ -265,6 +267,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 }
 
 export default function WordpressServicePage() {
+  const { serviceImages } = useContent();
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -274,8 +277,10 @@ export default function WordpressServicePage() {
   const yImage = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
   return (
-    <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white selection:bg-blue-500/30">
+    <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white selection:bg-neon-green/30">
+      <AdminServiceImageEditor serviceId="wordpress-website-development-services" />
       <SEO 
+        pageKey="wordpress-website-development-services"
         title="WordPress website development services | AI powered Agency" 
         description="Advanced WordPress website development services featuring custom WordPress themes, security plugins and growth-focused WordPress web development agency strategies." 
         schemaMarkup={wordpressSchema}
@@ -295,7 +300,7 @@ export default function WordpressServicePage() {
               animate={{ opacity: 1, y: 0 }}
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-neutral-300 text-xs font-medium uppercase tracking-wider"
             >
-              <Database className="w-3.5 h-3.5 text-blue-500" />
+              <Database className="w-3.5 h-3.5 text-neon-green" />
               Enterprise WordPress Solutions
             </motion.div>
 
@@ -307,7 +312,7 @@ export default function WordpressServicePage() {
               className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-[1.15] tracking-tight"
             >
               WordPress Website{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent block">
+              <span className="bg-gradient-to-r from-neon-green to-emerald-400 bg-clip-text text-transparent block">
                 Development Services
               </span>
             </motion.h1>
@@ -337,7 +342,7 @@ export default function WordpressServicePage() {
             >
               <Link
                 to="/contact-us"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-blue-600 text-white font-bold rounded-full shadow-[0_0_25px_rgba(37,99,235,0.35)] hover:shadow-[0_0_40px_rgba(37,99,235,0.55)] hover:scale-105 transition-all duration-300 text-sm"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-neon-green text-black font-bold rounded-full shadow-[0_0_25px_rgba(135,230,92,0.35)] hover:shadow-[0_0_40px_rgba(135,230,92,0.55)] hover:scale-105 transition-all duration-300 text-sm"
               >
                 Discuss Your Project
                 <ArrowRight className="w-4 h-4" />
@@ -359,7 +364,7 @@ export default function WordpressServicePage() {
             >
               {["Custom Themes", "WooCommerce", "ACF Pro Integration", "Secure"].map((b) => (
                 <div key={b} className="flex items-center gap-1.5 text-neutral-500 text-xs">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-500" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-neon-green" />
                   {b}
                 </div>
               ))}
@@ -374,82 +379,90 @@ export default function WordpressServicePage() {
             className="relative h-[420px] lg:h-[500px] flex items-center justify-center w-full mt-10 lg:mt-0"
           >
             {/* Ambient glow */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-indigo-500/20 to-purple-500/20 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-neon-green/10 via-emerald-500/10 to-transparent rounded-full blur-[100px] pointer-events-none" />
 
-            {/* Abstract Floating UI Dashboard */}
-            <motion.div 
-              animate={{ y: [-10, 10, -10] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-[95%] sm:w-[85%] max-w-lg z-20"
-            >
-              <div className="relative aspect-[4/3] bg-neutral-950 rounded-2xl border border-white/10 shadow-[0_20px_60px_rgba(37,99,235,0.15)] flex flex-col">
-                {/* Inner wrapper for overflow-hidden content */}
-                <div className="absolute inset-0 overflow-hidden rounded-2xl flex flex-col">
-                  {/* Fake browser header */}
-                  <div className="h-10 bg-neutral-900 border-b border-white/5 flex items-center px-4 gap-2 shrink-0">
-                    <div className="w-3 h-3 rounded-full bg-red-500/50" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-                    <div className="w-3 h-3 rounded-full bg-green-500/50" />
-                    <div className="ml-4 h-5 w-48 bg-black/50 rounded-md border border-white/5 flex items-center px-2">
-                      <span className="text-[9px] text-neutral-500 font-mono">yoursite.com/wp-admin</span>
+            {serviceImages["wordpress-website-development-services"] ? (
+              <img
+                src={serviceImages["wordpress-website-development-services"]}
+                alt="WordPress Development Services"
+                className="w-[95%] sm:w-[85%] max-w-lg z-20 aspect-[4/3] object-cover rounded-2xl border border-white/10 shadow-[0_20px_60px_rgba(135,230,92,0.15)]"
+              />
+            ) : (
+              /* Abstract Floating UI Dashboard */
+              <motion.div 
+                animate={{ y: [-10, 10, -10] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="relative w-[95%] sm:w-[85%] max-w-lg z-20"
+              >
+                <div className="relative aspect-[4/3] bg-neutral-950 rounded-2xl border border-white/10 shadow-[0_20px_60px_rgba(135,230,92,0.15)] flex flex-col">
+                  {/* Inner wrapper for overflow-hidden content */}
+                  <div className="absolute inset-0 overflow-hidden rounded-2xl flex flex-col">
+                    {/* Fake browser header */}
+                    <div className="h-10 bg-neutral-900 border-b border-white/5 flex items-center px-4 gap-2 shrink-0">
+                      <div className="w-3 h-3 rounded-full bg-red-500/50" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
+                      <div className="w-3 h-3 rounded-full bg-green-500/50" />
+                      <div className="ml-4 h-5 w-48 bg-black/50 rounded-md border border-white/5 flex items-center px-2">
+                        <span className="text-[9px] text-neutral-500 font-mono">yoursite.com/wp-admin</span>
+                      </div>
+                    </div>
+                    {/* Fake Content */}
+                    <div className="flex-1 flex p-4 gap-4 relative">
+                       {/* Sidebar */}
+                       <div className="w-1/4 hidden sm:flex flex-col gap-2">
+                          {[...Array(6)].map((_, i) => (
+                            <div key={i} className={`h-6 rounded-md ${i === 0 ? 'bg-neon-green/20 border border-neon-green/30' : 'bg-white/5'}`} />
+                          ))}
+                       </div>
+                       {/* Main Body */}
+                       <div className="flex-1 flex flex-col gap-4">
+                          <div className="flex gap-4">
+                             <div className="h-24 flex-1 bg-gradient-to-br from-neon-green/10 to-transparent border border-neon-green/20 rounded-xl p-3 flex flex-col justify-between">
+                                <div className="w-6 h-6 rounded-full bg-neon-green/20" />
+                                <div>
+                                  <div className="h-4 w-16 bg-neon-green/20 rounded mb-1.5" />
+                                  <div className="h-1.5 w-24 bg-white/10 rounded" />
+                                </div>
+                             </div>
+                             <div className="h-24 flex-1 bg-white/5 border border-white/5 rounded-xl hidden md:block" />
+                          </div>
+                          <div className="flex-1 bg-white/[0.02] border border-white/5 rounded-xl" />
+                       </div>
                     </div>
                   </div>
-                  {/* Fake Content */}
-                  <div className="flex-1 flex p-4 gap-4 relative">
-                     {/* Sidebar */}
-                     <div className="w-1/4 hidden sm:flex flex-col gap-2">
-                        {[...Array(6)].map((_, i) => (
-                          <div key={i} className={`h-6 rounded-md ${i === 0 ? 'bg-blue-600/20 border border-blue-500/30' : 'bg-white/5'}`} />
-                        ))}
-                     </div>
-                     {/* Main Body */}
-                     <div className="flex-1 flex flex-col gap-4">
-                        <div className="flex gap-4">
-                           <div className="h-24 flex-1 bg-gradient-to-br from-blue-500/10 to-transparent border border-blue-500/20 rounded-xl p-3 flex flex-col justify-between">
-                              <div className="w-6 h-6 rounded-full bg-blue-500/20" />
-                              <div>
-                                <div className="h-4 w-16 bg-blue-400/20 rounded mb-1.5" />
-                                <div className="h-1.5 w-24 bg-white/10 rounded" />
-                              </div>
-                           </div>
-                           <div className="h-24 flex-1 bg-white/5 border border-white/5 rounded-xl hidden md:block" />
-                        </div>
-                        <div className="flex-1 bg-white/[0.02] border border-white/5 rounded-xl" />
-                     </div>
-                  </div>
-                </div>
 
-                {/* Floating Overlay Badge 1 - Outside overflow-hidden */}
-                <motion.div 
-                  animate={{ y: [0, -8, 0], x: [0, 5, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 px-4 py-3 bg-neutral-900/90 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-xl flex items-center gap-3 z-30"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-green-500/15 border border-green-500/30 flex items-center justify-center">
-                    <Zap className="text-green-400 w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-white font-bold">Speed Score</p>
-                    <p className="text-[10px] text-green-400 font-mono">99/100 A+</p>
-                  </div>
-                </motion.div>
-                
-                {/* Floating Overlay Badge 2 - Outside overflow-hidden */}
-                <motion.div 
-                  animate={{ y: [0, 8, 0], x: [0, -5, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 px-4 py-3 bg-neutral-900/90 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-xl flex items-center gap-3 z-30"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-blue-500/15 border border-blue-500/30 flex items-center justify-center">
-                    <ShieldCheck className="text-blue-400 w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-white font-bold">System Secure</p>
-                    <p className="text-[10px] text-blue-400 font-mono">Hardened</p>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
+                  {/* Floating Overlay Badge 1 - Outside overflow-hidden */}
+                  <motion.div 
+                    animate={{ y: [0, -8, 0], x: [0, 5, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 px-4 py-3 bg-neutral-900/90 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-xl flex items-center gap-3 z-30"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-green-500/15 border border-green-500/30 flex items-center justify-center">
+                      <Zap className="text-green-400 w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-white font-bold">Speed Score</p>
+                      <p className="text-[10px] text-green-400 font-mono">99/100 A+</p>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Floating Overlay Badge 2 - Outside overflow-hidden */}
+                  <motion.div 
+                    animate={{ y: [0, 8, 0], x: [0, -5, 0] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 px-4 py-3 bg-neutral-900/90 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-xl flex items-center gap-3 z-30"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-[#87E65C]/15 border border-[#87E65C]/30 flex items-center justify-center">
+                      <ShieldCheck className="text-neon-green w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-white font-bold">System Secure</p>
+                      <p className="text-[10px] text-[#87E65C] font-mono">Hardened</p>
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </section>
@@ -460,7 +473,7 @@ export default function WordpressServicePage() {
       <section className="py-12 md:py-16 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Your business deserves <br /><span className="text-blue-500">more than a basic setup.</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Your business deserves <br /><span className="text-neon-green">more than a basic setup.</span></h2>
             <p className="text-neutral-400 max-w-lg">Most WordPress websites fail for a simple reason. They rely on default themes, unstructured layouts, and no real performance planning. Our services go beyond templates.</p>
           </div>
 
@@ -486,7 +499,7 @@ export default function WordpressServicePage() {
                         <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
                         <div className="w-2 h-2 rounded-full bg-green-500/50" />
                       </div>
-                      <div className="w-3/4 h-2 bg-blue-400/20 rounded-full" />
+                      <div className="w-3/4 h-2 bg-neon-green/20 rounded-full" />
                       <div className="w-1/2 h-2 bg-white/10 rounded-full" />
                       <div className="w-5/6 h-2 bg-white/10 rounded-full" />
                       <div className="w-2/3 h-2 bg-white/5 rounded-full mt-2" />
@@ -498,7 +511,7 @@ export default function WordpressServicePage() {
                 {i === 3 && (
                   <div className="absolute top-0 right-0 w-full h-full pointer-events-none overflow-hidden">
                      <div className="absolute right-0 bottom-0 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500 transform translate-x-1/4 translate-y-1/4">
-                       <Search className="w-64 h-64 text-purple-500" />
+                       <Search className="w-64 h-64 text-neon-green" />
                      </div>
                   </div>
                 )}
@@ -527,7 +540,7 @@ export default function WordpressServicePage() {
           {/* Sticky Left Sidebar */}
           <div className="lg:w-1/3">
             <div className="sticky top-32">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Expertise <br />Beyond <span className="text-blue-500">Themes.</span></h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">Expertise <br />Beyond <span className="text-neon-green">Themes.</span></h2>
               <p className="text-neutral-400 mb-8 leading-relaxed">
                 We handle the heavy lifting. From custom PHP development to headless API integrations, our engineering team covers the full spectrum of WordPress capabilities.
               </p>
@@ -552,7 +565,7 @@ export default function WordpressServicePage() {
                 className="p-8 md:p-10 rounded-3xl bg-neutral-900/50 border border-white/5 hover:bg-neutral-900 transition-colors"
               >
                 <div className="flex flex-col md:flex-row gap-8 items-start">
-                  <div className="p-4 rounded-2xl bg-blue-500/10 text-blue-400 shrink-0">
+                  <div className="p-4 rounded-2xl bg-neon-green/10 text-neon-green shrink-0">
                     {service.icon}
                   </div>
                   <div>
@@ -573,7 +586,7 @@ export default function WordpressServicePage() {
       <section className="py-32 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">WordPress Development <span className="text-blue-500">Workflow</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">WordPress Development <span className="text-neon-green">Workflow</span></h2>
             <p className="text-neutral-400">This is not random execution. It is a controlled build process designed to remove risk and support performance.</p>
           </div>
 
@@ -584,7 +597,7 @@ export default function WordpressServicePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6 relative z-10">
               {processSteps.map((step, i) => (
                 <div key={i} className="flex flex-col items-center text-center group">
-                  <div className="w-16 h-16 rounded-full bg-black border-2 border-white/10 flex items-center justify-center text-xl font-bold font-mono text-neutral-500 mb-6 group-hover:border-blue-500 group-hover:text-blue-400 transition-colors shadow-xl">
+                  <div className="w-16 h-16 rounded-full bg-black border-2 border-white/10 flex items-center justify-center text-xl font-bold font-mono text-neutral-500 mb-6 group-hover:border-neon-green group-hover:text-neon-green transition-colors shadow-xl">
                     {step.num}
                   </div>
                   <h4 className="text-lg font-bold text-white mb-2">{step.title}</h4>
@@ -602,13 +615,13 @@ export default function WordpressServicePage() {
       <section className="py-24 px-6 relative z-10 border-t border-white/5 bg-white/[0.01]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Why partner with <span className="text-blue-500">WebestOne</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Why partner with <span className="text-neon-green">WebestOne</span></h2>
             <p className="text-neutral-400 max-w-2xl mx-auto">Our WordPress website development services are built to ensure your website performs from day one and continues to improve over time.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {whyPartner.map((item, i) => (
-              <div key={i} className="p-8 rounded-3xl bg-neutral-900/50 border border-white/5 hover:border-blue-500/30 transition-colors group">
-                <div className="text-5xl font-black text-white/5 mb-6 group-hover:text-blue-500/10 transition-colors">{item.num}</div>
+              <div key={i} className="p-8 rounded-3xl bg-neutral-900/50 border border-white/5 hover:border-neon-green/30 transition-colors group">
+                <div className="text-5xl font-black text-white/5 mb-6 group-hover:text-neon-green/10 transition-colors">{item.num}</div>
                 <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
                 <p className="text-neutral-400 leading-relaxed text-sm">{item.desc}</p>
               </div>
@@ -624,10 +637,10 @@ export default function WordpressServicePage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Recent <span className="text-cyan-400">Shipments</span></h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">Recent <span className="text-neon-green">Shipments</span></h2>
               <p className="text-neutral-400">Explore complex WordPress architectures we've successfully deployed.</p>
             </div>
-            <Link to="/contact-us" className="text-blue-400 font-bold hover:underline flex items-center gap-2">
+            <Link to="/contact-us" className="text-neon-green font-bold hover:underline flex items-center gap-2">
               View All Projects <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

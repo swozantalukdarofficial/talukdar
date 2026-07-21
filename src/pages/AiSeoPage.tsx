@@ -6,6 +6,8 @@ import { MagneticButton } from "../components/ui/MagneticButton";
 import aiRobotImg from "../assets/ai-robot.webp";
 
 import SEO from "../components/SEO";
+import { useContent } from "../context/ContentContext";
+import AdminServiceImageEditor from "../components/admin/AdminServiceImageEditor";
 
 const aiSeoSchema = {
 	"@context": "https://schema.org",
@@ -103,6 +105,7 @@ const aiSeoSchema = {
 };
 
 export default function AiSeoPage() {
+	const { serviceImages } = useContent();
 	const [activeFaq, setActiveFaq] = useState<number | null>(0);
 
 	const stats = [
@@ -204,8 +207,10 @@ export default function AiSeoPage() {
 	);
 
 	return (
-		<main className="min-h-screen bg-black text-white overflow-hidden">
+		<main className="min-h-screen bg-black text-white overflow-x-hidden relative">
+			<AdminServiceImageEditor serviceId="ai-seo" />
 			<SEO 
+				pageKey="ai-seo"
 				title="Generative Engine Optimization (GEO) & AI SEO - WeBestOne" 
 				description="Dominate next-gen AI search platforms (Google SGE, Perplexity, Gemini) with modern generative engine optimization." 
 				schemaMarkup={aiSeoSchema}
@@ -258,7 +263,7 @@ export default function AiSeoPage() {
 					>
 						<div className="relative rounded-[3rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/5">
 							<img 
-								src={aiRobotImg} 
+								src={serviceImages["ai-seo"] || aiRobotImg} 
 								alt="AI SEO Robot" 
 								className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
 							/>

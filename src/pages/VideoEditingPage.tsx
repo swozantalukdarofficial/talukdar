@@ -6,77 +6,80 @@ import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import SEO from "../components/SEO";
+import { useContent } from "../context/ContentContext";
+import AdminServiceImageEditor from "../components/admin/AdminServiceImageEditor";
 
 const videoEditingSchema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://webestone.com/services/video-editing#breadcrumb",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webestone.com" },
-        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://webestone.com/services" },
-        { "@type": "ListItem", "position": 3, "name": "Video Editing Services", "item": "https://webestone.com/services/video-editing" }
-      ]
-    },
-    {
-      "@type": "Service",
-      "@id": "https://webestone.com/services/video-editing#service",
-      "serviceType": "Video Editing & Video Production",
-      "name": "Professional Video Editing Services",
-      "description": "Professional video editing services including YouTube videos, social media reels, corporate films, motion graphics, and brand storytelling content.",
-      "url": "https://webestone.com/services/video-editing",
-      "provider": {
-        "@type": "LocalBusiness",
-        "name": "WeBestOne",
-        "url": "https://webestone.com",
-        "logo": "https://webestone.com/favicon.png",
-        "telephone": "+8801333600272",
-        "email": "webestone@gmail.com",
-        "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
-      },
-      "areaServed": ["BD", "US", "GB", "AU", "CA"],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Video Editing Service Packages",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "YouTube Video Editing" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media Reels & Shorts" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corporate Video Production" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Motion Graphics & Animation" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand Story Videos" } }
-        ]
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What video editing formats do you support?",
-          "acceptedAnswer": { "@type": "Answer", "text": "We support all major formats including MP4, MOV, AVI, and MKV. Our editors work with footage from DSLR cameras, smartphones, drones, and screen recordings." }
-        },
-        {
-          "@type": "Question",
-          "name": "How long does video editing take?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Turnaround time depends on video length and complexity. A standard 3-5 minute promotional video typically takes 2-4 business days. Rush delivery is available upon request." }
-        },
-        {
-          "@type": "Question",
-          "name": "Can you add motion graphics and subtitles?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We offer motion graphics, animated titles, lower thirds, custom subtitles, color grading, sound design, and voiceover integration as part of our video editing service." }
-        },
-        {
-          "@type": "Question",
-          "name": "What software do you use for video editing?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Our editors use Adobe Premiere Pro, After Effects, DaVinci Resolve, and CapCut for various types of video projects depending on complexity and output requirements." }
-        }
-      ]
-    }
-  ]
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "BreadcrumbList",
+			"@id": "https://webestone.com/services/video-editing#breadcrumb",
+			"itemListElement": [
+				{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webestone.com" },
+				{ "@type": "ListItem", "position": 2, "name": "Services", "item": "https://webestone.com/services" },
+				{ "@type": "ListItem", "position": 3, "name": "Video Editing Services", "item": "https://webestone.com/services/video-editing" }
+			]
+		},
+		{
+			"@type": "Service",
+			"@id": "https://webestone.com/services/video-editing#service",
+			"serviceType": "Video Editing & Video Production",
+			"name": "Professional Video Editing Services",
+			"description": "Professional video editing services including YouTube videos, social media reels, corporate films, motion graphics, and brand storytelling content.",
+			"url": "https://webestone.com/services/video-editing",
+			"provider": {
+				"@type": "LocalBusiness",
+				"name": "WeBestOne",
+				"url": "https://webestone.com",
+				"logo": "https://webestone.com/favicon.png",
+				"telephone": "+8801815025322",
+				"email": "webestone@gmail.com",
+				"address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Dhaka Division", "addressCountry": "BD" }
+			},
+			"areaServed": ["BD", "US", "GB", "AU", "CA"],
+			"hasOfferCatalog": {
+				"@type": "OfferCatalog",
+				"name": "Video Editing Service Packages",
+				"itemListElement": [
+					{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "YouTube Video Editing" } },
+					{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media Reels & Shorts" } },
+					{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corporate Video Production" } },
+					{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Motion Graphics & Animation" } },
+					{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand Story Videos" } }
+				]
+			}
+		},
+		{
+			"@type": "FAQPage",
+			"mainEntity": [
+				{
+					"@type": "Question",
+					"name": "What video editing formats do you support?",
+					"acceptedAnswer": { "@type": "Answer", "text": "We support all major formats including MP4, MOV, AVI, and MKV. Our editors work with footage from DSLR cameras, smartphones, drones, and screen recordings." }
+				},
+				{
+					"@type": "Question",
+					"name": "How long does video editing take?",
+					"acceptedAnswer": { "@type": "Answer", "text": "Turnaround time depends on video length and complexity. A standard 3-5 minute promotional video typically takes 2-4 business days. Rush delivery is available upon request." }
+				},
+				{
+					"@type": "Question",
+					"name": "Can you add motion graphics and subtitles?",
+					"acceptedAnswer": { "@type": "Answer", "text": "Yes. We offer motion graphics, animated titles, lower thirds, custom subtitles, color grading, sound design, and voiceover integration as part of our video editing service." }
+				},
+				{
+					"@type": "Question",
+					"name": "What software do you use for video editing?",
+					"acceptedAnswer": { "@type": "Answer", "text": "Our editors use Adobe Premiere Pro, After Effects, DaVinci Resolve, and CapCut for various types of video projects depending on complexity and output requirements." }
+				}
+			]
+		}
+	]
 };
 
 export default function VideoEditingPage() {
+	const { serviceImages } = useContent();
 	// FAQs Data
 	const faqs = [
 		{
@@ -111,12 +114,12 @@ export default function VideoEditingPage() {
 
 	// Slider Services
 	const sliderServices = [
-		{ image: "/video_post.webp", title: "Post Production" },
-		{ image: "/video_corporate.webp", title: "Corporate Videos" },
-		{ image: "/video_reels.webp", title: "Social Media Videos" },
-		{ image: "/video_commercial.webp", title: "Commercial Videos" },
-		{ image: "/video_brand.png", title: "Brand Story Videos" },
-		{ image: "/video_promo.png", title: "Promotional Videos" }
+		{ image: serviceImages?.["professional-video-editing-services_slider_1"] || "/video_post.webp", title: "Post Production" },
+		{ image: serviceImages?.["professional-video-editing-services_slider_2"] || "/video_corporate.webp", title: "Corporate Videos" },
+		{ image: serviceImages?.["professional-video-editing-services_slider_3"] || "/video_reels.webp", title: "Social Media Videos" },
+		{ image: serviceImages?.["professional-video-editing-services_slider_4"] || "/video_commercial.webp", title: "Commercial Videos" },
+		{ image: serviceImages?.["professional-video-editing-services_slider_5"] || "/video_brand.png", title: "Brand Story Videos" },
+		{ image: serviceImages?.["professional-video-editing-services_slider_6"] || "/video_promo.png", title: "Promotional Videos" }
 	];
 
 	// Detailed services list
@@ -201,10 +204,12 @@ export default function VideoEditingPage() {
 	];
 
 	return (
-		<main className="min-h-screen bg-black text-white overflow-hidden">
-			<SEO 
-				title="Professional video editing services | Production Experts" 
-				description="Professional video editing services help to build your brand with a video production agency that uses AI-driven strategies to deliver high-performing video content." 
+		<main className="min-h-screen bg-black text-white overflow-x-hidden relative">
+			<AdminServiceImageEditor serviceId="professional-video-editing-services" />
+			<SEO
+				pageKey="professional-video-editing-services"
+				title="Professional video editing services | Production Experts"
+				description="Professional video editing services help to build your brand with a video production agency that uses AI-driven strategies to deliver high-performing video content."
 				schemaMarkup={videoEditingSchema}
 			/>
 			{/* 1. Hero Section */}
@@ -230,9 +235,9 @@ export default function VideoEditingPage() {
 
 						{/* Main Heading */}
 						<div className="space-y-2">
-							<h1 className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-[1.15] tracking-tight">
+							<h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-black leading-[1.1] tracking-tight">
 								Professional Video Editing Services <br className="hidden md:inline" />
-								<span className="text-neon-green">That Make People Stop, Watch, and Act</span>
+								<span className="text-neon-green">That Make People Stop, Watch and Act</span>
 							</h1>
 						</div>
 
@@ -267,7 +272,7 @@ export default function VideoEditingPage() {
 						className="relative z-10 flex justify-center lg:justify-end"
 					>
 						<img
-							src="/video_editing_hero.webp"
+							src={serviceImages["professional-video-editing-services"] || "/video_editing_hero.webp"}
 							alt="Professional video editing services"
 							className="w-full max-w-md md:max-w-lg lg:max-w-2xl drop-shadow-[0_0_40px_rgba(135,230,92,0.2)] hover:scale-[1.02] transition-transform duration-700"
 						/>
@@ -356,7 +361,7 @@ export default function VideoEditingPage() {
 							className="relative group p-8 rounded-[2.5rem] bg-neutral-900/30 border border-white/5 backdrop-blur-xl hover:border-neon-green/30 hover:bg-neutral-900/50 transition-all duration-300 flex flex-col justify-between"
 						>
 							<div className="space-y-4">
-								<span className="text-xs font-black font-mono text-neon-green/60 uppercase tracking-widest block">Service 0{idx+1}</span>
+								<span className="text-xs font-black font-mono text-neon-green/60 uppercase tracking-widest block">Service 0{idx + 1}</span>
 								<h3 className="text-2xl font-bold text-white group-hover:text-neon-green transition-colors">{service.title}</h3>
 								<p className="text-[#87E65C] text-sm font-bold leading-relaxed border-l-2 border-[#87E65C]/40 pl-3.5">
 									{service.lead}
@@ -400,7 +405,7 @@ export default function VideoEditingPage() {
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
 						{/* Background Decorative Lines (Desktop Only) */}
 						<div className="hidden lg:block absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-y-1/2 pointer-events-none" />
-						
+
 						{steps.map((step, idx) => (
 							<motion.div
 								key={idx}
@@ -433,7 +438,7 @@ export default function VideoEditingPage() {
 									{/* Decorative Corner */}
 									<div className="absolute bottom-6 right-6 w-12 h-12 border-b-2 border-r-2 border-white/5 group-hover:border-neon-green/30 rounded-br-2xl transition-colors" />
 								</div>
-								
+
 								{/* Connector for desktop (Horizontal) */}
 								{idx % 3 !== 2 && (
 									<div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-[2px] bg-white/5 group-hover:bg-neon-green/30 z-[-1]" />
@@ -443,7 +448,7 @@ export default function VideoEditingPage() {
 					</div>
 
 					{/* Final CTA within Process for better conversion */}
-					<motion.div 
+					<motion.div
 						initial={{ opacity: 0, scale: 0.9 }}
 						whileInView={{ opacity: 1, scale: 1 }}
 						viewport={{ once: true }}
@@ -546,7 +551,7 @@ export default function VideoEditingPage() {
 				<div className="max-w-6xl mx-auto">
 					<div className="relative p-12 md:p-20 rounded-[3rem] bg-neutral-900/40 border border-white/5 overflow-hidden group">
 						<div className="absolute -bottom-1/2 -left-1/4 w-full h-full bg-neon-green/5 blur-[120px] pointer-events-none" />
-						
+
 						<div className="max-w-3xl mx-auto text-center space-y-8 relative z-10">
 							<h2 className="text-4xl md:text-5xl font-extrabold leading-tight text-white">
 								People are already <span className="text-neon-green">watching.</span>

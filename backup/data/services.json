@@ -1,0 +1,98 @@
+[
+    {
+        "id": "1",
+        "title": "Full Stack Digital Marketing",
+        "description": "Full-Service Strategy to grow your brand online.",
+        "iconName": "Megaphone",
+        "color": "text-rose-500",
+        "href": "/services/digital-marketing-agency"
+    },
+    {
+        "id": "2",
+        "title": "AI Driven SEO",
+        "description": "Search Engine Optimization powered by AI.",
+        "iconName": "Search",
+        "color": "text-orange-400",
+        "href": "/services/AI-SEO-Service-Agency"
+    },
+    {
+        "id": "3",
+        "title": "SMM (Social Media)",
+        "description": "Marketing Campaigns across all social platforms.",
+        "iconName": "Share2",
+        "color": "text-blue-400",
+        "href": "/services/social-media-marketing-agency"
+    },
+    {
+        "id": "4",
+        "title": "PPC (Ads)",
+        "description": "Paid Advertising for high-intent lead generation.",
+        "iconName": "MousePointerClick",
+        "color": "text-yellow-400",
+        "href": "/services/ppc-management-services"
+    },
+    {
+        "id": "5",
+        "title": "Shopify SEO",
+        "description": "Store Optimization for better visibility and sales.",
+        "iconName": "Globe",
+        "color": "text-green-400",
+        "href": "/services/shopify-seo-service-agency"
+    },
+    {
+        "id": "6",
+        "title": "Content Writing",
+        "description": "Persuasive Copy that communicates your value.",
+        "iconName": "Edit3",
+        "color": "text-red-300",
+        "href": "/services/content-writing-services"
+    },
+    {
+        "id": "7",
+        "title": "Video Editing",
+        "description": "Cinematic Content that captures attention instantly.",
+        "iconName": "MonitorPlay",
+        "color": "text-pink-400",
+        "href": "/services/professional-video-editing-services"
+    },
+    {
+        "id": "8",
+        "title": "Motion Graphics",
+        "description": "Modern Animations that make your brand stand out.",
+        "iconName": "Mountain",
+        "color": "text-purple-400",
+        "href": "/services/motion-graphics-services-company"
+    },
+    {
+        "id": "9",
+        "title": "Website Development",
+        "description": "Responsive Websites built for performance.",
+        "iconName": "Zap",
+        "color": "text-yellow-600",
+        "href": "/services/custom-web-development-services"
+    },
+    {
+        "id": "10",
+        "title": "WordPress Web",
+        "description": "CMS Solutions for scalable web presence.",
+        "iconName": "Layout",
+        "color": "text-indigo-400",
+        "href": "/services/wordpress-website-development-services"
+    },
+    {
+        "id": "11",
+        "title": "Web Design (UI UX)",
+        "description": "User-Focused Design for better engagement.",
+        "iconName": "PenTool",
+        "color": "text-orange-300",
+        "href": "/services/web-design-service"
+    },
+    {
+        "id": "12",
+        "title": "Shopify Development",
+        "description": "E-commerce Solutions for global scale stores.",
+        "iconName": "ShoppingBag",
+        "color": "text-emerald-500",
+        "href": "/services/shopify-website-development-service"
+    }
+]

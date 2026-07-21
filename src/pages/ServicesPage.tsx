@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import * as LucideIcons from "lucide-react";
-import servicesData from "../data/services.json";
 import SEO from "../components/SEO";
+import { useContent } from "../context/ContentContext";
 
 const DynamicIcon = ({
 	name,
@@ -17,13 +17,15 @@ const DynamicIcon = ({
 };
 
 export default function ServicesPage() {
-	const services = servicesData.filter((s) => s.description);
+	const { services: dynamicServices } = useContent();
+	const services = dynamicServices.filter((s) => s.description);
 
 	return (
 		<main className="min-h-screen text-white">
 			<SEO 
-				title="Our Services - Digital & Technical Solutions" 
-				description="Discover WeBestOne's suite of digital solutions, including AI SEO, social media marketing, content writing, video editing, and custom web development." 
+				pageKey="services"
+				title="Our Services | WeBestOne" 
+				description="Explore WeBestOne's AI-driven growth services including SEO, conversion-focused custom web development, PPC ads, and video editing." 
 			/>
 			{/* Background */}
 			<div className="fixed inset-0 z-0 pointer-events-none">

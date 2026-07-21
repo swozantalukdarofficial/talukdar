@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 export const MagneticButton = ({
 	children,
 	className,
-}: {
+	...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	children: React.ReactNode;
 	className?: string;
 }) => {
@@ -40,7 +41,7 @@ export const MagneticButton = ({
 			animate={{ x, y }}
 			transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
 		>
-			<button className={className}>{children}</button>
+			<button className={className} {...props}>{children}</button>
 		</motion.div>
 	);
 };

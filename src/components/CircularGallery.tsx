@@ -254,7 +254,7 @@ class Media {
       uniforms: {
         tMap: { value: texture },
         uPlaneSizes: { value: [0, 0] },
-        uImageSizes: { value: [0, 0] },
+        uImageSizes: { value: [800, 600] },
         uSpeed: { value: 0 },
         uTime: { value: 100 * Math.random() },
         uBorderRadius: { value: this.borderRadius }
@@ -267,7 +267,20 @@ class Media {
     img.src = this.image;
     img.onload = () => {
       texture.image = img;
-      this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
+      this.program.uniforms.uImageSizes.value = [img.naturalWidth || 800, img.naturalHeight || 600];
+    };
+    img.onerror = () => {
+      console.warn("Failed to load image for WebGL gallery, using solid color fallback:", this.image);
+      const canvas = document.createElement('canvas');
+      canvas.width = 2;
+      canvas.height = 2;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.fillStyle = '#171717';
+        ctx.fillRect(0, 0, 2, 2);
+      }
+      texture.image = canvas;
+      this.program.uniforms.uImageSizes.value = [800, 600];
     };
   }
 

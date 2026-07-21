@@ -56,8 +56,8 @@ export default function Comparison() {
         <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-sm">
           <div className="grid grid-cols-3 bg-white/5 border-b border-white/10">
             <div className="p-6 text-xs font-black uppercase tracking-widest text-neutral-500">Feature</div>
-            <div className="p-6 text-xs font-black uppercase tracking-widest text-neon-green bg-neon-green/5 text-center">WeBestOne</div>
-            <div className="p-6 text-xs font-black uppercase tracking-widest text-neutral-500 text-center">Others</div>
+            <div className="p-6 text-xs font-black uppercase tracking-widest text-neon-green bg-neon-green/5 text-left">WeBestOne</div>
+            <div className="p-6 text-xs font-black uppercase tracking-widest text-neutral-500 text-left">Others</div>
           </div>
 
           {features.map((feature, i) => (
@@ -70,11 +70,11 @@ export default function Comparison() {
               className="grid grid-cols-3 border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors"
             >
               <div className="p-6 text-sm font-bold text-white flex items-center">{feature.name}</div>
-              <div className="p-6 text-sm font-medium text-neon-green bg-neon-green/[0.02] flex items-center justify-center gap-2 text-center">
+              <div className="p-6 text-sm font-medium text-neon-green bg-neon-green/[0.02] flex items-center justify-start gap-2 text-left">
                 <Check className="w-4 h-4 shrink-0" />
                 {feature.we}
               </div>
-              <div className="p-6 text-sm font-medium text-neutral-500 flex items-center justify-center gap-2 text-center">
+              <div className="p-6 text-sm font-medium text-neutral-500 flex items-center justify-start gap-2 text-left">
                 <X className="w-4 h-4 shrink-0 text-rose-500" />
                 {feature.others}
               </div>

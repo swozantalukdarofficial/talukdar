@@ -76,7 +76,7 @@ const sections: Section[] = [
 	{
 		id: 12,
 		title: "Governing Law",
-		content: `This agreement will operate under the applicable laws and legal regulations of Bangladesh. Any legal matter connected to these terms will be handled through the courts and legal authorities located in Dhaka, Bangladesh.`,
+		content: `This agreement will operate under the applicable laws and legal regulations of Western Australia, Australia. Any legal matter connected to these terms will be handled through the courts and legal authorities located in Perth, Western Australia.`,
 	},
 	{
 		id: 13,
@@ -153,22 +153,22 @@ export default function TermsAndConditionsPage() {
 									{section.id === 13 && (
 										<div className="mt-6 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-4 max-w-lg">
 											<a
-												href="mailto:legal@webestone.com"
+												href="mailto:webestone@gmail.com"
 												className="flex items-center gap-3 text-neutral-300 hover:text-neon-green transition-colors"
 											>
 												<Mail className="w-5 h-5 text-neon-green" />
-												<span>legal@webestone.com</span>
+												<span>webestone@gmail.com</span>
 											</a>
 											<a
-												href="tel:+8801333600272"
+												href="tel:+8801815025322"
 												className="flex items-center gap-3 text-neutral-300 hover:text-neon-green transition-colors"
 											>
 												<Phone className="w-5 h-5 text-neon-green" />
-												<span>+880 1333 600 272</span>
+												<span>+880 1815-025322</span>
 											</a>
 											<div className="flex items-center gap-3 text-neutral-300">
 												<MapPin className="w-5 h-5 text-neon-green" />
-												<span>Dhaka, Bangladesh</span>
+												<span>25 The Avenue, Crawley, Perth, WA</span>
 											</div>
 										</div>
 									)}

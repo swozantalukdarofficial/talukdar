@@ -1,10 +1,26 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet, useLocation } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import BackgroundEffects from "./components/BackgroundEffects";
 import WhatsAppChat from "./components/WhatsAppChat";
 import ScrollToTop from "./components/ScrollToTop";
+
+// ── Admin pages (lazy)
+const AdminLoginPage = lazy(() => import("./pages/admin/AdminLoginPage"));
+const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
+const DashboardPage = lazy(() => import("./pages/admin/DashboardPage"));
+const HeroEditor = lazy(() => import("./pages/admin/editors/HeroEditor"));
+const ServicesEditor = lazy(() => import("./pages/admin/editors/ServicesEditor"));
+const PortfolioEditor = lazy(() => import("./pages/admin/editors/PortfolioEditor"));
+const ContactEditor = lazy(() => import("./pages/admin/editors/ContactEditor"));
+const HeaderFooterEditor = lazy(() => import("./pages/admin/editors/HeaderFooterEditor"));
+const FAQEditor = lazy(() => import("./pages/admin/editors/FAQEditor"));
+const TestimonialsEditor = lazy(() => import("./pages/admin/editors/TestimonialsEditor"));
+const SEOEditor = lazy(() => import("./pages/admin/editors/SEOEditor"));
+const SiteSettingsEditor = lazy(() => import("./pages/admin/editors/SiteSettingsEditor"));
+const ServiceImagesEditor = lazy(() => import("./pages/admin/editors/ServiceImagesEditor"));
+const BlogsEditor = lazy(() => import("./pages/admin/editors/BlogsEditor"));
 
 // ── Eager load: only the homepage loads instantly
 import HomePage from "./pages/HomePage";
@@ -44,15 +60,46 @@ function PageLoader() {
 	);
 }
 
+// ── Public layout wrapper (shows Header, Footer, WhatsApp)
+function PublicLayout() {
+	return (
+		<div className="relative min-h-screen bg-background text-foreground antialiased overflow-x-hidden">
+			<BackgroundEffects />
+			<Header />
+			<Outlet />
+			<Footer />
+			<WhatsAppChat />
+		</div>
+	);
+}
+
 export default function App() {
 	return (
 		<BrowserRouter>
-      <ScrollToTop />
-			<div className="relative min-h-screen bg-background text-foreground antialiased overflow-x-hidden">
-				<BackgroundEffects />
-				<Header />
-				<Suspense fallback={<PageLoader />}>
-					<Routes>
+			<ScrollToTop />
+			<Suspense fallback={<PageLoader />}>
+				<Routes>
+					{/* ── Admin Routes (no Header/Footer) ── */}
+					<Route path="/admin">
+						<Route index element={<AdminLoginPage />} />
+						<Route element={<AdminLayout />}>
+							<Route path="dashboard" element={<DashboardPage />} />
+							<Route path="hero" element={<HeroEditor />} />
+							<Route path="services" element={<ServicesEditor />} />
+							<Route path="portfolio" element={<PortfolioEditor />} />
+							<Route path="contact" element={<ContactEditor />} />
+							<Route path="header-footer" element={<HeaderFooterEditor />} />
+							<Route path="faq" element={<FAQEditor />} />
+							<Route path="testimonials" element={<TestimonialsEditor />} />
+							<Route path="seo" element={<SEOEditor />} />
+							<Route path="settings" element={<SiteSettingsEditor />} />
+							<Route path="service-images" element={<ServiceImagesEditor />} />
+							<Route path="blogs" element={<BlogsEditor />} />
+						</Route>
+					</Route>
+
+					{/* ── Public Routes (with Header/Footer) ── */}
+					<Route element={<PublicLayout />}>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/work" element={<WorkPage />} />
 						<Route path="/about-us" element={<AboutPage />} />
@@ -60,7 +107,6 @@ export default function App() {
 						<Route path="/blogs" element={<BlogsPage />} />
 						<Route path="/blogs/:id" element={<BlogDetailPage />} />
 						<Route path="/services" element={<ServicesPage />} />
-						
 						{/* Specific Service Pages */}
 						<Route path="/services/digital-marketing-agency" element={<DigitalMarketingPage />} />
 						<Route path="/services/AI-SEO-Service-Agency" element={<SeoPage />} />
@@ -75,19 +121,15 @@ export default function App() {
 						<Route path="/services/motion-graphics-services-company" element={<MotionGraphicsPage />} />
 						<Route path="/services/web-design-service" element={<UiUxDesignPage />} />
 						<Route path="/services/ai-seo" element={<AiSeoPage />} />
-						
-						{/* Dynamic Service Detail Page (Catch-all for other services) */}
+						{/* Dynamic Service Detail Page */}
 						<Route path="/services/:slug" element={<ServiceDetailPage />} />
-						
 						<Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
 						<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 						<Route path="/sitemap" element={<SitemapPage />} />
 						<Route path="*" element={<NotFoundPage />} />
-					</Routes>
-				</Suspense>
-				<Footer />
-				<WhatsAppChat />
-			</div>
+					</Route>
+				</Routes>
+			</Suspense>
 		</BrowserRouter>
 	);
 }

@@ -20,6 +20,8 @@ import TestimonialSlider from "../components/TestimonialSlider";
 import Counter from "../components/Counter";
 import ShopifyPortfolio from "../components/ShopifyPortfolio";
 import SEO from "../components/SEO";
+import { useContent } from "../context/ContentContext";
+import AdminServiceImageEditor from "../components/admin/AdminServiceImageEditor";
 
 const shopifyDevSchema = {
   "@context": "https://schema.org",
@@ -205,11 +207,14 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 }
 
 export default function ShopifyDevelopmentPage() {
+  const { serviceImages } = useContent();
   const containerRef = useRef(null);
   
   return (
     <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-emerald-500/30">
+      <AdminServiceImageEditor serviceId="shopify-website-development-service" />
       <SEO 
+        pageKey="shopify-website-development-service"
         title="Shopify website Development Service | Shopify Store Development Experts" 
         description="Shopify website Development Service focusing on custom features, product catalog, Shopify store development and scaling brands via strategies from Shopify Experts." 
         schemaMarkup={shopifyDevSchema}
@@ -296,61 +301,71 @@ export default function ShopifyDevelopmentPage() {
             transition={{ duration: 1 }}
             className="relative h-[600px] hidden lg:block"
           >
-            {/* Main Store Mockup */}
-            <motion.div 
-              animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-2xl border border-white/20 rounded-[2.5rem] shadow-[0_0_100px_rgba(16,185,129,0.1)] p-8 overflow-hidden"
-            >
-               {/* Browser UI */}
-               <div className="flex gap-2 mb-8">
-                  <div className="w-3 h-3 rounded-full bg-rose-500" />
-                  <div className="w-3 h-3 rounded-full bg-amber-500" />
-                  <div className="w-3 h-3 rounded-full bg-emerald-500" />
-               </div>
-               
-               {/* Dashboard Content */}
-               <div className="space-y-6">
-                  <div className="h-40 w-full bg-emerald-500/10 rounded-2xl border border-emerald-500/20 p-6 flex flex-col justify-end">
-                     <div className="h-2 w-1/3 bg-emerald-500/40 rounded mb-2" />
-                     <div className="h-8 w-1/2 bg-white/20 rounded" />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                     <div className="h-32 bg-white/5 rounded-2xl border border-white/10" />
-                     <div className="h-32 bg-white/5 rounded-2xl border border-white/10" />
-                  </div>
-                  <div className="h-12 w-full bg-emerald-500 rounded-full" />
-               </div>
-            </motion.div>
+            {serviceImages["shopify-website-development-service"] ? (
+              <img
+                src={serviceImages["shopify-website-development-service"]}
+                alt="Shopify Development Services"
+                className="w-full h-full object-cover rounded-[2.5rem] border border-white/10 shadow-[0_0_100px_rgba(135,230,92,0.15)]"
+              />
+            ) : (
+              <>
+                {/* Main Store Mockup */}
+                <motion.div 
+                  animate={{ y: [0, -20, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-2xl border border-white/20 rounded-[2.5rem] shadow-[0_0_100px_rgba(16,185,129,0.1)] p-8 overflow-hidden"
+                >
+                   {/* Browser UI */}
+                   <div className="flex gap-2 mb-8">
+                      <div className="w-3 h-3 rounded-full bg-rose-500" />
+                      <div className="w-3 h-3 rounded-full bg-amber-500" />
+                      <div className="w-3 h-3 rounded-full bg-emerald-500" />
+                   </div>
+                   
+                   {/* Dashboard Content */}
+                   <div className="space-y-6">
+                      <div className="h-40 w-full bg-emerald-500/10 rounded-2xl border border-emerald-500/20 p-6 flex flex-col justify-end">
+                         <div className="h-2 w-1/3 bg-emerald-500/40 rounded mb-2" />
+                         <div className="h-8 w-1/2 bg-white/20 rounded" />
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                         <div className="h-32 bg-white/5 rounded-2xl border border-white/10" />
+                         <div className="h-32 bg-white/5 rounded-2xl border border-white/10" />
+                      </div>
+                      <div className="h-12 w-full bg-emerald-500 rounded-full" />
+                   </div>
+                </motion.div>
 
-            {/* Floating Revenue Card */}
-            <motion.div 
-              animate={{ y: [-10, 10, -10], x: [0, 10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-10 -right-10 p-6 bg-black/60 backdrop-blur-xl border border-emerald-500/30 rounded-3xl shadow-2xl z-20"
-            >
-               <div className="text-emerald-400 text-xs font-bold mb-1 uppercase tracking-tighter">Total Revenue</div>
-               <div className="text-3xl font-black text-white">$124,580.00</div>
-               <div className="mt-2 flex items-center gap-2 text-emerald-400 text-sm font-bold">
-                  <span className="flex items-center justify-center w-4 h-4 bg-emerald-500/20 rounded-full text-[10px]">↑</span>
-                  +24.5%
-               </div>
-            </motion.div>
+                {/* Floating Revenue Card */}
+                <motion.div 
+                  animate={{ y: [-10, 10, -10], x: [0, 10, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute -top-10 -right-10 p-6 bg-black/60 backdrop-blur-xl border border-emerald-500/30 rounded-3xl shadow-2xl z-20"
+                >
+                   <div className="text-emerald-400 text-xs font-bold mb-1 uppercase tracking-tighter">Total Revenue</div>
+                   <div className="text-3xl font-black text-white">$124,580.00</div>
+                   <div className="mt-2 flex items-center gap-2 text-emerald-400 text-sm font-bold">
+                      <span className="flex items-center justify-center w-4 h-4 bg-emerald-500/20 rounded-full text-[10px]">↑</span>
+                      +24.5%
+                   </div>
+                </motion.div>
 
-            {/* Floating Order Bubble */}
-            <motion.div 
-              animate={{ y: [20, -20, 20], x: [-10, 0, -10] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute bottom-10 -left-10 p-4 bg-blue-600/20 backdrop-blur-xl border border-blue-400/30 rounded-2xl shadow-2xl z-20 flex items-center gap-4"
-            >
-               <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
-                  <ShoppingBag className="w-6 h-6 text-white" />
-               </div>
-               <div>
-                  <div className="text-white text-xs font-bold">New Order!</div>
-                  <div className="text-neutral-400 text-[10px]">Just now • $450.00</div>
-               </div>
-            </motion.div>
+                {/* Floating Order Bubble */}
+                <motion.div 
+                  animate={{ y: [20, -20, 20], x: [-10, 0, -10] }}
+                  transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute bottom-10 -left-10 p-4 bg-blue-600/20 backdrop-blur-xl border border-blue-400/30 rounded-2xl shadow-2xl z-20 flex items-center gap-4"
+                >
+                   <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+                      <ShoppingBag className="w-6 h-6 text-white" />
+                   </div>
+                   <div>
+                      <div className="text-white text-xs font-bold">New Order!</div>
+                      <div className="text-neutral-400 text-[10px]">Just now • $450.00</div>
+                   </div>
+                </motion.div>
+              </>
+            )}
           </motion.div>
         </div>
       </section>

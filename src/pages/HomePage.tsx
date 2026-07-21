@@ -19,8 +19,7 @@ const NewsletterCTA = lazy(() => import("../components/NewsletterCTA"));
 const LatestInsights = lazy(() => import("../components/LatestInsights"));
 
 import SEO from "../components/SEO";
-import servicesData from "../data/services.json";
-import { blogPosts } from "../data/blogData";
+import { useContent } from "../context/ContentContext";
 
 const homeSchema = {
   "@context": "https://schema.org",
@@ -32,22 +31,22 @@ const homeSchema = {
       "url": "https://webestone.com",
       "logo": "https://webestone.com/favicon.png",
       "image": "https://webestone.com/uploads/1770469463115-Webestone-icon.png",
-      "description": "WeBestOne is a premium AI-powered digital marketing and web development agency in Bangladesh specializing in SEO, PPC, and Custom Web Applications.",
-      "telephone": "+8801333600272",
+      "description": "WeBestOne is a premium AI-powered digital marketing and web development agency specializing in SEO, PPC, and Custom Web Applications.",
+      "telephone": "+8801815025322",
       "email": "webestone@gmail.com",
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Mirpur, Dhaka",
-        "addressLocality": "Dhaka",
-        "addressRegion": "Dhaka Division",
-        "postalCode": "1216",
-        "addressCountry": "BD"
+        "streetAddress": "25 The Avenue",
+        "addressLocality": "Crawley",
+        "addressRegion": "Western Australia",
+        "postalCode": "6009",
+        "addressCountry": "AU"
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": "23.8018",
-        "longitude": "90.3572"
+        "latitude": "-31.9774",
+        "longitude": "115.8208"
       },
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
@@ -75,7 +74,7 @@ const homeSchema = {
       "@id": "https://webestone.com/#website",
       "url": "https://webestone.com",
       "name": "WeBestOne",
-      "description": "Premium Digital Marketing & Development Agency in Bangladesh",
+      "description": "Premium Digital Marketing & Development Agency",
       "publisher": {
         "@id": "https://webestone.com/#organization"
       }
@@ -131,12 +130,13 @@ const homeSchema = {
 import DeferredSection from "../components/DeferredSection";
 
 export default function HomePage() {
-  const services = servicesData.filter((s) => s.description); 
-  const posts = blogPosts.slice(0, 3);
+  const { services, blogs } = useContent();
+  const posts = blogs.slice(0, 3);
 
   return (
     <main>
       <SEO 
+        pageKey="home"
         title="AI-Powered Solutions & Digital Marketing Agency | WeBestOne" 
         description="Advanced AI powered solutions by an expert AI agency delivering full digital marketing, web development, uiux design and tech solutions for better Google rankings and growth." 
         schemaMarkup={homeSchema}

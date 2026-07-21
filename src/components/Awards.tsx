@@ -19,7 +19,7 @@ const certifications = [
   { 
     name: "HubSpot Certified", 
     icon: Award, 
-    year: "2023",
+    year: "2022",
     color: "from-orange-500/20 to-amber-500/20",
     textColor: "text-orange-400"
   },
@@ -54,7 +54,7 @@ export default function Awards() {
               Certifications & <span className="text-neon-green">Global Partners</span>
             </h2>
             <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
-              We maintain the highest standards of digital marketing by partnering with industry leaders.
+              We do not just claim industry standards. We are certified by the platforms that set them.
             </p>
           </motion.div>
         </div>
