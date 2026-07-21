@@ -26,17 +26,15 @@ import {
 } from "lucide-react";
 import { MagneticButton } from "./ui/MagneticButton";
 
-const defaultSite = {
-	logoUrl: logo,
-	siteName: "Webestone",
-};
+import { useContent } from "../context/ContentContext";
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
 	const { pathname } = useLocation();
 	const [isServicesHovered, setIsServicesHovered] = useState(false);
-	const [site] = useState(defaultSite);
+	const { site } = useContent();
 	const [isScrolled, setIsScrolled] = useState(false);
+	const [isProposalOpen, setIsProposalOpen] = useState(false);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -137,8 +135,8 @@ export default function Header() {
 				<Link to="/" className="flex items-center gap-2 group shrink-0">
 					<div className="h-10 flex items-center justify-center font-bold text-xl overflow-hidden relative">
 						<img
-							src={logo}
-							alt={"logo"}
+							src={site.logoUrl || logo}
+							alt={site.siteName || "logo"}
 							className="h-full w-auto object-contain"
 						/>
 					</div>
@@ -234,13 +232,52 @@ export default function Header() {
 				</nav>
 
 				{/* CTA Button */}
-				<div className="hidden lg:flex items-center gap-4">
-					<Link to="/contact-us">
-						<MagneticButton className="px-6 py-2.5 bg-[#87E65C] text-black font-bold text-sm rounded-full hover:bg-[#87E65C]/90 transition-all flex items-center gap-2">
-							<span>Get a Proposal</span>
-							<ArrowRight className="w-4 h-4" />
-						</MagneticButton>
-					</Link>
+				<div 
+					className="hidden lg:block relative"
+					onMouseLeave={() => setIsProposalOpen(false)}
+				>
+					<MagneticButton 
+						onClick={() => setIsProposalOpen(!isProposalOpen)}
+						className="px-6 py-2.5 bg-[#87E65C] text-black font-bold text-sm rounded-full hover:bg-[#87E65C]/90 transition-all flex items-center gap-2"
+					>
+						<span>Get a Proposal</span>
+						<ArrowRight className={`w-4 h-4 transition-transform duration-200 ${isProposalOpen ? 'rotate-90' : ''}`} />
+					</MagneticButton>
+
+					{/* Dropdown Menu */}
+					{isProposalOpen && (
+						<div className="absolute right-0 mt-2 w-72 bg-neutral-900 border border-white/10 rounded-2xl p-3 shadow-2xl z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+							<a 
+								href={site.fullStackProposalUrl || "#"} 
+								target="_blank" 
+								rel="noopener noreferrer"
+								onClick={() => setIsProposalOpen(false)}
+								className="flex flex-col gap-1 p-3 rounded-xl hover:bg-white/5 transition-colors group/item text-left"
+							>
+								<span className="text-white font-bold text-sm group-hover/item:text-neon-green transition-colors">
+									Full Stack Digital Marketing
+								</span>
+								<span className="text-[10px] text-neutral-500">
+									Download our comprehensive marketing strategy roadmap
+								</span>
+							</a>
+							<div className="h-px bg-white/5 my-1" />
+							<a 
+								href={site.generalProposalUrl || "#"} 
+								target="_blank" 
+								rel="noopener noreferrer"
+								onClick={() => setIsProposalOpen(false)}
+								className="flex flex-col gap-1 p-3 rounded-xl hover:bg-white/5 transition-colors group/item text-left"
+							>
+								<span className="text-white font-bold text-sm group-hover/item:text-neon-green transition-colors">
+									General Proposal
+								</span>
+								<span className="text-[10px] text-neutral-500">
+									View our standard agency services overview
+								</span>
+							</a>
+						</div>
+					)}
 				</div>
 
 				{/* Mobile Menu Button */}
@@ -282,12 +319,40 @@ export default function Header() {
 							{link.name}
 						</Link>
 					))}
-					<Link to="/contact-us" onClick={() => setIsOpen(false)}>
-						<button className="w-full py-4 bg-neon-green text-black font-bold rounded-xl flex items-center justify-center gap-2">
+					<div className="flex flex-col gap-2">
+						<button 
+							onClick={() => setIsProposalOpen(!isProposalOpen)}
+							className="w-full py-4 bg-neon-green text-black font-bold rounded-xl flex items-center justify-center gap-2"
+						>
 							<span>Get a Proposal</span>
-							<ArrowRight className="w-5 h-5" />
+							<ArrowRight className={`w-5 h-5 transition-transform duration-200 ${isProposalOpen ? 'rotate-90' : ''}`} />
 						</button>
-					</Link>
+						{isProposalOpen && (
+							<div className="flex flex-col gap-2 mt-2 bg-neutral-900 border border-white/10 rounded-xl p-2">
+								<a 
+									href={site.fullStackProposalUrl || "#"} 
+									target="_blank" 
+									rel="noopener noreferrer"
+									onClick={() => { setIsProposalOpen(false); setIsOpen(false); }}
+									className="flex flex-col p-3 rounded-lg hover:bg-white/5 transition-colors text-left"
+								>
+									<span className="text-white font-bold text-sm">Full Stack Digital Marketing</span>
+									<span className="text-[10px] text-neutral-500 mt-1">Download marketing strategy roadmap</span>
+								</a>
+								<div className="h-px bg-white/5 my-0.5" />
+								<a 
+									href={site.generalProposalUrl || "#"} 
+									target="_blank" 
+									rel="noopener noreferrer"
+									onClick={() => { setIsProposalOpen(false); setIsOpen(false); }}
+									className="flex flex-col p-3 rounded-lg hover:bg-white/5 transition-colors text-left"
+								>
+									<span className="text-white font-bold text-sm">General Proposal</span>
+									<span className="text-[10px] text-neutral-500 mt-1">View our standard agency services overview</span>
+								</a>
+							</div>
+						)}
+					</div>
 				</nav>
 			</div>
 		</header>

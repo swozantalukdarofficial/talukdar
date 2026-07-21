@@ -139,6 +139,8 @@ export interface SiteContent {
 	logoUrl: string;
 	siteName: string;
 	logoText: string;
+	fullStackProposalUrl?: string;
+	generalProposalUrl?: string;
 }
 
 export interface SEOContent {
@@ -180,7 +182,15 @@ const defaultContact: ContactContent = {
 const defaultSocials: SocialsContent = socialsJson as SocialsContent;
 const defaultServices: ServiceItem[] = servicesJson as ServiceItem[];
 const defaultVideo: VideoContent = videoJson as VideoContent;
-const defaultSite: SiteContent = siteJson as SiteContent;
+const defaultSite: SiteContent = {
+	logoUrl: "",
+	siteName: "WeBestOne",
+	logoText: "W",
+	fullStackProposalUrl: "",
+	generalProposalUrl: "",
+	...(siteJson as any)
+};
+
 
 const defaultServiceImages: Record<string, string> = {
 	"digital-marketing-agency": "https://img.youtube.com/vi/Zey6npEA0KA/maxresdefault.jpg",
