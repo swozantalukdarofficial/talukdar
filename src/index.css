@@ -168,3 +168,35 @@ body {
 .animate-float-card-slow {
 	animation: float-card 5s ease-in-out infinite 0.5s;
 }
+
+@keyframes spin-clockwise {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes spin-counter-clockwise {
+	0% {
+		transform: rotate(360deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+
+.animate-orbit-cw {
+	animation: spin-clockwise var(--orbit-duration, 20s) linear infinite;
+}
+
+.animate-orbit-ccw {
+	animation: spin-counter-clockwise var(--orbit-duration, 20s) linear infinite;
+}
+
+/* Pause the orbit rotation and children counter-rotation when hovered */
+.group-hover-pause:hover,
+.group-hover-pause:hover * {
+	animation-play-state: paused !important;
+}

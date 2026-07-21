@@ -186,7 +186,7 @@ export default function PPCPage() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-4 md:space-y-5"
+            className="space-y-4 md:space-y-5 order-2 lg:order-1"
           >
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neon-green/10 border border-neon-green/20">
@@ -236,7 +236,7 @@ export default function PPCPage() {
             initial={{ opacity: 0, scale: 0.9, x: 30 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative w-full"
+            className="relative w-full order-1 lg:order-2 mt-10 lg:mt-0"
           >
             {/* Top-Left Floating Badge */}
             <motion.div
@@ -658,7 +658,7 @@ export default function PPCPage() {
           <div className="absolute top-0 right-0 w-1/2 h-full bg-neon-green/5 blur-[120px] pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div>
+            <div className="order-2 lg:order-1">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
                 Our <span className="text-neon-green">Approach</span>
               </h2>
@@ -674,17 +674,17 @@ export default function PPCPage() {
                   { step: "04", title: "Continuous optimization", desc: "Performance improves through structured iteration and data analysis." }
                 ].map((item, idx) => (
                   <div key={idx} className="flex gap-6 group">
-                    <div className="text-3xl font-black text-white/10 group-hover:text-neon-green/50 transition-colors">{item.step}</div>
-                    <div>
-                      <h4 className="text-xl font-bold mb-2">{item.title}</h4>
-                      <p className="text-slate-400 leading-relaxed font-medium">{item.desc}</p>
-                    </div>
+                     <div className="text-3xl font-black text-white/10 group-hover:text-neon-green/50 transition-colors">{item.step}</div>
+                     <div>
+                       <h4 className="text-xl font-bold mb-2">{item.title}</h4>
+                       <p className="text-slate-400 leading-relaxed font-medium">{item.desc}</p>
+                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="relative">
+            <div className="relative order-1 lg:order-2 w-full mt-10 lg:mt-0">
               <div className="bg-slate-800/40 rounded-3xl border border-white/10 p-4 backdrop-blur-3xl">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-8 px-2 sm:px-4">
                   <div className="flex items-center gap-2">

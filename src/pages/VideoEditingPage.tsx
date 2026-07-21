@@ -225,7 +225,7 @@ export default function VideoEditingPage() {
 						initial={{ opacity: 0, x: -30 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8, ease: "easeOut" }}
-						className="space-y-4 md:space-y-5"
+						className="space-y-4 md:space-y-5 order-2 lg:order-1"
 					>
 						{/* Badge */}
 						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neon-green/10 border border-neon-green/20 text-[#87E65C] text-[10px] font-black uppercase tracking-[0.15em]">
@@ -269,7 +269,7 @@ export default function VideoEditingPage() {
 						initial={{ opacity: 0, scale: 0.95 }}
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{ duration: 0.8, delay: 0.2 }}
-						className="relative z-10 flex justify-center lg:justify-end"
+						className="relative z-10 flex justify-center lg:justify-end order-1 lg:order-2 w-full mt-10 lg:mt-0"
 					>
 						<img
 							src={serviceImages["professional-video-editing-services"] || "/video_editing_hero.webp"}

@@ -421,11 +421,11 @@ export default function ContentWritingPage() {
       {/* ══════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 min-h-screen flex items-center pt-28 pb-16 px-6">
+      <section className="relative z-10 min-h-screen flex items-center pt-20 lg:pt-28 pb-16 px-6">
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* ── Left: Text ── */}
-          <div className="space-y-4 md:space-y-5">
+          <div className="space-y-4 md:space-y-5 order-2 lg:order-1 mt-10 lg:mt-0">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -510,7 +510,7 @@ export default function ContentWritingPage() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
-            className="relative h-[420px] flex items-center justify-center"
+            className="relative h-[300px] sm:h-[420px] flex items-center justify-center order-1 lg:order-2 w-full"
           >
             {/* Ambient glow */}
             <div className="absolute inset-0 bg-gradient-to-tr from-neon-green/10 via-emerald-500/10 to-neutral-900/10 rounded-full blur-[80px] pointer-events-none" />

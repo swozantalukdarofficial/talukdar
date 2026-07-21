@@ -231,7 +231,7 @@ export default function MotionGraphicsPage() {
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            className="space-y-4"
+            className="space-y-4 order-2 lg:order-1"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -274,7 +274,7 @@ export default function MotionGraphicsPage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9, x: 30 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
-            className="relative mt-10 lg:mt-0 lg:pl-10"
+            className="relative mt-10 lg:mt-0 lg:pl-10 order-1 lg:order-2 w-full"
           >
             {/* Floating Element 1 */}
             <motion.div 

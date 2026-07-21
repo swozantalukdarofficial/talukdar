@@ -167,7 +167,7 @@ export default function AboutPage() {
         </motion.div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="text-left space-y-8">
+          <div className="text-left space-y-8 order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -226,11 +226,11 @@ export default function AboutPage() {
           </div>
 
           {/* Right Side: Floating Interactive Cards */}
-          <div className="relative h-[500px] hidden lg:block">
+          <div className="relative h-[380px] sm:h-[500px] block order-1 lg:order-2 w-full mt-10 lg:mt-0">
              <motion.div 
                animate={{ y: [-20, 20, -20] }}
                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute top-0 right-0 w-80 p-8 rounded-[2.5rem] bg-white/5 backdrop-blur-2xl border border-white/10 shadow-2xl z-20"
+               className="absolute top-0 right-0 w-[240px] sm:w-80 p-6 sm:p-8 rounded-[1.5rem] sm:rounded-[2.5rem] bg-white/5 backdrop-blur-2xl border border-white/10 shadow-2xl z-20"
              >
                 <div className="w-12 h-12 rounded-2xl bg-neon-green flex items-center justify-center mb-6">
                    <Target className="w-6 h-6 text-black" />
@@ -242,7 +242,7 @@ export default function AboutPage() {
              <motion.div 
                animate={{ y: [20, -20, 20] }}
                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute bottom-0 left-0 w-80 p-8 rounded-[2.5rem] bg-neon-green text-black shadow-2xl z-20"
+               className="absolute bottom-0 left-0 w-[240px] sm:w-80 p-6 sm:p-8 rounded-[1.5rem] sm:rounded-[2.5rem] bg-neon-green text-black shadow-2xl z-20"
              >
                 <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-6">
                    <Zap className="w-6 h-6 text-neon-green" />

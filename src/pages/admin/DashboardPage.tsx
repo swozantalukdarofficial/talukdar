@@ -427,4 +427,5 @@ const quickLinks = [
 	{ name: "Edit Services", href: "/admin/services", icon: Briefcase, color: "text-blue-400" },
 	{ name: "Edit Contact", href: "/admin/contact", icon: Phone, color: "text-orange-400" },
 	{ name: "Edit Portfolio", href: "/admin/portfolio", icon: Image, color: "text-purple-400" },
+	{ name: "Edit Proposals", href: "/admin/proposals", icon: FileText, color: "text-green-400" },
 ];

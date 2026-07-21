@@ -225,7 +225,7 @@ export default function SocialMediaMarketingPage() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6 md:space-y-8 flex flex-col justify-center w-full"
+            className="space-y-6 md:space-y-8 flex flex-col justify-center w-full order-2 lg:order-1"
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-[10px] font-black uppercase tracking-[0.15em] w-fit">
               <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-pulse" />
@@ -263,7 +263,7 @@ export default function SocialMediaMarketingPage() {
             initial={{ opacity: 0, scale: 0.9, x: 30 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="relative flex justify-center w-full"
+            className="relative flex justify-center w-full order-1 lg:order-2"
           >
             {/* Background Glows for Depth */}
             <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-pink-500/10 blur-[80px] rounded-full"></div>

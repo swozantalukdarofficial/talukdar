@@ -70,7 +70,7 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
         {/* Left — Text */}
-        <div className="space-y-5 md:space-y-6 opacity-0 animate-fade-in-up">
+        <div className="space-y-5 md:space-y-6 opacity-0 animate-fade-in-up order-2 lg:order-1">
           {hero.badge && (
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neon-green/10 border border-neon-green/20">
               <span className="relative flex h-2 w-2">
@@ -115,7 +115,7 @@ export default function Hero() {
         </div>
 
         {/* Right — Video + Floating Cards */}
-        <div className="relative opacity-0 animate-fade-in-scale">
+        <div className="relative opacity-0 animate-fade-in-scale order-1 lg:order-2">
           <HeroVideoPlayer />
 
           {/* Floating Card 1 */}

@@ -20,7 +20,8 @@ const TestimonialsEditor = lazy(() => import("./pages/admin/editors/Testimonials
 const SEOEditor = lazy(() => import("./pages/admin/editors/SEOEditor"));
 const SiteSettingsEditor = lazy(() => import("./pages/admin/editors/SiteSettingsEditor"));
 const ServiceImagesEditor = lazy(() => import("./pages/admin/editors/ServiceImagesEditor"));
-const BlogsEditor = lazy(() => import("./pages/admin/editors/BlogsEditor"));
+const BlogsEditor = lazy(() => import("./pages/admin/editors/BlogsEditor")); // Touch to refresh IDE cache
+const ProposalsEditor = lazy(() => import("./pages/admin/editors/ProposalsEditor"));
 
 // ── Eager load: only the homepage loads instantly
 import HomePage from "./pages/HomePage";
@@ -95,6 +96,7 @@ export default function App() {
 							<Route path="settings" element={<SiteSettingsEditor />} />
 							<Route path="service-images" element={<ServiceImagesEditor />} />
 							<Route path="blogs" element={<BlogsEditor />} />
+							<Route path="proposals" element={<ProposalsEditor />} />
 						</Route>
 					</Route>
 

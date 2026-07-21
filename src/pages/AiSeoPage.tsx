@@ -221,7 +221,7 @@ export default function AiSeoPage() {
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8, ease: "easeOut" }}
-						className="space-y-4 md:space-y-5"
+						className="space-y-4 md:space-y-5 order-2 lg:order-1"
 					>
 
 						{/* Main Heading */}
@@ -259,7 +259,7 @@ export default function AiSeoPage() {
 						initial={{ opacity: 0, scale: 0.95 }}
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{ duration: 1, delay: 0.2 }}
-						className="relative lg:ml-8 xl:ml-12"
+						className="relative lg:ml-8 xl:ml-12 order-1 lg:order-2 w-full mt-10 lg:mt-0"
 					>
 						<div className="relative rounded-[3rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/5">
 							<img 

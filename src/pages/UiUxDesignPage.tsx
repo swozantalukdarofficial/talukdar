@@ -296,10 +296,10 @@ export default function UiUxDesignPage() {
       {/* ══════════════════════════════════════════
           SECTION 1: HERO
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 min-h-screen flex items-center pt-28 pb-16 px-6">
+      <section className="relative z-10 min-h-screen flex items-center pt-20 lg:pt-28 pb-16 px-6">
         <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
-          <div className="space-y-4 md:space-y-5 relative z-20">
+          <div className="space-y-4 md:space-y-5 relative z-20 order-2 lg:order-1 mt-10 lg:mt-0">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -356,7 +356,7 @@ export default function UiUxDesignPage() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 1 }}
-            className="relative h-[500px] w-full perspective-1000 flex items-center justify-center"
+            className="relative h-[300px] sm:h-[420px] lg:h-[500px] w-full perspective-1000 flex items-center justify-center order-1 lg:order-2"
           >
             {serviceImages["web-design-service"] ? (
               <img

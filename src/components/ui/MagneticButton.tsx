@@ -4,10 +4,13 @@ import { motion } from "framer-motion";
 export const MagneticButton = ({
 	children,
 	className,
+	onClick,
 	...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement> & {
+}: {
 	children: React.ReactNode;
 	className?: string;
+	onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+	[key: string]: any;
 }) => {
 	const ref = useRef<HTMLDivElement>(null);
 	const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -23,7 +26,7 @@ export const MagneticButton = ({
 			};
 		const middleX = clientX - (left + width / 2);
 		const middleY = clientY - (top + height / 2);
-		setPosition({ x: middleX * 0.1, y: middleY * 0.1 }); // The magnet strength
+		setPosition({ x: middleX * 0.25, y: middleY * 0.25 }); // Magnet strength
 	};
 
 	const reset = () => {
@@ -33,15 +36,22 @@ export const MagneticButton = ({
 	const { x, y } = position;
 
 	return (
-		<motion.div
-			style={{ position: "relative" }}
+		<div
 			ref={ref}
 			onMouseMove={handleMouse}
 			onMouseLeave={reset}
-			animate={{ x, y }}
-			transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+			onClick={onClick}
+			className="inline-block cursor-pointer"
 		>
-			<button className={className} {...props}>{children}</button>
-		</motion.div>
+			<motion.button
+				className={className}
+				{...props}
+				animate={{ x, y }}
+				transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+				style={{ pointerEvents: "none" }}
+			>
+				{children}
+			</motion.button>
+		</div>
 	);
 };

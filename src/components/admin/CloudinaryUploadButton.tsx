@@ -5,12 +5,14 @@ interface CloudinaryUploadButtonProps {
 	onUploadSuccess: (url: string) => void;
 	resourceType?: "image" | "video" | "raw";
 	label?: string;
+	accept?: string;
 }
 
 export default function CloudinaryUploadButton({
 	onUploadSuccess,
 	resourceType = "image",
 	label = "Upload to Cloudinary",
+	accept,
 }: CloudinaryUploadButtonProps) {
 	const [loading, setLoading] = useState(false);
 
@@ -76,7 +78,7 @@ export default function CloudinaryUploadButton({
 				<span>{loading ? "Uploading..." : label}</span>
 				<input
 					type="file"
-					accept={resourceType === "image" ? "image/*" : resourceType === "video" ? "video/*" : "*"}
+					accept={accept || (resourceType === "image" ? "image/*" : resourceType === "video" ? "video/*" : "*")}
 					onChange={handleFileChange}
 					className="hidden"
 					disabled={loading}

@@ -29,6 +29,7 @@ const sidebarLinks = [
 	{ name: "Blog Posts", href: "/admin/blogs", icon: BookOpen },
 	{ name: "Contact Info", href: "/admin/contact", icon: Phone },
 	{ name: "Header & Footer", href: "/admin/header-footer", icon: FileText },
+	{ name: "Proposals", href: "/admin/proposals", icon: FileText },
 	{ name: "FAQ", href: "/admin/faq", icon: HelpCircle },
 	{ name: "Testimonials", href: "/admin/testimonials", icon: MessageSquare },
 	{ name: "SEO Settings", href: "/admin/seo", icon: Search },

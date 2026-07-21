@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useContent } from "../../../context/ContentContext";
 import { Save, Check, Navigation, FileText, Plus, Trash2 } from "lucide-react";
 
@@ -47,9 +48,14 @@ export default function HeaderFooterEditor() {
 					</div>
 				))}
 				<button onClick={() => setHForm({...hForm, navLinks:[...hForm.navLinks,{name:"New",href:"/"}]})} className="flex items-center gap-2 text-sm text-neon-green"><Plus className="w-4 h-4" /> Add Link</button>
-				<div className="border-t border-white/5 pt-4 grid grid-cols-2 gap-4">
-					<div><label className="text-xs font-bold text-neutral-500">CTA Text</label><input type="text" value={hForm.ctaText} onChange={e => setHForm({...hForm,ctaText:e.target.value})} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm mt-1 focus:outline-none focus:border-neon-green/50" /></div>
-					<div><label className="text-xs font-bold text-neutral-500">CTA URL</label><input type="text" value={hForm.ctaUrl} onChange={e => setHForm({...hForm,ctaUrl:e.target.value})} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm mt-1 focus:outline-none focus:border-neon-green/50" /></div>
+				<div className="border-t border-white/5 pt-4">
+					<div className="grid grid-cols-2 gap-4">
+						<div><label className="text-xs font-bold text-neutral-500">CTA Text</label><input type="text" value={hForm.ctaText} onChange={e => setHForm({...hForm,ctaText:e.target.value})} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm mt-1 focus:outline-none focus:border-neon-green/50" /></div>
+						<div><label className="text-xs font-bold text-neutral-500">CTA URL</label><input type="text" value={hForm.ctaUrl} onChange={e => setHForm({...hForm,ctaUrl:e.target.value})} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm mt-1 focus:outline-none focus:border-neon-green/50" /></div>
+					</div>
+					<div className="text-xs text-neutral-400 mt-4 p-3.5 rounded-xl border border-white/5 bg-neutral-950/40 leading-relaxed">
+						💡 <strong>Proposals Manage করতে চান?</strong> "Get a Proposal" বাটনে ক্লিক করলে যে Full Stack এবং General Proposal ফাইলগুলো ডাউনলোড হয়, সেগুলো পরিবর্তন করতে বাম পাশের মেনু থেকে <Link to="/admin/proposals" className="text-neon-green hover:underline font-bold">Proposals</Link> অপশনে যান।
+					</div>
 				</div>
 			</div>
 

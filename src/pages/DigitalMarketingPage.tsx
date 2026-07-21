@@ -173,7 +173,7 @@ export default function DigitalMarketingPage() {
 					animate="show"
 					className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
 				>
-					<div className="space-y-4 md:space-y-5">
+					<div className="space-y-4 md:space-y-5 order-2 lg:order-1">
 
 						<motion.h1
 							variants={heroItem}
@@ -212,7 +212,7 @@ export default function DigitalMarketingPage() {
 						initial={{ opacity: 0, scale: 0.9, x: 20 }}
 						animate={{ opacity: 1, scale: 1, x: 0 }}
 						transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-						className="relative group"
+						className="relative group order-1 lg:order-2 w-full mt-10 lg:mt-0"
 					>
 						{/* Video Placeholder */}
 						<motion.div
@@ -300,7 +300,7 @@ export default function DigitalMarketingPage() {
 					</div>
 
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-						<div className="space-y-6 text-neutral-300 leading-relaxed">
+						<div className="space-y-6 text-neutral-300 leading-relaxed order-2 lg:order-1">
 							<p>
 								{pageData.benefits.description}
 							</p>
@@ -309,7 +309,7 @@ export default function DigitalMarketingPage() {
 							</div>
 						</div>
 
-						<div className="relative rounded-3xl overflow-hidden aspect-video bg-neutral-900 border border-white/10 shadow-2xl group">
+						<div className="relative rounded-3xl overflow-hidden aspect-video bg-neutral-900 border border-white/10 shadow-2xl group order-1 lg:order-2 w-full mt-10 lg:mt-0">
 							<AnimatePresence mode="wait">
 								{!isPlayingWhy ? (
 									<motion.div
@@ -693,7 +693,7 @@ export default function DigitalMarketingPage() {
 					</div>
 
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-						<div className="space-y-4">
+						<div className="space-y-4 order-2 lg:order-1">
 							{pageData.whyChooseUs.reasons.map((reason, i) => (
 								<motion.div
 									key={i}
@@ -722,7 +722,7 @@ export default function DigitalMarketingPage() {
 						</div>
 
 						{/* Illustration Placeholder */}
-						<div className="relative h-[400px] bg-white/5 rounded-3xl border border-white/10 flex items-center justify-center overflow-hidden">
+						<div className="relative h-[400px] bg-white/5 rounded-3xl border border-white/10 flex items-center justify-center overflow-hidden order-1 lg:order-2 w-full mt-10 lg:mt-0">
 							<div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10 pointer-events-none"></div>
 							<div className="relative z-10 text-center space-y-4">
 								<div className="w-20 h-20 bg-neon-green/20 rounded-full flex items-center justify-center mx-auto animate-pulse">

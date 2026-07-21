@@ -226,7 +226,7 @@ export default function SeoPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-4 md:space-y-5"
+            className="space-y-4 md:space-y-5 order-2 lg:order-1"
           >
 
             {/* Main Heading */}
@@ -264,7 +264,7 @@ export default function SeoPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="relative lg:ml-8 xl:ml-12"
+            className="relative lg:ml-8 xl:ml-12 order-1 lg:order-2"
           >
             <div className="relative rounded-[3rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/5">
               <img 
@@ -353,7 +353,7 @@ export default function SeoPage() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-8 order-2 lg:order-1"
           >
             <div className="space-y-4">
               <h2 className="text-4xl md:text-5xl font-bold">
@@ -392,7 +392,7 @@ export default function SeoPage() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="rounded-[3rem] overflow-hidden shadow-2xl border border-white/5"
+            className="rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 order-1 lg:order-2"
           >
             <img src={lettersImg} alt="AI 3D" className="w-full h-auto" />
           </motion.div>
@@ -406,7 +406,7 @@ export default function SeoPage() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-8 order-2 lg:order-1"
           >
             <div className="space-y-4">
               <h2 className="text-4xl md:text-5xl font-bold">
@@ -452,7 +452,7 @@ export default function SeoPage() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="rounded-[3rem] overflow-hidden shadow-2xl border border-white/5"
+            className="rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 order-1 lg:order-2"
           >
             <img src={dashboardImg} alt="Success Analytics" className="w-full h-auto" />
           </motion.div>
@@ -466,7 +466,7 @@ export default function SeoPage() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/5 order-2 lg:order-1"
+            className="rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/5 order-1 lg:order-1"
           >
             <img src={circuitImg} alt="AI Search Platforms" className="w-full h-auto" />
           </motion.div>
@@ -475,7 +475,7 @@ export default function SeoPage() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-8 order-1 lg:order-2"
+            className="space-y-8 order-2 lg:order-2"
           >
             <h2 className="text-4xl md:text-5xl font-bold leading-tight">
               <span className="text-neon-green">AI Search Platforms</span> <br />
@@ -500,7 +500,7 @@ export default function SeoPage() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-8 order-2 lg:order-1"
           >
             <div className="space-y-4">
               <h2 className="text-4xl md:text-5xl font-bold uppercase">
@@ -532,7 +532,7 @@ export default function SeoPage() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-neutral-900/50 p-4"
+            className="rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-neutral-900/50 p-4 order-1 lg:order-2"
           >
             <img src={brainImg} alt="GEO AI SEO" className="w-full h-auto rounded-[2rem]" />
           </motion.div>

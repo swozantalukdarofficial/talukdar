@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useContent } from "../../../context/ContentContext";
-import { Save, Check, Settings, Video, FileText } from "lucide-react";
+import { Save, Check, Settings, Video } from "lucide-react";
 import CloudinaryUploadButton from "../../../components/admin/CloudinaryUploadButton";
 
 export default function SiteSettingsEditor() {
@@ -40,20 +40,6 @@ export default function SiteSettingsEditor() {
 					<CloudinaryUploadButton onUploadSuccess={(url) => setSiteForm({...siteForm,logoUrl:url})} resourceType="image" label="Upload Logo to Cloudinary" />
 				</div>
 				<div className="space-y-2"><label className="text-xs font-bold text-neutral-500">Logo Text (fallback)</label><input type="text" value={siteForm.logoText} onChange={e => setSiteForm({...siteForm,logoText:e.target.value})} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-neon-green/50" /></div>
-			</div>
-
-			<div className="bg-neutral-900/50 border border-white/5 rounded-2xl p-6 space-y-4">
-				<h2 className="text-lg font-bold text-white flex items-center gap-2"><FileText className="w-4 h-4 text-neon-green" /> Proposal Files</h2>
-				<div className="space-y-2">
-					<label className="text-xs font-bold text-neutral-500">Full Stack Digital Marketing Proposal URL / File Link</label>
-					<input type="text" value={siteForm.fullStackProposalUrl || ""} onChange={e => setSiteForm({...siteForm,fullStackProposalUrl:e.target.value})} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-neon-green/50" />
-					<CloudinaryUploadButton onUploadSuccess={(url) => setSiteForm({...siteForm,fullStackProposalUrl:url})} resourceType="raw" label="Upload Full Stack Proposal File" />
-				</div>
-				<div className="space-y-2">
-					<label className="text-xs font-bold text-neutral-500">General Proposal URL / File Link</label>
-					<input type="text" value={siteForm.generalProposalUrl || ""} onChange={e => setSiteForm({...siteForm,generalProposalUrl:e.target.value})} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-neon-green/50" />
-					<CloudinaryUploadButton onUploadSuccess={(url) => setSiteForm({...siteForm,generalProposalUrl:url})} resourceType="raw" label="Upload General Proposal File" />
-				</div>
 			</div>
 
 			<div className="bg-neutral-900/50 border border-white/5 rounded-2xl p-6 space-y-4">

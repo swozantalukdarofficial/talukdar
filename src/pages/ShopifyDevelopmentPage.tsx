@@ -246,7 +246,7 @@ export default function ShopifyDevelopmentPage() {
 
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10">
           {/* Left Side: Content */}
-          <div className="text-left space-y-4">
+          <div className="text-left space-y-4 order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -299,7 +299,7 @@ export default function ShopifyDevelopmentPage() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative h-[600px] hidden lg:block"
+            className="relative h-[350px] sm:h-[450px] lg:h-[600px] block order-1 lg:order-2"
           >
             {serviceImages["shopify-website-development-service"] ? (
               <img
@@ -583,7 +583,7 @@ export default function ShopifyDevelopmentPage() {
       {/* 8. APP INTEGRATIONS SECTION (UPGRADED) */}
       <section className="py-24 px-6 relative z-10 overflow-hidden bg-white/[0.01]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
+          <div className="order-2 lg:order-1">
              <motion.div
                initial={{ opacity: 0, x: -20 }}
                whileInView={{ opacity: 1, x: 0 }}
@@ -610,7 +610,7 @@ export default function ShopifyDevelopmentPage() {
           </div>
 
           {/* Integration Hub Visual */}
-          <div className="relative h-[400px] flex items-center justify-center">
+          <div className="relative h-[400px] flex items-center justify-center order-1 lg:order-2 w-full mt-10 lg:mt-0">
              <div className="absolute inset-0 bg-blue-500/5 blur-[100px] rounded-full" />
              
              {/* Center Shopify Logo */}

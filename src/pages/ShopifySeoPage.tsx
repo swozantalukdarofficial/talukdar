@@ -151,7 +151,7 @@ export default function ShopifySeoPage() {
 						initial={{ opacity: 0, x: -50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8 }}
-						className="space-y-4 md:space-y-5"
+						className="space-y-4 md:space-y-5 order-2 lg:order-1"
 					>
 						<h1 className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-tight">
 							Shopify SEO service agency focused on <br className="hidden md:inline" />
@@ -200,7 +200,7 @@ export default function ShopifySeoPage() {
 						initial={{ opacity: 0, scale: 0.95 }}
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{ duration: 0.8, delay: 0.2 }}
-						className="relative z-10 flex justify-center lg:justify-end"
+						className="relative z-10 flex justify-center lg:justify-end order-1 lg:order-2"
 					>
 						<img
 							src={serviceImages["shopify-seo-service-agency"] || "/shopify_seo_hero.webp"}
@@ -219,7 +219,7 @@ export default function ShopifySeoPage() {
 						initial={{ opacity: 0, x: -50 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						viewport={{ once: true }}
-						className="order-2 lg:order-1 relative rounded-3xl p-8 flex items-center justify-center"
+						className="order-1 lg:order-1 relative rounded-3xl p-8 flex items-center justify-center"
 					>
 						<div className="absolute inset-0 bg-gradient-to-tr from-neon-green/10 to-transparent blur-2xl rounded-full"></div>
 						<img
@@ -234,7 +234,7 @@ export default function ShopifySeoPage() {
 						initial={{ opacity: 0, x: 50 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						viewport={{ once: true }}
-						className="order-1 lg:order-2 space-y-6"
+						className="order-2 lg:order-2 space-y-6"
 					>
 						<h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-white leading-tight relative inline-block">
 							Grow your ecommerce business <br />
