@@ -363,55 +363,38 @@ export default function ContactPage() {
 								) : (
 									<form onSubmit={handleSubmit} className="space-y-6">
 										
-										{/* Service Selector Pills */}
-										<div className="space-y-2.5">
-											<label className="text-xs font-bold text-neutral-400 uppercase tracking-wider">
-												1. What services are you looking for?
-											</label>
-											<div className="flex flex-wrap gap-2">
-												{contact.formOptions.map((opt) => {
-													const isSelected = formState.service === opt;
-													return (
-														<button
-															type="button"
-															key={opt}
-															onClick={() => handleSelectService(opt)}
-															className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer select-none ${
-																isSelected
-																	? "bg-neon-green text-black border-neon-green shadow-lg shadow-neon-green/20 scale-105"
-																	: "bg-white/5 border-white/10 text-neutral-300 hover:bg-white/10 hover:border-white/20"
-															}`}
-														>
-															{opt}
-														</button>
-													);
-												})}
+										{/* Dropdowns Grid for Service and Budget */}
+										<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+											<div className="space-y-1.5">
+												<label className="text-xs font-bold text-neutral-400">1. Service of Interest *</label>
+												<select
+													name="service"
+													value={formState.service}
+													onChange={handleChange}
+													required
+													className="w-full bg-neutral-950 border border-white/15 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-green/50 transition-colors cursor-pointer"
+												>
+													<option value="" className="bg-neutral-900 text-neutral-400">-- Select a service --</option>
+													{contact.formOptions.map((opt) => (
+														<option key={opt} value={opt} className="bg-neutral-900 text-white">{opt}</option>
+													))}
+													<option value="Other" className="bg-neutral-900 text-white">Other</option>
+												</select>
 											</div>
-										</div>
 
-										{/* Budget Selector Pills */}
-										<div className="space-y-2.5">
-											<label className="text-xs font-bold text-neutral-400 uppercase tracking-wider">
-												2. Estimated Project Budget (USD)
-											</label>
-											<div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-												{BUDGET_RANGES.map((b) => {
-													const isSelected = formState.budget === b;
-													return (
-														<button
-															type="button"
-															key={b}
-															onClick={() => handleSelectBudget(b)}
-															className={`py-2 rounded-xl text-xs font-bold transition-all border text-center cursor-pointer select-none ${
-																isSelected
-																	? "bg-neon-green text-black border-neon-green shadow-lg shadow-neon-green/20 scale-105"
-																	: "bg-white/5 border-white/10 text-neutral-300 hover:bg-white/10 hover:border-white/20"
-															}`}
-														>
-															{b}
-														</button>
-													);
-												})}
+											<div className="space-y-1.5">
+												<label className="text-xs font-bold text-neutral-400">2. Estimated Budget (USD)</label>
+												<select
+													name="budget"
+													value={formState.budget}
+													onChange={handleChange}
+													className="w-full bg-neutral-950 border border-white/15 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-green/50 transition-colors cursor-pointer"
+												>
+													<option value="" className="bg-neutral-900 text-neutral-400">-- Select budget range --</option>
+													{BUDGET_RANGES.map((b) => (
+														<option key={b} value={b} className="bg-neutral-900 text-white">{b}</option>
+													))}
+												</select>
 											</div>
 										</div>
 
