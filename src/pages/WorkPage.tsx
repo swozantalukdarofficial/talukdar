@@ -139,8 +139,8 @@ export default function WorkPage() {
           grayscale={false}
           imageBorderRadius={isMobile ? "16px" : "24px"}
           openedImageBorderRadius="24px"
-          openedImageWidth={isMobile ? "85vw" : "320px"}
-          openedImageHeight={isMobile ? "55vh" : "440px"}
+          openedImageWidth={isMobile ? "92vw" : "800px"}
+          openedImageHeight={isMobile ? "80vh" : "650px"}
           overlayBlurColor="#050505"
         />
       </section>
