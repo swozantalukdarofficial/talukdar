@@ -66,7 +66,7 @@ export default function Hero() {
   const { hero } = useContent();
 
   return (
-    <section className="relative min-h-[calc(100vh-5rem)] flex items-center pt-24 pb-16 px-6 overflow-hidden">
+    <section className="relative min-h-[calc(100vh-5rem)] flex items-center pt-32 md:pt-36 lg:pt-40 pb-16 px-6 overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-1/4 -left-24 w-96 h-96 bg-neon-green/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/4 -right-24 w-96 h-96 bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />

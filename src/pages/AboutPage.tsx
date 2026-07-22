@@ -153,7 +153,7 @@ export default function AboutPage() {
       />
       
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[calc(100vh-5rem)] flex items-center pt-20 lg:pt-24 pb-16 px-6 overflow-hidden">
+      <section className="relative min-h-[calc(100vh-5rem)] flex items-center pt-32 md:pt-36 lg:pt-40 pb-16 px-6 overflow-hidden">
         {/* Background Parallax Text */}
         <motion.div 
           initial={{ opacity: 0, y: 100 }}

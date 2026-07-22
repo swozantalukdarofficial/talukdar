@@ -421,7 +421,7 @@ export default function ContentWritingPage() {
       {/* ══════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 min-h-[calc(100vh-5rem)] flex items-center pt-20 lg:pt-24 pb-16 px-6">
+      <section className="relative z-10 min-h-[calc(100vh-5rem)] flex items-center pt-32 md:pt-36 lg:pt-40 pb-16 px-6">
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* ── Left: Text ── */}

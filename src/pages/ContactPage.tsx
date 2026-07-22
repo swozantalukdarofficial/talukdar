@@ -168,7 +168,7 @@ export default function ContactPage() {
 				<div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-[150px]" />
 			</div>
 
-			<section className="relative min-h-[calc(100vh-5rem)] flex items-center pt-20 lg:pt-24 pb-16 px-6 z-10">
+			<section className="relative min-h-[calc(100vh-5rem)] flex items-center pt-32 md:pt-36 lg:pt-40 pb-16 px-6 z-10">
 				<div className="max-w-7xl mx-auto w-full">
 					{/* Heading */}
 					<motion.div

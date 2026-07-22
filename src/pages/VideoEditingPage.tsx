@@ -213,7 +213,7 @@ export default function VideoEditingPage() {
 				schemaMarkup={videoEditingSchema}
 			/>
 			{/* 1. Hero Section */}
-			<section className="relative min-h-[calc(100vh-5rem)] flex items-center pt-20 lg:pt-24 pb-16 px-6 z-10">
+			<section className="relative min-h-[calc(100vh-5rem)] flex items-center pt-32 md:pt-36 lg:pt-40 pb-16 px-6 z-10">
 				{/* Background Glow */}
 				<div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[-1]">
 					<div className="absolute top-20 left-10 w-[500px] h-[500px] bg-neon-green/10 blur-[120px] rounded-full"></div>

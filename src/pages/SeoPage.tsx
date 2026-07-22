@@ -220,7 +220,7 @@ export default function SeoPage() {
         description="Leading AI SEO Service Agency helping brands grow visibility in AI search through LLM optimization, AI SEO, semantic search and high-impact content strategies." 
         schemaMarkup={seoServiceSchema}
       />
-      <section className="relative z-10 px-6 lg:px-20 pt-20 lg:pt-24 pb-16 min-h-[calc(100vh-5rem)] flex items-center w-full">
+      <section className="relative z-10 px-6 lg:px-20 pt-32 md:pt-36 lg:pt-40 pb-16 min-h-[calc(100vh-5rem)] flex items-center w-full">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
