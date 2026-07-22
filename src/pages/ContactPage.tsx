@@ -27,12 +27,46 @@ const BUDGET_RANGES = [
 	"$30k+"
 ];
 
+const COUNTRIES = [
+	"Bangladesh",
+	"Australia",
+	"United States",
+	"United Kingdom",
+	"Canada",
+	"United Arab Emirates",
+	"Saudi Arabia",
+	"Singapore",
+	"Malaysia",
+	"Germany",
+	"France",
+	"Netherlands",
+	"Italy",
+	"Spain",
+	"Sweden",
+	"Norway",
+	"Denmark",
+	"Switzerland",
+	"India",
+	"Pakistan",
+	"Qatar",
+	"Kuwait",
+	"Oman",
+	"Bahrain",
+	"New Zealand",
+	"Japan",
+	"South Korea",
+	"Brazil",
+	"South Africa",
+	"Other Country"
+];
+
 export default function ContactPage() {
 	const { contact, socials, seo } = useContent();
 	const [formState, setFormState] = useState({
 		name: "",
 		email: "",
 		phone: "",
+		country: "Bangladesh",
 		company: "",
 		service: "",
 		budget: "",
@@ -159,6 +193,7 @@ export default function ContactPage() {
 				name: "",
 				email: "",
 				phone: "",
+				country: "Bangladesh",
 				company: "",
 				service: "",
 				budget: "",
@@ -426,7 +461,7 @@ export default function ContactPage() {
 											</div>
 										</div>
 
-										<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+										<div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
 											<div className="space-y-1.5">
 												<label className="text-xs font-bold text-neutral-400">Phone / WhatsApp *</label>
 												<input
@@ -440,7 +475,21 @@ export default function ContactPage() {
 												/>
 											</div>
 											<div className="space-y-1.5">
-												<label className="text-xs font-bold text-neutral-400">Company / Website URL</label>
+												<label className="text-xs font-bold text-neutral-400">Country *</label>
+												<select
+													name="country"
+													value={formState.country}
+													onChange={handleChange}
+													required
+													className="w-full bg-neutral-950 border border-white/15 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-green/50 transition-colors cursor-pointer"
+												>
+													{COUNTRIES.map((c) => (
+														<option key={c} value={c} className="bg-neutral-900 text-white">{c}</option>
+													))}
+												</select>
+											</div>
+											<div className="space-y-1.5">
+												<label className="text-xs font-bold text-neutral-400">Company / Website</label>
 												<input
 													type="text"
 													name="company"
