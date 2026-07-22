@@ -27,6 +27,21 @@ const BUDGET_RANGES = [
 	"$30k+"
 ];
 
+const AGENCY_SERVICES = [
+	"Full Stack Digital Marketing",
+	"AI Driven SEO",
+	"Social Media Marketing (SMM)",
+	"PPC & Paid Advertising",
+	"Shopify SEO",
+	"Custom Website Development",
+	"WordPress Web Development",
+	"Shopify Web Development",
+	"UI/UX Web Design",
+	"Content Writing",
+	"Video Editing",
+	"Motion Graphics"
+];
+
 const COUNTRIES = [
 	"Afghanistan",
 	"Albania",
@@ -612,7 +627,7 @@ export default function ContactPage() {
 													className="w-full bg-neutral-950 border border-white/15 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-green/50 transition-colors cursor-pointer"
 												>
 													<option value="" className="bg-neutral-900 text-neutral-400">-- Select a service --</option>
-													{contact.formOptions.map((opt) => (
+													{(contact.formOptions && contact.formOptions.length >= 10 ? contact.formOptions : AGENCY_SERVICES).map((opt) => (
 														<option key={opt} value={opt} className="bg-neutral-900 text-white">{opt}</option>
 													))}
 													<option value="Other" className="bg-neutral-900 text-white">Other</option>

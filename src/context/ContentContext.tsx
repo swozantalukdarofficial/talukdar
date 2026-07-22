@@ -190,7 +190,20 @@ const defaultContact: ContactContent = {
 	email: "webestone@gmail.com",
 	address: "25 The Avenue, Crawley, Perth, WA",
 	mapUrl: "https://maps.google.com/maps?q=25%20The%20Avenue,%20Crawley,%20Perth,%20WA,%20Australia&t=&z=15&ie=UTF8&iwloc=&output=embed",
-	formOptions: ["SEO", "Social Media Marketing", "Web Development", "Branding", "PPC Advertising", "Content Writing", "Video Editing"],
+	formOptions: [
+		"Full Stack Digital Marketing",
+		"AI Driven SEO",
+		"Social Media Marketing (SMM)",
+		"PPC & Paid Advertising",
+		"Shopify SEO",
+		"Custom Website Development",
+		"WordPress Web Development",
+		"Shopify Web Development",
+		"UI/UX Web Design",
+		"Content Writing",
+		"Video Editing",
+		"Motion Graphics"
+	],
 };
 
 const defaultSocials: SocialsContent = socialsJson as SocialsContent;
