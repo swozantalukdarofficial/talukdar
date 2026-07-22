@@ -114,11 +114,20 @@ export default function BlogDetailPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="prose prose-invert max-w-none text-neutral-300
-                [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-extrabold [&_h2]:mt-12 [&_h2]:mb-5 [&_h2]:text-white [&_h2]:tracking-tight [&_h2]:scroll-mt-28
+                [&_h1]:text-3xl [&_h1]:md:text-4xl [&_h1]:font-black [&_h1]:mt-12 [&_h1]:mb-6 [&_h1]:text-white [&_h1]:tracking-tight
+                [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-extrabold [&_h2]:mt-10 [&_h2]:mb-5 [&_h2]:text-white [&_h2]:tracking-tight [&_h2]:scroll-mt-28
+                [&_h3]:text-xl [&_h3]:md:text-2xl [&_h3]:font-bold [&_h3]:mt-8 [&_h3]:mb-4 [&_h3]:text-white
+                [&_h4]:text-lg [&_h4]:font-bold [&_h4]:mt-6 [&_h4]:mb-3 [&_h4]:text-[#87E65C]
                 [&_p]:text-base [&_p]:md:text-[18px] [&_p]:leading-[1.8] [&_p]:text-neutral-300 [&_p]:mb-6 [&_p]:font-normal
                 [&_a]:text-[#87E65C] [&_a]:underline hover:[&_a]:text-white [&_a]:transition-colors [&_a]:font-semibold
                 [&_strong]:text-white [&_strong]:font-extrabold
                 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:text-neutral-300 [&_ul]:space-y-2
+                [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:text-neutral-300 [&_ol]:space-y-2
+                [&_table]:w-full [&_table]:text-left [&_table]:border-collapse [&_table]:my-8 [&_table]:border [&_table]:border-white/10 [&_table]:rounded-2xl [&_table]:overflow-hidden
+                [&_th]:bg-white/10 [&_th]:p-3.5 [&_th]:text-white [&_th]:font-bold [&_th]:border [&_th]:border-white/10
+                [&_td]:p-3.5 [&_td]:border [&_td]:border-white/10 [&_td]:text-neutral-300
+                [&_img]:w-full [&_img]:max-h-[550px] [&_img]:object-cover [&_img]:rounded-2xl [&_img]:border [&_img]:border-white/10 [&_img]:my-8 [&_img]:shadow-2xl
+                [&_figcaption]:text-xs [&_figcaption]:text-neutral-500 [&_figcaption]:text-center [&_figcaption]:italic [&_figcaption]:-mt-4 [&_figcaption]:mb-6
                 [&_blockquote]:border-l-4 [&_blockquote]:border-[#87E65C] [&_blockquote]:pl-6 [&_blockquote]:py-3 [&_blockquote]:italic [&_blockquote]:text-white/90 [&_blockquote]:bg-white/[0.02] [&_blockquote]:rounded-r-2xl [&_blockquote]:mb-8"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />

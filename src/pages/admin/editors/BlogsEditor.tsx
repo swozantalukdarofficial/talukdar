@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useContent, type BlogPost } from "../../../context/ContentContext";
 import { Save, Check, Plus, Trash2, Pencil, X, Sparkles, BookOpen, AlertCircle, FileText, ChevronRight, Video } from "lucide-react";
 import CloudinaryUploadButton from "../../../components/admin/CloudinaryUploadButton";
+import RichTextBlogEditor from "../../../components/admin/RichTextBlogEditor";
 
 const BLOG_CATEGORIES = ["AI & Tech", "Design", "Development", "Marketing", "Business"];
 
@@ -250,16 +251,13 @@ export default function BlogsEditor() {
 							</div>
 
 							<div className="space-y-1.5">
-								<div className="flex justify-between items-center">
-									<label className="text-xs font-bold text-neutral-400">Article Content (HTML)</label>
-									<span className="text-[10px] text-neutral-500 font-mono">Use &lt;h2&gt;, &lt;p&gt;, &lt;ul&gt; tags</span>
+								<div className="flex justify-between items-center mb-1">
+									<label className="text-xs font-bold text-neutral-400">Article Content (WordPress / Docs Rich Text Editor)</label>
+									<span className="text-[10px] text-neon-green font-mono">H1-H4, Align, Tables, Checklists, &amp; Inline Images Supported</span>
 								</div>
-								<textarea
+								<RichTextBlogEditor
 									value={activeForm.content}
-									onChange={(e) => handleFormChange("content", e.target.value)}
-									rows={15}
-									className="w-full bg-neutral-950 border border-white/15 rounded-xl px-4 py-3 text-white text-xs font-mono focus:outline-none focus:border-neon-green/50"
-									placeholder="<p>HTML formatted content goes here...</p>"
+									onChange={(html) => handleFormChange("content", html)}
 								/>
 							</div>
 						</div>
