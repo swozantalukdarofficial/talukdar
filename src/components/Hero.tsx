@@ -3,13 +3,16 @@ import { ArrowRight, Play, Search, TrendingUp, BarChart3 } from "lucide-react";
 import { useState } from "react";
 import { useContent } from "../context/ContentContext";
 import { Link } from "react-router-dom";
+import { parseYouTubeEmbedUrl } from "../lib/youtubeUtils";
 
 function HeroVideoPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const { hero } = useContent();
 
   const localThumbnail = hero.thumbnailUrl || "/hero-thumbnail.webp";
-  const embedUrl = hero.videoUrl || "https://www.youtube.com/embed/MnLd2G198U8?autoplay=1&rel=0&modestbranding=1";
+  const rawUrl = hero.videoUrl || "https://www.youtube.com/embed/MnLd2G198U8";
+  const cleanEmbed = parseYouTubeEmbedUrl(rawUrl);
+  const embedUrl = cleanEmbed.includes("?") ? `${cleanEmbed}&autoplay=1` : `${cleanEmbed}?autoplay=1&rel=0&modestbranding=1`;
 
   return (
     <div className="relative w-full group">

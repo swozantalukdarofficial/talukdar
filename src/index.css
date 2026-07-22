@@ -33,9 +33,13 @@ body {
 	-webkit-overflow-scrolling: touch;
 }
 
-video, iframe, canvas {
+video, canvas {
 	max-width: 100%;
 	height: auto;
+}
+
+iframe {
+	max-width: 100%;
 }
 
 ::selection {
