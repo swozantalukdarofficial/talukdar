@@ -66,7 +66,7 @@ export default function ContactPage() {
 		name: "",
 		email: "",
 		phone: "",
-		country: "Bangladesh",
+		country: "",
 		company: "",
 		service: "",
 		budget: "",
@@ -193,7 +193,7 @@ export default function ContactPage() {
 				name: "",
 				email: "",
 				phone: "",
-				country: "Bangladesh",
+				country: "",
 				company: "",
 				service: "",
 				budget: "",
@@ -483,6 +483,7 @@ export default function ContactPage() {
 													required
 													className="w-full bg-neutral-950 border border-white/15 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-green/50 transition-colors cursor-pointer"
 												>
+													<option value="" className="bg-neutral-900 text-neutral-400">-- Select Country --</option>
 													{COUNTRIES.map((c) => (
 														<option key={c} value={c} className="bg-neutral-900 text-white">{c}</option>
 													))}
