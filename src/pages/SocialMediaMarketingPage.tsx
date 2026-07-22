@@ -72,14 +72,14 @@ const smmSchema = {
   ]
 };
 
-import { 
-  Plus, 
-  Share2, 
-  Zap, 
-  Target, 
-  BarChart3, 
-  MessageSquare, 
-  Users, 
+import {
+  Plus,
+  Share2,
+  Zap,
+  Target,
+  BarChart3,
+  MessageSquare,
+  Users,
   Play,
   PlayCircle,
   ArrowRight,
@@ -206,10 +206,10 @@ export default function SocialMediaMarketingPage() {
   return (
     <main className="relative min-h-screen text-white overflow-x-hidden bg-black">
       <AdminServiceImageEditor serviceId="social-media-marketing-agency" />
-      <SEO 
+      <SEO
         pageKey="social-media-marketing-agency"
-        title="Social Media Marketing Agency | Social Media Advertising Experts" 
-        description="Trusted Social Media Marketing Agency driving growth through AI-driven strategies, Meta Business Suite, LinkedIn Campaign Manager and high-performing paid campaigns." 
+        title="Social Media Marketing Agency | Social Media Advertising Experts"
+        description="Trusted Social Media Marketing Agency driving growth through AI-driven strategies, Meta Business Suite, LinkedIn Campaign Manager and high-performing paid campaigns."
         schemaMarkup={smmSchema}
       />
       {/* Background Effects */}
@@ -219,7 +219,7 @@ export default function SocialMediaMarketingPage() {
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.05]"></div>
       </div>
 
-      <section className="relative z-10 px-6 lg:px-20 pt-32 md:pt-36 lg:pt-40 pb-16 min-h-[calc(100vh-5rem)] flex items-center w-full">
+      <section className="relative z-10 px-6 lg:px-20 pt-20 lg:pt-24 pb-16 min-h-[calc(100vh-5rem)] flex items-center w-full">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -259,7 +259,7 @@ export default function SocialMediaMarketingPage() {
           </motion.div>
 
           {/* Right Side: Mockup / Illustration (Vertical Smartphone Frame) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9, x: 30 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -271,7 +271,7 @@ export default function SocialMediaMarketingPage() {
 
             {/* Smartphone Container */}
             <div className="relative w-[280px] h-[560px] bg-neutral-950 rounded-[3rem] p-3 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8)] border-4 border-neutral-800 ring-1 ring-white/10 flex flex-col justify-between overflow-hidden group hover:border-neon-green/30 hover:ring-neon-green/20 transition-all duration-500">
-              
+
               {/* Dynamic Island / Notch */}
               <div className="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-5 bg-neutral-900 rounded-full z-30 flex items-center justify-between px-3 border border-white/5">
                 <div className="w-2.5 h-2.5 rounded-full bg-neutral-850 border border-white/5 flex items-center justify-center">
@@ -282,7 +282,7 @@ export default function SocialMediaMarketingPage() {
 
               {/* Screen Content Wrapper */}
               <div className="relative w-full h-full rounded-[2.2rem] overflow-hidden bg-neutral-900 border border-white/5 flex flex-col justify-between p-4">
-                
+
                 {/* Screen Video / Thumbnail Area */}
                 <div className="absolute inset-0 z-0">
                   <AnimatePresence mode="wait">
@@ -295,14 +295,14 @@ export default function SocialMediaMarketingPage() {
                         className="absolute inset-0 cursor-pointer group/thumb"
                         onClick={() => setIsVideoPlaying(true)}
                       >
-                        <img 
-                          src={serviceImages["social-media-marketing-agency"] || `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`} 
-                          alt="Social Media Marketing Agency" 
-                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/thumb:scale-105" 
+                        <img
+                          src={serviceImages["social-media-marketing-agency"] || `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                          alt="Social Media Marketing Agency"
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/thumb:scale-105"
                         />
                         {/* Dark Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
-                        
+
                         {/* Centered Play Button */}
                         <div className="absolute inset-0 flex items-center justify-center">
                           <motion.div
@@ -328,7 +328,7 @@ export default function SocialMediaMarketingPage() {
                           allowFullScreen
                         ></iframe>
                         {/* Overlay to allow clicking to pause/stop */}
-                        <div 
+                        <div
                           className="absolute inset-0 bg-transparent cursor-pointer"
                           onClick={() => setIsVideoPlaying(false)}
                         />
@@ -374,7 +374,7 @@ export default function SocialMediaMarketingPage() {
             </div>
 
             {/* Floating Engagement Card */}
-            <motion.div 
+            <motion.div
               animate={{ y: [-8, 8, -8] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="absolute top-16 -left-12 bg-neutral-900/90 backdrop-blur-xl border border-white/10 p-4 rounded-2xl z-20 shadow-2xl flex items-center gap-3 hidden sm:flex"
@@ -389,7 +389,7 @@ export default function SocialMediaMarketingPage() {
             </motion.div>
 
             {/* Floating Reach Card */}
-            <motion.div 
+            <motion.div
               animate={{ y: [8, -8, 8] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               className="absolute bottom-16 -right-12 bg-neutral-900/90 backdrop-blur-xl border border-white/10 p-4 rounded-2xl z-20 shadow-2xl flex items-center gap-3 hidden sm:flex"
@@ -456,7 +456,7 @@ export default function SocialMediaMarketingPage() {
                 {/* Progress Bar */}
                 <div className="absolute bottom-12 left-12 right-12">
                   <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                    <motion.div 
+                    <motion.div
                       className="h-full bg-neon-green"
                       initial={{ width: 0 }}
                       animate={{ width: `${((activeStep + 1) / processSteps.length) * 100}%` }}
@@ -469,7 +469,7 @@ export default function SocialMediaMarketingPage() {
 
             {/* Navigation Arrows */}
             <div className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-12">
-              <button 
+              <button
                 onClick={() => setActiveStep((prev) => (prev > 0 ? prev - 1 : processSteps.length - 1))}
                 className="w-10 h-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 hover:border-neon-green transition-all group"
               >
@@ -477,7 +477,7 @@ export default function SocialMediaMarketingPage() {
               </button>
             </div>
             <div className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-12">
-              <button 
+              <button
                 onClick={() => setActiveStep((prev) => (prev < processSteps.length - 1 ? prev + 1 : 0))}
                 className="w-10 h-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 hover:border-neon-green transition-all group"
               >
@@ -515,18 +515,18 @@ export default function SocialMediaMarketingPage() {
                   <p className="text-neutral-200 text-lg md:text-xl leading-relaxed max-w-sm">
                     {platforms[activePlatform].desc}
                   </p>
-                  
+
                   {/* Dots & Nav */}
                   <div className="flex items-center gap-6">
                     <div className="flex gap-2">
                       {platforms.map((_, i) => (
-                        <div 
-                          key={i} 
-                          className={`h-1.5 transition-all duration-500 rounded-full ${activePlatform === i ? 'w-8 bg-white' : 'w-2 bg-white/20'}`} 
+                        <div
+                          key={i}
+                          className={`h-1.5 transition-all duration-500 rounded-full ${activePlatform === i ? 'w-8 bg-white' : 'w-2 bg-white/20'}`}
                         />
                       ))}
                     </div>
-                    <button 
+                    <button
                       onClick={() => setActivePlatform((prev) => (prev < platforms.length - 1 ? prev + 1 : 0))}
                       className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                     >
@@ -537,7 +537,7 @@ export default function SocialMediaMarketingPage() {
 
                 {/* Decorative background logo/element */}
                 <div className="absolute -right-10 -bottom-10 opacity-10 rotate-12 scale-150">
-                   {platforms[activePlatform].icon}
+                  {platforms[activePlatform].icon}
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -637,8 +637,8 @@ export default function SocialMediaMarketingPage() {
 
             <div className="space-y-4 max-w-3xl mx-auto">
               {faqs.map((faq, idx) => (
-                <div 
-                  key={idx} 
+                <div
+                  key={idx}
                   className={`rounded-2xl border transition-all duration-300 ${openFaq === idx ? 'border-yellow-500/50 bg-yellow-500/5' : 'border-neutral-800 bg-transparent hover:border-neutral-700'}`}
                 >
                   <button
@@ -688,7 +688,7 @@ export default function SocialMediaMarketingPage() {
           </h2>
           <Link to="/contact-us">
             <MagneticButton className="px-10 py-5 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform flex items-center gap-2 mx-auto">
-               Launch Your Strategy <ArrowRight className="w-5 h-5" />
+              Launch Your Strategy <ArrowRight className="w-5 h-5" />
             </MagneticButton>
           </Link>
         </div>

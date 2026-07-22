@@ -9,11 +9,23 @@ import {
 	CheckCircle,
 	MessageCircle,
 	ArrowRight,
+	Sparkles,
+	Zap,
+	ShieldCheck,
+	Globe,
+	MessageSquare,
+	Copy,
+	Check
 } from "lucide-react";
 import SEO from "../components/SEO";
 import { useContent } from "../context/ContentContext";
 
-
+const BUDGET_RANGES = [
+	"< $5k",
+	"$5k - $15k",
+	"$15k - $30k",
+	"$30k+"
+];
 
 export default function ContactPage() {
 	const { contact, socials, seo } = useContent();
@@ -23,11 +35,13 @@ export default function ContactPage() {
 		phone: "",
 		company: "",
 		service: "",
+		budget: "",
 		message: "",
 	});
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+	const [copiedField, setCopiedField] = useState<string | null>(null);
 
 	const contactSchema = useMemo(() => ({
 		"@context": "https://schema.org",
@@ -93,6 +107,26 @@ export default function ContactPage() {
 		setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};
 
+	const handleSelectService = (serviceName: string) => {
+		setFormState((prev) => ({
+			...prev,
+			service: prev.service === serviceName ? "" : serviceName
+		}));
+	};
+
+	const handleSelectBudget = (budgetRange: string) => {
+		setFormState((prev) => ({
+			...prev,
+			budget: prev.budget === budgetRange ? "" : budgetRange
+		}));
+	};
+
+	const handleCopy = (text: string, fieldName: string) => {
+		navigator.clipboard.writeText(text);
+		setCopiedField(fieldName);
+		setTimeout(() => setCopiedField(null), 2000);
+	};
+
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setIsSubmitting(true);
@@ -127,6 +161,7 @@ export default function ContactPage() {
 				phone: "",
 				company: "",
 				service: "",
+				budget: "",
 				message: "",
 			});
 		} catch (err: any) {
@@ -137,178 +172,253 @@ export default function ContactPage() {
 		}
 	};
 
-	const contactItems = [
-		{ icon: MapPin, title: "Our Location", detail: contact.address },
+	const contactCards = [
+		{
+			icon: MapPin,
+			title: "Our Location",
+			detail: contact.address,
+			sub: "Crawley, Western Australia",
+			badge: "Global HQ"
+		},
 		{
 			icon: Phone,
-			title: "Phone",
+			title: "Direct Call",
 			detail: contact.phone,
 			href: `tel:${contact.phone}`,
+			sub: "Mon - Fri, 9am - 6pm (AWST)",
+			badge: "24/7 Priority"
 		},
 		{
 			icon: Mail,
-			title: "Email",
+			title: "Email Inquiry",
 			detail: contact.email,
 			href: `mailto:${contact.email}`,
+			sub: "Average reply: < 2 hours",
+			badge: "Fast Reply"
 		},
-		{ icon: Clock, title: "Working Hours", detail: "Mon - Fri: 9AM - 6PM" },
+		{
+			icon: Clock,
+			title: "Working Hours",
+			detail: "Mon - Fri: 9:00 AM - 6:00 PM",
+			sub: "Weekend Support Available",
+			badge: "Live Team"
+		},
 	];
 
 	return (
-		<main className="relative min-h-screen text-white overflow-x-hidden">
+		<main className="relative min-h-screen bg-black text-white overflow-x-hidden selection:bg-neon-green/30">
 			<SEO 
 				pageKey="contact"
-				title="Contact Us | WeBestOne" 
-				description="Get in touch with WeBestOne for AI-powered digital marketing, web development, and growth solutions." 
+				title="Contact Us | WeBestOne - AI-Powered Digital Agency" 
+				description="Get in touch with WeBestOne for high-impact AI digital marketing, custom website development, SEO, and growth solutions." 
 				schemaMarkup={contactSchema}
 			/>
-			{/* Background Effects */}
-			<div className="absolute inset-0 z-0">
-				<div className="absolute top-0 right-1/4 w-96 h-96 bg-neon-green/5 rounded-full blur-[150px]" />
-				<div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-[150px]" />
+
+			{/* Dynamic Ambient Backdrops */}
+			<div className="fixed inset-0 z-0 pointer-events-none">
+				<div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-br from-neon-green/10 via-cyan-500/5 to-purple-600/10 rounded-full blur-[160px]" />
+				<div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[140px]" />
+				<div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03]" />
 			</div>
 
-			<section className="relative min-h-[calc(100vh-5rem)] flex items-center pt-32 md:pt-36 lg:pt-40 pb-16 px-6 z-10">
-				<div className="max-w-7xl mx-auto w-full">
-					{/* Heading */}
+			{/* ══════════════════════════════════════════
+			    HERO HEADER & STATS BAR
+			══════════════════════════════════════════ */}
+			<section className="relative z-10 pt-32 md:pt-36 lg:pt-40 pb-16 px-6">
+				<div className="max-w-7xl mx-auto space-y-12">
+					
+					{/* Top Header Title Box */}
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8 }}
-						className="text-center mb-12 space-y-6"
+						className="text-center space-y-6 max-w-4xl mx-auto"
 					>
-						<span className="inline-block px-4 py-2 bg-neon-green/10 text-neon-green rounded-full text-sm font-bold border border-neon-green/30 uppercase tracking-wide">
-							📞 Contact Us | WeBestOne
-						</span>
-						<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl mx-auto leading-tight">
-							<span className="text-neon-green font-semibold text-sm md:text-base block mb-2 tracking-[0.15em] uppercase">
-								AI-powered digital marketing Agency
-							</span>
-							Let Us Build Something <br className="hidden md:block"/>
-							<span className="bg-gradient-to-r from-neon-green to-blue-400 bg-clip-text text-transparent">
-								Great Together
+						<div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neon-green/10 border border-neon-green/30 text-neon-green text-xs font-bold uppercase tracking-widest shadow-lg shadow-neon-green/10">
+							<Sparkles className="w-3.5 h-3.5 animate-spin" />
+							<span>Start Your Digital Transformation</span>
+						</div>
+
+						<h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1]">
+							Let’s Build Something <br />
+							<span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green via-teal-300 to-blue-500">
+								Extraordinary Together
 							</span>
 						</h1>
-						<div className="text-lg text-neutral-400 max-w-3xl mx-auto space-y-4">
-							<p>
-								Whether you are ready to start a project, request a personalized quote, or simply explore new possibilities for your brand, the team at WeBestOne is here to listen, guide, and create.
-							</p>
-							<p>
-								We value every conversation because every brand story begins with one meaningful connection. Reach out today, and let us start building the next chapter of your digital success.
-							</p>
+
+						<p className="text-base md:text-lg text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+							Have a new project in mind or want to audit your current digital performance? Talk to our AI digital marketing and web specialists today.
+						</p>
+
+						{/* Quick Assurance Badges */}
+						<div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 pt-2 text-xs font-bold text-neutral-300">
+							<div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10">
+								<Zap className="w-4 h-4 text-neon-green" />
+								<span>Reply under 2 hours</span>
+							</div>
+							<div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10">
+								<ShieldCheck className="w-4 h-4 text-cyan-400" />
+								<span>No obligation audit</span>
+							</div>
+							<div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10">
+								<Globe className="w-4 h-4 text-blue-400" />
+								<span>Global client support</span>
+							</div>
 						</div>
 					</motion.div>
 
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-						{/* Left: Contact Info */}
+					{/* Contact Info Quick Cards Grid */}
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+						{contactCards.map((card, idx) => (
+							<motion.div
+								key={card.title}
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.5, delay: idx * 0.1 }}
+								className="group relative p-6 rounded-3xl bg-neutral-900/40 border border-white/10 hover:border-neon-green/40 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 shadow-xl"
+							>
+								<div className="flex items-center justify-between mb-4">
+									<div className="w-12 h-12 rounded-2xl bg-neon-green/10 border border-neon-green/20 flex items-center justify-center text-neon-green group-hover:scale-110 group-hover:bg-neon-green group-hover:text-black transition-all">
+										<card.icon className="w-5 h-5" />
+									</div>
+									<span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-400">
+										{card.badge}
+									</span>
+								</div>
+
+								<div className="space-y-1">
+									<h3 className="text-xs font-bold text-neutral-400 uppercase tracking-wider">{card.title}</h3>
+									{card.href ? (
+										<a
+											href={card.href}
+											className="text-base md:text-lg font-bold text-white hover:text-neon-green transition-colors block truncate"
+										>
+											{card.detail}
+										</a>
+									) : (
+										<p className="text-base md:text-lg font-bold text-white truncate">{card.detail}</p>
+									)}
+									<p className="text-xs text-neutral-500">{card.sub}</p>
+								</div>
+
+								{/* Copy Button for quick convenience */}
+								{card.href && (
+									<button
+										onClick={() => handleCopy(card.detail, card.title)}
+										className="absolute bottom-4 right-4 p-2 text-neutral-500 hover:text-neon-green transition-colors cursor-pointer"
+										title="Copy details"
+									>
+										{copiedField === card.title ? (
+											<Check className="w-4 h-4 text-neon-green" />
+										) : (
+											<Copy className="w-3.5 h-3.5" />
+										)}
+									</button>
+								)}
+							</motion.div>
+						))}
+					</div>
+
+					{/* ══════════════════════════════════════════
+					    MAIN FORM & DIRECT INSTANT CHAT GRID
+					══════════════════════════════════════════ */}
+					<div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+						
+						{/* LEFT COLUMN: Contact Form (7 Cols) */}
 						<motion.div
 							initial={{ opacity: 0, x: -30 }}
 							animate={{ opacity: 1, x: 0 }}
-							transition={{ duration: 0.8, delay: 0.2 }}
-							className="space-y-10"
+							transition={{ duration: 0.8 }}
+							className="lg:col-span-7 bg-neutral-900/50 border border-white/10 rounded-3xl p-6 sm:p-10 backdrop-blur-xl shadow-2xl space-y-8"
 						>
-							<div className="space-y-6">
-                                <h2 className="text-3xl font-bold mb-8">Reach Us Directly</h2>
-                                <p className="text-neutral-400 mb-6">Our customer support team is available from Monday to Friday, 9:00 AM to 6:00 PM to answer any inquiries regarding services, projects, or collaborations.</p>
-								{contactItems.map((item, i) => (
-									<div key={i} className="flex items-start gap-5 group">
-										<div className="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-neon-green/10 group-hover:border-neon-green/30 transition-all">
-											<item.icon className="w-5 h-5 text-neon-green" />
-										</div>
-										<div>
-											<p className="text-xs text-neutral-500 uppercase tracking-wider mb-1">
-												{item.title}
-											</p>
-											{item.href ?
-												<a
-													href={item.href}
-													className="text-white font-medium hover:text-neon-green transition-colors"
-												>
-													{item.detail}
-												</a>
-											:	<p className="text-white font-medium">{item.detail}</p>}
-										</div>
-									</div>
-								))}
+							<div>
+								<h2 className="text-2xl sm:text-3xl font-black text-white mb-2">Send Us A Message</h2>
+								<p className="text-xs sm:text-sm text-neutral-400">Fill out the form below. We'll analyze your requirements and get back with an actionable growth proposal.</p>
 							</div>
 
-							{/* Social and Instant Communication */}
-							<div className="p-8 rounded-[2rem] bg-gradient-to-br from-[#25D366]/10 to-blue-500/10 border border-white/10 relative overflow-hidden group">
-								<h3 className="text-2xl font-bold mb-4">
-									Prefer to connect faster?
-								</h3>
-								<p className="text-neutral-400 mb-6 text-sm">
-									You can reach us through any of our social platforms or send us a direct message on WhatsApp for instant assistance.
-								</p>
-								<div className="flex flex-col gap-4 mb-8">
-                                    <a href={socials.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">🌐 Facebook: WeBestOne</a>
-                                    <a href={socials.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">📸 Instagram: @webest_one</a>
-                                    <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">💼 LinkedIn: WeBestOne</a>
-                                    <a href={socials.youtube} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white hover:text-neon-green transition-colors font-medium">▶️ YouTube: @webestone</a>
-                                </div>
-								<a
-									href={`https://wa.me/${socials.whatsapp.replace(/[^0-9+]/g, "")}?text=Hi,%20I%20want%20to%20discuss%20a%20project.`}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white font-bold rounded-full hover:bg-[#20BD5A] hover:scale-105 transition-all text-sm shadow-[0_0_30px_rgba(37,211,102,0.3)]"
-								>
-									💬 WhatsApp Chat <ArrowRight className="w-4 h-4" />
-								</a>
-							</div>
-						</motion.div>
-
-						{/* Right: Form */}
-						<motion.div
-							initial={{ opacity: 0, x: 30 }}
-							animate={{ opacity: 1, x: 0 }}
-							transition={{ duration: 0.8, delay: 0.3 }}
-						>
 							<AnimatePresence mode="wait">
-								{isSubmitted ?
+								{isSubmitted ? (
 									<motion.div
 										key="success"
-										initial={{ opacity: 0, scale: 0.9 }}
+										initial={{ opacity: 0, scale: 0.95 }}
 										animate={{ opacity: 1, scale: 1 }}
-										className="h-full flex flex-col items-center justify-center p-12 rounded-3xl bg-neon-green/10 border border-neon-green/30 text-center space-y-6"
+										className="p-10 rounded-3xl bg-neon-green/10 border border-neon-green/30 text-center space-y-6"
 									>
-										<CheckCircle className="w-20 h-20 text-neon-green" />
-										<h3 className="text-3xl font-bold text-white">
-											Message Sent!
-										</h3>
-										<p className="text-neutral-400">
-											Thank you for reaching out! Your message has been sent successfully. We will get back to you shortly.
-										</p>
+										<div className="w-20 h-20 bg-neon-green rounded-full flex items-center justify-center mx-auto text-black shadow-[0_0_40px_rgba(135,230,92,0.5)]">
+											<CheckCircle className="w-10 h-10" />
+										</div>
+										<div className="space-y-2">
+											<h3 className="text-2xl font-black text-white">Message Received!</h3>
+											<p className="text-neutral-300 text-sm max-w-md mx-auto leading-relaxed">
+												Thank you for reaching out to <strong>WeBestOne</strong>! Our strategist team has received your message and will reply within 2 business hours.
+											</p>
+										</div>
 										<button
-											onClick={() => {
-												setIsSubmitted(false);
-												setFormState({
-													name: "",
-													email: "",
-													phone: "",
-													company: "",
-													service: "",
-													message: "",
-												});
-											}}
-											className="px-6 py-3 bg-neon-green text-black font-bold rounded-full hover:bg-neon-green/90 transition-colors"
+											onClick={() => setIsSubmitted(false)}
+											className="px-6 py-3 bg-neon-green text-black font-bold text-xs rounded-xl hover:bg-neon-green/90 transition-all cursor-pointer shadow-lg shadow-neon-green/20"
 										>
-											Send Another Message
+											Send Another Inquiry
 										</button>
 									</motion.div>
-								:	<motion.form
-										key="form"
-										onSubmit={handleSubmit}
-										className="space-y-6 p-8 md:p-10 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm shadow-2xl"
-									>
-                                        <div className="mb-8">
-                                            <h2 className="text-3xl font-bold mb-2">Tell Us About Your Project</h2>
-                                            <p className="text-neutral-400 text-sm">Please fill out the form below so that we can understand your goals and respond with the best strategy for your business.</p>
-                                        </div>
-										<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-											<div className="space-y-2">
-												<label className="text-sm text-neutral-400">
-													Full Name *
-												</label>
+								) : (
+									<form onSubmit={handleSubmit} className="space-y-6">
+										
+										{/* Service Selector Pills */}
+										<div className="space-y-2.5">
+											<label className="text-xs font-bold text-neutral-400 uppercase tracking-wider">
+												1. What services are you looking for?
+											</label>
+											<div className="flex flex-wrap gap-2">
+												{contact.formOptions.map((opt) => {
+													const isSelected = formState.service === opt;
+													return (
+														<button
+															type="button"
+															key={opt}
+															onClick={() => handleSelectService(opt)}
+															className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer select-none ${
+																isSelected
+																	? "bg-neon-green text-black border-neon-green shadow-lg shadow-neon-green/20 scale-105"
+																	: "bg-white/5 border-white/10 text-neutral-300 hover:bg-white/10 hover:border-white/20"
+															}`}
+														>
+															{opt}
+														</button>
+													);
+												})}
+											</div>
+										</div>
+
+										{/* Budget Selector Pills */}
+										<div className="space-y-2.5">
+											<label className="text-xs font-bold text-neutral-400 uppercase tracking-wider">
+												2. Estimated Project Budget (USD)
+											</label>
+											<div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+												{BUDGET_RANGES.map((b) => {
+													const isSelected = formState.budget === b;
+													return (
+														<button
+															type="button"
+															key={b}
+															onClick={() => handleSelectBudget(b)}
+															className={`py-2 rounded-xl text-xs font-bold transition-all border text-center cursor-pointer select-none ${
+																isSelected
+																	? "bg-neon-green text-black border-neon-green shadow-lg shadow-neon-green/20 scale-105"
+																	: "bg-white/5 border-white/10 text-neutral-300 hover:bg-white/10 hover:border-white/20"
+															}`}
+														>
+															{b}
+														</button>
+													);
+												})}
+											</div>
+										</div>
+
+										{/* Inputs Grid */}
+										<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+											<div className="space-y-1.5">
+												<label className="text-xs font-bold text-neutral-400">Full Name *</label>
 												<input
 													type="text"
 													name="name"
@@ -316,13 +426,11 @@ export default function ContactPage() {
 													onChange={handleChange}
 													required
 													placeholder="John Doe"
-													className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-neon-green/50 transition-colors"
+													className="w-full bg-neutral-950 border border-white/15 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-green/50 transition-colors"
 												/>
 											</div>
-											<div className="space-y-2">
-												<label className="text-sm text-neutral-400">
-													Email Address *
-												</label>
+											<div className="space-y-1.5">
+												<label className="text-xs font-bold text-neutral-400">Email Address *</label>
 												<input
 													type="email"
 													name="email"
@@ -330,77 +438,52 @@ export default function ContactPage() {
 													onChange={handleChange}
 													required
 													placeholder="john@company.com"
-													className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-neon-green/50 transition-colors"
+													className="w-full bg-neutral-950 border border-white/15 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-green/50 transition-colors"
 												/>
 											</div>
 										</div>
 
-										<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-											<div className="space-y-2">
-												<label className="text-sm text-neutral-400">
-													Company Name
-												</label>
-												<input
-													type="text"
-													name="company"
-													value={formState.company}
-													onChange={handleChange}
-													placeholder="Your Company"
-													className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-neon-green/50 transition-colors"
-												/>
-											</div>
-
-                                            <div className="space-y-2">
-												<label className="text-sm text-neutral-400">
-													Phone Number *
-												</label>
+										<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+											<div className="space-y-1.5">
+												<label className="text-xs font-bold text-neutral-400">Phone / WhatsApp *</label>
 												<input
 													type="tel"
 													name="phone"
 													value={formState.phone}
 													onChange={handleChange}
-                                                    required
-													placeholder="+880 1815..."
-													className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-neon-green/50 transition-colors"
+													required
+													placeholder="+1 (555) 000-0000"
+													className="w-full bg-neutral-950 border border-white/15 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-green/50 transition-colors"
+												/>
+											</div>
+											<div className="space-y-1.5">
+												<label className="text-xs font-bold text-neutral-400">Company / Website URL</label>
+												<input
+													type="text"
+													name="company"
+													value={formState.company}
+													onChange={handleChange}
+													placeholder="mybusiness.com"
+													className="w-full bg-neutral-950 border border-white/15 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-green/50 transition-colors"
 												/>
 											</div>
 										</div>
 
-										<div className="space-y-2">
-											<label className="text-sm text-neutral-400">
-												Service of Interest
-											</label>
-											<select
-												name="service"
-												value={formState.service}
-												onChange={handleChange}
-												className="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-green/50 transition-colors"
-											>
-												<option value="" disabled>Select a service</option>
-												{contact.formOptions.map((opt) => (
-													<option key={opt} value={opt}>{opt}</option>
-												))}
-												<option value="Other">Other</option>
-											</select>
-										</div>
-
-										<div className="space-y-2">
-											<label className="text-sm text-neutral-400">
-												Your Message *
-											</label>
+										<div className="space-y-1.5">
+											<label className="text-xs font-bold text-neutral-400">Project Details / Message *</label>
 											<textarea
 												name="message"
 												value={formState.message}
 												onChange={handleChange}
 												required
-												rows={5}
-												placeholder="Tell us about your project..."
-												className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-neon-green/50 transition-colors resize-none"
+												rows={4}
+												placeholder="Describe your project goals, timelines, or specific requirements..."
+												className="w-full bg-neutral-950 border border-white/15 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-green/50 transition-colors resize-none"
 											/>
 										</div>
 
 										{error && (
-											<div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-sm font-medium">
+											<div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-bold">
 												⚠️ {error}
 											</div>
 										)}
@@ -408,59 +491,131 @@ export default function ContactPage() {
 										<button
 											type="submit"
 											disabled={isSubmitting}
-											className="w-full py-4 bg-neon-green text-black font-bold rounded-xl hover:bg-neon-green/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)]"
+											className="w-full py-4 bg-neon-green hover:bg-neon-green/90 text-black font-extrabold text-sm rounded-xl transition-all disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-neon-green/20 hover:shadow-neon-green/40"
 										>
-											{isSubmitting ?
+											{isSubmitting ? (
 												<>
-													<div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-													Sending...
+													<div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+													<span>Transmitting Proposal Request...</span>
 												</>
-											:	<>
-													👉 Send Message
+											) : (
+												<>
+													<Send className="w-4 h-4" />
+													<span>Submit Proposal Request</span>
 												</>
-											}
+											)}
 										</button>
-									</motion.form>
-								}
+									</form>
+								)}
 							</AnimatePresence>
+						</motion.div>
+
+						{/* RIGHT COLUMN: Instant Channels & Map (5 Cols) */}
+						<motion.div
+							initial={{ opacity: 0, x: 30 }}
+							animate={{ opacity: 1, x: 0 }}
+							transition={{ duration: 0.8 }}
+							className="lg:col-span-5 space-y-6"
+						>
+							{/* Instant Communication Card */}
+							<div className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-white/10 rounded-3xl p-6 sm:p-8 space-y-6 relative overflow-hidden shadow-2xl">
+								<div className="absolute top-0 right-0 w-40 h-40 bg-neon-green/10 rounded-full blur-3xl pointer-events-none" />
+								
+								<div className="space-y-2">
+									<span className="text-[10px] font-black uppercase tracking-widest text-neon-green px-2.5 py-1 rounded-full bg-neon-green/10 border border-neon-green/20 inline-block">
+										Instant Connect
+									</span>
+									<h3 className="text-xl sm:text-2xl font-bold text-white">Need a Faster Response?</h3>
+									<p className="text-xs text-neutral-400 leading-relaxed">
+										Connect with our project strategy manager directly via WhatsApp or official social channels for live chat support.
+									</p>
+								</div>
+
+								{/* WhatsApp Direct Action Button */}
+								<a
+									href={`https://wa.me/${socials.whatsapp.replace(/[^0-9+]/g, "")}?text=Hi%20WeBestOne%20Team,%20I%20want%20to%20discuss%20a%20new%20project.`}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex items-center justify-between p-4 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/30 hover:bg-[#25D366]/20 transition-all group"
+								>
+									<div className="flex items-center gap-3">
+										<div className="w-10 h-10 rounded-xl bg-[#25D366] text-black flex items-center justify-center font-bold shrink-0 shadow-lg shadow-[#25D366]/20">
+											<MessageCircle className="w-5 h-5 fill-current" />
+										</div>
+										<div>
+											<p className="text-xs font-bold text-white group-hover:text-[#25D366] transition-colors">WhatsApp Live Chat</p>
+											<p className="text-[10px] text-neutral-400">Direct response: 5-15 mins</p>
+										</div>
+									</div>
+									<ArrowRight className="w-4 h-4 text-[#25D366] group-hover:translate-x-1 transition-transform" />
+								</a>
+
+								{/* Official Social Links Pills */}
+								<div className="pt-2 border-t border-white/5 space-y-3">
+									<p className="text-xs font-bold text-neutral-400 uppercase tracking-wider">Official Digital Channels</p>
+									<div className="grid grid-cols-2 gap-2">
+										<a
+											href={socials.facebook}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-neon-green/30 hover:bg-white/10 text-xs text-neutral-300 hover:text-white font-medium transition-all flex items-center gap-2 truncate"
+										>
+											<span>🌐</span> Facebook
+										</a>
+										<a
+											href={socials.instagram}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-neon-green/30 hover:bg-white/10 text-xs text-neutral-300 hover:text-white font-medium transition-all flex items-center gap-2 truncate"
+										>
+											<span>📸</span> Instagram
+										</a>
+										<a
+											href={socials.linkedin}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-neon-green/30 hover:bg-white/10 text-xs text-neutral-300 hover:text-white font-medium transition-all flex items-center gap-2 truncate"
+										>
+											<span>💼</span> LinkedIn
+										</a>
+										<a
+											href={socials.youtube}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-neon-green/30 hover:bg-white/10 text-xs text-neutral-300 hover:text-white font-medium transition-all flex items-center gap-2 truncate"
+										>
+											<span>▶️</span> YouTube
+										</a>
+									</div>
+								</div>
+							</div>
+
+							{/* Dark Map Box */}
+							<div className="bg-neutral-900/40 border border-white/10 rounded-3xl p-4 space-y-3 shadow-2xl">
+								<div className="flex items-center justify-between px-2 pt-1">
+									<div className="flex items-center gap-2">
+										<MapPin className="w-4 h-4 text-neon-green" />
+										<span className="text-xs font-bold text-white">WeBestOne HQ Location</span>
+									</div>
+									<span className="text-[10px] text-neutral-500 font-mono">Crawley, WA Australia</span>
+								</div>
+								<div className="h-56 w-full rounded-2xl overflow-hidden border border-white/10 relative">
+									<iframe 
+										src="https://maps.google.com/maps?q=25%20The%20Avenue,%20Crawley,%20Perth,%20WA,%20Australia&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+										width="100%" 
+										height="100%" 
+										style={{ border: 0, filter: "grayscale(100%) invert(92%) contrast(83%)" }} 
+										allowFullScreen={false} 
+										loading="lazy" 
+										referrerPolicy="no-referrer-when-downgrade"
+										title="WeBestOne Location Map"
+									/>
+								</div>
+							</div>
 						</motion.div>
 					</div>
 				</div>
 			</section>
-
-            {/* NEW SECTION: MAP & CLOSING TEXT */}
-            <section className="py-24 px-6 relative z-10 bg-white/[0.02] border-t border-white/5">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <div className="space-y-6">
-                            <h2 className="text-4xl md:text-5xl font-bold">Visit Our Office</h2>
-                            <p className="text-neutral-400 text-lg">
-                                If you would like to visit us in person, please use the interactive map below to find directions to our office. We welcome our clients and partners to visit and discuss creative strategies face to face.
-                            </p>
-                            <div className="h-64 md:h-80 w-full rounded-3xl overflow-hidden border border-white/10 relative">
-                                <iframe 
-                                    src="https://maps.google.com/maps?q=25%20The%20Avenue,%20Crawley,%20Perth,%20WA,%20Australia&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                                    width="100%" 
-                                    height="100%" 
-                                    style={{ border: 0, filter: "grayscale(100%) invert(90%) contrast(80%)" }} 
-                                    allowFullScreen={false} 
-                                    loading="lazy" 
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                ></iframe>
-                            </div>
-                        </div>
-
-                        <div className="bg-gradient-to-br from-neon-green/10 to-transparent p-10 md:p-16 rounded-[3rem] border border-neon-green/20 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-neon-green/20 rounded-full blur-[100px] -z-10" />
-                            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white leading-tight">Every great collaboration begins with a single message.</h2>
-                            <p className="text-neon-green font-medium text-xl mb-6">Let us start yours today.</p>
-                            <p className="text-neutral-400 text-lg leading-relaxed">
-                                At WeBestOne, we do not just create campaigns. We create results that build brands, inspire engagement, and drive measurable growth.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
 		</main>
 	);
 }
