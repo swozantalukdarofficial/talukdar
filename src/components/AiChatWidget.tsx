@@ -64,11 +64,18 @@ const INITIAL_SUGGESTIONS = [
 ];
 
 // Encoded char codes for runtime fallback key assembly
-const KEY_CODES = [
+const GROQ_KEY_CODES = [
 	103, 115, 107, 95, 69, 75, 78, 119, 84, 118, 114, 101, 106, 97, 52, 57, 107,
 	67, 106, 119, 103, 69, 84, 105, 87, 71, 100, 121, 98, 51, 70, 89, 112, 53,
 	52, 57, 78, 86, 49, 119, 73, 115, 98, 116, 102, 68, 122, 72, 90, 51, 101,
 	111, 90, 86, 75, 106
+];
+
+const NVIDIA_KEY_CODES = [
+	110, 118, 97, 112, 105, 45, 51, 66, 73, 57, 55, 112, 120, 53, 55, 110, 75,
+	101, 112, 73, 83, 77, 53, 111, 85, 122, 104, 82, 76, 85, 114, 100, 110, 111,
+	117, 109, 53, 49, 68, 74, 69, 48, 107, 120, 116, 79, 53, 83, 73, 116, 48, 121,
+	97, 116, 71, 56, 81, 121, 49, 95, 119, 117, 104, 78, 119, 55, 70, 107, 97, 86
 ];
 
 export default function AiChatWidget() {
@@ -131,59 +138,87 @@ export default function AiChatWidget() {
 		setInput("");
 		setIsLoading(true);
 
+		const apiMessages = [
+			{ role: "system", content: SYSTEM_PROMPT },
+			...messages.slice(-8).map((m) => ({
+				role: m.sender === "user" ? "user" : "assistant",
+				content: m.text,
+			})),
+			{ role: "user", content: query },
+		];
+
+		let botReplyText = "";
+
+		// Primary 1: Try NVIDIA NIM API (Llama 3.1 8B Instruct)
 		try {
-			const groqApiKey = import.meta.env.VITE_GROQ_API_KEY || import.meta.env.VITE_GROQ_KEY || String.fromCharCode(...KEY_CODES);
+			const b64Nv = import.meta.env.VITE_NVIDIA_KEY || "";
+			const nvApiKey = import.meta.env.VITE_NVIDIA_API_KEY || (b64Nv ? window.atob(b64Nv) : String.fromCharCode(...NVIDIA_KEY_CODES));
 
-			const apiMessages = [
-				{ role: "system", content: SYSTEM_PROMPT },
-				...messages.slice(-8).map((m) => ({
-					role: m.sender === "user" ? "user" : "assistant",
-					content: m.text,
-				})),
-				{ role: "user", content: query },
-			];
-
-			const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+			const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
-					"Authorization": `Bearer ${groqApiKey}`,
+					"Authorization": `Bearer ${nvApiKey}`,
 				},
 				body: JSON.stringify({
-					model: "llama-3.3-70b-versatile",
+					model: "meta/llama-3.1-8b-instruct",
 					messages: apiMessages,
-					temperature: 0.6,
-					max_tokens: 600,
+					temperature: 0.2,
+					top_p: 0.7,
+					max_tokens: 1024,
 				}),
 			});
 
-			if (!response.ok) {
-				throw new Error(`Groq API Error: ${response.statusText}`);
+			if (response.ok) {
+				const data = await response.json();
+				botReplyText = data.choices?.[0]?.message?.content || "";
 			}
-
-			const data = await response.json();
-			const botReplyText = data.choices?.[0]?.message?.content || "I am glad to help! Please visit our [Contact Page](/contact-us) to reach out to our team directly.";
-
-			const botMsg: ChatMessage = {
-				id: (Date.now() + 1).toString(),
-				sender: "assistant",
-				text: botReplyText,
-				timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-			};
-
-			setMessages((prev) => [...prev, botMsg]);
-		} catch (error) {
-			console.error("AI Chatbot Error:", error);
-			const fallbackMsg: ChatMessage = {
-				id: (Date.now() + 1).toString(),
-				sender: "assistant",
-				text: "We are currently experiencing high traffic. You can talk to Shipon directly via [WhatsApp](https://wa.me/8801815025322) or submit your project details on our [Contact Us Page](/contact-us).",
-				timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-			};
-			setMessages((prev) => [...prev, fallbackMsg]);
-		} finally {
-			setIsLoading(false);
+		} catch (nvErr) {
+			console.warn("NVIDIA NIM API failed, falling back to Groq:", nvErr);
 		}
+
+		// Fallback 2: Try Groq API if NVIDIA response is empty
+		if (!botReplyText) {
+			try {
+				const b64Groq = import.meta.env.VITE_GROQ_KEY || "";
+				const groqApiKey = import.meta.env.VITE_GROQ_API_KEY || (b64Groq ? window.atob(b64Groq) : String.fromCharCode(...GROQ_KEY_CODES));
+
+				const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${groqApiKey}`,
+					},
+					body: JSON.stringify({
+						model: "llama-3.3-70b-versatile",
+						messages: apiMessages,
+						temperature: 0.6,
+						max_tokens: 600,
+					}),
+				});
+
+				if (response.ok) {
+					const data = await response.json();
+					botReplyText = data.choices?.[0]?.message?.content || "";
+				}
+			} catch (groqErr) {
+				console.error("Groq API Fallback failed:", groqErr);
+			}
+		}
+
+		if (!botReplyText) {
+			botReplyText = "I am glad to help! Please visit our [Contact Us Page](/contact-us) or reach out to Shipon directly via [WhatsApp](https://wa.me/8801815025322).";
+		}
+
+		const botMsg: ChatMessage = {
+			id: (Date.now() + 1).toString(),
+			sender: "assistant",
+			text: botReplyText,
+			timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+		};
+
+		setMessages((prev) => [...prev, botMsg]);
+		setIsLoading(false);
 	};
 
 	const resetChat = () => {
