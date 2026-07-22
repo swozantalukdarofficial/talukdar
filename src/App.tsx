@@ -3,7 +3,7 @@ import { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import BackgroundEffects from "./components/BackgroundEffects";
-import WhatsAppChat from "./components/WhatsAppChat";
+import AiChatWidget from "./components/AiChatWidget";
 import ScrollToTop from "./components/ScrollToTop";
 
 // ── Admin pages (lazy)
@@ -70,7 +70,7 @@ function PublicLayout() {
 			<Header />
 			<Outlet />
 			<Footer />
-			<WhatsAppChat />
+			<AiChatWidget />
 		</div>
 	);
 }
