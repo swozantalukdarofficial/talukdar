@@ -97,55 +97,55 @@ const services = [
   {
     title: "UI/UX Design",
     desc: "We design interfaces that improve the shopping experience, making navigation clear, smooth, and aligned with user behavior.",
-    icon: <Figma className="w-8 h-8 text-pink-400" />,
-    span: "md:col-span-2 md:row-span-2 bg-gradient-to-br from-pink-900/20 to-black border-pink-500/20"
+    icon: <Figma className="w-8 h-8 text-[#87E65C]" />,
+    span: "md:col-span-2 md:row-span-2 bg-gradient-to-br from-neon-green/10 to-black border-white/10"
   },
   {
     title: "Shopify App Development",
     desc: "Custom Shopify development that adds functionality where your business actually needs it.",
-    icon: <Zap className="w-6 h-6 text-yellow-400" />,
+    icon: <Zap className="w-6 h-6 text-[#87E65C]" />,
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
     title: "Shopify Theme Development",
     desc: "Theme development and customization built for speed, structure, and consistency across your Shopify store.",
-    icon: <Figma className="w-6 h-6 text-cyan-400" />,
+    icon: <Figma className="w-6 h-6 text-[#87E65C]" />,
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
     title: "Shopify Plugin Development",
     desc: "Enhance functionality without disrupting performance or user experience.",
-    icon: <Zap className="w-6 h-6 text-emerald-400" />,
+    icon: <Zap className="w-6 h-6 text-[#87E65C]" />,
     span: "md:col-span-2 bg-gradient-to-r from-neutral-900 to-black border-white/10"
   },
   {
     title: "Shopify Migration",
     desc: "Secure migration from platforms such as WooCommerce with full data protection and structure alignment.",
-    icon: <RefreshCcw className="w-6 h-6 text-blue-400" />,
+    icon: <RefreshCcw className="w-6 h-6 text-[#87E65C]" />,
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
     title: "Shopify Integrations",
     desc: "Connect your Shopify store with CRM systems, inventory management, and essential ecommerce tools.",
-    icon: <Zap className="w-6 h-6 text-purple-400" />,
+    icon: <Zap className="w-6 h-6 text-[#87E65C]" />,
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
     title: "Shopify Support and Maintenance",
     desc: "Ongoing expert assistance to maintain performance, stability, and efficient online store management.",
-    icon: <CheckCircle2 className="w-6 h-6 text-green-400" />,
+    icon: <CheckCircle2 className="w-6 h-6 text-[#87E65C]" />,
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
     title: "Shopify Speed Optimization",
     desc: "Improve loading speed, performance, and experience for mobile shoppers through mobile optimization.",
-    icon: <Zap className="w-6 h-6 text-yellow-500" />,
+    icon: <Zap className="w-6 h-6 text-[#87E65C]" />,
     span: "md:col-span-1 bg-black border-white/10"
   },
   {
     title: "Shopify Marketing",
     desc: "Support your store with structure that aligns with buying behavior, cart management, and conversion flow.",
-    icon: <BarChart3 className="w-6 h-6 text-red-400" />,
+    icon: <BarChart3 className="w-6 h-6 text-[#87E65C]" />,
     span: "md:col-span-3 bg-gradient-to-r from-neutral-900 to-black border-white/10"
   }
 ];
@@ -185,8 +185,8 @@ function FaqItem({ q, a }: { q: string; a: string }) {
   return (
     <motion.div layout onClick={() => setOpen(!open)} className="border-b border-white/10 py-5 cursor-pointer group">
       <div className="flex items-center justify-between gap-4">
-        <h4 className="text-lg font-medium text-white group-hover:text-emerald-400 transition-colors">{q}</h4>
-        <div className={`w-8 h-8 rounded-full border border-white/20 flex items-center justify-center transition-all ${open ? 'bg-emerald-500 border-emerald-500 text-white rotate-180' : 'text-neutral-400'}`}>
+        <h4 className="text-lg font-medium text-white group-hover:text-[#87E65C] transition-colors">{q}</h4>
+        <div className={`w-8 h-8 rounded-full border border-white/20 flex items-center justify-center transition-all ${open ? 'bg-[#87E65C] border-[#87E65C] text-black rotate-180' : 'text-neutral-400'}`}>
           <ChevronDown className="w-4 h-4" />
         </div>
       </div>
@@ -231,7 +231,7 @@ export default function ShopifyDevelopmentPage() {
               y: [0, 30, 0]
             }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full bg-emerald-600/10 blur-[120px]" 
+            className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full bg-neon-green/10 blur-[120px]" 
           />
           <motion.div 
             animate={{ 
@@ -240,7 +240,7 @@ export default function ShopifyDevelopmentPage() {
               y: [0, -30, 0]
             }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-blue-600/10 blur-[120px]" 
+            className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-teal-500/10 blur-[120px]" 
           />
         </div>
 
@@ -250,9 +250,9 @@ export default function ShopifyDevelopmentPage() {
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-semibold backdrop-blur-md"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#87E65C]/30 bg-[#87E65C]/10 text-neon-green text-xs font-semibold backdrop-blur-md"
             >
-              <ShoppingBag className="w-3 h-3" />
+              <ShoppingBag className="w-3 h-3 text-neon-green" />
               Built to Scale and Grow
             </motion.div>
 
@@ -263,7 +263,7 @@ export default function ShopifyDevelopmentPage() {
               className="text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-tight tracking-tight"
             >
               Shopify website development service built for <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green via-teal-300 to-white">
                 performance, scalability, and growth.
               </span>
             </motion.h1>
@@ -313,26 +313,26 @@ export default function ShopifyDevelopmentPage() {
                 <motion.div 
                   animate={{ y: [0, -20, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-2xl border border-white/20 rounded-[2.5rem] shadow-[0_0_100px_rgba(16,185,129,0.1)] p-8 overflow-hidden"
+                  className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-2xl border border-white/20 rounded-[2.5rem] shadow-[0_0_100px_rgba(135,230,92,0.1)] p-8 overflow-hidden"
                 >
                    {/* Browser UI */}
                    <div className="flex gap-2 mb-8">
                       <div className="w-3 h-3 rounded-full bg-rose-500" />
                       <div className="w-3 h-3 rounded-full bg-amber-500" />
-                      <div className="w-3 h-3 rounded-full bg-emerald-500" />
+                      <div className="w-3 h-3 rounded-full bg-neon-green" />
                    </div>
                    
                    {/* Dashboard Content */}
                    <div className="space-y-6">
-                      <div className="h-40 w-full bg-emerald-500/10 rounded-2xl border border-emerald-500/20 p-6 flex flex-col justify-end">
-                         <div className="h-2 w-1/3 bg-emerald-500/40 rounded mb-2" />
+                      <div className="h-40 w-full bg-neon-green/10 rounded-2xl border border-neon-green/20 p-6 flex flex-col justify-end">
+                         <div className="h-2 w-1/3 bg-neon-green/40 rounded mb-2" />
                          <div className="h-8 w-1/2 bg-white/20 rounded" />
                       </div>
                       <div className="grid grid-cols-2 gap-4">
                          <div className="h-32 bg-white/5 rounded-2xl border border-white/10" />
                          <div className="h-32 bg-white/5 rounded-2xl border border-white/10" />
                       </div>
-                      <div className="h-12 w-full bg-emerald-500 rounded-full" />
+                      <div className="h-12 w-full bg-[#87E65C] rounded-full" />
                    </div>
                 </motion.div>
 
@@ -340,12 +340,12 @@ export default function ShopifyDevelopmentPage() {
                 <motion.div 
                   animate={{ y: [-10, 10, -10], x: [0, 10, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -top-10 -right-10 p-6 bg-black/60 backdrop-blur-xl border border-emerald-500/30 rounded-3xl shadow-2xl z-20"
+                  className="absolute -top-10 -right-10 p-6 bg-black/80 backdrop-blur-xl border border-[#87E65C]/30 rounded-3xl shadow-2xl z-20"
                 >
-                   <div className="text-emerald-400 text-xs font-bold mb-1 uppercase tracking-tighter">Total Revenue</div>
+                   <div className="text-neon-green text-xs font-bold mb-1 uppercase tracking-tighter">Total Revenue</div>
                    <div className="text-3xl font-black text-white">$124,580.00</div>
-                   <div className="mt-2 flex items-center gap-2 text-emerald-400 text-sm font-bold">
-                      <span className="flex items-center justify-center w-4 h-4 bg-emerald-500/20 rounded-full text-[10px]">↑</span>
+                   <div className="mt-2 flex items-center gap-2 text-neon-green text-sm font-bold">
+                      <span className="flex items-center justify-center w-4 h-4 bg-neon-green/20 rounded-full text-[10px]">↑</span>
                       +24.5%
                    </div>
                 </motion.div>
@@ -354,10 +354,10 @@ export default function ShopifyDevelopmentPage() {
                 <motion.div 
                   animate={{ y: [20, -20, 20], x: [-10, 0, -10] }}
                   transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute bottom-10 -left-10 p-4 bg-blue-600/20 backdrop-blur-xl border border-blue-400/30 rounded-2xl shadow-2xl z-20 flex items-center gap-4"
+                  className="absolute bottom-10 -left-10 p-4 bg-black/80 backdrop-blur-xl border border-[#87E65C]/30 rounded-2xl shadow-2xl z-20 flex items-center gap-4"
                 >
-                   <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
-                      <ShoppingBag className="w-6 h-6 text-white" />
+                   <div className="w-10 h-10 bg-[#87E65C] text-black rounded-lg flex items-center justify-center">
+                      <ShoppingBag className="w-6 h-6" />
                    </div>
                    <div>
                       <div className="text-white text-xs font-bold">New Order!</div>
@@ -382,11 +382,11 @@ export default function ShopifyDevelopmentPage() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="text-emerald-500 font-mono text-sm font-bold tracking-[0.3em] uppercase mb-4"
+                className="text-neon-green font-mono text-sm font-bold tracking-[0.3em] uppercase mb-4"
               >
                 Services
               </motion.div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tighter">How can we help you with your <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Shopify business?</span></h2>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tighter">How can we help you with your <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green to-teal-300">Shopify business?</span></h2>
             </div>
             <div className="text-neutral-400 text-base md:text-lg max-w-md pb-4 space-y-3">
               <p className="text-white font-bold">Most Shopify stores are built to look good. Very few are built to work well.</p>
@@ -407,7 +407,7 @@ export default function ShopifyDevelopmentPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`relative p-10 rounded-[2.5rem] border border-white/10 overflow-hidden group transition-all duration-500 hover:border-emerald-500/50 hover:shadow-[0_0_80px_rgba(16,185,129,0.1)] ${item.span}`}
+                className={`relative p-10 rounded-[2.5rem] border border-white/10 overflow-hidden group transition-all duration-500 hover:border-[#87E65C]/50 hover:shadow-[0_0_80px_rgba(135,230,92,0.15)] ${item.span}`}
               >
                 {/* Background Decor */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -415,7 +415,7 @@ export default function ShopifyDevelopmentPage() {
                 {/* Abstract Visuals based on index */}
                 {i === 0 && (
                    <div className="absolute top-12 right-12 w-64 h-64 opacity-10 group-hover:opacity-30 transition-opacity pointer-events-none">
-                      <div className="font-mono text-[10px] text-emerald-400 space-y-1">
+                      <div className="font-mono text-[10px] text-neon-green space-y-1">
                          <div>&lt;section class="hero"&gt;</div>
                          <div className="pl-4">{"{{ section.settings.title }}"}</div>
                          <div className="pl-4">&lt;div class="product-grid"&gt;</div>
@@ -430,8 +430,8 @@ export default function ShopifyDevelopmentPage() {
                    <div className="absolute -bottom-10 -right-10 w-80 h-80 opacity-5 group-hover:opacity-20 transition-opacity pointer-events-none">
                       <div className="grid grid-cols-4 gap-4">
                          {[...Array(16)].map((_, j) => (
-                           <div key={j} className="aspect-square border border-emerald-500/40 rounded-lg flex items-center justify-center">
-                              <Zap className="w-4 h-4 text-emerald-500" />
+                           <div key={j} className="aspect-square border border-[#87E65C]/40 rounded-lg flex items-center justify-center">
+                              <Zap className="w-4 h-4 text-neon-green" />
                            </div>
                          ))}
                       </div>
@@ -442,12 +442,12 @@ export default function ShopifyDevelopmentPage() {
                   <div className="space-y-6">
                     <motion.div 
                       whileHover={{ rotate: 15, scale: 1.1 }}
-                      className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-black transition-all duration-500 shadow-xl"
+                      className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#87E65C] group-hover:text-black transition-all duration-500 shadow-xl"
                     >
                       {item.icon}
                     </motion.div>
                     <div className="space-y-4">
-                      <h3 className="text-3xl font-black text-white group-hover:text-emerald-400 transition-colors leading-tight">
+                      <h3 className="text-3xl font-black text-white group-hover:text-neon-green transition-colors leading-tight">
                         {item.title}
                       </h3>
                       <p className="text-neutral-400 text-base md:text-lg leading-relaxed max-w-sm group-hover:text-neutral-300 transition-colors">
@@ -456,7 +456,7 @@ export default function ShopifyDevelopmentPage() {
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-2 text-emerald-500 text-sm font-bold opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0">
+                  <div className="flex items-center gap-2 text-neon-green text-sm font-bold opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0">
                     Learn More <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
@@ -472,7 +472,7 @@ export default function ShopifyDevelopmentPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             {stats.map((stat, i) => (
               <div key={i} className="text-center">
-                <div className="text-4xl md:text-6xl font-black text-emerald-400 mb-2">
+                <div className="text-4xl md:text-6xl font-black text-neon-green mb-2">
                   <Counter value={stat.value} suffix={stat.suffix} />
                 </div>
                 <div className="text-lg font-bold mb-1">{stat.label}</div>
@@ -487,11 +487,11 @@ export default function ShopifyDevelopmentPage() {
       <section className="py-24 px-6 relative z-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">Why <br /><span className="text-emerald-400">Choose Us</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">Why <br /><span className="text-neon-green">Choose Us</span></h2>
             <div className="space-y-8">
               {features.map((f, i) => (
                 <div key={i} className="flex gap-6 group">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0 group-hover:bg-emerald-500 group-hover:text-black transition-all">
+                  <div className="w-12 h-12 rounded-xl bg-[#87E65C]/10 border border-[#87E65C]/20 flex items-center justify-center shrink-0 group-hover:bg-[#87E65C] group-hover:text-black transition-all">
                     {f.icon}
                   </div>
                   <div>
@@ -503,9 +503,9 @@ export default function ShopifyDevelopmentPage() {
             </div>
           </div>
           <div className="relative aspect-square bg-neutral-900 rounded-3xl border border-white/5 overflow-hidden">
-             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-transparent" />
+             <div className="absolute inset-0 bg-gradient-to-br from-[#87E65C]/20 to-transparent" />
              <div className="p-12 h-full flex flex-col justify-center text-center">
-                <ShoppingBag className="w-24 h-24 text-emerald-500 mx-auto mb-8 animate-bounce" />
+                <ShoppingBag className="w-24 h-24 text-neon-green mx-auto mb-8 animate-bounce" />
                 <h4 className="text-3xl font-bold mb-4">Shopify Plus Partner</h4>
                 <p className="text-neutral-400 italic">"Empowering brands to scale without friction."</p>
              </div>
@@ -521,11 +521,11 @@ export default function ShopifyDevelopmentPage() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-emerald-500 font-mono text-sm font-bold tracking-[0.4em] uppercase mb-4"
+              className="text-neon-green font-mono text-sm font-bold tracking-[0.4em] uppercase mb-4"
             >
               Process
             </motion.div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">Our Shopify <br /><span className="text-emerald-400">Development Process.</span></h2>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">Our Shopify <br /><span className="text-neon-green">Development Process.</span></h2>
             <div className="text-neutral-400 max-w-2xl mx-auto text-base md:text-lg space-y-4">
               <p>At WebestOne, our Shopify website development service follows a structured process designed to keep everything clear, efficient, and focused on results.</p>
               <p>We build Shopify stores that integrate with CRM systems, support inventory management, and handle growing product catalogs without performance loss.</p>
@@ -540,20 +540,20 @@ export default function ShopifyDevelopmentPage() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative p-12 border-b border-r border-white/10 hover:bg-emerald-500/[0.02] transition-all duration-500"
+                className="group relative p-12 border-b border-r border-white/10 hover:bg-[#87E65C]/[0.02] transition-all duration-500"
               >
                 {/* Large Background Number */}
-                <div className="absolute top-8 right-8 text-8xl font-black text-white/[0.03] group-hover:text-emerald-500/10 transition-colors pointer-events-none select-none">
+                <div className="absolute top-8 right-8 text-8xl font-black text-white/[0.03] group-hover:text-[#87E65C]/10 transition-colors pointer-events-none select-none">
                    {step.step}
                 </div>
 
                 <div className="relative z-10 space-y-6">
-                   <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold group-hover:bg-emerald-500 group-hover:text-black transition-all">
+                   <div className="w-12 h-12 rounded-full bg-[#87E65C]/10 border border-[#87E65C]/30 flex items-center justify-center text-neon-green font-bold group-hover:bg-[#87E65C] group-hover:text-black transition-all">
                       {step.step}
                    </div>
                    
                    <div className="space-y-4">
-                      <h3 className="text-3xl font-bold text-white group-hover:text-emerald-400 transition-colors">{step.title}</h3>
+                      <h3 className="text-3xl font-bold text-white group-hover:text-neon-green transition-colors">{step.title}</h3>
                       <p className="text-neutral-400 leading-relaxed group-hover:text-neutral-300 transition-colors">
                          {step.desc}
                       </p>
@@ -561,7 +561,7 @@ export default function ShopifyDevelopmentPage() {
                 </div>
 
                 {/* Hover Glow */}
-                <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-[#87E65C] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </motion.div>
             ))}
           </div>
@@ -569,7 +569,7 @@ export default function ShopifyDevelopmentPage() {
           <div className="mt-16 text-center">
              <div className="inline-flex items-center gap-4 p-2 pl-6 pr-2 rounded-full bg-white/5 border border-white/10">
                 <span className="text-sm text-neutral-400">Want to see our full detailed checklist?</span>
-                <button className="px-6 py-2 bg-emerald-500 text-black font-bold rounded-full text-xs hover:bg-emerald-400 transition-all">
+                <button className="px-6 py-2 bg-[#87E65C] text-black font-bold rounded-full text-xs hover:bg-[#87E65C]/90 transition-all">
                    Get PDF Roadmap
                 </button>
              </div>
@@ -588,11 +588,11 @@ export default function ShopifyDevelopmentPage() {
                initial={{ opacity: 0, x: -20 }}
                whileInView={{ opacity: 1, x: 0 }}
                viewport={{ once: true }}
-               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold mb-6"
+               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#87E65C]/10 border border-[#87E65C]/20 text-neon-green text-xs font-bold mb-6"
              >
-               <Zap className="w-3 h-3" /> Tech Stack Connectivity
+               <Zap className="w-3 h-3 text-neon-green" /> Tech Stack Connectivity
              </motion.div>
-             <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">Built for <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Seamless Integrations</span></h2>
+             <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">Built for <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green to-teal-300">Seamless Integrations</span></h2>
              <p className="text-neutral-400 text-lg mb-8 leading-relaxed">
                Your store is only as good as the tools it talks to. We build a unified commerce ecosystem that synchronizes your marketing, shipping, and customer support.
              </p>
@@ -611,15 +611,15 @@ export default function ShopifyDevelopmentPage() {
 
           {/* Integration Hub Visual */}
           <div className="relative h-[400px] flex items-center justify-center order-1 lg:order-2 w-full mt-10 lg:mt-0">
-             <div className="absolute inset-0 bg-blue-500/5 blur-[100px] rounded-full" />
+             <div className="absolute inset-0 bg-[#87E65C]/5 blur-[100px] rounded-full" />
              
              {/* Center Shopify Logo */}
              <motion.div 
                animate={{ scale: [1, 1.1, 1] }}
                transition={{ duration: 4, repeat: Infinity }}
-               className="w-24 h-24 rounded-3xl bg-emerald-500 flex items-center justify-center shadow-[0_0_50px_rgba(16,185,129,0.4)] z-10"
+               className="w-24 h-24 rounded-3xl bg-[#87E65C] flex items-center justify-center shadow-[0_0_50px_rgba(135,230,92,0.4)] text-black z-10"
              >
-                <ShoppingBag className="w-12 h-12 text-white" />
+                <ShoppingBag className="w-12 h-12" />
              </motion.div>
 
              {/* Orbiting Apps */}
@@ -638,7 +638,7 @@ export default function ShopifyDevelopmentPage() {
                   <Code2 className="w-5 h-5 text-neutral-500" />
                   {/* Connection Line */}
                   <div 
-                    className="absolute h-[1px] bg-gradient-to-r from-emerald-500/50 to-transparent origin-left"
+                    className="absolute h-[1px] bg-gradient-to-r from-[#87E65C]/50 to-transparent origin-left"
                     style={{ 
                       width: '140px', 
                       transform: `rotate(${angle + 180}deg)`,
@@ -658,10 +658,10 @@ export default function ShopifyDevelopmentPage() {
         <div className="max-w-7xl mx-auto rounded-[3rem] bg-gradient-to-br from-neutral-900 to-black border border-white/5 overflow-hidden">
            <div className="grid grid-cols-1 lg:grid-cols-2">
               <div className="p-12 md:p-20 space-y-8">
-                 <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-                    <RefreshCcw className="w-8 h-8 text-emerald-400" />
+                 <div className="w-16 h-16 rounded-2xl bg-[#87E65C]/10 border border-[#87E65C]/20 flex items-center justify-center">
+                    <RefreshCcw className="w-8 h-8 text-neon-green" />
                  </div>
-                 <h2 className="text-4xl md:text-5xl font-black tracking-tight">Zero-Friction <br /><span className="text-emerald-400">Migration.</span></h2>
+                 <h2 className="text-4xl md:text-5xl font-black tracking-tight">Zero-Friction <br /><span className="text-neon-green">Migration.</span></h2>
                  <p className="text-neutral-400 text-lg leading-relaxed">
                    Outgrowing your current platform? We specialize in complex migrations with 100% data integrity and zero SEO loss. 
                  </p>
@@ -673,15 +673,15 @@ export default function ShopifyDevelopmentPage() {
                       "Full SEO Equity Protection"
                     ].map((item, i) => (
                       <li key={i} className="flex items-center gap-3 text-white font-bold">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-500" /> {item}
+                        <CheckCircle2 className="w-5 h-5 text-neon-green" /> {item}
                       </li>
                     ))}
                  </ul>
               </div>
 
-              <div className="relative bg-emerald-500/5 p-12 flex flex-col justify-center border-l border-white/5">
+              <div className="relative bg-[#87E65C]/5 p-12 flex flex-col justify-center border-l border-white/5">
                  <div className="space-y-6 relative">
-                    <div className="absolute left-6 top-0 bottom-0 w-[2px] bg-gradient-to-b from-emerald-500 to-transparent opacity-20" />
+                    <div className="absolute left-6 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#87E65C] to-transparent opacity-20" />
                     
                     {[
                       { step: "Data Audit", desc: "Mapping products, orders & customers." },
@@ -695,7 +695,7 @@ export default function ShopifyDevelopmentPage() {
                         transition={{ delay: i * 0.2 }}
                         className="relative pl-12"
                       >
-                         <div className="absolute left-4 top-1 w-4 h-4 rounded-full bg-emerald-500 border-4 border-black z-10" />
+                         <div className="absolute left-4 top-1 w-4 h-4 rounded-full bg-[#87E65C] border-4 border-black z-10" />
                          <h4 className="text-xl font-bold text-white mb-1">{s.step}</h4>
                          <p className="text-neutral-500 text-sm">{s.desc}</p>
                       </motion.div>
@@ -707,7 +707,7 @@ export default function ShopifyDevelopmentPage() {
                        <div className="text-xs text-neutral-500 uppercase font-bold tracking-widest">Success Rate</div>
                        <div className="text-2xl font-black text-white">100.0%</div>
                     </div>
-                    <div className="h-10 w-32 bg-emerald-500/20 rounded-full flex items-center justify-center text-emerald-400 text-xs font-bold border border-emerald-500/30">
+                    <div className="h-10 w-32 bg-[#87E65C]/20 rounded-full flex items-center justify-center text-neon-green text-xs font-bold border border-[#87E65C]/30">
                        Verified Expert
                     </div>
                  </div>
@@ -732,8 +732,8 @@ export default function ShopifyDevelopmentPage() {
       {/* 12. FINAL CTA SECTION */}
       <section className="pb-32 px-6 relative z-10">
         <div className="max-w-6xl mx-auto rounded-[3rem] overflow-hidden bg-[#0A0A0A] border border-white/5 py-24 px-12 text-center relative">
-          <div className="absolute inset-0 bg-emerald-500/5 blur-[100px] -z-10" />
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 tracking-tight">Ready to build a Shopify store that <br /><span className="text-emerald-400">actually performs?</span></h2>
+          <div className="absolute inset-0 bg-[#87E65C]/5 blur-[100px] -z-10" />
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 tracking-tight">Ready to build a Shopify store that <br /><span className="text-neon-green">actually performs?</span></h2>
           <div className="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto mb-12 space-y-4">
             <p className="text-neutral-200 font-bold text-lg">If your current store is slow, hard to manage, or not converting, the issue is not your product. It is how your store is built.</p>
             <p>WebestOne delivers a Shopify website development service designed to build, optimize, and scale your Shopify store with confidence.</p>

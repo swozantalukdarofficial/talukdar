@@ -42,8 +42,8 @@ export default function LatestInsights({
 				{/* Header */}
 				<div className="flex flex-col md:flex-row items-end justify-between gap-6 pb-8 border-b border-white/10">
 					<div className="space-y-4">
-						<span className="text-blue-400 font-mono text-xs uppercase tracking-wider mb-2 block">
-							Latest Blog & Articles
+						<span className="text-neon-green font-mono text-xs uppercase tracking-wider mb-2 block font-bold">
+							Latest Blog &amp; Articles
 						</span>
 						<h2 className="text-4xl md:text-5xl font-bold text-white max-w-2xl leading-tight">
 							The latest insights <br /> you need to know
@@ -52,7 +52,7 @@ export default function LatestInsights({
 
 					<Link
 						to="/blogs"
-						className="group flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors"
+						className="group flex items-center gap-2 px-6 py-3 rounded-full bg-neon-green hover:bg-neon-green/90 text-black font-bold transition-all shadow-lg shadow-neon-green/15"
 					>
 						<span>View All Articles</span>
 						<MoveUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

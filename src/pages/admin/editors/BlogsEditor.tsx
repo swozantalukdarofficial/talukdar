@@ -1,21 +1,49 @@
 import { useState, useEffect } from "react";
 import { useContent, type BlogPost } from "../../../context/ContentContext";
-import { Save, Check, Plus, Trash2, Pencil, X, Sparkles, BookOpen, AlertCircle, FileText, ChevronRight } from "lucide-react";
+import { Save, Check, Plus, Trash2, Pencil, X, Sparkles, BookOpen, AlertCircle, FileText, ChevronRight, Video } from "lucide-react";
 import CloudinaryUploadButton from "../../../components/admin/CloudinaryUploadButton";
 
 const BLOG_CATEGORIES = ["AI & Tech", "Design", "Development", "Marketing", "Business"];
 
 export default function BlogsEditor() {
-	const { blogs, services, addDocument, removeDocument } = useContent();
+	const { blogs, services, video, addDocument, removeDocument, updateDocument } = useContent();
 	const [items, setItems] = useState<BlogPost[]>(blogs);
 	const [editingId, setEditingId] = useState<string | null>(null);
 	const [activeForm, setActiveForm] = useState<BlogPost | null>(null);
 	const [saving, setSaving] = useState(false);
 	const [saved, setSaved] = useState(false);
 
+	// Global Sidebar Video State
+	const [globalVideoUrl, setGlobalVideoUrl] = useState(video?.youtubeUrl || "");
+	const [savingVideo, setSavingVideo] = useState(false);
+	const [savedVideo, setSavedVideo] = useState(false);
+
 	useEffect(() => {
 		setItems(blogs);
 	}, [blogs]);
+
+	useEffect(() => {
+		if (video?.youtubeUrl) {
+			setGlobalVideoUrl(video.youtubeUrl);
+		}
+	}, [video]);
+
+	const handleSaveGlobalVideo = async () => {
+		setSavingVideo(true);
+		try {
+			await updateDocument("content", "video", {
+				...video,
+				youtubeUrl: globalVideoUrl
+			});
+			setSavedVideo(true);
+			setTimeout(() => setSavedVideo(false), 2000);
+		} catch (err) {
+			console.error("Failed to save sidebar video URL:", err);
+			alert("Failed to save sidebar video URL");
+		} finally {
+			setSavingVideo(false);
+		}
+	};
 
 	const handleEdit = (item: BlogPost) => {
 		setEditingId(item.id);
@@ -27,6 +55,7 @@ export default function BlogsEditor() {
 			seoTitle: item.seoTitle || "",
 			seoDescription: item.seoDescription || "",
 			linkedServiceId: item.linkedServiceId || "",
+			videoUrl: item.videoUrl || "",
 			schemaMarkup: item.schemaMarkup ? (typeof item.schemaMarkup === "string" ? item.schemaMarkup : JSON.stringify(item.schemaMarkup, null, 2)) : "",
 		});
 	};
@@ -330,6 +359,25 @@ export default function BlogsEditor() {
 							</div>
 
 							<div className="bg-neutral-950/40 border border-white/5 rounded-2xl p-5 space-y-4">
+								<h3 className="text-xs font-black text-white uppercase tracking-wider border-b border-white/5 pb-2 flex items-center gap-2">
+									<Video className="w-3.5 h-3.5 text-neon-green" /> Custom Video URL (Optional)
+								</h3>
+								<div className="space-y-1.5">
+									<label className="text-xs font-bold text-neutral-400">Blog Post Specific Video</label>
+									<input
+										type="text"
+										value={activeForm.videoUrl || ""}
+										onChange={(e) => handleFormChange("videoUrl", e.target.value)}
+										className="w-full bg-neutral-950 border border-white/15 rounded-xl px-3 py-2 text-white text-xs focus:outline-none focus:border-neon-green/50"
+										placeholder="e.g. https://www.youtube.com/watch?v=... or m.youtube.com"
+									/>
+									<p className="text-[10px] text-neutral-500 leading-relaxed">
+										Paste any YouTube link here. If set, this specific video will embed in the sidebar on this single blog post page!
+									</p>
+								</div>
+							</div>
+
+							<div className="bg-neutral-950/40 border border-white/5 rounded-2xl p-5 space-y-4">
 								<h3 className="text-xs font-black text-white uppercase tracking-wider border-b border-white/5 pb-2 font-mono">Featured Image</h3>
 								<div className="space-y-3">
 									<div className="aspect-video rounded-xl overflow-hidden bg-neutral-950 border border-white/10 relative group">
@@ -396,7 +444,44 @@ export default function BlogsEditor() {
 				</div>
 			) : (
 				/* List View */
-				<div className="space-y-4">
+				<div className="space-y-6 min-w-0">
+					{/* Global Sidebar Video Settings Card */}
+					<div className="bg-neutral-900/40 border border-white/10 rounded-2xl p-4 sm:p-6 space-y-4 shadow-xl overflow-hidden">
+						<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+							<div className="flex items-center gap-3 min-w-0">
+								<div className="p-2 rounded-xl bg-neon-green/10 text-neon-green shrink-0">
+									<Video className="w-5 h-5" />
+								</div>
+								<div className="min-w-0">
+									<h2 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider truncate">Blog Sidebar "Latest Video" Manager</h2>
+									<p className="text-[11px] sm:text-xs text-neutral-500">Embedded across Blog listing &amp; single Blog pages</p>
+								</div>
+							</div>
+							<button
+								onClick={handleSaveGlobalVideo}
+								disabled={savingVideo}
+								className="self-start sm:self-auto flex items-center gap-2 px-4 py-2 bg-neon-green text-black font-bold text-xs rounded-xl hover:bg-neon-green/90 transition-all disabled:opacity-50 cursor-pointer shrink-0"
+							>
+								{savedVideo ? <Check className="w-3.5 h-3.5" /> : <Save className="w-3.5 h-3.5" />}
+								<span>{savedVideo ? "Saved!" : savingVideo ? "Saving..." : "Save Video URL"}</span>
+							</button>
+						</div>
+
+						<div className="space-y-2 pt-2 border-t border-white/5">
+							<label className="text-xs font-bold text-neutral-400">YouTube Video URL / Link</label>
+							<input
+								type="text"
+								value={globalVideoUrl}
+								onChange={(e) => setGlobalVideoUrl(e.target.value)}
+								placeholder="e.g. https://www.youtube.com/watch?v=... or https://m.youtube.com/..."
+								className="w-full bg-neutral-950 border border-white/15 rounded-xl px-3.5 py-2.5 text-white text-xs focus:outline-none focus:border-neon-green/50"
+							/>
+							<p className="text-[10px] text-neutral-400 leading-relaxed">
+								💡 <strong>Smart Converter:</strong> Paste any YouTube link (mobile <code className="text-neon-green">m.youtube.com</code>, <code className="text-neon-green">youtu.be</code>, shorts, or standard watch link). System automatically converts it to clean iframe embed format without connection refusal errors!
+							</p>
+						</div>
+					</div>
+
 					{saved && (
 						<div className="flex items-center gap-2 p-3 bg-neon-green/10 border border-neon-green/20 rounded-xl text-neon-green text-xs font-bold">
 							<Check className="w-4 h-4 animate-bounce" />
@@ -404,18 +489,18 @@ export default function BlogsEditor() {
 						</div>
 					)}
 
-					<div className="grid grid-cols-1 gap-4">
+					<div className="grid grid-cols-1 gap-4 min-w-0">
 						{items.map((item) => (
 							<div
 								key={item.id}
-								className="p-4 rounded-2xl border border-white/5 bg-neutral-900/30 hover:border-white/10 transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-4 group"
+								className="p-3.5 sm:p-4 rounded-2xl border border-white/5 bg-neutral-900/30 hover:border-white/10 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 group min-w-0 overflow-hidden"
 							>
-								<div className="flex items-start md:items-center gap-4 min-w-0">
-									<div className="w-20 h-14 md:w-24 md:h-16 rounded-xl overflow-hidden bg-neutral-950 border border-white/10 shrink-0">
+								<div className="flex items-start sm:items-center gap-3 min-w-0 w-full sm:w-auto">
+									<div className="w-16 h-12 sm:w-24 sm:h-16 rounded-xl overflow-hidden bg-neutral-950 border border-white/10 shrink-0">
 										<img src={item.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
 									</div>
-									<div className="min-w-0 space-y-1">
-										<div className="flex items-center gap-2 flex-wrap">
+									<div className="min-w-0 flex-1 space-y-1">
+										<div className="flex items-center gap-1.5 flex-wrap">
 											<span className="px-2 py-0.5 rounded-full bg-white/5 text-[9px] font-bold text-neutral-400 uppercase tracking-wider">
 												{item.category}
 											</span>
@@ -433,10 +518,10 @@ export default function BlogsEditor() {
 												</span>
 											)}
 										</div>
-										<h3 className="text-white font-bold text-sm md:text-base leading-snug group-hover:text-neon-green transition-colors truncate">
+										<h3 className="text-white font-bold text-xs sm:text-base leading-snug group-hover:text-neon-green transition-colors truncate">
 											{item.title}
 										</h3>
-										<p className="text-neutral-500 text-xs truncate max-w-2xl">{item.excerpt}</p>
+										<p className="text-neutral-500 text-[11px] sm:text-xs truncate max-w-xl">{item.excerpt}</p>
 									</div>
 								</div>
 

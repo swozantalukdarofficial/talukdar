@@ -6,13 +6,15 @@ interface CloudinaryUploadButtonProps {
 	resourceType?: "image" | "video" | "raw";
 	label?: string;
 	accept?: string;
+	maxSizeKB?: number;
 }
 
 export default function CloudinaryUploadButton({
 	onUploadSuccess,
 	resourceType = "image",
-	label = "Upload to Cloudinary",
+	label = "Upload File",
 	accept,
+	maxSizeKB = 130,
 }: CloudinaryUploadButtonProps) {
 	const [loading, setLoading] = useState(false);
 
@@ -25,7 +27,7 @@ export default function CloudinaryUploadButton({
 		return (
 			<div className="flex items-center gap-1.5 text-[10px] text-neutral-500 mt-1">
 				<AlertCircle className="w-3 h-3 text-amber-500/80" />
-				<span>Set VITE_CLOUDINARY_CLOUD_NAME & VITE_CLOUDINARY_UPLOAD_PRESET in .env to upload files.</span>
+				<span>Configure storage settings in .env to enable uploads.</span>
 			</div>
 		);
 	}
@@ -35,6 +37,16 @@ export default function CloudinaryUploadButton({
 		if (!files || files.length === 0) return;
 
 		const file = files[0];
+
+		// Check max file size limit for images (default: 130 KB)
+		const maxBytes = (maxSizeKB || 130) * 1024;
+		if (resourceType === "image" && file.size > maxBytes) {
+			const currentKB = (file.size / 1024).toFixed(1);
+			alert(`File size (${currentKB} KB) exceeds maximum allowed limit of ${maxSizeKB || 130} KB!\nPlease compress the image (e.g., convert to WebP) before uploading.`);
+			e.target.value = "";
+			return;
+		}
+
 		setLoading(true);
 
 		const formData = new FormData();
@@ -59,8 +71,8 @@ export default function CloudinaryUploadButton({
 				throw new Error("No secure URL returned");
 			}
 		} catch (error) {
-			console.error("Cloudinary upload error:", error);
-			alert("Failed to upload to Cloudinary. Please make sure the upload preset is configured as 'Unsigned' in your Cloudinary Settings.");
+			console.error("Storage upload error:", error);
+			alert("Failed to upload file to WeBestOne storage. Please verify your storage configuration.");
 		} finally {
 			setLoading(false);
 			e.target.value = ""; // Clear file selector

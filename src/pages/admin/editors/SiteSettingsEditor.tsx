@@ -37,7 +37,7 @@ export default function SiteSettingsEditor() {
 				<div className="space-y-2">
 					<label className="text-xs font-bold text-neutral-500">Logo URL</label>
 					<input type="text" value={siteForm.logoUrl} onChange={e => setSiteForm({...siteForm,logoUrl:e.target.value})} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-neon-green/50" />
-					<CloudinaryUploadButton onUploadSuccess={(url) => setSiteForm({...siteForm,logoUrl:url})} resourceType="image" label="Upload Logo to Cloudinary" />
+					<CloudinaryUploadButton onUploadSuccess={(url) => setSiteForm({...siteForm,logoUrl:url})} resourceType="image" label="Upload Logo Image" />
 				</div>
 				<div className="space-y-2"><label className="text-xs font-bold text-neutral-500">Logo Text (fallback)</label><input type="text" value={siteForm.logoText} onChange={e => setSiteForm({...siteForm,logoText:e.target.value})} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-neon-green/50" /></div>
 			</div>

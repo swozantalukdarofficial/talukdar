@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import { X, ArrowRight, FileText, TrendingUp } from "lucide-react";
 import { useContent } from "../context/ContentContext";
 
@@ -14,11 +15,11 @@ export default function ProposalModal({ isOpen, onClose }: ProposalModalProps) {
 	useEffect(() => {
 		if (isOpen) {
 			document.body.style.overflow = "hidden";
-		} else {
-			document.body.style.overflow = "unset";
 		}
 		return () => {
-			document.body.style.overflow = "unset";
+			if (!isOpen) {
+				document.body.style.overflow = "";
+			}
 		};
 	}, [isOpen]);
 
@@ -33,13 +34,13 @@ export default function ProposalModal({ isOpen, onClose }: ProposalModalProps) {
 		}
 	};
 
-	return (
-		<div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-300">
+	return createPortal(
+		<div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-300">
 			{/* Backdrop click to close */}
-			<div className="absolute inset-0 cursor-default" onClick={onClose} />
+			<div className="absolute inset-0 cursor-pointer z-0" onClick={(e) => { e.stopPropagation(); onClose(); }} />
 
 			{/* Modal Box */}
-			<div className="relative w-full max-w-2xl bg-neutral-950/90 border border-white/10 rounded-3xl p-6 md:p-10 shadow-[0_0_60px_rgba(0,0,0,0.8)] overflow-hidden animate-in zoom-in-95 duration-200">
+			<div className="relative w-full max-w-2xl bg-neutral-950/95 border border-white/10 rounded-3xl p-6 md:p-10 shadow-[0_0_60px_rgba(0,0,0,0.8)] overflow-hidden animate-in zoom-in-95 duration-200 z-10">
 				
 				{/* Decorative glow lights */}
 				<div className="absolute -top-24 -right-24 w-52 h-52 bg-neon-green/10 rounded-full blur-[100px] pointer-events-none" />
@@ -47,15 +48,19 @@ export default function ProposalModal({ isOpen, onClose }: ProposalModalProps) {
 
 				{/* Close Button */}
 				<button
-					onClick={onClose}
-					className="absolute top-6 right-6 p-2 rounded-full border border-white/5 bg-white/5 text-neutral-400 hover:text-white hover:bg-white/10 hover:scale-105 transition-all z-10"
+					type="button"
+					onClick={(e) => {
+						e.stopPropagation();
+						onClose();
+					}}
+					className="absolute top-5 right-5 sm:top-6 sm:right-6 p-2.5 rounded-full border border-white/10 bg-white/10 text-neutral-300 hover:text-white hover:bg-white/20 hover:scale-110 active:scale-95 transition-all z-30 cursor-pointer"
 					aria-label="Close modal"
 				>
 					<X className="w-5 h-5" />
 				</button>
 
 				{/* Header */}
-				<div className="mb-8 relative z-10 pr-8">
+				<div className="mb-8 relative z-10 pr-12">
 					<h3 className="text-2xl md:text-3xl font-black text-white tracking-tight">
 						Select a <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green to-teal-400">Proposal</span>
 					</h3>
@@ -125,6 +130,7 @@ export default function ProposalModal({ isOpen, onClose }: ProposalModalProps) {
 					</button>
 				</div>
 			</div>
-		</div>
+		</div>,
+		document.body
 	);
 }

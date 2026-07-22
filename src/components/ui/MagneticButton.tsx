@@ -3,12 +3,14 @@ import { motion } from "framer-motion";
 
 export const MagneticButton = ({
 	children,
-	className,
+	className = "",
+	wrapperClassName = "",
 	onClick,
 	...props
 }: {
 	children: React.ReactNode;
 	className?: string;
+	wrapperClassName?: string;
 	onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 	[key: string]: any;
 }) => {
@@ -34,6 +36,7 @@ export const MagneticButton = ({
 	};
 
 	const { x, y } = position;
+	const isWFull = className.includes("w-full");
 
 	return (
 		<div
@@ -41,14 +44,13 @@ export const MagneticButton = ({
 			onMouseMove={handleMouse}
 			onMouseLeave={reset}
 			onClick={onClick}
-			className="inline-block cursor-pointer"
+			className={`${isWFull ? "w-full block" : "inline-block"} cursor-pointer ${wrapperClassName}`}
 		>
 			<motion.button
 				className={className}
 				{...props}
 				animate={{ x, y }}
 				transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-				style={{ pointerEvents: "none" }}
 			>
 				{children}
 			</motion.button>

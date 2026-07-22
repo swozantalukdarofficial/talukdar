@@ -85,7 +85,7 @@ export default function HeroEditor() {
 				<Field label="YouTube Embed URL" value={form.videoUrl} onChange={(v) => update("videoUrl", v)} />
 				<div>
 					<Field label="Thumbnail Image URL" value={form.thumbnailUrl} onChange={(v) => update("thumbnailUrl", v)} />
-					<CloudinaryUploadButton onUploadSuccess={(url) => update("thumbnailUrl", url)} resourceType="image" label="Upload Thumbnail to Cloudinary" />
+					<CloudinaryUploadButton onUploadSuccess={(url) => update("thumbnailUrl", url)} resourceType="image" label="Upload Thumbnail Image" />
 				</div>
 			</div>
 

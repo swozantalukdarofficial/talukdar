@@ -355,8 +355,11 @@ class Media {
       }
     }
     this.scale = this.screen.height / 1500;
-    this.plane.scale.y = (this.viewport.height * (820 * this.scale)) / this.screen.height;
-    this.plane.scale.x = (this.viewport.width * (650 * this.scale)) / this.screen.width;
+    const isMobile = this.screen.width < 640;
+    const targetW = isMobile ? 700 : 780;
+    const targetH = isMobile ? 480 : 520;
+    this.plane.scale.x = (this.viewport.width * (targetW * this.scale)) / this.screen.width;
+    this.plane.scale.y = (this.viewport.height * (targetH * this.scale)) / this.screen.height;
     this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
     this.padding = 1.5;
     this.width = this.plane.scale.x + this.padding;

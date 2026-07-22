@@ -17,6 +17,7 @@ import {
 	Globe,
 	ChevronLeft,
 	BookOpen,
+	Users,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -26,6 +27,7 @@ const sidebarLinks = [
 	{ name: "Services", href: "/admin/services", icon: Briefcase },
 	{ name: "Service Images", href: "/admin/service-images", icon: Image },
 	{ name: "Portfolio", href: "/admin/portfolio", icon: Image },
+	{ name: "Team Members", href: "/admin/team", icon: Users },
 	{ name: "Blog Posts", href: "/admin/blogs", icon: BookOpen },
 	{ name: "Contact Info", href: "/admin/contact", icon: Phone },
 	{ name: "Header & Footer", href: "/admin/header-footer", icon: FileText },
@@ -141,9 +143,9 @@ export default function AdminLayout() {
 			</aside>
 
 			{/* Main Content */}
-			<main className="flex-1 min-h-screen">
+			<main className="flex-1 min-h-screen min-w-0 overflow-x-hidden">
 				{/* Top bar */}
-				<header className="sticky top-0 z-30 bg-neutral-950/80 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex items-center gap-4">
+				<header className="sticky top-0 z-30 bg-neutral-950/80 backdrop-blur-xl border-b border-white/5 px-4 sm:px-6 py-4 flex items-center gap-4">
 					<button
 						onClick={() => setSidebarOpen(true)}
 						className="lg:hidden text-neutral-400 hover:text-white p-1"
@@ -159,7 +161,7 @@ export default function AdminLayout() {
 				</header>
 
 				{/* Page content */}
-				<div className="p-6 lg:p-8">
+				<div className="p-4 sm:p-6 lg:p-8 min-w-0">
 					<Outlet />
 				</div>
 			</main>

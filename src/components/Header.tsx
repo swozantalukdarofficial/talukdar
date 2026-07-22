@@ -34,6 +34,7 @@ import ProposalModal from "./ProposalModal";
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
+	const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 	const { pathname } = useLocation();
 	const [isServicesHovered, setIsServicesHovered] = useState(false);
 	const { site } = useContent();
@@ -47,6 +48,23 @@ export default function Header() {
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
+
+	useEffect(() => {
+		if (isOpen || isProposalOpen) {
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.overflow = "";
+		}
+		return () => {
+			if (!isOpen && !isProposalOpen) {
+				document.body.style.overflow = "";
+			}
+		};
+	}, [isOpen, isProposalOpen]);
+
+	useEffect(() => {
+		setIsOpen(false);
+	}, [pathname]);
 
 	const servicesList = [
 		{
@@ -133,15 +151,15 @@ export default function Header() {
 	];
 
 	return (
-		<header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
-			<div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+		<header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled ? 'bg-background/95 backdrop-blur-md shadow-lg border-b border-white/5' : 'bg-transparent'}`}>
+			<div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
 				{/* Logo */}
 				<Link to="/" className="flex items-center gap-2 group shrink-0">
-					<div className="h-10 flex items-center justify-center font-bold text-xl overflow-hidden relative">
+					<div className="h-8 sm:h-10 max-w-[160px] sm:max-w-[220px] flex items-center justify-center font-bold text-xl overflow-hidden relative">
 						<img
 							src={site.logoUrl || logo}
 							alt={site.siteName || "logo"}
-							className="h-full w-auto object-contain"
+							className="h-full w-auto max-h-8 sm:max-h-10 object-contain"
 						/>
 					</div>
 				</Link>
@@ -263,37 +281,85 @@ export default function Header() {
 
 			{/* Mobile Nav */}
 			<div
-				className={`md:hidden absolute top-20 left-0 right-0 bg-neutral-950 border-b border-white/10 overflow-y-auto transition-all duration-300 origin-top transform ${
+				className={`md:hidden absolute top-20 left-0 right-0 w-full h-[calc(100vh-5rem)] bg-neutral-950/98 backdrop-blur-2xl border-b border-white/10 overflow-y-auto transition-all duration-300 origin-top z-[100] ${
 					isOpen
-						? "max-h-[calc(100vh-5rem)] opacity-100 visible"
-						: "max-h-0 opacity-0 invisible pointer-events-none"
+						? "opacity-100 visible translate-y-0 pointer-events-auto"
+						: "opacity-0 invisible -translate-y-2 pointer-events-none"
 				}`}
 			>
-				<nav className="flex flex-col p-6 gap-6">
-					{navLinks.map((link) => (
-						<Link
-							key={link.name}
-							to={link.href}
-							className={`text-xl font-bold transition-colors ${
-								(
-									link.href === "/" ?
-										pathname === "/"
-									:	pathname.startsWith(link.href)
-								) ?
-									"text-neon-green"
-								:	"text-neutral-300 hover:text-neon-green"
-							}`}
-							onClick={() => setIsOpen(false)}
-						>
-							{link.name}
-						</Link>
-					))}
+				<nav className="flex flex-col p-6 pb-28 gap-4">
+					{navLinks.map((link) => {
+						if (link.name === "Services") {
+							return (
+								<div key={link.name} className="flex flex-col gap-2">
+									<div className="flex items-center justify-between">
+										<Link
+											to={link.href}
+											className={`text-xl font-bold transition-colors ${
+												pathname.startsWith("/services") ? "text-neon-green" : "text-neutral-300 hover:text-neon-green"
+											}`}
+											onClick={() => setIsOpen(false)}
+										>
+											{link.name}
+										</Link>
+										<button
+											type="button"
+											onClick={(e) => {
+												e.stopPropagation();
+												setIsMobileServicesOpen(!isMobileServicesOpen);
+											}}
+											className="p-2 text-neutral-400 hover:text-neon-green"
+											aria-label="Toggle services menu"
+										>
+											<ChevronDown className={`w-5 h-5 transition-transform duration-200 ${isMobileServicesOpen ? "rotate-180 text-neon-green" : ""}`} />
+										</button>
+									</div>
+
+									{/* Mobile sub-services */}
+									{isMobileServicesOpen && (
+										<div className="grid grid-cols-1 gap-2 pl-4 py-2 border-l border-white/10 my-1">
+											{servicesList.map((service, idx) => (
+												<Link
+													key={idx}
+													to={service.href}
+													className="flex items-center gap-3 py-2 text-sm text-neutral-400 hover:text-neon-green transition-colors"
+													onClick={() => setIsOpen(false)}
+												>
+													<service.icon className="w-4 h-4 text-neon-green shrink-0" />
+													<span className="font-medium">{service.title}</span>
+												</Link>
+											))}
+										</div>
+									)}
+								</div>
+							);
+						}
+
+						return (
+							<Link
+								key={link.name}
+								to={link.href}
+								className={`text-xl font-bold transition-colors py-1 ${
+									(
+										link.href === "/" ?
+											pathname === "/"
+										:	pathname.startsWith(link.href)
+									) ?
+										"text-neon-green"
+									:	"text-neutral-300 hover:text-neon-green"
+								}`}
+								onClick={() => setIsOpen(false)}
+							>
+								{link.name}
+							</Link>
+						);
+					})}
 					<button 
 						onClick={() => {
 							setIsOpen(false);
 							setIsProposalOpen(true);
 						}}
-						className="w-full py-4 bg-neon-green text-black font-bold rounded-xl flex items-center justify-center gap-2"
+						className="w-full mt-2 py-4 bg-neon-green text-black font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all"
 					>
 						<span>Get a Proposal</span>
 						<ArrowRight className="w-5 h-5" />

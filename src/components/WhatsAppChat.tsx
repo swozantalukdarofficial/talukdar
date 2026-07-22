@@ -17,9 +17,9 @@ export default function WhatsAppChat() {
 	};
 
 	return (
-		<div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+		<div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end">
 			<div
-				className={`mb-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-2xl w-80 overflow-hidden transition-all duration-300 origin-bottom-right transform ${
+				className={`mb-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-2xl w-[calc(100vw-2rem)] sm:w-80 overflow-hidden transition-all duration-300 origin-bottom-right transform ${
 					isOpen 
 						? "opacity-100 translate-y-0 scale-100" 
 						: "opacity-0 translate-y-4 scale-90 pointer-events-none"

@@ -40,7 +40,7 @@ function PortfolioCard({ item }: { item: typeof portfolio[0] }) {
   return (
     <motion.div 
       whileHover={{ y: -10 }}
-      className={`w-[350px] md:w-[450px] flex-shrink-0 p-6 rounded-[2.5rem] border ${item.border} bg-gradient-to-b ${item.color} flex flex-col min-h-[450px] relative overflow-hidden group cursor-pointer mx-4`}
+      className={`w-[280px] sm:w-[350px] md:w-[450px] flex-shrink-0 p-5 sm:p-6 rounded-[2rem] sm:rounded-[2.5rem] border ${item.border} bg-gradient-to-b ${item.color} flex flex-col min-h-[400px] sm:min-h-[450px] relative overflow-hidden group cursor-pointer mx-2 sm:mx-4`}
     >
       {/* Image Container */}
       <div className="relative aspect-[16/10] w-full mb-8 rounded-2xl overflow-hidden bg-black/40 border border-white/10">
@@ -97,8 +97,8 @@ export default function PortfolioSlider() {
 
       {/* Marquee Slider */}
       <div className="relative flex overflow-hidden group">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-32 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-32 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none" />
 
         <div className="flex animate-marquee hover:[animation-play-state:paused] py-4">
           {duplicatedPortfolio.map((item, i) => (

@@ -17,6 +17,14 @@ export default function BlogsPage() {
 
   const [searchQuery, setSearchQuery] = useState(searchParam);
   const [activeCategory, setActiveCategory] = useState(categoryParam);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Sync state with URL parameter changes
   useEffect(() => {
@@ -110,7 +118,7 @@ export default function BlogsPage() {
       {/* ══════════════════════════════════════════
           1. SLEEK TECH HEADER
       ══════════════════════════════════════════ */}
-      <section className="relative z-10 pt-16 pb-12 px-6 max-w-5xl mx-auto text-center space-y-4">
+      <section className="relative z-10 pt-4 sm:pt-10 pb-8 sm:pb-12 px-6 max-w-5xl mx-auto text-center space-y-4">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -150,10 +158,10 @@ export default function BlogsPage() {
               🏆 Interactive Featured Articles · Swipe & Drag to Rotate
             </span>
           </div>
-          <div className="h-[460px] md:h-[540px] w-full relative rounded-3xl overflow-hidden border border-white/10 bg-neutral-950/30 backdrop-blur-md shadow-2xl">
+          <div className="h-[380px] sm:h-[480px] md:h-[540px] w-full relative rounded-3xl overflow-hidden border border-white/10 bg-neutral-950/30 backdrop-blur-md shadow-2xl">
             <CircularGallery
               items={galleryItems}
-              bend={1.8}
+              bend={isMobile ? 0.9 : 1.8}
               textColor="#ffffff"
               borderRadius={0.04}
               scrollSpeed={2.5}

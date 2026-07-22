@@ -42,6 +42,7 @@ export interface BlogPost {
 	seoDescription?: string;
 	schemaMarkup?: any;
 	linkedServiceId?: string;
+	videoUrl?: string;
 }
 
 export interface HeroContent {
@@ -94,6 +95,9 @@ export interface PortfolioItem {
 	src: string;
 	alt: string;
 	order: number;
+	client?: string;
+	title?: string;
+	tag?: string;
 }
 
 export interface FAQItem {
@@ -111,6 +115,16 @@ export interface TestimonialItem {
 	text: string;
 	avatar: string;
 	rating: number;
+}
+
+export interface TeamMember {
+	id: string;
+	name: string;
+	role: string;       // podobi (Designation)
+	profile: string;    // profile photo URL
+	portfolio?: string; // portfolio URL
+	contact?: string;   // contact URL / email / social link
+	order: number;
 }
 
 export interface NavLink {
@@ -336,6 +350,72 @@ const defaultSEO: SEOContent = {
 	},
 };
 
+const defaultTeam: TeamMember[] = [
+	{
+		id: "team1",
+		name: "Rozi Osman",
+		role: "Senior Growth Strategist",
+		profile: "",
+		portfolio: "https://webestone.com",
+		contact: "mailto:contact@webestone.com",
+		order: 1,
+	},
+	{
+		id: "team2",
+		name: "Shipon Talukdar",
+		role: "Lead Developer & Architect",
+		profile: "",
+		portfolio: "https://webestone.com",
+		contact: "mailto:contact@webestone.com",
+		order: 2,
+	},
+	{
+		id: "team3",
+		name: "Sabikun Nahar Ishita",
+		role: "Creative UI/UX Designer",
+		profile: "",
+		portfolio: "https://webestone.com",
+		contact: "mailto:contact@webestone.com",
+		order: 3,
+	},
+	{
+		id: "team4",
+		name: "Mahmud Shohan",
+		role: "Performance Marketing Specialist",
+		profile: "",
+		portfolio: "https://webestone.com",
+		contact: "mailto:contact@webestone.com",
+		order: 4,
+	},
+	{
+		id: "team5",
+		name: "Sarah Mubasshera",
+		role: "AI Operations Specialist",
+		profile: "",
+		portfolio: "https://webestone.com",
+		contact: "mailto:contact@webestone.com",
+		order: 5,
+	},
+	{
+		id: "team6",
+		name: "Sadia Surove",
+		role: "Content & Copy Lead",
+		profile: "",
+		portfolio: "https://webestone.com",
+		contact: "mailto:contact@webestone.com",
+		order: 6,
+	},
+	{
+		id: "team7",
+		name: "Adiba Ahmed",
+		role: "Digital Strategist",
+		profile: "",
+		portfolio: "https://webestone.com",
+		contact: "mailto:contact@webestone.com",
+		order: 7,
+	},
+];
+
 // ─── Context Shape ──────────────────────────────────────────────────────────
 interface ContentContextType {
 	hero: HeroContent;
@@ -345,6 +425,7 @@ interface ContentContextType {
 	portfolio: PortfolioItem[];
 	faq: FAQItem[];
 	testimonials: TestimonialItem[];
+	teamMembers: TeamMember[];
 	header: HeaderContent;
 	footer: FooterContent;
 	video: VideoContent;
@@ -394,6 +475,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
 	const [portfolio, setPortfolio] = useState<PortfolioItem[]>([]);
 	const [faq, setFaq] = useState<FAQItem[]>([]);
 	const [testimonials, setTestimonials] = useState<TestimonialItem[]>([]);
+	const [teamMembers, setTeamMembers] = useState<TeamMember[]>(defaultTeam);
 	const [header, setHeader] = useState<HeaderContent>(defaultHeader);
 	const [footer, setFooter] = useState<FooterContent>(defaultFooter);
 	const [video, setVideo] = useState<VideoContent>(defaultVideo);
@@ -490,6 +572,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
 		listenCollection<PortfolioItem>("portfolio", setPortfolio, []);
 		listenCollection<FAQItem>("faq", setFaq, []);
 		listenCollection<TestimonialItem>("testimonials", setTestimonials, []);
+		listenCollection<TeamMember>("team", setTeamMembers, defaultTeam);
 		listenCollection<BlogPost>("blogs", setBlogs, blogPosts);
 
 		// SEO — read all docs in seo collection
@@ -571,6 +654,9 @@ export function ContentProvider({ children }: { children: ReactNode }) {
 				case "testimonials":
 					setTestimonials(items as TestimonialItem[]);
 					break;
+				case "team":
+					setTeamMembers(items as TeamMember[]);
+					break;
 				case "blogs":
 					setBlogs(items as BlogPost[]);
 					break;
@@ -589,6 +675,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
 				portfolio,
 				faq,
 				testimonials,
+				teamMembers,
 				header,
 				footer,
 				video,

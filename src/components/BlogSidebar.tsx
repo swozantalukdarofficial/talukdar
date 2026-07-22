@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Search, Calendar, Facebook, Twitter, Instagram, Linkedin, Youtube, ExternalLink } from "lucide-react";
 import { useContent } from "../context/ContentContext";
+import { parseYouTubeEmbedUrl } from "../lib/youtubeUtils";
 
 interface BlogSidebarProps {
 	currentPostId?: string;
@@ -64,16 +65,22 @@ export default function BlogSidebar({
 		}
 	};
 
-	// Clean up youtubeUrl to ensure it's embeddable and autoplay is disabled for sidebar
+	// Get active post object if on single blog page
+	const currentPost = useMemo(() => {
+		if (!currentPostId) return null;
+		return blogs.find((p) => p.id === currentPostId);
+	}, [blogs, currentPostId]);
+
+	// Clean up youtubeUrl to ensure it's embeddable (parsing m.youtube.com, watch?v=, youtu.be)
 	const embedVideoUrl = useMemo(() => {
-		if (!video || !video.youtubeUrl) return "https://www.youtube.com/embed/MnLd2G198U8";
-		// Remove autoplay=1 from query if present to prevent page load autoplaying
-		let url = video.youtubeUrl;
-		if (url.includes("autoplay=1")) {
-			url = url.replace("autoplay=1", "autoplay=0");
+		if (currentPost?.videoUrl && currentPost.videoUrl.trim() !== "") {
+			return parseYouTubeEmbedUrl(currentPost.videoUrl);
 		}
-		return url;
-	}, [video]);
+		if (video?.youtubeUrl) {
+			return parseYouTubeEmbedUrl(video.youtubeUrl);
+		}
+		return "https://www.youtube.com/embed/MnLd2G198U8";
+	}, [currentPost, video]);
 
 	return (
 		<aside className="space-y-10 w-full lg:max-w-[340px] shrink-0">

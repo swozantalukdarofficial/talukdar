@@ -92,29 +92,29 @@ export default function AuditCTA() {
             </ul>
           </div>
 
-          <div className="bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-sm">
+          <div className="bg-white/5 border border-white/10 p-5 sm:p-8 rounded-2xl backdrop-blur-sm min-w-0 overflow-hidden">
             {isSubmitted ? (
-              <div className="text-center py-8 space-y-6">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-neon-green/10 border border-neon-green/30 text-neon-green mx-auto">
-                  <CheckCircle2 className="w-8 h-8" />
+              <div className="text-center py-6 sm:py-8 space-y-6">
+                <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-neon-green/10 border border-neon-green/30 text-neon-green mx-auto">
+                  <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Request Received!</h3>
-                  <p className="text-neutral-400 text-sm">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Request Received!</h3>
+                  <p className="text-neutral-400 text-xs sm:text-sm">
                     Thank you. We have received your request for a Free Growth Audit. Our team will review your digital footprint and reach out to you within 24-48 hours.
                   </p>
                 </div>
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="px-6 py-3 bg-neon-green text-black font-bold rounded-xl hover:bg-neon-green/90 transition-colors text-sm"
+                  className="px-6 py-3 bg-neon-green text-black font-bold rounded-xl hover:bg-neon-green/90 transition-colors text-xs sm:text-sm"
                 >
                   Request Another Audit
                 </button>
               </div>
             ) : (
               <>
-                <h3 className="text-xl font-bold text-white mb-6">Claim Your Free Audit</h3>
-                <form className="space-y-4" onSubmit={handleSubmit}>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6">Claim Your Free Audit</h3>
+                <form className="space-y-3.5 sm:space-y-4" onSubmit={handleSubmit}>
                   <div>
                     <input
                       type="text"
@@ -123,7 +123,7 @@ export default function AuditCTA() {
                       onChange={handleChange}
                       required
                       placeholder="Full Name"
-                      className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-neon-green transition-colors outline-none"
+                      className="w-full bg-black/50 border border-white/10 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-white text-xs sm:text-sm focus:border-neon-green transition-colors outline-none"
                     />
                   </div>
                   <div>
@@ -134,7 +134,7 @@ export default function AuditCTA() {
                       onChange={handleChange}
                       required
                       placeholder="Business Email"
-                      className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-neon-green transition-colors outline-none"
+                      className="w-full bg-black/50 border border-white/10 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-white text-xs sm:text-sm focus:border-neon-green transition-colors outline-none"
                     />
                   </div>
                   <div>
@@ -144,7 +144,7 @@ export default function AuditCTA() {
                       value={formState.website}
                       onChange={handleChange}
                       placeholder="Website URL (Optional)"
-                      className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-neon-green transition-colors outline-none"
+                      className="w-full bg-black/50 border border-white/10 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-white text-xs sm:text-sm focus:border-neon-green transition-colors outline-none"
                     />
                   </div>
                   {error && (
@@ -155,24 +155,24 @@ export default function AuditCTA() {
                   <MagneticButton
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 bg-neon-green text-black font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-neon-green/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    className="w-full py-3.5 sm:py-4 px-4 bg-neon-green text-black font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 hover:bg-neon-green/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-neon-green/20"
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                        <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
                         <span>Sending...</span>
                       </>
                     ) : (
                       <>
-                        <span>Send My Free Audit</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <span className="truncate">Send My Free Audit</span>
+                        <ArrowRight className="w-4 h-4 shrink-0" />
                       </>
                     )}
                   </MagneticButton>
                 </form>
               </>
             )}
-            <p className="text-neutral-500 text-[10px] text-center mt-4 uppercase tracking-widest font-mono">
+            <p className="text-neutral-500 text-[9px] sm:text-[10px] text-center mt-4 uppercase tracking-widest font-mono">
               100% Free • No Commitment • Expert Advice
             </p>
           </div>

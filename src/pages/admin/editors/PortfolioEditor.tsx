@@ -118,10 +118,42 @@ export default function PortfolioEditor() {
 										onChange={(e) => updateItem(item.id, "src", e.target.value)}
 										className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-neon-green/50"
 									/>
-									<CloudinaryUploadButton onUploadSuccess={(url) => updateItem(item.id, "src", url)} resourceType="image" label="Upload Project Image to Cloudinary" />
+									<CloudinaryUploadButton onUploadSuccess={(url) => updateItem(item.id, "src", url)} resourceType="image" label="Upload Project Image" />
 								</div>
 								<div className="space-y-1.5">
-									<label className="text-xs font-bold text-neutral-500">Alt Text / Title</label>
+									<label className="text-xs font-bold text-neutral-500">Project Title</label>
+									<input
+										type="text"
+										value={item.title || item.alt || ""}
+										onChange={(e) => updateItem(item.id, "title", e.target.value)}
+										placeholder="e.g. Couture Collective - 7-Figure Store Design"
+										className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-neon-green/50"
+									/>
+								</div>
+								<div className="grid grid-cols-2 gap-2">
+									<div className="space-y-1.5">
+										<label className="text-xs font-bold text-neutral-500">Client / Industry</label>
+										<input
+											type="text"
+											value={item.client || ""}
+											onChange={(e) => updateItem(item.id, "client", e.target.value)}
+											placeholder="e.g. Luxury Fashion"
+											className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-neon-green/50"
+										/>
+									</div>
+									<div className="space-y-1.5">
+										<label className="text-xs font-bold text-neutral-500">Category Tag</label>
+										<input
+											type="text"
+											value={item.tag || ""}
+											onChange={(e) => updateItem(item.id, "tag", e.target.value)}
+											placeholder="e.g. Fashion"
+											className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-neon-green/50"
+										/>
+									</div>
+								</div>
+								<div className="space-y-1.5">
+									<label className="text-xs font-bold text-neutral-500">Alt Text</label>
 									<input
 										type="text"
 										value={item.alt}

@@ -13,6 +13,7 @@ import {
 	Play,
 	CheckCircle,
 	FileText,
+	Users,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -241,13 +242,14 @@ const seo = {
 };
 
 export default function DashboardPage() {
-	const { services, faq, testimonials, blogs, portfolio: contentPortfolio, contact, socials, updateDocument, addDocument } = useContent();
+	const { services, faq, testimonials, blogs, teamMembers, portfolio: contentPortfolio, contact, socials, updateDocument, addDocument } = useContent();
 	const [migrating, setMigrating] = useState(false);
 	const [migrated, setMigrated] = useState(false);
 
 	const stats = [
 		{ label: "Services", value: services.length, icon: Briefcase, color: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
 		{ label: "Portfolio Items", value: contentPortfolio.length, icon: Image, color: "bg-purple-500/10 text-purple-400 border-purple-500/20" },
+		{ label: "Team Members", value: teamMembers ? teamMembers.length : 0, icon: Users, color: "bg-teal-500/10 text-teal-400 border-teal-500/20" },
 		{ label: "FAQs", value: faq.length, icon: HelpCircle, color: "bg-orange-500/10 text-orange-400 border-orange-500/20" },
 		{ label: "Testimonials", value: testimonials.length, icon: MessageSquare, color: "bg-pink-500/10 text-pink-400 border-pink-500/20" },
 		{ label: "Blog Posts", value: blogs.length, icon: FileText, color: "bg-green-500/10 text-green-400 border-green-500/20" },
@@ -289,6 +291,76 @@ export default function DashboardPage() {
 			console.log("Seeding 'blogs' collection...");
 			for (const post of blogPosts) {
 				await addDocument("blogs", post.id, post as any);
+			}
+
+			console.log("Seeding 'team' collection...");
+			const teamMembersSeed = [
+				{
+					id: "team1",
+					name: "Rozi Osman",
+					role: "Senior Growth Strategist",
+					profile: "",
+					portfolio: "https://webestone.com",
+					contact: "mailto:contact@webestone.com",
+					order: 1,
+				},
+				{
+					id: "team2",
+					name: "Shipon Talukdar",
+					role: "Lead Developer & Architect",
+					profile: "",
+					portfolio: "https://webestone.com",
+					contact: "mailto:contact@webestone.com",
+					order: 2,
+				},
+				{
+					id: "team3",
+					name: "Sabikun Nahar Ishita",
+					role: "Creative UI/UX Designer",
+					profile: "",
+					portfolio: "https://webestone.com",
+					contact: "mailto:contact@webestone.com",
+					order: 3,
+				},
+				{
+					id: "team4",
+					name: "Mahmud Shohan",
+					role: "Performance Marketing Specialist",
+					profile: "",
+					portfolio: "https://webestone.com",
+					contact: "mailto:contact@webestone.com",
+					order: 4,
+				},
+				{
+					id: "team5",
+					name: "Sarah Mubasshera",
+					role: "AI Operations Specialist",
+					profile: "",
+					portfolio: "https://webestone.com",
+					contact: "mailto:contact@webestone.com",
+					order: 5,
+				},
+				{
+					id: "team6",
+					name: "Sadia Surove",
+					role: "Content & Copy Lead",
+					profile: "",
+					portfolio: "https://webestone.com",
+					contact: "mailto:contact@webestone.com",
+					order: 6,
+				},
+				{
+					id: "team7",
+					name: "Adiba Ahmed",
+					role: "Digital Strategist",
+					profile: "",
+					portfolio: "https://webestone.com",
+					contact: "mailto:contact@webestone.com",
+					order: 7,
+				},
+			];
+			for (const member of teamMembersSeed) {
+				await addDocument("team", member.id, member as any);
 			}
 
 			console.log("Seeding 'seo' collection...");

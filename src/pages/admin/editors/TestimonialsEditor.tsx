@@ -121,7 +121,7 @@ export default function TestimonialsEditor() {
 								</div>
 								<div>
 									<Field label="Avatar URL" value={item.avatar} onChange={(v) => updateItem(item.id, "avatar", v)} />
-									<CloudinaryUploadButton onUploadSuccess={(url) => updateItem(item.id, "avatar", url)} resourceType="image" label="Upload Avatar to Cloudinary" />
+									<CloudinaryUploadButton onUploadSuccess={(url) => updateItem(item.id, "avatar", url)} resourceType="image" label="Upload Client Avatar" />
 								</div>
 								<div className="space-y-1.5">
 									<label className="text-xs font-bold text-neutral-500">Testimonial Text</label>

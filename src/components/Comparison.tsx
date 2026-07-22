@@ -54,11 +54,11 @@ export default function Comparison() {
         </div>
 
         <div className="w-full overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-white/10">
-          <div className="min-w-[640px] md:min-w-0 w-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-sm">
-            <div className="grid grid-cols-[1fr_1.3fr_1.3fr] bg-white/5 border-b border-white/10">
-              <div className="p-6 text-xs font-black uppercase tracking-widest text-neutral-500">Feature</div>
-              <div className="p-6 text-xs font-black uppercase tracking-widest text-neon-green bg-neon-green/5 text-left">WeBestOne</div>
-              <div className="p-6 text-xs font-black uppercase tracking-widest text-neutral-500 text-left">Others</div>
+          <div className="min-w-[500px] md:min-w-0 w-full overflow-hidden rounded-2xl md:rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-sm">
+            <div className="grid grid-cols-[1fr_1.2fr_1.2fr] bg-white/5 border-b border-white/10">
+              <div className="p-3.5 sm:p-6 text-[10px] sm:text-xs font-black uppercase tracking-widest text-neutral-500">Feature</div>
+              <div className="p-3.5 sm:p-6 text-[10px] sm:text-xs font-black uppercase tracking-widest text-neon-green bg-neon-green/5 text-left">WeBestOne</div>
+              <div className="p-3.5 sm:p-6 text-[10px] sm:text-xs font-black uppercase tracking-widest text-neutral-500 text-left">Others</div>
             </div>
 
             {features.map((feature, i) => (
@@ -68,15 +68,15 @@ export default function Comparison() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="grid grid-cols-[1fr_1.3fr_1.3fr] border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors"
+                className="grid grid-cols-[1fr_1.2fr_1.2fr] border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors"
               >
-                <div className="p-6 text-sm font-bold text-white flex items-center">{feature.name}</div>
-                <div className="p-6 text-sm font-medium text-neon-green bg-neon-green/[0.02] flex items-center justify-start gap-2 text-left">
-                  <Check className="w-4 h-4 shrink-0" />
+                <div className="p-3.5 sm:p-6 text-xs sm:text-sm font-bold text-white flex items-center">{feature.name}</div>
+                <div className="p-3.5 sm:p-6 text-xs sm:text-sm font-medium text-neon-green bg-neon-green/[0.02] flex items-center justify-start gap-1.5 sm:gap-2 text-left">
+                  <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                   {feature.we}
                 </div>
-                <div className="p-6 text-sm font-medium text-neutral-500 flex items-center justify-start gap-2 text-left">
-                  <X className="w-4 h-4 shrink-0 text-rose-500" />
+                <div className="p-3.5 sm:p-6 text-xs sm:text-sm font-medium text-neutral-500 flex items-center justify-start gap-1.5 sm:gap-2 text-left">
+                  <X className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-rose-500" />
                   {feature.others}
                 </div>
               </motion.div>

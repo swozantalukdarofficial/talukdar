@@ -50,7 +50,7 @@ export default function ProposalsEditor() {
 				<Info className="w-5 h-5 shrink-0 mt-0.5" />
 				<div>
 					<strong className="font-bold text-white block mb-0.5">How it works:</strong>
-					These proposals are available to visitors when they click the <span className="text-neon-green font-bold">"Get a Proposal"</span> button in the header. You can upload a new PDF/Word file directly to Cloudinary or paste a custom URL (e.g., Google Drive link, external website).
+					These proposals are available to visitors when they click the <span className="text-neon-green font-bold">"Get a Proposal"</span> button in the header. You can upload a new PDF/Word file directly or paste a custom document URL.
 				</div>
 			</div>
 
@@ -75,11 +75,11 @@ export default function ProposalsEditor() {
 							type="text"
 							value={siteForm.fullStackProposalUrl || ""}
 							onChange={(e) => setSiteForm({ ...siteForm, fullStackProposalUrl: e.target.value })}
-							placeholder="https://res.cloudinary.com/... or Google Drive link"
+							placeholder="https://webestone.com/... or direct document link"
 							className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-neon-green/50 placeholder-neutral-600 transition-colors"
 						/>
 						<div className="flex items-center justify-between pt-1">
-							<span className="text-[10px] text-neutral-500">Upload a fresh PDF file to Cloudinary:</span>
+							<span className="text-[10px] text-neutral-500">Upload a fresh PDF file:</span>
 							<CloudinaryUploadButton
 								onUploadSuccess={(url) => setSiteForm({ ...siteForm, fullStackProposalUrl: url })}
 								resourceType="image"
@@ -110,11 +110,11 @@ export default function ProposalsEditor() {
 							type="text"
 							value={siteForm.generalProposalUrl || ""}
 							onChange={(e) => setSiteForm({ ...siteForm, generalProposalUrl: e.target.value })}
-							placeholder="https://res.cloudinary.com/... or Google Drive link"
+							placeholder="https://webestone.com/... or direct document link"
 							className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-neon-green/50 placeholder-neutral-600 transition-colors"
 						/>
 						<div className="flex items-center justify-between pt-1">
-							<span className="text-[10px] text-neutral-500">Upload a fresh PDF file to Cloudinary:</span>
+							<span className="text-[10px] text-neutral-500">Upload a fresh PDF file:</span>
 							<CloudinaryUploadButton
 								onUploadSuccess={(url) => setSiteForm({ ...siteForm, generalProposalUrl: url })}
 								resourceType="image"

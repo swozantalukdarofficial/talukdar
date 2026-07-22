@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import DomeGallery from "../components/DomeGallery";
 import { ArrowRight, Sparkles } from "lucide-react";
@@ -59,6 +60,15 @@ const PORTFOLIO_IMAGES = [
 
 export default function WorkPage() {
   const { portfolio: dynamicPortfolio } = useContent();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const displayImages = dynamicPortfolio && dynamicPortfolio.length > 0
     ? dynamicPortfolio.map(p => ({ src: p.src, alt: p.alt }))
     : PORTFOLIO_IMAGES;
@@ -106,20 +116,32 @@ export default function WorkPage() {
       </section>
 
       {/* Immersive 3D Gallery Viewport */}
-      <section className="relative z-10 w-full h-[620px] md:h-[680px] border-y border-white/5 bg-neutral-950/20">
+      <section className="relative z-10 w-full h-[460px] sm:h-[580px] md:h-[680px] border-y border-white/10 bg-neutral-950/60 overflow-hidden shadow-2xl">
+        {/* Ambient Glowing Orbs */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-neon-green/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/4 right-10 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none" />
+
+        {/* Interactive Floating Hint */}
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/70 border border-white/15 text-[11px] font-bold text-neutral-200 backdrop-blur-md shadow-xl">
+            <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
+            <span>Drag 3D sphere • Tap image to expand</span>
+          </div>
+        </div>
+
         <DomeGallery
           images={displayImages}
-          fit={0.85}
-          minRadius={580}
-          maxVerticalRotationDeg={10}
-          segments={34}
+          fit={isMobile ? 0.95 : 0.85}
+          minRadius={isMobile ? 280 : 580}
+          maxVerticalRotationDeg={12}
+          segments={isMobile ? 28 : 34}
           dragDampening={1.8}
           grayscale={false}
-          imageBorderRadius="24px"
+          imageBorderRadius={isMobile ? "16px" : "24px"}
           openedImageBorderRadius="24px"
-          openedImageWidth="300px"
-          openedImageHeight="420px"
-          overlayBlurColor="#000000"
+          openedImageWidth={isMobile ? "85vw" : "320px"}
+          openedImageHeight={isMobile ? "55vh" : "440px"}
+          overlayBlurColor="#050505"
         />
       </section>
 

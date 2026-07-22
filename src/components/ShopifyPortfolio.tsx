@@ -1,46 +1,21 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, ShoppingCart } from "lucide-react";
+import { useContent } from "../context/ContentContext";
 
-const shopifyPortfolio = [
-  {
-    client: "Luxury Fashion",
-    title: "Couture Collective - 7-Figure Store Design",
-    img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800",
-    color: "from-amber-600/20 to-orange-600/20",
-    border: "border-amber-500/20",
-    tag: "Fashion"
-  },
-  {
-    client: "Tech Gadgets",
-    title: "Volt Electronics - High Performance UX",
-    img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800",
-    color: "from-blue-600/20 to-cyan-600/20",
-    border: "border-blue-500/20",
-    tag: "Electronics"
-  },
-  {
-    client: "Beauty & Skin",
-    title: "Pure Skin - Organic Beauty Experience",
-    img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=800",
-    color: "from-pink-600/20 to-rose-600/20",
-    border: "border-pink-500/20",
-    tag: "Skincare"
-  },
-  {
-    client: "Activewear",
-    title: "Iron Peak - Conversion Optimized Store",
-    img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800",
-    color: "from-emerald-600/20 to-teal-600/20",
-    border: "border-emerald-500/20",
-    tag: "Fitness"
-  }
-];
+interface PortfolioCardItem {
+  client: string;
+  title: string;
+  img: string;
+  color: string;
+  border: string;
+  tag: string;
+}
 
-function PortfolioCard({ item }: { item: typeof shopifyPortfolio[0] }) {
+function PortfolioCard({ item }: { item: PortfolioCardItem }) {
   return (
     <motion.div 
       whileHover={{ y: -10 }}
-      className={`w-[350px] md:w-[450px] flex-shrink-0 p-6 rounded-[2.5rem] border ${item.border} bg-gradient-to-b ${item.color} flex flex-col min-h-[450px] relative overflow-hidden group cursor-pointer mx-4`}
+      className={`w-[280px] sm:w-[350px] md:w-[450px] flex-shrink-0 p-5 sm:p-6 rounded-[2rem] sm:rounded-[2.5rem] border ${item.border} bg-gradient-to-b ${item.color} flex flex-col min-h-[400px] sm:min-h-[450px] relative overflow-hidden group cursor-pointer mx-2 sm:mx-4`}
     >
       <div className="relative aspect-[16/10] w-full mb-8 rounded-2xl overflow-hidden bg-black/40 border border-white/10">
         <img 
@@ -59,19 +34,37 @@ function PortfolioCard({ item }: { item: typeof shopifyPortfolio[0] }) {
           <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-neutral-400 uppercase tracking-widest">
             {item.tag}
           </span>
-          <ShoppingCart className="w-5 h-5 text-neutral-500 group-hover:text-emerald-500 transition-colors" />
+          <ShoppingCart className="w-5 h-5 text-neutral-500 group-hover:text-neon-green transition-colors" />
         </div>
         <p className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-1">{item.client}</p>
-        <h3 className="text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">{item.title}</h3>
+        <h3 className="text-2xl font-bold text-white group-hover:text-neon-green transition-colors">{item.title}</h3>
       </div>
 
-      <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-white/5 blur-[50px] rounded-full group-hover:bg-emerald-500/10 transition-all" />
+      <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-white/5 blur-[50px] rounded-full group-hover:bg-[#87E65C]/10 transition-all" />
     </motion.div>
   );
 }
 
 export default function ShopifyPortfolio() {
-  const duplicatedPortfolio = [...shopifyPortfolio, ...shopifyPortfolio];
+  const { portfolio: dynamicPortfolio } = useContent();
+
+  if (!dynamicPortfolio || dynamicPortfolio.length === 0) {
+    return null;
+  }
+
+  const portfolioList: PortfolioCardItem[] = dynamicPortfolio.map((p, idx) => ({
+    client: p.client || "E-commerce Showcase",
+    title: p.title || p.alt || `Project ${idx + 1}`,
+    img: p.src,
+    color: "from-neon-green/10 to-teal-900/10",
+    border: "border-[#87E65C]/20",
+    tag: p.tag || "Shopify"
+  }));
+
+  // Duplicate list enough times for infinite marquee animation
+  const displayPortfolio = portfolioList.length < 4 
+    ? [...portfolioList, ...portfolioList, ...portfolioList, ...portfolioList] 
+    : [...portfolioList, ...portfolioList];
 
   return (
     <section id="portfolio" className="py-32 relative z-10 bg-white/[0.01] overflow-hidden">
@@ -83,7 +76,7 @@ export default function ShopifyPortfolio() {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold mb-4"
           >
-            E-commerce <span className="text-emerald-400">Showcase</span>
+            E-commerce <span className="text-neon-green">Showcase</span>
           </motion.h2>
           <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
             Explore our high-converting Shopify stores designed for global brands and ambitious startups.
@@ -92,11 +85,11 @@ export default function ShopifyPortfolio() {
       </div>
 
       <div className="relative flex overflow-hidden group">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-32 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-32 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none" />
 
         <div className="flex animate-marquee hover:[animation-play-state:paused] py-4">
-          {duplicatedPortfolio.map((item, i) => (
+          {displayPortfolio.map((item, i) => (
             <PortfolioCard key={i} item={item} />
           ))}
         </div>

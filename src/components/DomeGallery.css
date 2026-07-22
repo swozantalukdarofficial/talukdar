@@ -182,10 +182,10 @@ main.sphere-main {
   position: absolute;
   left: 0;
   right: 0;
-  height: 120px;
+  height: clamp(40px, 12vh, 100px);
   z-index: 5;
   pointer-events: none;
-  background: linear-gradient(to bottom, transparent, var(--overlay-blur-color, #120F17));
+  background: linear-gradient(to bottom, transparent, var(--overlay-blur-color, #050505));
 }
 
 .edge-fade--top {

@@ -20,11 +20,11 @@ import {
   Star
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useContent } from "../context/ContentContext";
 import Awards from "../components/Awards";
 import Counter from "../components/Counter";
 import FAQ from "../components/FAQ";
 import SEO from "../components/SEO";
-import { useContent } from "../context/ContentContext";
 
 // --- Sub-components for better modularity ---
 
@@ -74,7 +74,7 @@ function SectionHeading({ badge, title, desc, center = false }: { badge: string;
 
 export default function AboutPage() {
   const containerRef = useRef(null);
-  const { contact, socials, seo, services } = useContent();
+  const { contact, socials, seo, services, teamMembers } = useContent();
 
   const aboutSchema = useMemo(() => ({
     "@context": "https://schema.org",
@@ -214,12 +214,12 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="flex flex-wrap gap-6"
+              className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6"
             >
-              <Link to="/contact-us" className="px-10 py-5 bg-neon-green text-black font-black rounded-full hover:scale-105 transition-all shadow-[0_0_50px_rgba(16,185,129,0.3)]">
+              <Link to="/contact-us" className="px-6 sm:px-10 py-3.5 sm:py-5 bg-neon-green text-black font-black rounded-full hover:scale-105 transition-all shadow-[0_0_50px_rgba(16,185,129,0.3)] text-center">
                 Start Your Legacy
               </Link>
-              <button className="px-10 py-5 border border-white/20 text-white font-black rounded-full hover:bg-white/5 transition-all backdrop-blur-sm">
+              <button className="px-6 sm:px-10 py-3.5 sm:py-5 border border-white/20 text-white font-black rounded-full hover:bg-white/5 transition-all backdrop-blur-sm text-center">
                 Watch Reel
               </button>
             </motion.div>
@@ -637,7 +637,7 @@ export default function AboutPage() {
                   { name: "Sarah Jenkins", role: "Founder, GreenPulse", text: "Professional, innovative, and results-driven. They provide a roadmap to success.", img: "3" },
                   { name: "Michael Chen", role: "Ops Lead, Global Log", text: "Their development team built a custom dashboard that saved us hundreds of hours.", img: "4" }
                 ].map((review, i) => (
-                  <div key={i} className="w-[450px] p-10 rounded-[3rem] bg-white/[0.02] border border-white/5 hover:border-neon-green/30 transition-all flex flex-col justify-between group cursor-grab">
+                  <div key={i} className="w-[280px] xs:w-[320px] sm:w-[450px] p-6 sm:p-10 rounded-2xl sm:rounded-[3rem] bg-white/[0.02] border border-white/5 hover:border-neon-green/30 transition-all flex flex-col justify-between group cursor-grab">
                     <div>
                       <div className="flex gap-1 mb-6">
                         {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-neon-green text-neon-green" />)}
@@ -672,24 +672,44 @@ export default function AboutPage() {
           >
             {[...Array(2)].map((_, listIndex) => (
               <div key={listIndex} className="flex gap-12">
-                {[
-                  { name: "Rozi Osman", color: "from-neon-green/20 to-teal-500/20" },
-                  { name: "Shipon Talukdar", color: "from-blue-500/20 to-cyan-500/20" },
-                  { name: "Sabikun Nahar Ishita", color: "from-purple-500/20 to-pink-500/20" },
-                  { name: "Mahmud Shohan", color: "from-orange-500/20 to-red-500/20" },
-                  { name: "Sarah Mubasshera", color: "from-teal-500/20 to-neon-green/20" },
-                  { name: "Sadia Surove", color: "from-blue-600/20 to-indigo-600/20" },
-                  { name: "Adiba Ahmed", color: "from-pink-500/20 to-rose-500/20" }
-                ].map((m, i) => (
-                  <div key={i} className="group w-64 md:w-72 cursor-pointer flex flex-col items-center">
-                    <div className={`w-56 h-56 md:w-64 md:h-64 rounded-[3.5rem] bg-gradient-to-br ${m.color} border border-white/10 flex items-center justify-center mb-6 relative group-hover:border-neon-green/50 transition-all duration-500 overflow-hidden shadow-2xl`}>
-                      <div className="text-7xl font-black text-white/20 group-hover:text-neon-green group-hover:scale-110 transition-all duration-500">
-                        {m.name.split(' ').map(n => n[0]).join('')}
+                {(teamMembers && teamMembers.length > 0
+                  ? teamMembers
+                  : [
+                      { name: "Rozi Osman", role: "Senior Growth Strategist", profile: "" },
+                      { name: "Shipon Talukdar", role: "Lead Developer & Architect", profile: "" },
+                      { name: "Sabikun Nahar Ishita", role: "Creative UI/UX Designer", profile: "" },
+                      { name: "Mahmud Shohan", role: "Performance Marketing Specialist", profile: "" },
+                      { name: "Sarah Mubasshera", role: "AI Operations Specialist", profile: "" },
+                      { name: "Sadia Surove", role: "Content & Copy Lead", profile: "" },
+                      { name: "Adiba Ahmed", role: "Digital Strategist", profile: "" }
+                    ]
+                ).map((m: any, i: number) => {
+                  const colors = [
+                    "from-neon-green/20 to-teal-500/20",
+                    "from-blue-500/20 to-cyan-500/20",
+                    "from-purple-500/20 to-pink-500/20",
+                    "from-orange-500/20 to-red-500/20",
+                    "from-teal-500/20 to-neon-green/20",
+                    "from-blue-600/20 to-indigo-600/20",
+                    "from-pink-500/20 to-rose-500/20"
+                  ];
+                  const color = colors[i % colors.length];
+                  return (
+                    <div key={i} className="group w-64 md:w-72 cursor-pointer flex flex-col items-center">
+                      <div className={`w-56 h-56 md:w-64 md:h-64 rounded-[3.5rem] bg-gradient-to-br ${color} border border-white/10 flex items-center justify-center mb-5 relative group-hover:border-neon-green/50 transition-all duration-500 overflow-hidden shadow-2xl bg-black`}>
+                        {m.profile ? (
+                          <img src={m.profile} alt={m.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        ) : (
+                          <div className="text-7xl font-black text-white/30 group-hover:text-neon-green group-hover:scale-110 transition-all duration-500">
+                            {m.name.split(' ').map((n: string) => n[0]).join('')}
+                          </div>
+                        )}
                       </div>
+                      <h4 className="text-2xl font-bold text-white mb-1 group-hover:text-neon-green transition-colors text-center">{m.name}</h4>
+                      <p className="text-xs font-bold text-neon-green uppercase tracking-widest text-center">{m.role}</p>
                     </div>
-                    <h4 className="text-2xl font-bold text-white mb-1 group-hover:text-neon-green transition-colors">{m.name}</h4>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             ))}
           </motion.div>
@@ -705,24 +725,33 @@ export default function AboutPage() {
       <FAQ />
 
       {/* 16. FINAL CTA */}
-      <section className="py-24 px-6 relative z-10">
+      <section className="py-12 sm:py-24 px-4 sm:px-6 relative z-10">
         <div className="max-w-7xl mx-auto text-center">
            <motion.div
              initial={{ opacity: 0, y: 20 }}
              whileInView={{ opacity: 1, y: 0 }}
-             className="p-20 rounded-[4rem] bg-gradient-to-br from-neon-green to-teal-600 text-black relative overflow-hidden"
+             viewport={{ once: true }}
+             className="p-6 sm:p-12 md:p-20 rounded-3xl sm:rounded-[3rem] md:rounded-[4rem] bg-gradient-to-br from-neon-green via-emerald-500 to-teal-600 text-black relative overflow-hidden shadow-2xl"
            >
-              <div className="relative z-10">
-                 <h2 className="text-5xl md:text-8xl font-black mb-8 tracking-tighter"><span>AI Powered Agency</span> <br /> Ready to become <br /> an Outlier?</h2>
-                 <p className="text-black/70 text-xl md:text-2xl mb-12 max-w-2xl mx-auto font-medium">
+              <div className="relative z-10 space-y-4 sm:space-y-6">
+                 <h2 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight leading-tight">
+                    <span>AI Powered Agency</span> <br className="hidden sm:inline" /> Ready to become <br className="hidden sm:inline" /> an Outlier?
+                 </h2>
+                 <p className="text-black/80 text-sm sm:text-xl md:text-2xl max-w-2xl mx-auto font-medium leading-relaxed">
                     Stop following the crowd. Let's build a digital presence that sets the trend.
                  </p>
-                 <Link to="/contact-us" className="px-12 py-6 bg-black text-white font-black rounded-full hover:scale-110 transition-all inline-flex items-center gap-3 text-lg">
-                    Start Your Project <ArrowRight className="w-5 h-5" />
-                 </Link>
+                 <div className="pt-2 sm:pt-4">
+                    <Link
+                       to="/contact-us"
+                       className="px-6 sm:px-10 py-3.5 sm:py-5 bg-black text-white font-bold rounded-full hover:scale-105 transition-all inline-flex items-center justify-center gap-2.5 text-sm sm:text-lg whitespace-nowrap shadow-xl"
+                    >
+                       <span>Start Your Project</span>
+                       <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                    </Link>
+                 </div>
               </div>
-              <div className="absolute top-0 right-0 p-10 opacity-10">
-                 <Rocket className="w-64 h-64 -rotate-12" />
+              <div className="absolute -top-6 -right-6 sm:top-0 sm:right-0 p-4 sm:p-10 opacity-10 pointer-events-none">
+                 <Rocket className="w-36 h-36 sm:w-64 sm:h-64 -rotate-12" />
               </div>
            </motion.div>
         </div>

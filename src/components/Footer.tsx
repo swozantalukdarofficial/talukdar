@@ -38,7 +38,7 @@ export default function Footer() {
 								<p className="text-white font-medium text-sm">Drop us an email</p>
 								<a
 									href={`mailto:${socials?.email || ""}`}
-									className="text-lg text-white font-bold hover:text-neon-green transition-colors block"
+									className="text-base sm:text-lg text-white font-bold hover:text-neon-green transition-colors block break-all"
 								>
 									{socials?.email || ""}
 								</a>
