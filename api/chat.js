@@ -1,3 +1,17 @@
+// In-Memory Rate Limiter Map (IP -> { count, expires })
+const rateLimitMap = new Map();
+
+function isRateLimited(ip, limit = 15, windowMs = 60000) {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  if (!record || now > record.expires) {
+    rateLimitMap.set(ip, { count: 1, expires: now + windowMs });
+    return false;
+  }
+  record.count += 1;
+  return record.count > limit;
+}
+
 export default async function handler(req, res) {
   // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -15,6 +29,12 @@ export default async function handler(req, res) {
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // IP Rate Limiting Guard (Max 15 AI chats per min per IP)
+  const clientIp = (req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '127.0.0.1').split(',')[0].trim();
+  if (isRateLimited(clientIp, 15, 60000)) {
+    return res.status(429).json({ error: 'Too many requests from your IP. Please try again in 1 minute.' });
   }
 
   const { messages, systemPrompt } = req.body || {};

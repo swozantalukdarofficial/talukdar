@@ -1,5 +1,19 @@
 import nodemailer from 'nodemailer';
 
+// In-Memory Rate Limiter Map (IP -> { count, expires })
+const rateLimitMap = new Map();
+
+function isRateLimited(ip, limit = 5, windowMs = 60000) {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  if (!record || now > record.expires) {
+    rateLimitMap.set(ip, { count: 1, expires: now + windowMs });
+    return false;
+  }
+  record.count += 1;
+  return record.count > limit;
+}
+
 export default async function handler(req, res) {
   // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -17,6 +31,12 @@ export default async function handler(req, res) {
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Rate limit guard (max 5 contact submissions per minute per IP)
+  const clientIp = (req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '127.0.0.1').split(',')[0].trim();
+  if (isRateLimited(clientIp, 5, 60000)) {
+    return res.status(429).json({ error: 'Too many contact submissions. Please try again in 1 minute.' });
   }
 
   const { name, email, phone, company, service, message } = req.body;
