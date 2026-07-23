@@ -3,8 +3,11 @@ import { useContent } from "../../../context/ContentContext";
 import { Save, Check, Type, Link2, Video, BarChart3 } from "lucide-react";
 import CloudinaryUploadButton from "../../../components/admin/CloudinaryUploadButton";
 
+import { useModal } from "../../../context/ModalContext";
+
 export default function HeroEditor() {
 	const { hero, updateDocument } = useContent();
+	const { showAlert } = useModal();
 	const [form, setForm] = useState(hero);
 	const [saving, setSaving] = useState(false);
 	const [saved, setSaved] = useState(false);
@@ -21,7 +24,7 @@ export default function HeroEditor() {
 			setTimeout(() => setSaved(false), 2000);
 		} catch (err) {
 			console.error("Save failed:", err);
-			alert("Failed to save. Check console.");
+			showAlert({ title: "Error", message: "Failed to save hero section.", type: "warning" });
 		} finally {
 			setSaving(false);
 		}

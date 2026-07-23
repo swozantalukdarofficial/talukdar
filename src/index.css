@@ -55,6 +55,30 @@ iframe {
 	box-shadow: 0 0 30px rgba(135, 230, 92, 0.1);
 }
 
+/* Custom Scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+.no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+	width: 4px;
+	height: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+	background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.15);
+	border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+	background: rgba(135, 230, 92, 0.4);
+}
+
 @keyframes spin-slow {
 	from {
 		transform: rotate(0deg);

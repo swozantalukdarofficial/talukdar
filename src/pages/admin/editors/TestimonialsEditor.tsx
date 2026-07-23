@@ -3,8 +3,11 @@ import { useContent, type TestimonialItem } from "../../../context/ContentContex
 import { Save, Check, Plus, Trash2, Pencil, X, Star } from "lucide-react";
 import CloudinaryUploadButton from "../../../components/admin/CloudinaryUploadButton";
 
+import { useModal } from "../../../context/ModalContext";
+
 export default function TestimonialsEditor() {
 	const { testimonials, addDocument, removeDocument } = useContent();
+	const { showConfirm } = useModal();
 	const [items, setItems] = useState<TestimonialItem[]>(testimonials);
 	const [editingId, setEditingId] = useState<string | null>(null);
 	const [saving, setSaving] = useState(false);
@@ -30,14 +33,21 @@ export default function TestimonialsEditor() {
 		}
 	};
 
-	const handleDelete = async (id: string) => {
-		if (!confirm("Delete this testimonial?")) return;
-		try {
-			await removeDocument("testimonials", id);
-			setItems(items.filter((i) => i.id !== id));
-		} catch (err) {
-			console.error("Delete failed:", err);
-		}
+	const handleDelete = (id: string) => {
+		showConfirm({
+			title: "Delete Testimonial?",
+			message: "Are you sure you want to delete this testimonial review?",
+			confirmText: "Delete",
+			type: "danger",
+			onConfirm: async () => {
+				try {
+					await removeDocument("testimonials", id);
+					setItems((prev) => prev.filter((i) => i.id !== id));
+				} catch (err) {
+					console.error("Delete failed:", err);
+				}
+			},
+		});
 	};
 
 	const handleAdd = () => {

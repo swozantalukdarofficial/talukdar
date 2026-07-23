@@ -23,6 +23,7 @@ import { useState } from "react";
 
 const sidebarLinks = [
 	{ name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
+	{ name: "AI Chat Leads", href: "/admin/leads", icon: MessageSquare },
 	{ name: "Hero Section", href: "/admin/hero", icon: Home },
 	{ name: "Services", href: "/admin/services", icon: Briefcase },
 	{ name: "Service Images", href: "/admin/service-images", icon: Image },

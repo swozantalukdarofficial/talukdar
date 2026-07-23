@@ -3,8 +3,11 @@ import { useContent, type PortfolioItem } from "../../../context/ContentContext"
 import { Save, Check, Plus, Trash2, Pencil, X, Image } from "lucide-react";
 import CloudinaryUploadButton from "../../../components/admin/CloudinaryUploadButton";
 
+import { useModal } from "../../../context/ModalContext";
+
 export default function PortfolioEditor() {
 	const { portfolio, addDocument, removeDocument } = useContent();
+	const { showConfirm } = useModal();
 	const [items, setItems] = useState<PortfolioItem[]>(portfolio);
 	const [editingId, setEditingId] = useState<string | null>(null);
 	const [saving, setSaving] = useState(false);
@@ -30,14 +33,21 @@ export default function PortfolioEditor() {
 		}
 	};
 
-	const handleDelete = async (id: string) => {
-		if (!confirm("Delete this portfolio item?")) return;
-		try {
-			await removeDocument("portfolio", id);
-			setItems(items.filter((i) => i.id !== id));
-		} catch (err) {
-			console.error("Delete failed:", err);
-		}
+	const handleDelete = (id: string) => {
+		showConfirm({
+			title: "Delete Portfolio Item?",
+			message: "Are you sure you want to delete this portfolio showcase item?",
+			confirmText: "Delete Item",
+			type: "danger",
+			onConfirm: async () => {
+				try {
+					await removeDocument("portfolio", id);
+					setItems((prev) => prev.filter((i) => i.id !== id));
+				} catch (err) {
+					console.error("Delete failed:", err);
+				}
+			},
+		});
 	};
 
 	const handleAdd = () => {
@@ -86,18 +96,22 @@ export default function PortfolioEditor() {
 									<Image className="w-8 h-8 text-neutral-600" />
 								</div>
 							)}
-							<div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+							<div className="absolute top-2 right-2 flex gap-1.5 z-10">
 								<button
 									onClick={() => setEditingId(editingId === item.id ? null : item.id)}
-									className="p-1.5 bg-black/60 backdrop-blur-sm rounded-lg text-white hover:bg-black/80"
+									className="p-2 bg-neutral-950/85 hover:bg-black border border-white/20 backdrop-blur-md rounded-xl text-white hover:text-neon-green transition-all shadow-lg cursor-pointer flex items-center gap-1 text-xs font-semibold"
+									title="Edit item"
 								>
 									{editingId === item.id ? <X className="w-3.5 h-3.5" /> : <Pencil className="w-3.5 h-3.5" />}
+									<span className="hidden sm:inline">{editingId === item.id ? "Close" : "Edit"}</span>
 								</button>
 								<button
 									onClick={() => handleDelete(item.id)}
-									className="p-1.5 bg-black/60 backdrop-blur-sm rounded-lg text-red-400 hover:bg-red-500/20"
+									className="p-2 bg-neutral-950/85 hover:bg-red-950 border border-red-500/30 backdrop-blur-md rounded-xl text-red-400 hover:text-red-300 transition-all shadow-lg cursor-pointer flex items-center gap-1 text-xs font-semibold"
+									title="Delete item"
 								>
 									<Trash2 className="w-3.5 h-3.5" />
+									<span className="hidden sm:inline">Delete</span>
 								</button>
 							</div>
 						</div>

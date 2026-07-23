@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { useContent, type ServiceItem } from "../../../context/ContentContext";
 import { Save, Check, Plus, Trash2, GripVertical, Pencil, X } from "lucide-react";
 
+import { useModal } from "../../../context/ModalContext";
+
 export default function ServicesEditor() {
 	const { services, updateDocument, addDocument, removeDocument } = useContent();
+	const { showConfirm, showAlert } = useModal();
 	const [items, setItems] = useState<ServiceItem[]>(services);
 	const [editingId, setEditingId] = useState<string | null>(null);
 	const [saving, setSaving] = useState(false);
@@ -24,20 +27,27 @@ export default function ServicesEditor() {
 			setTimeout(() => setSaved(false), 2000);
 		} catch (err) {
 			console.error("Save failed:", err);
-			alert("Failed to save.");
+			showAlert({ title: "Error", message: "Failed to save services.", type: "warning" });
 		} finally {
 			setSaving(false);
 		}
 	};
 
-	const handleDelete = async (id: string) => {
-		if (!confirm("Delete this service?")) return;
-		try {
-			await removeDocument("services", id);
-			setItems(items.filter((i) => i.id !== id));
-		} catch (err) {
-			console.error("Delete failed:", err);
-		}
+	const handleDelete = (id: string) => {
+		showConfirm({
+			title: "Delete Service?",
+			message: "Are you sure you want to delete this service item?",
+			confirmText: "Delete",
+			type: "danger",
+			onConfirm: async () => {
+				try {
+					await removeDocument("services", id);
+					setItems((prev) => prev.filter((i) => i.id !== id));
+				} catch (err) {
+					console.error("Delete failed:", err);
+				}
+			},
+		});
 	};
 
 	const handleAdd = () => {

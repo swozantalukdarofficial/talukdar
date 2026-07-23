@@ -3,11 +3,13 @@ import { useContent, type BlogPost } from "../../../context/ContentContext";
 import { Save, Check, Plus, Trash2, Pencil, X, Sparkles, BookOpen, AlertCircle, FileText, ChevronRight, Video } from "lucide-react";
 import CloudinaryUploadButton from "../../../components/admin/CloudinaryUploadButton";
 import RichTextBlogEditor from "../../../components/admin/RichTextBlogEditor";
+import { useModal } from "../../../context/ModalContext";
 
 const BLOG_CATEGORIES = ["AI & Tech", "Design", "Development", "Marketing", "Business"];
 
 export default function BlogsEditor() {
 	const { blogs, services, video, addDocument, removeDocument, updateDocument } = useContent();
+	const { showConfirm, showAlert } = useModal();
 	const [items, setItems] = useState<BlogPost[]>(blogs);
 	const [editingId, setEditingId] = useState<string | null>(null);
 	const [activeForm, setActiveForm] = useState<BlogPost | null>(null);
@@ -40,7 +42,7 @@ export default function BlogsEditor() {
 			setTimeout(() => setSavedVideo(false), 2000);
 		} catch (err) {
 			console.error("Failed to save sidebar video URL:", err);
-			alert("Failed to save sidebar video URL");
+			showAlert({ title: "Error", message: "Failed to save sidebar video URL.", type: "warning" });
 		} finally {
 			setSavingVideo(false);
 		}
@@ -64,14 +66,14 @@ export default function BlogsEditor() {
 	const handleCreateNew = () => {
 		const newId = `new-post-${Date.now()}`;
 		const newPost: BlogPost = {
-			id: newId,
-			title: "New Blog Post Title",
-			excerpt: "Quick summary of this blog post...",
-			content: "<h2>Introduction</h2><p>Start writing content here...</p>",
-			category: "Marketing",
-			readTime: "5 min read",
-			image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
-			date: new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
+			id: "",
+			title: "New Insights Article",
+			excerpt: "Brief summary of the blog post...",
+			content: "<p>Write your detailed blog post content here...</p>",
+			category: "AI & Tech",
+			readTime: "4 min read",
+			date: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+			image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800",
 			author: "Webestone Team",
 			authorRole: "Specialists",
 			featured: false,
@@ -87,7 +89,7 @@ export default function BlogsEditor() {
 	const handleSave = async () => {
 		if (!activeForm) return;
 		if (!activeForm.id || activeForm.id.trim() === "") {
-			alert("Post ID cannot be empty.");
+			showAlert({ title: "Validation Error", message: "Post ID cannot be empty.", type: "warning" });
 			return;
 		}
 
@@ -121,20 +123,27 @@ export default function BlogsEditor() {
 			setTimeout(() => setSaved(false), 2000);
 		} catch (err) {
 			console.error("Failed to save blog post:", err);
-			alert("Error saving blog post. View browser console.");
+			showAlert({ title: "Error", message: "Error saving blog post. View browser console.", type: "warning" });
 		} finally {
 			setSaving(false);
 		}
 	};
 
-	const handleDelete = async (id: string) => {
-		if (!confirm("Are you sure you want to delete this blog post? This action is permanent.")) return;
-		try {
-			await removeDocument("blogs", id);
-			setItems(items.filter((i) => i.id !== id));
-		} catch (err) {
-			console.error("Delete failed:", err);
-		}
+	const handleDelete = (id: string) => {
+		showConfirm({
+			title: "Delete Blog Post?",
+			message: "Are you sure you want to delete this blog post? This action cannot be undone.",
+			confirmText: "Delete Permanently",
+			type: "danger",
+			onConfirm: async () => {
+				try {
+					await removeDocument("blogs", id);
+					setItems((prev) => prev.filter((i) => i.id !== id));
+				} catch (err) {
+					console.error("Delete failed:", err);
+				}
+			},
+		});
 	};
 
 	const handleFormChange = (key: keyof BlogPost, val: any) => {

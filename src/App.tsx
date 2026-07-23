@@ -23,6 +23,7 @@ const ServiceImagesEditor = lazy(() => import("./pages/admin/editors/ServiceImag
 const BlogsEditor = lazy(() => import("./pages/admin/editors/BlogsEditor")); // Touch to refresh IDE cache
 const ProposalsEditor = lazy(() => import("./pages/admin/editors/ProposalsEditor"));
 const TeamEditor = lazy(() => import("./pages/admin/editors/TeamEditor"));
+const LeadsEditor = lazy(() => import("./pages/admin/editors/LeadsEditor"));
 
 // ── Eager load: only the homepage loads instantly
 import HomePage from "./pages/HomePage";
@@ -75,10 +76,13 @@ function PublicLayout() {
 	);
 }
 
+import { ModalProvider } from "./context/ModalContext";
+
 export default function App() {
 	return (
-		<BrowserRouter>
-			<ScrollToTop />
+		<ModalProvider>
+			<BrowserRouter>
+				<ScrollToTop />
 			<Suspense fallback={<PageLoader />}>
 				<Routes>
 					{/* ── Admin Routes (no Header/Footer) ── */}
@@ -99,6 +103,7 @@ export default function App() {
 							<Route path="service-images" element={<ServiceImagesEditor />} />
 							<Route path="blogs" element={<BlogsEditor />} />
 							<Route path="proposals" element={<ProposalsEditor />} />
+							<Route path="leads" element={<LeadsEditor />} />
 						</Route>
 					</Route>
 
@@ -135,5 +140,6 @@ export default function App() {
 				</Routes>
 			</Suspense>
 		</BrowserRouter>
+		</ModalProvider>
 	);
 }

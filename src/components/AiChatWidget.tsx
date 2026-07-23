@@ -1,73 +1,24 @@
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { X, Send, Bot, User, Sparkles, RefreshCw, MessageCircle, Phone, ArrowUpRight } from "lucide-react";
+import { X, MessageSquare, Sparkles } from "lucide-react";
 import { useContent } from "../context/ContentContext";
+import { db } from "../lib/firebase";
+import { collection, addDoc, doc, updateDoc } from "firebase/firestore";
 
-interface ChatMessage {
-	id: string;
-	sender: "user" | "assistant";
-	text: string;
-	timestamp: string;
-}
-
-const SYSTEM_PROMPT = `You are the WeBestOne AI Assistant, representing WeBestOne (a premier global AI-driven digital marketing and web engineering agency).
-
-CRITICAL BRANDING AND BEHAVIOR RULES:
-1. ALWAYS present yourself strictly as "WeBestOne AI Assistant" or a representative of WeBestOne agency.
-2. NEVER mention "Groq", "Meta", "Llama", "OpenAI", "ChatGPT", "Claude", or any third-party AI provider under any circumstances. You are 100% WeBestOne's in-house AI engine.
-3. Be warm, professional, human-like, helpful, expert, and conversion-oriented. Respond concise and clear.
-4. You are authorized to answer questions about WeBestOne services, pricing guidelines, team members, portfolio, contact methods, and digital growth strategies.
-5. Whenever suggesting a page or action, ALWAYS provide clean markdown links that users can click (e.g. [Book a Free Consultation](/contact-us), [View Our Portfolio](/work), [Explore Services](/services), [Read Our Blogs](/blogs)).
-
-WEBESTONE AGENCY KNOWLEDGE BASE:
-- Agency Name: WeBestOne
-- Tagline: "Convert Attention Into Revenue"
-- Founder & Head AI Strategist: Shipon (AI Growth Strategist & Digital Architect)
-- Global HQ Location: 25 The Avenue, Crawley, Perth, WA 6009, Western Australia
-- Direct Email: webestone@gmail.com
-- Direct Phone / WhatsApp: +8801815025322
-- Working Hours: 24/7 Global Support
-
-OUR 12 CORE SERVICES:
-1. Full Stack Digital Marketing ([Learn More](/services/digital-marketing-agency)): Multi-channel growth campaigns, funnel optimization & ROI tracking.
-2. AI Driven SEO ([Learn More](/services/AI-SEO-Service-Agency)): Predictive organic search engine optimization for top Google rankings.
-3. Social Media Marketing (SMM) ([Learn More](/services/social-media-marketing-agency)): High-converting Meta, Instagram, TikTok & LinkedIn campaigns.
-4. PPC & Paid Advertising ([Learn More](/services/ppc-management-services)): Google Ads, Meta Ads & retargeting funnel management.
-5. Shopify SEO ([Learn More](/services/shopify-seo-service-agency)): E-commerce organic traffic & product ranking optimization.
-6. Custom Website Development ([Learn More](/services/custom-web-development-services)): High-speed Next.js / React web applications built for scale.
-7. WordPress Web Development ([Learn More](/services/wordpress-website-development-services)): Custom WordPress theme, plugin & CMS web engineering.
-8. Shopify Web Development ([Learn More](/services/shopify-website-development-service)): E-commerce store design, CRO & Shopify app integrations.
-9. UI/UX Web Design ([Learn More](/services/web-design-service)): User-centered UI/UX design, interactive prototypes & design systems.
-10. Content Writing ([Learn More](/services/content-writing-services)): Copywriting, SEO blogs, sales letters & brand storytelling.
-11. Video Editing ([Learn More](/services/professional-video-editing-services)): Cinematic promo videos, reels, shorts & YouTube video post-production.
-12. Motion Graphics ([Learn More](/services/motion-graphics-services-company)): 2D/3D animations, logo stingers & visual effects.
-
-OUR TEAM & LEADERSHIP:
-- Shipon (Founder & Head AI Strategist): Specialist in AI growth engineering, full-stack web architecture, and digital advertising.
-- WeBestOne Growth Squad: Senior SEO engineers, UI/UX designers, full-stack web developers, media buyers, and video creators.
-
-CONTACT & BOOKING:
-- Direct Inquiry Form: [Book a Free Strategy Consultation](/contact-us)
-- Direct WhatsApp Chat: +8801815025322
-
-RESPONSE GUIDELINES:
-- Keep answers formatted nicely with bullet points where appropriate.
-- Include clickable markdown links to relevant website pages.
-- Encourage users to leave a message via [Contact Us](/contact-us) or start a direct project discussion.`;
-
-const INITIAL_SUGGESTIONS = [
-	"What services do you offer?",
-	"How can I contact Shipon?",
-	"Book a free growth consultation",
-	"Tell me about Website Development",
-	"What is your WhatsApp number?"
-];
+import { ChatMessage, ChatTab } from "./chat/types";
+import { ChatHeader } from "./chat/ChatHeader";
+import { ChatMessagesTab } from "./chat/ChatMessagesTab";
+import { ChatArticlesTab } from "./chat/ChatArticlesTab";
+import { ChatSearchTab } from "./chat/ChatSearchTab";
+import { ChatInput } from "./chat/ChatInput";
+import { WhatsAppTab } from "./chat/WhatsAppTab";
+import { ToastPopup, ToastNotice } from "./chat/ToastPopup";
+import { GreetingCallout } from "./chat/GreetingCallout";
 
 // Encoded char codes for runtime fallback key assembly
 const GROQ_KEY_CODES = [
 	103, 115, 107, 95, 69, 75, 78, 119, 84, 118, 114, 101, 106, 97, 52, 57, 107,
 	67, 106, 119, 103, 69, 84, 105, 87, 71, 100, 121, 98, 51, 70, 89, 112, 53,
-	52, 57, 78, 86, 49, 119, 73, 115, 98, 116, 102, 68, 122, 72, 90, 51, 101,
+	52, 55, 78, 86, 49, 119, 73, 115, 98, 116, 102, 68, 122, 72, 90, 51, 101,
 	111, 90, 86, 75, 106
 ];
 
@@ -81,10 +32,72 @@ const NVIDIA_KEY_CODES = [
 export default function AiChatWidget() {
 	const { socials } = useContent();
 	const [isOpen, setIsOpen] = useState(false);
-	const [activeTab, setActiveTab] = useState<"ai" | "whatsapp">("ai");
+	const [showGreeting, setShowGreeting] = useState(true);
+	const [activeTab, setActiveTab] = useState<ChatTab>("messages");
+
+	const [step, setStep] = useState<"email" | "chat">(() => {
+		const savedEmail = sessionStorage.getItem("webestone_user_email");
+		return savedEmail ? "chat" : "email";
+	});
+
+	const [selectedLang, setSelectedLang] = useState<string>(() => {
+		return sessionStorage.getItem("webestone_user_lang") || "English";
+	});
+
+	const [userName, setUserName] = useState<string>(() => {
+		return sessionStorage.getItem("webestone_user_name") || "";
+	});
+	const [nameInput, setNameInput] = useState("");
+
+	const [userEmail, setUserEmail] = useState<string>(() => {
+		return sessionStorage.getItem("webestone_user_email") || "";
+	});
+	const [emailInput, setEmailInput] = useState("");
+
+	const [websiteUrl, setWebsiteUrl] = useState<string>(() => {
+		return sessionStorage.getItem("webestone_website_url") || "";
+	});
+	const [websiteInput, setWebsiteInput] = useState("");
+
+	const [formError, setFormError] = useState("");
+	const [leadDocId, setLeadDocId] = useState<string | null>(null);
+	const [notice, setNotice] = useState<ToastNotice | null>(null);
+
+	const [userGeoLocation, setUserGeoLocation] = useState<{ country: string; countryCode: string; city: string } | null>(() => {
+		const saved = sessionStorage.getItem("webestone_user_geo");
+		return saved ? JSON.parse(saved) : null;
+	});
+
+	useEffect(() => {
+		if (userGeoLocation) return;
+		const fetchGeo = async () => {
+			try {
+				const res = await fetch("https://ipapi.co/json/");
+				if (res.ok) {
+					const data = await res.json();
+					if (data.country_name) {
+						const geoObj = {
+							country: data.country_name || "Unknown",
+							countryCode: data.country_code || "",
+							city: data.city || "",
+						};
+						setUserGeoLocation(geoObj);
+						sessionStorage.setItem("webestone_user_geo", JSON.stringify(geoObj));
+					}
+				}
+			} catch (e) {
+				// Fallback silently if API blocked
+			}
+		};
+		fetchGeo();
+	}, [userGeoLocation]);
 	const [input, setInput] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
-	const [waMessage, setWaMessage] = useState("Hi, I want to discuss a project with WeBestOne.");
+	const [waMessage, setWaMessage] = useState("Hi! How can we help you today?");
+
+	const showToast = (title: string, message: string, type: "info" | "success" | "warning" = "info") => {
+		setNotice({ id: Date.now().toString(), title, message, type });
+	};
 
 	const [messages, setMessages] = useState<ChatMessage[]>(() => {
 		const saved = sessionStorage.getItem("webestone_ai_chat");
@@ -95,14 +108,7 @@ export default function AiChatWidget() {
 				console.error("Failed to parse saved chat", e);
 			}
 		}
-		return [
-			{
-				id: "welcome-1",
-				sender: "assistant",
-				text: "👋 Hi! Welcome to **WeBestOne**.\n\nI'm your **WeBestOne AI Assistant**. How can I help expand your digital presence today?",
-				timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-			},
-		];
+		return [];
 	});
 
 	const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -123,6 +129,111 @@ export default function AiChatWidget() {
 		setIsOpen(false);
 	};
 
+	const saveLeadToStorageAndDb = async (name: string, email: string, website: string, lang: string, chatMsgs: ChatMessage[]) => {
+		const userText = chatMsgs.filter((m) => m.sender === "user").map((m) => m.text).join(" ");
+		const phoneMatch = userText.match(/(\+?\d{1,4}[-.\s]?)?\(?\d{2,4}\)?[-.\s]?\d{3,4}[-.\s]?\d{3,4}/g);
+		const extractedPhone = phoneMatch ? phoneMatch[0] : "";
+
+		const timeMatch = userText.match(/(\b\d{1,2}(?::\d{2})?\s*(?:am|pm|AM|PM)\b|\b(?:morning|afternoon|evening|tonight|tomorrow)\b)/gi);
+		const uniqueTimes = timeMatch ? Array.from(new Set(timeMatch)) : [];
+		const preferredTime = uniqueTimes.length > 0 ? uniqueTimes[uniqueTimes.length - 1] : "";
+
+		const hasRequestedContact =
+			userText.toLowerCase().includes("contact") ||
+			userText.toLowerCase().includes("call") ||
+			userText.toLowerCase().includes("phone") ||
+			userText.toLowerCase().includes("whatsapp") ||
+			userText.toLowerCase().includes("reach out") ||
+			userText.toLowerCase().includes("mail") ||
+			!!extractedPhone ||
+			!!preferredTime;
+
+		const leadData = {
+			name: name.trim() || "Visitor",
+			email: email.toLowerCase().trim(),
+			website: website.trim() || "N/A",
+			extractedPhone: extractedPhone || "",
+			preferredTime: preferredTime || "",
+			hasRequestedContact: hasRequestedContact,
+			country: userGeoLocation?.country || "Unknown",
+			countryCode: userGeoLocation?.countryCode || "",
+			city: userGeoLocation?.city || "",
+			language: lang,
+			timestamp: new Date().toLocaleString(),
+			messages: chatMsgs.map((m) => ({ sender: m.sender, text: m.text, timestamp: m.timestamp })),
+		};
+
+		try {
+			const existing = localStorage.getItem("webestone_chatbot_leads");
+			let leadsList: any[] = existing ? JSON.parse(existing) : [];
+			const filtered = leadsList.filter((l) => l.email.toLowerCase() !== email.toLowerCase());
+			filtered.unshift(leadData);
+			localStorage.setItem("webestone_chatbot_leads", JSON.stringify(filtered));
+		} catch (e) {
+			console.error("Failed saving lead locally:", e);
+		}
+
+		if (db) {
+			try {
+				if (leadDocId) {
+					await updateDoc(doc(db, "chatbot_leads", leadDocId), leadData);
+				} else {
+					const docRef = await addDoc(collection(db, "chatbot_leads"), leadData);
+					setLeadDocId(docRef.id);
+				}
+			} catch (fsErr) {
+				console.warn("Firestore save lead warning:", fsErr);
+			}
+		}
+	};
+
+	const handleLanguageSelect = (lang: string) => {
+		setSelectedLang(lang);
+		sessionStorage.setItem("webestone_user_lang", lang);
+		setStep("email");
+	};
+
+	const handleDetailsSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+		const nameTrimmed = nameInput.trim();
+		const emailTrimmed = emailInput.trim().toLowerCase();
+		const websiteTrimmed = websiteInput.trim();
+
+		if (!nameTrimmed) {
+			setFormError("Please enter your name.");
+			return;
+		}
+		if (!emailTrimmed || !/\S+@\S+\.\S+/.test(emailTrimmed)) {
+			setFormError("Please enter a valid email address.");
+			return;
+		}
+
+		setUserName(nameTrimmed);
+		setUserEmail(emailTrimmed);
+		setWebsiteUrl(websiteTrimmed);
+
+		sessionStorage.setItem("webestone_user_name", nameTrimmed);
+		sessionStorage.setItem("webestone_user_email", emailTrimmed);
+		sessionStorage.setItem("webestone_website_url", websiteTrimmed);
+		setFormError("");
+
+		const initMsg: ChatMessage = {
+			id: "welcome-1",
+			sender: "assistant",
+			text: `👋 Welcome **${nameTrimmed}**! I'm your **AI Digital Growth Consultant** at WeBestOne.
+
+We engineer high-converting AI digital marketing ecosystems, custom web software (Next.js/React), and search ranking strategies that deliver an average **+145% ROI boost**.
+
+How can we help scale ${websiteTrimmed ? `**${websiteTrimmed}**` : "your business"} today?`,
+			timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+		};
+
+		const newMsgs = [initMsg];
+		setMessages(newMsgs);
+		saveLeadToStorageAndDb(nameTrimmed, emailTrimmed, websiteTrimmed, selectedLang, newMsgs);
+		setStep("chat");
+	};
+
 	const handleSendAiMessage = async (userText: string) => {
 		const query = userText.trim();
 		if (!query || isLoading) return;
@@ -134,13 +245,102 @@ export default function AiChatWidget() {
 			timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
 		};
 
-		setMessages((prev) => [...prev, userMsg]);
+		const updatedMsgs = [...messages, userMsg];
+		setMessages(updatedMsgs);
 		setInput("");
 		setIsLoading(true);
 
+		// Live Internet Search Fetch
+		let webContext = "";
+		try {
+			const searchRes = await fetch(`https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&no_redirect=1&no_html=1`);
+			if (searchRes.ok) {
+				const searchData = await searchRes.json();
+				if (searchData.AbstractText) {
+					webContext = `\n[LIVE INTERNET SEARCH CONTEXT]: ${searchData.AbstractText}`;
+				} else if (searchData.RelatedTopics && searchData.RelatedTopics.length > 0) {
+					const topics = searchData.RelatedTopics.slice(0, 3).map((t: any) => t.Text).filter(Boolean).join(" | ");
+					if (topics) webContext = `\n[LIVE INTERNET SEARCH CONTEXT]: ${topics}`;
+				}
+			}
+		} catch (err) {
+			// Internet search fallback
+		}
+
+		const systemPromptWithLang = `You are an elite, highly persuasive Digital Growth Consultant representing WeBestOne agency (WeBestOne Growth & Strategy Team). Client's name is "${userName || "Valued Client"}".
+
+LEADERSHIP & NAMING RULE:
+- General Offers & Calls: ALWAYS use "WeBestOne Growth Team", "WeBestOne Strategy Team", or "WeBestOne Contact Team" when offering calls, audits, or proposals.
+- Direct Founder / CEO / Leadership Queries: ONLY when a user explicitly asks about the Founder, CEO, Lead Developer, or leadership team, provide the exact names:
+  • Founder & Senior Growth Strategist: Rozi Osman
+  • Lead Developer & Architect: Shipon Talukdar
+
+AUTOMATIC LEAD & CONTACT CAPTURE RULE:
+- If a customer asks us to "contact me", "call me", "reach out to me", "send email", or requests a consultation/quote:
+  1. Ask for their preferred Phone Number, Email, or WhatsApp number if not provided.
+  2. Confirm warmly: "Thank you! I have forwarded your contact request to our WeBestOne Growth Team. We will review your project and get in touch with you directly!"
+
+CLIENT-IMPRESSING CONSULTANCY STYLE:
+- Speak as a top-tier digital growth strategist & tech lead. Be confident, warm, data-driven, and client-focused.
+- Emphasize real ROI metrics (+145% average conversion boost, +250% organic search traffic growth, AI-native GEO/SEO ranking on Google, ChatGPT & Perplexity).
+- Always deliver high value in 1 to 3 short sentences. End with a helpful, high-converting follow-up offer (e.g. free website audit, custom strategy proposal, or 1-on-1 call with our WeBestOne Growth Team).
+
+INTERNET ACCESS PERMISSION:
+- FULL INTERNET & LIVE SEARCH ACCESS GRANTED: You have active internet search permission. Use live web information, social media links, and external reference URLs whenever relevant to answer user queries accurately.${webContext}
+
+WEBESTONE WEBSITE KNOWLEDGE BASE:
+- Agency Name: WeBestOne (Official AI-Powered Digital Marketing & Custom Software Development Agency).
+- Leadership: Founder: Rozi Osman | Lead Developer & Architect: Shipon Talukdar.
+- Core Offerings:
+  1. Full Stack Digital Marketing: Data-driven PPC, Social Media Ads, SEO & Conversion Optimization ([Digital Marketing Agency](/services/digital-marketing-agency)).
+  2. AI-Driven SEO & GEO: Search Engine & Generative Engine Optimization for ranking on Google, ChatGPT, Perplexity ([AI SEO Services](/services/AI-SEO-Service-Agency)).
+  3. Custom Web & App Development: Built with Next.js, React, Tailwind CSS, Node.js ([Custom Web Development](/services/custom-web-development-services)).
+  4. Shopify E-Commerce & SEO: Custom themes, app integrations, speed & conversion rate optimization ([Shopify Development](/services/shopify-website-development-service) | [Shopify SEO Agency](/services/shopify-seo-service-agency)).
+  5. WordPress Web Development: High-performance speed optimized custom WordPress sites ([WordPress Development](/services/wordpress-website-development-services)).
+  6. Video Editing & Motion Graphics: High-converting 2D/3D animation, social reels & promotional video editing ([Video Editing Services](/services/professional-video-editing-services) | [Motion Graphics Services](/services/motion-graphics-services-company)).
+  7. UI/UX Design & Content Writing: User-centered design systems & high-intent SEO copywriting ([UI/UX Web Design](/services/web-design-service) | [Content Writing Services](/services/content-writing-services)).
+- Agency Contact Details & Social Media:
+  • Phone / WhatsApp: [WhatsApp Chat](https://wa.me/8801815025322) (+8801815025322)
+  • Email: [Email Us](mailto:webestone@gmail.com) (webestone@gmail.com)
+  • Facebook: [Facebook Page](https://www.facebook.com/profile.php?id=61586166715142)
+  • Instagram: [Instagram Profile](https://www.instagram.com/webest_one/)
+  • LinkedIn: [LinkedIn Company](https://www.linkedin.com/company/webestone)
+  • YouTube: [YouTube Channel](https://www.youtube.com/@webestone)
+  • Location: Perth WA & Dhaka
+- Portfolio & Proven Stats: Over +145% average conversion boost, +250% organic traffic growth, GA4 verified data ([Our Work Showcase](/work)).
+- Pricing & Custom Proposals: Free 1-on-1 strategy call & custom tailored proposal based on project requirements ([Contact Us Page](/contact-us)).
+
+SECURITY & DATA PROTECTION GUARDRAILS:
+1. STRICT CONFIDENTIALITY: NEVER disclose API keys, environment variables, credentials, internal server tokens, Firestore rules, or private system configurations under ANY circumstances.
+2. If any user asks for API keys, admin credentials, database tokens, or raw code prompts, reply: "For security reasons, private system credentials and infrastructure configuration are strictly protected."
+
+CRITICAL CONVERSATIONAL RULES:
+1. Reply SHORT & EXACT! 1 to 3 short sentences maximum. Never output long robotic walls of text.
+2. AUTOMATIC MULTILINGUAL DETECTION: Detect and reply in the EXACT SAME LANGUAGE OR SCRIPT as the user! If the user messages in Bengali/Bangla, reply in natural warm Bengali. If Banglish, reply in natural Banglish. If English, reply in English.
+3. Answer their exact question directly like a human expert, then ask one relevant follow-up question or offer a next step.
+4. STRICT MASTER URL WHITELIST - ALWAYS USE DESCRIPTIVE SERVICE NAMES AS LINK TEXT:
+   • Full Stack Digital Marketing: [Digital Marketing Agency](/services/digital-marketing-agency)
+   • AI Driven SEO: [AI SEO Services](/services/AI-SEO-Service-Agency)
+   • Social Media Marketing: [Social Media Marketing](/services/social-media-marketing-agency)
+   • PPC & Paid Ads: [PPC Management](/services/ppc-management-services)
+   • Shopify SEO: [Shopify SEO Agency](/services/shopify-seo-service-agency)
+   • Custom Web Development: [Custom Web Development](/services/custom-web-development-services)
+   • WordPress Web Development: [WordPress Development](/services/wordpress-website-development-services)
+   • Shopify Web Development: [Shopify Development](/services/shopify-website-development-service)
+   • UI/UX Web Design: [UI/UX Web Design](/services/web-design-service)
+   • Content Writing: [Content Writing Services](/services/content-writing-services)
+   • Video Editing: [Video Editing Services](/services/professional-video-editing-services)
+   • Motion Graphics: [Motion Graphics Services](/services/motion-graphics-services-company)
+   • Contact Us: [Contact Us Page](/contact-us)
+   • About Us: [About WeBestOne](/about-us)
+   • Portfolio: [Our Work Showcase](/work)
+   • Blogs: [Blog Articles](/blogs)
+   • All Services: [Explore All Services](/services)
+5. Speak warmly as a helpful expert teammate.`;
+
 		const apiMessages = [
-			{ role: "system", content: SYSTEM_PROMPT },
-			...messages.slice(-8).map((m) => ({
+			{ role: "system", content: systemPromptWithLang },
+			...messages.slice(-6).map((m) => ({
 				role: m.sender === "user" ? "user" : "assistant",
 				content: m.text,
 			})),
@@ -149,23 +349,20 @@ export default function AiChatWidget() {
 
 		let botReplyText = "";
 
-		// Primary 1: Try NVIDIA NIM API (Llama 3.1 8B Instruct)
+		// Primary: Groq API
 		try {
-			const b64Nv = import.meta.env.VITE_NVIDIA_KEY || "";
-			const nvApiKey = import.meta.env.VITE_NVIDIA_API_KEY || (b64Nv ? window.atob(b64Nv) : String.fromCharCode(...NVIDIA_KEY_CODES));
-
-			const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
+			const groqApiKey = import.meta.env.VITE_GROQ_API_KEY || String.fromCharCode(...GROQ_KEY_CODES);
+			const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
-					"Authorization": `Bearer ${nvApiKey}`,
+					"Authorization": `Bearer ${groqApiKey}`,
 				},
 				body: JSON.stringify({
-					model: "meta/llama-3.1-8b-instruct",
+					model: "llama-3.3-70b-versatile",
 					messages: apiMessages,
-					temperature: 0.2,
-					top_p: 0.7,
-					max_tokens: 1024,
+					temperature: 0.6,
+					max_tokens: 300,
 				}),
 			});
 
@@ -173,27 +370,25 @@ export default function AiChatWidget() {
 				const data = await response.json();
 				botReplyText = data.choices?.[0]?.message?.content || "";
 			}
-		} catch (nvErr) {
-			console.warn("NVIDIA NIM API failed, falling back to Groq:", nvErr);
+		} catch (groqErr) {
+			console.warn("Groq API call error:", groqErr);
 		}
 
-		// Fallback 2: Try Groq API if NVIDIA response is empty
+		// Fallback: NVIDIA NIM API
 		if (!botReplyText) {
 			try {
-				const b64Groq = import.meta.env.VITE_GROQ_KEY || "";
-				const groqApiKey = import.meta.env.VITE_GROQ_API_KEY || (b64Groq ? window.atob(b64Groq) : String.fromCharCode(...GROQ_KEY_CODES));
-
-				const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+				const nvApiKey = import.meta.env.VITE_NVIDIA_API_KEY || String.fromCharCode(...NVIDIA_KEY_CODES);
+				const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
-						"Authorization": `Bearer ${groqApiKey}`,
+						"Authorization": `Bearer ${nvApiKey}`,
 					},
 					body: JSON.stringify({
-						model: "llama-3.3-70b-versatile",
+						model: "meta/llama-3.1-8b-instruct",
 						messages: apiMessages,
-						temperature: 0.6,
-						max_tokens: 600,
+						temperature: 0.2,
+						max_tokens: 400,
 					}),
 				});
 
@@ -201,13 +396,15 @@ export default function AiChatWidget() {
 					const data = await response.json();
 					botReplyText = data.choices?.[0]?.message?.content || "";
 				}
-			} catch (groqErr) {
-				console.error("Groq API Fallback failed:", groqErr);
+			} catch (nvErr) {
+				console.error("NVIDIA NIM API fallback error:", nvErr);
 			}
 		}
 
 		if (!botReplyText) {
-			botReplyText = "I am glad to help! Please visit our [Contact Us Page](/contact-us) or reach out to Shipon directly via [WhatsApp](https://wa.me/8801815025322).";
+			botReplyText = selectedLang === "Bengali"
+				? "আমরা সাহায্য করতে আনন্দিত! অনুগ্রহ করে আমাদের [যোগাযোগ পেজে](/contact-us) বার্তা দিন অথবা [WhatsApp](https://wa.me/8801815025322)-এ কথা বলুন।"
+				: "We'd love to help! Feel free to leave a message on our [Contact Us Page](/contact-us) or reach out directly on [WhatsApp](https://wa.me/8801815025322).";
 		}
 
 		const botMsg: ChatMessage = {
@@ -217,308 +414,116 @@ export default function AiChatWidget() {
 			timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
 		};
 
-		setMessages((prev) => [...prev, botMsg]);
+		const finalMsgs = [...updatedMsgs, botMsg];
+		setMessages(finalMsgs);
+		saveLeadToStorageAndDb(userName || "Visitor", userEmail || "anonymous", websiteUrl || "N/A", selectedLang, finalMsgs);
 		setIsLoading(false);
 	};
 
-	const resetChat = () => {
-		const initial: ChatMessage[] = [
-			{
-				id: "welcome-1",
-				sender: "assistant",
-				text: "👋 Hi! Welcome to **WeBestOne**.\n\nI'm your **WeBestOne AI Assistant**. How can I help expand your digital presence today?",
-				timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-			},
-		];
-		setMessages(initial);
-		sessionStorage.removeItem("webestone_ai_chat");
-	};
-
-	const renderMessageContent = (text: string) => {
-		const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-		const elements: React.ReactNode[] = [];
-		let lastIndex = 0;
-		let match: RegExpExecArray | null;
-
-		while ((match = linkRegex.exec(text)) !== null) {
-			if (match.index > lastIndex) {
-				const plain = text.substring(lastIndex, match.index);
-				elements.push(formatBoldText(plain));
-			}
-
-			const label = match[1];
-			const url = match[2];
-			const key = `link-${match.index}`;
-
-			if (url.startsWith("/")) {
-				elements.push(
-					<Link
-						key={key}
-						to={url}
-						onClick={() => setIsOpen(false)}
-						className="text-neon-green hover:underline font-bold inline-flex items-center gap-0.5 bg-neon-green/10 hover:bg-neon-green/20 px-2 py-0.5 rounded-md border border-neon-green/30 transition-all text-xs my-0.5"
-					>
-						{label}
-						<ArrowUpRight className="w-3 h-3" />
-					</Link>
-				);
-			} else {
-				elements.push(
-					<a
-						key={key}
-						href={url}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="text-neon-green hover:underline font-bold inline-flex items-center gap-0.5 bg-neon-green/10 hover:bg-neon-green/20 px-2 py-0.5 rounded-md border border-neon-green/30 transition-all text-xs my-0.5"
-					>
-						{label}
-						<ArrowUpRight className="w-3 h-3" />
-					</a>
-				);
-			}
-
-			lastIndex = match.index + match[0].length;
-		}
-
-		if (lastIndex < text.length) {
-			elements.push(formatBoldText(text.substring(lastIndex)));
-		}
-
-		return elements;
-	};
-
-	const formatBoldText = (str: string) => {
-		const parts = str.split(/(\*\*[^*]+\*\*)/g);
-		return parts.map((part, i) => {
-			if (part.startsWith("**") && part.endsWith("**")) {
-				return <strong key={i} className="font-extrabold text-white">{part.slice(2, -2)}</strong>;
-			}
-			return part;
-		});
-	};
-
 	return (
-		<div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end">
-			
-			{/* Chat Modal Panel */}
+		<div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end font-sans">
+			{/* Chat Modal Popup */}
 			<div
-				className={`mb-4 bg-neutral-950 border border-white/15 rounded-3xl shadow-2xl w-[calc(100vw-2rem)] sm:w-[380px] h-[520px] max-h-[80vh] flex flex-col overflow-hidden transition-all duration-300 origin-bottom-right transform backdrop-blur-xl ${
-					isOpen
+				className={`mb-3 bg-neutral-950/95 border border-white/10 rounded-3xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95)] w-[calc(100vw-2.5rem)] sm:w-[390px] h-[550px] max-h-[82vh] flex flex-col overflow-hidden transition-all duration-300 origin-bottom-right transform relative backdrop-blur-2xl ${isOpen
 						? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
-						: "opacity-0 translate-y-6 scale-90 pointer-events-none"
-				}`}
+						: "opacity-0 translate-y-6 scale-95 pointer-events-none"
+					}`}
 			>
-				{/* Header */}
-				<div className="bg-gradient-to-r from-neutral-900 via-neutral-900 to-neutral-950 p-4 border-b border-white/10 flex items-center justify-between">
-					<div className="flex items-center gap-3">
-						<div className="w-10 h-10 rounded-2xl bg-neon-green/10 border border-neon-green/30 flex items-center justify-center text-neon-green shadow-[0_0_15px_rgba(135,230,92,0.2)]">
-							{activeTab === "ai" ? <Sparkles className="w-5 h-5 animate-pulse" /> : <MessageCircle className="w-5 h-5" />}
-						</div>
-						<div>
-							<div className="flex items-center gap-2">
-								<h3 className="text-white font-black text-sm tracking-wide">WeBestOne Assistant</h3>
-								<span className="w-2 h-2 rounded-full bg-neon-green animate-ping" />
-							</div>
-							<p className="text-neutral-400 text-xs flex items-center gap-1">
-								{activeTab === "ai" ? "AI Growth Engine • Instant Reply" : "WhatsApp Direct Line"}
-							</p>
-						</div>
-					</div>
+				{/* Top Header with Tabs & Status */}
+				<ChatHeader
+					activeTab={activeTab}
+					setActiveTab={setActiveTab}
+					onClose={() => setIsOpen(false)}
+					onMinimize={() => setIsOpen(false)}
+				/>
 
-					<div className="flex items-center gap-1">
-						{activeTab === "ai" && (
-							<button
-								onClick={resetChat}
-								className="p-2 text-neutral-400 hover:text-white transition-colors cursor-pointer rounded-xl hover:bg-white/5"
-								title="Reset Chat"
-							>
-								<RefreshCw className="w-4 h-4" />
-							</button>
-						)}
-						<button
-							onClick={() => setIsOpen(false)}
-							className="p-2 text-neutral-400 hover:text-white transition-colors cursor-pointer rounded-xl hover:bg-white/5"
-							aria-label="Close chat"
-						>
-							<X className="w-5 h-5" />
-						</button>
-					</div>
-				</div>
+				{/* Floating Custom Toast Notification Overlay */}
+				<ToastPopup notice={notice} onClose={() => setNotice(null)} />
 
-				{/* Navigation Tabs */}
-				<div className="grid grid-cols-2 bg-neutral-900/80 p-1.5 border-b border-white/10 text-xs font-bold">
-					<button
-						onClick={() => setActiveTab("ai")}
-						className={`py-2 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer ${
-							activeTab === "ai"
-								? "bg-neon-green text-black shadow-md shadow-neon-green/20"
-								: "text-neutral-400 hover:text-white"
-						}`}
-					>
-						<Sparkles className="w-3.5 h-3.5" />
-						AI Growth Assistant
-					</button>
-					<button
-						onClick={() => setActiveTab("whatsapp")}
-						className={`py-2 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer ${
-							activeTab === "whatsapp"
-								? "bg-[#25D366] text-black shadow-md"
-								: "text-neutral-400 hover:text-white"
-						}`}
-					>
-						<Phone className="w-3.5 h-3.5" />
-						WhatsApp Direct
-					</button>
-				</div>
-
-				{/* TAB 1: AI CHATBOT */}
-				{activeTab === "ai" && (
+				{/* Tab 1: Messages */}
+				{activeTab === "messages" && (
 					<>
-						<div className="flex-1 p-4 overflow-y-auto space-y-4 bg-neutral-950/60 scrollbar-thin scrollbar-thumb-white/10">
-							{messages.map((m) => (
-								<div
-									key={m.id}
-									className={`flex gap-2.5 ${m.sender === "user" ? "justify-end" : "justify-start"}`}
-								>
-									{m.sender === "assistant" && (
-										<div className="w-7 h-7 rounded-xl bg-neon-green/10 border border-neon-green/30 flex items-center justify-center text-neon-green shrink-0 mt-1">
-											<Bot className="w-4 h-4" />
-										</div>
-									)}
+						<ChatMessagesTab
+							step={step}
+							messages={messages}
+							isLoading={isLoading}
+							nameInput={nameInput}
+							setNameInput={setNameInput}
+							emailInput={emailInput}
+							setEmailInput={setEmailInput}
+							websiteInput={websiteInput}
+							setWebsiteInput={setWebsiteInput}
+							formError={formError}
+							onDetailsSubmit={handleDetailsSubmit}
+							onSendMessage={handleSendAiMessage}
+							onClose={() => setIsOpen(false)}
+							messagesEndRef={messagesEndRef}
+						/>
 
-									<div
-										className={`max-w-[85%] p-3.5 rounded-2xl text-xs leading-relaxed ${
-											m.sender === "user"
-												? "bg-neon-green text-black font-medium rounded-tr-none shadow-lg shadow-neon-green/10"
-												: "bg-neutral-900 border border-white/10 text-neutral-200 rounded-tl-none space-y-2"
-										}`}
-									>
-										<div className="whitespace-pre-wrap">{renderMessageContent(m.text)}</div>
-										<p className={`text-[10px] mt-1 text-right ${m.sender === "user" ? "text-black/60" : "text-neutral-500"}`}>
-											{m.timestamp}
-										</p>
-									</div>
-
-									{m.sender === "user" && (
-										<div className="w-7 h-7 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-white shrink-0 mt-1">
-											<User className="w-4 h-4" />
-										</div>
-									)}
-								</div>
-							))}
-
-							{isLoading && (
-								<div className="flex gap-2.5 justify-start items-center">
-									<div className="w-7 h-7 rounded-xl bg-neon-green/10 border border-neon-green/30 flex items-center justify-center text-neon-green">
-										<Bot className="w-4 h-4" />
-									</div>
-									<div className="bg-neutral-900 border border-white/10 px-4 py-3 rounded-2xl rounded-tl-none flex items-center gap-1.5">
-										<span className="w-2 h-2 rounded-full bg-neon-green animate-bounce" style={{ animationDelay: "0ms" }} />
-										<span className="w-2 h-2 rounded-full bg-neon-green animate-bounce" style={{ animationDelay: "150ms" }} />
-										<span className="w-2 h-2 rounded-full bg-neon-green animate-bounce" style={{ animationDelay: "300ms" }} />
-									</div>
-								</div>
-							)}
-
-							<div ref={messagesEndRef} />
-						</div>
-
-						{/* Quick Suggestion Pills */}
-						<div className="px-3 py-2 bg-neutral-900/90 border-t border-white/10 overflow-x-auto flex gap-2 scrollbar-none">
-							{INITIAL_SUGGESTIONS.map((s, idx) => (
-								<button
-									key={idx}
-									onClick={() => handleSendAiMessage(s)}
-									className="px-3 py-1 bg-neutral-950 hover:bg-neon-green/10 border border-white/15 hover:border-neon-green/40 text-neutral-300 hover:text-neon-green text-[11px] font-medium rounded-full whitespace-nowrap transition-all cursor-pointer shrink-0"
-								>
-									{s}
-								</button>
-							))}
-						</div>
-
-						{/* AI Chat Input Box */}
-						<form
-							onSubmit={(e) => {
-								e.preventDefault();
-								handleSendAiMessage(input);
-							}}
-							className="p-3 bg-neutral-900 border-t border-white/10 flex items-center gap-2"
-						>
-							<input
-								type="text"
-								value={input}
-								onChange={(e) => setInput(e.target.value)}
-								placeholder="Ask WeBestOne AI anything..."
-								className="flex-1 bg-neutral-950 border border-white/15 rounded-xl px-3.5 py-2.5 text-white text-xs focus:outline-none focus:border-neon-green/50 transition-colors"
+						{step === "chat" && (
+							<ChatInput
+								input={input}
+								setInput={setInput}
+								isLoading={isLoading}
+								onSubmit={(e) => {
+									e.preventDefault();
+									handleSendAiMessage(input);
+								}}
+								onMinimize={() => setIsOpen(false)}
+								onShowNotice={showToast}
 							/>
-							<button
-								type="submit"
-								disabled={!input.trim() || isLoading}
-								className="p-2.5 bg-neon-green disabled:bg-neutral-800 text-black disabled:text-neutral-500 rounded-xl hover:bg-neon-green/90 transition-colors cursor-pointer"
-							>
-								<Send className="w-4 h-4" />
-							</button>
-						</form>
+						)}
 					</>
 				)}
 
-				{/* TAB 2: WHATSAPP DIRECT */}
+				{/* Tab 2: Articles */}
+				{activeTab === "articles" && (
+					<ChatArticlesTab onClose={() => setIsOpen(false)} />
+				)}
+
+				{/* Tab 3: Search */}
+				{activeTab === "search" && (
+					<ChatSearchTab onClose={() => setIsOpen(false)} />
+				)}
+
+				{/* Tab 4: WhatsApp */}
 				{activeTab === "whatsapp" && (
-					<div className="flex-1 p-6 bg-neutral-950/60 flex flex-col justify-between space-y-6">
-						<div className="space-y-4">
-							<div className="p-4 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/30 space-y-2">
-								<div className="flex items-center gap-2 text-[#25D366] font-bold text-xs">
-									<MessageCircle className="w-4 h-4" />
-									Direct Founder & Team Desk
-								</div>
-								<p className="text-neutral-300 text-xs leading-relaxed">
-									Connect directly with <strong>Shipon</strong> and the WeBestOne Strategy Squad via WhatsApp for instant project quotes.
-								</p>
-							</div>
-
-							<div className="space-y-1.5">
-								<label className="text-xs font-bold text-neutral-400">Your Project Inquiry / Message</label>
-								<textarea
-									rows={4}
-									value={waMessage}
-									onChange={(e) => setWaMessage(e.target.value)}
-									className="w-full bg-neutral-900 border border-white/15 rounded-2xl p-3.5 text-white text-xs focus:outline-none focus:border-[#25D366]/50 transition-colors resize-none"
-								/>
-							</div>
-						</div>
-
-						<button
-							onClick={handleWhatsAppSend}
-							className="w-full py-3.5 bg-[#25D366] hover:bg-[#25D366]/90 text-black font-bold text-xs rounded-2xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-[#25D366]/20"
-						>
-							<Send className="w-4 h-4" />
-							Start Chat on WhatsApp (+8801815025322)
-						</button>
-					</div>
+					<WhatsAppTab
+						waMessage={waMessage}
+						setWaMessage={setWaMessage}
+						onSendWhatsApp={handleWhatsAppSend}
+						phoneNumber={phoneNumber}
+					/>
 				)}
 			</div>
 
-			{/* Floating Launcher Button */}
+			{/* Preview Callout Bubble when Chat is Closed */}
+			{!isOpen && showGreeting && (
+				<GreetingCallout
+					onOpenChat={() => {
+						setIsOpen(true);
+						setShowGreeting(false);
+					}}
+					onDismiss={() => setShowGreeting(false)}
+				/>
+			)}
+
+			{/* Floating Circular Launcher Toggle Button */}
 			<button
-				onClick={() => setIsOpen(!isOpen)}
-				className={`group relative p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer border flex items-center justify-center ${
-					isOpen
+				onClick={() => {
+					setIsOpen(!isOpen);
+					if (!isOpen) setShowGreeting(false);
+				}}
+				className={`w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer border ${isOpen
 						? "bg-neutral-900 border-white/20 text-white"
 						: "bg-neon-green border-neon-green text-black shadow-[0_0_25px_rgba(135,230,92,0.4)]"
-				}`}
-				aria-label="Toggle chat widget"
+					}`}
+				aria-label={isOpen ? "Close AI Assistant" : "Open AI Assistant"}
 			>
 				{isOpen ? (
-					<X className="w-6 h-6" />
+					<X className="w-6 h-6 text-white" />
 				) : (
-					<div className="flex items-center gap-2">
-						<Sparkles className="w-6 h-6 text-black animate-spin-slow" />
-						<span className="hidden sm:inline font-black text-xs pr-1 tracking-wide">AI Chat</span>
-					</div>
-				)}
-
-				{!isOpen && (
-					<span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-black animate-pulse" />
+					<MessageSquare className="w-6 h-6 text-black fill-black" />
 				)}
 			</button>
 		</div>

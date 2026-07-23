@@ -241,8 +241,11 @@ const seo = {
 	}
 };
 
+import { useModal } from "../../context/ModalContext";
+
 export default function DashboardPage() {
 	const { services, faq, testimonials, blogs, teamMembers, portfolio: contentPortfolio, contact, socials, updateDocument, addDocument } = useContent();
+	const { showConfirm, showAlert } = useModal();
 	const [migrating, setMigrating] = useState(false);
 	const [migrated, setMigrated] = useState(false);
 
@@ -255,128 +258,78 @@ export default function DashboardPage() {
 		{ label: "Blog Posts", value: blogs.length, icon: FileText, color: "bg-green-500/10 text-green-400 border-green-500/20" },
 	];
 
-	const handleMigrate = async () => {
-		if (!confirm("Are you sure you want to seed the database with all default website data? This will overwrite or initialize the data in your Firestore project.")) return;
-		setMigrating(true);
-		try {
-			console.log("Seeding 'content' collection...");
-			await updateDocument("content", "hero", defaultHero);
-			await updateDocument("content", "contact", defaultContact);
-			await updateDocument("content", "socials", socialsData as any);
-			await updateDocument("content", "video", videoData as any);
-			await updateDocument("content", "site", siteData as any);
-			await updateDocument("content", "header", defaultHeader);
-			await updateDocument("content", "footer", defaultFooter);
+	const handleMigrate = () => {
+		showConfirm({
+			title: "Seed / Migrate Database?",
+			message: "Are you sure you want to seed the database with all default website data? This will overwrite or initialize your Firestore collection data.",
+			confirmText: "Seed Database",
+			type: "warning",
+			onConfirm: async () => {
+				setMigrating(true);
+				try {
+					console.log("Seeding 'content' collection...");
+					await updateDocument("content", "hero", defaultHero);
+					await updateDocument("content", "contact", defaultContact);
+					await updateDocument("content", "socials", socialsData as any);
+					await updateDocument("content", "video", videoData as any);
+					await updateDocument("content", "site", siteData as any);
+					await updateDocument("content", "header", defaultHeader);
+					await updateDocument("content", "footer", defaultFooter);
 
-			console.log("Seeding 'services' collection...");
-			for (const service of servicesData) {
-				await addDocument("services", service.id, service as any);
-			}
+					console.log("Seeding 'services' collection...");
+					for (const service of servicesData) {
+						await addDocument("services", service.id, service as any);
+					}
 
-			console.log("Seeding 'faq' collection...");
-			for (const faqItem of faqs) {
-				await addDocument("faq", faqItem.id, faqItem as any);
-			}
+					console.log("Seeding 'faq' collection...");
+					for (const faqItem of faqs) {
+						await addDocument("faq", faqItem.id, faqItem as any);
+					}
 
-			console.log("Seeding 'testimonials' collection...");
-			for (const testimonialItem of testimonials) {
-				await addDocument("testimonials", testimonialItem.id, testimonialItem as any);
-			}
+					console.log("Seeding 'testimonials' collection...");
+					for (const testimonialItem of testimonials) {
+						await addDocument("testimonials", testimonialItem.id, testimonialItem as any);
+					}
 
-			console.log("Seeding 'portfolio' collection...");
-			for (const portItem of portfolio) {
-				await addDocument("portfolio", portItem.id, portItem as any);
-			}
+					console.log("Seeding 'portfolio' collection...");
+					for (const portItem of portfolio) {
+						await addDocument("portfolio", portItem.id, portItem as any);
+					}
 
-			console.log("Seeding 'blogs' collection...");
-			for (const post of blogPosts) {
-				await addDocument("blogs", post.id, post as any);
-			}
+					console.log("Seeding 'blogs' collection...");
+					for (const post of blogPosts) {
+						await addDocument("blogs", post.id, post as any);
+					}
+					console.log("Seeding 'team' collection...");
+					const teamMembersSeed = [
+						{ id: "team1", name: "Rozi Osman", role: "Senior Growth Strategist", profile: "", portfolio: "https://webestone.com", contact: "mailto:contact@webestone.com", order: 1 },
+						{ id: "team2", name: "Shipon Talukdar", role: "Lead Developer & Architect", profile: "", portfolio: "https://webestone.com", contact: "mailto:contact@webestone.com", order: 2 },
+						{ id: "team3", name: "Sabikun Nahar Ishita", role: "Creative UI/UX Designer", profile: "", portfolio: "https://webestone.com", contact: "mailto:contact@webestone.com", order: 3 },
+						{ id: "team4", name: "Mahmud Shohan", role: "Performance Marketing Specialist", profile: "", portfolio: "https://webestone.com", contact: "mailto:contact@webestone.com", order: 4 },
+						{ id: "team5", name: "Sarah Mubasshera", role: "AI Operations Specialist", profile: "", portfolio: "https://webestone.com", contact: "mailto:contact@webestone.com", order: 5 },
+						{ id: "team6", name: "Sadia Surove", role: "Content & Copy Lead", profile: "", portfolio: "https://webestone.com", contact: "mailto:contact@webestone.com", order: 6 },
+						{ id: "team7", name: "Adiba Ahmed", role: "Digital Strategist", profile: "", portfolio: "https://webestone.com", contact: "mailto:contact@webestone.com", order: 7 },
+					];
+					for (const member of teamMembersSeed) {
+						await addDocument("team", member.id, member as any);
+					}
 
-			console.log("Seeding 'team' collection...");
-			const teamMembersSeed = [
-				{
-					id: "team1",
-					name: "Rozi Osman",
-					role: "Senior Growth Strategist",
-					profile: "",
-					portfolio: "https://webestone.com",
-					contact: "mailto:contact@webestone.com",
-					order: 1,
-				},
-				{
-					id: "team2",
-					name: "Shipon Talukdar",
-					role: "Lead Developer & Architect",
-					profile: "",
-					portfolio: "https://webestone.com",
-					contact: "mailto:contact@webestone.com",
-					order: 2,
-				},
-				{
-					id: "team3",
-					name: "Sabikun Nahar Ishita",
-					role: "Creative UI/UX Designer",
-					profile: "",
-					portfolio: "https://webestone.com",
-					contact: "mailto:contact@webestone.com",
-					order: 3,
-				},
-				{
-					id: "team4",
-					name: "Mahmud Shohan",
-					role: "Performance Marketing Specialist",
-					profile: "",
-					portfolio: "https://webestone.com",
-					contact: "mailto:contact@webestone.com",
-					order: 4,
-				},
-				{
-					id: "team5",
-					name: "Sarah Mubasshera",
-					role: "AI Operations Specialist",
-					profile: "",
-					portfolio: "https://webestone.com",
-					contact: "mailto:contact@webestone.com",
-					order: 5,
-				},
-				{
-					id: "team6",
-					name: "Sadia Surove",
-					role: "Content & Copy Lead",
-					profile: "",
-					portfolio: "https://webestone.com",
-					contact: "mailto:contact@webestone.com",
-					order: 6,
-				},
-				{
-					id: "team7",
-					name: "Adiba Ahmed",
-					role: "Digital Strategist",
-					profile: "",
-					portfolio: "https://webestone.com",
-					contact: "mailto:contact@webestone.com",
-					order: 7,
-				},
-			];
-			for (const member of teamMembersSeed) {
-				await addDocument("team", member.id, member as any);
-			}
+					console.log("Seeding 'seo' collection...");
+					for (const [key, value] of Object.entries(seo)) {
+						await updateDocument("seo", key, value as any);
+					}
 
-			console.log("Seeding 'seo' collection...");
-			for (const [key, value] of Object.entries(seo)) {
-				await updateDocument("seo", key, value as any);
-			}
-
-			setMigrated(true);
-			setTimeout(() => setMigrated(false), 5000);
-			alert("Database migration and seeding completed successfully! All default data is now live on your Firestore project.");
-		} catch (err) {
-			console.error("Migration failed:", err);
-			alert("Migration failed. Please check the browser console for details.");
-		} finally {
-			setMigrating(false);
-		}
+					setMigrated(true);
+					setTimeout(() => setMigrated(false), 5000);
+					showAlert({ title: "Success", message: "Database migration and seeding completed successfully!", type: "success" });
+				} catch (err) {
+					console.error("Migration failed:", err);
+					showAlert({ title: "Error", message: "Migration failed. Please check browser console.", type: "warning" });
+				} finally {
+					setMigrating(false);
+				}
+			},
+		});
 	};
 
 	return (

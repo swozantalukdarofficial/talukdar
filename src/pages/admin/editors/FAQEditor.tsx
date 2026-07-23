@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { useContent, type FAQItem } from "../../../context/ContentContext";
 import { Save, Check, Plus, Trash2, Pencil, X, ChevronDown, ChevronUp } from "lucide-react";
 
+import { useModal } from "../../../context/ModalContext";
+
 export default function FAQEditor() {
 	const { faq, addDocument, removeDocument } = useContent();
+	const { showConfirm } = useModal();
 	const [items, setItems] = useState<FAQItem[]>(faq);
 	const [editingId, setEditingId] = useState<string | null>(null);
 	const [saving, setSaving] = useState(false);
@@ -29,14 +32,21 @@ export default function FAQEditor() {
 		}
 	};
 
-	const handleDelete = async (id: string) => {
-		if (!confirm("Delete this FAQ?")) return;
-		try {
-			await removeDocument("faq", id);
-			setItems(items.filter((i) => i.id !== id));
-		} catch (err) {
-			console.error("Delete failed:", err);
-		}
+	const handleDelete = (id: string) => {
+		showConfirm({
+			title: "Delete FAQ?",
+			message: "Are you sure you want to delete this FAQ entry?",
+			confirmText: "Delete",
+			type: "danger",
+			onConfirm: async () => {
+				try {
+					await removeDocument("faq", id);
+					setItems((prev) => prev.filter((i) => i.id !== id));
+				} catch (err) {
+					console.error("Delete failed:", err);
+				}
+			},
+		});
 	};
 
 	const handleAdd = () => {

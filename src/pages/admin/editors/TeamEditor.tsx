@@ -3,8 +3,11 @@ import { useContent, type TeamMember } from "../../../context/ContentContext";
 import { Save, Check, Plus, Trash2, Pencil, X, Users, User } from "lucide-react";
 import CloudinaryUploadButton from "../../../components/admin/CloudinaryUploadButton";
 
+import { useModal } from "../../../context/ModalContext";
+
 export default function TeamEditor() {
 	const { teamMembers, addDocument, removeDocument } = useContent();
+	const { showConfirm, showAlert } = useModal();
 	const [items, setItems] = useState<TeamMember[]>(teamMembers);
 	const [editingId, setEditingId] = useState<string | null>(null);
 	const [saving, setSaving] = useState(false);
@@ -25,20 +28,27 @@ export default function TeamEditor() {
 			setTimeout(() => setSaved(false), 2000);
 		} catch (err) {
 			console.error("Save failed:", err);
-			alert("Failed to save team members. Please check console.");
+			showAlert({ title: "Error", message: "Failed to save team members.", type: "warning" });
 		} finally {
 			setSaving(false);
 		}
 	};
 
-	const handleDelete = async (id: string) => {
-		if (!confirm("Delete this team member?")) return;
-		try {
-			await removeDocument("team", id);
-			setItems(items.filter((i) => i.id !== id));
-		} catch (err) {
-			console.error("Delete failed:", err);
-		}
+	const handleDelete = (id: string) => {
+		showConfirm({
+			title: "Delete Team Member?",
+			message: "Are you sure you want to remove this team member?",
+			confirmText: "Delete",
+			type: "danger",
+			onConfirm: async () => {
+				try {
+					await removeDocument("team", id);
+					setItems((prev) => prev.filter((i) => i.id !== id));
+				} catch (err) {
+					console.error("Delete failed:", err);
+				}
+			},
+		});
 	};
 
 	const handleAdd = () => {
@@ -110,20 +120,22 @@ export default function TeamEditor() {
 									<p className="text-neon-green text-xs font-semibold mt-0.5">{item.role || "No designation"}</p>
 								</div>
 							</div>
-							<div className="flex items-center gap-1">
+							<div className="flex items-center gap-1.5 shrink-0">
 								<button
 									onClick={() => setEditingId(editingId === item.id ? null : item.id)}
-									className="p-2 text-neutral-400 hover:text-white rounded-lg transition-all"
+									className="px-2.5 py-1.5 bg-white/10 hover:bg-white/20 border border-white/15 text-white hover:text-neon-green rounded-xl transition-all text-xs font-semibold flex items-center gap-1 cursor-pointer"
 									title="Edit Member"
 								>
-									{editingId === item.id ? <X className="w-4 h-4" /> : <Pencil className="w-4 h-4" />}
+									{editingId === item.id ? <X className="w-3.5 h-3.5" /> : <Pencil className="w-3.5 h-3.5" />}
+									<span>{editingId === item.id ? "Close" : "Edit"}</span>
 								</button>
 								<button
 									onClick={() => handleDelete(item.id)}
-									className="p-2 text-neutral-400 hover:text-red-400 rounded-lg transition-all"
+									className="px-2.5 py-1.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 hover:text-red-300 rounded-xl transition-all text-xs font-semibold flex items-center gap-1 cursor-pointer"
 									title="Delete Member"
 								>
-									<Trash2 className="w-4 h-4" />
+									<Trash2 className="w-3.5 h-3.5" />
+									<span>Delete</span>
 								</button>
 							</div>
 						</div>
