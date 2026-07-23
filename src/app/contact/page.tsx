@@ -4,8 +4,8 @@ import { MapPin, Phone, Mail, Clock, ShieldAlert } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Us | EVStore Bangladesh - Customer Service & Technical Support",
-  description: "Get in touch with EVStore Bangladesh. Reach out to our technical support team for lithium batteries, e-bike conversions, and solar installation queries. Visit our Dhaka head office.",
+  title: "Contact Us | EV Solution BD - Customer Service & Technical Support",
+  description: "Get in touch with EV Solution BD. Reach out to our technical support team for lithium batteries, e-bike conversions, and solar installation queries. Visit our Dhaka head office.",
   alternates: {
     canonical: `${SITE_URL}/contact`,
   },
@@ -149,7 +149,7 @@ export default async function ContactPage() {
               allowFullScreen={true}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="EVStore BD Office Map"
+              title="EV Solution BD Office Map"
               id="google-maps-iframe"
             ></iframe>
           </div>

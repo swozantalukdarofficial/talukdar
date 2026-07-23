@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { SITE_URL } from "@/config/seo";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | EVStore Bangladesh",
-  description: "Read the official Terms of Service and Conditions of EVStore Bangladesh, covering product usage regulations, warranty claims, and shipping policies.",
+  title: "Terms & Conditions | EV Solution BD",
+  description: "Read the official Terms of Service and Conditions of EV Solution BD, covering product usage regulations, warranty claims, and shipping policies.",
   alternates: {
     canonical: `${SITE_URL}/terms-conditions`,
   },
@@ -35,7 +35,7 @@ export default function TermsConditionsPage() {
               1. Store Agreement & Account Use
             </h2>
             <p>
-              By accessing evstorebd.com, you certify that you are at least 18 years of age or are browsing under the supervision of a parent or legal guardian. You agree to provide true, accurate, and current information when creating an account or placing orders.
+              By accessing evsolutionbd.com, you certify that you are at least 18 years of age or are browsing under the supervision of a parent or legal guardian. You agree to provide true, accurate, and current information when creating an account or placing orders.
             </p>
           </div>
 
@@ -44,7 +44,7 @@ export default function TermsConditionsPage() {
               2. Product Prices & Stock Availability
             </h2>
             <p>
-              While we make every effort to display accurate product prices and specs (including lithium cell brands, motor ratings, and panel dimensions), occasional scraping or data entry errors can occur. In the event of a listing error, EVStore reserves the right to cancel affected orders and issue a full refund. All listed item prices are subject to change without prior notice.
+              While we make every effort to display accurate product prices and specs (including lithium cell brands, motor ratings, and panel dimensions), occasional scraping or data entry errors can occur. In the event of a listing error, EV Solution BD reserves the right to cancel affected orders and issue a full refund. All listed item prices are subject to change without prior notice.
             </p>
           </div>
 
@@ -62,7 +62,7 @@ export default function TermsConditionsPage() {
               4. Custom Conversions & Liability
             </h2>
             <p>
-              EVStore supplies motors, controllers, and battery packs for DIY e-bike and e-scooter modifications. DIY modifications are carried out at the owner's risk. EVStore is not liable for structural damage, wiring accidents, or system failures caused by incorrect installation or manual modification by uncertified local technicians.
+              EV Solution BD supplies motors, controllers, and battery packs for DIY e-bike and e-scooter modifications. DIY modifications are carried out at the owner's risk. EV Solution BD is not liable for structural damage, wiring accidents, or system failures caused by incorrect installation or manual modification by uncertified local technicians.
             </p>
           </div>
 

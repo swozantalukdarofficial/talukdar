@@ -5,8 +5,8 @@
 
 CREATE TABLE IF NOT EXISTS store_settings (
   id TEXT PRIMARY KEY DEFAULT 'global',
-  store_name TEXT NOT NULL DEFAULT 'Talukdar EV',
-  support_email TEXT NOT NULL DEFAULT 'support@evstorebd.com',
+  store_name TEXT NOT NULL DEFAULT 'EV Solution BD',
+  support_email TEXT NOT NULL DEFAULT 'support@evsolutionbd.com',
   support_phone TEXT NOT NULL DEFAULT '01333600272',
   whatsapp_number TEXT NOT NULL DEFAULT '8801333600272',
   shipping_fee NUMERIC(10, 2) NOT NULL DEFAULT 150.00,
@@ -47,8 +47,8 @@ INSERT INTO store_settings (
 )
 VALUES (
   'global', 
-  'Talukdar EV', 
-  'support@evstorebd.com', 
+  'EV Solution BD', 
+  'support@evsolutionbd.com', 
   '01333600272', 
   '8801333600272', 
   150.00, 

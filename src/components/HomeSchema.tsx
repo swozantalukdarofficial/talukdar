@@ -32,7 +32,7 @@ export default async function HomeSchema() {
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Talukdar EV",
+    "name": "EV Solution BD",
     "url": baseUrl,
     "potentialAction": {
       "@type": "SearchAction",

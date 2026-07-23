@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return { title: "Product Not Found" };
 
   return {
-    title: `${product.name} | EVStore Bangladesh`,
+    title: `${product.name} | EV Solution BD`,
     description:
       product.description ??
       `Buy ${product.name} at the best price in Bangladesh.`,

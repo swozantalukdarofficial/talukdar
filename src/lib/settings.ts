@@ -15,8 +15,8 @@ export interface StoreSettings {
 }
 
 export const DEFAULT_SETTINGS: StoreSettings = {
-  store_name: "Talukdar EV",
-  support_email: "support@evstorebd.com",
+  store_name: "EV Solution BD",
+  support_email: "support@evsolutionbd.com",
   support_phone: "01333600272",
   whatsapp_number: "8801333600272",
   shipping_fee: 150,

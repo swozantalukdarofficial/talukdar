@@ -6,7 +6,7 @@ import CategoryActions from "./CategoryActions";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Admin — Categories | EVStore",
+  title: "Admin — Categories | EV Solution BD",
 };
 
 export default async function AdminCategoriesPage() {

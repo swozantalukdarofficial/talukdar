@@ -76,10 +76,10 @@ export default function Header({ categories = [] }: { categories?: Category[] })
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group shrink-0">
             <div className="flex h-9 w-9 items-center justify-center rounded-full overflow-hidden border border-emerald-500/20 bg-stone-950 shadow-md shadow-emerald-500/10 group-hover:shadow-emerald-500/25 transition-all">
-              <img src="/logo.svg" alt="Talukdar EV Logo" className="w-full h-full object-cover" />
+              <img src="/logo.svg" alt="EV Solution BD Logo" className="w-full h-full object-cover" />
             </div>
             <span className="text-lg font-bold tracking-tight text-stone-900">
-              Talukdar <span className="text-emerald-700">EV</span>
+              EV Solution <span className="text-emerald-700">BD</span>
             </span>
           </Link>
 
@@ -222,10 +222,10 @@ export default function Header({ categories = [] }: { categories?: Category[] })
                 {/* Mobile side navigation header */}
                 <div className="flex items-center gap-2 px-5 py-5 border-b border-stone-200 bg-white">
                   <div className="flex h-9 w-9 items-center justify-center rounded-full overflow-hidden border border-emerald-500/20 bg-stone-950 shadow-md">
-                    <img src="/logo.svg" alt="Talukdar EV Logo" className="w-full h-full object-cover" />
+                    <img src="/logo.svg" alt="EV Solution BD Logo" className="w-full h-full object-cover" />
                   </div>
                   <span className="text-lg font-bold">
-                    Talukdar <span className="text-emerald-700">EV</span>
+                    EV Solution <span className="text-emerald-700">BD</span>
                   </span>
                 </div>
 

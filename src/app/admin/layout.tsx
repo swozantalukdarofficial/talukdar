@@ -5,7 +5,7 @@ import AdminClientGuard from "@/components/AdminClientGuard";
 import AdminLogoutButton from "@/components/AdminLogoutButton";
 
 export const metadata: Metadata = {
-  title: "Admin Dashboard | Talukdar EV",
+  title: "Admin Dashboard | EV Solution BD",
 };
 
 export default function AdminLayout({

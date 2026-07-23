@@ -7,8 +7,8 @@ import { getStoreSettings, updateStoreSettings } from "@/lib/settings";
 
 export default function AdminSettingsPage() {
   const [loading, setLoading] = useState(false);
-  const [storeName, setStoreName] = useState("Talukdar EV");
-  const [supportEmail, setSupportEmail] = useState("support@evstorebd.com");
+  const [storeName, setStoreName] = useState("EV Solution BD");
+  const [supportEmail, setSupportEmail] = useState("support@evsolutionbd.com");
   const [supportPhone, setSupportPhone] = useState("01333600272");
   const [whatsappNumber, setWhatsappNumber] = useState("01333600272");
   const [shippingFee, setShippingFee] = useState(150);

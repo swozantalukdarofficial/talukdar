@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { SITE_URL } from "@/config/seo";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | EVStore Bangladesh",
-  description: "Understand how EVStore Bangladesh collects, protects, and handles your customer registration data, order history, and online transactions securely.",
+  title: "Privacy Policy | EV Solution BD",
+  description: "Understand how EV Solution BD collects, protects, and handles your customer registration data, order history, and online transactions securely.",
   alternates: {
     canonical: `${SITE_URL}/privacy-policy`,
   },
@@ -13,7 +13,7 @@ export default function PrivacyPolicyPage() {
   return (
     <main className="min-h-screen bg-[#faf9f6] text-stone-900 pb-16 md:pb-24" id="privacy-policy-page">
       {/* Page Header */}
-      <section className="bg-stone-900 text-white py-16 text-center relative overflow-hidden">
+      <section className="bg-stone-900 text-[#faf9f6] py-16 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.06),transparent)]" />
         <div className="container mx-auto px-4 relative z-10 max-w-2xl space-y-3">
           <span className="inline-block bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">
@@ -35,7 +35,7 @@ export default function PrivacyPolicyPage() {
               1. Information We Collect
             </h2>
             <p>
-              When you purchase an e-bike, configure a lithium battery pack, or order solar components from EVStore, we collect personal details such as your name, billing address, shipping location, email address, phone number, and transaction selections.
+              When you purchase an e-bike, configure a lithium battery pack, or order solar components from EV Solution BD, we collect personal details such as your name, billing address, shipping location, email address, phone number, and transaction selections.
             </p>
           </div>
 
@@ -53,7 +53,7 @@ export default function PrivacyPolicyPage() {
               3. Secure Payments & Bank Transactions
             </h2>
             <p>
-              We prioritize your transaction security. Credit/Debit card payments, bKash, and Nagad details are processed over secure SSL-encrypted third-party payment gateways (e.g. SSLCommerz). EVStore does not store or see your raw card numbers or wallet PIN codes on our servers.
+              We prioritize your transaction security. Credit/Debit card payments, bKash, and Nagad details are processed over secure SSL-encrypted third-party payment gateways (e.g. SSLCommerz). EV Solution BD does not store or see your raw card numbers or wallet PIN codes on our servers.
             </p>
           </div>
 
@@ -71,7 +71,7 @@ export default function PrivacyPolicyPage() {
               5. User Rights & Corrections
             </h2>
             <p>
-              You hold the right to access, edit, or request deletion of your personal account details saved in our store database at any time. Simply contact our support desk or email support@evstorebd.com to complete account details updates.
+              You hold the right to access, edit, or request deletion of your personal account details saved in our store database at any time. Simply contact our support desk or email support@evsolutionbd.com to complete account details updates.
             </p>
           </div>
         </div>

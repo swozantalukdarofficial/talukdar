@@ -15,12 +15,12 @@ export default function ProductSchema({ product }: Props) {
     "@type": "Product",
     "name": product.name,
     "image": product.image_url ? [product.image_url] : [],
-    "description": product.description ?? `Buy ${product.name} online at Talukdar EV.`,
+    "description": product.description ?? `Buy ${product.name} online at EV Solution BD.`,
     "sku": product.id,
     "mpn": product.slug,
     "brand": {
       "@type": "Brand",
-      "name": "Talukdar EV",
+      "name": "EV Solution BD",
     },
     "offers": {
       "@type": "Offer",

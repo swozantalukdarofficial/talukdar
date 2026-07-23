@@ -3,8 +3,8 @@ import { SITE_URL } from "@/config/seo";
 import { CreditCard, Landmark, CheckCircle2, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "EMI Policy & Payment Options | EVStore Bangladesh",
-  description: "Browse flexible 0% interest EMI installment plans for e-bikes, lithium batteries, and solar panel packages at EVStore. Available with 18+ leading banks in Bangladesh.",
+  title: "EMI Policy & Payment Options | EV Solution BD",
+  description: "Browse flexible 0% interest EMI installment plans for e-bikes, lithium batteries, and solar panel packages at EV Solution BD. Available with 18+ leading banks in Bangladesh.",
   alternates: {
     canonical: `${SITE_URL}/emi-policy`,
   },
@@ -84,7 +84,7 @@ export default function EmiPolicyPage() {
                 3. Partner Banks List
               </h2>
               <p>
-                EVStore coordinates with leading payment processors to offer instant EMI setups for credit cards from:
+                EV Solution BD coordinates with leading payment processors to offer instant EMI setups for credit cards from:
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1">
                 {BANKS.map((b, idx) => (

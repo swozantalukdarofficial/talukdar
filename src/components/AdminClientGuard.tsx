@@ -96,10 +96,10 @@ export default function AdminClientGuard({ children }: { children: React.ReactNo
             {/* Logo */}
             <div className="flex flex-col items-center justify-center gap-2">
               <div className="w-16 h-16 rounded-2xl overflow-hidden border border-emerald-500/20 bg-stone-950 flex items-center justify-center shadow-lg shadow-emerald-500/10">
-                <img src="/logo.svg" alt="Talukdar EV Logo" className="w-full h-full object-cover" />
+                <img src="/logo.svg" alt="EV Solution BD Logo" className="w-full h-full object-cover" />
               </div>
               <h1 className="text-xl font-extrabold text-stone-900 tracking-tight mt-2">
-                Talukdar <span className="text-emerald-700">EV</span> Admin Portal
+                EV Solution <span className="text-emerald-700">BD</span> Admin Portal
               </h1>
               <p className="text-stone-400 text-xs font-semibold">Authorized Personnel Only</p>
             </div>
@@ -119,7 +119,7 @@ export default function AdminClientGuard({ children }: { children: React.ReactNo
                 </label>
                 <input
                   type="email"
-                  placeholder="admin@talukdarev.com"
+                  placeholder="admin@evsolutionbd.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all font-semibold"

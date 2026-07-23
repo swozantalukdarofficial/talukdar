@@ -126,7 +126,7 @@ export default async function HomePage() {
               Upgrading to lithium-ion and LiFePO4 battery chemistry is a cornerstone of this transition. Modern lithium batteries deliver higher energy density, faster charging speeds, and a lifespan exceeding 2,000+ deep cycles, significantly outperforming traditional lead-acid batteries. This transition is not only economically beneficial for daily commuters but also plays a vital role in reducing greenhouse gas emissions and establishing sustainable, green cities.
             </p>
             <p>
-              At EVStoreBD, we are committed to providing genuine components, smart BMS battery packs, replacement motors, and premium electric vehicles to support the green energy transition. By integrating solar energy chargers and smart hybrid inverters, commuters can achieve true energy independence and drive towards a zero-emission future.
+              At EV Solution BD, we are committed to providing genuine components, smart BMS battery packs, replacement motors, and premium electric vehicles to support the green energy transition. By integrating solar energy chargers and smart hybrid inverters, commuters can achieve true energy independence and drive towards a zero-emission future.
             </p>
           </div>
         </div>

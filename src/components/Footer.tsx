@@ -45,7 +45,7 @@ export default function Footer({ settings }: FooterProps) {
             <div className="space-y-6">
             <div className="flex items-center gap-2">
               <span className="text-xl font-black uppercase tracking-tight text-stone-900">
-                TALUKDAR<span className="text-emerald-700"> EV</span>
+                EV SOLUTION<span className="text-emerald-700"> BD</span>
               </span>
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse mt-1" />
             </div>
@@ -298,7 +298,7 @@ export default function Footer({ settings }: FooterProps) {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-[10px] text-stone-400 font-semibold gap-4">
-          <p>© {new Date().getFullYear()} Talukdar EV. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} EV Solution BD. All rights reserved.</p>
           <div className="flex gap-4 flex-wrap justify-center">
             <Link href="/privacy-policy" className="hover:text-stone-650 transition-colors">Privacy Policy</Link>
             <Link href="/terms-conditions" className="hover:text-stone-650 transition-colors">Terms of Service</Link>

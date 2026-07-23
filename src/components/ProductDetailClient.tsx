@@ -1060,7 +1060,11 @@ export default function ProductDetailClient({
               </div>
 
               {product.description ? (
-                renderBlogStyleDescription(product.description)
+                product.description.trim().startsWith("<") || product.description.includes("<div") || product.description.includes("<section") ? (
+                  <div className="prose prose-emerald max-w-none text-stone-700 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: product.description }} />
+                ) : (
+                  renderBlogStyleDescription(product.description)
+                )
               ) : (
                 <p className="text-stone-450 text-xs italic">No detailed description available for this product.</p>
               )}

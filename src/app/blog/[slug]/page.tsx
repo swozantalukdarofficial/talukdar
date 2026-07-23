@@ -73,12 +73,12 @@ export default async function BlogPostPage({ params }: Props) {
     "dateModified": new Date(post.date).toISOString(),
     "author": {
       "@type": "Organization",
-      "name": "EV Store Bangladesh",
+      "name": "EV Solution BD",
       "url": SITE_URL,
     },
     "publisher": {
       "@type": "Organization",
-      "name": "EV Store Bangladesh",
+      "name": "EV Solution BD",
       "logo": {
         "@type": "ImageObject",
         "url": `${SITE_URL}/icon.svg`,
@@ -243,7 +243,7 @@ export default async function BlogPostPage({ params }: Props) {
                 {post.readTime}
               </span>
               <span className="hidden sm:inline">•</span>
-              <span className="text-emerald-400">By EV Store Editorial</span>
+              <span className="text-emerald-400">By EV Solution BD Editorial</span>
             </div>
           </div>
         </div>

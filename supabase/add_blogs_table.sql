@@ -1,5 +1,5 @@
 -- ================================================================
--- EVStore Bangladesh — Supabase Blogs Table Schema
+-- EV Solution BD — Supabase Blogs Table Schema
 -- Run this in your Supabase SQL Editor
 -- ================================================================
 

@@ -25,7 +25,7 @@ export async function GET() {
     let xml = `<?xml version="1.0" encoding="utf-8"?>\n`;
     xml += `<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">\n`;
     xml += `  <channel>\n`;
-    xml += `    <title>Talukdar EV</title>\n`;
+    xml += `    <title>EV Solution BD</title>\n`;
     xml += `    <link>${SITE_URL}</link>\n`;
     xml += `    <description>Bangladesh's leading e-bike, battery and EV parts store.</description>\n`;
 
@@ -46,7 +46,7 @@ export async function GET() {
         priceNode = `      <g:price>${p.price} BDT</g:price>\n`;
       }
 
-      const brandName = escapeXml(p.specs?.Brand || p.specs?.brand || "Talukdar EV");
+      const brandName = escapeXml(p.specs?.Brand || p.specs?.brand || "EV Solution BD");
       const condition = "new";
       
       // Google Product Category mapping

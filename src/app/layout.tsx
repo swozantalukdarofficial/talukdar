@@ -9,14 +9,14 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
   title: {
-    default: "Talukdar EV — Premium E-Bikes & Electric Vehicles",
-    template: "%s | Talukdar EV",
+    default: "EV Solution BD — Premium E-Bikes & Electric Vehicles",
+    template: "%s | EV Solution BD",
   },
   description:
     "Bangladesh's leading e-bike, battery and EV parts store. Shop premium electric vehicles with warranty and free delivery.",
   keywords: ["e-bike", "electric bike", "EV", "battery", "Bangladesh", "ই-বাইক"],
   openGraph: {
-    title: "Talukdar EV",
+    title: "EV Solution BD",
     description: "Premium E-Bikes, Batteries & Parts",
     type: "website",
   },

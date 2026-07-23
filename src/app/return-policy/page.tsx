@@ -3,7 +3,7 @@ import { SITE_URL } from "@/config/seo";
 import { RefreshCw, CheckCircle2, ShieldAlert, Truck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Return & Refund Policy | EVStore Bangladesh",
+  title: "Return & Refund Policy | EV Solution BD",
   description: "Read our comprehensive Return and Refund Policy. Learn about warranty claims on lithium batteries, replacement terms for e-bike controllers, and transit damage policies.",
   alternates: {
     canonical: `${SITE_URL}/return-policy`,
@@ -85,7 +85,7 @@ export default function ReturnPolicyPage() {
                 2. Solar Panels Damage & Transit Policy
               </h2>
               <p>
-                <strong>Important Notice on SUNSHINE Panels:</strong> If the glass of your Sunshine solar panel is broken during transit/delivery, EVStore will issue a complete replacement panel. However, minor visual scratches on the frame or aluminum back sheet that do not impact efficiency or power generation will not qualify for refunds or returns.
+                <strong>Important Notice on SUNSHINE Panels:</strong> If the glass of your Sunshine solar panel is broken during transit/delivery, EV Solution BD will issue a complete replacement panel. However, minor visual scratches on the frame or aluminum back sheet that do not impact efficiency or power generation will not qualify for refunds or returns.
               </p>
             </div>
 

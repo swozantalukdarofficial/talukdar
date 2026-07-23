@@ -10,8 +10,8 @@ export default function AdminLogoutButton() {
 
   const handleLogout = async () => {
     // 1. Clear local storage bypass token
-    localStorage.removeItem("talukdar_admin_auth");
-    localStorage.removeItem("talukdar_admin_auth_expiry");
+    localStorage.removeItem("evsolution_admin_auth");
+    localStorage.removeItem("evsolution_admin_auth_expiry");
 
     // 2. Clear Supabase auth session
     if (supabase) {

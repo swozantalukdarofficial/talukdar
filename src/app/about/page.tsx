@@ -5,8 +5,8 @@ import Link from "next/link";
 import { ArrowRight, ShieldCheck, Zap, Leaf, HeartHandshake } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us | EVStore Bangladesh - Leading Smart EV & Solar Platform",
-  description: "Learn about EVStore Bangladesh. We are the premier marketplace for electric bikes, high-performance lithium battery packs, solar energy solutions, and OEM electric vehicle spare parts in Bangladesh.",
+  title: "About Us | EV Solution BD - Leading Smart EV & Solar Platform",
+  description: "Learn about EV Solution BD. We are the premier marketplace for electric bikes, high-performance lithium battery packs, solar energy solutions, and OEM electric vehicle spare parts in Bangladesh.",
   alternates: {
     canonical: `${SITE_URL}/about`,
   },
@@ -59,7 +59,7 @@ export default function AboutPage() {
             Pioneering Smart & Sustainable Mobility in Bangladesh
           </h1>
           <p className="text-stone-300 text-sm md:text-base font-medium max-w-2xl mx-auto leading-relaxed">
-            At EVStore, we are building a zero-emission future by offering state-of-the-art electric vehicles, long-lasting energy storage, and premium clean energy configurations.
+            At EV Solution BD, we are building a zero-emission future by offering state-of-the-art electric vehicles, long-lasting energy storage, and premium clean energy configurations.
           </p>
         </div>
       </section>
@@ -76,7 +76,7 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-4 text-stone-600 text-sm leading-relaxed">
               <p>
-                Founded to address the growing issues of urban congestion, air pollution, and rising fossil fuel costs, EVStore has become the trusted destination for smart electric mobility components in Bangladesh.
+                Founded to address the growing issues of urban congestion, air pollution, and rising fossil fuel costs, EV Solution BD has become the trusted destination for smart electric mobility components in Bangladesh.
               </p>
               <p>
                 We do not just sell products; we construct sustainable energy ecosystems. By providing high-density lithium batteries, solar panel chargers, and OEM vehicle upgrades, we ensure riders can enjoy efficient, cost-effective, and environmentally safe transit.

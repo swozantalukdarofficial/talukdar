@@ -1,5 +1,5 @@
 -- ================================================================
--- SQL Script to import Solar Panels into EVStore Bangladesh DB
+-- SQL Script to import Solar Panels into EV Solution BD DB
 -- Run this in your Supabase SQL Editor
 -- ================================================================
 

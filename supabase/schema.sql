@@ -1,5 +1,5 @@
 -- ================================================================
--- EVStore Bangladesh — Supabase Database Schema v2
+-- EV Solution BD — Supabase Database Schema v2
 -- Run this in your Supabase SQL Editor
 -- ================================================================
 
@@ -234,8 +234,8 @@ ON CONFLICT (slug) DO NOTHING;
 -- ────────────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS store_settings (
   id TEXT PRIMARY KEY DEFAULT 'global',
-  store_name TEXT NOT NULL DEFAULT 'Talukdar EV',
-  support_email TEXT NOT NULL DEFAULT 'support@evstorebd.com',
+  store_name TEXT NOT NULL DEFAULT 'EV Solution BD',
+  support_email TEXT NOT NULL DEFAULT 'support@evsolutionbd.com',
   support_phone TEXT NOT NULL DEFAULT '01333600272',
   whatsapp_number TEXT NOT NULL DEFAULT '8801333600272',
   shipping_fee NUMERIC(10, 2) NOT NULL DEFAULT 150.00,
@@ -256,7 +256,7 @@ INSERT INTO store_settings (
   id, store_name, support_email, support_phone, whatsapp_number, 
   shipping_fee, enable_cod, enable_bkash, enable_nagad, bkash_number, nagad_number
 ) VALUES (
-  'global', 'Talukdar EV', 'support@evstorebd.com', '01333600272', '8801333600272', 
+  'global', 'EV Solution BD', 'support@evsolutionbd.com', '01333600272', '8801333600272', 
   150.00, true, true, true, '01333600272', '01333600272'
 ) ON CONFLICT (id) DO NOTHING;
 

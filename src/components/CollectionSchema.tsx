@@ -16,12 +16,12 @@ export default function CollectionSchema({ products, categoryName, categorySlug 
   const collectionJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": `${categoryName} | Talukdar EV`,
+    "name": `${categoryName} | EV Solution BD`,
     "url": url,
     "description": `Browse premium ${categoryName} at the best price in Bangladesh. Shop original E-Bikes, Lithium Batteries, and spare parts.`,
     "isPartOf": {
       "@type": "WebSite",
-      "name": "Talukdar EV",
+      "name": "EV Solution BD",
       "url": baseUrl,
     },
   };

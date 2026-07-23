@@ -3,7 +3,7 @@ import { CheckCircle, Package, Phone, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Order Confirmed | EVStore Bangladesh",
+  title: "Order Confirmed | EV Solution BD",
 };
 
 interface Props {

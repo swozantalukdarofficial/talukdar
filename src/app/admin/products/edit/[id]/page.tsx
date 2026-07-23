@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useEffect } from "react";
 import { getProductById, updateProduct } from "@/lib/products";
 import type { CreateProductInput } from "@/lib/products";
 import type { ProductCategory, Category } from "@/lib/types";
@@ -19,6 +18,12 @@ import {
   ImageIcon,
   ArrowLeft,
   Trash2,
+  FileText,
+  DollarSign,
+  Settings,
+  Layers,
+  Globe,
+  Sparkles,
 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -32,8 +37,6 @@ interface SpecRow {
 
 const INITIAL_SPECS: SpecRow[] = [{ key: "", value: "" }];
 
-import { use } from "react";
-
 export default function EditProductPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
   const { id } = use(params);
@@ -43,13 +46,21 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
   const [description, setDescription] = useState("");
+  const [descMode, setDescMode] = useState<"edit" | "preview">("edit");
   const [price, setPrice] = useState("");
   const [comparePrice, setComparePrice] = useState("");
   const [category, setCategory] = useState<ProductCategory>("ebike");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [specs, setSpecs] = useState<SpecRow[]>(INITIAL_SPECS);
   const [stock, setStock] = useState("10");
   const [isFeatured, setIsFeatured] = useState(false);
-  const [specs, setSpecs] = useState<SpecRow[]>(INITIAL_SPECS);
+
+  // SEO fields
+  const [metaTitle, setMetaTitle] = useState("");
+  const [metaDescription, setMetaDescription] = useState("");
+
+  // Tab State
+  const [activeTab, setActiveTab] = useState<"general" | "pricing" | "options" | "specs" | "media">("general");
 
   // ── Image upload state ───────────────────────────────────────
   const [imageUrl, setImageUrl] = useState("");
@@ -83,14 +94,25 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
         }
         
         if (p.specs) {
+          // Parse SEO tags
+          if (p.specs.meta_title) {
+            setMetaTitle(p.specs.meta_title as string);
+          }
+          if (p.specs.meta_description) {
+            setMetaDescription(p.specs.meta_description as string);
+          }
+
           if (p.specs.tags) {
-            setSelectedTags(p.specs.tags.split(",").map(t => t.trim()));
-            const { tags, ...restSpecs } = p.specs;
-            if (Object.keys(restSpecs).length > 0) {
-              setSpecs(Object.entries(restSpecs).map(([k, v]) => ({ key: k, value: v as string })));
-            }
-          } else if (Object.keys(p.specs).length > 0) {
-            setSpecs(Object.entries(p.specs).map(([k, v]) => ({ key: k, value: v as string })));
+            setSelectedTags((p.specs.tags as string).split(",").map(t => t.trim()));
+          }
+
+          // Build specs list (filtering out metadata)
+          const specEntries = Object.entries(p.specs).filter(
+            ([k]) => k !== "tags" && k !== "meta_title" && k !== "meta_description"
+          );
+
+          if (specEntries.length > 0) {
+            setSpecs(specEntries.map(([k, v]) => ({ key: k, value: v as string })));
           }
         }
       } else {
@@ -101,14 +123,15 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
     }
     loadProduct();
   }, [id, router]);
+
   const [uploadProgress, setUploadProgress] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const galleryInputRef = useRef<HTMLInputElement>(null);
 
-  // ── Submit state ─────────────────────────────────────────────
+  // Submit state
   const [saving, setSaving] = useState(false);
 
-  // ── Auto-generate slug from name ─────────────────────────────
+  // Auto-generate slug from name
   function handleNameChange(val: string) {
     setName(val);
     setSlug(
@@ -120,12 +143,11 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
     );
   }
 
-  // ── Handle image file select & upload ─────────────────────────
+  // Handle main image upload
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Show local preview immediately
     const localUrl = URL.createObjectURL(file);
     setImagePreview(localUrl);
     setUploading(true);
@@ -148,12 +170,9 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
       setImageUrl(data.url);
       setImagePreview(data.url);
       setUploadProgress(100);
-      toast.success("Image uploaded to Cloudinary! ✅", {
-        description: `${Math.round(data.bytes / 1024)} KB`,
-      });
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Upload failed";
-      toast.error(msg);
+      toast.success("Main image updated successfully!");
+    } catch (err: any) {
+      toast.error(err.message || "Upload failed");
       setImagePreview("");
       setImageUrl("");
     } finally {
@@ -162,7 +181,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
     }
   }
 
-  // ── Handle gallery image upload ──────────────────────────────
+  // Handle gallery image upload
   async function handleGalleryUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const files = Array.from(e.target.files || []);
     if (!files.length) return;
@@ -180,16 +199,16 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
           newUrls.push(data.url);
         }
       } catch (err) {
-        toast.error("Failed to upload an image");
+        toast.error("Failed to upload gallery image");
       }
     }
     
     setGalleryImages((prev) => [...prev, ...newUrls]);
     setUploading(false);
-    toast.success(`Uploaded ${newUrls.length} variation images!`);
+    toast.success(`Uploaded ${newUrls.length} gallery images!`);
   }
 
-  // ── Spec row helpers ─────────────────────────────────────────
+  // Spec rows helper
   function updateSpec(idx: number, field: "key" | "value", val: string) {
     setSpecs((prev) =>
       prev.map((row, i) => (i === idx ? { ...row, [field]: val } : row))
@@ -202,22 +221,22 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
     setSpecs((prev) => prev.filter((_, i) => i !== idx));
   }
 
-  // ── Submit ───────────────────────────────────────────────────
+  // Submit edits
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    if (!imageUrl) {
-      toast.error("Please upload a product image first!");
-      return;
-    }
     if (!name || !slug || !price) {
       toast.error("Name, slug, and price are required!");
+      return;
+    }
+    if (!imageUrl) {
+      toast.error("Please upload product image!");
+      setActiveTab("media");
       return;
     }
 
     setSaving(true);
 
-    // Build specs object (ignore empty rows)
     const specsObj = specs
       .filter((r) => r.key.trim() && r.value.trim())
       .reduce(
@@ -229,21 +248,23 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
       specsObj["tags"] = selectedTags.join(",");
     }
 
-    const finalSlug = slug.trim();
-    const numericPrice = parseFloat(price);
-    const numericCompare = comparePrice ? parseFloat(comparePrice) : null;
-    const numericStock = parseInt(stock);
+    if (metaTitle.trim()) {
+      specsObj["meta_title"] = metaTitle.trim();
+    }
+    if (metaDescription.trim()) {
+      specsObj["meta_description"] = metaDescription.trim();
+    }
 
     const payload: Partial<CreateProductInput> = {
       name: name.trim(),
-      slug: finalSlug,
+      slug: slug.trim(),
       description: description.trim(),
-      price: numericPrice,
-      compare_at_price: numericCompare || null,
+      price: parseFloat(price),
+      compare_at_price: comparePrice ? parseFloat(comparePrice) : null,
       category,
       image_url: imageUrl,
       images: galleryImages,
-      stock_quantity: numericStock,
+      stock_quantity: parseInt(stock),
       is_featured: isFeatured,
       specs: specsObj,
     };
@@ -257,179 +278,78 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
       router.push("/admin/products");
       router.refresh();
     }
-  };
+    setSaving(false);
+  }
+
+  const tabsConfig = [
+    { id: "general", label: "General Info", icon: <FileText className="w-4 h-4" /> },
+    { id: "pricing", label: "Pricing & Stock", icon: <DollarSign className="w-4 h-4" /> },
+    { id: "options", label: "Variations & Addons", icon: <Layers className="w-4 h-4" /> },
+    { id: "specs", label: "Specs & SEO", icon: <Settings className="w-4 h-4" /> },
+    { id: "media", label: "Media & Images", icon: <ImageIcon className="w-4 h-4" /> },
+  ] as const;
 
   if (loading) {
-    return <div className="p-8 flex justify-center"><Loader2 className="w-8 h-8 animate-spin" /></div>;
+    return (
+      <div className="flex flex-col items-center justify-center pt-24 space-y-4">
+        <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
+        <p className="text-sm font-semibold text-stone-500">Loading product data...</p>
+      </div>
+    );
   }
 
   return (
-    <main className="min-h-screen bg-[#faf9f6] pt-0">
-      <div className="max-w-4xl mx-auto px-4 py-8 md:py-10">
-
+    <main className="min-h-screen bg-[#faf9f6] pb-16">
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
-          <Link
-            href="/admin/products"
-            className="text-stone-400 hover:text-stone-700 transition-colors"
-          >
+          <Link href="/admin/products" className="text-stone-400 hover:text-stone-700 transition-colors">
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="text-2xl font-extrabold text-stone-900 tracking-tight">Add New Product</h1>
+            <h1 className="text-3xl font-extrabold text-stone-900 tracking-tight">Edit Product</h1>
             <p className="text-stone-500 text-xs font-semibold uppercase tracking-wider mt-0.5">
-              Image → Cloudinary | Data → Supabase
+              Modify database details for this item
             </p>
           </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-            {/* ── Left: Image Upload ── */}
-            <div className="lg:col-span-1">
-              <div className="bg-white border border-stone-200 rounded-2xl p-5 sticky top-24 shadow-sm shadow-stone-150/50">
-                <h2 className="text-xs font-bold text-stone-750 uppercase tracking-widest mb-4 flex items-center gap-2">
-                  <ImageIcon className="w-4 h-4 text-emerald-800" />
-                  Product Image
-                </h2>
-
-                {/* Drop zone */}
-                <div
-                  onClick={() => fileInputRef.current?.click()}
+          
+          {/* Tab Navigation */}
+          <div className="flex overflow-x-auto whitespace-nowrap scrollbar-none pb-2 border-b border-stone-200 gap-1.5">
+            {tabsConfig.map((t) => {
+              const isSelected = activeTab === t.id;
+              return (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setActiveTab(t.id)}
                   className={cn(
-                    "relative aspect-square rounded-xl border-2 border-dashed cursor-pointer transition-all overflow-hidden bg-stone-50",
-                    imagePreview
-                      ? "border-emerald-600/50"
-                      : "border-stone-200 hover:border-stone-400"
+                    "flex items-center gap-2 px-4 py-3 rounded-xl text-xs font-bold transition-all border-b-2 border-transparent uppercase tracking-wider",
+                    isSelected
+                      ? "bg-white text-emerald-800 border-emerald-600 shadow-sm"
+                      : "text-stone-500 hover:text-stone-750 hover:bg-stone-100/50"
                   )}
                 >
-                  {imagePreview ? (
-                    <>
-                      <Image
-                        src={imagePreview}
-                        alt="Preview"
-                        fill
-                        className="object-cover"
-                        sizes="300px"
-                        unoptimized={true}
-                      />
-                      {/* Overlay on hover */}
-                      <div className="absolute inset-0 bg-stone-900/60 backdrop-blur-[2px] opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <p className="text-white text-xs font-bold uppercase tracking-wider">
-                          Click to change
-                        </p>
-                      </div>
-                    </>
-                  ) : (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-stone-400">
-                      <Upload className="w-8 h-8 text-stone-300" />
-                      <p className="text-xs text-center px-4 leading-normal font-medium">
-                        Click to upload<br />
-                        <span className="text-[10px] text-stone-400 font-normal">
-                          JPG, PNG, WEBP (max 10MB)
-                        </span>
-                      </p>
-                    </div>
-                  )}
+                  {t.icon}
+                  {t.label}
+                </button>
+              );
+            })}
+          </div>
 
-                  {/* Upload progress overlay */}
-                  {uploading && (
-                    <div className="absolute inset-0 bg-stone-900/80 flex flex-col items-center justify-center gap-3">
-                      <Loader2 className="w-8 h-8 text-emerald-500 animate-spin" />
-                      <div className="w-32 h-1 bg-stone-700 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-emerald-500 transition-all duration-300 rounded-full"
-                          style={{ width: `${uploadProgress}%` }}
-                        />
-                      </div>
-                      <p className="text-white text-[10px] font-bold uppercase tracking-wider">Uploading...</p>
-                    </div>
-                  )}
+          {/* Form Content Cards */}
+          <div className="bg-white border border-stone-200 rounded-3xl p-6 md:p-8 shadow-sm">
+
+            {/* TAB: GENERAL */}
+            {activeTab === "general" && (
+              <div className="space-y-6 animate-in fade-in duration-200">
+                <div className="border-b border-stone-100 pb-3">
+                  <h2 className="text-base font-bold text-stone-900">General Information</h2>
+                  <p className="text-xs text-stone-400">Modify base details of your product.</p>
                 </div>
-
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={handleImageUpload}
-                />
-
-                {/* Upload status */}
-                {imageUrl && !uploading && (
-                  <div className="mt-3 flex items-center gap-2 text-emerald-800 text-xs font-bold">
-                    <CheckCircle className="w-3.5 h-3.5" />
-                    <span>Upload successful! ✅</span>
-                  </div>
-                )}
-                {imageUrl && (
-                  <p className="mt-1 text-stone-400 text-[10px] truncate">{imageUrl}</p>
-                )}
-
-                {/* Remove image */}
-                {imageUrl && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setImageUrl("");
-                      setImagePreview("");
-                    }}
-                    className="mt-3 text-xs font-semibold text-rose-600 hover:text-rose-700 flex items-center gap-1.5"
-                  >
-                    <X className="w-3.5 h-3.5" /> Remove image
-                  </button>
-                )}
-              </div>
-
-              {/* Gallery Images */}
-              <div className="bg-white border border-stone-200 rounded-2xl p-5 mt-6 shadow-sm shadow-stone-150/50">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-xs font-bold text-stone-750 uppercase tracking-widest flex items-center gap-2">
-                    <ImageIcon className="w-4 h-4 text-emerald-800" />
-                    Variation Images
-                  </h2>
-                </div>
-                
-                <div className="grid grid-cols-3 gap-2 mb-3">
-                  {galleryImages.map((url, i) => (
-                    <div key={i} className="relative aspect-square rounded-lg overflow-hidden border border-stone-200">
-                      <Image src={url} alt="Variation" fill className="object-cover" unoptimized={true} />
-                      <button
-                        type="button"
-                        onClick={() => setGalleryImages(prev => prev.filter((_, idx) => idx !== i))}
-                        className="absolute top-1 right-1 bg-white rounded-full p-1 shadow-sm text-rose-500 hover:text-rose-700 z-10"
-                      >
-                        <X className="w-3 h-3" />
-                      </button>
-                    </div>
-                  ))}
-                  <div
-                    onClick={() => galleryInputRef.current?.click()}
-                    className="aspect-square rounded-lg border-2 border-dashed border-stone-200 hover:border-emerald-500 cursor-pointer flex flex-col items-center justify-center gap-1 bg-stone-50 text-stone-400"
-                  >
-                    <Plus className="w-6 h-6" />
-                    <span className="text-[10px] font-bold">Add</span>
-                  </div>
-                </div>
-                <input
-                  ref={galleryInputRef}
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  className="hidden"
-                  onChange={handleGalleryUpload}
-                />
-              </div>
-            </div>
-
-
-            {/* ── Right: Product Details ── */}
-            <div className="lg:col-span-2 space-y-6">
-
-              {/* Basic info */}
-              <div className="bg-white border border-stone-200/85 rounded-2xl p-6 space-y-4 shadow-sm shadow-stone-150/40">
-                <h2 className="text-xs font-bold text-stone-750 uppercase tracking-widest border-b border-stone-100 pb-2.5">Basic Information</h2>
 
                 {/* Name */}
                 <div className="space-y-1.5">
@@ -440,73 +360,108 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                     type="text"
                     value={name}
                     onChange={(e) => handleNameChange(e.target.value)}
-                    placeholder="Thunder X1 E-Bike"
+                    placeholder="e.g. EV Solution Alpha E-Bike"
                     required
-                    className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                    className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                   />
                 </div>
 
                 {/* Slug */}
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
-                    Slug (URL) *
+                    Slug (URL Slug) *
                   </label>
-                  <div className="flex items-center gap-2 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5">
+                  <div className="flex items-center gap-2 bg-stone-50 border border-stone-200 rounded-xl px-4 py-3">
                     <span className="text-stone-400 text-xs font-medium">/products/</span>
                     <input
                       type="text"
                       value={slug}
                       onChange={(e) => setSlug(e.target.value)}
-                      placeholder="thunder-x1-ebike"
+                      placeholder="ev-solution-alpha-ebike"
                       required
-                      className="flex-1 bg-transparent text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
+                      className="flex-1 bg-transparent text-sm text-stone-900 focus:outline-none"
                     />
                   </div>
                 </div>
 
-                {/* Description */}
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
-                    Description
-                  </label>
-                  <textarea
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    rows={3}
-                    placeholder="Describe this product details..."
-                    className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 resize-none"
-                  />
-                </div>
-
-                {/* Category */}
-                <div className="space-y-1.5">
+                {/* Category Grid Selection */}
+                <div className="space-y-2">
                   <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
                     Category *
                   </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
                     {categories.map((cat) => (
                       <button
                         key={cat.id}
                         type="button"
                         onClick={() => setCategory(cat.slug)}
                         className={cn(
-                          "flex flex-col items-center gap-1.5 p-2.5 rounded-xl border-2 transition-all text-xs font-bold",
+                          "flex flex-col items-center gap-2 p-3 rounded-xl border-2 transition-all text-xs font-bold text-center",
                           category === cat.slug
                             ? "border-emerald-600 bg-emerald-50 text-emerald-800"
                             : "border-stone-200 text-stone-500 hover:border-stone-300 bg-white"
                         )}
                       >
-                        <span className="text-xl filter drop-shadow-sm">{cat.icon}</span>
-                        {cat.name}
+                        <span className="text-xl filter drop-shadow-sm">{cat.icon || "📦"}</span>
+                        <span className="truncate w-full">{cat.name}</span>
                       </button>
                     ))}
                   </div>
                 </div>
 
-                {/* Tags */}
-                <div className="space-y-2 mt-4 pt-4 border-t border-stone-100">
+                {/* Description Editor + Realtime Preview Toggle */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                      Description
+                    </label>
+                    <div className="bg-stone-100 p-0.5 rounded-lg flex border border-stone-200">
+                      <button
+                        type="button"
+                        onClick={() => setDescMode("edit")}
+                        className={cn(
+                          "px-2.5 py-1 text-[10px] font-bold rounded-md transition-all",
+                          descMode === "edit" ? "bg-white text-stone-800 shadow-sm" : "text-stone-500"
+                        )}
+                      >
+                        Editor
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setDescMode("preview")}
+                        className={cn(
+                          "px-2.5 py-1 text-[10px] font-bold rounded-md transition-all",
+                          descMode === "preview" ? "bg-white text-stone-800 shadow-sm" : "text-stone-500"
+                        )}
+                      >
+                        Preview
+                      </button>
+                    </div>
+                  </div>
+
+                  {descMode === "edit" ? (
+                    <textarea
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      rows={6}
+                      placeholder="Describe this product. Markdown formatting is supported..."
+                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                    />
+                  ) : (
+                    <div className="bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 min-h-[144px] prose prose-sm max-w-none">
+                      {description ? (
+                        <div className="whitespace-pre-wrap">{description}</div>
+                      ) : (
+                        <span className="text-stone-400 italic">No description details written.</span>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Tag Selection */}
+                <div className="space-y-2 pt-4 border-t border-stone-100">
                   <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
-                    Product Tags (Optional)
+                    Product Tags
                   </label>
                   <div className="flex flex-wrap gap-2">
                     {["Best Selling", "Top Rated", "Discount", "New Arrival"].map((tag) => {
@@ -517,7 +472,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                           type="button"
                           onClick={() => {
                             if (isSelected) {
-                              setSelectedTags(selectedTags.filter(t => t !== tag));
+                              setSelectedTags(selectedTags.filter((t) => t !== tag));
                             } else {
                               setSelectedTags([...selectedTags, tag]);
                             }
@@ -536,10 +491,103 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                   </div>
                 </div>
 
-                {/* Variations & Addons */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 pt-4 border-t border-stone-100">
+              </div>
+            )}
+
+            {/* TAB: PRICING & STOCK */}
+            {activeTab === "pricing" && (
+              <div className="space-y-6 animate-in fade-in duration-200">
+                <div className="border-b border-stone-100 pb-3">
+                  <h2 className="text-base font-bold text-stone-900">Pricing & Inventory</h2>
+                  <p className="text-xs text-stone-400">Configure cost specifications and stock availability.</p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Price */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                      Price (BDT) *
+                    </label>
+                    <div className="flex items-center gap-1.5 bg-stone-50 border border-stone-200 rounded-xl px-4 py-3">
+                      <span className="text-stone-400 font-bold">৳</span>
+                      <input
+                        type="number"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                        placeholder="85000"
+                        required
+                        min="0"
+                        className="flex-1 bg-transparent text-sm text-stone-900 focus:outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Compare Price */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                      Compare Price (BDT)
+                    </label>
+                    <div className="flex items-center gap-1.5 bg-stone-50 border border-stone-200 rounded-xl px-4 py-3">
+                      <span className="text-stone-400 font-bold">৳</span>
+                      <input
+                        type="number"
+                        value={comparePrice}
+                        onChange={(e) => setComparePrice(e.target.value)}
+                        placeholder="95000"
+                        min="0"
+                        className="flex-1 bg-transparent text-sm text-stone-900 focus:outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Stock Quantity */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                      Stock Quantity *
+                    </label>
+                    <input
+                      type="number"
+                      value={stock}
+                      onChange={(e) => setStock(e.target.value)}
+                      min="0"
+                      required
+                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                    />
+                  </div>
+
+                  {/* Featured Toggle */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                      Featured Status
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => setIsFeatured(!isFeatured)}
+                      className={cn(
+                        "w-full flex items-center justify-center gap-2 py-3 rounded-xl border-2 text-sm font-bold transition-all h-12",
+                        isFeatured
+                          ? "border-emerald-600 bg-emerald-50 text-emerald-800"
+                          : "border-stone-200 text-stone-500 hover:border-stone-300 bg-white"
+                      )}
+                    >
+                      {isFeatured ? "⭐ Featured Product" : "☆ Not Featured"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* TAB: VARIATIONS & ADD-ONS */}
+            {activeTab === "options" && (
+              <div className="space-y-6 animate-in fade-in duration-200">
+                <div className="border-b border-stone-100 pb-3">
+                  <h2 className="text-base font-bold text-stone-900">Variations & Add-ons</h2>
+                  <p className="text-xs text-stone-400">Offer product options like body-only pricing, upgrades, and warranties.</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <ProductOptionsManager
-                    label="Variations"
+                    label="Variations (e.g., Different Battery Capacity)"
                     value={specs.find((s) => s.key === "_variations")?.value || ""}
                     placeholderName="e.g. ONLY BODY PRICE / WITH BATTERY"
                     placeholderPrice="120000"
@@ -553,7 +601,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                     }}
                   />
                   <ProductOptionsManager
-                    label="Add-ons (Optional)"
+                    label="Add-ons (e.g., Extended Warranty)"
                     value={specs.find((s) => s.key === "_addons")?.value || ""}
                     placeholderName="e.g. WARRANTY-1 YEARS-MOTOR,CONTROLLER"
                     placeholderPrice="5000"
@@ -568,161 +616,242 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                   />
                 </div>
               </div>
+            )}
 
-              {/* Pricing & Stock */}
-              <div className="bg-white border border-stone-200/85 rounded-2xl p-6 space-y-4 shadow-sm shadow-stone-150/40">
-                <h2 className="text-xs font-bold text-stone-750 uppercase tracking-widest border-b border-stone-100 pb-2.5">Pricing & Stock</h2>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
-                      Price (BDT) *
-                    </label>
-                    <div className="flex items-center gap-1.5 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5">
-                      <span className="text-stone-400 font-bold text-sm">৳</span>
-                      <input
-                        type="number"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                        placeholder="85000"
-                        required
-                        min="0"
-                        className="flex-1 bg-transparent text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
-                      />
+            {/* TAB: SPECS & SEO */}
+            {activeTab === "specs" && (
+              <div className="space-y-8 animate-in fade-in duration-200">
+                
+                {/* Specifications Section */}
+                <div className="space-y-4">
+                  <div className="border-b border-stone-100 pb-3 flex items-center justify-between">
+                    <div>
+                      <h2 className="text-base font-bold text-stone-900">Technical Specifications</h2>
+                      <p className="text-xs text-stone-400">Add dynamic spec properties (e.g., motor power, range).</p>
                     </div>
+                    <Badge className="bg-stone-100 text-stone-500 text-[10px] font-bold border-0">
+                      Optional
+                    </Badge>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
-                      Compare Price (BDT)
-                    </label>
-                    <div className="flex items-center gap-1.5 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5">
-                      <span className="text-stone-400 font-bold text-sm">৳</span>
-                      <input
-                        type="number"
-                        value={comparePrice}
-                        onChange={(e) => setComparePrice(e.target.value)}
-                        placeholder="95000"
-                        min="0"
-                        className="flex-1 bg-transparent text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
-                      />
-                    </div>
+                  <div className="space-y-3">
+                    {specs.filter(row => row.key !== "_variations" && row.key !== "_addons").map((row, idx) => {
+                      const actualIdx = specs.indexOf(row);
+                      return (
+                        <div key={idx} className="flex gap-2 items-center">
+                          <input
+                            type="text"
+                            value={row.key}
+                            onChange={(e) => updateSpec(actualIdx, "key", e.target.value)}
+                            placeholder="e.g. range"
+                            className="flex-1 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-xs font-bold text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                          />
+                          <span className="text-stone-300 text-sm font-bold">:</span>
+                          <input
+                            type="text"
+                            value={row.value}
+                            onChange={(e) => updateSpec(actualIdx, "value", e.target.value)}
+                            placeholder="e.g. 80km"
+                            className="flex-1 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-xs font-bold text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                          />
+                          {specs.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => removeSpecRow(actualIdx)}
+                              className="text-stone-400 hover:text-rose-600 p-1 border-0 bg-transparent"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
 
+                  <button
+                    type="button"
+                    onClick={addSpecRow}
+                    className="flex items-center gap-2 text-xs font-bold text-stone-500 hover:text-emerald-800 transition-colors border-0 bg-transparent py-1 cursor-pointer"
+                  >
+                    <Plus className="w-4 h-4" />
+                    Add spec row
+                  </button>
+                </div>
+
+                {/* SEO Properties Section */}
+                <div className="space-y-4 pt-6 border-t border-stone-100">
+                  <div className="pb-2">
+                    <h2 className="text-base font-bold text-stone-900 flex items-center gap-1.5">
+                      <Globe className="w-4 h-4 text-emerald-700" />
+                      SEO Settings
+                    </h2>
+                    <p className="text-xs text-stone-400">Optimize product details for Google Search Engine indexing.</p>
+                  </div>
+
+                  {/* Meta Title */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
-                      Stock Quantity *
+                      Meta Title
                     </label>
                     <input
-                      type="number"
-                      value={stock}
-                      onChange={(e) => setStock(e.target.value)}
-                      min="0"
-                      required
-                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                      type="text"
+                      value={metaTitle}
+                      onChange={(e) => setMetaTitle(e.target.value)}
+                      placeholder="e.g. EV Solution Alpha E-Bike Price in Bangladesh"
+                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                     />
                   </div>
 
+                  {/* Meta Description */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
-                      Featured Product?
+                      Meta Description
                     </label>
-                    <button
-                      type="button"
-                      onClick={() => setIsFeatured(!isFeatured)}
-                      className={cn(
-                        "w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border-2 text-sm font-bold transition-all h-10",
-                        isFeatured
-                          ? "border-emerald-600 bg-emerald-50 text-emerald-800"
-                          : "border-stone-200 text-stone-500 hover:border-stone-300 bg-white"
-                      )}
-                    >
-                      {isFeatured ? "⭐ Featured Product" : "☆ Not Featured"}
-                    </button>
+                    <textarea
+                      value={metaDescription}
+                      onChange={(e) => setMetaDescription(e.target.value)}
+                      rows={3}
+                      placeholder="Provide meta description summarizing the product for listing snips..."
+                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 resize-none"
+                    />
                   </div>
                 </div>
-              </div>
 
-              {/* Specs */}
-              <div className="bg-white border border-stone-200/85 rounded-2xl p-6 space-y-4 shadow-sm shadow-stone-150/40">
-                <div className="flex items-center justify-between border-b border-stone-100 pb-2.5">
-                  <h2 className="text-xs font-bold text-stone-750 uppercase tracking-widest">Specifications</h2>
-                  <Badge className="bg-stone-100 text-stone-500 text-[10px] font-bold border-0">
-                    Optional
-                  </Badge>
+              </div>
+            )}
+
+            {/* TAB: MEDIA & IMAGES */}
+            {activeTab === "media" && (
+              <div className="space-y-6 animate-in fade-in duration-200">
+                <div className="border-b border-stone-100 pb-3">
+                  <h2 className="text-base font-bold text-stone-900">Product Media</h2>
+                  <p className="text-xs text-stone-400">Manage primary thumbnail and detail variation images.</p>
                 </div>
 
-                <div className="space-y-2">
-                  {specs.map((row, idx) => (
-                    <div key={idx} className="flex gap-2 items-center">
-                      <input
-                        type="text"
-                        value={row.key}
-                        onChange={(e) => updateSpec(idx, "key", e.target.value)}
-                        placeholder="e.g. range"
-                        className="flex-1 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
-                      />
-                      <span className="text-stone-300 text-sm font-bold">:</span>
-                      <input
-                        type="text"
-                        value={row.value}
-                        onChange={(e) =>
-                          updateSpec(idx, "value", e.target.value)
-                        }
-                        placeholder="e.g. 80km"
-                        className="flex-1 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
-                      />
-                      {specs.length > 1 && (
-                        <button
-                          type="button"
-                          onClick={() => removeSpecRow(idx)}
-                          className="text-stone-400 hover:text-rose-600 p-1 border-0 bg-transparent"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  
+                  {/* Primary Image Upload Box */}
+                  <div className="space-y-3">
+                    <h3 className="text-xs font-bold text-stone-750 uppercase tracking-widest flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-emerald-800" />
+                      Primary Thumbnail Image
+                    </h3>
+
+                    {/* Drag n Drop zone */}
+                    <div
+                      onClick={() => fileInputRef.current?.click()}
+                      className={cn(
+                        "relative aspect-video rounded-2xl border-2 border-dashed cursor-pointer transition-all overflow-hidden bg-stone-50 flex items-center justify-center",
+                        imagePreview ? "border-emerald-600/50" : "border-stone-200 hover:border-stone-400"
+                      )}
+                    >
+                      {imagePreview ? (
+                        <>
+                          <Image src={imagePreview} alt="Preview" fill className="object-cover" unoptimized={true} />
+                          <div className="absolute inset-0 bg-stone-900/60 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <p className="text-white text-xs font-bold uppercase tracking-wider">Change Image</p>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="flex flex-col items-center gap-2 text-stone-400 p-4">
+                          <Upload className="w-8 h-8 text-stone-300" />
+                          <p className="text-xs text-center font-bold">Upload main thumbnail</p>
+                        </div>
+                      )}
+
+                      {uploading && (
+                        <div className="absolute inset-0 bg-stone-900/80 flex flex-col items-center justify-center gap-3">
+                          <Loader2 className="w-6 h-6 text-emerald-500 animate-spin" />
+                          <p className="text-white text-[10px] font-bold uppercase">Uploading to Cloudinary...</p>
+                        </div>
                       )}
                     </div>
-                  ))}
+
+                    <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
+
+                    {imageUrl && (
+                      <div className="flex items-center justify-between text-[11px] bg-stone-50 p-3 border rounded-xl">
+                        <span className="truncate text-stone-550 max-w-[200px] font-mono">{imageUrl}</span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setImageUrl("");
+                            setImagePreview("");
+                          }}
+                          className="text-rose-600 font-bold hover:underline border-0 bg-transparent shrink-0"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Variation Images Gallery Box */}
+                  <div className="space-y-3">
+                    <h3 className="text-xs font-bold text-stone-750 uppercase tracking-widest flex items-center gap-2">
+                      <ImageIcon className="w-4 h-4 text-emerald-800" />
+                      Detail Gallery Images
+                    </h3>
+
+                    <div className="grid grid-cols-3 gap-2.5">
+                      {galleryImages.map((url, i) => (
+                        <div key={i} className="relative aspect-square rounded-xl overflow-hidden border border-stone-200">
+                          <Image src={url} alt="Gallery" fill className="object-cover" unoptimized={true} />
+                          <button
+                            type="button"
+                            onClick={() => setGalleryImages((prev) => prev.filter((_, idx) => idx !== i))}
+                            className="absolute top-1 right-1 bg-white rounded-full p-1 shadow-md text-rose-500 hover:text-rose-755 z-10"
+                          >
+                            <X className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      ))}
+
+                      <div
+                        onClick={() => galleryInputRef.current?.click()}
+                        className="aspect-square rounded-xl border-2 border-dashed border-stone-200 hover:border-emerald-500 cursor-pointer flex flex-col items-center justify-center gap-1.5 bg-stone-50 text-stone-400 transition-colors"
+                      >
+                        <Plus className="w-5 h-5" />
+                        <span className="text-[10px] font-bold uppercase tracking-wider">Add</span>
+                      </div>
+                    </div>
+
+                    <input ref={galleryInputRef} type="file" accept="image/*" multiple className="hidden" onChange={handleGalleryUpload} />
+                  </div>
+
                 </div>
-
-                <button
-                  type="button"
-                  onClick={addSpecRow}
-                  className="flex items-center gap-2 text-xs font-bold text-stone-500 hover:text-emerald-800 transition-colors border-0 bg-transparent py-1"
-                >
-                  <Plus className="w-4 h-4" />
-                  Add spec row
-                </button>
               </div>
+            )}
 
-              {/* Submit */}
-              <div className="space-y-3">
-                <Button
-                  type="submit"
-                  disabled={saving || uploading || !imageUrl}
-                  className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold h-12 text-sm gap-2 disabled:opacity-50 rounded-xl shadow-md shadow-emerald-700/10 border-0"
-                >
-                  {saving ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      Saving to Supabase...
-                    </>
-                  ) : (
-                    <>
-                      <CheckCircle className="w-4 h-4" />
-                      Save Product
+          </div>
+
+          {/* Form Actions Footer Bar */}
+          <div className="flex items-center justify-between bg-stone-900 p-4 rounded-2xl text-white">
+            <span className="text-xs font-bold text-stone-400">
+              {activeTab === "media" ? "Ready to save edits?" : "Fill details or click save"}
+            </span>
+
+            <div className="flex items-center gap-3">
+              <Button
+                type="submit"
+                disabled={saving || uploading || !imageUrl}
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider disabled:opacity-40 border-0 flex items-center gap-2"
+              >
+                {saving ? (
+                  <>
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    Saving Changes...
+                  </>
+                ) : (
+                  <>
+                    <CheckCircle className="w-3.5 h-3.5" />
+                    Save Changes
                   </>
                 )}
-                </Button>
-
-                {!imageUrl && (
-                  <p className="text-center text-xs font-bold text-amber-700 bg-amber-50 py-2 rounded-xl border border-amber-100/50">
-                    ⚠️ Please upload a product image first to enable Save button.
-                  </p>
-                )}
-              </div>
+              </Button>
             </div>
           </div>
+
         </form>
       </div>
     </main>

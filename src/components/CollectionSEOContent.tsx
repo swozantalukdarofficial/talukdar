@@ -18,7 +18,7 @@ interface SEOData {
 const SEO_CONTENT: Record<ProductCategory | "all", SEOData> = {
   all: {
     title: "Electric Vehicles & EV Accessories Price in Bangladesh",
-    intro: "EVStore is Bangladesh's premier online marketplace for sustainable electric mobility. We provide a comprehensive catalog of high-performance e-bikes, durable lithium battery packs, advanced motor controllers, and essential safety accessories at the most competitive price rates in the country.",
+    intro: "EV Solution BD is Bangladesh's premier online marketplace for sustainable electric mobility. We provide a comprehensive catalog of high-performance e-bikes, durable lithium battery packs, advanced motor controllers, and essential safety accessories at the most competitive price rates in the country.",
     tableTitle: "Latest EV Products Price List in Bangladesh",
     tableItems: [
       { name: "Thunder X1 E-Bike", price: "৳85,000" },
@@ -27,7 +27,7 @@ const SEO_CONTENT: Record<ProductCategory | "all", SEOData> = {
       { name: "Smart Helmet Pro (Bluetooth & LED)", price: "৳6,500" },
       { name: "UltraCell 60V 30Ah Waterproof Battery", price: "৳32,000" },
     ],
-    bulletTitle: "Why Choose EVStore for Your Smart Mobility Needs?",
+    bulletTitle: "Why Choose EV Solution BD for Your Smart Mobility Needs?",
     bullets: [
       "Authentic Products: 100% genuine components sourced directly from certified manufacturers.",
       "Comprehensive Warranty: Dedicated replacement warranty on batteries, motors, and e-bikes.",
@@ -84,7 +84,7 @@ const SEO_CONTENT: Record<ProductCategory | "all", SEOData> = {
   },
   battery: {
     title: "E-Bike Lithium & LiFePO4 Batteries - Reliable Power & Long Life",
-    intro: "Empower your electric ride with our state-of-the-art battery collection. At EVStore, we specialize in high-density Lithium-Ion (Li-ion) and Lithium Iron Phosphate (LiFePO4) battery packs that offer consistent voltage discharge, superior thermal stability, and unmatched cycle durability.",
+    intro: "Empower your electric ride with our state-of-the-art battery collection. At EV Solution BD, we specialize in high-density Lithium-Ion (Li-ion) and Lithium Iron Phosphate (LiFePO4) battery packs that offer consistent voltage discharge, superior thermal stability, and unmatched cycle durability.",
     tableTitle: "Premium E-Bike Battery Price List in Bangladesh",
     tableItems: [
       { name: "PowerCell 48V 20Ah Lithium Battery Pack", price: "৳18,500" },
@@ -141,7 +141,7 @@ const SEO_CONTENT: Record<ProductCategory | "all", SEOData> = {
   },
   accessories: {
     title: "Essential EV Riding Gear & Accessories - Comfort & Security",
-    intro: "Complete your smart commuting experience with our premium selection of safety and convenience accessories. EVStore offers everything from high-tech Bluetooth smart helmets and mobile mounts to heavy-duty security locks and intelligent battery chargers.",
+    intro: "Complete your smart commuting experience with our premium selection of safety and convenience accessories. EV Solution BD offers everything from high-tech Bluetooth smart helmets and mobile mounts to heavy-duty security locks and intelligent battery chargers.",
     tableTitle: "Smart EV Accessories Price List in Bangladesh",
     tableItems: [
       { name: "Smart Helmet Pro (Bluetooth Speakers & Turn Signals)", price: "৳6,500" },
@@ -170,7 +170,7 @@ const SEO_CONTENT: Record<ProductCategory | "all", SEOData> = {
   },
   solar: {
     title: "Premium Solar Panels & Clean Energy Solutions in Bangladesh",
-    intro: "Empower your home, business, or EV charging setup with our high-efficiency solar panels. EVStore offers a curated collection of German-cell monocrystalline and bifacial solar panels, designed for optimal sunlight capture and long-term durability in tropical climates.",
+    intro: "Empower your home, business, or EV charging setup with our high-efficiency solar panels. EV Solution BD offers a curated collection of German-cell monocrystalline and bifacial solar panels, designed for optimal sunlight capture and long-term durability in tropical climates.",
     tableTitle: "Latest Solar Panels Price List in Bangladesh",
     tableItems: [
       { name: "Sunshine 55W Mono Solar Panel", price: "৳2,400" },

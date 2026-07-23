@@ -18,7 +18,7 @@ export default function BlogListSchema({ posts = POSTS }: BlogListSchemaProps) {
     "description": "Read expert buying guides, battery comparison charts, energy tips, and electric vehicle updates in Bangladesh.",
     "publisher": {
       "@type": "Organization",
-      "name": "Talukdar EV",
+      "name": "EV Solution BD",
       "logo": `${baseUrl}/logo.svg`,
     },
     "blogPost": posts.map((post) => ({

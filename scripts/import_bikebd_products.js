@@ -192,7 +192,7 @@ async function run() {
     }
 
     const specs = {
-      Brand: raw.Brand || 'EVStore',
+      Brand: raw.Brand || 'EV Solution BD',
       Subcategory: subcategory
     };
     
