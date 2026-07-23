@@ -23,6 +23,17 @@ export default class ErrorBoundary extends Component<Props, State> {
 
 	public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
 		console.error("Uncaught error:", error, errorInfo);
+		if (
+			error?.message?.includes("Failed to fetch dynamically imported module") ||
+			error?.name === "ChunkLoadError"
+		) {
+			const refreshed = sessionStorage.getItem("webestone_chunk_retry");
+			if (!refreshed) {
+				sessionStorage.setItem("webestone_chunk_retry", "true");
+				window.location.reload();
+				return;
+			}
+		}
 		this.setState({ errorInfo });
 	}
 
