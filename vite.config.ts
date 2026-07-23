@@ -11,17 +11,33 @@ export default defineConfig({
 		},
 	},
 	build: {
-		sourcemap: true,
-		chunkSizeWarningLimit: 1000,
+		sourcemap: false,
+		minify: "esbuild",
+		target: "es2020",
+		cssCodeSplit: true,
+		chunkSizeWarningLimit: 500,
 		rollupOptions: {
 			output: {
-				manualChunks: {
-					// Core React runtime
-					"vendor-react": ["react", "react-dom", "react-router-dom"],
-					// Framer Motion
-					"vendor-framer": ["framer-motion"],
+				manualChunks(id) {
+					if (id.includes("node_modules")) {
+						if (id.includes("firebase")) {
+							return "vendor-firebase";
+						}
+						if (id.includes("lucide-react")) {
+							return "vendor-lucide";
+						}
+						if (id.includes("framer-motion")) {
+							return "vendor-framer";
+						}
+						if (id.includes("react")) {
+							return "vendor-react";
+						}
+					}
 				},
 			},
 		},
+	},
+	esbuild: {
+		drop: ["console", "debugger"],
 	},
 });

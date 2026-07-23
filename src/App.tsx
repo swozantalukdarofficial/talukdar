@@ -3,7 +3,7 @@ import { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import BackgroundEffects from "./components/BackgroundEffects";
-import AiChatWidget from "./components/AiChatWidget";
+const AiChatWidget = lazy(() => import("./components/AiChatWidget"));
 import ScrollToTop from "./components/ScrollToTop";
 
 // ── Admin pages (lazy)
@@ -71,7 +71,9 @@ function PublicLayout() {
 			<Header />
 			<Outlet />
 			<Footer />
-			<AiChatWidget />
+			<Suspense fallback={null}>
+				<AiChatWidget />
+			</Suspense>
 		</div>
 	);
 }
