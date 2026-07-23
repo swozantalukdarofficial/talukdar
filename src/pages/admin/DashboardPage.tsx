@@ -210,18 +210,18 @@ const portfolio = [
 
 const seo = {
 	home: {
-		title: "WeBestOne | AI-Powered Digital Marketing Agency",
-		description: "WeBestOne is a full-service AI-driven digital marketing agency specializing in SEO, Web Development, Social Media, PPC, and Video Editing to grow brands.",
+		title: "AI-Powered Solutions & Digital Marketing Agency | WeBestOne",
+		description: "Advanced AI powered solutions by an expert AI agency delivering full digital marketing, web development, uiux design and tech solutions for better Google rankings and growth.",
 		keywords: "AI Marketing, SEO Agency, Web Development, SMM, PPC Advertising"
 	},
 	about: {
-		title: "About Us | WeBestOne",
-		description: "Learn about WeBestOne, our mission, vision, and how our team combines artificial intelligence and human creativity to scale brands.",
+		title: "AI powered agency | Webestone About us",
+		description: "Leading AI powered agency providing AI SEO, SMM, Web Design, Development, Motion Graphics & Video Editing to transform your brand with AI solutions.",
 		keywords: "About WeBestOne, AI Digital Agency Perth, Marketing Team"
 	},
 	contact: {
-		title: "Contact Us | WeBestOne",
-		description: "Get in touch with WeBestOne to claim your free marketing audit and start your AI-powered digital growth journey.",
+		title: "AI-powered digital marketing Agency | Webestone Contact Us",
+		description: "A leading AI-powered digital marketing agency - contact us to get expert AI solutions and start your brand transformation with our advanced team.",
 		keywords: "Contact WeBestOne, Free Marketing Audit, Digital Marketing Consultation"
 	},
 	services: {

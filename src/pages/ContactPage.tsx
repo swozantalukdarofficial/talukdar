@@ -461,8 +461,8 @@ export default function ContactPage() {
 		<main className="relative min-h-screen bg-black text-white overflow-x-hidden selection:bg-neon-green/30">
 			<SEO 
 				pageKey="contact"
-				title="Contact Us | WeBestOne - AI-Powered Digital Agency" 
-				description="Get in touch with WeBestOne for high-impact AI digital marketing, custom website development, SEO, and growth solutions." 
+				title="AI-powered digital marketing Agency | Webestone Contact Us" 
+				description="A leading AI-powered digital marketing agency - contact us to get expert AI solutions and start your brand transformation with our advanced team." 
 				schemaMarkup={contactSchema}
 			/>
 

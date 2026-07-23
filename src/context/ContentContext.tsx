@@ -290,12 +290,12 @@ const defaultSEO: SEOContent = {
 		description: "Advanced AI powered solutions by an expert AI agency delivering full digital marketing, web development, uiux design and tech solutions for better Google rankings and growth.",
 	},
 	about: {
-		title: "About Us | WeBestOne - AI-Powered Digital Agency",
-		description: "Learn about WeBestOne, a full-service AI-powered digital agency helping businesses grow smarter, faster, and stronger.",
+		title: "AI powered agency | Webestone About us",
+		description: "Leading AI powered agency providing AI SEO, SMM, Web Design, Development, Motion Graphics & Video Editing to transform your brand with AI solutions.",
 	},
 	contact: {
-		title: "Contact Us | WeBestOne",
-		description: "Get in touch with WeBestOne for AI-powered digital marketing, web development, and growth solutions.",
+		title: "AI-powered digital marketing Agency | Webestone Contact Us",
+		description: "A leading AI-powered digital marketing agency - contact us to get expert AI solutions and start your brand transformation with our advanced team.",
 	},
 	work: {
 		title: "Our Work & Case Studies - WeBestOne",
