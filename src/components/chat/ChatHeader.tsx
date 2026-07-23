@@ -1,5 +1,5 @@
 import React from "react";
-import { MessageSquare, FileText, Search, Minus, X, Phone, Sparkles } from "lucide-react";
+import { MessageSquare, FileText, Search, Minus, X, Phone, Sparkles, RotateCcw } from "lucide-react";
 import { ChatTab } from "./types";
 
 interface ChatHeaderProps {
@@ -7,6 +7,7 @@ interface ChatHeaderProps {
 	setActiveTab: (tab: ChatTab) => void;
 	onClose: () => void;
 	onMinimize?: () => void;
+	onReset?: () => void;
 }
 
 export const ChatHeader: React.FC<ChatHeaderProps> = ({
@@ -14,6 +15,7 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
 	setActiveTab,
 	onClose,
 	onMinimize,
+	onReset,
 }) => {
 	return (
 		<div className="bg-neutral-900/90 text-white flex-shrink-0 border-b border-white/10">
@@ -94,6 +96,16 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
 
 				{/* Header Actions */}
 				<div className="flex items-center gap-1">
+					{onReset && (
+						<button
+							onClick={onReset}
+							className="p-1.5 text-neutral-400 hover:text-neon-green hover:bg-white/10 rounded-lg transition-colors cursor-pointer"
+							title="Reset Chat & Restart"
+							aria-label="Reset Chat"
+						>
+							<RotateCcw className="w-3.5 h-3.5" />
+						</button>
+					)}
 					<button
 						onClick={onMinimize || onClose}
 						className="p-1.5 text-neutral-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors cursor-pointer"

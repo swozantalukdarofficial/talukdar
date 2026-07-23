@@ -4,7 +4,47 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 export default defineConfig({
-	plugins: [react(), tailwindcss()],
+	plugins: [
+		react(),
+		tailwindcss(),
+		{
+			name: "local-api-chat-plugin",
+			configureServer(server) {
+				server.middlewares.use("/api/chat", async (req, res) => {
+					if (req.method !== "POST") {
+						res.statusCode = 405;
+						return res.end();
+					}
+					let bodyStr = "";
+					req.on("data", (chunk) => (bodyStr += chunk));
+					req.on("end", async () => {
+						try {
+							const body = JSON.parse(bodyStr || "{}");
+							const mockReq = { method: req.method || "POST", headers: req.headers, body };
+							const mockRes = {
+								setHeader: (k, v) => res.setHeader(k, v),
+								status: (code) => {
+									res.statusCode = code;
+									return {
+										json: (data) => {
+											res.setHeader("Content-Type", "application/json");
+											res.end(JSON.stringify(data));
+										},
+									};
+								},
+							};
+							const handler = require("./api/chat.js").default;
+							await handler(mockReq, mockRes);
+						} catch (e) {
+							res.statusCode = 500;
+							res.setHeader("Content-Type", "application/json");
+							res.end(JSON.stringify({ error: e.message }));
+						}
+					});
+				});
+			},
+		},
+	],
 	resolve: {
 		alias: {
 			"@": path.resolve(__dirname, "./src"),

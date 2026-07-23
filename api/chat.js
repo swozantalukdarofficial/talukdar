@@ -21,8 +21,23 @@ function generateSmartFallbackReply(userQuery = "") {
   }
 
   // 2. Services & Offerings
-  if (query.includes("service") || query.includes("offer") || query.includes("kaz") || query.includes("work") || query.includes("web") || query.includes("seo") || query.includes("marketing") || query.includes("design")) {
-    return "We specialize in **AI-Powered SEO & GEO Ranking**, **Custom Next.js & React Web Apps**, **Data-Driven Digital Marketing**, and **High-Converting Shopify Stores**. Explore our [Services](/services) or view our [Work Showcase](/work)!";
+  if (query.includes("service") || query.includes("offer") || query.includes("kaz") || query.includes("work") || query.includes("web") || query.includes("seo") || query.includes("marketing") || query.includes("design") || query.includes("সার্ভিস") || query.includes("কাজ")) {
+    return `👋 Here are all 12 specialized services offered by **WeBestOne** (click any service to view details):
+
+1. 📈 [Full Stack Digital Marketing](/services/digital-marketing-agency)
+2. 🚀 [AI Driven SEO](/services/AI-SEO-Service-Agency)
+3. 📱 [Social Media Marketing (SMM)](/services/social-media-marketing-agency)
+4. 🎯 [PPC Ads Management](/services/ppc-management-services)
+5. 🛍️ [Shopify SEO Agency](/services/shopify-seo-service-agency)
+6. ✍️ [Content Writing Services](/services/content-writing-services)
+7. 🎬 [Professional Video Editing](/services/professional-video-editing-services)
+8. 🎨 [Motion Graphics Services](/services/motion-graphics-services-company)
+9. 💻 [Custom Website Development](/services/custom-web-development-services)
+10. 🌐 [WordPress Web Development](/services/wordpress-website-development-services)
+11. 🖌️ [UI/UX Web Design](/services/web-design-service)
+12. 🛒 [Shopify Website Development](/services/shopify-website-development-service)
+
+🔗 View our complete 12-service catalogue on our [Explore All Services](/services) page!`;
   }
 
   // 3. Pricing / Cost / Budget
@@ -82,33 +97,40 @@ export default async function handler(req, res) {
   const nvidiaKey = process.env.NVIDIA_KEY || process.env.VITE_NVIDIA_KEY || process.env.VITE_NVIDIA_API_KEY;
 
   try {
-    // 1. Try Groq AI (Llama-3.3-70b)
+    // 1. Try Groq AI (Primary: llama-3.3-70b-versatile, Backup: llama-3.1-8b-instant)
     if (groqKey) {
-      const groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${groqKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "llama-3.3-70b-versatile",
-          messages: [
-            { role: "system", content: systemPrompt },
-            ...messages.map((m) => ({
-              role: m.sender === "user" ? "user" : "assistant",
-              content: m.text || m.content || "",
-            })),
-          ],
-          temperature: 0.7,
-          max_tokens: 450,
-        }),
-      });
+      const groqModels = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"];
+      for (const model of groqModels) {
+        try {
+          const groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+            method: "POST",
+            headers: {
+              "Authorization": `Bearer ${groqKey}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              model: model,
+              messages: [
+                { role: "system", content: systemPrompt },
+                ...messages.slice(-8).map((m) => ({
+                  role: m.sender === "user" ? "user" : "assistant",
+                  content: m.text || m.content || "",
+                })),
+              ],
+              temperature: 0.6,
+              max_tokens: 350,
+            }),
+          });
 
-      if (groqRes.ok) {
-        const data = await groqRes.json();
-        const reply = data.choices?.[0]?.message?.content;
-        if (reply) {
-          return res.status(200).json({ reply });
+          if (groqRes.ok) {
+            const data = await groqRes.json();
+            const reply = data.choices?.[0]?.message?.content;
+            if (reply) {
+              return res.status(200).json({ reply });
+            }
+          }
+        } catch (gErr) {
+          console.warn(`Groq model ${model} failed:`, gErr);
         }
       }
     }
@@ -125,13 +147,13 @@ export default async function handler(req, res) {
           model: "meta/llama-3.1-70b-instruct",
           messages: [
             { role: "system", content: systemPrompt },
-            ...messages.map((m) => ({
+            ...messages.slice(-8).map((m) => ({
               role: m.sender === "user" ? "user" : "assistant",
               content: m.text || m.content || "",
             })),
           ],
-          temperature: 0.7,
-          max_tokens: 450,
+          temperature: 0.6,
+          max_tokens: 350,
         }),
       });
 

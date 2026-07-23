@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Bot, User, Globe, Mail, CheckCircle2, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Bot, User, Globe, Mail, CheckCircle2, ArrowUpRight, ChevronLeft, ChevronRight, Copy, Check } from "lucide-react";
 import { ChatMessage } from "./types";
 
 const LANGUAGES = [
@@ -11,14 +11,20 @@ const LANGUAGES = [
 ];
 
 const INITIAL_SUGGESTIONS = [
+	"⚡ Request 15-Min Call",
+	"🚀 Free Website & SEO Audit",
+	"🛍️ E-Commerce & Shopify Growth",
+	"🏢 B2B & SaaS Growth",
+	"🛠️ Local Business Growth",
+	"💰 Custom Proposal & Rates",
+	"🏆 View Client Case Studies",
 	"What services do you offer?",
-	"How much do your services cost?",
-	"Can I see your portfolio / work?",
-	"How to book a free strategy call?",
 	"What is your WhatsApp & contact info?"
 ];
 
 const VALID_URL_MAP: Record<string, string> = {
+	"/": "/",
+	"/home": "/",
 	"/services": "/services",
 	"/contact": "/contact-us",
 	"/contact-us": "/contact-us",
@@ -27,6 +33,11 @@ const VALID_URL_MAP: Record<string, string> = {
 	"/portfolio": "/work",
 	"/work": "/work",
 	"/blogs": "/blogs",
+	"/terms": "/terms-and-conditions",
+	"/terms-and-conditions": "/terms-and-conditions",
+	"/privacy": "/privacy-policy",
+	"/privacy-policy": "/privacy-policy",
+	"/sitemap": "/sitemap",
 	"/services/digital-marketing": "/services/digital-marketing-agency",
 	"/services/digital-marketing-agency": "/services/digital-marketing-agency",
 	"/services/seo": "/services/AI-SEO-Service-Agency",
@@ -75,6 +86,9 @@ function normalizeUrl(rawUrl: string): string {
 	if (clean.includes("about")) return "/about-us";
 	if (clean.includes("work") || clean.includes("portfolio")) return "/work";
 	if (clean.includes("blog")) return "/blogs";
+	if (clean.includes("term")) return "/terms-and-conditions";
+	if (clean.includes("privac")) return "/privacy-policy";
+	if (clean.includes("sitemap")) return "/sitemap";
 	return "/services";
 }
 
@@ -121,13 +135,8 @@ export const ChatMessagesTab: React.FC<ChatMessagesTabProps> = ({
 	};
 
 	const formatBoldText = (str: string) => {
-		const parts = str.split(/(\*\*[^*]+\*\*)/g);
-		return parts.map((part, i) => {
-			if (part.startsWith("**") && part.endsWith("**")) {
-				return <strong key={i} className="font-bold text-white">{part.slice(2, -2)}</strong>;
-			}
-			return part;
-		});
+		// Strip all raw asterisks (* and **) so text looks 100% like real human chat typing
+		return str.replace(/\*\*/g, "").replace(/\*/g, "");
 	};
 
 	const renderMessageContent = (text: string) => {
@@ -174,6 +183,8 @@ export const ChatMessagesTab: React.FC<ChatMessagesTabProps> = ({
 
 		return elements;
 	};
+
+	const [copiedMsgId, setCopiedMsgId] = useState<string | null>(null);
 
 	const todayDateStr = new Date().toLocaleDateString("en-US", {
 		weekday: "long",
@@ -286,13 +297,32 @@ export const ChatMessagesTab: React.FC<ChatMessagesTabProps> = ({
 										<div className="whitespace-pre-wrap leading-relaxed">{renderMessageContent(m.text)}</div>
 									</div>
 
-									{/* Timestamp & User Badge */}
+									{/* Timestamp & User Badge & Copy Button */}
 									<div
 										className={`flex items-center gap-1.5 mt-1 text-[9px] font-medium ${
 											m.sender === "user" ? "justify-end text-neutral-400" : "justify-start text-neutral-500"
 										}`}
 									>
 										<span>{m.timestamp}</span>
+										{m.sender === "assistant" && (
+											<button
+												onClick={() => {
+													navigator.clipboard.writeText(m.text);
+													setCopiedMsgId(m.id);
+													setTimeout(() => setCopiedMsgId(null), 2000);
+												}}
+												className="p-0.5 text-neutral-500 hover:text-neon-green transition-colors cursor-pointer ml-1"
+												title="Copy Message"
+											>
+												{copiedMsgId === m.id ? (
+													<span className="text-neon-green text-[9px] font-bold flex items-center gap-0.5">
+														<Check className="w-3 h-3 text-neon-green" /> Copied
+													</span>
+												) : (
+													<Copy className="w-3 h-3" />
+												)}
+											</button>
+										)}
 										{m.sender === "user" && (
 											<span className="w-3.5 h-3.5 rounded-full bg-white/20 text-white text-[8px] font-bold flex items-center justify-center">
 												Y
