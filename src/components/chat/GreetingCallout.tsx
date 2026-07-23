@@ -16,7 +16,7 @@ export const GreetingCallout: React.FC<GreetingCalloutProps> = ({
 			<div className="flex items-center justify-between gap-2 mb-2">
 				<div className="flex items-center gap-2">
 					<div className="w-6 h-6 rounded-full bg-neutral-950 border border-neon-green/40 flex items-center justify-center p-0.5 shrink-0 overflow-hidden">
-						<img src="/favicon.png" alt="WeBestOne" className="w-full h-full object-cover rounded-full" />
+						<img src="/favicon.webp" alt="WeBestOne" className="w-full h-full object-cover rounded-full" loading="lazy" width="24" height="24" />
 					</div>
 					<span className="font-extrabold text-xs text-white tracking-wide">WeBestOne</span>
 				</div>
