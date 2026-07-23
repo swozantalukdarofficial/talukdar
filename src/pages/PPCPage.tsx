@@ -380,7 +380,7 @@ export default function PPCPage() {
               Why you <span className="relative inline-block">
                 <span className="text-neon-green">Need this Service</span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 400 20" fill="none">
-                  <path d="M5 15Q200 5 395 15" stroke="#87E65C" strokeWidth="4" strokeLinecap="round" />
+                  <path d="M5 15Q200 5 395 15" stroke="#00FF66" strokeWidth="4" strokeLinecap="round" />
                 </svg>
               </span>
             </h2>
@@ -478,7 +478,7 @@ export default function PPCPage() {
       </section>
 
       {/* 3. Our Proven Credentials Section */}
-      <section className="py-24 px-6 relative z-10 bg-[#050505] overflow-hidden">
+      <section className="py-24 px-6 relative z-10 bg-slate-50 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
             <div className="space-y-4">
@@ -486,7 +486,7 @@ export default function PPCPage() {
                 Our Proven <span className="relative inline-block">
                   <span className="text-neon-green">Credentials</span>
                   <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 250 20" fill="none">
-                    <path d="M5 15Q125 5 245 15" stroke="#87E65C" strokeWidth="4" strokeLinecap="round" />
+                    <path d="M5 15Q125 5 245 15" stroke="#00FF66" strokeWidth="4" strokeLinecap="round" />
                   </svg>
                 </span>
               </h2>
@@ -572,9 +572,9 @@ export default function PPCPage() {
                 sub: "Psychology Experts",
                 icon: (
                   <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="#87E65C" strokeWidth="2" />
-                    <circle cx="12" cy="12" r="6" stroke="#87E65C" strokeWidth="2" />
-                    <circle cx="12" cy="12" r="2" fill="#87E65C" />
+                    <circle cx="12" cy="12" r="10" stroke="#00FF66" strokeWidth="2" />
+                    <circle cx="12" cy="12" r="6" stroke="#00FF66" strokeWidth="2" />
+                    <circle cx="12" cy="12" r="2" fill="#00FF66" />
                   </svg>
                 )
               }
@@ -857,7 +857,7 @@ export default function PPCPage() {
                   <span className="relative inline-block">
                     <span className="text-neon-green">and start scaling?</span>
                     <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 350 20" fill="none">
-                      <path d="M5 15Q175 5 345 15" stroke="#87E65C" strokeWidth="4" strokeLinecap="round" />
+                      <path d="M5 15Q175 5 345 15" stroke="#00FF66" strokeWidth="4" strokeLinecap="round" />
                     </svg>
                   </span>
                 </h2>

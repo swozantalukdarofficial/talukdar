@@ -164,7 +164,7 @@ main.sphere-main {
     transform 500ms ease,
     opacity 500ms ease;
   transform-origin: top left;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(135, 230, 92, 0.25);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 255, 102, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: #000;
 }

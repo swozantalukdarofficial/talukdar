@@ -50,9 +50,9 @@ export default function WorkingProcess() {
   const lineHeight = useTransform(scrollYProgress, [0.1, 0.8], ["0%", "100%"]);
 
   return (
-    <section ref={containerRef} className="py-32 px-6 relative overflow-hidden bg-black">
+    <section ref={containerRef} className="py-32 px-6 relative overflow-hidden bg-slate-50">
       {/* Background Decor */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full bg-neon-green/[0.02] blur-[150px] pointer-events-none"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full bg-emerald-500/5 blur-[150px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-24 md:mb-32">
@@ -62,13 +62,13 @@ export default function WorkingProcess() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-neutral-400 uppercase tracking-[0.3em] mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[10px] font-bold text-emerald-700 uppercase tracking-[0.3em] mb-6">
               Our Roadmap
             </div>
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
-              Our <span className="text-neon-green">Proven</span> Process
+            <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 leading-tight">
+              Our <span className="text-emerald-600">Proven</span> Process
             </h2>
-            <p className="text-neutral-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+            <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
               We don't believe in guesswork. Our systematic AI-driven approach ensures every project is engineered for long-term, compounding growth.
             </p>
           </motion.div>
@@ -76,10 +76,10 @@ export default function WorkingProcess() {
 
         <div className="relative">
           {/* Central Vertical Line (Desktop) */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/5 -translate-x-1/2 hidden md:block">
+          <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-slate-200 -translate-x-1/2 hidden md:block">
             <motion.div 
               style={{ height: lineHeight }}
-              className="w-full bg-gradient-to-b from-neon-green via-blue-500 to-purple-500 shadow-[0_0_15px_rgba(135,230,92,0.5)]"
+              className="w-full bg-gradient-to-b from-emerald-500 via-blue-500 to-purple-500 shadow-md shadow-emerald-500/30"
             />
           </div>
 
@@ -97,8 +97,8 @@ export default function WorkingProcess() {
               >
                 {/* Content Card */}
                 <div className="w-full md:w-[42%] group">
-                  <div className="relative p-8 rounded-[2.5rem] bg-white/[0.02] border border-white/10 group-hover:bg-white/[0.04] group-hover:border-white/20 transition-all duration-500 backdrop-blur-xl">
-                    <div className="absolute -top-12 -right-6 text-9xl font-black text-white/[0.02] pointer-events-none select-none group-hover:text-neon-green/[0.05] transition-colors">
+                  <div className="relative p-8 rounded-[2.5rem] bg-white border border-slate-200 hover:border-emerald-500/40 transition-all duration-500 shadow-xl shadow-slate-200/50">
+                    <div className="absolute -top-12 -right-6 text-9xl font-black text-slate-100 pointer-events-none select-none group-hover:text-emerald-500/10 transition-colors">
                       0{index + 1}
                     </div>
                     
@@ -106,19 +106,19 @@ export default function WorkingProcess() {
                       <step.icon className="w-7 h-7 text-white" />
                     </div>
                     
-                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-neon-green transition-colors">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-emerald-600 transition-colors">
                       {step.title}
                     </h3>
-                    <p className="text-neutral-400 leading-relaxed text-lg">
+                    <p className="text-slate-600 leading-relaxed text-lg">
                       {step.description}
                     </p>
                   </div>
                 </div>
 
                 {/* Center Circle Indicator */}
-                <div className="relative z-10 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-black border-2 border-white/10 group-hover:border-neon-green transition-colors duration-500 overflow-hidden">
+                <div className="relative z-10 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-slate-300 group-hover:border-emerald-500 transition-colors duration-500 overflow-hidden shadow-md">
                    <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                   <span className="relative z-10 text-xs font-black text-white group-hover:text-black">0{index + 1}</span>
+                   <span className="relative z-10 text-xs font-black text-slate-700 group-hover:text-white">0{index + 1}</span>
                 </div>
 
                 {/* Empty Spacer for desktop alignment */}

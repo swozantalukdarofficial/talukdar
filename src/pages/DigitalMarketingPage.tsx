@@ -646,7 +646,7 @@ export default function DigitalMarketingPage() {
 								</p>
 
 								<Link to="/contact-us">
-									<button className="px-6 py-2 bg-neon-green text-black text-xs font-bold rounded-full transition-colors cursor-pointer hover:bg-[#87E65C]">
+									<button className="px-6 py-2 bg-neon-green text-black text-xs font-bold rounded-full transition-colors cursor-pointer hover:bg-neon-green/90">
 										Learn More
 									</button>
 								</Link>
@@ -854,7 +854,7 @@ export default function DigitalMarketingPage() {
 				</h2>
 				<div className="flex flex-col sm:flex-row justify-center gap-4">
 					<Link to={pageData.bottomCta.button1Link}>
-						<MagneticButton className="px-8 py-4 bg-neon-green text-black font-bold rounded-full hover:bg-[#87E65C]">
+						<MagneticButton className="px-8 py-4 bg-neon-green text-black font-bold rounded-full hover:bg-neon-green/90">
 							{pageData.bottomCta.button1Text}
 						</MagneticButton>
 					</Link>

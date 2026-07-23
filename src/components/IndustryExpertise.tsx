@@ -12,7 +12,7 @@ const industries = [
 
 export default function IndustryExpertise() {
   return (
-    <section className="py-24 relative overflow-hidden bg-white/[0.01]">
+    <section className="py-24 relative overflow-hidden bg-slate-50">
       <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -20,10 +20,10 @@ export default function IndustryExpertise() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            Industries We <span className="text-neon-green">Empower</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+            Industries We <span className="text-emerald-600">Empower</span>
           </h2>
-          <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
+          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
             Our AI-powered strategies are not one-size-fits-all. We specialize in growing businesses across diverse high-impact sectors.
           </p>
         </motion.div>
@@ -44,19 +44,19 @@ export default function IndustryExpertise() {
           {[...industries, ...industries].map((industry, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-64 p-8 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col items-center justify-center text-center group cursor-default hover:bg-white/[0.06] hover:border-neon-green/30 transition-all duration-300"
+              className="flex-shrink-0 w-64 p-8 rounded-2xl bg-white border border-slate-200 shadow-md shadow-slate-200/50 flex flex-col items-center justify-center text-center group cursor-default hover:border-emerald-500/40 transition-all duration-300"
             >
-              <div className={`w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:bg-neon-green transition-all duration-300 ${industry.color} group-hover:text-black`}>
+              <div className={`w-16 h-16 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center mb-4 group-hover:bg-emerald-600 transition-all duration-300 ${industry.color} group-hover:text-white`}>
                 <industry.icon className="w-8 h-8" />
               </div>
-              <span className="text-white font-bold tracking-wide group-hover:text-neon-green transition-colors">{industry.name}</span>
+              <span className="text-slate-900 font-bold tracking-wide group-hover:text-emerald-600 transition-colors">{industry.name}</span>
             </div>
           ))}
         </motion.div>
 
         {/* Gradient Overlays for Fade Effect */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
       </div>
     </section>
   );

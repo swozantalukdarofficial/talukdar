@@ -33,7 +33,7 @@ const cases = [
 
 export default function SuccessStories() {
   return (
-    <section className="py-24 px-6 bg-black">
+    <section className="py-24 px-6 bg-slate-50">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <motion.div
@@ -43,10 +43,10 @@ export default function SuccessStories() {
             viewport={{ once: true }}
             className="max-w-2xl"
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Real Results for <span className="text-neon-green">Real Businesses</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+              Real Results for <span className="text-emerald-600">Real Businesses</span>
             </h2>
-            <p className="text-neutral-400 text-lg">
+            <p className="text-slate-600 text-lg">
               We don't just talk about growth. We deliver it. Our case studies represent the measurable impact we have had on our clients' revenue and visibility.
             </p>
           </motion.div>
@@ -56,7 +56,7 @@ export default function SuccessStories() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <button className="flex items-center gap-2 text-neon-green font-bold group">
+            <button className="flex items-center gap-2 text-emerald-600 font-bold group">
               <span>View All Case Studies</span>
               <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </button>
@@ -73,21 +73,20 @@ export default function SuccessStories() {
               viewport={{ once: true }}
               className="relative group h-full"
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${item.color} rounded-3xl blur-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-500`}></div>
-              <div className="relative h-full p-8 rounded-3xl bg-neutral-900/50 border border-white/10 hover:border-white/20 transition-all flex flex-col">
+              <div className="relative h-full p-8 rounded-3xl bg-white border border-slate-200 hover:border-emerald-500/40 transition-all flex flex-col shadow-lg shadow-slate-200/50">
                 <div className="flex justify-between items-start mb-8">
-                  <div className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-neutral-400 uppercase tracking-widest">
+                  <div className="px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-[10px] font-bold text-slate-700 uppercase tracking-widest">
                     {item.client}
                   </div>
-                  <TrendingUp className="w-6 h-6 text-neon-green" />
+                  <TrendingUp className="w-6 h-6 text-emerald-600" />
                 </div>
                 
-                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-neon-green transition-colors">{item.title}</h3>
-                <p className="text-neutral-500 text-sm mb-8 flex-grow">{item.description}</p>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-emerald-600 transition-colors">{item.title}</h3>
+                <p className="text-slate-600 text-sm mb-8 flex-grow">{item.description}</p>
                 
-                <div className="pt-8 mt-auto border-t border-white/5">
-                  <div className="text-4xl font-black text-white mb-1 group-hover:scale-110 transition-transform origin-left">{item.stat}</div>
-                  <div className="text-xs font-bold text-neutral-400 uppercase tracking-widest">{item.metric}</div>
+                <div className="pt-8 mt-auto border-t border-slate-100">
+                  <div className="text-4xl font-black text-slate-900 mb-1 group-hover:scale-110 transition-transform origin-left">{item.stat}</div>
+                  <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">{item.metric}</div>
                 </div>
               </div>
             </motion.div>

@@ -38,7 +38,7 @@ const stats = [
 
 export default function MarketAnalysis() {
   return (
-    <section className="py-16 md:py-24 px-6 relative overflow-hidden bg-black/50">
+    <section className="py-16 md:py-24 px-6 relative overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <motion.div
@@ -47,11 +47,11 @@ export default function MarketAnalysis() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-6">
-              Why Brands Need an <span className="text-neon-green">AI-Powered Growth Partner</span>
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6">
+              Why Brands Need an <span className="text-emerald-600">AI-Powered Growth Partner</span>
             </h2>
-            <p className="text-neutral-400 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-              The digital landscape is moving faster than traditional marketing can keep up with. To compete in 2026, brands need more than a website or an ad campaign. They need an <span className="text-white font-semibold">AI-driven growth ecosystem</span> engineered for speed, precision, and measurable ROI.
+            <p className="text-slate-600 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+              The digital landscape is moving faster than traditional marketing can keep up with. To compete in 2026, brands need more than a website or an ad campaign. They need an <span className="text-slate-900 font-semibold">AI-driven growth ecosystem</span> engineered for speed, precision, and measurable ROI.
             </p>
           </motion.div>
         </div>
@@ -64,14 +64,14 @@ export default function MarketAnalysis() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="p-6 md:p-8 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-neon-green/30 transition-all group"
+              className="p-6 md:p-8 rounded-2xl bg-white border border-slate-200 hover:border-emerald-500/40 transition-all shadow-lg shadow-slate-200/50 group"
             >
               <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl ${stat.bg} ${stat.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                 <stat.icon className="w-5 h-5 md:w-6 md:h-6" />
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{stat.value}</h3>
-              <p className="text-xs md:text-sm font-semibold text-neutral-300 mb-3 uppercase tracking-wider">{stat.label}</p>
-              <p className="text-neutral-500 text-xs md:text-sm leading-relaxed">{stat.description}</p>
+              <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">{stat.value}</h3>
+              <p className="text-xs md:text-sm font-semibold text-slate-700 mb-3 uppercase tracking-wider">{stat.label}</p>
+              <p className="text-slate-500 text-xs md:text-sm leading-relaxed">{stat.description}</p>
             </motion.div>
           ))}
         </div>

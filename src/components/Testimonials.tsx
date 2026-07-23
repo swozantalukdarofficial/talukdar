@@ -37,7 +37,7 @@ export default function Testimonials() {
     : testimonials.map(t => ({ ...t, rating: 5 }));
 
   return (
-    <section className="py-24 px-6 bg-black/30">
+    <section className="py-24 px-6 bg-slate-50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <motion.div
@@ -46,10 +46,10 @@ export default function Testimonials() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Trusted by <span className="text-neon-green">Visionary Brands</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+              Trusted by <span className="text-emerald-600">Visionary Brands</span>
             </h2>
-            <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
+            <p className="text-slate-600 text-lg max-w-2xl mx-auto">
               Don't just take our word for it. Here is what our clients have to say about their growth journey with WeBestOne.
             </p>
           </motion.div>
@@ -63,27 +63,27 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="p-8 rounded-3xl bg-white/[0.02] border border-white/10 relative group hover:bg-white/[0.04] transition-colors"
+              className="p-8 rounded-3xl bg-white border border-slate-200 relative group hover:border-emerald-500/40 transition-all shadow-lg shadow-slate-200/50"
             >
-              <Quote className="absolute top-6 right-8 w-10 h-10 text-white/5 group-hover:text-neon-green/10 transition-colors" />
+              <Quote className="absolute top-6 right-8 w-10 h-10 text-slate-100 group-hover:text-emerald-100 transition-colors" />
               
               <div className="flex gap-1 mb-6">
                 {[...Array(Math.min(5, Math.max(0, Math.round(Number(item.rating) || 5))))].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-neon-green text-neon-green" />
+                  <Star key={i} className="w-4 h-4 fill-emerald-500 text-emerald-500" />
                 ))}
               </div>
 
-              <p className="text-neutral-300 italic mb-8 leading-relaxed relative z-10">
+              <p className="text-slate-700 italic mb-8 leading-relaxed relative z-10">
                 "{item.content}"
               </p>
 
-              <div className="flex items-center gap-4 border-t border-white/5 pt-6">
-                <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10">
+              <div className="flex items-center gap-4 border-t border-slate-100 pt-6">
+                <div className="w-12 h-12 rounded-full overflow-hidden border border-slate-200 bg-slate-100">
                   <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <p className="text-white font-bold">{item.name}</p>
-                  <p className="text-xs text-neutral-500">{item.role}</p>
+                  <p className="text-slate-900 font-bold">{item.name}</p>
+                  <p className="text-xs text-slate-500">{item.role}</p>
                 </div>
               </div>
             </motion.div>

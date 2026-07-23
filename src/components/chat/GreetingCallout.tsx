@@ -11,14 +11,14 @@ export const GreetingCallout: React.FC<GreetingCalloutProps> = ({
 	onDismiss,
 }) => {
 	return (
-		<div className="mb-3 bg-neutral-900/95 border border-white/15 backdrop-blur-xl rounded-2xl p-3.5 shadow-2xl w-[270px] sm:w-[290px] animate-in fade-in slide-in-from-bottom-4 duration-300 relative text-white">
+		<div className="mb-3 bg-white border border-slate-200 backdrop-blur-xl rounded-2xl p-3.5 shadow-2xl w-[270px] sm:w-[290px] animate-in fade-in slide-in-from-bottom-4 duration-300 relative text-slate-900">
 			{/* Header Row */}
 			<div className="flex items-center justify-between gap-2 mb-2">
 				<div className="flex items-center gap-2">
-					<div className="w-6 h-6 rounded-full bg-neutral-950 border border-neon-green/40 flex items-center justify-center p-0.5 shrink-0 overflow-hidden">
+					<div className="w-6 h-6 rounded-full bg-slate-100 border border-emerald-500/40 flex items-center justify-center p-0.5 shrink-0 overflow-hidden">
 						<img src="/favicon.webp" alt="WeBestOne" className="w-full h-full object-cover rounded-full" loading="lazy" width="24" height="24" />
 					</div>
-					<span className="font-extrabold text-xs text-white tracking-wide">WeBestOne</span>
+					<span className="font-extrabold text-xs text-slate-900 tracking-wide">WeBestOne</span>
 				</div>
 
 				<button
@@ -27,7 +27,7 @@ export const GreetingCallout: React.FC<GreetingCalloutProps> = ({
 						e.stopPropagation();
 						onDismiss();
 					}}
-					className="p-1 text-neutral-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors cursor-pointer shrink-0"
+					className="p-1 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer shrink-0"
 					aria-label="Dismiss greeting"
 				>
 					<X className="w-3.5 h-3.5" />
@@ -37,7 +37,7 @@ export const GreetingCallout: React.FC<GreetingCalloutProps> = ({
 			{/* Interactive Message Content */}
 			<div
 				onClick={onOpenChat}
-				className="cursor-pointer group text-xs text-neutral-300 hover:text-white transition-colors leading-relaxed"
+				className="cursor-pointer group text-xs text-slate-600 hover:text-slate-900 transition-colors leading-relaxed font-medium"
 			>
 				👋 Hi there! Need help? We're online and ready to assist you.
 			</div>

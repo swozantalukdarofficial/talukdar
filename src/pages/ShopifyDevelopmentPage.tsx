@@ -95,58 +95,45 @@ const shopifyDevSchema = {
 
 const services = [
   {
-    title: "UI/UX Design",
-    desc: "We design interfaces that improve the shopping experience, making navigation clear, smooth, and aligned with user behavior.",
-    icon: <Figma className="w-8 h-8 text-[#87E65C]" />,
-    span: "md:col-span-2 md:row-span-2 bg-gradient-to-br from-neon-green/10 to-black border-white/10"
-  },
-  {
-    title: "Shopify App Development",
-    desc: "Custom Shopify development that adds functionality where your business actually needs it.",
-    icon: <Zap className="w-6 h-6 text-[#87E65C]" />,
-    span: "md:col-span-1 bg-black border-white/10"
-  },
-  {
-    title: "Shopify Theme Development",
-    desc: "Theme development and customization built for speed, structure, and consistency across your Shopify store.",
-    icon: <Figma className="w-6 h-6 text-[#87E65C]" />,
-    span: "md:col-span-1 bg-black border-white/10"
-  },
-  {
-    title: "Shopify Plugin Development",
     desc: "Enhance functionality without disrupting performance or user experience.",
     icon: <Zap className="w-6 h-6 text-[#87E65C]" />,
     span: "md:col-span-2 bg-gradient-to-r from-neutral-900 to-black border-white/10"
   },
   {
-    title: "Shopify Migration",
-    desc: "Secure migration from platforms such as WooCommerce with full data protection and structure alignment.",
-    icon: <RefreshCcw className="w-6 h-6 text-[#87E65C]" />,
-    span: "md:col-span-1 bg-black border-white/10"
+    title: "Catalog & Checkout Optimization",
+    desc: "High-converting cart experiences from a Shopify development agency.",
+    icon: <Zap className="w-6 h-6 text-[#00FF66]" />,
+    span: "col-span-1 md:col-span-2 row-span-1 bg-neutral-900/30"
   },
   {
-    title: "Shopify Integrations",
-    desc: "Connect your Shopify store with CRM systems, inventory management, and essential ecommerce tools.",
-    icon: <Zap className="w-6 h-6 text-[#87E65C]" />,
-    span: "md:col-span-1 bg-black border-white/10"
+    title: "Platform Migration & Integrations",
+    desc: "Seamless transfers handled by a Shopify development company.",
+    icon: <RefreshCcw className="w-6 h-6 text-[#00FF66]" />,
+    span: "col-span-1 md:col-span-1 row-span-1 bg-neutral-900/30"
   },
   {
-    title: "Shopify Support and Maintenance",
-    desc: "Ongoing expert assistance to maintain performance, stability, and efficient online store management.",
-    icon: <CheckCircle2 className="w-6 h-6 text-[#87E65C]" />,
-    span: "md:col-span-1 bg-black border-white/10"
+    title: "Page Speed & Core Web Vitals",
+    desc: "Optimized code for maximum performance.",
+    icon: <Zap className="w-6 h-6 text-[#00FF66]" />,
+    span: "col-span-1 md:col-span-1 row-span-1 bg-neutral-900/30"
   },
   {
-    title: "Shopify Speed Optimization",
-    desc: "Improve loading speed, performance, and experience for mobile shoppers through mobile optimization.",
-    icon: <Zap className="w-6 h-6 text-[#87E65C]" />,
-    span: "md:col-span-1 bg-black border-white/10"
+    title: "CRO & Conversion Funnel Setup",
+    desc: "Data-backed tweaks from a Shopify expert team.",
+    icon: <CheckCircle2 className="w-6 h-6 text-[#00FF66]" />,
+    span: "col-span-1 md:col-span-1 row-span-1 bg-neutral-900/30"
   },
   {
-    title: "Shopify Marketing",
-    desc: "Support your store with structure that aligns with buying behavior, cart management, and conversion flow.",
-    icon: <BarChart3 className="w-6 h-6 text-[#87E65C]" />,
-    span: "md:col-span-3 bg-gradient-to-r from-neutral-900 to-black border-white/10"
+    title: "SEO & Content Architecture",
+    desc: "Search-ready store structures.",
+    icon: <Zap className="w-6 h-6 text-[#00FF66]" />,
+    span: "col-span-1 md:col-span-1 row-span-1 bg-neutral-900/30"
+  },
+  {
+    title: "Ongoing Maintenance & Scaling",
+    desc: "Dedicated support from a Shopify website development agency.",
+    icon: <BarChart3 className="w-6 h-6 text-[#00FF66]" />,
+    span: "col-span-1 md:col-span-2 row-span-1 bg-neutral-900/30"
   }
 ];
 
@@ -211,7 +198,7 @@ export default function ShopifyDevelopmentPage() {
   const containerRef = useRef(null);
   
   return (
-    <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-emerald-500/30">
+    <main ref={containerRef} className="relative min-h-screen bg-slate-50 text-white overflow-x-hidden selection:bg-emerald-500/30">
       <AdminServiceImageEditor serviceId="shopify-website-development-service" />
       <SEO 
         pageKey="shopify-website-development-service"
@@ -731,7 +718,7 @@ export default function ShopifyDevelopmentPage() {
 
       {/* 12. FINAL CTA SECTION */}
       <section className="pb-32 px-6 relative z-10">
-        <div className="max-w-6xl mx-auto rounded-[3rem] overflow-hidden bg-[#0A0A0A] border border-white/5 py-24 px-12 text-center relative">
+        <div className="max-w-6xl mx-auto rounded-[3rem] overflow-hidden bg-white border border-slate-200 shadow-2xl py-24 px-12 text-center relative">
           <div className="absolute inset-0 bg-[#87E65C]/5 blur-[100px] -z-10" />
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 tracking-tight">Ready to build a Shopify store that <br /><span className="text-neon-green">actually performs?</span></h2>
           <div className="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto mb-12 space-y-4">

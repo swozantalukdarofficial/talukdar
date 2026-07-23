@@ -37,22 +37,22 @@ export default function LatestInsights({
 		:	staticArticles;
 
 	return (
-		<section className="py-24 px-6 relative z-10 bg-background/50">
+		<section className="py-24 px-6 relative z-10 bg-slate-50">
 			<div className="max-w-7xl mx-auto space-y-12">
 				{/* Header */}
-				<div className="flex flex-col md:flex-row items-end justify-between gap-6 pb-8 border-b border-white/10">
+				<div className="flex flex-col md:flex-row items-end justify-between gap-6 pb-8 border-b border-slate-200">
 					<div className="space-y-4">
-						<span className="text-neon-green font-mono text-xs uppercase tracking-wider mb-2 block font-bold">
+						<span className="text-emerald-600 font-mono text-xs uppercase tracking-wider mb-2 block font-bold">
 							Latest Blog &amp; Articles
 						</span>
-						<h2 className="text-4xl md:text-5xl font-bold text-white max-w-2xl leading-tight">
+						<h2 className="text-4xl md:text-5xl font-bold text-slate-900 max-w-2xl leading-tight">
 							The latest insights <br /> you need to know
 						</h2>
 					</div>
 
 					<Link
 						to="/blogs"
-						className="group flex items-center gap-2 px-6 py-3 rounded-full bg-neon-green hover:bg-neon-green/90 text-black font-bold transition-all shadow-lg shadow-neon-green/15"
+						className="group flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition-all shadow-lg shadow-emerald-600/25"
 					>
 						<span>View All Articles</span>
 						<MoveUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -66,14 +66,14 @@ export default function LatestInsights({
 							key={article.id || index}
 							initial={{ opacity: 0, y: 30 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							whileHover={{ y: -10 }}
-							transition={{ duration: 0.5, delay: index * 0.1 }}
+							whileHover={{ y: -6 }}
+							transition={{ duration: 0.4, delay: index * 0.08 }}
 							viewport={{ once: true }}
 							className="group cursor-pointer space-y-4"
 						>
 							<Link to={`/blogs/${article.id}`} className="block space-y-4">
 								{/* Image Container */}
-								<div className="aspect-[4/3] w-full rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 relative">
+								<div className="aspect-[4/3] w-full rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 relative shadow-md">
 									<div className="absolute inset-0 group-hover:scale-105 transition-transform duration-700">
 										{article.image?.includes("from-") ?
 											<div
@@ -87,22 +87,20 @@ export default function LatestInsights({
 										}
 									</div>
 
-									<div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300"></div>
-
-									<div className="absolute top-4 left-4 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-xs font-medium text-white border border-white/10">
+									<div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-xs font-bold text-slate-900 border border-slate-200 shadow-sm">
 										{article.category}
 									</div>
 								</div>
 
 								{/* Content */}
 								<div className="space-y-2">
-									<div className="text-xs text-neutral-500 font-medium">
+									<div className="text-xs text-slate-500 font-medium">
 										{article.date}
 									</div>
-									<h3 className="text-xl font-bold text-white group-hover:text-neon-green transition-colors leading-snug">
+									<h3 className="text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors leading-snug">
 										{article.title}
 									</h3>
-									<div className="pt-2 flex items-center text-sm font-medium text-neutral-400 group-hover:text-white transition-colors">
+									<div className="pt-2 flex items-center text-sm font-semibold text-emerald-600 group-hover:text-emerald-700 transition-colors">
 										<span>Read More</span>
 										<ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
 									</div>

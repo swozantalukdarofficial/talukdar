@@ -14,7 +14,7 @@ export default function Footer() {
 	const { socials, contact, footer, site } = useContent();
 
 	return (
-		<footer className="relative bg-black/40 backdrop-blur-xl border-t border-white/5 pt-20 pb-10 overflow-hidden text-neutral-300">
+		<footer className="relative bg-slate-100 border-t border-slate-200 pt-20 pb-10 overflow-hidden text-slate-700">
 			{/* Bottom Left Green Glow */}
 			<div className="absolute -bottom-40 -left-40 w-96 h-96 bg-neon-green/20 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -213,13 +213,13 @@ export default function Footer() {
 						<div className="self-start lg:self-end mt-8 lg:mt-auto">
 							<a
 								href={`mailto:${socials?.email || ""}`}
-								className="inline-flex items-center gap-3 bg-[#87E65C] hover:bg-[#87E65C]/90 text-blue-900 px-6 py-3 rounded-lg font-bold transition-colors shadow-lg shadow-[#87E65C]/20"
+								className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-bold transition-colors shadow-lg shadow-emerald-600/20"
 							>
 								<div className="p-1 bg-white/20 rounded">
 									<Mail className="w-6 h-6" />
 								</div>
 								<div className="flex flex-col text-left leading-none">
-									<span className="text-[10px] uppercase font-bold text-blue-950">
+									<span className="text-[10px] uppercase font-bold text-emerald-100">
 										Contact us on
 									</span>
 									<span className="text-xl">Email</span>

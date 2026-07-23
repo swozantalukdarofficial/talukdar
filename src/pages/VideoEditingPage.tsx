@@ -228,8 +228,8 @@ export default function VideoEditingPage() {
 						className="space-y-4 md:space-y-5 order-2 lg:order-1"
 					>
 						{/* Badge */}
-						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neon-green/10 border border-neon-green/20 text-[#87E65C] text-[10px] font-black uppercase tracking-[0.15em]">
-							<span className="w-1.5 h-1.5 rounded-full bg-[#87E65C] animate-pulse" />
+						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neon-green/10 border border-neon-green/20 text-neon-green text-[10px] font-black uppercase tracking-[0.15em]">
+							<span className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse" />
 							Video Editing
 						</div>
 
@@ -243,7 +243,7 @@ export default function VideoEditingPage() {
 
 						{/* Description */}
 						<div className="space-y-2.5 text-sm md:text-base text-neutral-400 max-w-xl leading-relaxed font-medium">
-							<p className="text-neutral-300 font-bold border-l-2 border-[#87E65C]/40 pl-3 py-0.5">
+							<p className="text-neutral-300 font-bold border-l-2 border-neon-green/40 pl-3 py-0.5">
 								Every day, your audience watches something else. <br />
 								Not because it is better. <span className="text-white font-semibold">Because it holds attention longer.</span>
 							</p>
@@ -363,7 +363,7 @@ export default function VideoEditingPage() {
 							<div className="space-y-4">
 								<span className="text-xs font-black font-mono text-neon-green/60 uppercase tracking-widest block">Service 0{idx + 1}</span>
 								<h3 className="text-2xl font-bold text-white group-hover:text-neon-green transition-colors">{service.title}</h3>
-								<p className="text-[#87E65C] text-sm font-bold leading-relaxed border-l-2 border-[#87E65C]/40 pl-3.5">
+								<p className="text-neon-green text-sm font-bold leading-relaxed border-l-2 border-neon-green/40 pl-3.5">
 									{service.lead}
 								</p>
 								<p className="text-neutral-400 text-sm leading-relaxed font-medium">

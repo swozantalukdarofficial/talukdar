@@ -165,7 +165,7 @@ export default function WorkPage() {
             <div className="pt-4">
               <Link
                 to="/contact-us"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#87E65C] text-black font-bold rounded-full hover:scale-105 transition-transform duration-300 shadow-xl"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-neon-green text-black font-bold rounded-full hover:scale-105 transition-transform duration-300 shadow-xl box-glow"
               >
                 <span>👉 Book a Strategy Call</span>
                 <ArrowRight className="w-5 h-5" />

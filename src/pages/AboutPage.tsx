@@ -144,7 +144,7 @@ export default function AboutPage() {
   }), [contact, socials, seo]);
 
   return (
-    <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-neon-green/30">
+    <main ref={containerRef} className="relative min-h-screen bg-slate-50 text-white overflow-x-hidden selection:bg-neon-green/30">
       <SEO 
         pageKey="about"
         title="AI powered agency | Webestone About us" 
@@ -388,7 +388,7 @@ export default function AboutPage() {
       </section>
 
       {/* 7. INNOVATION LAB */}
-      <section className="py-20 px-6 relative z-10 overflow-hidden bg-[#050505]">
+      <section className="py-20 px-6 relative z-10 overflow-hidden bg-slate-50">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neon-green/5 rounded-full blur-[150px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">

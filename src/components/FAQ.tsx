@@ -35,16 +35,16 @@ function FAQItem({ faq, index }: { faq: any; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
       viewport={{ once: true }}
-      className="border-b border-white/5 last:border-0"
+      className="border-b border-slate-100 last:border-0"
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-6 flex items-center justify-between text-left group"
+        className="w-full py-6 flex items-center justify-between text-left group cursor-pointer"
       >
-        <span className={`text-lg font-bold transition-colors ${isOpen ? 'text-neon-green' : 'text-white group-hover:text-neutral-300'}`}>
+        <span className={`text-lg font-bold transition-colors ${isOpen ? 'text-emerald-600' : 'text-slate-900 group-hover:text-emerald-600'}`}>
           {faq.question}
         </span>
-        <div className={`p-2 rounded-lg bg-white/5 border border-white/10 transition-all ${isOpen ? 'bg-neon-green text-black' : 'text-neutral-500'}`}>
+        <div className={`p-2 rounded-lg border transition-all ${isOpen ? 'bg-emerald-600 border-emerald-600 text-white' : 'bg-slate-50 border-slate-200 text-slate-500'}`}>
           {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
         </div>
       </button>
@@ -57,7 +57,7 @@ function FAQItem({ faq, index }: { faq: any; index: number }) {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="pb-6 text-neutral-400 leading-relaxed max-w-3xl">
+            <p className="pb-6 text-slate-600 leading-relaxed max-w-3xl font-medium">
               {faq.answer}
             </p>
           </motion.div>
@@ -72,7 +72,7 @@ export default function FAQ() {
   const displayFaqs = dynamicFaq && dynamicFaq.length > 0 ? dynamicFaq : faqs;
 
   return (
-    <section className="py-24 px-6 bg-black">
+    <section className="py-24 px-6 bg-slate-50">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <motion.div
@@ -81,16 +81,16 @@ export default function FAQ() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Frequently Asked <span className="text-neon-green">Questions</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+              Frequently Asked <span className="text-emerald-600">Questions</span>
             </h2>
-            <p className="text-neutral-400 text-lg">
+            <p className="text-slate-600 text-lg">
               Everything you need to know about growing your brand with WeBestOne.
             </p>
           </motion.div>
         </div>
 
-        <div className="bg-white/[0.02] border border-white/10 rounded-3xl p-8 md:p-12">
+        <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50">
           {displayFaqs.map((faq, i) => (
             <FAQItem key={i} faq={faq} index={i} />
           ))}

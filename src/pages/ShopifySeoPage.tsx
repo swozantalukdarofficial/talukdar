@@ -159,7 +159,7 @@ export default function ShopifySeoPage() {
 						</h1>
 
 						<div className="space-y-2.5 text-sm md:text-base text-neutral-300 leading-relaxed font-medium">
-							<p className="text-white font-bold border-l-2 border-[#87E65C]/40 pl-3">
+							<p className="text-white font-bold border-l-2 border-neon-green/40 pl-3">
 								Getting traffic to your Shopify store is not the problem. <br />
 								<span className="text-neon-green">Getting the right traffic that converts is.</span>
 							</p>
@@ -187,7 +187,7 @@ export default function ShopifySeoPage() {
 						<div className="pt-2">
 							<Link
 								to="/contact-us"
-								className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-neon-green text-black font-bold text-sm rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(135,230,92,0.3)] transition-all duration-300 hover:bg-[#87E65C]"
+								className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-neon-green text-black font-bold text-sm rounded-full hover:scale-105 hover:shadow-[0_0_35px_rgba(0,255,102,0.3)] transition-all duration-300"
 							>
 								Get a quote
 								<ArrowRight className="w-4 h-4" />
@@ -313,7 +313,7 @@ export default function ShopifySeoPage() {
 								<div className="mt-8">
 									<Link
 										to="/contact-us"
-										className="inline-block px-6 py-2.5 bg-neon-green text-black font-bold rounded-full hover:scale-105 hover:shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:bg-[#87E65C] transition-all duration-300 font-sm w-max"
+										className="inline-block px-6 py-2.5 bg-neon-green text-black font-bold rounded-full hover:scale-105 hover:shadow-[0_0_25px_rgba(0,255,102,0.3)] transition-all duration-300 font-sm w-max"
 									>
 										Get started
 									</Link>

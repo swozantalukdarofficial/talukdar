@@ -252,7 +252,7 @@ export default function SeoPage() {
             {/* CTA Button */}
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }} className="pt-1">
               <Link to="/contact-us">
-                <MagneticButton className="px-8 py-3.5 bg-neon-green text-black font-bold text-sm rounded-full shadow-[0_0_20px_rgba(135,230,92,0.3)] hover:shadow-[0_0_30px_rgba(135,230,92,0.5)] transition-shadow hover:bg-[#87E65C]">
+                <MagneticButton className="px-8 py-3.5 bg-neon-green text-black font-bold text-sm rounded-full shadow-[0_0_25px_rgba(0,255,102,0.35)] hover:shadow-[0_0_40px_rgba(0,255,102,0.5)] transition-shadow hover:bg-neon-green/90">
                   Get In Touch
                 </MagneticButton>
               </Link>
@@ -283,7 +283,7 @@ export default function SeoPage() {
       </section>
 
       {/* 2. Visibility & Strategy Section */}
-      <section className="py-12 md:py-16 px-6 relative z-10 bg-[#050505]">
+      <section className="py-12 md:py-16 px-6 relative z-10 bg-slate-50">
         <div className="max-w-7xl mx-auto space-y-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <motion.div
@@ -400,7 +400,7 @@ export default function SeoPage() {
       </section>
 
       {/* 4. Success Behind AI Section */}
-      <section className="py-24 px-6 relative z-10 bg-[#050505]">
+      <section className="py-24 px-6 relative z-10 bg-slate-50">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -494,7 +494,7 @@ export default function SeoPage() {
       </section>
 
       {/* 6. GEO & AI SEO Services Section */}
-      <section className="py-24 px-6 relative z-10 bg-[#050505]">
+      <section className="py-24 px-6 relative z-10 bg-slate-50">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}

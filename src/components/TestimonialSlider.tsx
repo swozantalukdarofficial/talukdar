@@ -43,16 +43,16 @@ const fallbackTestimonials: Testimonial[] = [
 
 function TestimonialCard({ t }: { t: Testimonial }) {
   return (
-    <div className="w-[270px] xs:w-[300px] md:w-[400px] flex-shrink-0 p-5 md:p-8 rounded-3xl bg-[#0a0a0a] border border-white/5 relative flex flex-col h-full mx-2 sm:mx-4 hover:border-neon-green/30 transition-colors">
-      <div className="flex gap-1 mb-6 text-yellow-400">
+    <div className="w-[270px] xs:w-[300px] md:w-[400px] flex-shrink-0 p-5 md:p-8 rounded-3xl bg-white border border-slate-200 relative flex flex-col h-full mx-2 sm:mx-4 hover:border-emerald-500/40 transition-all shadow-lg shadow-slate-200/50">
+      <div className="flex gap-1 mb-6 text-amber-400">
         {[...Array(t.rating || 5)].map((_, j) => <Star key={j} className="w-4 h-4 fill-current" />)}
       </div>
-      <p className="text-neutral-300 text-sm md:text-base leading-relaxed mb-8 italic flex-1">"{t.quote}"</p>
-      <div className="flex items-center gap-4 pt-6 border-t border-white/5">
-        <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full bg-white/10 object-cover" />
+      <p className="text-slate-700 text-sm md:text-base leading-relaxed mb-8 italic flex-1">"{t.quote}"</p>
+      <div className="flex items-center gap-4 pt-6 border-t border-slate-100">
+        <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full bg-slate-100 object-cover border border-slate-200" />
         <div>
-          <p className="text-white font-bold text-sm">{t.name}</p>
-          <p className="text-neutral-500 text-xs">{t.role}</p>
+          <p className="text-slate-900 font-bold text-sm">{t.name}</p>
+          <p className="text-slate-500 text-xs">{t.role}</p>
         </div>
       </div>
     </div>
@@ -78,22 +78,22 @@ export default function TestimonialSlider() {
     : [...testimonialsList, ...testimonialsList, ...testimonialsList];
 
   return (
-    <section className="py-24 relative z-10 bg-white/[0.01] overflow-hidden">
+    <section className="py-24 relative z-10 bg-slate-50 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 mb-16 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Trusted by <span className="text-neon-green">Founders & Teams</span></h2>
-          <p className="text-neutral-400">See how our designs and strategies have impacted real businesses across the globe.</p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">Trusted by <span className="text-emerald-600">Founders & Teams</span></h2>
+          <p className="text-slate-600">See how our designs and strategies have impacted real businesses across the globe.</p>
         </motion.div>
       </div>
 
       {/* Slider Container */}
       <div className="relative flex overflow-hidden group">
-        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-32 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-32 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-32 bg-gradient-to-r from-slate-50 to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-32 bg-gradient-to-l from-slate-50 to-transparent z-20 pointer-events-none" />
 
         <div 
           className="flex animate-marquee hover:[animation-play-state:paused] py-4"

@@ -277,7 +277,7 @@ export default function UiUxDesignPage() {
   const containerRef = useRef(null);
   
   return (
-    <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-neon-green/30">
+    <main ref={containerRef} className="relative min-h-screen bg-slate-50 text-white overflow-x-hidden selection:bg-neon-green/30">
       <AdminServiceImageEditor serviceId="web-design-service" />
       <SEO 
         pageKey="web-design-service"
@@ -343,7 +343,7 @@ export default function UiUxDesignPage() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="flex flex-wrap gap-4 pt-4"
             >
-              <Link to="/contact-us" className="px-8 py-4 bg-[#87E65C] text-black font-bold rounded-full hover:scale-105 transition-transform flex items-center gap-2 shadow-[0_0_40px_rgba(135,230,92,0.25)]">
+              <Link to="/contact-us" className="px-8 py-4 bg-neon-green text-black font-bold rounded-full hover:scale-105 transition-transform flex items-center gap-2 shadow-[0_0_40px_rgba(0,255,102,0.3)]">
                 Start Design Project <ArrowRight className="w-5 h-5" />
               </Link>
               <Link to="#portfolio" className="px-8 py-4 border border-white/20 text-white font-bold rounded-full hover:bg-white/5 transition-colors">
@@ -748,16 +748,16 @@ export default function UiUxDesignPage() {
           SECTION 11: CTA
       ══════════════════════════════════════════ */}
       <section className="pb-32 px-6">
-        <div className="max-w-6xl mx-auto relative rounded-3xl overflow-hidden bg-[#0A0A0A] border border-white/5 py-24 px-6 md:px-12 flex flex-col items-center justify-center text-center">
+        <div className="max-w-6xl mx-auto relative rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-2xl py-24 px-6 md:px-12 flex flex-col items-center justify-center text-center">
           
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#87E65C]/20 bg-[#87E65C]/10 text-[#87E65C] text-sm font-medium mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon-green/20 bg-neon-green/10 text-neon-green text-sm font-medium mb-8">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
             Ready to Start?
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
             We move with speed.<br className="hidden md:block" />
-            <span className="text-[#87E65C]">Your business keeps up.</span>
+            <span className="text-neon-green">Your business keeps up.</span>
           </h2>
           
           <p className="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
@@ -767,7 +767,7 @@ export default function UiUxDesignPage() {
           <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-12">
             {["Unlimited revisions", "Dedicated manager", "Clear timelines", "Transparent communication"].map(feature => (
               <div key={feature} className="flex items-center gap-2 text-sm text-neutral-300">
-                <CheckCircle2 className="w-4 h-4 text-[#87E65C]" />
+                <CheckCircle2 className="w-4 h-4 text-neon-green" />
                 {feature}
               </div>
             ))}
@@ -776,7 +776,7 @@ export default function UiUxDesignPage() {
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full">
             <Link 
               to="/contact-us" 
-              className="w-full sm:w-auto px-8 py-4 bg-[#87E65C] text-black font-bold rounded-full hover:bg-[#87E65C]/90 hover:scale-105 transition-all shadow-[0_0_30px_rgba(135,230,92,0.25)] flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-8 py-4 bg-neon-green text-black font-bold rounded-full hover:bg-neon-green/90 hover:scale-105 transition-all shadow-[0_0_35px_rgba(0,255,102,0.3)] flex items-center justify-center gap-2"
             >
               Request a Free Quote <ArrowRight className="w-5 h-5" />
             </Link>

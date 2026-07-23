@@ -31,7 +31,7 @@ const features = [
 
 export default function Comparison() {
   return (
-    <section className="py-24 px-6 bg-black relative overflow-hidden">
+    <section className="py-24 px-6 bg-slate-50 relative overflow-hidden">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <motion.div
@@ -40,25 +40,25 @@ export default function Comparison() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-neutral-400 uppercase tracking-widest mb-6">
-              <ShieldCheck className="w-3.5 h-3.5 text-neon-green" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-700 uppercase tracking-widest mb-6">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
               Why We Are Different
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              WeBestOne vs <span className="text-neutral-500">Other Agencies</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+              WeBestOne vs <span className="text-slate-500">Other Agencies</span>
             </h2>
-            <p className="text-neutral-400 text-lg">
-              Most agencies sell visibility. We engineer <span className="text-white font-bold">profitability.</span>
+            <p className="text-slate-600 text-lg">
+              Most agencies sell visibility. We engineer <span className="text-slate-900 font-bold">profitability.</span>
             </p>
           </motion.div>
         </div>
 
-        <div className="w-full overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-white/10">
-          <div className="min-w-[500px] md:min-w-0 w-full overflow-hidden rounded-2xl md:rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-sm">
-            <div className="grid grid-cols-[1fr_1.2fr_1.2fr] bg-white/5 border-b border-white/10">
-              <div className="p-3.5 sm:p-6 text-[10px] sm:text-xs font-black uppercase tracking-widest text-neutral-500">Feature</div>
-              <div className="p-3.5 sm:p-6 text-[10px] sm:text-xs font-black uppercase tracking-widest text-neon-green bg-neon-green/5 text-left">WeBestOne</div>
-              <div className="p-3.5 sm:p-6 text-[10px] sm:text-xs font-black uppercase tracking-widest text-neutral-500 text-left">Others</div>
+        <div className="w-full overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-slate-200">
+          <div className="min-w-[500px] md:min-w-0 w-full overflow-hidden rounded-2xl md:rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/50">
+            <div className="grid grid-cols-[1fr_1.2fr_1.2fr] bg-slate-50 border-b border-slate-200">
+              <div className="p-3.5 sm:p-6 text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-500">Feature</div>
+              <div className="p-3.5 sm:p-6 text-[10px] sm:text-xs font-black uppercase tracking-widest text-emerald-700 bg-emerald-50 text-left">WeBestOne</div>
+              <div className="p-3.5 sm:p-6 text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-500 text-left">Others</div>
             </div>
 
             {features.map((feature, i) => (
@@ -68,14 +68,14 @@ export default function Comparison() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="grid grid-cols-[1fr_1.2fr_1.2fr] border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors"
+                className="grid grid-cols-[1fr_1.2fr_1.2fr] border-b border-slate-100 last:border-0 hover:bg-slate-50/50 transition-colors"
               >
-                <div className="p-3.5 sm:p-6 text-xs sm:text-sm font-bold text-white flex items-center">{feature.name}</div>
-                <div className="p-3.5 sm:p-6 text-xs sm:text-sm font-medium text-neon-green bg-neon-green/[0.02] flex items-center justify-start gap-1.5 sm:gap-2 text-left">
-                  <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <div className="p-3.5 sm:p-6 text-xs sm:text-sm font-bold text-slate-900 flex items-center">{feature.name}</div>
+                <div className="p-3.5 sm:p-6 text-xs sm:text-sm font-semibold text-emerald-700 bg-emerald-50/40 flex items-center justify-start gap-1.5 sm:gap-2 text-left">
+                  <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-emerald-600" />
                   {feature.we}
                 </div>
-                <div className="p-3.5 sm:p-6 text-xs sm:text-sm font-medium text-neutral-500 flex items-center justify-start gap-1.5 sm:gap-2 text-left">
+                <div className="p-3.5 sm:p-6 text-xs sm:text-sm font-medium text-slate-500 flex items-center justify-start gap-1.5 sm:gap-2 text-left">
                   <X className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-rose-500" />
                   {feature.others}
                 </div>

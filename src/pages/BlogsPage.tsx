@@ -109,7 +109,7 @@ export default function BlogsPage() {
         description="Read the latest insights, tutorials, and strategy guides on AI marketing, SEO, web design, and growth optimization from WeBestOne." 
       />
       {/* Immersive Background Elements */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-br from-[#87E65C]/5 to-purple-600/5 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-br from-neon-green/5 to-purple-600/5 rounded-full blur-[140px] pointer-events-none z-0" />
       <div className="absolute top-[80vh] right-0 w-[400px] h-[400px] bg-blue-500/[0.02] rounded-full blur-[120px] pointer-events-none z-0" />
 
       {/* Grid Pattern overlay */}
@@ -125,7 +125,7 @@ export default function BlogsPage() {
           transition={{ duration: 0.5 }}
           className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-neutral-300 backdrop-blur-md"
         >
-          <Sparkles className="w-3.5 h-3.5 text-[#87E65C]" />
+          <Sparkles className="w-3.5 h-3.5 text-neon-green" />
           <span>Webestone Insights</span>
         </motion.div>
 
@@ -135,7 +135,7 @@ export default function BlogsPage() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-4xl md:text-6xl font-black text-white tracking-tight"
         >
-          Latest <span className="text-[#87E65C]">Insights & Ideas</span>
+          Latest <span className="text-neon-green">Insights & Ideas</span>
         </motion.h1>
 
         <motion.p
@@ -154,7 +154,7 @@ export default function BlogsPage() {
       {activeCategory === "All" && searchQuery === "" && galleryItems.length >= 3 && (
         <section className="px-6 pb-16 max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-6">
-            <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-[#87E65C] bg-[#87E65C]/10 px-4 py-2 rounded-full border border-[#87E65C]/25 shadow-lg shadow-[#87E65C]/5 animate-pulse">
+            <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-neon-green bg-neon-green/10 px-4 py-2 rounded-full border border-neon-green/25 shadow-lg shadow-neon-green/5 animate-pulse">
               🏆 Interactive Featured Articles · Swipe & Drag to Rotate
             </span>
           </div>
@@ -200,7 +200,7 @@ export default function BlogsPage() {
                     handleSearchChange("");
                     handleCategoryChange("All");
                   }}
-                  className="text-xs font-semibold text-[#87E65C] hover:underline"
+                  className="text-xs font-semibold text-neon-green hover:underline"
                 >
                   Clear all filters
                 </button>
@@ -226,7 +226,7 @@ export default function BlogsPage() {
                     className="group"
                   >
                     <Link to={`/blogs/${post.id}`}>
-                      <div className="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/20 hover:bg-neutral-900/40 hover:border-[#87E65C]/30 transition-all duration-500 h-full flex flex-col shadow-xl">
+                      <div className="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/20 hover:bg-neutral-900/40 hover:border-neon-green/30 transition-all duration-500 h-full flex flex-col shadow-xl">
                         
                         {/* Media Card */}
                         <div className="aspect-[16/9] bg-gradient-to-br from-neutral-800 to-neutral-950 relative overflow-hidden shrink-0">
@@ -249,18 +249,18 @@ export default function BlogsPage() {
                         <div className="p-6 flex flex-col gap-3.5 flex-1 justify-between">
                           <div className="space-y-3.5">
                             <div className="flex items-center gap-3 text-[10px] text-neutral-500 uppercase font-semibold tracking-wider">
-                              <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-[#87E65C]" /> {post.date}</span>
+                              <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-neon-green" /> {post.date}</span>
                               <span>·</span>
-                              <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-[#87E65C]" /> {post.readTime}</span>
+                              <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-neon-green" /> {post.readTime}</span>
                             </div>
-                            <h3 className="text-lg font-bold text-white group-hover:text-[#87E65C] transition-colors leading-snug tracking-tight">
+                            <h3 className="text-lg font-bold text-white group-hover:text-neon-green transition-colors leading-snug tracking-tight">
                               {post.title}
                             </h3>
                             <p className="text-neutral-400 text-xs md:text-sm leading-relaxed line-clamp-3">
                               {post.excerpt}
                             </p>
                           </div>
-                          <div className="flex items-center justify-between text-xs font-bold uppercase tracking-widest text-neutral-400 group-hover:text-[#87E65C] transition-colors pt-5 mt-4 border-t border-white/5">
+                          <div className="flex items-center justify-between text-xs font-bold uppercase tracking-widest text-neutral-400 group-hover:text-neon-green transition-colors pt-5 mt-4 border-t border-white/5">
                             <span>Read Article</span>
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
                           </div>

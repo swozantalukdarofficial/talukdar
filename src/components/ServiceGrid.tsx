@@ -32,9 +32,7 @@ export default function ServiceGrid({
 	const services = initialServices;
 
 	return (
-		<section className="py-24 px-4 bg-background relative z-10 overflow-hidden">
-			<div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-
+		<section className="py-24 px-4 bg-slate-50 relative z-10 overflow-hidden">
 			<div className="max-w-7xl mx-auto container">
 				<div className="text-center mb-16 space-y-4">
 					<motion.h2
@@ -42,7 +40,7 @@ export default function ServiceGrid({
 						whileInView={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8 }}
 						viewport={{ once: true }}
-						className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 pb-2"
+						className="text-3xl md:text-5xl font-bold text-slate-900"
 					>
 						Our Expertise
 					</motion.h2>
@@ -51,7 +49,7 @@ export default function ServiceGrid({
 						whileInView={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8, delay: 0.2 }}
 						viewport={{ once: true }}
-						className="text-neutral-400 max-w-2xl mx-auto"
+						className="text-slate-600 max-w-2xl mx-auto"
 					>
 						From traditional web solutions to cutting-edge AI optimization
 						strategies, we cover all aspects of your digital growth.
@@ -64,30 +62,27 @@ export default function ServiceGrid({
 							<motion.div
 								initial={{ opacity: 0, y: 30 }}
 								whileInView={{ opacity: 1, y: 0 }}
-								whileHover={{ y: -10, scale: 1.02 }}
-								transition={{ duration: 0.4, delay: index * 0.05 }}
+								whileHover={{ y: -6, scale: 1.01 }}
+								transition={{ duration: 0.3, delay: index * 0.04 }}
 								viewport={{ once: true }}
-								className="group relative p-8 h-full rounded-2xl bg-white/5 border border-white/10 overflow-hidden hover:border-neon-green/30 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm flex flex-col items-start gap-4 shadow-lg hover:shadow-neon-green/10"
+								className="group relative p-8 h-full rounded-2xl bg-white border border-slate-200 hover:border-emerald-500/40 transition-all duration-300 flex flex-col items-start gap-4 shadow-lg shadow-slate-200/50"
 							>
 								{/* Icon Container */}
 								<div
-									className={`p-3 rounded-xl bg-white/5 border border-white/5 ${service.color} group-hover:scale-110 transition-transform duration-300`}
+									className={`p-3 rounded-xl bg-slate-50 border border-slate-200 ${service.color} group-hover:scale-110 transition-transform duration-300`}
 								>
 									<DynamicIcon name={service.iconName} className="w-8 h-8" />
 								</div>
 
 								{/* Text Content */}
 								<div>
-									<h3 className="text-xl font-bold mb-3 text-white group-hover:text-neon-green transition-colors">
+									<h3 className="text-xl font-bold mb-3 text-slate-900 group-hover:text-emerald-600 transition-colors">
 										{service.title}
 									</h3>
-									<p className="text-neutral-400 text-sm leading-relaxed">
+									<p className="text-slate-600 text-sm leading-relaxed">
 										{service.description}
 									</p>
 								</div>
-
-								{/* Decorative Corner Glow */}
-								<div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-white/5 to-transparent rounded-bl-full opacity-50 group-hover:opacity-100 transition-opacity"></div>
 							</motion.div>
 						</Link>
 					))}

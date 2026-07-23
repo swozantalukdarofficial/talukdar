@@ -79,11 +79,13 @@ function PublicLayout() {
 }
 
 import { ModalProvider } from "./context/ModalContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 export default function App() {
 	return (
-		<ModalProvider>
-			<BrowserRouter>
+		<ThemeProvider>
+			<ModalProvider>
+				<BrowserRouter>
 				<ScrollToTop />
 			<Suspense fallback={<PageLoader />}>
 				<Routes>
@@ -143,5 +145,6 @@ export default function App() {
 			</Suspense>
 		</BrowserRouter>
 		</ModalProvider>
+		</ThemeProvider>
 	);
 }

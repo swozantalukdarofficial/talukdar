@@ -26,10 +26,13 @@ import {
 	ChevronDown,
 	FileText,
 	TrendingUp,
+	Sun,
+	Moon,
 } from "lucide-react";
 import { MagneticButton } from "./ui/MagneticButton";
 
 import { useContent } from "../context/ContentContext";
+import { useTheme } from "../context/ThemeContext";
 import ProposalModal from "./ProposalModal";
 
 export default function Header() {
@@ -38,6 +41,7 @@ export default function Header() {
 	const { pathname } = useLocation();
 	const [isServicesHovered, setIsServicesHovered] = useState(false);
 	const { site } = useContent();
+	const { theme, toggleTheme } = useTheme();
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isProposalOpen, setIsProposalOpen] = useState(false);
 
@@ -151,7 +155,7 @@ export default function Header() {
 	];
 
 	return (
-		<header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled ? 'bg-background/95 backdrop-blur-md shadow-lg border-b border-white/5' : 'bg-transparent'}`}>
+		<header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/80' : 'bg-white/80 backdrop-blur-sm'}`}>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
 				{/* Logo */}
 				<Link to="/" className="flex items-center gap-2 group shrink-0">
@@ -185,8 +189,8 @@ export default function Header() {
 											pathname === "/"
 										:	pathname.startsWith(link.href)
 									) ?
-										"text-neon-green"
-									:	"text-neutral-300 hover:text-neon-green"
+										"text-emerald-600 font-extrabold"
+									:	"text-slate-700 hover:text-emerald-600"
 								}`}
 							>
 								{link.name}
@@ -205,44 +209,44 @@ export default function Header() {
 
 							{/* Mega Menu for Services */}
 							<div
-								className={`absolute top-full left-1/2 -translate-x-1/2 w-[900px] p-8 bg-neutral-900/98 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl grid grid-cols-3 gap-x-8 gap-y-4 z-50 mt-2 transition-all duration-200 origin-top transform ${
+								className={`absolute top-full left-1/2 -translate-x-1/2 w-[900px] p-8 bg-white/98 backdrop-blur-xl border border-slate-200 rounded-2xl shadow-2xl grid grid-cols-3 gap-x-8 gap-y-4 z-50 mt-2 transition-all duration-200 origin-top transform ${
 									link.name === "Services" && isServicesHovered
 										? "opacity-100 scale-100 translate-y-0"
 										: "opacity-0 scale-95 -translate-y-2 pointer-events-none"
 								}`}
 							>
 								{/* Decorative Glow */}
-								<div className="absolute -top-10 left-1/2 -translate-x-1/2 w-48 h-48 bg-neon-green/10 rounded-full blur-[80px] pointer-events-none"></div>
+								<div className="absolute -top-10 left-1/2 -translate-x-1/2 w-48 h-48 bg-emerald-500/10 rounded-full blur-[80px] pointer-events-none"></div>
 
 								{servicesList.map((service, index) => (
 									<Link
 										key={index}
 										to={service.href}
-										className="group/item flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-all border border-transparent hover:border-white/5"
+										className="group/item flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-all border border-transparent hover:border-slate-200/60"
 									>
 										<div
-											className={`w-10 h-10 shrink-0 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-neutral-400 group-hover/item:bg-neon-green group-hover/item:text-black transition-all duration-300`}
+											className={`w-10 h-10 shrink-0 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 group-hover/item:bg-emerald-600 group-hover/item:text-white transition-all duration-300`}
 										>
 											<service.icon className="w-5 h-5" />
 										</div>
 										<div>
-											<p className="text-white font-bold text-sm mb-0.5 group-hover/item:text-neon-green transition-colors">
+											<p className="text-slate-900 font-bold text-sm mb-0.5 group-hover/item:text-emerald-600 transition-colors">
 												{service.title}
 											</p>
-											<p className="text-[10px] text-neutral-500 line-clamp-1 group-hover/item:text-neutral-400 transition-colors">
+											<p className="text-[10px] text-slate-500 line-clamp-1 group-hover/item:text-slate-700 transition-colors">
 												{service.description}
 											</p>
 										</div>
 									</Link>
 								))}
 
-								<div className="col-span-3 pt-6 mt-2 border-t border-white/5 flex justify-between items-center px-4">
-									<span className="text-[10px] text-neutral-500 uppercase tracking-[0.2em] font-mono font-bold">
+								<div className="col-span-3 pt-6 mt-2 border-t border-slate-100 flex justify-between items-center px-4">
+									<span className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-mono font-bold">
 										Explore all our capabilities
 									</span>
 									<Link
 										to="/services"
-										className="text-sm font-bold text-neon-green hover:underline flex items-center gap-2 group/link"
+										className="text-sm font-bold text-emerald-600 hover:underline flex items-center gap-2 group/link"
 									>
 										View All Services
 										<ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
@@ -253,35 +257,50 @@ export default function Header() {
 					))}
 				</nav>
 
-				{/* CTA Button */}
-				<div className="hidden lg:block relative">
-					<MagneticButton 
-						onClick={(e) => {
-							e.stopPropagation();
-							setIsProposalOpen(true);
-						}}
-						className="px-6 py-2.5 bg-[#87E65C] text-black font-bold text-sm rounded-full hover:bg-[#87E65C]/90 transition-all flex items-center gap-2 shadow-[0_4px_20px_rgba(135,230,92,0.15)]"
+				{/* Theme Toggle & CTA Button */}
+				<div className="flex items-center gap-3">
+					<button
+						onClick={toggleTheme}
+						className="p-2.5 rounded-full bg-white/5 border border-white/10 text-neutral-300 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
+						aria-label="Toggle Light/Dark Theme"
+						title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
 					>
-						<span>Get a Proposal</span>
-						<ArrowRight className="w-4 h-4" />
-					</MagneticButton>
-				</div>
+						{theme === "dark" ? (
+							<Sun className="w-4 h-4 text-amber-400" />
+						) : (
+							<Moon className="w-4 h-4 text-blue-600" />
+						)}
+					</button>
 
-				{/* Mobile Menu Button */}
-				<button
-					className="md:hidden text-neutral-300 hover:text-white p-2"
-					onClick={() => setIsOpen(!isOpen)}
-					aria-label="Toggle menu"
-				>
-					{isOpen ?
-						<X className="w-6 h-6" />
-					:	<Menu className="w-6 h-6" />}
-				</button>
+					<div className="hidden lg:block relative">
+						<MagneticButton 
+							onClick={(e) => {
+								e.stopPropagation();
+								setIsProposalOpen(true);
+							}}
+							className="px-6 py-2.5 bg-emerald-600 text-white font-bold text-sm rounded-full hover:bg-emerald-700 transition-all flex items-center gap-2 shadow-lg shadow-emerald-600/25"
+						>
+							<span>Get a Proposal</span>
+							<ArrowRight className="w-4 h-4" />
+						</MagneticButton>
+					</div>
+
+					{/* Mobile Menu Button */}
+					<button
+						className="md:hidden text-neutral-300 hover:text-white p-2"
+						onClick={() => setIsOpen(!isOpen)}
+						aria-label="Toggle menu"
+					>
+						{isOpen ?
+							<X className="w-6 h-6" />
+						:	<Menu className="w-6 h-6" />}
+					</button>
+				</div>
 			</div>
 
 			{/* Mobile Nav */}
 			<div
-				className={`md:hidden absolute top-20 left-0 right-0 w-full h-[calc(100vh-5rem)] bg-neutral-950/98 backdrop-blur-2xl border-b border-white/10 overflow-y-auto transition-all duration-300 origin-top z-[100] ${
+				className={`md:hidden absolute top-20 left-0 right-0 w-full h-[calc(100vh-5rem)] bg-white/98 backdrop-blur-2xl border-b border-slate-200 shadow-2xl overflow-y-auto transition-all duration-300 origin-top z-[100] ${
 					isOpen
 						? "opacity-100 visible translate-y-0 pointer-events-auto"
 						: "opacity-0 invisible -translate-y-2 pointer-events-none"

@@ -411,7 +411,7 @@ export default function SocialMediaMarketingPage() {
 
 
       {/* 2. Process Slider Section */}
-      <section className="py-12 md:py-16 px-6 relative z-10 bg-[#050505]">
+      <section className="py-12 md:py-16 px-6 relative z-10 bg-slate-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 space-y-4">
             <span className="text-neon-green font-mono text-xs tracking-[0.3em] uppercase block">
@@ -422,7 +422,7 @@ export default function SocialMediaMarketingPage() {
               <span className="relative inline-block">
                 <span className="text-neon-green">Social Growth</span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 20" fill="none">
-                  <path d="M5 15Q150 5 295 15" stroke="#87E65C" strokeWidth="4" strokeLinecap="round" />
+                  <path d="M5 15Q150 5 295 15" stroke="#00FF66" strokeWidth="4" strokeLinecap="round" />
                 </svg>
               </span>
             </h2>
@@ -553,7 +553,7 @@ export default function SocialMediaMarketingPage() {
               <span className="relative inline-block">
                 <span className="text-neon-green">Social Platforms</span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 350 20" fill="none">
-                  <path d="M5 15Q175 5 345 15" stroke="#87E65C" strokeWidth="4" strokeLinecap="round" />
+                  <path d="M5 15Q175 5 345 15" stroke="#00FF66" strokeWidth="4" strokeLinecap="round" />
                 </svg>
               </span>
             </h2>
@@ -565,7 +565,7 @@ export default function SocialMediaMarketingPage() {
       </section>
 
       {/* 4. Why Us Section - Redesigned */}
-      <section className="py-24 px-6 relative z-10 bg-[#050505]">
+      <section className="py-24 px-6 relative z-10 bg-slate-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 space-y-4">
             <span className="text-purple-500 font-mono text-xs tracking-[0.3em] uppercase block">
@@ -629,7 +629,7 @@ export default function SocialMediaMarketingPage() {
                 <span className="relative inline-block">
                   <span className="text-neon-green">(FAQs)</span>
                   <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 150 20" fill="none">
-                    <path d="M5 15Q75 5 145 15" stroke="#87E65C" strokeWidth="4" strokeLinecap="round" />
+                    <path d="M5 15Q75 5 145 15" stroke="#00FF66" strokeWidth="4" strokeLinecap="round" />
                   </svg>
                 </span>
               </h2>

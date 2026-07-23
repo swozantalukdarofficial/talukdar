@@ -277,7 +277,7 @@ export default function WordpressServicePage() {
   const yImage = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
   return (
-    <main ref={containerRef} className="relative min-h-screen bg-[#050505] text-white selection:bg-neon-green/30">
+    <main ref={containerRef} className="relative min-h-screen bg-slate-50 text-white selection:bg-neon-green/30">
       <AdminServiceImageEditor serviceId="wordpress-website-development-services" />
       <SEO 
         pageKey="wordpress-website-development-services"
@@ -452,12 +452,12 @@ export default function WordpressServicePage() {
                     transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                     className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 px-4 py-3 bg-neutral-900/90 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-xl flex items-center gap-3 z-30"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-[#87E65C]/15 border border-[#87E65C]/30 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-lg bg-neon-green/15 border border-neon-green/30 flex items-center justify-center">
                       <ShieldCheck className="text-neon-green w-4 h-4" />
                     </div>
                     <div>
                       <p className="text-xs text-white font-bold">System Secure</p>
-                      <p className="text-[10px] text-[#87E65C] font-mono">Hardened</p>
+                      <p className="text-[10px] text-neon-green font-mono">Hardened</p>
                     </div>
                   </motion.div>
                 </div>
@@ -705,16 +705,16 @@ export default function WordpressServicePage() {
           7. GIANT CTA BLOCK (SCREENSHOT DESIGN)
       ══════════════════════════════════════════ */}
       <section className="pb-32 px-6">
-        <div className="max-w-6xl mx-auto relative rounded-3xl overflow-hidden bg-[#0A0A0A] border border-white/5 py-24 px-6 md:px-12 flex flex-col items-center justify-center text-center">
+        <div className="max-w-6xl mx-auto relative rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-2xl py-24 px-6 md:px-12 flex flex-col items-center justify-center text-center">
           
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#87E65C]/20 bg-[#87E65C]/10 text-[#87E65C] text-sm font-medium mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon-green/20 bg-neon-green/10 text-neon-green text-sm font-medium mb-8">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
             Ready to perform, scale, and adapt
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
             We move with speed.<br className="hidden md:block" />
-            <span className="text-[#87E65C]">Your business keeps up.</span>
+            <span className="text-neon-green">Your business keeps up.</span>
           </h2>
           
           <p className="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
@@ -724,7 +724,7 @@ export default function WordpressServicePage() {
           <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-12">
             {["Unlimited revisions", "Dedicated manager", "Clear timelines", "Transparent communication"].map(feature => (
               <div key={feature} className="flex items-center gap-2 text-sm text-neutral-300">
-                <CheckCircle2 className="w-4 h-4 text-[#87E65C]" />
+                <CheckCircle2 className="w-4 h-4 text-neon-green" />
                 {feature}
               </div>
             ))}
@@ -733,7 +733,7 @@ export default function WordpressServicePage() {
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full">
             <Link 
               to="/contact-us" 
-              className="w-full sm:w-auto px-8 py-4 bg-[#87E65C] text-black font-bold rounded-full hover:bg-[#87E65C]/90 hover:scale-105 transition-all shadow-[0_0_30px_rgba(135,230,92,0.25)] flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-8 py-4 bg-neon-green text-black font-bold rounded-full hover:bg-neon-green/90 hover:scale-105 transition-all shadow-[0_0_35px_rgba(0,255,102,0.3)] flex items-center justify-center gap-2"
             >
               Get a quote <ArrowRight className="w-5 h-5" />
             </Link>
