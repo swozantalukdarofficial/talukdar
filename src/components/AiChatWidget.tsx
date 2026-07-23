@@ -349,29 +349,51 @@ CRITICAL CONVERSATIONAL RULES:
 
 		let botReplyText = "";
 
-		// Primary: Groq API
+		// 0. Primary Secure Serverless API Route (/api/chat)
 		try {
-			const groqApiKey = import.meta.env.VITE_GROQ_API_KEY || String.fromCharCode(...GROQ_KEY_CODES);
-			const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+			const serverRes = await fetch("/api/chat", {
 				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					"Authorization": `Bearer ${groqApiKey}`,
-				},
+				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
-					model: "llama-3.3-70b-versatile",
-					messages: apiMessages,
-					temperature: 0.6,
-					max_tokens: 300,
+					messages: updatedMsgs,
+					systemPrompt: systemPromptWithLang,
 				}),
 			});
-
-			if (response.ok) {
-				const data = await response.json();
-				botReplyText = data.choices?.[0]?.message?.content || "";
+			if (serverRes.ok) {
+				const serverData = await serverRes.json();
+				if (serverData.reply) {
+					botReplyText = serverData.reply;
+				}
 			}
-		} catch (groqErr) {
-			console.warn("Groq API call error:", groqErr);
+		} catch (srvErr) {
+			console.warn("Serverless API Route fallback:", srvErr);
+		}
+
+		// 1. Client-Side Fallback: Groq API
+		if (!botReplyText) {
+			try {
+				const groqApiKey = import.meta.env.VITE_GROQ_API_KEY || String.fromCharCode(...GROQ_KEY_CODES);
+				const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${groqApiKey}`,
+					},
+					body: JSON.stringify({
+						model: "llama-3.3-70b-versatile",
+						messages: apiMessages,
+						temperature: 0.6,
+						max_tokens: 300,
+					}),
+				});
+
+				if (response.ok) {
+					const data = await response.json();
+					botReplyText = data.choices?.[0]?.message?.content || "";
+				}
+			} catch (groqErr) {
+				console.warn("Groq API call error:", groqErr);
+			}
 		}
 
 		// Fallback: NVIDIA NIM API
