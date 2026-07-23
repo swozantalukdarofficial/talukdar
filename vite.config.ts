@@ -55,23 +55,19 @@ export default defineConfig({
 		minify: "esbuild",
 		target: "es2020",
 		cssCodeSplit: true,
-		chunkSizeWarningLimit: 500,
+		chunkSizeWarningLimit: 600,
 		rollupOptions: {
 			output: {
 				manualChunks(id) {
 					if (id.includes("node_modules")) {
-						if (id.includes("firebase")) {
-							return "vendor-firebase";
-						}
-						if (id.includes("lucide-react")) {
-							return "vendor-lucide";
-						}
-						if (id.includes("framer-motion")) {
-							return "vendor-framer";
-						}
-						if (id.includes("react")) {
-							return "vendor-react";
-						}
+						if (id.includes("firebase/auth")) return "vendor-firebase-auth";
+						if (id.includes("firebase/firestore")) return "vendor-firebase-db";
+						if (id.includes("firebase/storage")) return "vendor-firebase-storage";
+						if (id.includes("firebase/app")) return "vendor-firebase-core";
+						if (id.includes("framer-motion")) return "vendor-framer";
+						if (id.includes("lucide-react")) return "vendor-lucide";
+						if (id.includes("react-dom")) return "vendor-react-dom";
+						if (id.includes("react-router")) return "vendor-react-router";
 					}
 				},
 			},
@@ -79,5 +75,6 @@ export default defineConfig({
 	},
 	esbuild: {
 		drop: ["console", "debugger"],
+		legalComments: "none",
 	},
 });

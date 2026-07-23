@@ -57,8 +57,8 @@ const SitemapPage               = lazy(() => import("./pages/SitemapPage"));
 // ── Minimal fallback while page chunks load
 function PageLoader() {
 	return (
-		<div className="min-h-screen bg-black flex items-center justify-center">
-			<div className="w-8 h-8 border-2 border-neon-green/30 border-t-neon-green rounded-full animate-spin" />
+		<div className="min-h-screen bg-white flex items-center justify-center">
+			<div className="w-8 h-8 border-2 border-emerald-500/30 border-t-emerald-600 rounded-full animate-spin" />
 		</div>
 	);
 }
