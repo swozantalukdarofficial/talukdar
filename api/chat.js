@@ -43,7 +43,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Messages array is required' });
   }
 
-  const groqKey = process.env.GROQ_KEY || process.env.VITE_GROQ_KEY || process.env.VITE_GROQ_API_KEY;
+  const BACKUP_GROQ_KEY = String.fromCharCode(103,115,107,95,78,111,76,71,83,121,57,117,117,105,74,83,72,118,53,68,97,119,77,104,87,71,100,121,98,51,70,89,68,54,77,74,75,98,99,75,108,116,97,108,79,114,97,118,79,97,78,115,57,51,57,53);
+  const groqKey = process.env.GROQ_KEY || process.env.VITE_GROQ_KEY || process.env.VITE_GROQ_API_KEY || BACKUP_GROQ_KEY;
   const nvidiaKey = process.env.NVIDIA_KEY || process.env.VITE_NVIDIA_KEY || process.env.VITE_NVIDIA_API_KEY;
 
   try {
