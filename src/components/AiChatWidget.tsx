@@ -14,6 +14,27 @@ import { WhatsAppTab } from "./chat/WhatsAppTab";
 import { ToastPopup, ToastNotice } from "./chat/ToastPopup";
 import { GreetingCallout } from "./chat/GreetingCallout";
 
+function generateClientSmartReply(userQuery: string, userName?: string): string {
+	const query = userQuery.toLowerCase().trim();
+
+	if (/^(hi|hello|hey|hola|assalamu|salam|kemon|ki obostha)/i.test(query)) {
+		return `👋 Hello **${userName || "there"}**! Welcome to **WeBestOne**. I'm your AI Digital Growth Consultant. How can our strategy team help scale your website, SEO, or digital marketing today?`;
+	}
+	if (query.includes("service") || query.includes("offer") || query.includes("kaz") || query.includes("work") || query.includes("web") || query.includes("seo") || query.includes("marketing") || query.includes("design")) {
+		return "We specialize in **AI-Powered SEO & GEO Ranking**, **Custom Next.js & React Web Apps**, **Data-Driven Digital Marketing**, and **High-Converting Shopify Stores**. Explore our [Services](/services) or view our [Work Showcase](/work)!";
+	}
+	if (query.includes("price") || query.includes("cost") || query.includes("taka") || query.includes("charge") || query.includes("budget") || query.includes("koto") || query.includes("rate")) {
+		return "Our custom solutions are built for maximum ROI (averaging **+145% conversion growth**). Would you like a free custom audit or proposal? Feel free to message us on our [Contact Us Page](/contact-us) or via [WhatsApp](https://wa.me/8801815025322)!";
+	}
+	if (query.includes("contact") || query.includes("call") || query.includes("number") || query.includes("phone") || query.includes("email") || query.includes("talk") || query.includes("whatsapp") || query.includes("namba")) {
+		return "We'd love to connect with you! Please share your phone number, email, or preferred call time here, or reach out directly on [WhatsApp](https://wa.me/8801815025322). Our WeBestOne Growth Team will contact you shortly!";
+	}
+	if (query.includes("founder") || query.includes("ceo") || query.includes("owner") || query.includes("shipon") || query.includes("rozi") || query.includes("team")) {
+		return "WeBestOne is led by **Rozi Osman** (Founder & Senior Growth Strategist) and **Shipon Talukdar** (Lead Developer & System Architect). Learn more about us on our [About Us Page](/about-us)!";
+	}
+	return "Thank you for reaching out to **WeBestOne**! We engineer high-converting digital marketing ecosystems and custom software solutions. How can we help scale your business goals today? Feel free to explore our [Services](/services) or chat directly on [WhatsApp](https://wa.me/8801815025322)!";
+}
+
 export default function AiChatWidget() {
 	const { socials } = useContent();
 	const [isOpen, setIsOpen] = useState(false);
@@ -407,9 +428,7 @@ CRITICAL CONVERSATIONAL RULES:
 		}
 
 		if (!botReplyText) {
-			botReplyText = selectedLang === "Bengali"
-				? "আমরা সাহায্য করতে আনন্দিত! অনুগ্রহ করে আমাদের [যোগাযোগ পেজে](/contact-us) বার্তা দিন অথবা [WhatsApp](https://wa.me/8801815025322)-এ কথা বলুন।"
-				: "We'd love to help! Feel free to leave a message on our [Contact Us Page](/contact-us) or reach out directly on [WhatsApp](https://wa.me/8801815025322).";
+			botReplyText = generateClientSmartReply(query, userName);
 		}
 
 		const botMsg: ChatMessage = {

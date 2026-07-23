@@ -63,9 +63,9 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // IP Rate Limiting Guard (Max 15 AI chats per min per IP)
+  // IP Rate Limiting Guard (Max 60 AI chats per min per IP)
   const clientIp = (req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '127.0.0.1').split(',')[0].trim();
-  if (isRateLimited(clientIp, 15, 60000)) {
+  if (isRateLimited(clientIp, 60, 60000)) {
     return res.status(429).json({ error: 'Too many requests from your IP. Please try again in 1 minute.' });
   }
 
