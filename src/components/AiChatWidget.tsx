@@ -14,21 +14,6 @@ import { WhatsAppTab } from "./chat/WhatsAppTab";
 import { ToastPopup, ToastNotice } from "./chat/ToastPopup";
 import { GreetingCallout } from "./chat/GreetingCallout";
 
-// Encoded char codes for runtime fallback key assembly
-const GROQ_KEY_CODES = [
-	103, 115, 107, 95, 69, 75, 78, 119, 84, 118, 114, 101, 106, 97, 52, 57, 107,
-	67, 106, 119, 103, 69, 84, 105, 87, 71, 100, 121, 98, 51, 70, 89, 112, 53,
-	52, 55, 78, 86, 49, 119, 73, 115, 98, 116, 102, 68, 122, 72, 90, 51, 101,
-	111, 90, 86, 75, 106
-];
-
-const NVIDIA_KEY_CODES = [
-	110, 118, 97, 112, 105, 45, 51, 66, 73, 57, 55, 112, 120, 53, 55, 110, 75,
-	101, 112, 73, 83, 77, 53, 111, 85, 122, 104, 82, 76, 85, 114, 100, 110, 111,
-	117, 109, 53, 49, 68, 74, 69, 48, 107, 120, 116, 79, 53, 83, 73, 116, 48, 121,
-	97, 116, 71, 56, 81, 121, 49, 95, 119, 117, 104, 78, 119, 55, 70, 107, 97, 86
-];
-
 export default function AiChatWidget() {
 	const { socials } = useContent();
 	const [isOpen, setIsOpen] = useState(false);
@@ -370,14 +355,13 @@ CRITICAL CONVERSATIONAL RULES:
 		}
 
 		// 1. Client-Side Fallback: Groq API
-		if (!botReplyText) {
+		if (!botReplyText && import.meta.env.VITE_GROQ_API_KEY) {
 			try {
-				const groqApiKey = import.meta.env.VITE_GROQ_API_KEY || String.fromCharCode(...GROQ_KEY_CODES);
 				const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
-						"Authorization": `Bearer ${groqApiKey}`,
+						"Authorization": `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`,
 					},
 					body: JSON.stringify({
 						model: "llama-3.3-70b-versatile",
@@ -397,14 +381,13 @@ CRITICAL CONVERSATIONAL RULES:
 		}
 
 		// Fallback: NVIDIA NIM API
-		if (!botReplyText) {
+		if (!botReplyText && import.meta.env.VITE_NVIDIA_API_KEY) {
 			try {
-				const nvApiKey = import.meta.env.VITE_NVIDIA_API_KEY || String.fromCharCode(...NVIDIA_KEY_CODES);
 				const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
-						"Authorization": `Bearer ${nvApiKey}`,
+						"Authorization": `Bearer ${import.meta.env.VITE_NVIDIA_API_KEY}`,
 					},
 					body: JSON.stringify({
 						model: "meta/llama-3.1-8b-instruct",
