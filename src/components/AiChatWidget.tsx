@@ -375,58 +375,6 @@ CRITICAL CONVERSATIONAL RULES:
 			console.warn("Serverless API Route fallback:", srvErr);
 		}
 
-		// 1. Client-Side Fallback: Groq API
-		if (!botReplyText && import.meta.env.VITE_GROQ_API_KEY) {
-			try {
-				const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-						"Authorization": `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`,
-					},
-					body: JSON.stringify({
-						model: "llama-3.3-70b-versatile",
-						messages: apiMessages,
-						temperature: 0.6,
-						max_tokens: 300,
-					}),
-				});
-
-				if (response.ok) {
-					const data = await response.json();
-					botReplyText = data.choices?.[0]?.message?.content || "";
-				}
-			} catch (groqErr) {
-				console.warn("Groq API call error:", groqErr);
-			}
-		}
-
-		// Fallback: NVIDIA NIM API
-		if (!botReplyText && import.meta.env.VITE_NVIDIA_API_KEY) {
-			try {
-				const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-						"Authorization": `Bearer ${import.meta.env.VITE_NVIDIA_API_KEY}`,
-					},
-					body: JSON.stringify({
-						model: "meta/llama-3.1-8b-instruct",
-						messages: apiMessages,
-						temperature: 0.2,
-						max_tokens: 400,
-					}),
-				});
-
-				if (response.ok) {
-					const data = await response.json();
-					botReplyText = data.choices?.[0]?.message?.content || "";
-				}
-			} catch (nvErr) {
-				console.error("NVIDIA NIM API fallback error:", nvErr);
-			}
-		}
-
 		if (!botReplyText) {
 			botReplyText = generateClientSmartReply(query, userName);
 		}
