@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import * as LucideIcons from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 type Service = {
 	id: string;
@@ -29,7 +30,30 @@ export default function ServiceGrid({
 }: {
 	initialServices: Service[];
 }) {
-	const services = initialServices;
+	const services = initialServices || [];
+	const [visibleCount, setVisibleCount] = useState(6);
+	const sentinelRef = useRef<HTMLDivElement | null>(null);
+
+	useEffect(() => {
+		if (visibleCount >= services.length) return;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (entries[0].isIntersecting) {
+					setVisibleCount((prev) => Math.min(prev + 6, services.length));
+				}
+			},
+			{ rootMargin: "200px" }
+		);
+
+		if (sentinelRef.current) {
+			observer.observe(sentinelRef.current);
+		}
+
+		return () => observer.disconnect();
+	}, [visibleCount, services.length]);
+
+	const displayedServices = services.slice(0, visibleCount);
 
 	return (
 		<section className="py-24 px-4 bg-slate-50 relative z-10 overflow-hidden">
@@ -49,7 +73,7 @@ export default function ServiceGrid({
 						whileInView={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8, delay: 0.2 }}
 						viewport={{ once: true }}
-						className="text-slate-600 max-w-2xl mx-auto"
+						className="text-slate-600 max-w-2xl mx-auto font-medium"
 					>
 						From traditional web solutions to cutting-edge AI optimization
 						strategies, we cover all aspects of your digital growth.
@@ -57,14 +81,13 @@ export default function ServiceGrid({
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-					{services.map((service, index) => (
-						<Link to={service.href} key={index} className="block h-full">
+					{displayedServices.map((service, index) => (
+						<Link to={service.href} key={service.id || index} className="block h-full">
 							<motion.div
-								initial={{ opacity: 0, y: 30 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								whileHover={{ y: -6, scale: 1.01 }}
-								transition={{ duration: 0.3, delay: index * 0.04 }}
-								viewport={{ once: true }}
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								whileHover={{ y: -6 }}
+								transition={{ duration: 0.3 }}
 								className="group relative p-8 h-full rounded-2xl bg-white border border-slate-200 hover:border-emerald-500/40 transition-all duration-300 flex flex-col items-start gap-4 shadow-lg shadow-slate-200/50"
 							>
 								{/* Icon Container */}
@@ -76,10 +99,10 @@ export default function ServiceGrid({
 
 								{/* Text Content */}
 								<div>
-									<h3 className="text-xl font-bold mb-3 text-slate-900 group-hover:text-emerald-600 transition-colors">
+									<h3 className="text-xl font-bold mb-3 text-slate-900 group-hover:text-emerald-700 transition-colors">
 										{service.title}
 									</h3>
-									<p className="text-slate-600 text-sm leading-relaxed">
+									<p className="text-slate-600 text-sm leading-relaxed font-medium">
 										{service.description}
 									</p>
 								</div>
@@ -87,6 +110,13 @@ export default function ServiceGrid({
 						</Link>
 					))}
 				</div>
+
+				{/* Infinite Scroll Sentinel */}
+				{visibleCount < services.length && (
+					<div ref={sentinelRef} className="h-16 flex items-center justify-center mt-8">
+						<div className="w-6 h-6 border-2 border-emerald-500/30 border-t-emerald-600 rounded-full animate-spin" />
+					</div>
+				)}
 			</div>
 		</section>
 	);

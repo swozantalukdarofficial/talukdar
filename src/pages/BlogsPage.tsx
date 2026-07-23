@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, Sparkles, Filter, Calendar, Clock } from "lucide-react";
@@ -18,6 +18,8 @@ export default function BlogsPage() {
   const [searchQuery, setSearchQuery] = useState(searchParam);
   const [activeCategory, setActiveCategory] = useState(categoryParam);
   const [isMobile, setIsMobile] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(6);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 640);
@@ -30,6 +32,7 @@ export default function BlogsPage() {
   useEffect(() => {
     setSearchQuery(searchParams.get("search") || "");
     setActiveCategory(searchParams.get("category") || "All");
+    setVisibleCount(6);
   }, [searchParams]);
 
   const handleSearchChange = (val: string) => {
@@ -92,40 +95,55 @@ export default function BlogsPage() {
     navigate(`/blogs/${id}`);
   };
 
-  const filteredPosts = regularPosts.filter((post) => {
-    const matchesCategory =
-      activeCategory === "All" || post.category === activeCategory;
-    const matchesSearch =
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  const filteredPosts = useMemo(() => {
+    return regularPosts.filter((post) => {
+      const matchesCategory =
+        activeCategory === "All" || post.category === activeCategory;
+      const matchesSearch =
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [regularPosts, activeCategory, searchQuery]);
+
+  useEffect(() => {
+    if (visibleCount >= filteredPosts.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleCount((prev) => Math.min(prev + 6, filteredPosts.length));
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    if (sentinelRef.current) {
+      observer.observe(sentinelRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [visibleCount, filteredPosts.length]);
+
+  const displayedPosts = filteredPosts.slice(0, visibleCount);
 
   return (
-    <main className="min-h-screen bg-black text-white pt-24 pb-24 overflow-x-hidden relative">
+    <main className="min-h-screen bg-slate-50 text-slate-900 pt-24 pb-24 overflow-x-hidden relative">
       <SEO 
         pageKey="blogs"
         title="Blog & Insights | WeBestOne" 
         description="Read the latest insights, tutorials, and strategy guides on AI marketing, SEO, web design, and growth optimization from WeBestOne." 
       />
-      {/* Immersive Background Elements */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-br from-neon-green/5 to-purple-600/5 rounded-full blur-[140px] pointer-events-none z-0" />
-      <div className="absolute top-[80vh] right-0 w-[400px] h-[400px] bg-blue-500/[0.02] rounded-full blur-[120px] pointer-events-none z-0" />
 
-      {/* Grid Pattern overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0 opacity-80" />
-
-      {/* ══════════════════════════════════════════
-          1. SLEEK TECH HEADER
-      ══════════════════════════════════════════ */}
+      {/* 1. SLEEK TECH HEADER */}
       <section className="relative z-10 pt-4 sm:pt-10 pb-8 sm:pb-12 px-6 max-w-5xl mx-auto text-center space-y-4">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-neutral-300 backdrop-blur-md"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-300 text-xs font-extrabold text-emerald-800 backdrop-blur-md"
         >
-          <Sparkles className="w-3.5 h-3.5 text-neon-green" />
+          <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
           <span>Webestone Insights</span>
         </motion.div>
 
@@ -133,36 +151,34 @@ export default function BlogsPage() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl md:text-6xl font-black text-white tracking-tight"
+          className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight"
         >
-          Latest <span className="text-neon-green">Insights & Ideas</span>
+          Latest <span className="text-emerald-700">Insights & Ideas</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-neutral-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed"
+          className="text-slate-600 max-w-2xl mx-auto text-sm md:text-base leading-relaxed font-medium"
         >
           Explore expert strategies in custom web development, SEO scaling, brand architecture, and intelligent automation systems.
         </motion.p>
       </section>
 
-      {/* ══════════════════════════════════════════
-          2. FEATURED 3D WEBGL CAROUSEL GALLERY
-      ══════════════════════════════════════════ */}
+      {/* 2. FEATURED 3D WEBGL CAROUSEL GALLERY */}
       {activeCategory === "All" && searchQuery === "" && galleryItems.length >= 3 && (
         <section className="px-6 pb-16 max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-6">
-            <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-neon-green bg-neon-green/10 px-4 py-2 rounded-full border border-neon-green/25 shadow-lg shadow-neon-green/5 animate-pulse">
+            <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-emerald-800 bg-emerald-50 px-4 py-2 rounded-full border border-emerald-300 shadow-md">
               🏆 Interactive Featured Articles · Swipe & Drag to Rotate
             </span>
           </div>
-          <div className="h-[380px] sm:h-[480px] md:h-[540px] w-full relative rounded-3xl overflow-hidden border border-white/10 bg-neutral-950/30 backdrop-blur-md shadow-2xl">
+          <div className="h-[380px] sm:h-[480px] md:h-[540px] w-full relative rounded-3xl overflow-hidden border border-slate-200 bg-white backdrop-blur-md shadow-2xl">
             <CircularGallery
               items={galleryItems}
               bend={isMobile ? 0.9 : 1.8}
-              textColor="#ffffff"
+              textColor="#0f172a"
               borderRadius={0.04}
               scrollSpeed={2.5}
               scrollEase={0.05}
@@ -172,25 +188,23 @@ export default function BlogsPage() {
         </section>
       )}
 
-      {/* ══════════════════════════════════════════
-          3. MAIN 2-COLUMN CONTENT SECTION
-      ══════════════════════════════════════════ */}
+      {/* 3. MAIN 2-COLUMN CONTENT SECTION */}
       <section className="px-6 max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           {/* LEFT COLUMN: Article Listing */}
           <div className="lg:col-span-8 space-y-8">
             {searchQuery || activeCategory !== "All" ? (
-              <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-4">
-                <div className="text-xs font-bold text-neutral-400 uppercase tracking-widest flex flex-wrap items-center gap-2">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-4">
+                <div className="text-xs font-bold text-slate-500 uppercase tracking-widest flex flex-wrap items-center gap-2">
                   <span>Filtered by:</span>
                   {activeCategory !== "All" && (
-                    <span className="bg-white/5 border border-white/10 text-white px-2.5 py-1 rounded-md text-[10px]">
+                    <span className="bg-slate-100 border border-slate-200 text-slate-800 px-2.5 py-1 rounded-md text-[10px] font-bold">
                       Category: {activeCategory}
                     </span>
                   )}
                   {searchQuery && (
-                    <span className="bg-white/5 border border-white/10 text-white px-2.5 py-1 rounded-md text-[10px]">
+                    <span className="bg-slate-100 border border-slate-200 text-slate-800 px-2.5 py-1 rounded-md text-[10px] font-bold">
                       Search: "{searchQuery}"
                     </span>
                   )}
@@ -200,7 +214,7 @@ export default function BlogsPage() {
                     handleSearchChange("");
                     handleCategoryChange("All");
                   }}
-                  className="text-xs font-semibold text-neon-green hover:underline"
+                  className="text-xs font-extrabold text-emerald-700 hover:underline"
                 >
                   Clear all filters
                 </button>
@@ -208,69 +222,77 @@ export default function BlogsPage() {
             ) : null}
 
             {filteredPosts.length === 0 ? (
-              <div className="text-center py-28 rounded-3xl border border-white/5 bg-neutral-900/10">
-                <Filter className="w-12 h-12 text-neutral-600 mx-auto mb-4 animate-pulse" />
-                <h3 className="text-lg font-bold text-neutral-400 mb-1">No articles found</h3>
-                <p className="text-neutral-500 text-sm max-w-xs mx-auto">
+              <div className="text-center py-28 rounded-3xl border border-slate-200 bg-white shadow-md">
+                <Filter className="w-12 h-12 text-slate-400 mx-auto mb-4 animate-pulse" />
+                <h3 className="text-lg font-bold text-slate-800 mb-1">No articles found</h3>
+                <p className="text-slate-500 text-sm max-w-xs mx-auto">
                   We couldn't find any match for your query. Try updating your filters or search keywords.
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {filteredPosts.map((post, i) => (
-                  <motion.article
-                    key={post.id}
-                    initial={{ opacity: 0, y: 25 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: i * 0.05 }}
-                    className="group"
-                  >
-                    <Link to={`/blogs/${post.id}`}>
-                      <div className="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/20 hover:bg-neutral-900/40 hover:border-neon-green/30 transition-all duration-500 h-full flex flex-col shadow-xl">
-                        
-                        {/* Media Card */}
-                        <div className="aspect-[16/9] bg-gradient-to-br from-neutral-800 to-neutral-950 relative overflow-hidden shrink-0">
-                          {post.image?.includes("from-") ? (
-                            <div className={`w-full h-full bg-gradient-to-br ${post.image} opacity-30 group-hover:scale-105 transition-transform duration-700`} />
-                          ) : (
-                            <img
-                              src={post.image}
-                              alt={post.title}
-                              className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
-                            />
-                          )}
-                          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent" />
-                          <span className="absolute top-4 left-4 px-3 py-1 bg-black/60 border border-white/10 backdrop-blur-md text-[9px] uppercase font-bold tracking-widest text-white rounded-full">
-                            {post.category}
-                          </span>
-                        </div>
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {displayedPosts.map((post, i) => (
+                    <motion.article
+                      key={post.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="group"
+                    >
+                      <Link to={`/blogs/${post.id}`}>
+                        <div className="rounded-2xl overflow-hidden border border-slate-200 bg-white hover:border-emerald-500/40 transition-all duration-300 h-full flex flex-col shadow-lg shadow-slate-200/50">
+                          
+                          {/* Media Card */}
+                          <div className="aspect-[16/9] bg-slate-100 relative overflow-hidden shrink-0">
+                            {post.image?.includes("from-") ? (
+                              <div className={`w-full h-full bg-gradient-to-br ${post.image} opacity-80 group-hover:scale-105 transition-transform duration-700`} />
+                            ) : (
+                              <img
+                                src={post.image}
+                                alt={post.title}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                              />
+                            )}
+                            <span className="absolute top-4 left-4 px-3 py-1 bg-white/90 border border-slate-200 backdrop-blur-md text-[9px] uppercase font-extrabold tracking-widest text-slate-900 rounded-full shadow-sm">
+                              {post.category}
+                            </span>
+                          </div>
 
-                        {/* Card Content */}
-                        <div className="p-6 flex flex-col gap-3.5 flex-1 justify-between">
-                          <div className="space-y-3.5">
-                            <div className="flex items-center gap-3 text-[10px] text-neutral-500 uppercase font-semibold tracking-wider">
-                              <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-neon-green" /> {post.date}</span>
-                              <span>·</span>
-                              <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-neon-green" /> {post.readTime}</span>
+                          {/* Card Content */}
+                          <div className="p-6 flex flex-col gap-3.5 flex-1 justify-between">
+                            <div className="space-y-3.5">
+                              <div className="flex items-center gap-3 text-[10px] text-slate-500 uppercase font-semibold tracking-wider">
+                                <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-emerald-600" /> {post.date}</span>
+                                <span>·</span>
+                                <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-emerald-600" /> {post.readTime}</span>
+                              </div>
+                              <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-700 transition-colors leading-snug tracking-tight">
+                                {post.title}
+                              </h3>
+                              <p className="text-slate-600 text-xs md:text-sm leading-relaxed line-clamp-3 font-medium">
+                                {post.excerpt}
+                              </p>
                             </div>
-                            <h3 className="text-lg font-bold text-white group-hover:text-neon-green transition-colors leading-snug tracking-tight">
-                              {post.title}
-                            </h3>
-                            <p className="text-neutral-400 text-xs md:text-sm leading-relaxed line-clamp-3">
-                              {post.excerpt}
-                            </p>
+                            <div className="flex items-center justify-between text-xs font-extrabold uppercase tracking-widest text-emerald-700 group-hover:text-emerald-800 transition-colors pt-5 mt-4 border-t border-slate-100">
+                              <span>Read Article</span>
+                              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+                            </div>
                           </div>
-                          <div className="flex items-center justify-between text-xs font-bold uppercase tracking-widest text-neutral-400 group-hover:text-neon-green transition-colors pt-5 mt-4 border-t border-white/5">
-                            <span>Read Article</span>
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
-                          </div>
-                        </div>
 
-                      </div>
-                    </Link>
-                  </motion.article>
-                ))}
-              </div>
+                        </div>
+                      </Link>
+                    </motion.article>
+                  ))}
+                </div>
+
+                {/* Infinite Scroll Sentinel */}
+                {visibleCount < filteredPosts.length && (
+                  <div ref={sentinelRef} className="h-16 flex items-center justify-center mt-8">
+                    <div className="w-6 h-6 border-2 border-emerald-500/30 border-t-emerald-600 rounded-full animate-spin" />
+                  </div>
+                )}
+              </>
             )}
           </div>
 
