@@ -43,8 +43,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Messages array is required' });
   }
 
-  const groqKey = process.env.GROQ_KEY || process.env.VITE_GROQ_KEY;
-  const nvidiaKey = process.env.NVIDIA_KEY || process.env.VITE_NVIDIA_KEY;
+  const groqKey = process.env.GROQ_KEY || process.env.VITE_GROQ_KEY || process.env.VITE_GROQ_API_KEY;
+  const nvidiaKey = process.env.NVIDIA_KEY || process.env.VITE_NVIDIA_KEY || process.env.VITE_NVIDIA_API_KEY;
 
   try {
     // 1. Try Groq AI (Llama-3.3-70b)
