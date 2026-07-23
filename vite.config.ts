@@ -22,11 +22,11 @@ export default defineConfig({
 							const body = JSON.parse(bodyStr || "{}");
 							const mockReq = { method: req.method || "POST", headers: req.headers, body };
 							const mockRes = {
-								setHeader: (k, v) => res.setHeader(k, v),
-								status: (code) => {
+								setHeader: (k: string, v: string | string[]) => res.setHeader(k, v),
+								status: (code: number) => {
 									res.statusCode = code;
 									return {
-										json: (data) => {
+										json: (data: unknown) => {
 											res.setHeader("Content-Type", "application/json");
 											res.end(JSON.stringify(data));
 										},
@@ -35,10 +35,10 @@ export default defineConfig({
 							};
 							const handler = require("./api/chat.js").default;
 							await handler(mockReq, mockRes);
-						} catch (e) {
+						} catch (e: any) {
 							res.statusCode = 500;
 							res.setHeader("Content-Type", "application/json");
-							res.end(JSON.stringify({ error: e.message }));
+							res.end(JSON.stringify({ error: e?.message || "Internal error" }));
 						}
 					});
 				});
