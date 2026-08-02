@@ -49,6 +49,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preload" href="/silver_scooter.webp" as="image" type="image/webp" fetchPriority="high" />
+      </head>
       <body className="antialiased bg-[#faf9f6] text-stone-900 overflow-x-hidden w-full relative" suppressHydrationWarning>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-9CPCHEWEBN"

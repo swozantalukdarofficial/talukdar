@@ -26,7 +26,7 @@ const SLIDES = [
       "Premium electric bikes and smart scooters built for Bangladesh roads. Zero emission. Maximum efficiency.",
     cta: { label: "Shop E-Bikes", href: "/products?category=ebike" },
     ctaSecondary: { label: "View All Products", href: "/products" },
-    image: "/silver_scooter.png",
+    image: "/silver_scooter.webp",
     bgGradient: "bg-gradient-to-r from-stone-50 to-stone-100",
     stats: [
       { icon: Zap, value: "80km", label: "Range" },
@@ -45,7 +45,7 @@ const SLIDES = [
       "High-performance electric auto-rickshaws, pickups, and utility vehicles designed for maximum ROI and reliability.",
     cta: { label: "Shop Commercial", href: "/products?category=commercial" },
     ctaSecondary: { label: "Explore Products", href: "/products" },
-    image: "/iso_commercial.png",
+    image: "/iso_commercial.webp",
     bgGradient: "bg-gradient-to-r from-blue-50/40 to-indigo-50/40",
     stats: [
       { icon: Battery, value: "Heavy", label: "Duty" },
@@ -64,7 +64,7 @@ const SLIDES = [
       "High-efficiency solar panels and inverters. Charge your EVs with 100% renewable energy directly from the sun.",
     cta: { label: "Shop Solar", href: "/products?category=solar" },
     ctaSecondary: { label: "Inverters", href: "/products?category=parts" },
-    image: "/iso_solar.png",
+    image: "/iso_solar.webp",
     bgGradient: "bg-gradient-to-r from-amber-50/40 to-orange-50/30",
     stats: [
       { icon: Shield, value: "Tier 1", label: "Panels" },
