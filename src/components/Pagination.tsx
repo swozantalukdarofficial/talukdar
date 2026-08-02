@@ -21,7 +21,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
   function handlePageChange(pageNumber: number) {
     if (pageNumber < 1 || pageNumber > totalPages || isPending) return;
 
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams ? searchParams.toString() : "");
     if (pageNumber === 1) {
       params.delete("page");
     } else {

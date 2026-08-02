@@ -47,17 +47,17 @@ export default function ProductFilters({
     setOpenGroups((prev) => ({ ...prev, [group]: !prev[group] }));
   };
 
-  const activeCategory = searchParams.get("category") ?? "all";
-  const activeSort = searchParams.get("sort") ?? "newest";
-  const activeBrand = searchParams.get("brand") ?? "all";
-  const activeStock = searchParams.get("stock") ?? "all";
-  const activeSubcat = searchParams.get("subcat") ?? "all";
+  const activeCategory = searchParams?.get("category") ?? "all";
+  const activeSort = searchParams?.get("sort") ?? "newest";
+  const activeBrand = searchParams?.get("brand") ?? "all";
+  const activeStock = searchParams?.get("stock") ?? "all";
+  const activeSubcat = searchParams?.get("subcat") ?? "all";
 
   // Price range configuration
   const minLimit = 0;
   const maxLimit = 250000;
-  const urlMin = searchParams.get("minPrice");
-  const urlMax = searchParams.get("maxPrice");
+  const urlMin = searchParams?.get("minPrice");
+  const urlMax = searchParams?.get("maxPrice");
 
   const [minPriceInput, setMinPriceInput] = useState<number>(urlMin ? Number(urlMin) : minLimit);
   const [maxPriceInput, setMaxPriceInput] = useState<number>(urlMax ? Number(urlMax) : maxLimit);
@@ -71,7 +71,7 @@ export default function ProductFilters({
   const maxPercent = ((maxPriceInput - minLimit) / (maxLimit - minLimit)) * 100;
 
   function handleFilterRange() {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams ? searchParams.toString() : "");
     params.delete("page"); // Reset page
     if (minPriceInput > minLimit) {
       params.set("minPrice", String(minPriceInput));
@@ -93,7 +93,7 @@ export default function ProductFilters({
   function handleClearRange() {
     setMinPriceInput(minLimit);
     setMaxPriceInput(maxLimit);
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams ? searchParams.toString() : "");
     params.delete("minPrice");
     params.delete("maxPrice");
     params.delete("priceIdx");
@@ -105,7 +105,7 @@ export default function ProductFilters({
   }
 
   function updateParam(key: string, value: string | undefined) {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams ? searchParams.toString() : "");
     params.delete("page"); // Reset page
     if (value === undefined || value === "all" || value === "newest" || value === "0") {
       params.delete(key);
@@ -118,7 +118,7 @@ export default function ProductFilters({
   }
 
   function handleCategorySelect(cat: string) {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams ? searchParams.toString() : "");
     params.delete("page"); // Reset page
     params.delete("brand"); // Clear brand
     params.delete("subcat"); // Clear subcategory
@@ -141,7 +141,7 @@ export default function ProductFilters({
 
   function clearAll() {
     startTransition(() => {
-      router.push(pathname, { scroll: false });
+      router.push(pathname || "/products", { scroll: false });
     });
   }
 
@@ -390,7 +390,7 @@ export default function ProductFilters({
         <div className="border-b border-stone-100 pb-4">
           <button
             onClick={() => {
-              const params = new URLSearchParams(searchParams.toString());
+              const params = new URLSearchParams(searchParams ? searchParams.toString() : "");
               params.delete("category");
               params.delete("subcat");
               params.delete("page");
@@ -656,11 +656,11 @@ export function SortDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const [, startTransition] = useTransition();
 
-  const activeSort = searchParams.get("sort") ?? "newest";
+  const activeSort = searchParams?.get("sort") ?? "newest";
   const activeOption = SORT_OPTIONS.find((opt) => opt.value === activeSort) || SORT_OPTIONS[0];
 
   function handleSelect(value: string) {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams ? searchParams.toString() : "");
     if (value === "newest") {
       params.delete("sort");
     } else {
