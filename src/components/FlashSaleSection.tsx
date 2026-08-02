@@ -8,6 +8,15 @@ import { type Product } from "@/lib/types";
 import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+
 interface FlashSaleSectionProps {
   products: Product[];
 }
@@ -92,94 +101,113 @@ export default function FlashSaleSection({ products }: FlashSaleSectionProps) {
           </div>
         </div>
 
-        {/* Product Cards Grid */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] gap-4 pb-4 lg:grid lg:grid-cols-4 lg:overflow-x-visible lg:pb-0">
-          {products.map((product) => {
-            const hasDiscount = !!(product.compare_at_price && product.compare_at_price > product.price);
-            const discountPercent = (hasDiscount && product.compare_at_price)
-              ? Math.round(((product.compare_at_price - product.price) / product.compare_at_price) * 100)
-              : 0;
+        {/* Product Cards Auto Carousel */}
+        <Carousel
+          opts={{
+            align: "start",
+            loop: products.length > 3,
+          }}
+          plugins={[
+            Autoplay({
+              delay: 3000,
+              stopOnInteraction: false,
+              stopOnMouseEnter: true,
+            }),
+          ]}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-4">
+            {products.map((product) => {
+              const hasDiscount = !!(product.compare_at_price && product.compare_at_price > product.price);
+              const discountPercent = (hasDiscount && product.compare_at_price)
+                ? Math.round(((product.compare_at_price - product.price) / product.compare_at_price) * 100)
+                : 0;
 
-            return (
-              <div
-                key={product.id}
-                className="group bg-white border border-stone-200/85 hover:border-emerald-600/30 rounded-2xl p-3 flex flex-col justify-between hover:shadow-[0_12px_24px_-10px_rgba(0,0,0,0.06)] shadow-[0_2px_8px_-3px_rgba(0,0,0,0.04)] transition-all duration-300 relative w-[240px] sm:w-[260px] lg:w-auto shrink-0 snap-start"
-              >
-                {/* Discount Badge */}
-                {hasDiscount && (
-                  <span className="absolute top-3 left-3 z-10 px-2 py-0.5 bg-rose-600 text-white text-[10px] font-black uppercase rounded-lg tracking-wider shadow-md">
-                    -{discountPercent}% OFF
-                  </span>
-                )}
-
-                {/* Product Image */}
-                <Link
-                  href={`/products/${product.slug}`}
-                  className="block relative aspect-square w-full rounded-xl overflow-hidden bg-stone-50/50 mb-3 border border-stone-100 p-2 cursor-pointer"
+              return (
+                <CarouselItem
+                  key={product.id}
+                  className="pl-4 basis-4/5 sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
                 >
-                  <Image
-                    src={product.image_url}
-                    alt={product.name}
-                    fill
-                    className="object-contain p-3 group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-black/[0.01] opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
+                  <div className="group bg-white border border-stone-200/85 hover:border-emerald-600/30 rounded-2xl p-3 flex flex-col justify-between hover:shadow-[0_12px_24px_-10px_rgba(0,0,0,0.06)] shadow-[0_2px_8px_-3px_rgba(0,0,0,0.04)] transition-all duration-300 relative h-full">
+                    {/* Discount Badge */}
+                    {hasDiscount && (
+                      <span className="absolute top-3 left-3 z-10 px-2 py-0.5 bg-rose-600 text-white text-[10px] font-black uppercase rounded-lg tracking-wider shadow-md">
+                        -{discountPercent}% OFF
+                      </span>
+                    )}
 
-                {/* Product Info */}
-                <div className="flex-1 flex flex-col justify-between">
-                  <div>
-                    <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-widest mb-1 block">
-                      {product.category}
-                    </span>
+                    {/* Product Image */}
                     <Link
                       href={`/products/${product.slug}`}
-                      className="text-sm font-bold text-stone-800 hover:text-emerald-800 transition-colors line-clamp-1 block mb-2"
+                      className="block relative aspect-square w-full rounded-xl overflow-hidden bg-stone-50/50 mb-3 border border-stone-100 p-2 cursor-pointer"
                     >
-                      {product.name}
+                      <Image
+                        src={product.image_url}
+                        alt={product.name}
+                        fill
+                        className="object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                      />
+                      <div className="absolute inset-0 bg-black/[0.01] opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
-                  </div>
 
-                  <div>
-                    {/* Prices */}
-                    <div className="flex items-baseline gap-2 mb-3">
-                      <span className="text-base font-extrabold text-stone-900">
-                        ৳{product.price.toLocaleString()}
-                      </span>
-                      {product.compare_at_price && product.compare_at_price > product.price && (
-                        <span className="text-xs text-stone-400 line-through">
-                          ৳{product.compare_at_price.toLocaleString()}
+                    {/* Product Info */}
+                    <div className="flex-1 flex flex-col justify-between">
+                      <div>
+                        <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-widest mb-1 block">
+                          {product.category}
                         </span>
-                      )}
-                    </div>
+                        <Link
+                          href={`/products/${product.slug}`}
+                          className="text-sm font-bold text-stone-800 hover:text-emerald-800 transition-colors line-clamp-1 block mb-2"
+                        >
+                          {product.name}
+                        </Link>
+                      </div>
 
-                    {/* Actions */}
-                    <div className="flex gap-2">
-                      <Link
-                        href={`/products/${product.slug}`}
-                        className="flex-1 text-center py-2 bg-stone-50 hover:bg-stone-100 text-stone-750 hover:text-stone-900 rounded-xl text-xs font-bold transition-all border border-stone-200"
-                      >
-                        Details
-                      </Link>
-                      <Button
-                        size="icon"
-                        onClick={() => {
-                          addItem(product);
-                          openCart();
-                        }}
-                        className="bg-emerald-700 hover:bg-emerald-850 text-white rounded-xl h-8.5 w-8.5 shrink-0 border-0 shadow-sm"
-                        aria-label="Add to cart"
-                      >
-                        <ShoppingCart className="w-3.5 h-3.5" />
-                      </Button>
+                      <div>
+                        {/* Prices */}
+                        <div className="flex items-baseline gap-2 mb-3">
+                          <span className="text-base font-extrabold text-stone-900">
+                            ৳{product.price.toLocaleString()}
+                          </span>
+                          {product.compare_at_price && product.compare_at_price > product.price && (
+                            <span className="text-xs text-stone-400 line-through">
+                              ৳{product.compare_at_price.toLocaleString()}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex gap-2">
+                          <Link
+                            href={`/products/${product.slug}`}
+                            className="flex-1 text-center py-2 bg-stone-50 hover:bg-stone-100 text-stone-750 hover:text-stone-900 rounded-xl text-xs font-bold transition-all border border-stone-200"
+                          >
+                            Details
+                          </Link>
+                          <Button
+                            size="icon"
+                            onClick={() => {
+                              addItem(product);
+                              openCart();
+                            }}
+                            className="bg-emerald-700 hover:bg-emerald-850 text-white rounded-xl h-8.5 w-8.5 shrink-0 border-0 shadow-sm"
+                            aria-label="Add to cart"
+                          >
+                            <ShoppingCart className="w-3.5 h-3.5" />
+                          </Button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                </CarouselItem>
+              );
+            })}
+          </CarouselContent>
+          <CarouselPrevious className="-left-4 md:-left-6 h-10 w-10 border-stone-200 bg-white text-stone-700 hover:bg-stone-50 hover:text-stone-900 hover:border-stone-300 shadow-md shadow-stone-100" />
+          <CarouselNext className="-right-4 md:-right-6 h-10 w-10 border-stone-200 bg-white text-stone-700 hover:bg-stone-50 hover:text-stone-900 hover:border-stone-300 shadow-md shadow-stone-100" />
+        </Carousel>
       </div>
     </section>
   );
