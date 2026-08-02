@@ -79,7 +79,7 @@ export default function HeroCarousel() {
     <section className="relative overflow-hidden border-b border-stone-200/50">
       <Carousel
         opts={{ loop: true, align: "start" }}
-        plugins={[Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })]}
+        plugins={[Autoplay({ delay: 2500, stopOnInteraction: false, stopOnMouseEnter: true })]}
         className="w-full"
       >
         <CarouselContent className="-ml-0">
