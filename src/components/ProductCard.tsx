@@ -16,16 +16,18 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const { addItem, openCart } = useCart();
 
-  const discount = product.compare_at_price
-    ? Math.round(
-      ((product.compare_at_price - product.price) /
-        product.compare_at_price) *
-      100
-    )
-    : null;
+  const discount =
+    product.compare_at_price && product.compare_at_price > product.price
+      ? Math.round(
+          ((product.compare_at_price - product.price) /
+            product.compare_at_price) *
+            100
+        )
+      : null;
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     addItem(product);
     openCart();
   };
@@ -108,7 +110,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               <span className="text-[15px] sm:text-[17px] font-extrabold text-stone-900 leading-tight truncate">
                 ৳{product.price.toLocaleString("en-BD")}
               </span>
-              {product.compare_at_price && (
+              {product.compare_at_price && product.compare_at_price > product.price && (
                 <span className="text-[10px] sm:text-xs text-stone-400 line-through font-medium leading-none mt-0.5">
                   ৳{product.compare_at_price.toLocaleString("en-BD")}
                 </span>

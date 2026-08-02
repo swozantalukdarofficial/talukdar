@@ -5,18 +5,7 @@ import { POSTS } from "@/lib/blogs";
 import { SITE_URL } from "@/config/seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  let baseUrl = SITE_URL;
-
-  try {
-    const headersList = await headers();
-    const host = headersList.get("host");
-    const proto = headersList.get("x-forwarded-proto") || "https";
-    if (host && !host.includes("localhost") && !host.includes("127.0.0.1")) {
-      baseUrl = `${proto}://${host}`;
-    }
-  } catch (e) {
-    // Fail-safe
-  }
+  const baseUrl = SITE_URL || "https://evsolutionbd.com";
 
   // 1. Static Pages
   const staticPages = [

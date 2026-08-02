@@ -59,7 +59,7 @@ export default function Footer({ settings }: FooterProps) {
             <div className="grid grid-cols-2 gap-2.5 max-w-[280px]">
               {/* Facebook */}
               <a
-                href="https://facebook.com"
+                href="https://facebook.com/evsolutionbd"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-3 py-2 bg-white border border-stone-200 rounded-xl hover:border-stone-400 hover:shadow-sm transition-all group"
@@ -72,7 +72,7 @@ export default function Footer({ settings }: FooterProps) {
 
               {/* Instagram */}
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/evsolutionbd"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-3 py-2 bg-white border border-stone-200 rounded-xl hover:border-stone-400 hover:shadow-sm transition-all group"

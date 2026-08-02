@@ -1061,7 +1061,7 @@ export default function ProductDetailClient({
 
               {product.description ? (
                 product.description.trim().startsWith("<") || product.description.includes("<div") || product.description.includes("<section") ? (
-                  <div className="prose prose-emerald max-w-none text-stone-700 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: product.description }} />
+                  <div className="prose prose-emerald max-w-none text-stone-700 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: product.description.replace(/<h1(\s|>)/gi, "<h2$1").replace(/<\/h1>/gi, "</h2>") }} />
                 ) : (
                   renderBlogStyleDescription(product.description)
                 )

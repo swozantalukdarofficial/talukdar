@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ShieldCheck, Zap, Leaf, HeartHandshake } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us | EV Solution BD - Leading Smart EV & Solar Platform",
+  title: "About Us — Smart EV & Solar Platform",
   description: "Learn about EV Solution BD. We are the premier marketplace for electric bikes, high-performance lithium battery packs, solar energy solutions, and OEM electric vehicle spare parts in Bangladesh.",
   alternates: {
     canonical: `${SITE_URL}/about`,

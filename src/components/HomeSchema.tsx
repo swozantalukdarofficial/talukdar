@@ -22,9 +22,9 @@ export default async function HomeSchema() {
       "availableLanguage": ["Bengali", "English"],
     },
     "sameAs": [
-      "https://facebook.com",
-      "https://instagram.com",
-      "https://tiktok.com",
+      "https://facebook.com/evsolutionbd",
+      "https://instagram.com/evsolutionbd",
+      "https://wa.me/8801333600272",
     ],
   };
 

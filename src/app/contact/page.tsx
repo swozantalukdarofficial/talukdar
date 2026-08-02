@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail, Clock, ShieldAlert } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Us | EV Solution BD - Customer Service & Technical Support",
+  title: "Contact Us — Customer Support",
   description: "Get in touch with EV Solution BD. Reach out to our technical support team for lithium batteries, e-bike conversions, and solar installation queries. Visit our Dhaka head office.",
   alternates: {
     canonical: `${SITE_URL}/contact`,

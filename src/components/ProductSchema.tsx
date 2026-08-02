@@ -1,6 +1,7 @@
 import React from "react";
 import { SITE_URL } from "@/config/seo";
 import type { Product } from "@/lib/types";
+import { getProductMetaDescription } from "@/lib/metaDescriptions";
 
 interface Props {
   product: Product;
@@ -8,6 +9,7 @@ interface Props {
 
 export default function ProductSchema({ product }: Props) {
   const baseUrl = SITE_URL;
+  const metaDesc = getProductMetaDescription(product.slug, product.name, product.description);
 
   // 1. Product Schema
   const productJsonLd = {
@@ -15,7 +17,7 @@ export default function ProductSchema({ product }: Props) {
     "@type": "Product",
     "name": product.name,
     "image": product.image_url ? [product.image_url] : [],
-    "description": product.description ?? `Buy ${product.name} online at EV Solution BD.`,
+    "description": metaDesc,
     "sku": product.id,
     "mpn": product.slug,
     "brand": {

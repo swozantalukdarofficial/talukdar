@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 const FEATURES = [
   { icon: Zap, label: "High Performance", desc: "Up to 80km range" },
-  { icon: Shield, label: "2 Year Warranty", desc: "Full coverage" },
+  { icon: Shield, label: "1 Year Battery Warranty", desc: "Official coverage" },
   { icon: Truck, label: "Free Delivery", desc: "Dhaka & Chattogram" },
 ];
 

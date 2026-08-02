@@ -14,7 +14,7 @@ import FaqSection from "@/components/FaqSection";
 import BlogSection from "@/components/BlogSection";
 import { ArrowRight } from "lucide-react";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export default async function HomePage() {
   // Parallel server-side fetches
@@ -29,10 +29,13 @@ export default async function HomePage() {
       getSaleProducts(),
     ]);
 
-  // Separate lists for independent sections
+  // Separate capped lists for homepage performance (8-10 items per rail)
+  const essentialEbikes = ebikes.slice(0, 10);
   const essentialBatteries = batteries.slice(0, 8);
   const solarPanels = solar.slice(0, 8);
   const essentialParts = [...parts, ...accessories].slice(0, 8);
+  const featuredList = featured.slice(0, 10);
+  const saleList = saleProducts.slice(0, 8);
 
   return (
     <>
@@ -43,16 +46,16 @@ export default async function HomePage() {
       <HeroCarousel />
 
       {/* 2. Flash Sale Section with Countdown Timer */}
-      <FlashSaleSection products={saleProducts} />
+      <FlashSaleSection products={saleList} />
 
       {/* 3. Category browse cards (Visual Grid) */}
       <CategorySection />
 
       {/* 4. Best Selling E-Bikes & Scooters */}
-      {ebikes.length > 0 && (
+      {essentialEbikes.length > 0 && (
         <section className="bg-[#faf9f6] border-b border-stone-200/45">
           <ProductCarousel
-            products={ebikes}
+            products={essentialEbikes}
             title="Best Selling E-Bikes & Scooters"
             subtitle="Most popular rides"
             viewAllHref="/products?category=ebike"
@@ -96,7 +99,7 @@ export default async function HomePage() {
       {/* 6. Featured Products Carousel */}
       <section className="bg-[#faf9f6]">
         <ProductCarousel
-          products={featured}
+          products={featuredList}
           title="Featured Vehicles & Gear"
           subtitle="Selected premium electrics"
           viewAllHref="/products"
