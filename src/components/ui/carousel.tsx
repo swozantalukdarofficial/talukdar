@@ -119,6 +119,7 @@ function Carousel({
       }}
     >
       <div
+        suppressHydrationWarning
         onKeyDownCapture={handleKeyDown}
         className={cn("relative", className)}
         role="region"
@@ -137,11 +138,13 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
 
   return (
     <div
+      suppressHydrationWarning
       ref={carouselRef}
       className="overflow-hidden"
       data-slot="carousel-content"
     >
       <div
+        suppressHydrationWarning
         className={cn(
           "flex",
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
@@ -158,6 +161,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
 
   return (
     <div
+      suppressHydrationWarning
       role="group"
       aria-roledescription="slide"
       data-slot="carousel-item"

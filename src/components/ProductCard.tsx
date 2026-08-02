@@ -34,9 +34,9 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Link href={`/products/${product.slug}`} className="block h-full">
-      <Card className="group relative overflow-hidden bg-white border border-stone-200/80 hover:border-emerald-600/30 transition-all duration-300 shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_24px_-10px_rgba(0,0,0,0.08)] hover:scale-[1.01] cursor-pointer h-full flex flex-col rounded-2xl">
+      <Card suppressHydrationWarning className="group relative overflow-hidden bg-white border border-stone-200/80 hover:border-emerald-600/30 transition-all duration-300 shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_24px_-10px_rgba(0,0,0,0.08)] hover:scale-[1.01] cursor-pointer h-full flex flex-col rounded-2xl">
         {/* Image Container */}
-        <div className="relative aspect-square overflow-hidden bg-stone-50 border-b border-stone-100 flex items-center justify-center p-2">
+        <div suppressHydrationWarning className="relative aspect-square overflow-hidden bg-stone-50 border-b border-stone-100 flex items-center justify-center p-2">
           <Image
             src={product.image_url}
             alt={product.name}
@@ -46,7 +46,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
 
           {/* Badges */}
-          <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
+          <div suppressHydrationWarning className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
             {discount && (
               <Badge className="bg-rose-500 hover:bg-rose-600 text-white font-bold text-[10px] tracking-wide border-0 px-2 py-0.5 shadow-sm">
                 {discount}% OFF
@@ -61,7 +61,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               </Badge>
             )}
             {product.is_featured && (
-              <div className="flex flex-col gap-1">
+              <div suppressHydrationWarning className="flex flex-col gap-1">
                 {product.category === "ebike" && (
                   <Badge className="bg-rose-600 text-white border-0 text-[9px] tracking-wide px-2 py-0.5 font-black shadow-sm flex items-center gap-0.5 uppercase w-fit">
                     <span>🔥</span> Top Selling
@@ -77,8 +77,8 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Content */}
-        <CardContent className="p-4 flex-1 flex flex-col justify-between">
-          <div>
+        <CardContent suppressHydrationWarning className="p-4 flex-1 flex flex-col justify-between">
+          <div suppressHydrationWarning>
             <p className="text-[9px] font-bold text-emerald-800 tracking-wider uppercase mb-1">
               {product.category}
             </p>
@@ -89,7 +89,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           {/* Specs preview */}
           {product.specs && (
-            <div className="flex flex-wrap gap-1.5 mt-3">
+            <div suppressHydrationWarning className="flex flex-wrap gap-1.5 mt-3">
               {Object.entries(product.specs)
                 .slice(0, 2)
                 .map(([key, value]) => (
@@ -104,9 +104,9 @@ export default function ProductCard({ product }: ProductCardProps) {
           )}
         </CardContent>
 
-        <CardFooter className="px-3 sm:px-4 pb-4 pt-0 mt-auto">
-          <div className="flex items-center justify-between w-full gap-1.5">
-            <div className="flex flex-col min-w-0">
+        <CardFooter suppressHydrationWarning className="px-3 sm:px-4 pb-4 pt-0 mt-auto">
+          <div suppressHydrationWarning className="flex items-center justify-between w-full gap-1.5">
+            <div suppressHydrationWarning className="flex flex-col min-w-0">
               <span className="text-[15px] sm:text-[17px] font-extrabold text-stone-900 leading-tight truncate">
                 ৳{product.price.toLocaleString("en-BD")}
               </span>
