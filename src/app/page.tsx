@@ -12,7 +12,24 @@ import {
 } from "@/lib/products";
 import FaqSection from "@/components/FaqSection";
 import BlogSection from "@/components/BlogSection";
-import { ArrowRight } from "lucide-react";
+import type { Metadata } from "next";
+import { SITE_URL } from "@/config/seo";
+
+export const metadata: Metadata = {
+  title: "EV Solution BD — Premium E-Bikes & Electric Vehicles",
+  description:
+    "Bangladesh's leading e-bike, battery and EV parts store. Shop premium electric vehicles with warranty and free delivery.",
+  alternates: {
+    canonical: SITE_URL,
+  },
+  openGraph: {
+    title: "EV Solution BD — Premium E-Bikes & Electric Vehicles",
+    description:
+      "Bangladesh's leading e-bike, battery and EV parts store. Shop premium electric vehicles with warranty and free delivery.",
+    url: SITE_URL,
+    siteName: "EV Solution BD",
+  },
+};
 
 export const revalidate = 300;
 

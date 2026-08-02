@@ -32,23 +32,35 @@ export async function generateMetadata({ searchParams }: ProductsPageProps): Pro
   if (category) {
     const categories = await getAllCategories();
     const activeCategoryObj = categories.find(c => c.slug === category);
-    
-    if (activeCategoryObj) {
-      return {
-        title: `${activeCategoryObj.name} — Premium E-Bike & EV Parts`,
-        description: `Shop premium ${activeCategoryObj.name.toLowerCase()} in Bangladesh. We offer original products with warranty, best price, and instant delivery.`,
-        alternates: {
-          canonical: `${SITE_URL}/products?category=${category}`,
-        },
-      };
-    }
+    const categoryName = activeCategoryObj ? activeCategoryObj.name : category.charAt(0).toUpperCase() + category.slice(1);
+    const canonicalUrl = `${SITE_URL}/products?category=${encodeURIComponent(category)}`;
+
+    return {
+      title: `${categoryName} — Premium E-Bike & EV Parts | EV Solution BD`,
+      description: `Shop premium ${categoryName.toLowerCase()} in Bangladesh. We offer original products with warranty, best price, and instant delivery.`,
+      alternates: {
+        canonical: canonicalUrl,
+      },
+      openGraph: {
+        title: `${categoryName} | EV Solution BD`,
+        description: `Shop premium ${categoryName.toLowerCase()} in Bangladesh. Original products with warranty.`,
+        url: canonicalUrl,
+      },
+    };
   }
 
+  const canonicalUrl = `${SITE_URL}/products`;
+
   return {
-    title: "All Products — Premium EV Parts & Accessories",
+    title: "All Products — Premium EV Parts & Accessories | EV Solution BD",
     description: "Browse our full range of e-bikes, lithium batteries, chargers, and parts. High-quality products with warranty and fast delivery across Bangladesh.",
     alternates: {
-      canonical: `${SITE_URL}/products`,
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: "All Products | EV Solution BD",
+      description: "Browse e-bikes, lithium batteries, chargers, and parts with warranty in Bangladesh.",
+      url: canonicalUrl,
     },
   };
 }
