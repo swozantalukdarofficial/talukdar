@@ -168,13 +168,25 @@ async function main() {
   const args = process.argv.slice(2);
   const domain = args[0] || DEFAULT_DOMAIN;
 
-  const urls = await fetchSitemapUrls(domain);
+  let urls = await fetchSitemapUrls(domain);
   if (urls.length === 0) {
     console.log("No URLs found in the sitemap or failed to fetch. Exiting.");
     return;
   }
 
-  console.log(`Found ${urls.length} URLs in the sitemap.`);
+  // Filter only blog, product, and collection (category) pages if requested
+  const targetOnly = args.includes("--only-target") || args.includes("--target-only");
+  if (targetOnly) {
+    urls = urls.filter((url) => {
+      const isBlog = url.includes("/blog");
+      const isProduct = url.includes("/products/");
+      const isCollection = url.includes("/products?category=") || url.endsWith("/products");
+      return isBlog || isProduct || isCollection;
+    });
+    console.log(`Filtered target URLs (blog, product, collection): ${urls.length} URLs`);
+  } else {
+    console.log(`Found ${urls.length} URLs in the sitemap.`);
+  }
 
   // 1. Submit to IndexNow
   await submitToIndexNow(domain, urls);
