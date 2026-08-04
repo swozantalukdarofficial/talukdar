@@ -43,6 +43,8 @@ export async function getStoreSettings(): Promise<StoreSettings> {
     return {
       ...DEFAULT_SETTINGS,
       ...data,
+      store_name: data.store_name && data.store_name !== "Talukdar EV" ? data.store_name : "EV Solution BD",
+      support_email: data.support_email && !data.support_email.includes("evstorebd") ? data.support_email : "support@evsolutionbd.com",
       shipping_fee: data.shipping_fee != null ? Number(data.shipping_fee) : DEFAULT_SETTINGS.shipping_fee,
     };
   } catch (err) {
