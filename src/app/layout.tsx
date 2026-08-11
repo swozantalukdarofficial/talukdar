@@ -70,9 +70,9 @@ export default async function RootLayout({
       <body className={`antialiased bg-[#faf9f6] text-stone-900 overflow-x-hidden w-full relative ${plusJakartaSans.className}`} suppressHydrationWarning>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-9CPCHEWEBN"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
