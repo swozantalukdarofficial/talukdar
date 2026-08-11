@@ -120,22 +120,33 @@ async function fetchSitemapUrls(domain) {
   }
 }
 
-// Google Indexing API submission
-async function submitToGoogle(url, accessToken) {
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+// Google Indexing API submission with retry
+async function submitToGoogle(url, accessToken, retries = 3) {
   const body = {
     url: url,
     type: "URL_UPDATED",
   };
 
-  const res = await makeRequest("https://indexing.googleapis.com/v3/urlNotifications:publish", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${accessToken}`,
-    },
-  }, body);
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const res = await makeRequest("https://indexing.googleapis.com/v3/urlNotifications:publish", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${accessToken}`,
+      },
+    }, body);
 
-  return { url, status: res.statusCode, response: res.data };
+    if (res.statusCode === 429) {
+      if (attempt < retries) {
+        console.log(`[429 Rate Limit] Retrying ${url} in ${attempt * 2}s (Attempt ${attempt}/${retries})...`);
+        await sleep(attempt * 2000);
+        continue;
+      }
+    }
+    return { url, status: res.statusCode, response: res.data };
+  }
 }
 
 // IndexNow Submission (Bing, Yandex, etc.)
@@ -205,15 +216,27 @@ async function main() {
     const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf8"));
     const accessToken = await getGoogleAccessToken(serviceAccount);
 
-    console.log("Submitting URLs to Google Indexing API...");
+    console.log("Submitting URLs to Google Indexing API with rate-limiting...");
+    let successCount = 0;
+    let failCount = 0;
+
     for (const url of urls) {
       const result = await submitToGoogle(url, accessToken);
-      console.log(`Submitted: ${url} -> Status: ${result.status}`);
+      if (result.status === 200) {
+        successCount++;
+        console.log(`[${successCount}/${urls.length}] Submitted: ${url} -> Status: 200`);
+      } else {
+        failCount++;
+        console.log(`[FAIL] ${url} -> Status: ${result.status}`);
+      }
+      // 500ms delay between requests to keep under API rate limit per minute
+      await sleep(500);
     }
-    console.log("Google Indexing submission complete.");
+    console.log(`\nGoogle Indexing submission completed: ${successCount} successful, ${failCount} failed.`);
   } catch (err) {
     console.error(`Google Indexing submission failed: ${err.message}`);
   }
 }
 
 main();
+

@@ -1,19 +1,20 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import HeroCarousel from "@/components/HeroCarousel";
-import CategorySection from "@/components/CategorySection";
-import ProductCarousel from "@/components/ProductCarousel";
-import FlashSaleSection from "@/components/FlashSaleSection";
-import ProductCard from "@/components/ProductCard";
 import HomeSchema from "@/components/HomeSchema";
 import {
   getFeaturedProducts,
   getProductsByCategory,
   getSaleProducts,
 } from "@/lib/products";
-import FaqSection from "@/components/FaqSection";
-import BlogSection from "@/components/BlogSection";
 import type { Metadata } from "next";
 import { SITE_URL } from "@/config/seo";
+
+const CategorySection = dynamic(() => import("@/components/CategorySection"));
+const ProductCarousel = dynamic(() => import("@/components/ProductCarousel"));
+const FlashSaleSection = dynamic(() => import("@/components/FlashSaleSection"));
+const FaqSection = dynamic(() => import("@/components/FaqSection"));
+const BlogSection = dynamic(() => import("@/components/BlogSection"));
 
 export const metadata: Metadata = {
   title: "EV Solution BD — Premium E-Bikes & Electric Vehicles",

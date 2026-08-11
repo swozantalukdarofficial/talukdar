@@ -181,6 +181,7 @@ export default function HeroCarousel() {
                         fill
                         className="object-contain lg:scale-[1.15] transition-transform duration-700 hover:scale-[1.2] mix-blend-multiply"
                         priority={slide.id === 1}
+                        unoptimized={slide.id === 1}
                         sizes="(max-width: 1024px) 100vw, 50vw"
                       />
                     </div>
