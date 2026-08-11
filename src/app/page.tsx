@@ -16,6 +16,7 @@ const FlashSaleSection = dynamic(() => import("@/components/FlashSaleSection"));
 const FaqSection = dynamic(() => import("@/components/FaqSection"));
 const BlogSection = dynamic(() => import("@/components/BlogSection"));
 
+
 export const metadata: Metadata = {
   title: "EV Solution BD — Premium E-Bikes & Electric Vehicles",
   description:

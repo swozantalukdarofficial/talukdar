@@ -3,7 +3,8 @@ import { SITE_URL } from "@/config/seo";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import dynamic from "next/dynamic";
+const Footer = dynamic(() => import("@/components/Footer"));
 import { Toaster } from "@/components/ui/sonner";
 import Script from "next/script";
 import { Plus_Jakarta_Sans } from "next/font/google";
@@ -67,9 +68,6 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preload" href="/silver_scooter.webp" as="image" type="image/webp" fetchPriority="high" />
-      </head>
       <body className={`antialiased bg-[#faf9f6] text-stone-900 overflow-x-hidden w-full relative ${plusJakartaSans.className}`} suppressHydrationWarning>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-9CPCHEWEBN"

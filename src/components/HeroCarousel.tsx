@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Zap, Shield, Battery } from "lucide-react";
@@ -75,6 +76,13 @@ const SLIDES = [
 ];
 
 export default function HeroCarousel() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const visibleSlides = mounted ? SLIDES : [SLIDES[0]];
+
   return (
     <section className="relative overflow-hidden border-b border-stone-200/50">
       <Carousel
@@ -83,7 +91,7 @@ export default function HeroCarousel() {
         className="w-full"
       >
         <CarouselContent className="-ml-0">
-          {SLIDES.map((slide) => (
+          {visibleSlides.map((slide) => (
             <CarouselItem key={slide.id} className="pl-0">
               <div className={cn("relative min-h-[75vh] md:min-h-[85vh] flex items-center overflow-hidden", slide.bgGradient)}>
                 
@@ -181,7 +189,6 @@ export default function HeroCarousel() {
                         fill
                         className="object-contain lg:scale-[1.15] transition-transform duration-700 hover:scale-[1.2] md:mix-blend-multiply"
                         priority={slide.id === 1}
-                        unoptimized={slide.id === 1}
                         sizes="(max-width: 1024px) 100vw, 50vw"
                       />
                     </div>
