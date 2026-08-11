@@ -181,16 +181,23 @@ export default function HeroCarousel() {
                       </div>
                     </div>
 
-                    {/* Right Column: Image */}
                     <div className="order-1 lg:order-2 relative w-full h-[320px] sm:h-[450px] lg:h-[600px] flex items-center justify-center md:[mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_80%)]">
-                      <Image
-                        src={slide.image}
-                        alt={slide.headline}
-                        fill
-                        className="object-contain lg:scale-[1.15] transition-transform duration-700 hover:scale-[1.2] md:mix-blend-multiply"
-                        priority={slide.id === 1}
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                      />
+                      {slide.id === 1 ? (
+                        <img
+                          src={slide.image}
+                          alt={slide.headline}
+                          className="object-contain w-full h-full lg:scale-[1.15] transition-transform duration-700 hover:scale-[1.2] md:mix-blend-multiply"
+                          fetchpriority="high"
+                        />
+                      ) : (
+                        <Image
+                          src={slide.image}
+                          alt={slide.headline}
+                          fill
+                          className="object-contain lg:scale-[1.15] transition-transform duration-700 hover:scale-[1.2] md:mix-blend-multiply"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                      )}
                     </div>
 
                   </div>
