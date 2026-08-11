@@ -187,7 +187,7 @@ export default function HeroCarousel() {
                           src={slide.image}
                           alt={slide.headline}
                           className="object-contain w-full h-full lg:scale-[1.15] transition-transform duration-700 hover:scale-[1.2] md:mix-blend-multiply"
-                          fetchpriority="high"
+                          fetchPriority="high"
                         />
                       ) : (
                         <Image
