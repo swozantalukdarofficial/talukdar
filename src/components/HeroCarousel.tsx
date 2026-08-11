@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Zap, Shield, Battery } from "lucide-react";
@@ -76,13 +76,6 @@ const SLIDES = [
 ];
 
 export default function HeroCarousel() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const visibleSlides = mounted ? SLIDES : [SLIDES[0]];
-
   return (
     <section className="relative overflow-hidden border-b border-stone-200/50">
       <Carousel
@@ -91,7 +84,7 @@ export default function HeroCarousel() {
         className="w-full"
       >
         <CarouselContent className="-ml-0">
-          {visibleSlides.map((slide) => (
+          {SLIDES.map((slide) => (
             <CarouselItem key={slide.id} className="pl-0">
               <div className={cn("relative min-h-[75vh] md:min-h-[85vh] flex items-center overflow-hidden", slide.bgGradient)}>
                 
@@ -182,22 +175,14 @@ export default function HeroCarousel() {
                     </div>
 
                     <div className="order-1 lg:order-2 relative w-full h-[320px] sm:h-[450px] lg:h-[600px] flex items-center justify-center md:[mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_80%)]">
-                      {slide.id === 1 ? (
-                        <img
-                          src={slide.image}
-                          alt={slide.headline}
-                          className="object-contain w-full h-full lg:scale-[1.15] transition-transform duration-700 hover:scale-[1.2] md:mix-blend-multiply"
-                          fetchPriority="high"
-                        />
-                      ) : (
-                        <Image
-                          src={slide.image}
-                          alt={slide.headline}
-                          fill
-                          className="object-contain lg:scale-[1.15] transition-transform duration-700 hover:scale-[1.2] md:mix-blend-multiply"
-                          sizes="(max-width: 1024px) 100vw, 50vw"
-                        />
-                      )}
+                      <Image
+                        src={slide.image}
+                        alt={slide.headline}
+                        fill
+                        className="object-contain lg:scale-[1.15] transition-transform duration-700 hover:scale-[1.2] md:mix-blend-multiply"
+                        priority={slide.id === 1}
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
                     </div>
 
                   </div>
