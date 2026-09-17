@@ -1,38 +1,60 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Settings as SettingsIcon, Store, Truck, CreditCard, Save, Loader2, Shield } from "lucide-react";
+import {
+  Settings as SettingsIcon,
+  Store,
+  Truck,
+  CreditCard,
+  Save,
+  Loader2,
+  Shield,
+  Phone,
+  Mail,
+  MessageSquare,
+  Sparkles,
+  CheckCircle2,
+  Sliders,
+  DollarSign
+} from "lucide-react";
 import { toast } from "sonner";
 import { getStoreSettings, updateStoreSettings } from "@/lib/settings";
+import { cn } from "@/lib/utils";
 
 export default function AdminSettingsPage() {
   const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState<"general" | "payments" | "shipping" | "security">("general");
+
+  // General Store Info
   const [storeName, setStoreName] = useState("EV Solution BD");
   const [supportEmail, setSupportEmail] = useState("support@evsolutionbd.com");
   const [supportPhone, setSupportPhone] = useState("01333600272");
   const [whatsappNumber, setWhatsappNumber] = useState("01333600272");
+
+  // Shipping Fees
   const [shippingFee, setShippingFee] = useState(150);
+
+  // Payment Methods
   const [enableCod, setEnableCod] = useState(true);
   const [enableBkash, setEnableBkash] = useState(true);
   const [enableNagad, setEnableNagad] = useState(true);
   const [bkashNumber, setBkashNumber] = useState("01333600272");
   const [nagadNumber, setNagadNumber] = useState("01333600272");
 
-  // Load from Supabase on mount
   useEffect(() => {
     async function loadSettings() {
       const data = await getStoreSettings();
       if (data) {
-        setStoreName(data.store_name);
-        setSupportEmail(data.support_email);
-        setSupportPhone(data.support_phone);
-        setWhatsappNumber(data.whatsapp_number);
-        setShippingFee(data.shipping_fee);
-        setEnableCod(data.enable_cod);
-        setEnableBkash(data.enable_bkash);
-        setEnableNagad(data.enable_nagad);
-        setBkashNumber(data.bkash_number);
-        setNagadNumber(data.nagad_number);
+        setStoreName(data.store_name || "EV Solution BD");
+        setSupportEmail(data.support_email || "support@evsolutionbd.com");
+        setSupportPhone(data.support_phone || "01333600272");
+        setWhatsappNumber(data.whatsapp_number || "01333600272");
+        setShippingFee(data.shipping_fee || 150);
+        setEnableCod(data.enable_cod ?? true);
+        setEnableBkash(data.enable_bkash ?? true);
+        setEnableNagad(data.enable_nagad ?? true);
+        setBkashNumber(data.bkash_number || "01333600272");
+        setNagadNumber(data.nagad_number || "01333600272");
       }
     }
     loadSettings();
@@ -58,228 +80,304 @@ export default function AdminSettingsPage() {
     if (error) {
       toast.error(`Failed to save settings: ${error}`);
     } else {
-      toast.success("Settings saved successfully!");
+      toast.success("Store settings updated & published successfully!");
     }
     setLoading(false);
   }
 
-
   return (
-    <div className="p-4 md:p-8 space-y-6">
-      <div className="max-w-4xl mx-auto space-y-6">
-        
-        {/* Header */}
+    <div className="space-y-6 animate-in fade-in duration-200">
+      {/* ── Header ── */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-stone-900 tracking-tight flex items-center gap-2">
-            <SettingsIcon className="w-8 h-8 text-emerald-600 animate-spin-slow" />
-            General Settings
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-900 dark:text-white">
+            Store Configuration
           </h1>
-          <p className="text-stone-500 mt-1">Configure your storefront branding, shipping parameters, and active gateways.</p>
+          <p className="text-xs sm:text-sm text-stone-500 mt-1">
+            Manage contact channels, delivery charges, and payment gateway accounts
+          </p>
         </div>
 
-        <form onSubmit={handleSave} className="space-y-6">
-          
-          {/* Store Details Card */}
-          <div className="bg-white border border-stone-200 rounded-2xl p-6 shadow-sm space-y-6">
-            <div className="flex items-center gap-3 pb-4 border-b border-stone-100">
-              <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl border border-emerald-100">
-                <Store className="w-5 h-5" />
-              </div>
-              <div>
-                <h2 className="text-lg font-bold text-stone-900">Branding & Contact Info</h2>
-                <p className="text-xs text-stone-400">Manage how your store identity appears to customers.</p>
-              </div>
+        <button
+          onClick={handleSave}
+          disabled={loading}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-600/20 transition-all hover:scale-[1.02] disabled:opacity-50 cursor-pointer"
+        >
+          {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+          <span>Save Changes</span>
+        </button>
+      </div>
+
+      {/* ── Kachabazar Style Settings Tabs ── */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-1 hide-scrollbar">
+        {[
+          { id: "general", label: "Store Profile", icon: Store },
+          { id: "payments", label: "Payment Gateways", icon: CreditCard },
+          { id: "shipping", label: "Delivery & Shipping", icon: Truck },
+          { id: "security", label: "Security & Access", icon: Shield },
+        ].map((tab) => {
+          const Icon = tab.icon;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id as any)}
+              className={cn(
+                "flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer",
+                activeTab === tab.id
+                  ? "bg-emerald-600 text-white shadow-sm shadow-emerald-600/20"
+                  : "bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50"
+              )}
+            >
+              <Icon className="w-4 h-4" />
+              <span>{tab.label}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* ── Tab Content Card ── */}
+      <form onSubmit={handleSave} className="space-y-6">
+        {/* 1. General Profile Tab */}
+        {activeTab === "general" && (
+          <div className="p-6 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-2xs space-y-6 animate-in fade-in duration-150">
+            <div>
+              <h3 className="font-extrabold text-base text-stone-900 dark:text-white">
+                Store Identity & Contact Information
+              </h3>
+              <p className="text-xs text-stone-400 mt-0.5">
+                These contact details appear in customer receipts, invoices, and the website footer
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-xs">
               <div>
-                <label className="block text-xs font-bold text-stone-500 mb-1.5 uppercase">Store Public Name</label>
+                <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1.5">
+                  Store Display Name
+                </label>
                 <input
                   type="text"
+                  required
                   value={storeName}
                   onChange={(e) => setStoreName(e.target.value)}
-                  className="w-full bg-white border border-stone-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
-                  required
+                  className="w-full px-3.5 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl font-bold text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-stone-500 mb-1.5 uppercase">Support Email</label>
+                <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1.5">
+                  Official Support Email
+                </label>
                 <input
                   type="email"
+                  required
                   value={supportEmail}
                   onChange={(e) => setSupportEmail(e.target.value)}
-                  className="w-full bg-white border border-stone-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
-                  required
+                  className="w-full px-3.5 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-stone-500 mb-1.5 uppercase">Support Hotline</label>
+                <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1.5">
+                  Customer Care Hotline
+                </label>
                 <input
                   type="text"
+                  required
                   value={supportPhone}
                   onChange={(e) => setSupportPhone(e.target.value)}
-                  className="w-full bg-white border border-stone-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
-                  required
+                  className="w-full px-3.5 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-stone-500 mb-1.5 uppercase">WhatsApp Number</label>
+                <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1.5">
+                  WhatsApp Support Number
+                </label>
                 <input
                   type="text"
+                  required
                   value={whatsappNumber}
                   onChange={(e) => setWhatsappNumber(e.target.value)}
-                  className="w-full bg-white border border-stone-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
-                  required
+                  className="w-full px-3.5 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
                 />
               </div>
             </div>
           </div>
+        )}
 
-          {/* Shipping Rules Card */}
-          <div className="bg-white border border-stone-200 rounded-2xl p-6 shadow-sm space-y-6">
-            <div className="flex items-center gap-3 pb-4 border-b border-stone-100">
-              <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl border border-indigo-100">
-                <Truck className="w-5 h-5" />
-              </div>
-              <div>
-                <h2 className="text-lg font-bold text-stone-900">Shipping Fees</h2>
-                <p className="text-xs text-stone-400">Configure standard delivery cost calculations.</p>
-              </div>
-            </div>
-
+        {/* 2. Payments Tab */}
+        {activeTab === "payments" && (
+          <div className="p-6 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-2xs space-y-6 animate-in fade-in duration-150">
             <div>
-              <label className="block text-xs font-bold text-stone-500 mb-1.5 uppercase">Flat Delivery Fee (৳)</label>
-              <input
-                type="number"
-                value={shippingFee}
-                onChange={(e) => setShippingFee(Number(e.target.value))}
-                className="w-full md:w-64 bg-white border border-stone-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 shadow-sm"
-                min="0"
-                required
-              />
-              <p className="text-[11px] text-stone-400 mt-1.5">This fee is automatically applied during the checkout process.</p>
-            </div>
-          </div>
-
-          {/* Payment Gateways Card */}
-          <div className="bg-white border border-stone-200 rounded-2xl p-6 shadow-sm space-y-6">
-            <div className="flex items-center gap-3 pb-4 border-b border-stone-100">
-              <div className="p-2 bg-amber-50 text-amber-600 rounded-xl border border-amber-100">
-                <CreditCard className="w-5 h-5" />
-              </div>
-              <div>
-                <h2 className="text-lg font-bold text-stone-900">Payment Gateways</h2>
-                <p className="text-xs text-stone-400">Toggle checkout payment methods visible to customers.</p>
-              </div>
+              <h3 className="font-extrabold text-base text-stone-900 dark:text-white">
+                Payment Gateways & Merchant Numbers
+              </h3>
+              <p className="text-xs text-stone-400 mt-0.5">
+                Enable or disable checkout payment methods and configure bKash/Nagad accounts
+              </p>
             </div>
 
-            <div className="space-y-4">
-              {/* COD Toggle */}
-              <div className="flex items-center justify-between p-4 bg-stone-50 rounded-xl border border-stone-100">
+            <div className="space-y-4 text-xs">
+              {/* Cash On Delivery */}
+              <div className="p-4 rounded-xl border border-stone-200 dark:border-stone-700 bg-stone-50/50 dark:bg-stone-800/40 flex items-center justify-between">
                 <div>
-                  <h3 className="text-sm font-bold text-stone-800">Cash on Delivery (COD)</h3>
-                  <p className="text-xs text-stone-400 mt-0.5">Allow buyers to pay cash at their doorstep upon delivery.</p>
+                  <h4 className="font-extrabold text-stone-900 dark:text-white text-sm">
+                    Cash On Delivery (COD)
+                  </h4>
+                  <p className="text-stone-500 text-[11px] mt-0.5">
+                    Allow customers to pay cash when product arrives at their doorstep
+                  </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setEnableCod(!enableCod)}
-                  className={`w-11 h-6 rounded-full transition-colors relative focus:outline-none ${enableCod ? "bg-emerald-500" : "bg-stone-300"}`}
-                >
-                  <span className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-all ${enableCod ? "left-6" : "left-1"}`} />
-                </button>
+                <input
+                  type="checkbox"
+                  checked={enableCod}
+                  onChange={(e) => setEnableCod(e.target.checked)}
+                  className="w-5 h-5 text-emerald-600 rounded focus:ring-emerald-500 cursor-pointer"
+                />
               </div>
 
-              {/* bKash Toggle */}
-              <div className="p-4 bg-stone-50 rounded-xl border border-stone-100 space-y-4">
+              {/* bKash */}
+              <div className="p-4 rounded-xl border border-stone-200 dark:border-stone-700 bg-stone-50/50 dark:bg-stone-800/40 space-y-3">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-sm font-bold text-stone-800">bKash Payment Gateway</h3>
-                    <p className="text-xs text-stone-400 mt-0.5">Accept instant mobile payments using official bKash API.</p>
+                    <h4 className="font-extrabold text-pink-600 text-sm">
+                      bKash Payment
+                    </h4>
+                    <p className="text-stone-500 text-[11px] mt-0.5">
+                      Accept bKash mobile wallet transfers during checkout
+                    </p>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => setEnableBkash(!enableBkash)}
-                    className={`w-11 h-6 rounded-full transition-colors relative focus:outline-none ${enableBkash ? "bg-emerald-500" : "bg-stone-300"}`}
-                  >
-                    <span className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-all ${enableBkash ? "left-6" : "left-1"}`} />
-                  </button>
+                  <input
+                    type="checkbox"
+                    checked={enableBkash}
+                    onChange={(e) => setEnableBkash(e.target.checked)}
+                    className="w-5 h-5 text-emerald-600 rounded focus:ring-emerald-500 cursor-pointer"
+                  />
                 </div>
                 {enableBkash && (
-                  <div className="pt-3 border-t border-stone-200/60 animate-in fade-in duration-200">
-                    <label className="block text-[11px] font-bold text-stone-500 mb-1.5 uppercase">bKash Merchant/Personal Number</label>
+                  <div>
+                    <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                      bKash Merchant / Personal Wallet Number
+                    </label>
                     <input
                       type="text"
                       value={bkashNumber}
                       onChange={(e) => setBkashNumber(e.target.value)}
-                      placeholder="e.g. 017XXXXXXXX"
-                      className="w-full md:w-80 bg-white border border-stone-200 rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 shadow-sm font-medium"
+                      className="w-full sm:w-80 px-3 py-2 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl"
                     />
                   </div>
                 )}
               </div>
 
-              {/* Nagad Toggle */}
-              <div className="p-4 bg-stone-50 rounded-xl border border-stone-100 space-y-4">
+              {/* Nagad */}
+              <div className="p-4 rounded-xl border border-stone-200 dark:border-stone-700 bg-stone-50/50 dark:bg-stone-800/40 space-y-3">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-sm font-bold text-stone-800">Nagad Payment Gateway</h3>
-                    <p className="text-xs text-stone-400 mt-0.5">Accept instant mobile payments using Nagad API.</p>
+                    <h4 className="font-extrabold text-orange-600 text-sm">
+                      Nagad Payment
+                    </h4>
+                    <p className="text-stone-500 text-[11px] mt-0.5">
+                      Accept Nagad mobile wallet transfers during checkout
+                    </p>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => setEnableNagad(!enableNagad)}
-                    className={`w-11 h-6 rounded-full transition-colors relative focus:outline-none ${enableNagad ? "bg-emerald-500" : "bg-stone-300"}`}
-                  >
-                    <span className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-all ${enableNagad ? "left-6" : "left-1"}`} />
-                  </button>
+                  <input
+                    type="checkbox"
+                    checked={enableNagad}
+                    onChange={(e) => setEnableNagad(e.target.checked)}
+                    className="w-5 h-5 text-emerald-600 rounded focus:ring-emerald-500 cursor-pointer"
+                  />
                 </div>
                 {enableNagad && (
-                  <div className="pt-3 border-t border-stone-200/60 animate-in fade-in duration-200">
-                    <label className="block text-[11px] font-bold text-stone-500 mb-1.5 uppercase">Nagad Merchant/Personal Number</label>
+                  <div>
+                    <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                      Nagad Merchant / Personal Wallet Number
+                    </label>
                     <input
                       type="text"
                       value={nagadNumber}
                       onChange={(e) => setNagadNumber(e.target.value)}
-                      placeholder="e.g. 018XXXXXXXX"
-                      className="w-full md:w-80 bg-white border border-stone-200 rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 shadow-sm font-medium"
+                      className="w-full sm:w-80 px-3 py-2 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-xl"
                     />
                   </div>
                 )}
               </div>
             </div>
           </div>
+        )}
 
-          {/* Action Footer */}
-          <div className="flex items-center justify-between pt-4">
-            <div className="flex items-center gap-2 text-stone-400 text-xs font-semibold">
-              <Shield className="w-4 h-4 text-emerald-600" />
-              Settings changes are applied globally.
+        {/* 3. Shipping Tab */}
+        {activeTab === "shipping" && (
+          <div className="p-6 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-2xs space-y-6 animate-in fade-in duration-150">
+            <div>
+              <h3 className="font-extrabold text-base text-stone-900 dark:text-white">
+                Delivery Charges & Logistics
+              </h3>
+              <p className="text-xs text-stone-400 mt-0.5">
+                Set standard delivery charges applied across the entire nationwide store
+              </p>
             </div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg shadow-emerald-600/10 hover:shadow-emerald-600/20 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:translate-y-0 cursor-pointer"
-            >
-              {loading ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  Saving...
-                </>
-              ) : (
-                <>
-                  <Save className="w-4 h-4" />
-                  Save Changes
-                </>
-              )}
-            </button>
+
+            <div className="max-w-md text-xs space-y-3">
+              <div>
+                <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1.5">
+                  Standard Nationwide Delivery Charge (BDT)
+                </label>
+                <div className="relative">
+                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-bold text-stone-400">
+                    ৳
+                  </span>
+                  <input
+                    type="number"
+                    min="0"
+                    required
+                    value={shippingFee}
+                    onChange={(e) => setShippingFee(parseInt(e.target.value, 10) || 0)}
+                    className="w-full pl-8 pr-3.5 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl font-bold text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                  />
+                </div>
+                <p className="text-[11px] text-stone-400 mt-1">
+                  Orders will automatically include this delivery fee unless free shipping coupon is applied.
+                </p>
+              </div>
+            </div>
           </div>
+        )}
 
-        </form>
+        {/* 4. Security Tab */}
+        {activeTab === "security" && (
+          <div className="p-6 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-2xs space-y-6 animate-in fade-in duration-150">
+            <div>
+              <h3 className="font-extrabold text-base text-stone-900 dark:text-white">
+                Admin Panel Security & Access
+              </h3>
+              <p className="text-xs text-stone-400 mt-0.5">
+                Manage authenticated administrator email addresses and security policies
+              </p>
+            </div>
 
-      </div>
+            <div className="p-4 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-200/50 space-y-2 text-xs">
+              <div className="flex items-center gap-2 text-emerald-800 dark:text-emerald-300 font-extrabold">
+                <Shield className="w-4 h-4 text-emerald-600" />
+                <span>Super Admin Protection Active</span>
+              </div>
+              <p className="text-stone-600 dark:text-stone-300">
+                Only authenticated emails configured in your Supabase admin role or environment variables have write-access to the product catalog and customer orders.
+              </p>
+            </div>
+          </div>
+        )}
+
+        <div className="flex justify-end">
+          <button
+            type="submit"
+            disabled={loading}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-600/20 transition-all hover:scale-[1.02] disabled:opacity-50 cursor-pointer"
+          >
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+            <span>Save & Publish All Settings</span>
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

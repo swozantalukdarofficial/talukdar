@@ -2,6 +2,7 @@ import React from "react";
 import { SITE_URL } from "@/config/seo";
 import type { Product } from "@/lib/types";
 import { getProductMetaDescription } from "@/lib/metaDescriptions";
+import { getProductReviews } from "@/lib/reviews";
 
 interface Props {
   product: Product;
@@ -10,8 +11,9 @@ interface Props {
 export default function ProductSchema({ product }: Props) {
   const baseUrl = SITE_URL;
   const metaDesc = getProductMetaDescription(product.slug, product.name, product.description);
+  const reviewData = getProductReviews(product.slug, product.id);
 
-  // 1. Product Schema
+  // 1. Product Schema with AggregateRating & Review Rich Snippets
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -24,6 +26,29 @@ export default function ProductSchema({ product }: Props) {
       "@type": "Brand",
       "name": "EV Solution BD",
     },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": reviewData.ratingString,
+      "reviewCount": reviewData.reviewCount,
+      "bestRating": "5",
+      "worstRating": "1",
+    },
+    "review": reviewData.reviews.map((rev) => ({
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": rev.authorName,
+      },
+      "datePublished": rev.date,
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": rev.rating,
+        "bestRating": "5",
+        "worstRating": "1",
+      },
+      "name": rev.title,
+      "reviewBody": rev.comment,
+    })),
     "offers": {
       "@type": "Offer",
       "url": `${baseUrl}/products/${product.slug}`,
@@ -94,3 +119,4 @@ export default function ProductSchema({ product }: Props) {
     </>
   );
 }
+

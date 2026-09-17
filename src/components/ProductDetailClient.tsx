@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { ShoppingCart, Zap, Minus, Plus, Check } from "lucide-react";
+import { ShoppingCart, Zap, Minus, Plus, Check, Star, CheckCircle } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +10,7 @@ import type { Product } from "@/lib/types";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { getProductReviews } from "@/lib/reviews";
 
 const LIFESTYLE_IMAGE = "https://images.unsplash.com/photo-1506015391300-4802dc74de2e?w=1000";
 
@@ -360,6 +361,7 @@ export default function ProductDetailClient({
 }) {
   const { dispatch, openCart } = useCart();
   const router = useRouter();
+  const reviewData = getProductReviews(product.slug, product.id);
 
   // Tab State
   const [activeTab, setActiveTab] = useState<"specification" | "description" | "shipping">("specification");
@@ -1157,8 +1159,63 @@ export default function ProductDetailClient({
           </div>
         </div>
 
+        {/* Customer Reviews & Rating */}
+        <div className="lg:col-span-12 mt-8 space-y-6 pt-6 border-t border-stone-200/80">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <p className="text-emerald-700 text-xs font-bold uppercase tracking-widest">VERIFIED REVIEWS</p>
+              <h2 className="text-xl md:text-2xl font-extrabold text-stone-900 tracking-tight mt-1">
+                Customer Ratings & Reviews
+              </h2>
+            </div>
+            <div className="bg-emerald-50/80 border border-emerald-200/60 rounded-2xl px-4 py-2.5 flex items-center gap-3 self-start sm:self-auto">
+              <span className="text-2xl font-black text-stone-900 leading-none">{reviewData.ratingString}</span>
+              <div>
+                <div className="flex text-amber-400">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-amber-400 stroke-amber-400" />
+                  ))}
+                </div>
+                <p className="text-[10px] font-bold text-stone-600 mt-0.5">
+                  Based on {reviewData.reviewCount} customer reviews
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {reviewData.reviews.map((rev, idx) => (
+              <div
+                key={idx}
+                className="bg-white border border-stone-200/70 rounded-2xl p-5 shadow-sm space-y-2.5 hover:border-emerald-300 transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-extrabold text-xs text-stone-900">{rev.authorName}</span>
+                      <span className="inline-flex items-center gap-0.5 text-[9px] font-bold text-emerald-800 bg-emerald-100/70 px-2 py-0.5 rounded-full">
+                        <CheckCircle className="w-2.5 h-2.5 text-emerald-700" /> Verified
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-medium text-stone-400">{rev.date}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="flex text-amber-400">
+                      {[...Array(rev.rating)].map((_, i) => (
+                        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 stroke-amber-400" />
+                      ))}
+                    </div>
+                    <span className="text-xs font-extrabold text-stone-850 truncate max-w-[180px]">{rev.title}</span>
+                  </div>
+                  <p className="text-xs text-stone-600 leading-relaxed pt-1">{rev.comment}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* FAQs */}
-        <div className="lg:col-span-6 space-y-6">
+        <div className="lg:col-span-12 space-y-6 pt-4">
           <div>
             <p className="text-emerald-700 text-xs font-bold uppercase tracking-widest">FAQ</p>
             <h2 className="text-xl md:text-2xl font-extrabold text-stone-900 tracking-tight mt-1">

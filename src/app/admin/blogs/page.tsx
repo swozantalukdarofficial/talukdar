@@ -139,8 +139,8 @@ export default function AdminBlogsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#faf9f6] p-6 md:p-8">
-      <div className="max-w-6xl mx-auto space-y-6">
+    <div className="space-y-6 animate-in fade-in duration-200">
+      <div className="space-y-6">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-stone-200 pb-5">
           <div>
@@ -294,6 +294,6 @@ export default function AdminBlogsPage() {
           </div>
         )}
       </div>
-    </main>
+    </div>
   );
 }

@@ -4,6 +4,9 @@ import { getAllProducts } from "@/lib/products";
 import { POSTS } from "@/lib/blogs";
 import { SITE_URL } from "@/config/seo";
 
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_URL || "https://evsolutionbd.com";
 

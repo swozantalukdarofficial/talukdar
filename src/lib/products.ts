@@ -3,7 +3,7 @@ import type { Product, ProductCategory } from "./types";
 import type { OrderPayload } from "./types";
 
 // ─── Mock data ─────────────────────────────────────────────────
-const MOCK_PRODUCTS: Product[] = [
+let MOCK_PRODUCTS: Product[] = [
   {
     id: "1",
     name: "Thunder X1 E-Bike",
@@ -450,6 +450,26 @@ export interface CreateProductInput {
 export async function createProduct(
   input: CreateProductInput
 ): Promise<{ product: Product } | { error: string }> {
+  if (useMock()) {
+    const newProd: Product = {
+      id: crypto.randomUUID(),
+      name: input.name,
+      slug: input.slug,
+      description: input.description,
+      price: input.price,
+      compare_at_price: input.compare_at_price || null,
+      category: input.category,
+      image_url: input.image_url,
+      images: input.images || [],
+      stock_quantity: input.stock_quantity,
+      is_featured: input.is_featured,
+      specs: input.specs || {},
+      created_at: new Date().toISOString(),
+    };
+    MOCK_PRODUCTS.unshift(newProd);
+    return { product: newProd };
+  }
+
   if (!supabase) return { error: "Supabase not configured" };
 
   const { data, error } = await supabase
@@ -466,6 +486,11 @@ export async function createProduct(
 export async function deleteProduct(
   id: string
 ): Promise<{ success: true } | { error: string }> {
+  if (useMock()) {
+    MOCK_PRODUCTS = MOCK_PRODUCTS.filter((p) => p.id !== id);
+    return { success: true };
+  }
+
   if (!supabase) return { error: "Supabase not configured" };
 
   const { error } = await supabase.from("products").delete().eq("id", id);
@@ -478,6 +503,15 @@ export async function updateProduct(
   id: string,
   input: Partial<CreateProductInput>
 ): Promise<{ product: Product } | { error: string }> {
+  if (useMock()) {
+    const index = MOCK_PRODUCTS.findIndex((p) => p.id === id);
+    if (index !== -1) {
+      MOCK_PRODUCTS[index] = { ...MOCK_PRODUCTS[index], ...input };
+      return { product: MOCK_PRODUCTS[index] };
+    }
+    return { error: "Product not found" };
+  }
+
   if (!supabase) return { error: "Supabase not configured" };
 
   const { data, error } = await supabase
