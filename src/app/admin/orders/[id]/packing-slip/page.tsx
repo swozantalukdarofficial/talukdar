@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Package } from "lucide-react";
 import PackingSlipPrintButton from "./PackingSlipPrintButton";
+import PackingSlipDownloadButton from "@/components/admin/PackingSlipDownloadButton";
 import { paymentLabel } from "@/lib/invoice";
 
 export const dynamic = "force-dynamic";
@@ -76,7 +77,10 @@ export default async function PackingSlipPage({
             </p>
           </div>
         </div>
-        <PackingSlipPrintButton />
+        <div className="flex items-center gap-3">
+          <PackingSlipDownloadButton order={order} />
+          <PackingSlipPrintButton />
+        </div>
       </div>
 
       {/* ── The Slip ── */}

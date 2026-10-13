@@ -60,8 +60,8 @@ export default function ProductDrawer({
   // Basic Information
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
-  const [category, setCategory] = useState(categories[0]?.slug || "electric-bikes");
-  const [brand, setBrand] = useState("Akij Motors");
+  const [category, setCategory] = useState(categories[0]?.slug || "");
+  const [brand, setBrand] = useState("");
   const [sku, setSku] = useState("");
   const [barcode, setBarcode] = useState("");
   const [badge, setBadge] = useState("");
@@ -70,10 +70,10 @@ export default function ProductDrawer({
   // Pricing & Inventory
   const [price, setPrice] = useState("");
   const [comparePrice, setComparePrice] = useState("");
-  const [stockQuantity, setStockQuantity] = useState("10");
-  const [lowStockThreshold, setLowStockThreshold] = useState("3");
+  const [stockQuantity, setStockQuantity] = useState("");
+  const [lowStockThreshold, setLowStockThreshold] = useState("");
   const [isFeatured, setIsFeatured] = useState(false);
-  const [isEmiAvailable, setIsEmiAvailable] = useState(true);
+  const [isEmiAvailable, setIsEmiAvailable] = useState(false);
   const [isFreeDelivery, setIsFreeDelivery] = useState(false);
 
   // Media
@@ -82,23 +82,17 @@ export default function ProductDrawer({
 
   // Tags
   const [tagInput, setTagInput] = useState("");
-  const [tags, setTags] = useState<string[]>(["Electric", "Lithium Battery", "High Performance"]);
+  const [tags, setTags] = useState<string[]>([]);
 
   // Specifications
   const [specs, setSpecs] = useState<{ key: string; value: string }[]>([
-    { key: "Battery Type", value: "60V 30Ah Graphene / Lithium" },
-    { key: "Motor Power", value: "1200W High Speed Bosch" },
-    { key: "Max Range", value: "70-80 KM Per Charge" },
-    { key: "Top Speed", value: "55 KM/H" },
-    { key: "Charging Time", value: "4-5 Hours" },
-    { key: "Braking System", value: "Front & Rear CBS Disc Brakes" },
-    { key: "Warranty", value: "2 Years Official Brand Warranty" },
+    { key: "", value: "" },
   ]);
 
   // Variant Combinations
   const [isCombination, setIsCombination] = useState(false);
-  const [variantColor, setVariantColor] = useState("Red, Black, Silver");
-  const [variantCapacity, setVariantCapacity] = useState("48V 20Ah, 60V 30Ah");
+  const [variantColor, setVariantColor] = useState("");
+  const [variantCapacity, setVariantCapacity] = useState("");
   const [combinations, setCombinations] = useState<VariantCombination[]>([]);
 
   // Body scroll lock + ESC to close while the drawer is open
@@ -122,7 +116,7 @@ export default function ProductDrawer({
       setCategory(editingProduct.category || categories[0]?.slug || "electric-bikes");
       setPrice(String(editingProduct.price || ""));
       setComparePrice(editingProduct.compare_at_price ? String(editingProduct.compare_at_price) : "");
-      setStockQuantity(String(editingProduct.stock_quantity ?? 10));
+      setStockQuantity(editingProduct.stock_quantity != null ? String(editingProduct.stock_quantity) : "");
       setIsFeatured(editingProduct.is_featured || false);
       setImageUrl(editingProduct.image_url || "");
       setImages(editingProduct.images || (editingProduct.image_url ? [editingProduct.image_url] : []));
@@ -133,43 +127,32 @@ export default function ProductDrawer({
           key: k,
           value: String(v),
         }));
-        setSpecs(specArr.length > 0 ? specArr : [
-          { key: "Battery Type", value: "" },
-          { key: "Motor Power", value: "" },
-          { key: "Max Range", value: "" },
-          { key: "Warranty", value: "1 Year Official" },
-        ]);
+        setSpecs(specArr.length > 0 ? specArr : [{ key: "", value: "" }]);
       }
     } else {
       setName("");
       setSlug("");
-      setCategory(categories[0]?.slug || "electric-bikes");
-      setBrand("Akij Motors");
-      setSku(`EV-${Math.floor(1000 + Math.random() * 9000)}`);
-      setBarcode(`880${Date.now().toString().slice(-8)}`);
-      setBadge("⚡ Flash Sale");
+      setCategory(categories[0]?.slug || "");
+      setBrand("");
+      setSku("");
+      setBarcode("");
+      setBadge("");
       setPrice("");
       setComparePrice("");
-      setStockQuantity("10");
-      setLowStockThreshold("3");
+      setStockQuantity("");
+      setLowStockThreshold("");
       setIsFeatured(false);
-      setIsEmiAvailable(true);
+      setIsEmiAvailable(false);
       setIsFreeDelivery(false);
       setImageUrl("");
       setImages([]);
       setDescription("");
-      setTags(["Electric", "Lithium Battery", "High Performance"]);
-      setSpecs([
-        { key: "Battery Type", value: "60V 30Ah Graphene / Lithium" },
-        { key: "Motor Power", value: "1200W High Speed Bosch" },
-        { key: "Max Range", value: "70-80 KM Per Charge" },
-        { key: "Top Speed", value: "55 KM/H" },
-        { key: "Charging Time", value: "4-5 Hours" },
-        { key: "Braking System", value: "Front & Rear CBS Disc Brakes" },
-        { key: "Warranty", value: "2 Years Official Brand Warranty" },
-      ]);
+      setTags([]);
+      setSpecs([{ key: "", value: "" }]);
       setCombinations([]);
       setIsCombination(false);
+      setVariantColor("");
+      setVariantCapacity("");
       setActiveTab("basic");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -603,6 +586,7 @@ export default function ProductDrawer({
                       min="0"
                       value={stockQuantity}
                       onChange={(e) => setStockQuantity(e.target.value)}
+                      placeholder="0"
                       className={cn(inputCls, "font-bold")}
                     />
                   </div>

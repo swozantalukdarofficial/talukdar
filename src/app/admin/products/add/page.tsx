@@ -49,9 +49,9 @@ export default function AddProductPage() {
   const [descMode, setDescMode] = useState<"edit" | "preview">("edit");
   const [price, setPrice] = useState("");
   const [comparePrice, setComparePrice] = useState("");
-  const [category, setCategory] = useState<ProductCategory>("ebike");
+  const [category, setCategory] = useState<ProductCategory>("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [stock, setStock] = useState("10");
+  const [stock, setStock] = useState("");
   const [isFeatured, setIsFeatured] = useState(false);
   const [specs, setSpecs] = useState<SpecRow[]>(INITIAL_SPECS);
 
@@ -163,6 +163,11 @@ export default function AddProductPage() {
       toast.error("Name, slug, and price are required!");
       return;
     }
+    if (!category) {
+      toast.error("Please select a category!");
+      setActiveTab("general");
+      return;
+    }
     if (!imageUrl) {
       toast.error("Please upload a primary product image!");
       setActiveTab("media");
@@ -198,7 +203,7 @@ export default function AddProductPage() {
       category,
       image_url: imageUrl,
       images: galleryImages,
-      stock_quantity: parseInt(stock),
+      stock_quantity: parseInt(stock) || 0,
       is_featured: isFeatured,
       specs: Object.keys(specsObj).length > 0 ? specsObj : undefined,
     };
@@ -216,7 +221,7 @@ export default function AddProductPage() {
     await revalidateStorefront(result.product.slug);
 
     // Fire-and-forget: low-stock email + activity log (never blocks navigation)
-    const savedStock = parseInt(stock);
+    const savedStock = parseInt(stock) || 0;
     if (savedStock <= 5) {
       adminFetch("/api/admin/stock-alert", {
         method: "POST",
@@ -500,6 +505,7 @@ export default function AddProductPage() {
                       onChange={(e) => setStock(e.target.value)}
                       min="0"
                       required
+                      placeholder="0"
                       className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3 text-base text-stone-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                     />
                   </div>
