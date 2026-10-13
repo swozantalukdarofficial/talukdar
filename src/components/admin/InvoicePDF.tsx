@@ -16,42 +16,28 @@ import {
 
 // Noto Sans Bengali covers the ৳ (U+09F3) glyph plus full Latin — the PDF's
 // standard Helvetica has no Bengali glyphs, so ৳ would render as a tofu box.
-// Loaded from the Google Fonts CDN at PDF-generation time (see
-// ensureInvoiceFonts): we request the CSS with a User-Agent that does not
-// advertise woff2, so Google returns full (non-subset) TTF files — the
-// subset woff2 files would split Bengali/Latin glyphs across files, and
-// @react-pdf/renderer can only use one font file per weight.
-const GOOGLE_FONTS_CSS_URL =
-  'https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap';
-// Legacy UA without woff2 support -> Google serves full-charset TTFs.
-const LEGACY_UA =
-  'Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30';
+// Font URLs come from our own /api/fonts/invoice route: it fetches the Google
+// Fonts CSS server-side with a legacy User-Agent, so Google returns
+// full-charset TTF files (one per weight). A direct browser fetch can't
+// override User-Agent (forbidden header), which would return woff2 files
+// split into unicode-range subsets — @react-pdf/renderer uses one file per
+// weight and would render tofu for ৳ or Latin.
 
 let fontsPromise: Promise<void> | null = null;
 
-/** Fetch Noto Sans Bengali from the Google Fonts CDN and register it once. */
+/** Fetch Noto Sans Bengali TTFs via our API route and register them once. */
 export function ensureInvoiceFonts(): Promise<void> {
   if (!fontsPromise) {
     fontsPromise = (async () => {
-      const res = await fetch(GOOGLE_FONTS_CSS_URL, {
-        headers: { 'User-Agent': LEGACY_UA },
-      });
-      if (!res.ok) throw new Error(`Google Fonts CSS fetch failed: ${res.status}`);
-      const css = await res.text();
-      const faces = css
-        .split('@font-face')
-        .slice(1)
-        .map((block) => {
-          const weight = block.match(/font-weight:\s*(\d+)/)?.[1];
-          const url = block.match(/src:\s*url\((https:[^)]+)\)/)?.[1];
-          return weight && url ? { fontWeight: Number(weight), src: url } : null;
-        })
-        .filter((f): f is { fontWeight: number; src: string } => f !== null);
-      if (faces.length === 0) throw new Error('No @font-face blocks found in Google Fonts CSS');
-      Font.register({ family: 'NotoSansBengali', fonts: faces });
+      const res = await fetch("/api/fonts/invoice");
+      if (!res.ok) throw new Error(`Font API failed: ${res.status}`);
+      const data = await res.json();
+      const faces = Array.isArray(data.fonts) ? data.fonts : [];
+      if (faces.length === 0) throw new Error("No font faces from API");
+      Font.register({ family: "NotoSansBengali", fonts: faces });
     })().catch((err) => {
       // Never break PDF generation over fonts — fall back to Helvetica.
-      console.warn('[InvoicePDF] font load failed, using fallback:', err);
+      console.warn("[InvoicePDF] font load failed, using fallback:", err);
       fontsPromise = null;
     });
   }
