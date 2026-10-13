@@ -19,6 +19,7 @@ export interface MediaImage {
   bytes: number;
   format: string;
   created_at: string;
+  alt: string;
 }
 
 // GET /api/admin/media — list images in the store's Cloudinary folder (admin only)
@@ -37,7 +38,11 @@ export async function GET(req: NextRequest) {
       prefix: FOLDER_PREFIX,
       max_results: 100,
       next_cursor: cursor,
+      context: true,
     });
+
+    const readAlt = (r: any): string =>
+      r.context?.custom?.alt || r.context?.alt || "";
 
     const images: MediaImage[] = (result.resources || []).map((r: any) => ({
       public_id: r.public_id,
@@ -47,6 +52,7 @@ export async function GET(req: NextRequest) {
       bytes: r.bytes,
       format: r.format,
       created_at: r.created_at,
+      alt: readAlt(r),
     }));
 
     return NextResponse.json({
@@ -91,6 +97,43 @@ export async function DELETE(req: NextRequest) {
   } catch (err: any) {
     return NextResponse.json(
       { error: err.message || "Failed to delete image" },
+      { status: 500 }
+    );
+  }
+}
+
+// PATCH /api/admin/media — update image alt text (admin only)
+// Body: { public_id, alt }
+export async function PATCH(req: NextRequest) {
+  const auth = await requireAdmin(req);
+  if ("error" in auth) {
+    return NextResponse.json({ error: auth.error }, { status: auth.status });
+  }
+
+  try {
+    const body = await req.json();
+    const publicId = String(body.public_id || "");
+    const alt = String(body.alt || "").slice(0, 500);
+
+    if (!publicId) {
+      return NextResponse.json(
+        { error: "public_id is required" },
+        { status: 400 }
+      );
+    }
+    // Safety: only allow editing images inside our own folder
+    if (!publicId.startsWith(FOLDER_PREFIX)) {
+      return NextResponse.json(
+        { error: "Can only edit images in the store media folder." },
+        { status: 400 }
+      );
+    }
+
+    await cloudinary.api.update(publicId, { context: { alt } });
+    return NextResponse.json({ ok: true, alt });
+  } catch (err: any) {
+    return NextResponse.json(
+      { error: err.message || "Failed to update alt text" },
       { status: 500 }
     );
   }
