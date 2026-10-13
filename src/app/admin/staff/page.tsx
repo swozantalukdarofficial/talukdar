@@ -183,7 +183,7 @@ export default function AdminStaffPage() {
           className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-600/20 transition-all hover:scale-[1.02] cursor-pointer"
         >
           <Plus className="w-4 h-4" />
-          <span>+ Add Staff Member</span>
+          <span>Add Staff Member</span>
         </button>
       </div>
 
@@ -209,7 +209,7 @@ export default function AdminStaffPage() {
             placeholder="Search staff by name, email, phone or role..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-8 py-2.5 text-xs bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
+            className="w-full pl-9 pr-8 py-2.5 text-base bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
           />
         </div>
       </div>
@@ -307,8 +307,8 @@ export default function AdminStaffPage() {
                         className={cn(
                           "px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider",
                           staff.status === "Active"
-                            ? "bg-emerald-100 text-emerald-800"
-                            : "bg-stone-100 text-stone-500"
+                            ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300"
+                            : "bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400"
                         )}
                       >
                         {staff.status}
@@ -318,14 +318,14 @@ export default function AdminStaffPage() {
                       <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => handleOpenEdit(staff)}
-                          className="p-1.5 rounded-lg text-stone-400 hover:text-emerald-600 hover:bg-emerald-50 transition-colors"
+                          className="p-2.5 rounded-lg text-stone-400 hover:text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition-colors"
                           title="Edit Staff Member"
                         >
                           <Edit className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => setDeleteTarget(staff)}
-                          className="p-1.5 rounded-lg text-stone-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+                          className="p-2.5 rounded-lg text-stone-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
                           title="Remove Staff"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -343,22 +343,23 @@ export default function AdminStaffPage() {
       {/* ── Add / Edit Staff Modal ── */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-white dark:bg-stone-900 rounded-2xl shadow-xl border border-stone-200 dark:border-stone-800 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-            <div className="p-4 border-b border-stone-100 dark:border-stone-800 flex items-center justify-between bg-stone-50 dark:bg-stone-800/40">
+          <div className="w-full max-w-md mx-auto bg-white dark:bg-stone-900 rounded-2xl shadow-xl border border-stone-200 dark:border-stone-800 max-h-[90dvh] overflow-y-auto animate-in fade-in zoom-in-95 duration-150">
+            <div className="p-4 border-b border-stone-100 dark:border-stone-800 flex items-center justify-between bg-stone-50 dark:bg-stone-800/40 sticky top-0 z-10">
               <h3 className="font-extrabold text-sm text-stone-900 dark:text-white">
                 {editingStaff ? "Edit Staff Member" : "Add New Staff Member"}
               </h3>
               <button
                 onClick={() => setModalOpen(false)}
-                className="p-1.5 rounded-lg text-stone-400 hover:text-stone-600"
+                className="p-2 rounded-lg text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800"
+                aria-label="Close"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <form onSubmit={handleSave} className="p-5 space-y-4 text-xs">
+            <form onSubmit={handleSave} className="p-5 space-y-4">
               <div>
-                <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
                   Full Name
                 </label>
                 <input
@@ -367,12 +368,12 @@ export default function AdminStaffPage() {
                   placeholder="e.g. John Doe"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+                  className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
                   Email Address
                 </label>
                 <input
@@ -381,12 +382,12 @@ export default function AdminStaffPage() {
                   placeholder="staff@evsolutionbd.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+                  className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
                   Contact Phone
                 </label>
                 <input
@@ -394,19 +395,19 @@ export default function AdminStaffPage() {
                   placeholder="+880 1XXX-XXXXXX"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+                  className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400"
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                  <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
                     Role (label)
                   </label>
                   <select
                     value={role}
                     onChange={(e) => setRole(e.target.value as StaffMember["role"])}
-                    className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+                    className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400"
                   >
                     {ROLES.map((r) => (
                       <option key={r} value={r}>
@@ -417,13 +418,13 @@ export default function AdminStaffPage() {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                  <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
                     Status
                   </label>
                   <select
                     value={status}
                     onChange={(e) => setStatus(e.target.value as "Active" | "Inactive")}
-                    className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+                    className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400"
                   >
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
@@ -435,14 +436,14 @@ export default function AdminStaffPage() {
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 rounded-xl text-stone-600 hover:bg-stone-100 font-bold"
+                  className="px-4 py-2.5 rounded-xl text-sm text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 font-bold"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-xs cursor-pointer disabled:opacity-50 inline-flex items-center gap-2"
+                  className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-xs cursor-pointer disabled:opacity-50 inline-flex items-center gap-2"
                 >
                   {saving && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
                   {editingStaff ? "Save Profile" : "Add Staff"}

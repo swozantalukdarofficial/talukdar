@@ -39,10 +39,10 @@ function couponStatus(c: Coupon): CouponStatus {
 }
 
 const STATUS_STYLE: Record<CouponStatus, { label: string; cls: string }> = {
-  active: { label: "Active", cls: "bg-emerald-100 text-emerald-800" },
-  inactive: { label: "Inactive", cls: "bg-stone-100 text-stone-500" },
-  expired: { label: "Expired", cls: "bg-amber-100 text-amber-800" },
-  used_up: { label: "Used up", cls: "bg-rose-100 text-rose-700" },
+  active: { label: "Active", cls: "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300" },
+  inactive: { label: "Inactive", cls: "bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400" },
+  expired: { label: "Expired", cls: "bg-amber-100 text-amber-800 dark:bg-amber-950/50 dark:text-amber-300" },
+  used_up: { label: "Used up", cls: "bg-rose-100 text-rose-700 dark:bg-rose-950/50 dark:text-rose-300" },
 };
 
 function formatExpiry(iso: string | null): string {
@@ -232,7 +232,7 @@ export default function AdminCouponsPage() {
           className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-600/20 transition-all hover:scale-[1.02] cursor-pointer"
         >
           <Plus className="w-4 h-4" />
-          <span>+ Create Coupon</span>
+          <span>Create Coupon</span>
         </button>
       </div>
 
@@ -245,7 +245,7 @@ export default function AdminCouponsPage() {
             placeholder="Search coupons by code..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-8 py-2.5 text-xs bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
+            className="w-full pl-9 pr-8 py-2.5 text-base bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
           />
         </div>
       </div>
@@ -279,7 +279,7 @@ export default function AdminCouponsPage() {
             <div className="col-span-full p-12 text-center text-stone-400 text-xs bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800">
               <TicketPercent className="w-10 h-10 mx-auto text-stone-300 mb-2" />
               <p className="font-bold text-sm text-stone-700 dark:text-stone-300">No coupons found</p>
-              <p className="text-[11px] mt-1">Click "+ Create Coupon" to launch a campaign discount</p>
+              <p className="text-[11px] mt-1">Click "Create Coupon" to launch a campaign discount</p>
             </div>
           ) : (
             filtered.map((coupon) => {
@@ -293,7 +293,7 @@ export default function AdminCouponsPage() {
                     <div className="flex items-center justify-between gap-2">
                       <span
                         className={cn(
-                          "px-2.5 py-1 rounded-lg text-xs font-mono font-extrabold flex items-center gap-1.5 cursor-pointer border",
+                          "px-2.5 py-1 rounded-lg text-xs font-mono font-extrabold flex items-center gap-1.5 cursor-pointer border min-w-0",
                           st === "active"
                             ? "bg-emerald-50 text-emerald-800 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300"
                             : "bg-stone-100 text-stone-400 border-stone-200"
@@ -301,8 +301,8 @@ export default function AdminCouponsPage() {
                         onClick={() => handleCopy(coupon.code)}
                         title="Click to copy code"
                       >
-                        <Tag className="w-3.5 h-3.5" />
-                        <span>{coupon.code}</span>
+                        <Tag className="w-3.5 h-3.5 shrink-0" />
+                        <span className="truncate">{coupon.code}</span>
                       </span>
 
                       <button
@@ -341,17 +341,19 @@ export default function AdminCouponsPage() {
                     <div className="flex items-center gap-1">
                       <button
                         onClick={() => handleOpenEdit(coupon)}
-                        className="p-1.5 rounded-lg text-stone-400 hover:text-emerald-600 hover:bg-emerald-50 transition-colors"
+                        className="p-2.5 rounded-lg text-stone-400 hover:text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition-colors"
                         title="Edit Coupon"
+                        aria-label="Edit coupon"
                       >
-                        <Edit className="w-3.5 h-3.5" />
+                        <Edit className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleDelete(coupon.id, coupon.code)}
-                        className="p-1.5 rounded-lg text-stone-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+                        className="p-2.5 rounded-lg text-stone-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
                         title="Delete Coupon"
+                        aria-label="Delete coupon"
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
+                        <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
@@ -365,22 +367,23 @@ export default function AdminCouponsPage() {
       {/* ── Coupon Add/Edit Modal ── */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-white dark:bg-stone-900 rounded-2xl shadow-xl border border-stone-200 dark:border-stone-800 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-            <div className="p-4 border-b border-stone-100 dark:border-stone-800 flex items-center justify-between bg-stone-50 dark:bg-stone-800/40">
+          <div className="w-full max-w-md mx-auto bg-white dark:bg-stone-900 rounded-2xl shadow-xl border border-stone-200 dark:border-stone-800 overflow-hidden animate-in fade-in zoom-in-95 duration-150 max-h-[90dvh] overflow-y-auto">
+            <div className="p-4 border-b border-stone-100 dark:border-stone-800 flex items-center justify-between bg-stone-50 dark:bg-stone-800/40 sticky top-0">
               <h3 className="font-extrabold text-sm text-stone-900 dark:text-white">
                 {editingCoupon ? "Edit Coupon" : "Create New Coupon"}
               </h3>
               <button
                 onClick={() => setModalOpen(false)}
-                className="p-1.5 rounded-lg text-stone-400 hover:text-stone-600"
+                className="p-2 rounded-lg text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800"
+                aria-label="Close"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <form onSubmit={handleSave} className="p-5 space-y-4 text-xs">
+            <form onSubmit={handleSave} className="p-5 space-y-4">
               <div>
-                <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
                   Coupon Code
                 </label>
                 <input
@@ -389,19 +392,19 @@ export default function AdminCouponsPage() {
                   placeholder="e.g. SUMMER2026"
                   value={code}
                   onChange={(e) => setCode(e.target.value.toUpperCase())}
-                  className="w-full px-3 py-2 text-xs uppercase font-mono font-bold bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                  className="w-full px-3 py-2.5 text-base uppercase font-mono font-bold bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                  <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
                     Discount Type
                   </label>
                   <select
                     value={discountType}
                     onChange={(e) => setDiscountType(e.target.value as "percent" | "fixed")}
-                    className="w-full px-3 py-2 text-xs bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+                    className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white"
                   >
                     <option value="percent">Percentage (%)</option>
                     <option value="fixed">Fixed Amount (৳)</option>
@@ -409,7 +412,7 @@ export default function AdminCouponsPage() {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                  <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
                     Discount Value
                   </label>
                   <input
@@ -419,14 +422,14 @@ export default function AdminCouponsPage() {
                     step="0.01"
                     value={discountValue}
                     onChange={(e) => setDiscountValue(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+                    className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                  <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
                     Min Order (৳)
                   </label>
                   <input
@@ -435,12 +438,12 @@ export default function AdminCouponsPage() {
                     step="0.01"
                     value={minOrder}
                     onChange={(e) => setMinOrder(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+                    className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                  <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
                     Max Uses <span className="font-normal text-stone-400">(blank = unlimited)</span>
                   </label>
                   <input
@@ -450,20 +453,20 @@ export default function AdminCouponsPage() {
                     value={maxUses}
                     onChange={(e) => setMaxUses(e.target.value)}
                     placeholder="Unlimited"
-                    className="w-full px-3 py-2 text-xs bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+                    className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
                   Expiry Date <span className="font-normal text-stone-400">(blank = never)</span>
                 </label>
                 <input
                   type="date"
                   value={expiresAt}
                   onChange={(e) => setExpiresAt(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+                  className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white"
                 />
               </div>
 
@@ -473,9 +476,9 @@ export default function AdminCouponsPage() {
                   id="coupon-active"
                   checked={isActive}
                   onChange={(e) => setIsActive(e.target.checked)}
-                  className="rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4"
+                  className="rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0"
                 />
-                <label htmlFor="coupon-active" className="font-semibold text-stone-700 dark:text-stone-300 cursor-pointer">
+                <label htmlFor="coupon-active" className="text-xs font-semibold text-stone-700 dark:text-stone-300 cursor-pointer">
                   Activate coupon immediately
                 </label>
               </div>
@@ -484,14 +487,14 @@ export default function AdminCouponsPage() {
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 rounded-xl text-stone-600 hover:bg-stone-100 font-bold"
+                  className="px-4 py-2.5 rounded-xl text-sm text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 font-bold"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-xs cursor-pointer disabled:opacity-50"
+                  className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-xs cursor-pointer disabled:opacity-50"
                 >
                   {saving ? "Saving..." : editingCoupon ? "Save Changes" : "Create Coupon"}
                 </button>

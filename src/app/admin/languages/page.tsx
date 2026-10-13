@@ -132,7 +132,7 @@ export default function AdminLanguagesPage() {
           className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-600/20 transition-all hover:scale-[1.02] cursor-pointer"
         >
           <Plus className="w-4 h-4" />
-          <span>+ Add Language</span>
+          <span>Add Language</span>
         </button>
       </div>
 
@@ -182,7 +182,7 @@ export default function AdminLanguagesPage() {
                     <div className="flex items-center justify-end gap-1">
                       <button
                         onClick={() => handleOpenEdit(lang)}
-                        className="p-1.5 rounded-lg text-stone-400 hover:text-emerald-600 hover:bg-emerald-50 transition-colors"
+                        className="p-2.5 rounded-lg text-stone-400 hover:text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition-colors"
                       >
                         <Edit className="w-4 h-4" />
                       </button>
@@ -198,22 +198,23 @@ export default function AdminLanguagesPage() {
       {/* ── Modal ── */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-white dark:bg-stone-900 rounded-2xl shadow-xl border border-stone-200 dark:border-stone-800 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-            <div className="p-4 border-b border-stone-100 dark:border-stone-800 flex items-center justify-between bg-stone-50 dark:bg-stone-800/40">
+          <div className="w-full max-w-md mx-auto bg-white dark:bg-stone-900 rounded-2xl shadow-xl border border-stone-200 dark:border-stone-800 max-h-[90dvh] overflow-y-auto animate-in fade-in zoom-in-95 duration-150">
+            <div className="p-4 border-b border-stone-100 dark:border-stone-800 flex items-center justify-between bg-stone-50 dark:bg-stone-800/40 sticky top-0 z-10">
               <h3 className="font-extrabold text-sm text-stone-900 dark:text-white">
                 {editingLang ? "Edit Language" : "Add Language"}
               </h3>
               <button
                 onClick={() => setModalOpen(false)}
-                className="p-1.5 rounded-lg text-stone-400 hover:text-stone-600"
+                className="p-2 rounded-lg text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800"
+                aria-label="Close"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <form onSubmit={handleSave} className="p-5 space-y-4 text-xs">
+            <form onSubmit={handleSave} className="p-5 space-y-4">
               <div>
-                <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
                   Language Name
                 </label>
                 <input
@@ -222,13 +223,13 @@ export default function AdminLanguagesPage() {
                   placeholder="e.g. বাংলা (Bengali)"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+                  className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400"
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                  <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
                     Language Code
                   </label>
                   <input
@@ -237,12 +238,12 @@ export default function AdminLanguagesPage() {
                     placeholder="bn"
                     value={code}
                     onChange={(e) => setCode(e.target.value.toLowerCase())}
-                    className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl font-mono"
+                    className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400 font-mono"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1">
+                  <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
                     Flag Emoji
                   </label>
                   <input
@@ -250,7 +251,7 @@ export default function AdminLanguagesPage() {
                     required
                     value={flag}
                     onChange={(e) => setFlag(e.target.value)}
-                    className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+                    className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400"
                   />
                 </div>
               </div>
@@ -261,9 +262,9 @@ export default function AdminLanguagesPage() {
                   id="lang-default"
                   checked={isDefault}
                   onChange={(e) => setIsDefault(e.target.checked)}
-                  className="rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4"
+                  className="rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 shrink-0"
                 />
-                <label htmlFor="lang-default" className="font-semibold text-stone-700 dark:text-stone-300 cursor-pointer">
+                <label htmlFor="lang-default" className="text-xs font-semibold text-stone-700 dark:text-stone-300 cursor-pointer">
                   Set as default primary storefront language
                 </label>
               </div>
@@ -272,13 +273,13 @@ export default function AdminLanguagesPage() {
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 rounded-xl text-stone-600 hover:bg-stone-100 font-bold"
+                  className="px-4 py-2.5 rounded-xl text-sm text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 font-bold"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-xs cursor-pointer"
+                  className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-xs cursor-pointer"
                 >
                   {editingLang ? "Save Changes" : "Create Language"}
                 </button>
