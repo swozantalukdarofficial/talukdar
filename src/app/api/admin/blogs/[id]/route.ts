@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { v2 as cloudinary } from "cloudinary";
 import { requireAdmin } from "@/lib/supabase-server";
+import { adminEmailFrom, logActivity } from "@/lib/activity";
 import { getBlogDbClient } from "../route";
 
 cloudinary.config({
@@ -21,6 +22,8 @@ const UPDATABLE = [
   "meta_desc",
   "content",
   "date",
+  "status",
+  "published_at",
 ] as const;
 
 /**
@@ -110,6 +113,30 @@ export async function PATCH(
       return NextResponse.json({ error: "Nothing to update" }, { status: 400 });
     }
 
+    // Validate publishing fields
+    if (updates.status !== undefined && !["draft", "published"].includes(updates.status)) {
+      return NextResponse.json(
+        { error: 'Status must be "draft" or "published".' },
+        { status: 400 }
+      );
+    }
+    if (updates.published_at !== undefined) {
+      const raw = updates.published_at.trim();
+      if (!raw) {
+        // Clearing the schedule: store NULL (treated as "no schedule")
+        (updates as Record<string, string | null>).published_at = null;
+      } else {
+        const d = new Date(raw);
+        if (isNaN(d.getTime())) {
+          return NextResponse.json(
+            { error: "Invalid published_at date." },
+            { status: 400 }
+          );
+        }
+        updates.published_at = d.toISOString();
+      }
+    }
+
     // If the slug is being changed, make sure it isn't taken by another post
     if (typeof updates.slug === "string") {
       const slug = updates.slug.trim();
@@ -145,6 +172,23 @@ export async function PATCH(
       .single();
 
     if (error) throw error;
+
+    // Log the update (best-effort, never blocks)
+    try {
+      await logActivity(
+        {
+          adminEmail: adminEmailFrom(auth),
+          action: "updated",
+          entity: "blog",
+          entityId: id,
+          details: { title: data.title, slug: data.slug },
+        },
+        db
+      );
+    } catch (e: any) {
+      console.error("[admin-blogs] activity log failed:", e?.message || e);
+    }
+
     return NextResponse.json({ blog: data });
   } catch (e: any) {
     return NextResponse.json(
@@ -170,7 +214,7 @@ export async function DELETE(
 
     const { data: row, error: fetchErr } = await db
       .from("blogs")
-      .select("image")
+      .select("image, title")
       .eq("id", id)
       .maybeSingle();
     if (fetchErr) throw fetchErr;
@@ -178,6 +222,22 @@ export async function DELETE(
 
     const { error } = await db.from("blogs").delete().eq("id", id);
     if (error) throw error;
+
+    // Log the deletion (best-effort, never blocks)
+    try {
+      await logActivity(
+        {
+          adminEmail: adminEmailFrom(auth),
+          action: "deleted",
+          entity: "blog",
+          entityId: id,
+          details: { title: row.title },
+        },
+        db
+      );
+    } catch (e: any) {
+      console.error("[admin-blogs] activity log failed:", e?.message || e);
+    }
 
     // Best-effort: remove the cover from Cloudinary too (never fails the delete)
     await bestEffortDeleteCover(row.image);

@@ -45,7 +45,7 @@ export default function StatusChanger({
             ? "bg-emerald-50 text-emerald-700 border-emerald-200"
             : status === "processing"
             ? "bg-blue-50 text-blue-700 border-blue-200"
-            : status === "cancelled"
+            : status === "cancelled" || status === "refunded"
             ? "bg-rose-50 text-rose-700 border-rose-200"
             : "bg-amber-50 text-amber-700 border-amber-200"
         )}
@@ -54,6 +54,7 @@ export default function StatusChanger({
         <option value="processing">Processing</option>
         <option value="delivered">Delivered</option>
         <option value="cancelled">Cancelled</option>
+        <option value="refunded">Refunded</option>
       </select>
       <div className="absolute right-2.5 pointer-events-none text-stone-500">
         {updating ? (

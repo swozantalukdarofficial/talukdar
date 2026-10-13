@@ -24,10 +24,18 @@ export default function AdminBlogsPage() {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
+  const [statusFilter, setStatusFilter] = useState<"all" | "published" | "draft" | "scheduled">("all");
 
   useEffect(() => {
     fetchDbBlogs();
   }, []);
+
+  /** Display state for the admin list: draft / scheduled / published */
+  function displayStatus(b: BlogPost): "draft" | "scheduled" | "published" {
+    if ((b.status || "published") === "draft") return "draft";
+    if (b.published_at && new Date(b.published_at) > new Date()) return "scheduled";
+    return "published";
+  }
 
   async function fetchDbBlogs() {
     setLoading(true);
@@ -54,6 +62,8 @@ export default function AdminBlogsPage() {
         metaDesc: blog.meta_desc,
         content: blog.content,
         date: blog.date,
+        status: (blog.status as "draft" | "published") || "published",
+        published_at: blog.published_at || null,
       }));
 
       setBlogs(mapped);
@@ -176,6 +186,44 @@ export default function AdminBlogsPage() {
           </div>
         </div>
 
+        {/* Status filter */}
+        <div className="flex items-center gap-2 flex-wrap">
+          {(
+            [
+              { key: "all", label: "All" },
+              { key: "published", label: "Published" },
+              { key: "scheduled", label: "Scheduled" },
+              { key: "draft", label: "Drafts" },
+            ] as const
+          ).map((f) => {
+            const count =
+              f.key === "all"
+                ? blogs.length
+                : blogs.filter((b) => displayStatus(b) === f.key).length;
+            const active = statusFilter === f.key;
+            return (
+              <button
+                key={f.key}
+                onClick={() => setStatusFilter(f.key)}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-colors border ${
+                  active
+                    ? "bg-stone-900 text-white border-stone-900"
+                    : "bg-white text-stone-500 border-stone-200 hover:border-stone-400"
+                }`}
+              >
+                {f.label}
+                <span
+                  className={`ml-1.5 text-[10px] font-extrabold ${
+                    active ? "text-stone-300" : "text-stone-400"
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
         {/* Content */}
         {loading ? (
           <div className="bg-white border border-stone-200 rounded-2xl p-16 flex items-center justify-center shadow-sm">
@@ -205,14 +253,18 @@ export default function AdminBlogsPage() {
                     <th className="py-3.5 px-4 w-20">Image</th>
                     <th className="py-3.5 px-4">Title & Slug</th>
                     <th className="py-3.5 px-4 w-32">Category</th>
-                    <th className="py-3.5 px-4 w-28">Read Time</th>
+                    <th className="py-3.5 px-4 w-28">Status</th>
                     <th className="py-3.5 px-4 w-28">Date</th>
                     <th className="py-3.5 px-4 w-24 text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-stone-100 text-stone-700">
-                  {blogs.map((blog) => (
-                    <tr key={blog.id} className="hover:bg-stone-50/50 transition-colors text-xs font-semibold">
+                  {blogs
+                    .filter((b) => statusFilter === "all" || displayStatus(b) === statusFilter)
+                    .map((blog) => {
+                      const st = displayStatus(blog);
+                      return (
+                      <tr key={blog.id} className="hover:bg-stone-50/50 transition-colors text-xs font-semibold">
                       {/* Image */}
                       <td className="py-4 px-4">
                         <div className="relative w-12 aspect-[16/10] rounded-lg overflow-hidden bg-stone-100 border border-stone-200">
@@ -246,9 +298,29 @@ export default function AdminBlogsPage() {
                         </Badge>
                       </td>
 
-                      {/* Read Time */}
-                      <td className="py-4 px-4 text-stone-500">
-                        {blog.readTime}
+                      {/* Status */}
+                      <td className="py-4 px-4">
+                        <span
+                          className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                            st === "published"
+                              ? "bg-emerald-100 text-emerald-800"
+                              : st === "scheduled"
+                              ? "bg-blue-100 text-blue-800"
+                              : "bg-stone-100 text-stone-500"
+                          }`}
+                          title={
+                            st === "scheduled" && blog.published_at
+                              ? `Goes live ${new Date(blog.published_at).toLocaleString("en-GB", {
+                                  day: "2-digit",
+                                  month: "short",
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                })}`
+                              : undefined
+                          }
+                        >
+                          {st}
+                        </span>
                       </td>
 
                       {/* Date */}
@@ -274,12 +346,13 @@ export default function AdminBlogsPage() {
                         </button>
                       </td>
                     </tr>
-                  ))}
+                      );
+                    })}
                 </tbody>
               </table>
             </div>
             <div className="bg-stone-50 border-t border-stone-200 px-4 py-3 text-[10px] font-bold text-stone-400 uppercase tracking-wider flex justify-between items-center">
-              <span>Showing {blogs.length} posts</span>
+              <span>Showing {blogs.filter((b) => statusFilter === "all" || displayStatus(b) === statusFilter).length} of {blogs.length} posts</span>
               <span>Supabase Managed</span>
             </div>
           </div>

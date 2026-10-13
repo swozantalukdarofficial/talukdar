@@ -20,6 +20,7 @@ import {
 import { cn } from "@/lib/utils";
 import PrintButton from "@/components/admin/PrintButton";
 import StatusChanger from "./StatusChanger";
+import RefundSection from "./RefundSection";
 
 export const dynamic = "force-dynamic";
 
@@ -50,7 +51,10 @@ export default async function OrderInvoicePage({
   const items = order.order_items || [];
   const subtotal = Number(order.subtotal) || (Number(order.total) - (Number(order.shipping_fee) || 0));
   const shippingFee = Number(order.shipping_fee) || 0;
+  const discount = Number(order.discount_amount) || 0;
+  const couponCode = order.coupon_code || null;
   const total = Number(order.total) || 0;
+  const refundedAmount = Number(order.refunded_amount) || 0;
   const status = (order.status || "pending").toLowerCase();
 
   return (
@@ -76,6 +80,14 @@ export default async function OrderInvoicePage({
 
         <div className="flex items-center gap-3">
           <StatusChanger orderId={order.id} currentStatus={status} />
+          <Link
+            href={`/admin/orders/${order.id}/packing-slip`}
+            title="Packing Slip"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 text-xs sm:text-sm font-bold hover:bg-stone-50 transition-colors"
+          >
+            <Package className="w-4 h-4 text-emerald-600" />
+            <span className="hidden sm:inline">Packing Slip</span>
+          </Link>
           <PrintButton order={order} />
         </div>
       </div>
@@ -200,6 +212,12 @@ export default async function OrderInvoicePage({
               <span>Subtotal:</span>
               <span className="font-bold text-stone-800 dark:text-stone-200">৳{subtotal.toLocaleString()}</span>
             </div>
+            {discount > 0 && (
+              <div className="flex justify-between text-emerald-700">
+                <span>Discount{couponCode ? ` (${couponCode})` : ""}:</span>
+                <span className="font-bold">−৳{discount.toLocaleString()}</span>
+              </div>
+            )}
             <div className="flex justify-between text-stone-500">
               <span>Delivery Fee:</span>
               <span className="font-bold text-stone-800 dark:text-stone-200">৳{shippingFee.toLocaleString()}</span>
@@ -208,6 +226,12 @@ export default async function OrderInvoicePage({
               <span>Grand Total:</span>
               <span className="text-emerald-600">৳{total.toLocaleString()}</span>
             </div>
+            {refundedAmount > 0 && (
+              <div className="flex justify-between text-rose-600 font-bold pt-1">
+                <span>Refunded:</span>
+                <span>−৳{refundedAmount.toLocaleString()}</span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -219,6 +243,15 @@ export default async function OrderInvoicePage({
           <p>Official Warranty & Technical Support: +880 1833-289578 • support@evsolutionbd.com</p>
         </div>
       </div>
+
+      {/* ── Refund bookkeeping (hidden on print) ── */}
+      <RefundSection
+        orderId={order.id}
+        orderTotal={total}
+        initialRefundedAmount={refundedAmount}
+        initialRefundedAt={order.refunded_at || null}
+        initialRefundReason={order.refund_reason || null}
+      />
     </div>
   );
 }

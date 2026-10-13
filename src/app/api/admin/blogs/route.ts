@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { getAdminClient, requireAdmin } from "@/lib/supabase-server";
+import { adminEmailFrom, logActivity } from "@/lib/activity";
 
 function bearerToken(req: Request): string {
   const header = req.headers.get("authorization") || "";
@@ -81,6 +82,26 @@ export async function POST(req: Request) {
     const slug = body.slug.trim();
     const db = getBlogDbClient(req);
 
+    // Publishing fields: 'draft' | 'published'. A scheduled post is
+    // status='published' with a future published_at.
+    let status = "published";
+    if (body.status === "draft" || body.status === "published") {
+      status = body.status;
+    }
+    let publishedAt: string | null = null;
+    if (typeof body.published_at === "string" && body.published_at.trim()) {
+      const d = new Date(body.published_at);
+      if (isNaN(d.getTime())) {
+        return NextResponse.json(
+          { error: "Invalid published_at date." },
+          { status: 400 }
+        );
+      }
+      publishedAt = d.toISOString();
+    } else if (status === "published") {
+      publishedAt = new Date().toISOString();
+    }
+
     // Friendly duplicate-slug check (the table also has a UNIQUE constraint)
     const { data: clash, error: clashErr } = await db
       .from("blogs")
@@ -111,12 +132,31 @@ export async function POST(req: Request) {
           meta_desc: (body.meta_desc || body.description).trim(),
           content: body.content,
           date: (body.date || "").trim(),
+          status,
+          published_at: publishedAt,
         },
       ])
       .select("*")
       .single();
 
     if (error) throw error;
+
+    // Log the creation (best-effort, never blocks)
+    try {
+      await logActivity(
+        {
+          adminEmail: adminEmailFrom(auth),
+          action: "created",
+          entity: "blog",
+          entityId: data.id,
+          details: { title: data.title, slug: data.slug },
+        },
+        db
+      );
+    } catch (e: any) {
+      console.error("[admin-blogs] activity log failed:", e?.message || e);
+    }
+
     return NextResponse.json({ blog: data }, { status: 201 });
   } catch (e: any) {
     return NextResponse.json(
