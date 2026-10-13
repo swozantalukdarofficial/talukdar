@@ -39,6 +39,30 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
   const [metaDesc, setMetaDesc] = useState("");
   const [content, setContent] = useState("");
 
+  // ── Publishing state ─────────────────────────────────────────
+  const [publishMode, setPublishMode] = useState<"published" | "draft" | "scheduled">("published");
+  const [scheduledAt, setScheduledAt] = useState("");
+  const [originalPublishedAt, setOriginalPublishedAt] = useState<string | null>(null);
+
+  /** Convert an ISO string to datetime-local input format (local time). */
+  function toLocalInput(iso: string): string {
+    const d = new Date(iso);
+    const pad = (n: number) => String(n).padStart(2, "0");
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
+  function resolvePublishing(): { status: "draft" | "published"; published_at: string | null } {
+    if (publishMode === "draft") return { status: "draft", published_at: null };
+    if (publishMode === "scheduled" && scheduledAt) {
+      return { status: "published", published_at: new Date(scheduledAt).toISOString() };
+    }
+    // Already-published posts keep their original publish date on edit.
+    if (originalPublishedAt && new Date(originalPublishedAt) <= new Date()) {
+      return { status: "published", published_at: originalPublishedAt };
+    }
+    return { status: "published", published_at: new Date().toISOString() };
+  }
+
   // ── Image upload state ───────────────────────────────────────
   const [imageUrl, setImageUrl] = useState("");
   const [imagePreview, setImagePreview] = useState("");
@@ -75,6 +99,19 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
         setContent(data.content);
         setImageUrl(data.image);
         setImagePreview(data.image);
+        // Publishing state
+        setOriginalPublishedAt(data.published_at || null);
+        const st = (data.status as string) || "published";
+        if (st === "draft") {
+          setPublishMode("draft");
+          setScheduledAt("");
+        } else if (data.published_at && new Date(data.published_at) > new Date()) {
+          setPublishMode("scheduled");
+          setScheduledAt(toLocalInput(data.published_at));
+        } else {
+          setPublishMode("published");
+          setScheduledAt("");
+        }
       } catch (err: any) {
         toast.error("Failed to load blog post: " + err.message);
         router.push("/admin/blogs");
@@ -151,6 +188,16 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
       toast.error("Title, slug, short description, and content are required!");
       return;
     }
+    if (publishMode === "scheduled") {
+      if (!scheduledAt) {
+        toast.error("Pick a date & time for the scheduled publish.");
+        return;
+      }
+      if (new Date(scheduledAt) <= new Date()) {
+        toast.error("Scheduled time must be in the future.");
+        return;
+      }
+    }
 
     setSaving(true);
 
@@ -158,6 +205,8 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
       if (!supabase) {
         throw new Error("Supabase client is not ready.");
       }
+
+      const publishing = resolvePublishing();
 
       await adminFetch(`/api/admin/blogs/${id}`, {
         method: "PATCH",
@@ -172,6 +221,8 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
           meta_desc: metaDesc || description,
           content,
           date: dateStr,
+          status: publishing.status,
+          published_at: publishing.published_at,
         }),
       });
 
@@ -478,6 +529,61 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                     />
                   </div>
                 </div>
+              </div>
+
+              {/* Publishing */}
+              <div className="bg-white border border-stone-200/85 rounded-2xl p-6 space-y-4 shadow-sm shadow-stone-150/40">
+                <h2 className="text-xs font-bold text-stone-750 uppercase tracking-widest border-b border-stone-100 pb-2.5">
+                  Publishing
+                </h2>
+
+                <div className="grid grid-cols-3 gap-2">
+                  {(
+                    [
+                      { key: "published", label: "Published", icon: "🚀" },
+                      { key: "draft", label: "Draft", icon: "📝" },
+                      { key: "scheduled", label: "Scheduled", icon: "🕒" },
+                    ] as const
+                  ).map((opt) => (
+                    <button
+                      key={opt.key}
+                      type="button"
+                      onClick={() => setPublishMode(opt.key)}
+                      className={cn(
+                        "px-3 py-2.5 rounded-xl border text-xs font-bold transition-colors",
+                        publishMode === opt.key
+                          ? "bg-emerald-700 text-white border-emerald-700"
+                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-stone-400"
+                      )}
+                    >
+                      <span className="mr-1">{opt.icon}</span>
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+
+                {publishMode === "scheduled" && (
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                      Go live at *
+                    </label>
+                    <input
+                      type="datetime-local"
+                      value={scheduledAt}
+                      onChange={(e) => setScheduledAt(e.target.value)}
+                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                    />
+                    <p className="text-[10px] text-stone-400 font-semibold uppercase tracking-wider">
+                      The post stays hidden until this time (your local time).
+                    </p>
+                  </div>
+                )}
+
+                {publishMode === "draft" && (
+                  <p className="text-[11px] text-stone-500 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2">
+                    Drafts are hidden from the blog page until you publish them.
+                  </p>
+                )}
               </div>
 
               {/* Submit Button */}

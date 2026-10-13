@@ -47,6 +47,19 @@ export default function AddBlogPage() {
   // ── Submit state ─────────────────────────────────────────────
   const [saving, setSaving] = useState(false);
 
+  // ── Publishing state ───────────────────────────────────────────
+  // published: goes live immediately · draft: hidden · scheduled: goes live at scheduledAt
+  const [publishMode, setPublishMode] = useState<"published" | "draft" | "scheduled">("published");
+  const [scheduledAt, setScheduledAt] = useState("");
+
+  function resolvePublishing(): { status: "draft" | "published"; published_at: string | null } {
+    if (publishMode === "draft") return { status: "draft", published_at: null };
+    if (publishMode === "scheduled" && scheduledAt) {
+      return { status: "published", published_at: new Date(scheduledAt).toISOString() };
+    }
+    return { status: "published", published_at: new Date().toISOString() };
+  }
+
   // ── Auto-generate slug and meta from title ────────────────────
   function handleTitleChange(val: string) {
     setTitle(val);
@@ -113,6 +126,16 @@ export default function AddBlogPage() {
       toast.error("Title, slug, short description, and content are required!");
       return;
     }
+    if (publishMode === "scheduled") {
+      if (!scheduledAt) {
+        toast.error("Pick a date & time for the scheduled publish.");
+        return;
+      }
+      if (new Date(scheduledAt) <= new Date()) {
+        toast.error("Scheduled time must be in the future.");
+        return;
+      }
+    }
 
     setSaving(true);
 
@@ -120,6 +143,8 @@ export default function AddBlogPage() {
       if (!supabase) {
         throw new Error("Supabase client is not ready.");
       }
+
+      const publishing = resolvePublishing();
 
       await adminFetch("/api/admin/blogs", {
         method: "POST",
@@ -134,10 +159,18 @@ export default function AddBlogPage() {
           meta_desc: metaDesc || description,
           content,
           date: dateStr,
+          status: publishing.status,
+          published_at: publishing.published_at,
         }),
       });
 
-      toast.success(`"${title}" blog post added! 🎉`);
+      toast.success(
+        publishMode === "draft"
+          ? `"${title}" saved as draft. 📝`
+          : publishMode === "scheduled"
+          ? `"${title}" scheduled! 🕒`
+          : `"${title}" blog post added! 🎉`
+      );
       router.push("/admin/blogs");
     } catch (err: any) {
       toast.error("Failed to save blog: " + err.message);
@@ -425,6 +458,61 @@ export default function AddBlogPage() {
                 </div>
               </div>
 
+              {/* Publishing */}
+              <div className="bg-white border border-stone-200/85 rounded-2xl p-6 space-y-4 shadow-sm shadow-stone-150/40">
+                <h2 className="text-xs font-bold text-stone-750 uppercase tracking-widest border-b border-stone-100 pb-2.5">
+                  Publishing
+                </h2>
+
+                <div className="grid grid-cols-3 gap-2">
+                  {(
+                    [
+                      { key: "published", label: "Publish now", icon: "🚀" },
+                      { key: "draft", label: "Save draft", icon: "📝" },
+                      { key: "scheduled", label: "Schedule", icon: "🕒" },
+                    ] as const
+                  ).map((opt) => (
+                    <button
+                      key={opt.key}
+                      type="button"
+                      onClick={() => setPublishMode(opt.key)}
+                      className={cn(
+                        "px-3 py-2.5 rounded-xl border text-xs font-bold transition-colors",
+                        publishMode === opt.key
+                          ? "bg-emerald-700 text-white border-emerald-700"
+                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-stone-400"
+                      )}
+                    >
+                      <span className="mr-1">{opt.icon}</span>
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+
+                {publishMode === "scheduled" && (
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                      Go live at *
+                    </label>
+                    <input
+                      type="datetime-local"
+                      value={scheduledAt}
+                      onChange={(e) => setScheduledAt(e.target.value)}
+                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                    />
+                    <p className="text-[10px] text-stone-400 font-semibold uppercase tracking-wider">
+                      The post stays hidden until this time (your local time).
+                    </p>
+                  </div>
+                )}
+
+                {publishMode === "draft" && (
+                  <p className="text-[11px] text-stone-500 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2">
+                    Drafts are hidden from the blog page until you publish them.
+                  </p>
+                )}
+              </div>
+
               {/* Submit Button */}
               <div className="space-y-3">
                 <Button
@@ -440,7 +528,11 @@ export default function AddBlogPage() {
                   ) : (
                     <>
                       <CheckCircle className="w-4 h-4" />
-                      Publish Article
+                      {publishMode === "draft"
+                        ? "Save Draft"
+                        : publishMode === "scheduled"
+                        ? "Schedule Post"
+                        : "Publish Article"}
                     </>
                   )}
                 </Button>

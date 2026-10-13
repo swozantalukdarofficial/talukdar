@@ -12,6 +12,9 @@ export interface BlogPost {
   metaDesc: string;
   content: string;
   date: string;
+  /** Publishing state (DB blogs only; static POSTS omit it and count as published) */
+  status?: "draft" | "published";
+  published_at?: string | null;
 }
 
 export async function fetchBlogs(): Promise<BlogPost[]> {
@@ -33,19 +36,31 @@ export async function fetchBlogs(): Promise<BlogPost[]> {
       return POSTS;
     }
 
-    const dbBlogs: BlogPost[] = data.map((blog) => ({
-      id: blog.id,
-      title: blog.title,
-      slug: blog.slug,
-      category: blog.category,
-      readTime: blog.read_time,
-      image: blog.image,
-      desc: blog.description,
-      metaTitle: blog.meta_title,
-      metaDesc: blog.meta_desc,
-      content: blog.content,
-      date: blog.date,
-    }));
+    const now = new Date();
+    const dbBlogs: BlogPost[] = data
+      .map((blog) => ({
+        id: blog.id,
+        title: blog.title,
+        slug: blog.slug,
+        category: blog.category,
+        readTime: blog.read_time,
+        image: blog.image,
+        desc: blog.description,
+        metaTitle: blog.meta_title,
+        metaDesc: blog.meta_desc,
+        content: blog.content,
+        date: blog.date,
+        status: (blog.status as "draft" | "published") || "published",
+        published_at: blog.published_at || null,
+      }))
+      // Public visibility rule: published AND (no schedule OR schedule reached).
+      // Defensive: rows predating the publishing migration have no status
+      // column value and count as published.
+      .filter((b) => {
+        if ((b.status || "published") === "draft") return false;
+        if (b.published_at && new Date(b.published_at) > now) return false;
+        return true;
+      });
 
     // Merge static posts that are not in DB
     const dbSlugs = new Set(dbBlogs.map((b) => b.slug));
