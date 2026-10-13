@@ -7,7 +7,7 @@ import { createProduct, revalidateStorefront } from "@/lib/products";
 import type { CreateProductInput } from "@/lib/products";
 import type { ProductCategory, Category } from "@/lib/types";
 import { getAllCategories } from "@/lib/categories";
-import { adminUpload } from "@/lib/admin-api";
+import { adminUpload, adminFetch } from "@/lib/admin-api";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -214,6 +214,25 @@ export default function AddProductPage() {
     toast.success(`"${name}" product added successfully! 🎉`);
     // Refresh storefront cache so the new price shows instantly
     await revalidateStorefront(result.product.slug);
+
+    // Fire-and-forget: low-stock email + activity log (never blocks navigation)
+    const savedStock = parseInt(stock);
+    if (savedStock <= 5) {
+      adminFetch("/api/admin/stock-alert", {
+        method: "POST",
+        body: JSON.stringify({ productName: name.trim(), stock: savedStock }),
+      }).catch(() => {});
+    }
+    adminFetch("/api/admin/activity", {
+      method: "POST",
+      body: JSON.stringify({
+        action: "created",
+        entity: "product",
+        entityId: String(result.product.id),
+        details: { name: name.trim(), price: parseFloat(price), stock: savedStock },
+      }),
+    }).catch(() => {});
+
     router.push("/admin/products");
   }
 
