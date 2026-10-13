@@ -1,0 +1,41 @@
+import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
+
+// On-demand revalidation for storefront pages after admin edits.
+// Called from the admin panel (behind AdminClientGuard) after
+// product create/update/delete so price changes appear instantly
+// instead of waiting for the ISR window.
+const ALLOWED_PREFIXES = ["/", "/products"];
+
+function isAllowed(path: string): boolean {
+  if (typeof path !== "string" || !path.startsWith("/")) return false;
+  // Block path traversal / query tricks
+  if (path.includes("..") || path.includes("\\")) return false;
+  return ALLOWED_PREFIXES.some(
+    (p) => path === p || path.startsWith(p + "/")
+  );
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const paths: string[] = Array.isArray(body?.paths) ? body.paths : [];
+
+    const valid = [...new Set(paths.filter(isAllowed))].slice(0, 20);
+    if (valid.length === 0) {
+      return NextResponse.json(
+        { error: "No valid paths provided" },
+        { status: 400 }
+      );
+    }
+
+    for (const p of valid) {
+      // "/" needs layout revalidation to refresh nested product data
+      revalidatePath(p, p === "/" ? "layout" : "page");
+    }
+
+    return NextResponse.json({ revalidated: valid });
+  } catch {
+    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  }
+}

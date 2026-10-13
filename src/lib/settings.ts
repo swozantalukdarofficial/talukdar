@@ -12,6 +12,8 @@ export interface StoreSettings {
   enable_nagad: boolean;
   bkash_number: string;
   nagad_number: string;
+  /** Where new-order notification emails go (comma-separated). Requires DB migration: supabase/add_order_notification_email.sql */
+  order_notification_email?: string;
 }
 
 export const DEFAULT_SETTINGS: StoreSettings = {

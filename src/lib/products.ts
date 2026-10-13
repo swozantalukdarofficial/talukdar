@@ -429,6 +429,18 @@ export async function placeOrder(
 
   if (itemsError) return { error: itemsError.message };
 
+  // Fire-and-forget: notify admin(s) by email about the new order.
+  // Never blocks or fails the checkout if email isn't configured.
+  try {
+    fetch("/api/notify-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ orderId }),
+    }).catch(() => {});
+  } catch {
+    /* ignore */
+  }
+
   return { orderId };
 }
 
@@ -530,4 +542,21 @@ export async function getProductById(id: string): Promise<Product | null> {
   if (!supabase) return null;
   const { data } = await supabase.from("products").select("*").eq("id", id).single();
   return data;
+}
+
+// ─── Storefront cache invalidation ─────────────────────────────
+// Call after product create/update/delete so price changes show up
+// instantly instead of waiting for the ISR revalidate window.
+export async function revalidateStorefront(slug?: string): Promise<void> {
+  try {
+    const paths = ["/", "/products"];
+    if (slug) paths.push(`/products/${slug}`);
+    await fetch("/api/revalidate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ paths }),
+    });
+  } catch {
+    // Non-fatal: ISR will eventually refresh the pages
+  }
 }
