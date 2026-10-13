@@ -650,7 +650,7 @@ export default function AdminOrdersPage() {
             {/* Drawer Content */}
             <div className="p-6 space-y-6 flex-1 text-xs">
               {/* Status Update Card */}
-              <div className="p-4 rounded-2xl bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-200/50 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-200/50 flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <span className="text-[11px] font-bold text-emerald-800 dark:text-emerald-300 uppercase">
                     Order Status
@@ -659,7 +659,7 @@ export default function AdminOrdersPage() {
                     {selectedOrder.status || "Pending"}
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   {["pending", "processing", "delivered", "cancelled"].map((st) => (
                     <button
                       key={st}

@@ -15,9 +15,9 @@ import {
   RefreshCw,
   PieChart as PieChartIcon,
   BarChart3,
-  TrendingUp
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import RevenueTrendChart from "@/components/admin/RevenueTrendChart";
 
 export const dynamic = "force-dynamic";
 
@@ -247,31 +247,6 @@ export default async function AdminDashboard() {
 
   const maxRevenueDay = Math.max(...dailyStats.map((d) => d.revenue), 1000);
 
-  // ── 14-day revenue area chart geometry (inline SVG, no deps) ──
-  const CH = { w: 720, h: 230, padL: 52, padR: 10, padT: 14, padB: 30 };
-  const trendMax = Math.max(...trend14.map((t) => t.revenue), 1);
-  const trendTotal = trend14.reduce((s, t) => s + t.revenue, 0);
-  const plotW = CH.w - CH.padL - CH.padR;
-  const plotH = CH.h - CH.padT - CH.padB;
-  const trendPts = trend14.map((t, i) => ({
-    x: CH.padL + (trend14.length > 1 ? (i / (trend14.length - 1)) * plotW : plotW / 2),
-    y: CH.padT + plotH * (1 - t.revenue / trendMax),
-    ...t,
-  }));
-  const trendLine =
-    trendPts.length > 0
-      ? trendPts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ")
-      : "";
-  const trendArea =
-    trendPts.length > 0
-      ? `${trendLine} L${trendPts[trendPts.length - 1].x.toFixed(1)},${CH.h - CH.padB} L${trendPts[0].x.toFixed(1)},${CH.h - CH.padB} Z`
-      : "";
-  const fmtCompact = (v: number) =>
-    v >= 1000 ? `৳${Math.round(v / 1000)}k` : `৳${Math.round(v)}`;
-  const yTicks = [0, 0.33, 0.66, 1].map((f) => ({
-    v: trendMax * f,
-    y: CH.padT + plotH * (1 - f),
-  }));
 
   // Visible error state instead of silently rendering fake zeros
   if (loadError) {
@@ -471,111 +446,9 @@ export default async function AdminDashboard() {
         </div>
       </div>
 
-      {/* ── Revenue Trend — Last 14 Days (SVG area chart) ── */}
-      <div className="p-6 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-2xs space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <div>
-            <h3 className="font-extrabold text-base text-stone-900 dark:text-white flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-emerald-600" />
-              <span>Revenue Trend</span>
-            </h3>
-            <p className="text-xs text-stone-400 mt-0.5">
-              Daily revenue over the last 14 days (cancelled orders excluded)
-            </p>
-          </div>
-          <div className="text-right">
-            <div className="text-lg font-extrabold text-stone-900 dark:text-white">
-              ৳{trendTotal.toLocaleString()}
-            </div>
-            <div className="text-[10px] font-bold uppercase tracking-wider text-stone-400">
-              14-day total
-            </div>
-          </div>
-        </div>
+      {/* ── Revenue Trend — Last 14 Days (tappable SVG area chart) ── */}
+      <RevenueTrendChart trend14={trend14} />
 
-        {trend14.length === 0 ? (
-          <div className="h-48 flex items-center justify-center text-xs text-stone-400">
-            No sales data yet
-          </div>
-        ) : (
-          <div className="w-full overflow-x-auto">
-            <svg
-              viewBox={`0 0 ${CH.w} ${CH.h}`}
-              className="w-full h-56 min-w-[560px]"
-              role="img"
-              aria-label="Revenue per day for the last 14 days"
-            >
-              <defs>
-                <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#10b981" stopOpacity="0.35" />
-                  <stop offset="100%" stopColor="#10b981" stopOpacity="0.02" />
-                </linearGradient>
-              </defs>
-
-              {/* Y gridlines */}
-              {yTicks.map((t, i) => (
-                <g key={i}>
-                  <line
-                    x1={CH.padL}
-                    x2={CH.w - CH.padR}
-                    y1={t.y}
-                    y2={t.y}
-                    className="stroke-stone-200 dark:stroke-stone-800"
-                    strokeWidth="1"
-                    strokeDasharray={i === 0 ? "" : "4 4"}
-                  />
-                  <text
-                    x={CH.padL - 8}
-                    y={t.y + 3.5}
-                    textAnchor="end"
-                    className="fill-stone-400 text-[10px] font-semibold"
-                  >
-                    {fmtCompact(t.v)}
-                  </text>
-                </g>
-              ))}
-
-              {/* Area + line */}
-              <path d={trendArea} fill="url(#trendFill)" />
-              <path
-                d={trendLine}
-                fill="none"
-                stroke="#10b981"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-
-              {/* Points with tooltips */}
-              {trendPts.map((p, i) => (
-                <g key={i}>
-                  <circle
-                    cx={p.x}
-                    cy={p.y}
-                    r="4"
-                    className="fill-emerald-500 stroke-white dark:stroke-stone-900"
-                    strokeWidth="2"
-                  >
-                    <title>
-                      {p.label}: ৳{p.revenue.toLocaleString()} ({p.orders} orders)
-                    </title>
-                  </circle>
-                  {i % 2 === 0 && (
-                    <text
-                      x={p.x}
-                      y={CH.h - 10}
-                      textAnchor="middle"
-                      className="fill-stone-400 text-[10px] font-semibold"
-                    >
-                      {p.label}
-                    </text>
-                  )}
-                </g>
-              ))}
-            </svg>
-          </div>
-        )}
-      </div>
 
       {/* ── Interactive Charts Row (Weekly Sales + Best Selling Categories) ── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -862,7 +735,7 @@ export default async function AdminDashboard() {
                       <td className="py-3.5 px-4 text-right">
                         <Link
                           href={`/admin/orders/${order.id}`}
-                          className="p-1.5 rounded-lg text-stone-400 hover:text-emerald-600 hover:bg-emerald-50 inline-flex transition-colors"
+                          className="p-2.5 rounded-lg text-stone-400 hover:text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 inline-flex transition-colors"
                           title="View order"
                         >
                           <Eye className="w-4 h-4" />
