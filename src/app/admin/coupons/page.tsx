@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import ComingSoonBanner from "@/components/admin/ComingSoonBanner";
 
 interface Coupon {
   id: string;
@@ -174,6 +175,7 @@ export default function AdminCouponsPage() {
 
   return (
     <div className="space-y-6 animate-in fade-in duration-200">
+      <ComingSoonBanner feature="Coupons" />
       {/* ── Header ── */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
