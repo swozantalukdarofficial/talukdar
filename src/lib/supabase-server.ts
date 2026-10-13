@@ -72,3 +72,27 @@ export async function requireAdmin(req: Request): Promise<
     return { error: "Unauthorized", status: 401 };
   }
 }
+
+/**
+ * Supabase client for admin table reads/writes on behalf of the caller.
+ * - If SUPABASE_SERVICE_ROLE_KEY is configured, uses the service-role client
+ *   (bypasses RLS; requireAdmin already verified the caller).
+ * - Otherwise attaches the request's Bearer token (the admin's own JWT) to
+ *   the anon-key client, so email-allowlist RLS policies can see who is
+ *   calling. Use this (not getAdminClient) for tables whose RLS requires
+ *   the allowlist email, e.g. staff, blogs, admin_activity.
+ */
+export function getUserDbClient(req: Request): SupabaseClient {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  if (process.env.SUPABASE_SERVICE_ROLE_KEY) return getAdminClient();
+  const anonKey =
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !anonKey) throw new Error("Supabase is not configured");
+  const header = req.headers.get("authorization") || "";
+  const token = header.startsWith("Bearer ") ? header.slice(7).trim() : "";
+  return createClient(url, anonKey, {
+    auth: { persistSession: false, autoRefreshToken: false },
+    global: { headers: { Authorization: `Bearer ${token}` } },
+  });
+}

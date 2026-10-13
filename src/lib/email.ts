@@ -168,6 +168,22 @@ export function buildReviewRequestEmail(order: OrderEmailData): {
   };
 }
 
+// ─── 4. Admin: low-stock alert ────────────────────────────────
+export function buildLowStockEmail(productName: string, stock: number): {
+  subject: string;
+  html: string;
+} {
+  return {
+    subject: `⚠️ Low stock: "${productName}" — only ${stock} left`,
+    html: shell(`
+      <h2 style="color:#b45309;">Low stock alert</h2>
+      <p><strong>${escapeHtml(productName)}</strong> is running low:</p>
+      <p style="font-size:24px;font-weight:bold;color:#b45309;">${stock} unit${stock === 1 ? "" : "s"} remaining</p>
+      <p>Consider restocking soon so customers don't hit an out-of-stock page.</p>
+      <p><a href="${process.env.NEXT_PUBLIC_SITE_URL || ""}/admin/products" style="display:inline-block;background:#047857;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:bold;">Manage products →</a></p>`),
+  };
+}
+
 /**
  * Resolves which email address(es) should receive order notifications:
  * 1. store_settings.order_notification_email (set in admin panel)

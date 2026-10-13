@@ -55,6 +55,12 @@ export default function AdminOrdersPage() {
   const [invoiceOrder, setInvoiceOrder] = useState<Order | null>(null);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
 
+  // Bulk selection
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [bulkStatus, setBulkStatus] = useState("processing");
+  const [bulkWorking, setBulkWorking] = useState(false);
+  const [bulkDeleteOpen, setBulkDeleteOpen] = useState(false);
+
   // Status Tab
   const [statusTab, setStatusTab] = useState("all");
   const [paymentFilter, setPaymentFilter] = useState("all");
@@ -117,9 +123,79 @@ export default function AdminOrdersPage() {
       await adminFetch(`/api/admin/orders/${orderId}`, { method: "DELETE" });
       toast.success("Order deleted successfully.");
       setOrders((prev) => prev.filter((o) => o.id !== orderId));
+      setSelectedIds((prev) => {
+        const next = new Set(prev);
+        next.delete(orderId);
+        return next;
+      });
       if (selectedOrder?.id === orderId) setSelectedOrder(null);
     } catch (err: any) {
       toast.error("Failed to delete order: " + err.message);
+    }
+  };
+
+  // ── Bulk actions ──
+  const toggleSelect = (orderId: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(orderId)) next.delete(orderId);
+      else next.add(orderId);
+      return next;
+    });
+  };
+
+  const toggleSelectPage = () => {
+    const pageIds = paginatedOrders.map((o) => o.id);
+    const allSelected = pageIds.every((id) => selectedIds.has(id));
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (allSelected) pageIds.forEach((id) => next.delete(id));
+      else pageIds.forEach((id) => next.add(id));
+      return next;
+    });
+  };
+
+  const handleBulkStatus = async () => {
+    if (selectedIds.size === 0) return;
+    setBulkWorking(true);
+    try {
+      const { updated } = await adminFetch<{ updated: number }>(
+        "/api/admin/orders/bulk",
+        {
+          method: "PATCH",
+          body: JSON.stringify({ ids: [...selectedIds], status: bulkStatus }),
+        }
+      );
+      toast.success(`${updated} order(s) marked as ${bulkStatus}!`);
+      setOrders((prev) =>
+        prev.map((o) =>
+          selectedIds.has(o.id) ? { ...o, status: bulkStatus } : o
+        )
+      );
+      setSelectedIds(new Set());
+    } catch (err: any) {
+      toast.error("Bulk update failed: " + err.message);
+    } finally {
+      setBulkWorking(false);
+    }
+  };
+
+  const handleBulkDelete = async () => {
+    if (selectedIds.size === 0) return;
+    setBulkWorking(true);
+    try {
+      await adminFetch("/api/admin/orders/bulk", {
+        method: "DELETE",
+        body: JSON.stringify({ ids: [...selectedIds] }),
+      });
+      toast.success(`${selectedIds.size} order(s) deleted.`);
+      setOrders((prev) => prev.filter((o) => !selectedIds.has(o.id)));
+      setSelectedIds(new Set());
+      setBulkDeleteOpen(false);
+    } catch (err: any) {
+      toast.error("Bulk delete failed: " + err.message);
+    } finally {
+      setBulkWorking(false);
     }
   };
 
@@ -265,6 +341,60 @@ export default function AdminOrdersPage() {
         </div>
       </div>
 
+      {/* ── Bulk Action Bar (appears when orders are selected) ── */}
+      {selectedIds.size > 0 && (
+        <div className="p-3 sm:p-4 rounded-2xl bg-emerald-600 text-white shadow-md shadow-emerald-600/20 flex flex-col sm:flex-row sm:items-center gap-3 animate-in fade-in slide-in-from-top-2 duration-200">
+          <span className="text-xs font-extrabold flex items-center gap-2">
+            <CheckSquare className="w-4 h-4" />
+            {selectedIds.size} order{selectedIds.size === 1 ? "" : "s"} selected
+          </span>
+
+          <div className="flex flex-1 flex-col sm:flex-row sm:items-center gap-2 sm:justify-end">
+            <select
+              value={bulkStatus}
+              onChange={(e) => setBulkStatus(e.target.value)}
+              disabled={bulkWorking}
+              className="py-2 px-3 text-xs font-bold bg-white/15 border border-white/25 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-white/30 cursor-pointer disabled:opacity-50 [&>option]:text-stone-900"
+            >
+              <option value="pending">Pending</option>
+              <option value="processing">Processing</option>
+              <option value="delivered">Delivered</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+
+            <button
+              onClick={handleBulkStatus}
+              disabled={bulkWorking}
+              className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white text-emerald-700 text-xs font-extrabold hover:bg-emerald-50 transition-colors disabled:opacity-50 cursor-pointer"
+            >
+              {bulkWorking ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <RefreshCw className="w-3.5 h-3.5" />
+              )}
+              Apply Status
+            </button>
+
+            <button
+              onClick={() => setBulkDeleteOpen(true)}
+              disabled={bulkWorking}
+              className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-rose-500/90 text-white text-xs font-extrabold hover:bg-rose-500 transition-colors disabled:opacity-50 cursor-pointer"
+            >
+              <Trash2 className="w-3.5 h-3.5" />
+              Delete Selected
+            </button>
+
+            <button
+              onClick={() => setSelectedIds(new Set())}
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 text-xs font-bold transition-colors cursor-pointer"
+            >
+              <X className="w-3.5 h-3.5" />
+              Clear
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* ── Orders Table Card ── */}
       <div className="rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-2xs overflow-hidden">
         {loading ? (
@@ -283,6 +413,20 @@ export default function AdminOrdersPage() {
             <table className="w-full text-left text-xs border-collapse">
               <thead>
                 <tr className="border-b border-stone-200 dark:border-stone-800 bg-stone-50/75 dark:bg-stone-800/40 text-[11px] font-bold text-stone-400 uppercase tracking-wider">
+                  <th className="py-3.5 pl-4 pr-1 w-10">
+                    <button
+                      onClick={toggleSelectPage}
+                      title={paginatedOrders.every((o) => selectedIds.has(o.id)) ? "Deselect page" : "Select page"}
+                      className="text-stone-400 hover:text-emerald-600 transition-colors cursor-pointer"
+                    >
+                      {paginatedOrders.length > 0 &&
+                      paginatedOrders.every((o) => selectedIds.has(o.id)) ? (
+                        <CheckSquare className="w-4 h-4 text-emerald-600" />
+                      ) : (
+                        <Square className="w-4 h-4" />
+                      )}
+                    </button>
+                  </th>
                   <th className="py-3.5 px-4">Invoice No</th>
                   <th className="py-3.5 px-4">Order Time</th>
                   <th className="py-3.5 px-4">Customer Info</th>
@@ -300,8 +444,26 @@ export default function AdminOrdersPage() {
                   return (
                     <tr
                       key={order.id}
-                      className="hover:bg-stone-50/80 dark:hover:bg-stone-800/40 transition-colors"
+                      className={cn(
+                        "hover:bg-stone-50/80 dark:hover:bg-stone-800/40 transition-colors",
+                        selectedIds.has(order.id) && "bg-emerald-50/50 dark:bg-emerald-950/20"
+                      )}
                     >
+                      {/* Select checkbox */}
+                      <td className="py-3.5 pl-4 pr-1">
+                        <button
+                          onClick={() => toggleSelect(order.id)}
+                          title={selectedIds.has(order.id) ? "Deselect" : "Select"}
+                          className="text-stone-400 hover:text-emerald-600 transition-colors cursor-pointer"
+                        >
+                          {selectedIds.has(order.id) ? (
+                            <CheckSquare className="w-4 h-4 text-emerald-600" />
+                          ) : (
+                            <Square className="w-4 h-4" />
+                          )}
+                        </button>
+                      </td>
+
                       {/* Invoice ID */}
                       <td className="py-3.5 px-4 font-mono font-bold text-stone-900 dark:text-stone-100">
                         #{order.id.slice(0, 8)}
@@ -586,6 +748,41 @@ export default function AdminOrdersPage() {
                   </span>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Bulk Delete Confirmation (in-app) ── */}
+      {bulkDeleteOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-sm">
+          <div className="w-full max-w-sm bg-white dark:bg-stone-900 rounded-2xl shadow-xl border border-stone-200 dark:border-stone-800 p-6 text-center animate-in fade-in zoom-in-95 duration-150">
+            <div className="w-12 h-12 mx-auto rounded-full bg-rose-100 dark:bg-rose-950/40 text-rose-600 flex items-center justify-center mb-3">
+              <Trash2 className="w-5 h-5" />
+            </div>
+            <h3 className="font-extrabold text-sm text-stone-900 dark:text-white">
+              Delete {selectedIds.size} order{selectedIds.size === 1 ? "" : "s"}?
+            </h3>
+            <p className="text-xs text-stone-500 mt-1">
+              This permanently removes the selected orders and their line
+              items. This cannot be undone.
+            </p>
+            <div className="flex items-center justify-center gap-2 mt-5">
+              <button
+                onClick={() => setBulkDeleteOpen(false)}
+                disabled={bulkWorking}
+                className="px-4 py-2 rounded-xl text-stone-600 hover:bg-stone-100 text-xs font-bold disabled:opacity-50 cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleBulkDelete}
+                disabled={bulkWorking}
+                className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold disabled:opacity-50 inline-flex items-center gap-2 cursor-pointer"
+              >
+                {bulkWorking && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
+                Yes, Delete All
+              </button>
             </div>
           </div>
         </div>

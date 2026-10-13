@@ -77,6 +77,7 @@ const sidebarRoutes = [
     routes: [
       { path: "/", name: "View Store", outside: true },
       { path: "/admin/store-customization", name: "Store Customization" },
+      { path: "/admin/media", name: "Media Library" },
     ],
   },
   {
@@ -85,6 +86,7 @@ const sidebarRoutes = [
     routes: [
       { path: "/admin/blogs", name: "Blogs / Articles" },
       { path: "/admin/notifications", name: "Notifications" },
+      { path: "/admin/activity", name: "Activity Log" },
       { path: "/admin/profile", name: "My Profile" },
     ],
   },
