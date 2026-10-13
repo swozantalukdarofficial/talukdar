@@ -15,6 +15,8 @@ import {
   Loader2,
   ArrowLeft,
   Phone,
+  TicketPercent,
+  X,
 } from "lucide-react";
 import Link from "next/link";
 import type { PaymentMethod, OrderPayload } from "@/lib/types";
@@ -106,6 +108,16 @@ export default function CheckoutPage() {
   const [nagadNumber, setNagadNumber] = useState("01333600272");
   const [shippingFee, setShippingFee] = useState(150);
 
+  // ── Coupon state ──
+  const [couponInput, setCouponInput] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState<{
+    code: string;
+    discount: number;
+    message: string;
+  } | null>(null);
+  const [couponLoading, setCouponLoading] = useState(false);
+  const [couponError, setCouponError] = useState("");
+
   useEffect(() => {
     async function loadSettings() {
       const data = await getStoreSettings();
@@ -119,7 +131,46 @@ export default function CheckoutPage() {
   }, []);
 
   const subtotal = totalPrice;
-  const total = subtotal + shippingFee;
+  const discount = appliedCoupon?.discount || 0;
+  const total = subtotal + shippingFee - discount;
+
+  async function applyCoupon() {
+    const code = couponInput.trim();
+    if (!code) {
+      setCouponError("Enter a coupon code first.");
+      return;
+    }
+    setCouponLoading(true);
+    setCouponError("");
+    try {
+      const res = await fetch("/api/coupons/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code, subtotal }),
+      });
+      const data = await res.json();
+      if (data.valid) {
+        setAppliedCoupon({
+          code: data.code,
+          discount: data.discount,
+          message: data.message,
+        });
+        setCouponInput("");
+        toast.success(data.message || "Coupon applied!");
+      } else {
+        setCouponError(data.message || "Invalid coupon code.");
+      }
+    } catch {
+      setCouponError("Could not validate coupon. Try again.");
+    } finally {
+      setCouponLoading(false);
+    }
+  }
+
+  function removeCoupon() {
+    setAppliedCoupon(null);
+    setCouponError("");
+  }
 
   function update(field: keyof FormData, value: string) {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -189,6 +240,8 @@ export default function CheckoutPage() {
       notes: (paymentMethod === "bkash" || paymentMethod === "nagad") 
         ? `${form.notes ? form.notes + "\n" : ""}Payment Number: ${form.paymentNumber}\nTrxID: ${form.trxId}`
         : form.notes || undefined,
+      couponCode: appliedCoupon?.code,
+      discountAmount: discount,
     };
 
     const result = await placeOrder(payload);
@@ -465,12 +518,83 @@ export default function CheckoutPage() {
                   ))}
                 </div>
 
+                {/* Coupon */}
+                <div className="pt-4">
+                  {appliedCoupon ? (
+                    <div className="flex items-center justify-between bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2.5">
+                      <div className="flex items-center gap-2">
+                        <TicketPercent className="w-4 h-4 text-emerald-700" />
+                        <div>
+                          <p className="text-xs font-extrabold text-emerald-800 font-mono">
+                            {appliedCoupon.code}
+                          </p>
+                          <p className="text-[10px] text-emerald-600">
+                            {appliedCoupon.message}
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={removeCoupon}
+                        className="p-1.5 rounded-lg text-emerald-600 hover:text-rose-600 hover:bg-white transition-colors"
+                        title="Remove coupon"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    <div>
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={couponInput}
+                          onChange={(e) => {
+                            setCouponInput(e.target.value.toUpperCase());
+                            if (couponError) setCouponError("");
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              applyCoupon();
+                            }
+                          }}
+                          placeholder="Coupon code"
+                          className="flex-1 min-w-0 px-3 py-2.5 text-xs font-mono font-bold uppercase bg-stone-50 border border-stone-200 rounded-xl text-stone-900 placeholder:text-stone-400 placeholder:font-sans placeholder:font-normal focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                        />
+                        <Button
+                          type="button"
+                          onClick={applyCoupon}
+                          disabled={couponLoading}
+                          className="shrink-0 bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold h-[42px] px-4 rounded-xl border-0"
+                        >
+                          {couponLoading ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                          ) : (
+                            "Apply"
+                          )}
+                        </Button>
+                      </div>
+                      {couponError && (
+                        <p className="text-[11px] text-rose-600 font-semibold mt-1.5">
+                          {couponError}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+
                 {/* Totals */}
                 <div className="space-y-2.5 text-xs pt-4">
                   <div className="flex justify-between text-stone-500">
                     <span>Subtotal</span>
                     <span className="font-semibold text-stone-800">৳{subtotal.toLocaleString("en-BD")}</span>
                   </div>
+                  {discount > 0 && (
+                    <div className="flex justify-between text-emerald-700">
+                      <span>Coupon ({appliedCoupon?.code})</span>
+                      <span className="font-semibold">−৳{discount.toLocaleString("en-BD")}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between text-stone-500">
                     <span>Shipping</span>
                     <span className="flex items-center gap-1 font-semibold text-stone-800">

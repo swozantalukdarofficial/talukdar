@@ -61,6 +61,8 @@ export interface OrderPayload {
   items: OrderItem[];
   paymentMethod: PaymentMethod;
   notes?: string;
+  couponCode?: string;
+  discountAmount?: number;
 }
 
 export const SORT_OPTIONS = [

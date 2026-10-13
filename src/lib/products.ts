@@ -388,10 +388,11 @@ export async function placeOrder(
     return { orderId: `MOCK-${Date.now()}` };
   }
 
-  const { customer, items, paymentMethod, notes } = payload;
+  const { customer, items, paymentMethod, notes, couponCode, discountAmount } = payload;
   const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
   const shippingFee = 150;
-  const total = subtotal + shippingFee;
+  const discount = Math.max(0, Math.min(Number(discountAmount) || 0, subtotal));
+  const total = subtotal + shippingFee - discount;
 
   const orderId = crypto.randomUUID();
 
@@ -406,6 +407,8 @@ export async function placeOrder(
       shipping_address: customer.address,
       subtotal,
       shipping_fee: shippingFee,
+      discount_amount: discount,
+      coupon_code: couponCode?.trim().toUpperCase() || null,
       total,
       payment_method: paymentMethod,
       notes,
@@ -439,6 +442,20 @@ export async function placeOrder(
     }).catch(() => {});
   } catch {
     /* ignore */
+  }
+
+  // Fire-and-forget: record the coupon redemption (usage counting).
+  // Never blocks or fails the checkout.
+  if (couponCode?.trim()) {
+    try {
+      fetch("/api/coupons/redeem", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: couponCode.trim(), orderId }),
+      }).catch(() => {});
+    } catch {
+      /* ignore */
+    }
   }
 
   return { orderId };
