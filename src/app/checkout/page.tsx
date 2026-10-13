@@ -440,7 +440,7 @@ export default function CheckoutPage() {
                   ))}
                 </div>
                  {paymentMethod === "bkash" && (
-                  <div className="mt-3 text-xs text-stone-550 flex items-center justify-between bg-stone-50 p-2.5 rounded-lg border border-stone-200 animate-fade-in">
+                  <div className="mt-3 text-xs text-stone-500 flex items-center justify-between bg-stone-50 p-2.5 rounded-lg border border-stone-200 animate-fade-in">
                     <span>Pay via bKash to <strong>{bkashNumber}</strong></span>
                     <button
                       type="button"
@@ -458,7 +458,7 @@ export default function CheckoutPage() {
                   </div>
                 )}
                 {paymentMethod === "nagad" && (
-                  <div className="mt-3 text-xs text-stone-550 flex items-center justify-between bg-stone-50 p-2.5 rounded-lg border border-stone-200 animate-fade-in">
+                  <div className="mt-3 text-xs text-stone-500 flex items-center justify-between bg-stone-50 p-2.5 rounded-lg border border-stone-200 animate-fade-in">
                     <span>Pay via Nagad to <strong>{nagadNumber}</strong></span>
                     <button
                       type="button"

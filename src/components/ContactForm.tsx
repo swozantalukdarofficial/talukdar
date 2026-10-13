@@ -59,7 +59,7 @@ export default function ContactForm() {
       className="bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-8 space-y-5 shadow-sm shadow-stone-150/40"
       id="contact-us-form"
     >
-      <h3 className="text-xs font-bold text-stone-750 uppercase tracking-widest border-b border-stone-100 pb-3">
+      <h3 className="text-xs font-bold text-stone-600 uppercase tracking-widest border-b border-stone-100 pb-3">
         Send Us a Message
       </h3>
 

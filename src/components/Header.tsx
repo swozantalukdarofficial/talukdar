@@ -180,7 +180,7 @@ export default function Header({ categories = [] }: { categories?: Category[] })
             {/* Pre-Order button */}
             <Link
               href="/products"
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-stone-750 bg-stone-50 hover:bg-stone-100 rounded-lg border border-stone-200 transition-colors uppercase tracking-wider"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-stone-600 bg-stone-50 hover:bg-stone-100 rounded-lg border border-stone-200 transition-colors uppercase tracking-wider"
             >
               Pre-Order
             </Link>

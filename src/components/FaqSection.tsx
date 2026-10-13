@@ -79,7 +79,7 @@ export default function FaqSection() {
                     isOpen ? "max-h-40 border-t border-stone-100" : "max-h-0"
                   )}
                 >
-                  <p className="p-5 text-xs md:text-sm text-stone-550 leading-relaxed bg-stone-50/50">
+                  <p className="p-5 text-xs md:text-sm text-stone-500 leading-relaxed bg-stone-50/50">
                     {faq.answer}
                   </p>
                 </div>

@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* Hide scrollbars on horizontal tab strips while keeping scrollability */
+@utility hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @layer base {
   :root {
     /* ── Warm White Light Theme ── */

@@ -182,7 +182,7 @@ export default function FlashSaleSection({ products }: FlashSaleSectionProps) {
                         <div className="flex gap-2">
                           <Link
                             href={`/products/${product.slug}`}
-                            className="flex-1 text-center py-2 bg-stone-50 hover:bg-stone-100 text-stone-750 hover:text-stone-900 rounded-xl text-xs font-bold transition-all border border-stone-200"
+                            className="flex-1 text-center py-2 bg-stone-50 hover:bg-stone-100 text-stone-600 hover:text-stone-900 rounded-xl text-xs font-bold transition-all border border-stone-200"
                           >
                             Details
                           </Link>

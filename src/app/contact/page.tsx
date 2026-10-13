@@ -43,7 +43,7 @@ export default async function ContactPage() {
             
             {/* Quick Contact Info */}
             <div className="bg-white border border-stone-200/90 rounded-2xl p-6 shadow-sm space-y-5">
-              <h2 className="text-xs font-bold text-stone-750 uppercase tracking-widest border-b border-stone-100 pb-3">
+              <h2 className="text-xs font-bold text-stone-600 uppercase tracking-widest border-b border-stone-100 pb-3">
                 Contact Information
               </h2>
 
@@ -54,10 +54,10 @@ export default async function ContactPage() {
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-extrabold text-stone-750 uppercase tracking-tight mb-1">
+                    <h3 className="text-xs font-extrabold text-stone-600 uppercase tracking-tight mb-1">
                       Our Head Office
                     </h3>
-                    <p className="text-[11px] text-stone-550 leading-relaxed font-semibold">
+                    <p className="text-[11px] text-stone-500 leading-relaxed font-semibold">
                       Suite 402, Floor 4, Pragati Sarani, Gulshan-Badda Link Road, Dhaka, Bangladesh.
                     </p>
                   </div>
@@ -69,10 +69,10 @@ export default async function ContactPage() {
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-extrabold text-stone-750 uppercase tracking-tight mb-1">
+                    <h3 className="text-xs font-extrabold text-stone-600 uppercase tracking-tight mb-1">
                       Phone Numbers
                     </h3>
-                    <div className="space-y-0.5 text-[11px] text-stone-550 font-semibold">
+                    <div className="space-y-0.5 text-[11px] text-stone-500 font-semibold">
                       <a href={`tel:${PHONE_1}`} className="hover:text-emerald-800 hover:underline block">
                         {PHONE_1} (Sales & Queries)
                       </a>
@@ -89,10 +89,10 @@ export default async function ContactPage() {
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-extrabold text-stone-750 uppercase tracking-tight mb-1">
+                    <h3 className="text-xs font-extrabold text-stone-600 uppercase tracking-tight mb-1">
                       Email Address
                     </h3>
-                    <a href={`mailto:${EMAIL}`} className="text-[11px] text-stone-550 font-semibold hover:text-emerald-800 hover:underline block">
+                    <a href={`mailto:${EMAIL}`} className="text-[11px] text-stone-500 font-semibold hover:text-emerald-800 hover:underline block">
                       {EMAIL}
                     </a>
                   </div>
@@ -104,10 +104,10 @@ export default async function ContactPage() {
                     <Clock className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-extrabold text-stone-750 uppercase tracking-tight mb-1">
+                    <h3 className="text-xs font-extrabold text-stone-600 uppercase tracking-tight mb-1">
                       Business Hours
                     </h3>
-                    <p className="text-[11px] text-stone-550 leading-relaxed font-semibold">
+                    <p className="text-[11px] text-stone-500 leading-relaxed font-semibold">
                       Saturday – Thursday: 10:00 AM – 8:00 PM <br />
                       <span className="text-rose-600 font-bold">Friday: Closed</span>
                     </p>
@@ -137,7 +137,7 @@ export default async function ContactPage() {
 
         {/* 3. Interactive Location Map */}
         <div className="mt-12 bg-white border border-stone-200/90 rounded-2xl p-4 shadow-sm">
-          <h3 className="text-xs font-bold text-stone-750 uppercase tracking-widest border-b border-stone-100 pb-3 mb-4">
+          <h3 className="text-xs font-bold text-stone-600 uppercase tracking-widest border-b border-stone-100 pb-3 mb-4">
             Our Location Map
           </h3>
           <div className="relative aspect-[16/7] w-full rounded-xl overflow-hidden border border-stone-200 bg-stone-100">
