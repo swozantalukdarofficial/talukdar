@@ -307,17 +307,17 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
   }
 
   return (
-    <main className="min-h-screen bg-[#faf9f6] pb-16">
+    <main className="min-h-screen bg-[#faf9f6] dark:bg-stone-950 pb-16">
       <div className="max-w-4xl mx-auto px-4 py-8">
         
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
-          <Link href="/admin/products" className="text-stone-400 hover:text-stone-700 transition-colors">
+          <Link href="/admin/products" className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 transition-colors">
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="text-3xl font-extrabold text-stone-900 tracking-tight">Edit Product</h1>
-            <p className="text-stone-500 text-xs font-semibold uppercase tracking-wider mt-0.5">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-stone-900 dark:text-white tracking-tight">Edit Product</h1>
+            <p className="text-stone-500 dark:text-stone-400 text-xs font-semibold uppercase tracking-wider mt-0.5">
               Modify database details for this item
             </p>
           </div>
@@ -326,7 +326,8 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
         <form onSubmit={handleSubmit} className="space-y-6">
           
           {/* Tab Navigation */}
-          <div className="flex overflow-x-auto whitespace-nowrap scrollbar-none pb-2 border-b border-stone-200 gap-1.5">
+          <div className="relative">
+            <div className="flex overflow-x-auto whitespace-nowrap [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-2 border-b border-stone-200 dark:border-stone-800 gap-1.5">
             {tabsConfig.map((t) => {
               const isSelected = activeTab === t.id;
               return (
@@ -337,8 +338,8 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                   className={cn(
                     "flex items-center gap-2 px-4 py-3 rounded-xl text-xs font-bold transition-all border-b-2 border-transparent uppercase tracking-wider",
                     isSelected
-                      ? "bg-white text-emerald-800 border-emerald-600 shadow-sm"
-                      : "text-stone-500 hover:text-stone-750 hover:bg-stone-100/50"
+                      ? "bg-white dark:bg-stone-800 text-emerald-800 dark:text-emerald-400 border-emerald-600 shadow-sm"
+                      : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100/50 dark:hover:bg-stone-800/50"
                   )}
                 >
                   {t.icon}
@@ -346,22 +347,24 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                 </button>
               );
             })}
+            </div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-[#faf9f6] dark:from-stone-950 to-transparent" />
           </div>
 
           {/* Form Content Cards */}
-          <div className="bg-white border border-stone-200 rounded-3xl p-6 md:p-8 shadow-sm">
+          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-4 sm:p-6 md:p-8 shadow-sm">
 
             {/* TAB: GENERAL */}
             {activeTab === "general" && (
               <div className="space-y-6 animate-in fade-in duration-200">
-                <div className="border-b border-stone-100 pb-3">
-                  <h2 className="text-base font-bold text-stone-900">General Information</h2>
-                  <p className="text-xs text-stone-400">Modify base details of your product.</p>
+                <div className="border-b border-stone-100 dark:border-stone-800 pb-3">
+                  <h2 className="text-base font-bold text-stone-900 dark:text-white">General Information</h2>
+                  <p className="text-xs text-stone-400 dark:text-stone-500">Modify base details of your product.</p>
                 </div>
 
                 {/* Name */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                  <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                     Product Name *
                   </label>
                   <input
@@ -370,31 +373,31 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                     onChange={(e) => handleNameChange(e.target.value)}
                     placeholder="e.g. EV Solution Alpha E-Bike"
                     required
-                    className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                    className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3 text-base text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                   />
                 </div>
 
                 {/* Slug */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                  <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                     Slug (URL Slug) *
                   </label>
-                  <div className="flex items-center gap-2 bg-stone-50 border border-stone-200 rounded-xl px-4 py-3">
-                    <span className="text-stone-400 text-xs font-medium">/products/</span>
+                  <div className="flex items-center gap-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3">
+                    <span className="text-stone-400 dark:text-stone-500 text-xs font-medium">/products/</span>
                     <input
                       type="text"
                       value={slug}
                       onChange={(e) => setSlug(e.target.value)}
                       placeholder="ev-solution-alpha-ebike"
                       required
-                      className="flex-1 bg-transparent text-sm text-stone-900 focus:outline-none"
+                      className="flex-1 bg-transparent text-base text-stone-900 dark:text-stone-100 focus:outline-none"
                     />
                   </div>
                 </div>
 
                 {/* Category Grid Selection */}
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                  <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                     Category *
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
@@ -406,8 +409,8 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                         className={cn(
                           "flex flex-col items-center gap-2 p-3 rounded-xl border-2 transition-all text-xs font-bold text-center",
                           category === cat.slug
-                            ? "border-emerald-600 bg-emerald-50 text-emerald-800"
-                            : "border-stone-200 text-stone-500 hover:border-stone-300 bg-white"
+                            ? "border-emerald-600 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300"
+                            : "border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:border-stone-300 dark:hover:border-stone-600 bg-white dark:bg-stone-800"
                         )}
                       >
                         <span className="text-xl filter drop-shadow-sm">{cat.icon || "📦"}</span>
@@ -420,16 +423,16 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                 {/* Description Editor + Realtime Preview Toggle */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                    <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                       Description
                     </label>
-                    <div className="bg-stone-100 p-0.5 rounded-lg flex border border-stone-200">
+                    <div className="bg-stone-100 dark:bg-stone-800 p-0.5 rounded-lg flex border border-stone-200 dark:border-stone-700">
                       <button
                         type="button"
                         onClick={() => setDescMode("edit")}
                         className={cn(
                           "px-2.5 py-1 text-[10px] font-bold rounded-md transition-all",
-                          descMode === "edit" ? "bg-white text-stone-800 shadow-sm" : "text-stone-500"
+                          descMode === "edit" ? "bg-white dark:bg-stone-700 text-stone-800 dark:text-stone-100 shadow-sm" : "text-stone-500"
                         )}
                       >
                         Editor
@@ -439,7 +442,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                         onClick={() => setDescMode("preview")}
                         className={cn(
                           "px-2.5 py-1 text-[10px] font-bold rounded-md transition-all",
-                          descMode === "preview" ? "bg-white text-stone-800 shadow-sm" : "text-stone-500"
+                          descMode === "preview" ? "bg-white dark:bg-stone-700 text-stone-800 dark:text-stone-100 shadow-sm" : "text-stone-500"
                         )}
                       >
                         Preview
@@ -453,12 +456,12 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                       onChange={(e) => setDescription(e.target.value)}
                       rows={6}
                       placeholder="Describe this product. Markdown formatting is supported..."
-                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                      className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3 text-base text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                     />
                   ) : (
-                    <div className="bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 min-h-[144px] prose prose-sm max-w-none">
+                    <div className="bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3 text-base text-stone-800 dark:text-stone-200 min-h-[144px] prose prose-sm max-w-none">
                       {description ? (
-                        <div className="whitespace-pre-wrap">{description}</div>
+                        <div className="whitespace-pre-wrap break-words">{description}</div>
                       ) : (
                         <span className="text-stone-400 italic">No description details written.</span>
                       )}
@@ -467,8 +470,8 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                 </div>
 
                 {/* Tag Selection */}
-                <div className="space-y-2 pt-4 border-t border-stone-100">
-                  <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                <div className="space-y-2 pt-4 border-t border-stone-100 dark:border-stone-800">
+                  <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                     Product Tags
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -489,7 +492,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                             "px-3 py-1.5 rounded-lg border text-xs font-bold transition-all",
                             isSelected
                               ? "bg-stone-900 border-stone-900 text-white"
-                              : "bg-white border-stone-200 text-stone-600 hover:border-stone-300"
+                              : "bg-white dark:bg-stone-800 border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-600"
                           )}
                         >
                           {tag}
@@ -505,19 +508,19 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
             {/* TAB: PRICING & STOCK */}
             {activeTab === "pricing" && (
               <div className="space-y-6 animate-in fade-in duration-200">
-                <div className="border-b border-stone-100 pb-3">
-                  <h2 className="text-base font-bold text-stone-900">Pricing & Inventory</h2>
-                  <p className="text-xs text-stone-400">Configure cost specifications and stock availability.</p>
+                <div className="border-b border-stone-100 dark:border-stone-800 pb-3">
+                  <h2 className="text-base font-bold text-stone-900 dark:text-white">Pricing & Inventory</h2>
+                  <p className="text-xs text-stone-400 dark:text-stone-500">Configure cost specifications and stock availability.</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Price */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                    <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                       Price (BDT) *
                     </label>
-                    <div className="flex items-center gap-1.5 bg-stone-50 border border-stone-200 rounded-xl px-4 py-3">
-                      <span className="text-stone-400 font-bold">৳</span>
+                    <div className="flex items-center gap-1.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3">
+                      <span className="text-stone-400 dark:text-stone-500 font-bold">৳</span>
                       <input
                         type="number"
                         value={price}
@@ -525,32 +528,32 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                         placeholder="85000"
                         required
                         min="0"
-                        className="flex-1 bg-transparent text-sm text-stone-900 focus:outline-none"
+                        className="flex-1 bg-transparent text-base text-stone-900 dark:text-stone-100 focus:outline-none"
                       />
                     </div>
                   </div>
 
                   {/* Compare Price */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                    <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                       Compare Price (BDT)
                     </label>
-                    <div className="flex items-center gap-1.5 bg-stone-50 border border-stone-200 rounded-xl px-4 py-3">
-                      <span className="text-stone-400 font-bold">৳</span>
+                    <div className="flex items-center gap-1.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3">
+                      <span className="text-stone-400 dark:text-stone-500 font-bold">৳</span>
                       <input
                         type="number"
                         value={comparePrice}
                         onChange={(e) => setComparePrice(e.target.value)}
                         placeholder="95000"
                         min="0"
-                        className="flex-1 bg-transparent text-sm text-stone-900 focus:outline-none"
+                        className="flex-1 bg-transparent text-base text-stone-900 dark:text-stone-100 focus:outline-none"
                       />
                     </div>
                   </div>
 
                   {/* Stock Quantity */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                    <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                       Stock Quantity *
                     </label>
                     <input
@@ -559,13 +562,13 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                       onChange={(e) => setStock(e.target.value)}
                       min="0"
                       required
-                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                      className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3 text-base text-stone-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                     />
                   </div>
 
                   {/* Featured Toggle */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                    <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                       Featured Status
                     </label>
                     <button
@@ -574,8 +577,8 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                       className={cn(
                         "w-full flex items-center justify-center gap-2 py-3 rounded-xl border-2 text-sm font-bold transition-all h-12",
                         isFeatured
-                          ? "border-emerald-600 bg-emerald-50 text-emerald-800"
-                          : "border-stone-200 text-stone-500 hover:border-stone-300 bg-white"
+                          ? "border-emerald-600 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300"
+                          : "border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:border-stone-300 dark:hover:border-stone-600 bg-white dark:bg-stone-800"
                       )}
                     >
                       {isFeatured ? "⭐ Featured Product" : "☆ Not Featured"}
@@ -588,9 +591,9 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
             {/* TAB: VARIATIONS & ADD-ONS */}
             {activeTab === "options" && (
               <div className="space-y-6 animate-in fade-in duration-200">
-                <div className="border-b border-stone-100 pb-3">
-                  <h2 className="text-base font-bold text-stone-900">Variations & Add-ons</h2>
-                  <p className="text-xs text-stone-400">Offer product options like body-only pricing, upgrades, and warranties.</p>
+                <div className="border-b border-stone-100 dark:border-stone-800 pb-3">
+                  <h2 className="text-base font-bold text-stone-900 dark:text-white">Variations & Add-ons</h2>
+                  <p className="text-xs text-stone-400 dark:text-stone-500">Offer product options like body-only pricing, upgrades, and warranties.</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -634,10 +637,10 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                 <div className="space-y-4">
                   <div className="border-b border-stone-100 pb-3 flex items-center justify-between">
                     <div>
-                      <h2 className="text-base font-bold text-stone-900">Technical Specifications</h2>
-                      <p className="text-xs text-stone-400">Add dynamic spec properties (e.g., motor power, range).</p>
+                      <h2 className="text-base font-bold text-stone-900 dark:text-white">Technical Specifications</h2>
+                      <p className="text-xs text-stone-400 dark:text-stone-500">Add dynamic spec properties (e.g., motor power, range).</p>
                     </div>
-                    <Badge className="bg-stone-100 text-stone-500 text-[10px] font-bold border-0">
+                    <Badge className="bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 text-[10px] font-bold border-0">
                       Optional
                     </Badge>
                   </div>
@@ -652,21 +655,21 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                             value={row.key}
                             onChange={(e) => updateSpec(actualIdx, "key", e.target.value)}
                             placeholder="e.g. range"
-                            className="flex-1 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-xs font-bold text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                            className="flex-1 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-base font-bold text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                           />
-                          <span className="text-stone-300 text-sm font-bold">:</span>
+                          <span className="text-stone-300 dark:text-stone-600 text-sm font-bold">:</span>
                           <input
                             type="text"
                             value={row.value}
                             onChange={(e) => updateSpec(actualIdx, "value", e.target.value)}
                             placeholder="e.g. 80km"
-                            className="flex-1 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-xs font-bold text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                            className="flex-1 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-base font-bold text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                           />
                           {specs.length > 1 && (
                             <button
                               type="button"
                               onClick={() => removeSpecRow(actualIdx)}
-                              className="text-stone-400 hover:text-rose-600 p-1 border-0 bg-transparent"
+                              className="text-stone-400 hover:text-rose-600 dark:hover:text-rose-400 p-1 border-0 bg-transparent min-h-[44px] min-w-[44px] inline-flex items-center justify-center"
                             >
                               <Trash2 className="w-4 h-4" />
                             </button>
@@ -679,7 +682,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                   <button
                     type="button"
                     onClick={addSpecRow}
-                    className="flex items-center gap-2 text-xs font-bold text-stone-500 hover:text-emerald-800 transition-colors border-0 bg-transparent py-1 cursor-pointer"
+                    className="flex items-center gap-2 text-xs font-bold text-stone-500 dark:text-stone-400 hover:text-emerald-800 dark:hover:text-emerald-400 transition-colors border-0 bg-transparent py-1 min-h-[44px] cursor-pointer"
                   >
                     <Plus className="w-4 h-4" />
                     Add spec row
@@ -687,18 +690,18 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                 </div>
 
                 {/* SEO Properties Section */}
-                <div className="space-y-4 pt-6 border-t border-stone-100">
+                <div className="space-y-4 pt-6 border-t border-stone-100 dark:border-stone-800">
                   <div className="pb-2">
                     <h2 className="text-base font-bold text-stone-900 flex items-center gap-1.5">
-                      <Globe className="w-4 h-4 text-emerald-700" />
+                      <Globe className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
                       SEO Settings
                     </h2>
-                    <p className="text-xs text-stone-400">Optimize product details for Google Search Engine indexing.</p>
+                    <p className="text-xs text-stone-400 dark:text-stone-500">Optimize product details for Google Search Engine indexing.</p>
                   </div>
 
                   {/* Meta Title */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                    <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                       Meta Title
                     </label>
                     <input
@@ -706,13 +709,13 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                       value={metaTitle}
                       onChange={(e) => setMetaTitle(e.target.value)}
                       placeholder="e.g. EV Solution Alpha E-Bike Price in Bangladesh"
-                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                      className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3 text-base text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                     />
                   </div>
 
                   {/* Meta Description */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                    <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                       Meta Description
                     </label>
                     <textarea
@@ -720,7 +723,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                       onChange={(e) => setMetaDescription(e.target.value)}
                       rows={3}
                       placeholder="Provide meta description summarizing the product for listing snips..."
-                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 resize-none"
+                      className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-3 text-base text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 resize-none"
                     />
                   </div>
                 </div>
@@ -731,17 +734,17 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
             {/* TAB: MEDIA & IMAGES */}
             {activeTab === "media" && (
               <div className="space-y-6 animate-in fade-in duration-200">
-                <div className="border-b border-stone-100 pb-3">
-                  <h2 className="text-base font-bold text-stone-900">Product Media</h2>
-                  <p className="text-xs text-stone-400">Manage primary thumbnail and detail variation images.</p>
+                <div className="border-b border-stone-100 dark:border-stone-800 pb-3">
+                  <h2 className="text-base font-bold text-stone-900 dark:text-white">Product Media</h2>
+                  <p className="text-xs text-stone-400 dark:text-stone-500">Manage primary thumbnail and detail variation images.</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   
                   {/* Primary Image Upload Box */}
                   <div className="space-y-3">
-                    <h3 className="text-xs font-bold text-stone-750 uppercase tracking-widest flex items-center gap-2">
-                      <Sparkles className="w-4 h-4 text-emerald-800" />
+                    <h3 className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-widest flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-emerald-800 dark:text-emerald-400" />
                       Primary Thumbnail Image
                     </h3>
 
@@ -749,8 +752,8 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                     <div
                       onClick={() => fileInputRef.current?.click()}
                       className={cn(
-                        "relative aspect-video rounded-2xl border-2 border-dashed cursor-pointer transition-all overflow-hidden bg-stone-50 flex items-center justify-center",
-                        imagePreview ? "border-emerald-600/50" : "border-stone-200 hover:border-stone-400"
+                        "relative aspect-video rounded-2xl border-2 border-dashed cursor-pointer transition-all overflow-hidden bg-stone-50 dark:bg-stone-800/50 flex items-center justify-center",
+                        imagePreview ? "border-emerald-600/50" : "border-stone-200 dark:border-stone-700 hover:border-stone-400 dark:hover:border-stone-500"
                       )}
                     >
                       {imagePreview ? (
@@ -761,8 +764,8 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                           </div>
                         </>
                       ) : (
-                        <div className="flex flex-col items-center gap-2 text-stone-400 p-4">
-                          <Upload className="w-8 h-8 text-stone-300" />
+                        <div className="flex flex-col items-center gap-2 text-stone-400 dark:text-stone-500 p-4">
+                          <Upload className="w-8 h-8 text-stone-300 dark:text-stone-600" />
                           <p className="text-xs text-center font-bold">Upload main thumbnail</p>
                         </div>
                       )}
@@ -778,15 +781,15 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                     <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
 
                     {imageUrl && (
-                      <div className="flex items-center justify-between text-[11px] bg-stone-50 p-3 border rounded-xl">
-                        <span className="truncate text-stone-550 max-w-[200px] font-mono">{imageUrl}</span>
+                      <div className="flex items-center justify-between gap-2 text-[11px] bg-stone-50 dark:bg-stone-800 p-3 border border-stone-200 dark:border-stone-700 rounded-xl">
+                        <span className="truncate text-stone-500 dark:text-stone-400 max-w-[200px] font-mono">{imageUrl}</span>
                         <button
                           type="button"
                           onClick={() => {
                             setImageUrl("");
                             setImagePreview("");
                           }}
-                          className="text-rose-600 font-bold hover:underline border-0 bg-transparent shrink-0"
+                          className="text-rose-600 dark:text-rose-400 font-bold hover:underline border-0 bg-transparent shrink-0 min-h-[44px] px-2"
                         >
                           Remove
                         </button>
@@ -796,19 +799,19 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
 
                   {/* Variation Images Gallery Box */}
                   <div className="space-y-3">
-                    <h3 className="text-xs font-bold text-stone-750 uppercase tracking-widest flex items-center gap-2">
-                      <ImageIcon className="w-4 h-4 text-emerald-800" />
+                    <h3 className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-widest flex items-center gap-2">
+                      <ImageIcon className="w-4 h-4 text-emerald-800 dark:text-emerald-400" />
                       Detail Gallery Images
                     </h3>
 
                     <div className="grid grid-cols-3 gap-2.5">
                       {galleryImages.map((url, i) => (
-                        <div key={i} className="relative aspect-square rounded-xl overflow-hidden border border-stone-200">
+                        <div key={i} className="relative aspect-square rounded-xl overflow-hidden border border-stone-200 dark:border-stone-700">
                           <Image src={url} alt="Gallery" fill className="object-cover" unoptimized={true} />
                           <button
                             type="button"
                             onClick={() => setGalleryImages((prev) => prev.filter((_, idx) => idx !== i))}
-                            className="absolute top-1 right-1 bg-white rounded-full p-1 shadow-md text-rose-500 hover:text-rose-755 z-10"
+                            className="absolute top-1 right-1 bg-white dark:bg-stone-800 rounded-full p-1 shadow-md text-rose-500 hover:text-rose-700 z-10 min-h-[36px] min-w-[36px] inline-flex items-center justify-center"
                           >
                             <X className="w-3.5 h-3.5" />
                           </button>
@@ -817,7 +820,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
 
                       <div
                         onClick={() => galleryInputRef.current?.click()}
-                        className="aspect-square rounded-xl border-2 border-dashed border-stone-200 hover:border-emerald-500 cursor-pointer flex flex-col items-center justify-center gap-1.5 bg-stone-50 text-stone-400 transition-colors"
+                        className="aspect-square rounded-xl border-2 border-dashed border-stone-200 dark:border-stone-700 hover:border-emerald-500 dark:hover:border-emerald-600 cursor-pointer flex flex-col items-center justify-center gap-1.5 bg-stone-50 dark:bg-stone-800/50 text-stone-400 dark:text-stone-500 transition-colors min-h-[88px]"
                       >
                         <Plus className="w-5 h-5" />
                         <span className="text-[10px] font-bold uppercase tracking-wider">Add</span>
@@ -834,8 +837,8 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
           </div>
 
           {/* Form Actions Footer Bar */}
-          <div className="flex items-center justify-between bg-stone-900 p-4 rounded-2xl text-white">
-            <span className="text-xs font-bold text-stone-400">
+          <div className="flex flex-wrap items-center justify-between gap-3 bg-stone-900 dark:border dark:border-stone-800 p-4 rounded-2xl text-white">
+            <span className="text-xs font-bold text-stone-400 dark:text-stone-500">
               {activeTab === "media" ? "Ready to save edits?" : "Fill details or click save"}
             </span>
 
@@ -843,7 +846,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
               <Button
                 type="submit"
                 disabled={saving || uploading || !imageUrl}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider disabled:opacity-40 border-0 flex items-center gap-2"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-6 py-2.5 min-h-[44px] rounded-xl text-xs uppercase tracking-wider disabled:opacity-40 border-0 flex items-center gap-2"
               >
                 {saving ? (
                   <>
