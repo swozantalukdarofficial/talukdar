@@ -55,6 +55,9 @@ export const metadata: Metadata = {
 
 import { getAllCategories } from "@/lib/categories";
 import { getStoreSettings } from "@/lib/settings";
+import { headers } from "next/headers";
+import MaintenancePage from "@/components/MaintenancePage";
+import AnnouncementBar from "@/components/AnnouncementBar";
 
 export default async function RootLayout({
   children,
@@ -65,6 +68,12 @@ export default async function RootLayout({
     getAllCategories(),
     getStoreSettings(),
   ]);
+
+  // Maintenance mode: hide the storefront, but never block /admin/*
+  // (pathname is attached by src/middleware.ts since layouts can't read it).
+  const pathname = (await headers()).get("x-pathname") || "";
+  const isAdminPath = pathname.startsWith("/admin");
+  const inMaintenance = settings.maintenance_mode === true && !isAdminPath;
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -84,12 +93,22 @@ export default async function RootLayout({
             gtag('config', 'G-9CPCHEWEBN');
           `}
         </Script>
-        <CartProvider>
-          <Header categories={categories} />
-          <main className="overflow-x-hidden w-full relative">{children}</main>
-          <Footer settings={settings} />
-          <Toaster position="bottom-right" theme="light" />
-        </CartProvider>
+        {inMaintenance ? (
+          <MaintenancePage
+            message={settings.maintenance_message}
+            storeName={settings.store_name}
+          />
+        ) : (
+          <CartProvider>
+            {settings.announcement_bar ? (
+              <AnnouncementBar text={settings.announcement_bar} />
+            ) : null}
+            <Header categories={categories} />
+            <main className="overflow-x-hidden w-full relative">{children}</main>
+            <Footer settings={settings} />
+            <Toaster position="bottom-right" theme="light" />
+          </CartProvider>
+        )}
       </body>
     </html>
   );

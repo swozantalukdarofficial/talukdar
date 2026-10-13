@@ -1,12 +1,14 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import HeroCarousel from "@/components/HeroCarousel";
+import PromoBanner from "@/components/PromoBanner";
 import HomeSchema from "@/components/HomeSchema";
 import {
   getFeaturedProducts,
   getProductsByCategory,
   getSaleProducts,
 } from "@/lib/products";
+import { getStoreSettings } from "@/lib/settings";
 import type { Metadata } from "next";
 import { SITE_URL } from "@/config/seo";
 
@@ -37,7 +39,7 @@ export const revalidate = 300;
 
 export default async function HomePage() {
   // Parallel server-side fetches
-  const [featured, ebikes, batteries, parts, accessories, solar, saleProducts] =
+  const [featured, ebikes, batteries, parts, accessories, solar, saleProducts, settings] =
     await Promise.all([
       getFeaturedProducts(),
       getProductsByCategory("ebike"),
@@ -46,6 +48,7 @@ export default async function HomePage() {
       getProductsByCategory("accessories"),
       getProductsByCategory("solar"),
       getSaleProducts(),
+      getStoreSettings(),
     ]);
 
   // Separate capped lists for homepage performance (8-10 items per rail)
@@ -62,7 +65,10 @@ export default async function HomePage() {
       <HomeSchema />
 
       {/* 1. Full-screen hero carousel */}
-      <HeroCarousel />
+      <HeroCarousel slides={settings.hero_slides} />
+
+      {/* 1.5 Promo banner (managed from /admin/store-customization) */}
+      <PromoBanner text={settings.promo_banner || ""} />
 
       {/* 2. Flash Sale Section with Countdown Timer */}
       <FlashSaleSection products={saleList} />

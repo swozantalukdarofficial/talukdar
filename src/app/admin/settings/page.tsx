@@ -15,7 +15,8 @@ import {
   Sparkles,
   CheckCircle2,
   Sliders,
-  DollarSign
+  DollarSign,
+  Wrench
 } from "lucide-react";
 import { toast } from "sonner";
 import { getStoreSettings, updateStoreSettings } from "@/lib/settings";
@@ -23,7 +24,7 @@ import { cn } from "@/lib/utils";
 
 export default function AdminSettingsPage() {
   const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState<"general" | "payments" | "shipping" | "security">("general");
+  const [activeTab, setActiveTab] = useState<"general" | "payments" | "shipping" | "security" | "maintenance">("general");
 
   // General Store Info
   const [storeName, setStoreName] = useState("EV Solution BD");
@@ -42,6 +43,12 @@ export default function AdminSettingsPage() {
   const [bkashNumber, setBkashNumber] = useState("01333600272");
   const [nagadNumber, setNagadNumber] = useState("01333600272");
 
+  // Maintenance mode
+  const [maintenanceMode, setMaintenanceMode] = useState(false);
+  const [maintenanceMessage, setMaintenanceMessage] = useState(
+    "We are performing scheduled maintenance. Please check back soon."
+  );
+
   useEffect(() => {
     async function loadSettings() {
       const data = await getStoreSettings();
@@ -57,6 +64,8 @@ export default function AdminSettingsPage() {
         setBkashNumber(data.bkash_number || "01333600272");
         setNagadNumber(data.nagad_number || "01333600272");
         setNotifyEmail(data.order_notification_email || "swozantalukdaofficial@gmail.com");
+        setMaintenanceMode(data.maintenance_mode === true);
+        if (data.maintenance_message) setMaintenanceMessage(data.maintenance_message);
       }
     }
     loadSettings();
@@ -79,19 +88,27 @@ export default function AdminSettingsPage() {
       nagad_number: nagadNumber,
     };
 
-    // Try saving with the notification email; if the DB column doesn't exist
-    // yet (migration not run), fall back to saving everything else.
+    // Try saving with the notification email + maintenance fields; if the DB
+    // columns don't exist yet (migrations not run), fall back to saving
+    // everything else.
     let { error } = await updateStoreSettings({
       ...base,
       order_notification_email: notifyEmail.trim(),
+      maintenance_mode: maintenanceMode,
+      maintenance_message: maintenanceMessage.trim(),
     });
 
-    if (error && error.includes("order_notification_email")) {
+    if (
+      error &&
+      (error.includes("order_notification_email") ||
+        error.includes("maintenance_mode") ||
+        error.includes("maintenance_message"))
+    ) {
       const retry = await updateStoreSettings(base);
       error = retry.error;
       if (!error) {
         toast.warning(
-          "Settings saved, but notification email needs the one-time DB update: run supabase/add_order_notification_email.sql in Supabase SQL Editor."
+          "Settings saved, but some fields need one-time DB updates: run supabase/add_order_notification_email.sql and supabase/add_maintenance_mode.sql in Supabase SQL Editor."
         );
       }
     }
@@ -133,6 +150,7 @@ export default function AdminSettingsPage() {
           { id: "general", label: "Store Profile", icon: Store },
           { id: "payments", label: "Payment Gateways", icon: CreditCard },
           { id: "shipping", label: "Delivery & Shipping", icon: Truck },
+          { id: "maintenance", label: "Maintenance", icon: Wrench },
           { id: "security", label: "Security & Access", icon: Shield },
         ].map((tab) => {
           const Icon = tab.icon;
@@ -379,7 +397,65 @@ export default function AdminSettingsPage() {
           </div>
         )}
 
-        {/* 4. Security Tab */}
+        {/* 4. Maintenance Tab */}
+        {activeTab === "maintenance" && (
+          <div className="p-6 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-2xs space-y-6 animate-in fade-in duration-150">
+            <div>
+              <h3 className="font-extrabold text-base text-stone-900 dark:text-white">
+                Maintenance Mode
+              </h3>
+              <p className="text-xs text-stone-400 mt-0.5">
+                Temporarily take the storefront offline while you work on it — the admin panel stays accessible
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl border border-stone-200 dark:border-stone-700 bg-stone-50/50 dark:bg-stone-800/40 flex items-center justify-between text-xs">
+              <div>
+                <h4 className="font-extrabold text-stone-900 dark:text-white text-sm">
+                  Enable maintenance mode
+                </h4>
+                <p className="text-stone-500 text-[11px] mt-0.5">
+                  Visitors will see a &ldquo;we&rsquo;ll be right back&rdquo; page instead of your store
+                </p>
+              </div>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={maintenanceMode}
+                onClick={() => setMaintenanceMode((v) => !v)}
+                className={cn(
+                  "relative w-11 h-6 rounded-full transition-colors shrink-0 cursor-pointer",
+                  maintenanceMode ? "bg-amber-500" : "bg-stone-300 dark:bg-stone-700"
+                )}
+              >
+                <span
+                  className={cn(
+                    "absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all",
+                    maintenanceMode ? "left-[22px]" : "left-0.5"
+                  )}
+                />
+              </button>
+            </div>
+
+            <div className="text-xs">
+              <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1.5">
+                Maintenance message shown to visitors
+              </label>
+              <textarea
+                rows={3}
+                value={maintenanceMessage}
+                onChange={(e) => setMaintenanceMessage(e.target.value)}
+                placeholder="We are performing scheduled maintenance. Please check back soon."
+                className="w-full px-3.5 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+              />
+              <p className="text-[11px] text-stone-400 mt-1">
+                Requires the one-time DB update (<code>supabase/add_maintenance_mode.sql</code>) — until then the toggle won&apos;t persist.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* 5. Security Tab */}
         {activeTab === "security" && (
           <div className="p-6 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-2xs space-y-6 animate-in fade-in duration-150">
             <div>

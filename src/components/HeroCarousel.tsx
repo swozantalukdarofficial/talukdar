@@ -14,20 +14,21 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { DEFAULT_HERO_SLIDES, type HeroSlide } from "@/lib/settings";
 
-const SLIDES = [
+// ─── Theme presets (Tailwind classes can't be built dynamically) ────
+const THEMES: Record<
+  HeroSlide["theme"],
   {
-    id: 1,
-    tag: "New Arrival",
+    tagColor: string;
+    subGradient: string;
+    bgGradient: string;
+    stats: { icon: typeof Zap; value: string; label: string }[];
+  }
+> = {
+  emerald: {
     tagColor: "text-emerald-850 bg-emerald-50 border-emerald-200",
-    headline: "The Future of",
-    sub: "Urban Commute",
     subGradient: "from-emerald-800 to-green-700",
-    description:
-      "Premium electric bikes and smart scooters built for Bangladesh roads. Zero emission. Maximum efficiency.",
-    cta: { label: "Shop E-Bikes", href: "/products?category=ebike" },
-    ctaSecondary: { label: "View All Products", href: "/products" },
-    image: "/silver_scooter.webp",
     bgGradient: "bg-gradient-to-r from-stone-50 to-stone-100",
     stats: [
       { icon: Zap, value: "80km", label: "Range" },
@@ -35,18 +36,9 @@ const SLIDES = [
       { icon: Shield, value: "2yr", label: "Warranty" },
     ],
   },
-  {
-    id: 2,
-    tag: "Commercial EVs",
+  blue: {
     tagColor: "text-blue-800 bg-blue-50 border-blue-200",
-    headline: "Built For",
-    sub: "Heavy Duty",
     subGradient: "from-blue-800 to-indigo-700",
-    description:
-      "High-performance electric auto-rickshaws, pickups, and utility vehicles designed for maximum ROI and reliability.",
-    cta: { label: "Shop Commercial", href: "/products?category=commercial" },
-    ctaSecondary: { label: "Explore Products", href: "/products" },
-    image: "/iso_commercial.webp",
     bgGradient: "bg-gradient-to-r from-blue-50/40 to-indigo-50/40",
     stats: [
       { icon: Battery, value: "Heavy", label: "Duty" },
@@ -54,18 +46,9 @@ const SLIDES = [
       { icon: Shield, value: "Tested", label: "Tough" },
     ],
   },
-  {
-    id: 3,
-    tag: "Solar Energy",
+  amber: {
     tagColor: "text-amber-850 bg-amber-50 border-amber-200",
-    headline: "Power Your",
-    sub: "Ride With Sun",
     subGradient: "from-amber-600 to-orange-500",
-    description:
-      "High-efficiency solar panels and inverters. Charge your EVs with 100% renewable energy directly from the sun.",
-    cta: { label: "Shop Solar", href: "/products?category=solar" },
-    ctaSecondary: { label: "Inverters", href: "/products?category=parts" },
-    image: "/iso_solar.webp",
     bgGradient: "bg-gradient-to-r from-amber-50/40 to-orange-50/30",
     stats: [
       { icon: Shield, value: "Tier 1", label: "Panels" },
@@ -73,9 +56,35 @@ const SLIDES = [
       { icon: Zap, value: "100%", label: "Green" },
     ],
   },
-];
+};
 
-export default function HeroCarousel() {
+export interface RenderSlide extends HeroSlide {
+  tagColor: string;
+  subGradient: string;
+  bgGradient: string;
+  stats: { icon: typeof Zap; value: string; label: string }[];
+  cta: { label: string; href: string };
+  ctaSecondary: { label: string; href: string };
+}
+
+export function resolveHeroSlides(slides?: HeroSlide[]): RenderSlide[] {
+  const list = slides && slides.length > 0 ? slides : DEFAULT_HERO_SLIDES;
+  return list.map((s) => {
+    const theme = THEMES[s.theme] || THEMES.emerald;
+    return {
+      ...s,
+      tagColor: theme.tagColor,
+      subGradient: theme.subGradient,
+      bgGradient: theme.bgGradient,
+      stats: theme.stats,
+      cta: { label: s.ctaLabel, href: s.ctaHref },
+      ctaSecondary: { label: s.ctaSecondaryLabel, href: s.ctaSecondaryHref },
+    };
+  });
+}
+
+export default function HeroCarousel({ slides }: { slides?: HeroSlide[] }) {
+  const SLIDES = resolveHeroSlides(slides);
   return (
     <section className="relative overflow-hidden border-b border-stone-200/50">
       <Carousel
@@ -84,7 +93,7 @@ export default function HeroCarousel() {
         className="w-full"
       >
         <CarouselContent className="-ml-0">
-          {SLIDES.map((slide) => (
+          {SLIDES.map((slide, index) => (
             <CarouselItem key={slide.id} className="pl-0">
               <div className={cn("relative min-h-[75vh] md:min-h-[85vh] flex items-center overflow-hidden", slide.bgGradient)}>
                 
@@ -107,7 +116,7 @@ export default function HeroCarousel() {
                       </div>
 
                       {/* Headline */}
-                      {slide.id === 1 ? (
+                      {index === 0 ? (
                         <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-[72px] font-extrabold tracking-tight text-stone-900 leading-[1.05] mb-6">
                           {slide.headline}
                           <br />
@@ -175,7 +184,7 @@ export default function HeroCarousel() {
                     </div>
 
                     <div className="order-1 lg:order-2 relative w-full h-[320px] sm:h-[450px] lg:h-[600px] flex items-center justify-center md:[mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_80%)]">
-                      {slide.id === 1 ? (
+                      {index === 0 ? (
                         <img
                           src={slide.image}
                           alt={slide.headline}
