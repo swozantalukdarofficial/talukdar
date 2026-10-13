@@ -237,17 +237,17 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#faf9f6] flex items-center justify-center">
+      <main className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <Loader2 className="w-8 h-8 text-emerald-600 animate-spin" />
-          <p className="text-stone-500 text-xs font-bold uppercase tracking-wider">Loading Article Details...</p>
+          <p className="text-stone-500 dark:text-stone-400 text-xs font-bold uppercase tracking-wider">Loading Article Details...</p>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#faf9f6] pt-0">
+    <main className="min-h-screen pt-0">
       <div className="max-w-4xl mx-auto px-4 py-8 md:py-10">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
@@ -258,8 +258,8 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="text-2xl font-extrabold text-stone-900 tracking-tight">Edit Blog Post</h1>
-            <p className="text-stone-500 text-xs font-semibold uppercase tracking-wider mt-0.5">
+            <h1 className="text-2xl font-extrabold text-stone-900 dark:text-white tracking-tight">Edit Blog Post</h1>
+            <p className="text-stone-500 dark:text-stone-400 text-xs font-semibold uppercase tracking-wider mt-0.5">
               Modify database-driven rich markdown blog post
             </p>
           </div>
@@ -270,8 +270,8 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
             
             {/* ── Left: Image Upload ── */}
             <div className="lg:col-span-1">
-              <div className="bg-white border border-stone-200 rounded-2xl p-5 sticky top-24 shadow-sm shadow-stone-150/50">
-                <h2 className="text-xs font-bold text-stone-750 uppercase tracking-widest mb-4 flex items-center gap-2">
+              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 lg:sticky lg:top-24 shadow-sm">
+                <h2 className="text-xs font-bold text-stone-600 dark:text-stone-300 uppercase tracking-widest mb-4 flex items-center gap-2">
                   <ImageIcon className="w-4 h-4 text-emerald-800" />
                   Cover Image
                 </h2>
@@ -280,10 +280,10 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                 <div
                   onClick={() => fileInputRef.current?.click()}
                   className={cn(
-                    "relative aspect-[16/10] rounded-xl border-2 border-dashed cursor-pointer transition-all overflow-hidden bg-stone-50",
+                    "relative aspect-[16/10] rounded-xl border-2 border-dashed cursor-pointer transition-all overflow-hidden bg-stone-50 dark:bg-stone-800/60",
                     imagePreview
                       ? "border-emerald-600/50"
-                      : "border-stone-200 hover:border-stone-400"
+                      : "border-stone-200 dark:border-stone-700 hover:border-stone-400 dark:hover:border-stone-500"
                   )}
                 >
                   {imagePreview ? (
@@ -296,12 +296,21 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                         sizes="300px"
                         unoptimized={true}
                       />
-                      {/* Overlay on hover */}
-                      <div className="absolute inset-0 bg-stone-900/60 backdrop-blur-[2px] opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+                      {/* Overlay on hover (desktop) */}
+                      <div className="absolute inset-0 bg-stone-900/60 backdrop-blur-[2px] opacity-0 hover:opacity-100 focus-within:opacity-100 transition-opacity hidden sm:flex sm:items-center sm:justify-center">
                         <p className="text-white text-xs font-bold uppercase tracking-wider">
                           Click to change
                         </p>
                       </div>
+                      {/* Always-visible change button for touch devices */}
+                      <button
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }}
+                        aria-label="Change cover image"
+                        className="sm:hidden absolute bottom-2 right-2 p-2.5 rounded-full bg-stone-900/70 text-white backdrop-blur-sm"
+                      >
+                        <Upload className="w-4 h-4" />
+                      </button>
                     </>
                   ) : (
                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-stone-400">
@@ -340,13 +349,13 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
 
                 {/* Upload status */}
                 {imageUrl && !uploading && (
-                  <div className="mt-3 flex items-center gap-2 text-emerald-800 text-xs font-bold">
+                  <div className="mt-3 flex items-center gap-2 text-emerald-700 dark:text-emerald-300 text-xs font-bold">
                     <CheckCircle className="w-3.5 h-3.5" />
                     <span>Image configured! ✅</span>
                   </div>
                 )}
                 {imageUrl && (
-                  <p className="mt-1 text-stone-400 text-[10px] truncate">{imageUrl}</p>
+                  <p className="mt-1 text-stone-400 dark:text-stone-500 text-[10px] truncate break-all">{imageUrl}</p>
                 )}
 
                 {/* Remove image */}
@@ -357,7 +366,7 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                       setImageUrl("");
                       setImagePreview("");
                     }}
-                    className="mt-3 text-xs font-semibold text-rose-600 hover:text-rose-700 flex items-center gap-1.5"
+                    className="mt-3 text-xs font-semibold text-rose-600 hover:text-rose-700 dark:text-rose-400 dark:hover:text-rose-300 flex items-center gap-1.5"
                   >
                     <X className="w-3.5 h-3.5" /> Remove image
                   </button>
@@ -368,14 +377,14 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
             {/* ── Right: Blog Details ── */}
             <div className="lg:col-span-2 space-y-6">
               {/* Basic info */}
-              <div className="bg-white border border-stone-200/85 rounded-2xl p-6 space-y-4 shadow-sm shadow-stone-150/40">
-                <h2 className="text-xs font-bold text-stone-750 uppercase tracking-widest border-b border-stone-100 pb-2.5">
+              <div className="bg-white dark:bg-stone-900 border border-stone-200/85 dark:border-stone-800 rounded-2xl p-6 space-y-4 shadow-sm">
+                <h2 className="text-xs font-bold text-stone-600 dark:text-stone-300 uppercase tracking-widest border-b border-stone-100 dark:border-stone-800 pb-2.5">
                   Blog Content
                 </h2>
 
                 {/* Title */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                  <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                     Blog Title *
                   </label>
                   <input
@@ -384,35 +393,35 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                     onChange={(e) => handleTitleChange(e.target.value)}
                     placeholder="Graphene Battery Lifespan: Is It Better?"
                     required
-                    className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                    className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-base text-stone-900 dark:text-white placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                   />
                 </div>
 
                 {/* Slug */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                  <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                     Slug (URL) *
                   </label>
-                  <div className="flex items-center gap-2 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5">
-                    <span className="text-stone-400 text-xs font-medium">/blog/</span>
+                  <div className="flex items-center gap-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 min-w-0">
+                    <span className="text-stone-400 dark:text-stone-500 text-xs font-medium shrink-0">/blog/</span>
                     <input
                       type="text"
                       value={slug}
                       onChange={(e) => setSlug(e.target.value)}
                       placeholder="graphene-battery-lifespan"
                       required
-                      className="flex-1 bg-transparent text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
+                      className="flex-1 min-w-0 bg-transparent text-base text-stone-900 dark:text-white placeholder:text-stone-400 focus:outline-none"
                     />
                     <button
                       type="button"
                       onClick={regenerateSlugFromTitle}
                       title="Regenerate slug from title (changes the live URL!)"
-                      className="shrink-0 p-1.5 rounded-lg text-stone-400 hover:text-emerald-700 hover:bg-emerald-50 transition-colors"
+                      className="shrink-0 p-2.5 rounded-lg text-stone-400 hover:text-emerald-700 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition-colors"
                     >
                       <RefreshCw className="w-3.5 h-3.5" />
                     </button>
                   </div>
-                  <p className="text-[10px] text-amber-600 font-semibold">
+                  <p className="text-[10px] text-amber-600 dark:text-amber-400 font-semibold">
                     ⚠️ Changing the slug breaks the existing live URL. Only change it deliberately.
                   </p>
                 </div>
@@ -420,7 +429,7 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                 {/* Category & Read Time & Date */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                    <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                       Category *
                     </label>
                     <input
@@ -429,12 +438,12 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                       onChange={(e) => setCategory(e.target.value)}
                       placeholder="Buying Guide"
                       required
-                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                      className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-base text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                    <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                       Read Time *
                     </label>
                     <input
@@ -443,12 +452,12 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                       onChange={(e) => setReadTime(e.target.value)}
                       placeholder="8 min read"
                       required
-                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                      className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-base text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                    <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                       Display Date *
                     </label>
                     <input
@@ -457,14 +466,14 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                       onChange={(e) => setDateStr(e.target.value)}
                       placeholder="July 16, 2026"
                       required
-                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                      className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-base text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                     />
                   </div>
                 </div>
 
                 {/* Excerpt / Short Description */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                  <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                     Short Excerpt *
                   </label>
                   <textarea
@@ -473,13 +482,13 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                     rows={2}
                     placeholder="A brief 1-2 sentence preview description for card layout..."
                     required
-                    className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 resize-none"
+                    className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-base text-stone-900 dark:text-white placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 resize-none"
                   />
                 </div>
 
                 {/* Main Content Body */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                  <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                     Article Body (Markdown Enabled) *
                   </label>
                   <textarea
@@ -488,23 +497,23 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                     rows={12}
                     placeholder="### Heading&#10;Write your article here. Use *italics* or **bolds** for markup styling."
                     required
-                    className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 resize-y min-h-[300px]"
+                    className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-base text-stone-900 dark:text-white placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 resize-y min-h-[300px]"
                   />
-                  <p className="text-[10px] text-stone-400 font-semibold uppercase tracking-wider">
+                  <p className="text-[10px] text-stone-400 dark:text-stone-500 font-semibold uppercase tracking-wider">
                     Supports custom markdown headings (`###`), lists (`*`), and horizontal rules (`---`)
                   </p>
                 </div>
               </div>
 
               {/* SEO Meta Information */}
-              <div className="bg-white border border-stone-200/85 rounded-2xl p-6 space-y-4 shadow-sm shadow-stone-150/40">
-                <h2 className="text-xs font-bold text-stone-750 uppercase tracking-widest border-b border-stone-100 pb-2.5">
+              <div className="bg-white dark:bg-stone-900 border border-stone-200/85 dark:border-stone-800 rounded-2xl p-6 space-y-4 shadow-sm">
+                <h2 className="text-xs font-bold text-stone-600 dark:text-stone-300 uppercase tracking-widest border-b border-stone-100 dark:border-stone-800 pb-2.5">
                   Search Engine Optimization (SEO)
                 </h2>
 
                 <div className="space-y-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                    <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                       Meta Title
                     </label>
                     <input
@@ -512,12 +521,12 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                       value={metaTitle}
                       onChange={(e) => setMetaTitle(e.target.value)}
                       placeholder="Graphene Battery Lifespan: Complete Guide"
-                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                      className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-base text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                    <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                       Meta Description
                     </label>
                     <textarea
@@ -525,19 +534,19 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                       onChange={(e) => setMetaDesc(e.target.value)}
                       rows={2}
                       placeholder="Get the complete electric bike and scooter price list in Bangladesh..."
-                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 resize-none"
+                      className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-base text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-700/20 resize-none"
                     />
                   </div>
                 </div>
               </div>
 
               {/* Publishing */}
-              <div className="bg-white border border-stone-200/85 rounded-2xl p-6 space-y-4 shadow-sm shadow-stone-150/40">
-                <h2 className="text-xs font-bold text-stone-750 uppercase tracking-widest border-b border-stone-100 pb-2.5">
+              <div className="bg-white dark:bg-stone-900 border border-stone-200/85 dark:border-stone-800 rounded-2xl p-6 space-y-4 shadow-sm">
+                <h2 className="text-xs font-bold text-stone-600 dark:text-stone-300 uppercase tracking-widest border-b border-stone-100 dark:border-stone-800 pb-2.5">
                   Publishing
                 </h2>
 
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   {(
                     [
                       { key: "published", label: "Published", icon: "🚀" },
@@ -552,8 +561,8 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                       className={cn(
                         "px-3 py-2.5 rounded-xl border text-xs font-bold transition-colors",
                         publishMode === opt.key
-                          ? "bg-emerald-700 text-white border-emerald-700"
-                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-stone-400"
+                          ? "bg-emerald-600 text-white border-emerald-600"
+                          : "bg-stone-50 dark:bg-stone-800 text-stone-600 dark:text-stone-300 border-stone-200 dark:border-stone-700 hover:border-stone-400 dark:hover:border-stone-500"
                       )}
                     >
                       <span className="mr-1">{opt.icon}</span>
@@ -564,23 +573,23 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
 
                 {publishMode === "scheduled" && (
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-stone-700 uppercase tracking-wide">
+                    <label className="text-xs font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wide">
                       Go live at *
                     </label>
                     <input
                       type="datetime-local"
                       value={scheduledAt}
                       onChange={(e) => setScheduledAt(e.target.value)}
-                      className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                      className="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-base text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
                     />
-                    <p className="text-[10px] text-stone-400 font-semibold uppercase tracking-wider">
+                    <p className="text-[10px] text-stone-400 dark:text-stone-500 font-semibold uppercase tracking-wider">
                       The post stays hidden until this time (your local time).
                     </p>
                   </div>
                 )}
 
                 {publishMode === "draft" && (
-                  <p className="text-[11px] text-stone-500 bg-stone-50 border border-stone-200 rounded-xl px-3 py-2">
+                  <p className="text-[11px] text-stone-500 dark:text-stone-400 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2">
                     Drafts are hidden from the blog page until you publish them.
                   </p>
                 )}
@@ -591,7 +600,7 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                 <Button
                   type="submit"
                   disabled={saving || uploading || !imageUrl}
-                  className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold h-12 text-sm gap-2 disabled:opacity-50 rounded-xl shadow-md shadow-emerald-700/10 border-0"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-12 text-sm gap-2 disabled:opacity-50 rounded-xl shadow-md shadow-emerald-600/20 border-0"
                 >
                   {saving ? (
                     <>
@@ -607,7 +616,7 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                 </Button>
 
                 {!imageUrl && (
-                  <p className="text-center text-xs font-bold text-amber-700 bg-amber-50 py-2 rounded-xl border border-amber-100/50">
+                  <p className="text-center text-xs font-bold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 py-2 px-3 rounded-xl border border-amber-100/50 dark:border-amber-900">
                     ⚠️ Please upload a cover image first to enable Save button.
                   </p>
                 )}
