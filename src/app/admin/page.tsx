@@ -6,28 +6,33 @@ import {
   Clock,
   CheckCircle2,
   Truck,
-  XCircle,
   AlertTriangle,
   ArrowRight,
-  TrendingUp,
   Package,
-  Users,
-  Calendar,
   Layers,
-  ArrowUpRight,
   CreditCard,
-  Phone,
   Eye,
   RefreshCw,
   PieChart as PieChartIcon,
-  BarChart3,
-  Printer
+  BarChart3
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
+// Asia/Dhaka is UTC+06:00 year-round (no daylight saving), so a fixed
+// offset is correct for bucketing order dates into the store's local day.
+const DHAKA_OFFSET_MS = 6 * 60 * 60 * 1000;
+
+/** "2026-10-13T05:30:00Z" -> "2026-10-13" in Asia/Dhaka */
+function toDhakaDateStr(iso: string): string {
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "";
+  return new Date(d.getTime() + DHAKA_OFFSET_MS).toISOString().split("T")[0];
+}
+
 export default async function AdminDashboard() {
+  let loadError = "";
   let prodCount = 0;
   let orderCount = 0;
   let totalRevenue = 0;
@@ -54,11 +59,17 @@ export default async function AdminDashboard() {
   let dailyStats: { dateStr: string; label: string; revenue: number; orders: number }[] = [];
 
   try {
-    if (supabase) {
+    if (!supabase) {
+      loadError = "Supabase is not configured — dashboard data is unavailable.";
+    } else {
       // 1. Total Products & Category Breakdown
-      const { data: prodsData, count: pCount } = await supabase
+      // NOTE: capped at 500 — for larger catalogs move aggregation server-side.
+      const { data: prodsData, count: pCount, error: prodsError } = await supabase
         .from("products")
-        .select("id, category, name, stock_quantity, price", { count: "exact" });
+        .select("id, category, name, stock_quantity, price", { count: "exact" })
+        .limit(500);
+
+      if (prodsError) throw prodsError;
 
       if (pCount !== null) prodCount = pCount;
 
@@ -83,38 +94,48 @@ export default async function AdminDashboard() {
       }
 
       // 2. Orders summary
-      const { data: allOrders } = await supabase
+      // NOTE: capped at 2000 most recent — for larger volumes move
+      // revenue aggregation into a server-side query.
+      const { data: allOrders, error: ordersError } = await supabase
         .from("orders")
         .select("id, customer_name, customer_phone, customer_email, total, status, payment_method, created_at")
-        .order("created_at", { ascending: false });
+        .order("created_at", { ascending: false })
+        .limit(2000);
+
+      if (ordersError) throw ordersError;
 
       if (allOrders && allOrders.length > 0) {
         orderCount = allOrders.length;
-        totalRevenue = allOrders.reduce((sum, o) => sum + (Number(o.total) || 0), 0);
+        // Revenue counts only real sales — cancelled orders are excluded.
+        const billableOrders = allOrders.filter(
+          (o) => (o.status || "pending").toLowerCase() !== "cancelled"
+        );
+        totalRevenue = billableOrders.reduce((sum, o) => sum + (Number(o.total) || 0), 0);
 
         const uniqueEmails = new Set(
           allOrders.map((o) => o.customer_email || o.customer_phone).filter(Boolean)
         );
         customerCount = uniqueEmails.size;
 
-        const now = new Date();
-        const todayStr = now.toISOString().split("T")[0];
+        // "Today" / "yesterday" / month buckets in Asia/Dhaka (the store's timezone)
+        const dhakaNow = new Date(Date.now() + DHAKA_OFFSET_MS);
+        const todayStr = dhakaNow.toISOString().split("T")[0];
+        const yesterdayStr = new Date(dhakaNow.getTime() - 86400000)
+          .toISOString()
+          .split("T")[0];
+        const currentYearMonth = todayStr.slice(0, 7);
 
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const yesterdayStr = yesterday.toISOString().split("T")[0];
-
-        const currentYearMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
-        
-        const lastMonthDate = new Date();
-        lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
-        const lastYearMonth = `${lastMonthDate.getFullYear()}-${String(lastMonthDate.getMonth() + 1).padStart(2, "0")}`;
+        const lastMonthDate = new Date(dhakaNow);
+        lastMonthDate.setUTCMonth(lastMonthDate.getUTCMonth() - 1);
+        const lastYearMonth = lastMonthDate.toISOString().split("T")[0].slice(0, 7);
 
         allOrders.forEach((o) => {
           const total = Number(o.total) || 0;
           const status = (o.status || "pending").toLowerCase();
           const method = (o.payment_method || "cod").toLowerCase();
           const createdAt = o.created_at || "";
+          const orderDay = toDhakaDateStr(createdAt);
+          const isCancelled = status === "cancelled";
 
           // Status counts
           if (status === "pending") {
@@ -124,40 +145,46 @@ export default async function AdminDashboard() {
             processingCount++;
           } else if (status === "delivered" || status === "completed") {
             deliveredCount++;
-          } else if (status === "cancelled") {
+          } else if (isCancelled) {
             cancelledCount++;
           }
 
-          // Date metrics & payment method breakdown
-          if (createdAt.startsWith(todayStr)) {
+          // Date metrics & payment method breakdown (cancelled orders excluded)
+          if (isCancelled || !orderDay) return;
+          if (orderDay === todayStr) {
             todayRevenue += total;
             if (method === "cod") todayCash += total;
             else todayCard += total;
           }
-          if (createdAt.startsWith(yesterdayStr)) {
+          if (orderDay === yesterdayStr) {
             yesterdayRevenue += total;
             if (method === "cod") yesterdayCash += total;
             else yesterdayCard += total;
           }
-          if (createdAt.startsWith(currentYearMonth)) {
+          if (orderDay.slice(0, 7) === currentYearMonth) {
             thisMonthRevenue += total;
           }
-          if (createdAt.startsWith(lastYearMonth)) {
+          if (orderDay.slice(0, 7) === lastYearMonth) {
             lastMonthRevenue += total;
           }
         });
 
-        // 7 Days Trend
-        const last7Days = Array.from({ length: 7 }, (_, i) => {
-          const d = new Date();
-          d.setDate(d.getDate() - i);
-          return d;
+        // 7 Days Trend (Dhaka days, cancelled orders excluded)
+        const last7DayStrs = Array.from({ length: 7 }, (_, i) => {
+          return new Date(dhakaNow.getTime() - i * 86400000)
+            .toISOString()
+            .split("T")[0];
         }).reverse();
 
-        dailyStats = last7Days.map((d) => {
-          const dateStr = d.toISOString().split("T")[0];
-          const label = d.toLocaleDateString("en-US", { weekday: "short", month: "numeric", day: "numeric" });
-          const matched = allOrders.filter((o) => (o.created_at || "").startsWith(dateStr));
+        dailyStats = last7DayStrs.map((dateStr) => {
+          const label = new Date(dateStr + "T12:00:00Z").toLocaleDateString("en-US", {
+            weekday: "short",
+            month: "numeric",
+            day: "numeric",
+          });
+          const matched = billableOrders.filter(
+            (o) => toDhakaDateStr(o.created_at || "") === dateStr
+          );
           const rev = matched.reduce((sum, o) => sum + (Number(o.total) || 0), 0);
           return {
             dateStr,
@@ -171,20 +198,61 @@ export default async function AdminDashboard() {
       }
 
       // 3. Low stock products
-      const { data: lowStock } = await supabase
+      const { data: lowStock, error: lowStockError } = await supabase
         .from("products")
         .select("id, name, slug, stock_quantity, price, image_url, category")
         .lte("stock_quantity", 5)
         .order("stock_quantity", { ascending: true })
         .limit(5);
 
+      if (lowStockError) throw lowStockError;
       if (lowStock) lowStockProducts = lowStock;
     }
   } catch (err) {
     console.error("Dashboard data load error:", err);
+    loadError =
+      err instanceof Error && err.message
+        ? `Dashboard data failed to load: ${err.message}`
+        : "Dashboard data failed to load. Please try refreshing the page.";
   }
 
   const maxRevenueDay = Math.max(...dailyStats.map((d) => d.revenue), 1000);
+
+  // Visible error state instead of silently rendering fake zeros
+  if (loadError) {
+    return (
+      <div className="space-y-8 animate-in fade-in duration-200">
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-900 dark:text-white">
+            Dashboard Overview
+          </h1>
+          <p className="text-xs sm:text-sm text-stone-500 mt-1">
+            Real-time sales analysis, order workflows, and catalog statistics
+          </p>
+        </div>
+
+        <div className="p-8 rounded-2xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900 text-center">
+          <div className="w-12 h-12 mx-auto rounded-full bg-rose-100 dark:bg-rose-950/50 text-rose-600 flex items-center justify-center mb-4">
+            <AlertTriangle className="w-6 h-6" />
+          </div>
+          <h3 className="font-extrabold text-base text-stone-900 dark:text-white">
+            Couldn't load dashboard data
+          </h3>
+          <p className="text-xs text-stone-500 mt-2 max-w-md mx-auto">{loadError}</p>
+          <p className="text-xs text-stone-400 mt-1">
+            Check your connection and Supabase configuration, then refresh the page.
+          </p>
+          <Link
+            href="/admin"
+            className="inline-flex items-center gap-2 mt-5 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors"
+          >
+            <RefreshCw className="w-4 h-4" />
+            <span>Retry</span>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8 animate-in fade-in duration-200">
@@ -363,7 +431,7 @@ export default async function AdminDashboard() {
               </p>
             </div>
             <span className="text-xs font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-200/50">
-              Live Data
+              Updated on load
             </span>
           </div>
 
@@ -455,6 +523,74 @@ export default async function AdminDashboard() {
         </div>
       </div>
 
+      {/* ── Low Stock Alert ── */}
+      <div className="p-6 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-2xs space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 className="font-extrabold text-base text-stone-900 dark:text-white flex items-center gap-2">
+              <AlertTriangle className="w-4 h-4 text-amber-600" />
+              <span>Low Stock Alert</span>
+            </h3>
+            <p className="text-xs text-stone-400 mt-0.5">
+              Products with 5 or fewer units remaining
+            </p>
+          </div>
+          <Link
+            href="/admin/products"
+            className="text-xs font-bold text-emerald-600 hover:text-emerald-700 flex items-center gap-1"
+          >
+            <span>Manage Products</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        {lowStockProducts.length === 0 ? (
+          <div className="py-8 text-center">
+            <div className="w-12 h-12 mx-auto rounded-full bg-emerald-100 dark:bg-emerald-950/50 text-emerald-600 flex items-center justify-center mb-3">
+              <CheckCircle2 className="w-6 h-6" />
+            </div>
+            <p className="text-sm font-bold text-stone-700 dark:text-stone-200">
+              All stocked up
+            </p>
+            <p className="text-xs text-stone-400 mt-1">
+              No products are running low right now.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
+            {lowStockProducts.map((p) => {
+              const stock = Number(p.stock_quantity) || 0;
+              return (
+                <Link
+                  key={String(p.id)}
+                  href="/admin/products"
+                  className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 hover:border-amber-300 transition-colors"
+                >
+                  <p className="text-xs font-bold text-stone-900 dark:text-stone-100 truncate">
+                    {p.name}
+                  </p>
+                  <div className="flex items-center justify-between mt-2">
+                    <span
+                      className={cn(
+                        "px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider",
+                        stock === 0
+                          ? "bg-rose-100 text-rose-700"
+                          : "bg-amber-100 text-amber-800"
+                      )}
+                    >
+                      {stock === 0 ? "Out of stock" : `${stock} left`}
+                    </span>
+                    <span className="text-[11px] font-bold text-stone-500">
+                      ৳{(Number(p.price) || 0).toLocaleString()}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
       {/* ── Recent Orders Table (Kachabazar TableContainer Style) ── */}
       <div className="p-6 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-2xs space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -505,7 +641,7 @@ export default async function AdminDashboard() {
                       className="hover:bg-stone-50/80 dark:hover:bg-stone-800/40 transition-colors"
                     >
                       <td className="py-3.5 px-4 font-mono font-bold text-stone-900 dark:text-stone-100">
-                        #{order.id.slice(0, 8)}
+                        #{String(order.id).slice(0, 8)}
                       </td>
                       <td className="py-3.5 px-4 text-stone-500 whitespace-nowrap">
                         {new Date(order.created_at).toLocaleDateString("en-US", {
@@ -566,7 +702,7 @@ export default async function AdminDashboard() {
                         <Link
                           href={`/admin/orders/${order.id}`}
                           className="p-1.5 rounded-lg text-stone-400 hover:text-emerald-600 hover:bg-emerald-50 inline-flex transition-colors"
-                          title="View & Print Invoice"
+                          title="View order"
                         >
                           <Eye className="w-4 h-4" />
                         </Link>

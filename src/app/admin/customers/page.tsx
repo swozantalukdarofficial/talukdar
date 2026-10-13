@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import {
   Users,
@@ -36,6 +37,66 @@ interface CustomerAggregated {
   orders: any[];
 }
 
+// ── Customer dedup helpers ──────────────────────────────────────────
+// Normalize Bangladeshi phone numbers so "+880 1833-289578",
+// "+8801833289578" and "01833289578" all become the same key.
+function normalizePhone(raw: any): string {
+  const digits = String(raw || "").replace(/\D/g, "");
+  if (!digits) return "";
+  if (digits.length === 13 && digits.startsWith("880")) return digits.slice(3);
+  if (digits.length === 11 && digits.startsWith("0")) return digits.slice(1);
+  return digits;
+}
+
+function normalizeEmail(raw: any): string {
+  return String(raw || "").trim().toLowerCase();
+}
+
+// Build a dedup key for an order. Phone wins, then email. NEVER key on
+// name or "guest" — orders with no phone/email get a unique per-order key
+// so strangers never merge into one customer.
+function customerKey(order: any): string {
+  const phone = normalizePhone(order.customer_phone);
+  if (phone) return `phone:${phone}`;
+  const email = normalizeEmail(order.customer_email);
+  if (email) return `email:${email}`;
+  return `order:${order.id}`;
+}
+
+// Order statuses that must NOT count toward LTV / order counts.
+const EXCLUDED_STATUSES = new Set(["cancelled", "refunded", "returned"]);
+
+function isExcludedOrder(order: any): boolean {
+  return EXCLUDED_STATUSES.has(String(order.status || "").toLowerCase());
+}
+
+// ── Windowed pagination: [1, "…", c-2..c+2, "…", total] ────────────
+function getPageNumbers(current: number, total: number): (number | "…")[] {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  const keep = new Set<number>([1, total]);
+  for (let p = current - 2; p <= current + 2; p++) {
+    if (p >= 1 && p <= total) keep.add(p);
+  }
+  const sorted = [...keep].sort((a, b) => a - b);
+  const out: (number | "…")[] = [];
+  let prev = 0;
+  for (const p of sorted) {
+    if (p - prev > 1) out.push("…");
+    out.push(p);
+    prev = p;
+  }
+  return out;
+}
+
+// ── CSV cell: quote-escape + guard against formula injection ────────
+function csvCell(value: any): string {
+  let s = String(value ?? "");
+  // Prefix a single quote so Excel/Sheets never executes =,+,-,@ payloads
+  if (/^[=+\-@]/.test(s)) s = "'" + s;
+  if (/[",\n\r]/.test(s)) s = `"${s.replace(/"/g, '""')}"`;
+  return s;
+}
+
 export default function AdminCustomersPage() {
   const [customers, setCustomers] = useState<CustomerAggregated[]>([]);
   const [loading, setLoading] = useState(true);
@@ -50,6 +111,16 @@ export default function AdminCustomersPage() {
     fetchCustomers();
   }, []);
 
+  // ESC closes the customer drawer
+  useEffect(() => {
+    if (!selectedCustomer) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedCustomer(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selectedCustomer]);
+
   async function fetchCustomers() {
     try {
       setLoading(true);
@@ -62,22 +133,23 @@ export default function AdminCustomersPage() {
 
       if (error) throw error;
 
-      // Group orders by phone or email
+      // Group orders by normalized phone/email — never by name or "guest"
       const map: Record<string, CustomerAggregated> = {};
 
       (ordersData || []).forEach((order) => {
-        const key = (order.customer_phone || order.customer_email || order.customer_name || "guest").trim();
+        const key = customerKey(order);
         if (!key) return;
 
         const total = Number(order.total) || 0;
         const addr = order.shipping_address?.street || order.shipping_address?.address || order.shipping_address?.city || "";
+        const excluded = isExcludedOrder(order);
 
         if (!map[key]) {
           map[key] = {
             id: key,
-            name: order.customer_name || "Guest Customer",
+            name: order.customer_name || "Guest",
             phone: order.customer_phone || "",
-            email: order.customer_email || "",
+            email: normalizeEmail(order.customer_email),
             address: addr,
             totalOrders: 0,
             totalSpent: 0,
@@ -86,12 +158,15 @@ export default function AdminCustomersPage() {
           };
         }
 
-        map[key].totalOrders += 1;
-        map[key].totalSpent += total;
+        // Cancelled/refunded/returned orders don't count toward LTV
+        if (!excluded) {
+          map[key].totalOrders += 1;
+          map[key].totalSpent += total;
+        }
         map[key].orders.push(order);
-        if (!map[key].name && order.customer_name) map[key].name = order.customer_name;
+        if ((!map[key].name || map[key].name === "Guest") && order.customer_name) map[key].name = order.customer_name;
         if (!map[key].phone && order.customer_phone) map[key].phone = order.customer_phone;
-        if (!map[key].email && order.customer_email) map[key].email = order.customer_email;
+        if (!map[key].email && order.customer_email) map[key].email = normalizeEmail(order.customer_email);
         if (!map[key].address && addr) map[key].address = addr;
       });
 
@@ -109,24 +184,29 @@ export default function AdminCustomersPage() {
     if (customers.length === 0) return;
 
     const headers = ["Name", "Phone", "Email", "Address", "Total Orders", "Total Spent (BDT)", "Last Order Date"];
-    const rows = customers.map((c) => [
-      `"${c.name.replace(/"/g, '""')}"`,
-      `"${c.phone}"`,
-      `"${c.email}"`,
-      `"${c.address.replace(/"/g, '""')}"`,
-      c.totalOrders,
-      c.totalSpent,
-      c.lastOrderDate,
-    ]);
+    const rows = customers.map((c) =>
+      [
+        c.name,
+        c.phone,
+        c.email,
+        c.address,
+        c.totalOrders,
+        c.totalSpent,
+        c.lastOrderDate,
+      ].map(csvCell)
+    );
 
-    const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map((e) => e.join(","))].join("\n");
-    const encodedUri = encodeURI(csvContent);
+    const csv = [headers.map(csvCell).join(","), ...rows.map((r) => r.join(","))].join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `ev_customers_${new Date().toISOString().split("T")[0]}.csv`);
+    link.href = url;
+    link.download = `ev_customers_${new Date().toISOString().split("T")[0]}.csv`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    // Revoke after a tick so the download has time to start
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
     toast.success("Customer list exported to CSV!");
   };
 
@@ -268,9 +348,9 @@ export default function AdminCustomersPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
-                {paginated.map((customer, idx) => (
+                {paginated.map((customer) => (
                   <tr
-                    key={idx}
+                    key={customer.id}
                     className="hover:bg-stone-50/80 dark:hover:bg-stone-800/40 transition-colors"
                   >
                     {/* Name */}
@@ -297,7 +377,7 @@ export default function AdminCustomersPage() {
 
                     {/* Address */}
                     <td className="py-3.5 px-4 text-stone-500 max-w-xs truncate">
-                      {customer.address || "Dhaka, Bangladesh"}
+                      {customer.address || <span className="text-stone-300">—</span>}
                     </td>
 
                     {/* Orders Count */}
@@ -337,7 +417,7 @@ export default function AdminCustomersPage() {
               {Math.min(currentPage * itemsPerPage, filtered.length)} of {filtered.length} customers
             </span>
 
-            <div className="flex items-center gap-1">
+            <div className="flex items-center justify-end gap-1 flex-wrap">
               <button
                 onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                 disabled={currentPage === 1}
@@ -346,20 +426,29 @@ export default function AdminCustomersPage() {
                 <ChevronLeft className="w-4 h-4" />
               </button>
 
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
-                <button
-                  key={pageNum}
-                  onClick={() => setCurrentPage(pageNum)}
-                  className={cn(
-                    "w-8 h-8 rounded-lg font-bold transition-colors",
-                    currentPage === pageNum
-                      ? "bg-emerald-600 text-white shadow-xs"
-                      : "text-stone-600 hover:bg-stone-100"
-                  )}
-                >
-                  {pageNum}
-                </button>
-              ))}
+              {getPageNumbers(currentPage, totalPages).map((pageNum, i) =>
+                pageNum === "…" ? (
+                  <span
+                    key={`ellipsis-${i}`}
+                    className="w-8 h-8 rounded-lg text-stone-400 flex items-center justify-center select-none"
+                  >
+                    …
+                  </span>
+                ) : (
+                  <button
+                    key={pageNum}
+                    onClick={() => setCurrentPage(pageNum)}
+                    className={cn(
+                      "w-8 h-8 rounded-lg font-bold transition-colors",
+                      currentPage === pageNum
+                        ? "bg-emerald-600 text-white shadow-xs"
+                        : "text-stone-600 hover:bg-stone-100"
+                    )}
+                  >
+                    {pageNum}
+                  </button>
+                )
+              )}
 
               <button
                 onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
@@ -375,8 +464,14 @@ export default function AdminCustomersPage() {
 
       {/* ── Customer Order History Slide-over Drawer ── */}
       {selectedCustomer && (
-        <div className="fixed inset-0 z-50 flex justify-end bg-stone-900/60 backdrop-blur-sm">
-          <div className="w-full max-w-lg bg-white dark:bg-stone-900 h-full overflow-y-auto shadow-2xl flex flex-col animate-in slide-in-from-right duration-200">
+        <div
+          className="fixed inset-0 z-50 flex justify-end bg-stone-900/60 backdrop-blur-sm"
+          onClick={() => setSelectedCustomer(null)}
+        >
+          <div
+            className="w-full max-w-lg bg-white dark:bg-stone-900 h-full overflow-y-auto shadow-2xl flex flex-col animate-in slide-in-from-right duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Drawer Header */}
             <div className="p-5 border-b border-stone-100 dark:border-stone-800 flex items-center justify-between bg-stone-50 dark:bg-stone-800/40">
               <div className="flex items-center gap-3">
@@ -431,10 +526,15 @@ export default function AdminCustomersPage() {
 
                 <div className="divide-y divide-stone-100 dark:divide-stone-800 border border-stone-200 dark:border-stone-800 rounded-2xl overflow-hidden">
                   {selectedCustomer.orders.map((o) => (
-                    <div key={o.id} className="p-3.5 bg-white dark:bg-stone-900 space-y-1">
+                    <Link
+                      key={o.id}
+                      href={`/admin/orders/${o.id}`}
+                      className="block p-3.5 bg-white dark:bg-stone-900 space-y-1 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
+                      title="Open order details"
+                    >
                       <div className="flex items-center justify-between">
                         <span className="font-mono font-bold text-stone-900 dark:text-stone-100">
-                          #{o.id.slice(0, 8)}
+                          #{String(o.id).slice(0, 8)}
                         </span>
                         <span className="font-extrabold text-emerald-600">
                           ৳{(Number(o.total) || 0).toLocaleString()}
@@ -448,7 +548,7 @@ export default function AdminCustomersPage() {
                           Status: {o.status || "Pending"}
                         </span>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
