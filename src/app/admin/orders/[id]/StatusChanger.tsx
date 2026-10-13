@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { adminFetch } from "@/lib/admin-api";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -20,13 +20,10 @@ export default function StatusChanger({
     const newStatus = e.target.value;
     setUpdating(true);
     try {
-      if (!supabase) return;
-      const { error } = await supabase
-        .from("orders")
-        .update({ status: newStatus })
-        .eq("id", orderId);
-
-      if (error) throw error;
+      await adminFetch(`/api/admin/orders/${orderId}`, {
+        method: "PATCH",
+        body: JSON.stringify({ status: newStatus }),
+      });
       setStatus(newStatus);
       toast.success(`Order status updated to ${newStatus}`);
     } catch (err: any) {

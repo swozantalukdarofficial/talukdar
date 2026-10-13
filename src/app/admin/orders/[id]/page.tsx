@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase";
+import { getAdminClient } from "@/lib/supabase-server";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -30,17 +30,19 @@ export default async function OrderInvoicePage({
 }) {
   const { id } = await params;
 
-  if (!supabase) {
-    return notFound();
+  let order: any = null;
+  try {
+    const { data, error } = await getAdminClient()
+      .from("orders")
+      .select("*, order_items(*)")
+      .eq("id", id)
+      .single();
+    if (!error) order = data;
+  } catch {
+    order = null;
   }
 
-  const { data: order, error } = await supabase
-    .from("orders")
-    .select("*")
-    .eq("id", id)
-    .single();
-
-  if (error || !order) {
+  if (!order) {
     return notFound();
   }
 

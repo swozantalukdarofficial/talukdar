@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { adminFetch } from "@/lib/admin-api";
 import {
   Loader2,
   Package,
@@ -67,37 +67,22 @@ export default function AdminOrdersPage() {
   useEffect(() => {
     fetchOrders();
 
-    const channel = supabase
-      ?.channel("orders-changes")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "orders" },
-        () => {
-          fetchOrders();
-        }
-      )
-      .subscribe();
-
-    return () => {
-      if (channel) supabase?.removeChannel(channel);
-    };
+    // Realtime postgres_changes can't reach the anon client (RLS), so poll
+    // every 30s for new orders while the page is open.
+    const timer = setInterval(fetchOrders, 30000);
+    return () => clearInterval(timer);
   }, []);
 
   async function fetchOrders() {
     try {
       setLoading(true);
-      if (!supabase) return;
-
-      const { data, error } = await supabase
-        .from("orders")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (error) throw error;
-      setOrders(data || []);
+      const { orders } = await adminFetch<{ orders: Order[] }>(
+        "/api/admin/orders?limit=200"
+      );
+      setOrders(orders || []);
     } catch (err: any) {
       console.error("Error fetching orders:", err);
-      toast.error("Failed to load orders");
+      toast.error("Failed to load orders: " + err.message);
     } finally {
       setLoading(false);
     }
@@ -106,16 +91,14 @@ export default function AdminOrdersPage() {
   const handleStatusChange = async (orderId: string, newStatus: string) => {
     setUpdatingId(orderId);
     try {
-      if (!supabase) return;
-      const { error } = await supabase
-        .from("orders")
-        .update({ status: newStatus })
-        .eq("id", orderId);
+      const { order } = await adminFetch<{ order: Order }>(
+        `/api/admin/orders/${orderId}`,
+        { method: "PATCH", body: JSON.stringify({ status: newStatus }) }
+      );
 
-      if (error) throw error;
       toast.success(`Order #${orderId.slice(0, 8)} status updated to ${newStatus}!`);
       setOrders((prev) =>
-        prev.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o))
+        prev.map((o) => (o.id === orderId ? { ...o, ...order, status: newStatus } : o))
       );
       if (selectedOrder && selectedOrder.id === orderId) {
         setSelectedOrder({ ...selectedOrder, status: newStatus });
@@ -131,9 +114,7 @@ export default function AdminOrdersPage() {
     if (!confirm(`Are you sure you want to delete order #${orderId.slice(0, 8)}?`)) return;
 
     try {
-      if (!supabase) return;
-      const { error } = await supabase.from("orders").delete().eq("id", orderId);
-      if (error) throw error;
+      await adminFetch(`/api/admin/orders/${orderId}`, { method: "DELETE" });
       toast.success("Order deleted successfully.");
       setOrders((prev) => prev.filter((o) => o.id !== orderId));
       if (selectedOrder?.id === orderId) setSelectedOrder(null);

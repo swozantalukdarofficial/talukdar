@@ -30,6 +30,7 @@ export default function AdminSettingsPage() {
   const [supportEmail, setSupportEmail] = useState("support@evsolutionbd.com");
   const [supportPhone, setSupportPhone] = useState("01333600272");
   const [whatsappNumber, setWhatsappNumber] = useState("01333600272");
+  const [notifyEmail, setNotifyEmail] = useState("swozantalukdaofficial@gmail.com");
 
   // Shipping Fees
   const [shippingFee, setShippingFee] = useState(150);
@@ -55,6 +56,7 @@ export default function AdminSettingsPage() {
         setEnableNagad(data.enable_nagad ?? true);
         setBkashNumber(data.bkash_number || "01333600272");
         setNagadNumber(data.nagad_number || "01333600272");
+        setNotifyEmail(data.order_notification_email || "swozantalukdaofficial@gmail.com");
       }
     }
     loadSettings();
@@ -64,7 +66,7 @@ export default function AdminSettingsPage() {
     e.preventDefault();
     setLoading(true);
 
-    const { error } = await updateStoreSettings({
+    const base = {
       store_name: storeName,
       support_email: supportEmail,
       support_phone: supportPhone,
@@ -75,11 +77,28 @@ export default function AdminSettingsPage() {
       enable_nagad: enableNagad,
       bkash_number: bkashNumber,
       nagad_number: nagadNumber,
+    };
+
+    // Try saving with the notification email; if the DB column doesn't exist
+    // yet (migration not run), fall back to saving everything else.
+    let { error } = await updateStoreSettings({
+      ...base,
+      order_notification_email: notifyEmail.trim(),
     });
+
+    if (error && error.includes("order_notification_email")) {
+      const retry = await updateStoreSettings(base);
+      error = retry.error;
+      if (!error) {
+        toast.warning(
+          "Settings saved, but notification email needs the one-time DB update: run supabase/add_order_notification_email.sql in Supabase SQL Editor."
+        );
+      }
+    }
 
     if (error) {
       toast.error(`Failed to save settings: ${error}`);
-    } else {
+    } else if (!error) {
       toast.success("Store settings updated & published successfully!");
     }
     setLoading(false);
@@ -200,6 +219,23 @@ export default function AdminSettingsPage() {
                   onChange={(e) => setWhatsappNumber(e.target.value)}
                   className="w-full px-3.5 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
                 />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="block font-bold text-stone-700 dark:text-stone-300 mb-1.5">
+                  🔔 Order Notification Email
+                </label>
+                <input
+                  type="text"
+                  value={notifyEmail}
+                  onChange={(e) => setNotifyEmail(e.target.value)}
+                  placeholder="admin@evsolutionbd.com"
+                  className="w-full px-3.5 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                />
+                <p className="text-[11px] text-stone-400 mt-1.5">
+                  New-order alert emails go here. Use commas for multiple addresses.
+                  Requires the one-time DB update (<code>supabase/add_order_notification_email.sql</code>) — until then, the env default is used.
+                </p>
               </div>
             </div>
           </div>

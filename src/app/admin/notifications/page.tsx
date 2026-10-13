@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { adminFetch } from "@/lib/admin-api";
 import Link from "next/link";
 import {
   Bell,
@@ -43,28 +44,31 @@ export default function NotificationsPage() {
       setLoading(true);
       const notifs: NotificationItem[] = [];
 
-      if (supabase) {
-        // 1. Fetch pending orders
-        const { data: pendingOrders } = await supabase
-          .from("orders")
-          .select("id, customer_name, total, created_at")
-          .eq("status", "pending")
-          .order("created_at", { ascending: false })
-          .limit(10);
-
-        (pendingOrders || []).forEach((o) => {
-          notifs.push({
-            id: `ord-${o.id}`,
-            type: "order",
-            title: `New Order Placed: #${o.id.slice(0, 8)}`,
-            message: `${o.customer_name || "Customer"} ordered products totaling ৳${(Number(o.total) || 0).toLocaleString()}`,
-            time: o.created_at,
-            link: `/admin/orders/${o.id}`,
-            is_read: false,
+      // 1. Fetch pending orders (via admin API — anon RLS blocks direct reads)
+      try {
+        const { orders } = await adminFetch<{ orders: any[] }>(
+          "/api/admin/orders?limit=200"
+        );
+        (orders || [])
+          .filter((o) => (o.status || "").toLowerCase() === "pending")
+          .slice(0, 10)
+          .forEach((o) => {
+            notifs.push({
+              id: `ord-${o.id}`,
+              type: "order",
+              title: `New Order Placed: #${o.id.slice(0, 8)}`,
+              message: `${o.customer_name || "Customer"} ordered ${(o.order_items || []).length} item(s) totaling ৳${(Number(o.total) || 0).toLocaleString()}`,
+              time: o.created_at,
+              link: `/admin/orders/${o.id}`,
+              is_read: false,
+            });
           });
-        });
+      } catch (e) {
+        console.error("notifications: orders fetch failed", e);
+      }
 
-        // 2. Fetch low stock items
+      if (supabase) {
+        // 2. Fetch low stock items (public product reads are allowed)
         const { data: lowStock } = await supabase
           .from("products")
           .select("id, name, stock_quantity")
