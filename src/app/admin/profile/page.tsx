@@ -154,7 +154,7 @@ export default function AdminProfilePage() {
               <h3 className="font-extrabold text-sm text-stone-900 dark:text-white">
                 Admin Details
               </h3>
-              <p className="text-[11px] text-stone-400">
+              <p className="text-[11px] text-stone-400 dark:text-stone-500 truncate" title={userEmail || ""}>
                 Signed in as {userEmail || "unknown"}
               </p>
             </div>
@@ -169,7 +169,7 @@ export default function AdminProfilePage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Shipon Talukdar"
-              className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+              className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400"
             />
           </div>
 
@@ -182,7 +182,7 @@ export default function AdminProfilePage() {
               value={userEmail}
               disabled
               title="Login email can only be changed from Supabase Auth settings"
-              className="w-full px-3 py-2 bg-stone-100 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-500 cursor-not-allowed"
+              className="w-full px-3 py-2.5 text-base bg-stone-100 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-500 dark:text-stone-400 cursor-not-allowed truncate"
             />
             <p className="text-[10px] text-stone-400 mt-1">
               Login email is managed via Supabase Auth.
@@ -198,7 +198,7 @@ export default function AdminProfilePage() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="+880 1XXX-XXXXXX"
-              className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+              className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400"
             />
           </div>
 
@@ -241,7 +241,7 @@ export default function AdminProfilePage() {
               placeholder="••••••••"
               value={currentPass}
               onChange={(e) => setCurrentPass(e.target.value)}
-              className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+              className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400"
             />
           </div>
 
@@ -255,7 +255,7 @@ export default function AdminProfilePage() {
               placeholder="Minimum 8 characters"
               value={newPass}
               onChange={(e) => setNewPass(e.target.value)}
-              className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+              className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400"
             />
           </div>
 
@@ -269,7 +269,7 @@ export default function AdminProfilePage() {
               placeholder="Repeat new password"
               value={confirmPass}
               onChange={(e) => setConfirmPass(e.target.value)}
-              className="w-full px-3 py-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl"
+              className="w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400"
             />
           </div>
 

@@ -179,9 +179,9 @@ export default function AdminMediaPage() {
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                    {/* Hover overlay */}
-                    <span className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/40 transition-colors flex items-center justify-center">
-                      <span className="opacity-0 group-hover:opacity-100 transition-opacity inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-stone-900 text-[11px] font-bold shadow">
+                    {/* Hover overlay — always visible on touch, hover-reveal on desktop */}
+                    <span className="absolute inset-0 bg-stone-900/30 sm:bg-stone-900/0 sm:group-hover:bg-stone-900/40 transition-colors flex items-center justify-center">
+                      <span className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-stone-900 text-[11px] font-bold shadow">
                         {copiedId === img.public_id ? (
                           <>
                             <Check className="w-3.5 h-3.5 text-emerald-600" /> Copied!
@@ -207,7 +207,7 @@ export default function AdminMediaPage() {
                     <button
                       onClick={() => setDeleteTarget(img)}
                       title="Delete image"
-                      className="p-1.5 rounded-lg text-stone-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors shrink-0"
+                      className="p-2.5 rounded-lg text-stone-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors shrink-0"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>

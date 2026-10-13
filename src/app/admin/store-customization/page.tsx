@@ -29,7 +29,7 @@ const THEME_OPTIONS: { value: HeroSlide["theme"]; label: string }[] = [
 ];
 
 const inputCls =
-  "w-full px-3 py-2 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500";
+  "w-full px-3 py-2.5 text-base bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-stone-900 dark:text-white placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500";
 const labelCls = "block font-bold text-stone-700 dark:text-stone-300 mb-1";
 
 export default function StoreCustomizationPage() {
@@ -211,10 +211,10 @@ export default function StoreCustomizationPage() {
             </h3>
             <button
               onClick={handleAddSlide}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold border border-emerald-200/60 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors"
             >
               <Plus className="w-4 h-4" />
-              <span>+ Add Slide</span>
+              <span>Add Slide</span>
             </button>
           </div>
 
@@ -235,7 +235,7 @@ export default function StoreCustomizationPage() {
                   </div>
                   <button
                     onClick={() => handleDeleteSlide(slide.id)}
-                    className="p-1.5 rounded-lg text-stone-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+                    className="p-2.5 rounded-lg text-stone-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
                     title="Delete Slide"
                   >
                     <Trash2 className="w-4 h-4" />
