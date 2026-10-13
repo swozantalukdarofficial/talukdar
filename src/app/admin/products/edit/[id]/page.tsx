@@ -3,10 +3,11 @@
 import { useState, useRef, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { getProductById, updateProduct } from "@/lib/products";
+import { getProductById, updateProduct, revalidateStorefront } from "@/lib/products";
 import type { CreateProductInput } from "@/lib/products";
 import type { ProductCategory, Category } from "@/lib/types";
 import { getAllCategories } from "@/lib/categories";
+import { adminUpload } from "@/lib/admin-api";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -154,19 +155,10 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
     setUploadProgress(10);
 
     try {
-      const fd = new FormData();
-      fd.append("file", file);
-
       setUploadProgress(40);
-      const res = await fetch("/api/upload", { method: "POST", body: fd });
+      const data = await adminUpload(file);
       setUploadProgress(80);
 
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error ?? "Upload failed");
-      }
-
-      const data = await res.json();
       setImageUrl(data.url);
       setImagePreview(data.url);
       setUploadProgress(100);
@@ -191,13 +183,8 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
 
     for (const file of files) {
       try {
-        const fd = new FormData();
-        fd.append("file", file);
-        const res = await fetch("/api/upload", { method: "POST", body: fd });
-        if (res.ok) {
-          const data = await res.json();
-          newUrls.push(data.url);
-        }
+        const data = await adminUpload(file);
+        newUrls.push(data.url);
       } catch (err) {
         toast.error("Failed to upload gallery image");
       }
@@ -275,6 +262,8 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
       toast.error(res.error);
     } else {
       toast.success("Product updated successfully!");
+      // Refresh storefront cache so the new price shows instantly
+      await revalidateStorefront(res.product.slug);
       router.push("/admin/products");
       router.refresh();
     }
