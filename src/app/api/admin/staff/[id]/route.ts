@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { getAdminClient, requireAdmin } from "@/lib/supabase-server";
+import { getUserDbClient, requireAdmin } from "@/lib/supabase-server";
+import { adminEmailFrom, logActivity } from "@/lib/activity";
 
 // PATCH /api/admin/staff/[id] — update a team member (admin only)
 export async function PATCH(
@@ -14,6 +15,7 @@ export async function PATCH(
   try {
     const { id } = await params;
     const body = await req.json();
+    const db = getUserDbClient(req);
 
     const updates: Record<string, any> = {};
     if (body.name !== undefined) updates.name = body.name.trim();
@@ -30,7 +32,7 @@ export async function PATCH(
       );
     }
 
-    const { data, error } = await getAdminClient()
+    const { data, error } = await db
       .from("staff")
       .update(updates)
       .eq("id", id)
@@ -49,6 +51,23 @@ export async function PATCH(
     if (!data) {
       return NextResponse.json({ error: "Staff member not found." }, { status: 404 });
     }
+
+    // Log the update (best-effort, never blocks)
+    try {
+      await logActivity(
+        {
+          adminEmail: adminEmailFrom(auth),
+          action: "updated",
+          entity: "staff",
+          entityId: id,
+          details: { name: data.name, ...updates },
+        },
+        db
+      );
+    } catch (e: any) {
+      console.error("[admin-staff] activity log failed:", e?.message || e);
+    }
+
     return NextResponse.json({ staff: data });
   } catch (e: any) {
     return NextResponse.json(
@@ -70,17 +89,18 @@ export async function DELETE(
 
   try {
     const { id } = await params;
+    const db = getUserDbClient(req);
 
     // Guard: never delete the last Super Admin entry
-    const { data: supers, error: countErr } = await getAdminClient()
+    const { data: supers, error: countErr } = await db
       .from("staff")
       .select("id")
       .eq("role", "Super Admin");
     if (countErr) throw countErr;
 
-    const { data: target } = await getAdminClient()
+    const { data: target } = await db
       .from("staff")
-      .select("role")
+      .select("role, name")
       .eq("id", id)
       .single();
 
@@ -91,8 +111,25 @@ export async function DELETE(
       );
     }
 
-    const { error } = await getAdminClient().from("staff").delete().eq("id", id);
+    const { error } = await db.from("staff").delete().eq("id", id);
     if (error) throw error;
+
+    // Log the removal (best-effort, never blocks)
+    try {
+      await logActivity(
+        {
+          adminEmail: adminEmailFrom(auth),
+          action: "deleted",
+          entity: "staff",
+          entityId: id,
+          details: { name: target?.name || null },
+        },
+        db
+      );
+    } catch (e: any) {
+      console.error("[admin-staff] activity log failed:", e?.message || e);
+    }
+
     return NextResponse.json({ ok: true });
   } catch (e: any) {
     return NextResponse.json(

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { getAdminClient, requireAdmin } from "@/lib/supabase-server";
+import { getUserDbClient, requireAdmin } from "@/lib/supabase-server";
+import { adminEmailFrom, logActivity } from "@/lib/activity";
 
 // GET /api/admin/staff — list team directory (admin only)
 export async function GET(req: Request) {
@@ -9,7 +10,7 @@ export async function GET(req: Request) {
   }
 
   try {
-    const { data, error } = await getAdminClient()
+    const { data, error } = await getUserDbClient(req)
       .from("staff")
       .select("*")
       .order("created_at", { ascending: false });
@@ -53,7 +54,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const { data, error } = await getAdminClient()
+    const { data, error } = await getUserDbClient(req)
       .from("staff")
       .insert({ name, email, phone, role, status, joining_date })
       .select()
@@ -69,6 +70,23 @@ export async function POST(req: Request) {
       }
       throw error;
     }
+
+    // Log the addition (best-effort, never blocks)
+    try {
+      await logActivity(
+        {
+          adminEmail: adminEmailFrom(auth),
+          action: "created",
+          entity: "staff",
+          entityId: data.id,
+          details: { name: data.name, email: data.email, role: data.role },
+        },
+        getUserDbClient(req)
+      );
+    } catch (e: any) {
+      console.error("[admin-staff] activity log failed:", e?.message || e);
+    }
+
     return NextResponse.json({ staff: data }, { status: 201 });
   } catch (e: any) {
     return NextResponse.json(
