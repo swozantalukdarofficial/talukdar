@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { deleteProduct } from "@/lib/products";
+import { deleteProduct, revalidateStorefront } from "@/lib/products";
 import { Pencil, Trash2, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -22,6 +22,7 @@ export default function ProductActions({ id, slug }: { id: string; slug: string 
       setDeleting(false);
     } else {
       toast.success("Product deleted successfully");
+      await revalidateStorefront(slug);
       router.refresh();
     }
   }

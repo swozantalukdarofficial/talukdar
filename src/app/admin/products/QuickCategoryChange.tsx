@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { updateProduct } from "@/lib/products";
+import { updateProduct, revalidateStorefront } from "@/lib/products";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import type { Category } from "@/lib/types";
@@ -31,6 +31,8 @@ export default function QuickCategoryChange({
     } else {
       toast.success("Category updated!");
       setCategory(newCat);
+      // Category affects listings; refresh storefront cache
+      await revalidateStorefront();
     }
     setUpdating(false);
   }

@@ -26,6 +26,7 @@ import { createProduct, updateProduct } from "@/lib/products";
 import type { Product, Category } from "@/lib/types";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { adminUpload } from "@/lib/admin-api";
 
 interface ProductDrawerProps {
   isOpen: boolean;
@@ -180,15 +181,7 @@ export default function ProductDrawer({
     try {
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const formData = new FormData();
-        formData.append("file", file);
-
-        const res = await fetch("/api/upload", {
-          method: "POST",
-          body: formData,
-        });
-
-        const data = await res.json();
+        const data = await adminUpload(file);
         if (data.url) {
           if (!imageUrl) setImageUrl(data.url);
           setImages((prev) => Array.from(new Set([...prev, data.url])));
