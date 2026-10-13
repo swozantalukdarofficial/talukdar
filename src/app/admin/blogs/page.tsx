@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
+import { adminFetch } from "@/lib/admin-api";
 import { POSTS, type BlogPost } from "@/lib/blogs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -37,16 +38,11 @@ export default function AdminBlogsPage() {
     }
 
     try {
-      const { data, error } = await supabase
-        .from("blogs")
-        .select("*")
-        .order("created_at", { ascending: false });
+      const { blogs: rows } = await adminFetch<{ blogs: any[] }>(
+        "/api/admin/blogs"
+      );
 
-      if (error) {
-        throw error;
-      }
-
-      const mapped: BlogPost[] = (data || []).map((blog) => ({
+      const mapped: BlogPost[] = (rows || []).map((blog) => ({
         id: blog.id,
         title: blog.title,
         slug: blog.slug,
@@ -73,8 +69,7 @@ export default function AdminBlogsPage() {
 
     try {
       if (!supabase) return;
-      const { error } = await supabase.from("blogs").delete().eq("id", id);
-      if (error) throw error;
+      await adminFetch(`/api/admin/blogs/${id}`, { method: "DELETE" });
 
       toast.success("Blog deleted successfully! 🗑️");
       setBlogs((prev) => prev.filter((b) => b.id !== id));
@@ -91,36 +86,32 @@ export default function AdminBlogsPage() {
     try {
       let insertedCount = 0;
 
+      const { blogs: existingRows } = await adminFetch<{
+        blogs: { slug: string }[];
+      }>("/api/admin/blogs");
+      const existingSlugs = new Set((existingRows || []).map((b) => b.slug));
+
       for (const post of POSTS) {
         // Check if blog already exists by slug
-        const { data, error } = await supabase
-          .from("blogs")
-          .select("id")
-          .eq("slug", post.slug)
-          .maybeSingle();
+        if (existingSlugs.has(post.slug)) continue;
 
-        if (error) throw error;
-
-        if (!data) {
-          // Insert it
-          const { error: insertErr } = await supabase.from("blogs").insert([
-            {
-              title: post.title,
-              category: post.category,
-              read_time: post.readTime,
-              image: post.image,
-              slug: post.slug,
-              description: post.desc,
-              meta_title: post.metaTitle,
-              meta_desc: post.metaDesc,
-              content: post.content,
-              date: post.date,
-            },
-          ]);
-
-          if (insertErr) throw insertErr;
-          insertedCount++;
-        }
+        // Insert it
+        await adminFetch("/api/admin/blogs", {
+          method: "POST",
+          body: JSON.stringify({
+            title: post.title,
+            category: post.category,
+            read_time: post.readTime,
+            image: post.image,
+            slug: post.slug,
+            description: post.desc,
+            meta_title: post.metaTitle,
+            meta_desc: post.metaDesc,
+            content: post.content,
+            date: post.date,
+          }),
+        });
+        insertedCount++;
       }
 
       toast.dismiss();

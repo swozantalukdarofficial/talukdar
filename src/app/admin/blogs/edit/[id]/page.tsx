@@ -14,10 +14,12 @@ import {
   ArrowLeft,
   FileText,
   Save,
+  RefreshCw,
 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { adminUpload, adminFetch } from "@/lib/admin-api";
 
 export default function EditBlogPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
@@ -52,13 +54,10 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
         return;
       }
       try {
-        const { data, error } = await supabase
-          .from("blogs")
-          .select("*")
-          .eq("id", id)
-          .single();
+        const { blog: data } = await adminFetch<{ blog: any }>(
+          `/api/admin/blogs/${id}`
+        );
 
-        if (error) throw error;
         if (!data) {
           toast.error("Blog post not found");
           router.push("/admin/blogs");
@@ -87,20 +86,25 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
     loadBlog();
   }, [id, router]);
 
-  // ── Auto-generate slug and meta from title ────────────────────
+  // ── Title change: NEVER auto-overwrite the slug on edit ──────────
+  // (changing the slug would break the live /blog/<slug> URL, bookmarks & SEO).
+  // The slug field below stays fully manual; use the ↻ button next to it
+  // to regenerate from the title when you really want a new URL.
   function handleTitleChange(val: string) {
     setTitle(val);
-    
-    // Slug
-    const generatedSlug = val
+
+    // Meta Title
+    setMetaTitle(`${val} | EV Store BD`);
+  }
+
+  function regenerateSlugFromTitle() {
+    const generatedSlug = title
       .toLowerCase()
       .replace(/[^a-z0-9\s-]/g, "")
       .trim()
       .replace(/\s+/g, "-");
     setSlug(generatedSlug);
-
-    // Meta Title
-    setMetaTitle(`${val} | EV Store BD`);
+    toast.info("Slug regenerated — remember this changes the live URL!");
   }
 
   // ── Handle image file select & upload ─────────────────────────
@@ -115,24 +119,15 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
     setUploadProgress(10);
 
     try {
-      const fd = new FormData();
-      fd.append("file", file);
-
       setUploadProgress(40);
-      const res = await fetch("/api/upload", { method: "POST", body: fd });
+      const data = await adminUpload(file);
       setUploadProgress(80);
 
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error ?? "Upload failed");
-      }
-
-      const data = await res.json();
       setImageUrl(data.url);
       setImagePreview(data.url);
       setUploadProgress(100);
       toast.success("Blog cover updated! ✅", {
-        description: `${Math.round(data.bytes / 1024)} KB`,
+        description: `${Math.round((data.bytes || 0) / 1024)} KB`,
       });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Upload failed";
@@ -164,9 +159,9 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
         throw new Error("Supabase client is not ready.");
       }
 
-      const { error } = await supabase
-        .from("blogs")
-        .update({
+      await adminFetch(`/api/admin/blogs/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
           title,
           slug,
           category,
@@ -177,10 +172,8 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
           meta_desc: metaDesc || description,
           content,
           date: dateStr,
-        })
-        .eq("id", id);
-
-      if (error) throw error;
+        }),
+      });
 
       toast.success(`"${title}" blog post updated successfully! 🎉`);
       router.push("/admin/blogs");
@@ -359,7 +352,18 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
                       required
                       className="flex-1 bg-transparent text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
                     />
+                    <button
+                      type="button"
+                      onClick={regenerateSlugFromTitle}
+                      title="Regenerate slug from title (changes the live URL!)"
+                      className="shrink-0 p-1.5 rounded-lg text-stone-400 hover:text-emerald-700 hover:bg-emerald-50 transition-colors"
+                    >
+                      <RefreshCw className="w-3.5 h-3.5" />
+                    </button>
                   </div>
+                  <p className="text-[10px] text-amber-600 font-semibold">
+                    ⚠️ Changing the slug breaks the existing live URL. Only change it deliberately.
+                  </p>
                 </div>
 
                 {/* Category & Read Time & Date */}

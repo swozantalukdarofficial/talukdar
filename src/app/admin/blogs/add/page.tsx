@@ -17,6 +17,7 @@ import {
 import Link from "next/link";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { adminUpload, adminFetch } from "@/lib/admin-api";
 
 export default function AddBlogPage() {
   const router = useRouter();
@@ -79,24 +80,15 @@ export default function AddBlogPage() {
     setUploadProgress(10);
 
     try {
-      const fd = new FormData();
-      fd.append("file", file);
-
       setUploadProgress(40);
-      const res = await fetch("/api/upload", { method: "POST", body: fd });
+      const data = await adminUpload(file);
       setUploadProgress(80);
 
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error ?? "Upload failed");
-      }
-
-      const data = await res.json();
       setImageUrl(data.url);
       setImagePreview(data.url);
       setUploadProgress(100);
       toast.success("Blog cover uploaded successfully! ✅", {
-        description: `${Math.round(data.bytes / 1024)} KB`,
+        description: `${Math.round((data.bytes || 0) / 1024)} KB`,
       });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Upload failed";
@@ -129,8 +121,9 @@ export default function AddBlogPage() {
         throw new Error("Supabase client is not ready.");
       }
 
-      const { error } = await supabase.from("blogs").insert([
-        {
+      await adminFetch("/api/admin/blogs", {
+        method: "POST",
+        body: JSON.stringify({
           title,
           slug,
           category,
@@ -141,10 +134,8 @@ export default function AddBlogPage() {
           meta_desc: metaDesc || description,
           content,
           date: dateStr,
-        },
-      ]);
-
-      if (error) throw error;
+        }),
+      });
 
       toast.success(`"${title}" blog post added! 🎉`);
       router.push("/admin/blogs");
