@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import AdminSidebar from "./AdminSidebar";
 import AdminHeader from "./AdminHeader";
+import CommandPalette from "./CommandPalette";
+import MobileBottomNav from "./MobileBottomNav";
 
 export default function AdminLayoutClient({
   children,
@@ -23,11 +25,15 @@ export default function AdminLayoutClient({
       <div className="flex flex-col flex-1 w-full overflow-hidden">
         <AdminHeader onToggleMobile={() => setMobileSidebarOpen(true)} />
         <main className="h-full overflow-y-auto">
-          <div className="sm:container grid lg:px-6 sm:px-4 px-2 mx-auto pt-8 pb-8">
+          <div className="sm:container grid lg:px-6 sm:px-4 px-2 mx-auto pt-8 pb-24 md:pb-8">
             {children}
           </div>
         </main>
       </div>
+
+      {/* Global admin utilities */}
+      <CommandPalette />
+      <MobileBottomNav />
     </div>
   );
 }

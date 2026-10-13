@@ -6,9 +6,14 @@ import {
   Menu,
   Bell,
   Settings,
-  LogOut
+  LogOut,
+  Search
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+
+function openCommandPalette() {
+  window.dispatchEvent(new Event("open-command-palette"));
+}
 
 interface AdminHeaderProps {
   onToggleMobile: () => void;
@@ -64,11 +69,19 @@ export default function AdminHeader({ onToggleMobile }: AdminHeaderProps) {
           <Menu className="w-6 h-6" aria-hidden="true" />
         </button>
 
-        {/* Search Input (Placeholder for styling) */}
+        {/* Search trigger — opens the command palette (Ctrl+K) */}
         <div className="flex justify-center flex-1 lg:mr-32">
-           <div className="relative w-full max-w-xl mr-6 focus-within:text-emerald-500">
-              {/* Optional Search bar here similar to Kachabazar */}
-           </div>
+           <button
+             onClick={openCommandPalette}
+             className="hidden sm:flex items-center gap-3 w-full max-w-xl mr-6 px-4 py-2 rounded-xl bg-gray-100 dark:bg-gray-700/60 text-gray-400 dark:text-gray-400 text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors cursor-pointer text-left"
+             aria-label="Search admin (Ctrl+K)"
+           >
+             <Search className="w-4 h-4 shrink-0" />
+             <span className="flex-1">Search pages, actions…</span>
+             <kbd className="text-[10px] font-bold bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 px-1.5 py-0.5 rounded">
+               Ctrl K
+             </kbd>
+           </button>
         </div>
 
         {/* Right side icons */}
