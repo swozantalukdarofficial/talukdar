@@ -1,11 +1,68 @@
 import React from 'react';
 import { Document, Page, Text, View, StyleSheet, Font } from '@react-pdf/renderer';
+import {
+  STORE_NAME,
+  STORE_TAGLINE,
+  STORE_CONTACT_LINE1,
+  STORE_CONTACT_LINE2,
+  STORE_FOOTER_THANKS,
+  STORE_FOOTER_SUPPORT,
+  getInvoiceTotals,
+  formatBDT,
+  paymentLabel,
+  invoiceDate,
+  invoiceRef,
+} from '@/lib/invoice';
+
+// Noto Sans Bengali covers the ৳ (U+09F3) glyph plus full Latin — the PDF's
+// standard Helvetica has no Bengali glyphs, so ৳ would render as a tofu box.
+// Loaded from the Google Fonts CDN at PDF-generation time (see
+// ensureInvoiceFonts): we request the CSS with a User-Agent that does not
+// advertise woff2, so Google returns full (non-subset) TTF files — the
+// subset woff2 files would split Bengali/Latin glyphs across files, and
+// @react-pdf/renderer can only use one font file per weight.
+const GOOGLE_FONTS_CSS_URL =
+  'https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap';
+// Legacy UA without woff2 support -> Google serves full-charset TTFs.
+const LEGACY_UA =
+  'Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30';
+
+let fontsPromise: Promise<void> | null = null;
+
+/** Fetch Noto Sans Bengali from the Google Fonts CDN and register it once. */
+export function ensureInvoiceFonts(): Promise<void> {
+  if (!fontsPromise) {
+    fontsPromise = (async () => {
+      const res = await fetch(GOOGLE_FONTS_CSS_URL, {
+        headers: { 'User-Agent': LEGACY_UA },
+      });
+      if (!res.ok) throw new Error(`Google Fonts CSS fetch failed: ${res.status}`);
+      const css = await res.text();
+      const faces = css
+        .split('@font-face')
+        .slice(1)
+        .map((block) => {
+          const weight = block.match(/font-weight:\s*(\d+)/)?.[1];
+          const url = block.match(/src:\s*url\((https:[^)]+)\)/)?.[1];
+          return weight && url ? { fontWeight: Number(weight), src: url } : null;
+        })
+        .filter((f): f is { fontWeight: number; src: string } => f !== null);
+      if (faces.length === 0) throw new Error('No @font-face blocks found in Google Fonts CSS');
+      Font.register({ family: 'NotoSansBengali', fonts: faces });
+    })().catch((err) => {
+      // Never break PDF generation over fonts — fall back to Helvetica.
+      console.warn('[InvoicePDF] font load failed, using fallback:', err);
+      fontsPromise = null;
+    });
+  }
+  return fontsPromise;
+}
 
 // Create styles
 const styles = StyleSheet.create({
   page: {
     padding: 30,
-    fontFamily: 'Helvetica',
+    fontFamily: 'NotoSansBengali',
     fontSize: 10,
     color: '#333333',
   },
@@ -128,6 +185,25 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#111111',
   },
+  discountLabel: {
+    fontSize: 9,
+    color: '#047857',
+  },
+  discountValue: {
+    fontSize: 9,
+    fontWeight: 'bold',
+    color: '#047857',
+  },
+  refundLabel: {
+    fontSize: 9,
+    fontWeight: 'bold',
+    color: '#be123c',
+  },
+  refundValue: {
+    fontSize: 9,
+    fontWeight: 'bold',
+    color: '#be123c',
+  },
   grandTotalRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -169,34 +245,34 @@ interface InvoicePDFProps {
 export default function InvoicePDF({ order }: InvoicePDFProps) {
   const address = order?.shipping_address || {};
   const items = order?.order_items || [];
-  const subtotal = Number(order?.subtotal) || (Number(order?.total) - (Number(order?.shipping_fee) || 0));
-  const shippingFee = Number(order?.shipping_fee) || 0;
-  const total = Number(order?.total) || 0;
-  const status = (order?.status || "pending").toUpperCase();
-  const dateStr = new Date(order?.created_at || Date.now()).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+  const t = getInvoiceTotals(order);
+  const status = String(order?.status || "pending").toUpperCase();
+  const addrLine = [address?.street || address?.address, address?.city || address?.district]
+    .filter(Boolean)
+    .join(", ");
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        
+
         {/* Header */}
         <View style={styles.header}>
           <View style={styles.headerLeft}>
-            <Text style={styles.companyName}>EV SOLUTION BD</Text>
-            <Text style={styles.companyDetails}>Leading Electric Vehicles, Batteries & Solar Hub</Text>
-            <Text style={styles.companyDetails}>Dhaka, Bangladesh • Hotline: +880 1833-289578</Text>
-            <Text style={styles.companyDetails}>support@evsolutionbd.com • evsolutionbd.com</Text>
+            <Text style={styles.companyName}>{STORE_NAME.toUpperCase()}</Text>
+            <Text style={styles.companyDetails}>{STORE_TAGLINE}</Text>
+            <Text style={styles.companyDetails}>{STORE_CONTACT_LINE1}</Text>
+            <Text style={styles.companyDetails}>{STORE_CONTACT_LINE2}</Text>
           </View>
           <View style={styles.headerRight}>
             <Text style={styles.invoiceTitle}>INVOICE</Text>
             <Text style={styles.invoiceMeta}>
-              Invoice ID: <Text style={styles.metaValue}>#{order?.id?.slice(0, 8)}</Text>
+              Invoice No: <Text style={styles.metaValue}>{invoiceRef(order?.id)}</Text>
             </Text>
             <Text style={styles.invoiceMeta}>
-              Date: <Text style={styles.metaValue}>{dateStr}</Text>
+              Date: <Text style={styles.metaValue}>{invoiceDate(order?.created_at)}</Text>
             </Text>
             <Text style={styles.invoiceMeta}>
-              Payment: <Text style={styles.metaValue}>{(order?.payment_method || "COD").toUpperCase()}</Text>
+              Payment: <Text style={styles.metaValue}>{paymentLabel(order?.payment_method)}</Text>
             </Text>
             <Text style={styles.invoiceMeta}>
               Status: <Text style={{ color: '#059669', fontWeight: 'bold' }}>{status}</Text>
@@ -215,7 +291,7 @@ export default function InvoicePDF({ order }: InvoicePDFProps) {
           <View style={styles.addressBlock}>
             <Text style={styles.addressTitle}>Delivery Address:</Text>
             <Text style={styles.addressText}>
-              {address?.street || address?.address || "Standard Delivery"}, {address?.city || address?.district || "Dhaka, Bangladesh"}
+              {addrLine || "Standard Delivery"}
             </Text>
             {order?.notes && (
               <Text style={{ ...styles.addressText, marginTop: 4, color: '#92400e' }}>
@@ -233,45 +309,59 @@ export default function InvoicePDF({ order }: InvoicePDFProps) {
             <Text style={[styles.col3, styles.colHeader]}>Qty</Text>
             <Text style={[styles.col4, styles.colHeader]}>Total</Text>
           </View>
-          
+
           {items.map((item: any, i: number) => {
             const price = Number(item.price) || 0;
             const qty = Number(item.quantity) || 1;
             return (
               <View style={styles.tableRow} key={i}>
                 <Text style={[styles.col1, styles.colText]}>{item.name || item.title || "Electric Product"}</Text>
-                <Text style={[styles.col2, styles.colText]}>TK {price.toLocaleString()}</Text>
+                <Text style={[styles.col2, styles.colText]}>{formatBDT(price)}</Text>
                 <Text style={[styles.col3, styles.colText]}>{qty}</Text>
-                <Text style={[styles.col4, styles.colText, { fontWeight: 'bold' }]}>TK {(price * qty).toLocaleString()}</Text>
+                <Text style={[styles.col4, styles.colText, { fontWeight: 'bold' }]}>{formatBDT(price * qty)}</Text>
               </View>
             );
           })}
         </View>
 
-        {/* Totals */}
+        {/* Totals — same math as the web invoice */}
         <View style={styles.totals}>
           <View style={styles.totalsBlock}>
             <View style={styles.totalRow}>
               <Text style={styles.totalLabel}>Subtotal:</Text>
-              <Text style={styles.totalValue}>TK {subtotal.toLocaleString()}</Text>
+              <Text style={styles.totalValue}>{formatBDT(t.subtotal)}</Text>
             </View>
+            {t.discount > 0 && (
+              <View style={styles.totalRow}>
+                <Text style={styles.discountLabel}>
+                  Discount{t.couponCode ? ` (${t.couponCode})` : ""}:
+                </Text>
+                <Text style={styles.discountValue}>-{formatBDT(t.discount)}</Text>
+              </View>
+            )}
             <View style={styles.totalRow}>
               <Text style={styles.totalLabel}>Delivery Fee:</Text>
-              <Text style={styles.totalValue}>TK {shippingFee.toLocaleString()}</Text>
+              <Text style={styles.totalValue}>{formatBDT(t.shippingFee)}</Text>
             </View>
             <View style={styles.grandTotalRow}>
               <Text style={styles.grandTotalLabel}>Grand Total:</Text>
-              <Text style={styles.grandTotalValue}>TK {total.toLocaleString()}</Text>
+              <Text style={styles.grandTotalValue}>{formatBDT(t.total)}</Text>
             </View>
+            {t.refundedAmount > 0 && (
+              <View style={styles.totalRow}>
+                <Text style={styles.refundLabel}>Refunded:</Text>
+                <Text style={styles.refundValue}>-{formatBDT(t.refundedAmount)}</Text>
+              </View>
+            )}
           </View>
         </View>
 
         {/* Footer */}
         <View style={styles.footer}>
-          <Text style={styles.footerText}>Thank you for purchasing with EV Solution BD!</Text>
-          <Text style={styles.footerText}>Official Warranty & Technical Support: +880 1833-289578 • support@evsolutionbd.com</Text>
+          <Text style={styles.footerText}>{STORE_FOOTER_THANKS}</Text>
+          <Text style={styles.footerText}>{STORE_FOOTER_SUPPORT}</Text>
         </View>
-        
+
       </Page>
     </Document>
   );

@@ -3,16 +3,20 @@
 import { useState, useEffect } from "react";
 import { Printer, Loader2 } from "lucide-react";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import InvoicePDF from "./InvoicePDF";
+import InvoicePDF, { ensureInvoiceFonts } from "./InvoicePDF";
 
 export default function PrintButton({ order }: { order: any }) {
   const [isClient, setIsClient] = useState(false);
+  const [fontsReady, setFontsReady] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
+    // Load Noto Sans Bengali (৳ glyph) from the Google Fonts CDN before
+    // rendering the PDF so amounts never render as tofu boxes.
+    ensureInvoiceFonts().finally(() => setFontsReady(true));
   }, []);
 
-  if (!isClient) {
+  if (!isClient || !fontsReady) {
     return (
       <button className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600/50 text-white text-xs sm:text-sm font-bold cursor-not-allowed">
         <Loader2 className="w-4 h-4 animate-spin" />

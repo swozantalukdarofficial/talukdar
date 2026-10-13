@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Package } from "lucide-react";
 import PackingSlipPrintButton from "./PackingSlipPrintButton";
+import { paymentLabel } from "@/lib/invoice";
 
 export const dynamic = "force-dynamic";
 
@@ -81,7 +82,7 @@ export default async function PackingSlipPage({
       {/* ── The Slip ── */}
       <div
         id="packing-slip"
-        className="max-w-2xl mx-auto bg-white text-stone-900 rounded-2xl border border-stone-200 shadow-2xs p-8 text-sm"
+        className="max-w-2xl mx-auto bg-white text-stone-900 rounded-2xl border border-stone-200 shadow-2xs p-4 sm:p-8 text-sm overflow-hidden"
       >
         {/* Store header */}
         <div className="flex items-start justify-between pb-6 border-b-2 border-stone-900">
@@ -106,23 +107,23 @@ export default async function PackingSlipPage({
         </div>
 
         {/* Order + customer meta */}
-        <div className="grid grid-cols-2 gap-6 py-6 border-b border-stone-200 text-xs">
-          <div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 py-6 border-b border-stone-200 text-xs">
+          <div className="min-w-0">
             <p className="font-bold uppercase tracking-wider text-stone-400 text-[10px] mb-2">
               Ship To
             </p>
-            <p className="font-extrabold text-sm">
+            <p className="font-extrabold text-sm break-words">
               {order.customer_name || "Guest Customer"}
             </p>
-            <p className="mt-1 text-stone-600">{addrLine || "—"}</p>
-            <p className="mt-1 text-stone-600">
+            <p className="mt-1 text-stone-600 break-words">{addrLine || "—"}</p>
+            <p className="mt-1 text-stone-600 break-words">
               📞 {order.customer_phone || "N/A"}
             </p>
             {order.customer_email && (
-              <p className="text-stone-600">✉️ {order.customer_email}</p>
+              <p className="text-stone-600 break-all">✉️ {order.customer_email}</p>
             )}
           </div>
-          <div className="text-right">
+          <div className="text-left sm:text-right min-w-0">
             <p className="font-bold uppercase tracking-wider text-stone-400 text-[10px] mb-2">
               Order Info
             </p>
@@ -138,8 +139,8 @@ export default async function PackingSlipPage({
             </p>
             <p className="mt-1">
               <span className="text-stone-500">Payment: </span>
-              <span className="font-bold uppercase">
-                {order.payment_method || "COD"}
+              <span className="font-bold">
+                {paymentLabel(order.payment_method)}
               </span>{" "}
               <span className="text-stone-500">
                 ({order.payment_status || "pending"})
@@ -156,39 +157,41 @@ export default async function PackingSlipPage({
         </div>
 
         {/* Items table */}
-        <table className="w-full text-xs mt-6">
-          <thead>
-            <tr className="border-b border-stone-300 text-left">
-              <th className="py-2 pr-2 w-8">#</th>
-              <th className="py-2 pr-2">Product</th>
-              <th className="py-2 px-2 text-center w-16">Qty</th>
-              <th className="py-2 pl-2 text-right w-24">Price</th>
-              <th className="py-2 pl-2 text-center w-16">Packed</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((it: any, i: number) => (
-              <tr key={i} className="slip-row border-b border-stone-100">
-                <td className="py-3 pr-2 text-stone-400">{i + 1}</td>
-                <td className="py-3 pr-2 font-bold">
-                  {it.name || it.title || "Product"}
-                </td>
-                <td className="py-3 px-2 text-center font-extrabold text-base">
-                  {it.quantity || 1}
-                </td>
-                <td className="py-3 pl-2 text-right">
-                  ৳
-                  {(
-                    Number(it.price || 0) * Number(it.quantity || 1)
-                  ).toLocaleString()}
-                </td>
-                <td className="py-3 pl-2 text-center">
-                  <span className="inline-block w-5 h-5 border-2 border-stone-300 rounded" />
-                </td>
+        <div className="overflow-x-auto -mx-1 px-1 mt-6">
+          <table className="w-full min-w-[480px] text-xs">
+            <thead>
+              <tr className="border-b border-stone-300 text-left">
+                <th className="py-2 pr-2 w-8">#</th>
+                <th className="py-2 pr-2">Product</th>
+                <th className="py-2 px-2 text-center w-16">Qty</th>
+                <th className="py-2 pl-2 text-right w-24">Price</th>
+                <th className="py-2 pl-2 text-center w-16">Packed</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {items.map((it: any, i: number) => (
+                <tr key={i} className="slip-row border-b border-stone-100">
+                  <td className="py-3 pr-2 text-stone-400">{i + 1}</td>
+                  <td className="py-3 pr-2 font-bold break-words min-w-[120px]">
+                    {it.name || it.title || "Product"}
+                  </td>
+                  <td className="py-3 px-2 text-center font-extrabold text-base">
+                    {it.quantity || 1}
+                  </td>
+                  <td className="py-3 pl-2 text-right whitespace-nowrap">
+                    ৳
+                    {(
+                      Number(it.price || 0) * Number(it.quantity || 1)
+                    ).toLocaleString()}
+                  </td>
+                  <td className="py-3 pl-2 text-center">
+                    <span className="inline-block w-5 h-5 border-2 border-stone-300 rounded" />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         {/* Totals */}
         <div className="flex justify-end mt-4 text-xs">
