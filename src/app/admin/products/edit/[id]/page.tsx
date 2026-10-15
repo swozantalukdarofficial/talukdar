@@ -216,6 +216,10 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
       toast.error("Name, slug, and price are required!");
       return;
     }
+    if (isNaN(parseFloat(price)) || parseFloat(price) <= 0) {
+      toast.error("Price must be greater than 0!");
+      return;
+    }
     if (!imageUrl) {
       toast.error("Please upload product image!");
       setActiveTab("media");

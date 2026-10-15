@@ -163,6 +163,10 @@ export default function AddProductPage() {
       toast.error("Name, slug, and price are required!");
       return;
     }
+    if (isNaN(parseFloat(price)) || parseFloat(price) <= 0) {
+      toast.error("Price must be greater than 0!");
+      return;
+    }
     if (!category) {
       toast.error("Please select a category!");
       setActiveTab("general");

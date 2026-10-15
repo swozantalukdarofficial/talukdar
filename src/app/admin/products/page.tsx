@@ -118,8 +118,8 @@ export default function AdminProductsPage() {
     const newPrice = parseFloat(editingPriceVal);
     const newComparePrice = editingComparePriceVal ? parseFloat(editingComparePriceVal) : null;
 
-    if (isNaN(newPrice) || newPrice < 0) {
-      toast.error("Please enter a valid price.");
+    if (isNaN(newPrice) || newPrice <= 0) {
+      toast.error("Price must be greater than 0.");
       return;
     }
 
