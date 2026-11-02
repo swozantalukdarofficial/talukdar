@@ -97,7 +97,7 @@ export default async function PackingSlipPage({
             <p className="text-xs text-stone-500 mt-1">
               Dhaka, Bangladesh
               <br />
-              Hotline: +880 1833-289578
+              Hotline: +880 1831-906500
             </p>
           </div>
           <div className="text-right">

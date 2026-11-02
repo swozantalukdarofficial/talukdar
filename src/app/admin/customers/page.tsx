@@ -38,8 +38,8 @@ interface CustomerAggregated {
 }
 
 // ── Customer dedup helpers ──────────────────────────────────────────
-// Normalize Bangladeshi phone numbers so "+880 1833-289578",
-// "+8801833289578" and "01833289578" all become the same key.
+// Normalize Bangladeshi phone numbers so "+880 1831-906500",
+// "+8801831906500" and "01831906500" all become the same key.
 function normalizePhone(raw: any): string {
   const digits = String(raw || "").replace(/\D/g, "");
   if (!digits) return "";

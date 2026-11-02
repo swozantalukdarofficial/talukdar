@@ -84,7 +84,7 @@ function totalsBlock(order: OrderEmailData): string {
 function shell(inner: string): string {
   return `<div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;color:#1c1917;">${inner}
     <hr style="border:none;border-top:1px solid #eee;margin:24px 0;"/>
-    <p style="font-size:12px;color:#a8a29e;">EV Solution BD • Dhaka, Bangladesh • Hotline: +880 1833-289578</p>
+    <p style="font-size:12px;color:#a8a29e;">EV Solution BD • Dhaka, Bangladesh • Hotline: +880 1831-906500</p>
   </div>`;
 }
 
@@ -141,7 +141,7 @@ export function buildCustomerConfirmationEmail(order: OrderEmailData): {
       ${escapeHtml(payText)}</p>
       <h3>📦 Delivery address</h3>
       <p>${escapeHtml(addr.street || addr.address || "")}, ${escapeHtml(addr.city || addr.district || "")}<br/>${escapeHtml(order.customer_phone || "")}</p>
-      <p style="font-size:13px;color:#78716c;">Questions? Reply to this email or call +880 1833-289578.</p>`),
+      <p style="font-size:13px;color:#78716c;">Questions? Reply to this email or call +880 1831-906500.</p>`),
   };
 }
 

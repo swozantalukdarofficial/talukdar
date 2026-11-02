@@ -8,11 +8,11 @@
 
 export const STORE_NAME = "EV Solution BD";
 export const STORE_TAGLINE = "Leading Electric Vehicles, Batteries & Solar Hub";
-export const STORE_CONTACT_LINE1 = "Dhaka, Bangladesh • Hotline: +880 1833-289578";
+export const STORE_CONTACT_LINE1 = "Dhaka, Bangladesh • Hotline: +880 1831-906500";
 export const STORE_CONTACT_LINE2 = "support@evsolutionbd.com • evsolutionbd.com";
 export const STORE_FOOTER_THANKS = "Thank you for purchasing with EV Solution BD!";
 export const STORE_FOOTER_SUPPORT =
-  "Official Warranty & Technical Support: +880 1833-289578 • support@evsolutionbd.com";
+  "Official Warranty & Technical Support: +880 1831-906500 • support@evsolutionbd.com";
 
 export interface InvoiceTotals {
   subtotal: number;
