@@ -17,6 +17,23 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Bulk redirect for Google-indexed legacy category URLs:
+      // /products?category=<slug> -> /products/category/<slug> (301).
+      // Vercel serves next.config redirects from the edge routing layer —
+      // no Serverless Function runs, so this costs zero Fluid CPU.
+      // "all" is excluded (it means "all products", no category page).
+      {
+        source: "/products",
+        has: [
+          {
+            type: "query",
+            key: "category",
+            value: "^(?<slug>(?!all$).+)$",
+          },
+        ],
+        destination: "/products/category/:slug",
+        permanent: true,
+      },
       { source: '/products/differencial-42-inch-with-motor-controller-full-set', destination: '/products/differential-42-inch-motor-controller-full-set', permanent: true },
       { source: '/products/vehicle-tracking-smart-car-black-box-dash-camera-pro-jc200', destination: '/products/jc200-smart-dash-camera-gps-tracker', permanent: true },
       { source: '/products/mili-litag-duo-smart-finder-location-tracking-device-android-ios', destination: '/products/mili-litag-duo-smart-finder-tracker', permanent: true },

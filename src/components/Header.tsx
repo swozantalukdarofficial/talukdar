@@ -302,7 +302,7 @@ export default function Header({ categories = [] }: { categories?: Category[] })
                       {categories.map((cat) => (
                         <Link
                           key={cat.id}
-                          href={`/products?category=${cat.slug}`}
+                          href={`/products/category/${cat.slug}`}
                           onClick={() => setMobileOpen(false)}
                           className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-stone-100 text-stone-700"
                         >
@@ -350,7 +350,7 @@ export default function Header({ categories = [] }: { categories?: Category[] })
               {categories.map((cat) => (
                 <Link
                   key={cat.id}
-                  href={`/products?category=${cat.slug}`}
+                  href={`/products/category/${cat.slug}`}
                   className="hover:text-emerald-800 flex items-center gap-1.5 transition-colors"
                 >
                   <span>{cat.icon}</span>

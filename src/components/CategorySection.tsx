@@ -65,7 +65,7 @@ export default async function CategorySection() {
               return (
                 <CarouselItem key={cat.id} className="pl-4 md:pl-5 basis-[260px] md:basis-[280px]">
                   <Link
-                    href={`/products?category=${cat.slug}`}
+                    href={`/products/category/${cat.slug}`}
                     className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-stone-200/80 hover:border-emerald-600/30 hover:shadow-[0_12px_24px_-10px_rgba(0,0,0,0.06)] shadow-[0_2px_8px_-3px_rgba(0,0,0,0.04)] transition-all duration-300"
                   >
                     {/* Image Container */}

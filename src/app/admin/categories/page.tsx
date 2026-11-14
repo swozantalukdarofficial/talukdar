@@ -186,7 +186,7 @@ export default function AdminCategoriesPage() {
                         {/* Slug */}
                         <td className="py-3.5 px-4">
                           <span className="font-mono text-stone-500 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded-md text-[11px]">
-                            /products?category={cat.slug}
+                            /products/category/{cat.slug}
                           </span>
                         </td>
 

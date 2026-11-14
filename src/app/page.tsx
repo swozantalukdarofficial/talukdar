@@ -82,7 +82,7 @@ export default async function HomePage() {
             products={essentialEbikes}
             title="Best Selling E-Bikes & Scooters"
             subtitle="Most popular rides"
-            viewAllHref="/products?category=ebike"
+            viewAllHref="/products/category/ebike"
           />
         </section>
       )}
@@ -93,7 +93,7 @@ export default async function HomePage() {
           products={essentialBatteries}
           title="Essential Lithium Batteries"
           subtitle="High Performance Packs"
-          viewAllHref="/products?category=battery"
+          viewAllHref="/products/category/battery"
           bgClassName="bg-white"
         />
       )}
@@ -104,7 +104,7 @@ export default async function HomePage() {
           products={solarPanels}
           title="High-Efficiency Solar Panels"
           subtitle="Clean Energy & Solar Power Solutions"
-          viewAllHref="/products?category=solar"
+          viewAllHref="/products/category/solar"
           bgClassName="bg-[#faf9f6] border-t border-stone-200/35"
         />
       )}
@@ -115,7 +115,7 @@ export default async function HomePage() {
           products={essentialParts}
           title="Essential Parts & Accessories"
           subtitle="OEM Spares & Upgrades"
-          viewAllHref="/products?category=parts"
+          viewAllHref="/products/category/parts"
           bgClassName="bg-white border-t border-stone-200/35"
         />
       )}

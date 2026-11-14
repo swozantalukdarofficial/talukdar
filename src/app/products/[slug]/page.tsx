@@ -88,7 +88,7 @@ export default async function ProductDetailPage({ params }: Props) {
             </a>
             <span className="text-stone-300">/</span>
             <a
-              href={`/products?category=${product.category}`}
+              href={`/products/category/${product.category}`}
               className="hover:text-emerald-850 transition-colors capitalize text-emerald-800"
             >
               {product.category}

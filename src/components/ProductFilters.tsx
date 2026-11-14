@@ -23,10 +23,14 @@ export default function ProductFilters({
   totalCount,
   availableBrands = [],
   categories = [],
+  fixedCategory,
 }: {
   totalCount: number;
   availableBrands?: BrandOption[];
   categories?: Category[];
+  // On a /products/category/[slug] page the category lives in the route,
+  // not the query string — the sidebar must read it from here, not the URL.
+  fixedCategory?: string;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -47,7 +51,7 @@ export default function ProductFilters({
     setOpenGroups((prev) => ({ ...prev, [group]: !prev[group] }));
   };
 
-  const activeCategory = searchParams?.get("category") ?? "all";
+  const activeCategory = fixedCategory ?? searchParams?.get("category") ?? "all";
   const activeSort = searchParams?.get("sort") ?? "newest";
   const activeBrand = searchParams?.get("brand") ?? "all";
   const activeStock = searchParams?.get("stock") ?? "all";
@@ -122,13 +126,11 @@ export default function ProductFilters({
     params.delete("page"); // Reset page
     params.delete("brand"); // Clear brand
     params.delete("subcat"); // Clear subcategory
-    if (cat === "all") {
-      params.delete("category");
-    } else {
-      params.set("category", cat);
-    }
+    params.delete("category"); // Category lives in the path now, not the query
+    const query = params.toString();
+    const dest = cat === "all" ? "/products" : `/products/category/${cat}`;
     startTransition(() => {
-      router.push(`${pathname}?${params.toString()}`, { scroll: false });
+      router.push(query ? `${dest}?${query}` : dest, { scroll: false });
     });
   }
 
@@ -141,7 +143,9 @@ export default function ProductFilters({
 
   function clearAll() {
     startTransition(() => {
-      router.push(pathname || "/products", { scroll: false });
+      // Back to All Products (same as before — pathname on a category page
+      // would keep the category, which is not "clear all").
+      router.push("/products", { scroll: false });
     });
   }
 
@@ -394,8 +398,9 @@ export default function ProductFilters({
               params.delete("category");
               params.delete("subcat");
               params.delete("page");
+              const query = params.toString();
               startTransition(() => {
-                router.push(`${pathname}?${params.toString()}`, { scroll: false });
+                router.push(query ? `/products?${query}` : "/products", { scroll: false });
               });
             }}
             className="w-full flex items-center justify-center gap-2 text-xs font-bold text-stone-700 hover:text-[#141824] transition-colors focus:outline-none cursor-pointer border border-stone-200 hover:border-stone-300 bg-white rounded-xl px-3 py-2 shadow-sm"

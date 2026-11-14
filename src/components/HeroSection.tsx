@@ -61,7 +61,7 @@ export default function HeroSection() {
               <ArrowRight className="h-5 w-5 ml-2" />
             </Link>
             <Link
-              href="/products?category=ebike"
+              href="/products/category/ebike"
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
                 "border-white/20 text-white hover:bg-white/10 h-13 px-8 rounded-xl text-base bg-transparent"

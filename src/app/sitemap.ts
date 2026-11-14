@@ -1,10 +1,11 @@
 import { MetadataRoute } from "next";
 import { getAllProducts } from "@/lib/products";
+import { getAllCategories } from "@/lib/categories";
 import { POSTS } from "@/lib/blogs";
 import { SITE_URL } from "@/config/seo";
 
-// Regenerate once a day — bots crawl /sitemap.xml constantly, and
-// re-fetching all products from Supabase on every hit burned Fluid CPU.
+// Fully static (on-demand only): generated at build time and refreshed only
+// when an admin edit calls /api/revalidate (sitemap is in its path list).
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_URL || "https://evsolutionbd.com";
@@ -27,10 +28,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === "" ? 1.0 : 0.8,
   }));
 
-  // 2. Category Pages
-  const categories = ["ebike", "battery", "parts", "accessories", "solar"];
-  const categoryPages = categories.map((cat) => ({
-    url: `${baseUrl}/products?category=${cat}`,
+  // 2. Category Pages (static /products/category/<slug> pages)
+  let categorySlugs: string[] = [];
+  try {
+    categorySlugs = (await getAllCategories()).map((c) => c.slug);
+  } catch (error) {
+    console.error("Sitemap generation error fetching categories:", error);
+  }
+  if (categorySlugs.length === 0) {
+    categorySlugs = ["ebike", "battery", "parts", "accessories", "solar"];
+  }
+  if (!categorySlugs.includes("commercial")) categorySlugs.push("commercial");
+  const categoryPages = categorySlugs.map((cat) => ({
+    url: `${baseUrl}/products/category/${cat}`,
     lastModified: new Date(),
     changeFrequency: "daily" as const,
     priority: 0.7,

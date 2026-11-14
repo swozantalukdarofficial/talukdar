@@ -109,17 +109,21 @@ function applyFilters(products: Product[], params: CatalogParams): Product[] {
 interface ProductCatalogProps {
   products: Product[];
   categories: Category[];
+  // On a /products/category/[slug] page the category comes from the route,
+  // not the URL query — the page is static, so the server already knows it.
+  fixedCategory?: string;
 }
 
 export default function ProductCatalog({
   products,
   categories,
+  fixedCategory,
 }: ProductCatalogProps) {
   const searchParams = useSearchParams();
 
   const params: CatalogParams = useMemo(
     () => ({
-      category: searchParams.get("category") ?? undefined,
+      category: fixedCategory ?? searchParams.get("category") ?? undefined,
       sort: searchParams.get("sort") ?? undefined,
       priceIdx: Number(searchParams.get("priceIdx") ?? 0),
       search: searchParams.get("search") ?? undefined,
@@ -129,7 +133,7 @@ export default function ProductCatalog({
       tag: searchParams.get("tag") ?? undefined,
       page: Math.max(1, Number(searchParams.get("page") ?? "1")),
     }),
-    [searchParams]
+    [fixedCategory, searchParams]
   );
 
   const filtered = useMemo(
@@ -203,6 +207,7 @@ export default function ProductCatalog({
               totalCount={filtered.length}
               availableBrands={availableBrands}
               categories={categories}
+              fixedCategory={fixedCategory}
             />
           </Suspense>
 

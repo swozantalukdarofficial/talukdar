@@ -181,27 +181,27 @@ export default function Footer({ settings }: FooterProps) {
             </h4>
             <ul className="flex flex-col gap-2.5 text-xs text-stone-600 font-semibold">
               <li>
-                <Link href="/products?category=ebike" className="hover:text-emerald-850 transition-colors">
+                <Link href="/products/category/ebike" className="hover:text-emerald-850 transition-colors">
                   Electric Bikes
                 </Link>
               </li>
               <li>
-                <Link href="/products?category=ebike" className="hover:text-emerald-850 transition-colors">
+                <Link href="/products/category/ebike" className="hover:text-emerald-850 transition-colors">
                   Smart Scooters
                 </Link>
               </li>
               <li>
-                <Link href="/products?category=battery" className="hover:text-emerald-850 transition-colors">
+                <Link href="/products/category/battery" className="hover:text-emerald-850 transition-colors">
                   Graphene Batteries
                 </Link>
               </li>
               <li>
-                <Link href="/products?category=parts" className="hover:text-emerald-850 transition-colors">
+                <Link href="/products/category/parts" className="hover:text-emerald-850 transition-colors">
                   Lithium Chargers
                 </Link>
               </li>
               <li>
-                <Link href="/products?category=accessories" className="hover:text-emerald-850 transition-colors">
+                <Link href="/products/category/accessories" className="hover:text-emerald-850 transition-colors">
                   Accessories
                 </Link>
               </li>

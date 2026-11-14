@@ -10,7 +10,7 @@ interface Props {
 
 export default function CollectionSchema({ products, categoryName, categorySlug }: Props) {
   const baseUrl = SITE_URL;
-  const url = categorySlug === "all" ? `${baseUrl}/products` : `${baseUrl}/products?category=${categorySlug}`;
+  const url = categorySlug === "all" ? `${baseUrl}/products` : `${baseUrl}/products/category/${categorySlug}`;
 
   // 1. CollectionPage Schema
   const collectionJsonLd = {

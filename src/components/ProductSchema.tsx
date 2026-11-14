@@ -95,7 +95,7 @@ export default function ProductSchema({ product }: Props) {
         "@type": "ListItem",
         "position": 3,
         "name": product.category,
-        "item": `${baseUrl}/products?category=${product.category}`,
+        "item": `${baseUrl}/products/category/${product.category}`,
       },
       {
         "@type": "ListItem",
