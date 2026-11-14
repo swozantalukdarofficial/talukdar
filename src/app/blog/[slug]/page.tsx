@@ -7,7 +7,7 @@ import { fetchBlogs } from "@/lib/blogs";
 import { Clock, ArrowLeft, Calendar, BookOpen, ArrowRight } from "lucide-react";
 import ShareButton from "@/components/ShareButton";
 
-export const revalidate = 0; // Force dynamic fetching for newly created blog pages
+export const revalidate = 3600; // Refresh hourly — new posts are generated on demand, then cached
 
 interface Props {
   params: Promise<{ slug: string }> | { slug: string };

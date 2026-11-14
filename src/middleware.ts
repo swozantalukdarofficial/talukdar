@@ -13,5 +13,8 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|icon.png|icon.svg).*)"],
+  // Only /admin needs the x-pathname header (maintenance-mode exclusion
+  // in the root layout). Matching every page made middleware run on all
+  // storefront + bot traffic and burned ~half of the monthly Fluid CPU.
+  matcher: ["/admin/:path*"],
 };
