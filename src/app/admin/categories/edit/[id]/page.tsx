@@ -3,7 +3,7 @@
 import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import { updateCategory, getCategoryById } from "@/lib/categories";
-import { getAllProducts, updateProduct } from "@/lib/products";
+import { getAllProducts, updateProduct, revalidateStorefront } from "@/lib/products";
 import type { Product } from "@/lib/types";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -91,6 +91,13 @@ export default function EditCategoryPage({ params }: { params: Promise<{ id: str
       setSaving(false);
     } else {
       toast.success("Category updated successfully");
+      // Categories feed the storefront header + filters (layout data) — no
+      // time-based fallback anymore, refresh on demand.
+      if (!(await revalidateStorefront())) {
+        toast.warning(
+          "Category saved, but the storefront did not refresh — edit any product to retry."
+        );
+      }
       router.push("/admin/categories");
       router.refresh();
     }
@@ -108,6 +115,7 @@ export default function EditCategoryPage({ params }: { params: Promise<{ id: str
         setProducts(products.filter(p => p.id !== productId));
         setOtherProducts([...otherProducts, removedProd]);
       }
+      await revalidateStorefront();
     }
   }
 
@@ -125,6 +133,7 @@ export default function EditCategoryPage({ params }: { params: Promise<{ id: str
         setProducts([...products, addedProd]);
       }
       setSelectedProductId("");
+      await revalidateStorefront();
     }
     setAssigning(false);
   }

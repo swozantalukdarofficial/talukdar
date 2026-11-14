@@ -1,7 +1,16 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { getAdminClient, requireAdmin } from "@/lib/supabase-server";
 import { adminEmailFrom, logActivity } from "@/lib/activity";
+
+// On-demand only (no time-based revalidation): a blog change must refresh
+// the static blog list + post page right away, or it stays stale until the
+// next product edit or deploy.
+export function revalidateBlog(slug?: string) {
+  revalidatePath("/blog");
+  if (slug) revalidatePath(`/blog/${slug}`);
+}
 
 function bearerToken(req: Request): string {
   const header = req.headers.get("authorization") || "";
@@ -140,6 +149,9 @@ export async function POST(req: Request) {
       .single();
 
     if (error) throw error;
+
+    // On-demand refresh of the static blog list + post page.
+    revalidateBlog(data.slug);
 
     // Log the creation (best-effort, never blocks)
     try {

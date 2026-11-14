@@ -266,8 +266,13 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
       toast.error(res.error);
     } else {
       toast.success("Product updated successfully!");
-      // Refresh storefront cache so the new price shows instantly
-      await revalidateStorefront(res.product.slug);
+      // Refresh storefront cache so the new price shows instantly — no
+      // time-based fallback exists anymore, so warn loudly on failure.
+      if (!(await revalidateStorefront(res.product.slug))) {
+        toast.warning(
+          "Product saved, but the storefront did not refresh — save again to retry."
+        );
+      }
 
       // Fire-and-forget: low-stock email + activity log (never blocks navigation)
       const savedStock = parseInt(stock);

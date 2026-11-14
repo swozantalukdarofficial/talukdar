@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createCategory } from "@/lib/categories";
+import { revalidateStorefront } from "@/lib/products";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Loader2, ArrowLeft, Save } from "lucide-react";
@@ -49,6 +50,13 @@ export default function AddCategoryPage() {
       setSaving(false);
     } else {
       toast.success("Category created successfully");
+      // Categories feed the storefront header + filters (layout data) — no
+      // time-based fallback anymore, refresh on demand.
+      if (!(await revalidateStorefront())) {
+        toast.warning(
+          "Category saved, but the storefront did not refresh — edit any product to retry."
+        );
+      }
       router.push("/admin/categories");
       router.refresh();
     }

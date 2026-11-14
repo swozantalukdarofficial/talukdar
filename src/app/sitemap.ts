@@ -5,7 +5,6 @@ import { SITE_URL } from "@/config/seo";
 
 // Regenerate once a day — bots crawl /sitemap.xml constantly, and
 // re-fetching all products from Supabase on every hit burned Fluid CPU.
-export const revalidate = 86400;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_URL || "https://evsolutionbd.com";

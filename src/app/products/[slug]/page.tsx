@@ -7,7 +7,6 @@ import { SITE_URL } from "@/config/seo";
 import ProductSchema from "@/components/ProductSchema";
 import { getProductMetaDescription } from "@/lib/metaDescriptions";
 
-export const revalidate = 300;
 
 interface Props {
   params: Promise<{ slug: string }>;

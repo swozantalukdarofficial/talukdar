@@ -564,16 +564,25 @@ export async function getProductById(id: string): Promise<Product | null> {
 // ─── Storefront cache invalidation ─────────────────────────────
 // Call after product create/update/delete so price changes show up
 // instantly instead of waiting for the ISR revalidate window.
-export async function revalidateStorefront(slug?: string): Promise<void> {
+// On-demand storefront refresh after a product change. Returns false if the
+// revalidation request failed — there is no time-based fallback anymore, so
+// callers must warn the admin instead of showing a plain "saved" toast.
+export async function revalidateStorefront(slug?: string): Promise<boolean> {
   try {
-    const paths = ["/", "/products"];
+    const paths = ["/", "/products", "/sitemap.xml"];
     if (slug) paths.push(`/products/${slug}`);
-    await fetch("/api/revalidate", {
+    const res = await fetch("/api/revalidate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ paths }),
     });
-  } catch {
-    // Non-fatal: ISR will eventually refresh the pages
+    if (!res.ok) {
+      console.error("revalidateStorefront failed:", res.status);
+      return false;
+    }
+    return true;
+  } catch (e) {
+    console.error("revalidateStorefront failed:", e);
+    return false;
   }
 }

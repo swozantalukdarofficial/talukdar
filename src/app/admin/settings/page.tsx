@@ -115,8 +115,27 @@ export default function AdminSettingsPage() {
 
     if (error) {
       toast.error(`Failed to save settings: ${error}`);
-    } else if (!error) {
+    } else {
       toast.success("Store settings updated & published successfully!");
+      // Storefront pages are fully static now — refresh the layout on demand
+      // (announcement bar, store name, footer all live in the layout). No
+      // time-based fallback exists, so warn loudly on failure.
+      try {
+        const res = await fetch("/api/revalidate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ paths: ["/"] }),
+        });
+        if (!res.ok) {
+          toast.warning(
+            "Settings saved, but the storefront did not refresh — save again to retry."
+          );
+        }
+      } catch {
+        toast.warning(
+          "Settings saved, but the storefront did not refresh — save again to retry."
+        );
+      }
     }
     setLoading(false);
   }

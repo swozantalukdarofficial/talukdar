@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { v2 as cloudinary } from "cloudinary";
 import { requireAdmin } from "@/lib/supabase-server";
 import { adminEmailFrom, logActivity } from "@/lib/activity";
-import { getBlogDbClient } from "../route";
+import { getBlogDbClient, revalidateBlog } from "../route";
 
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME!,
@@ -173,6 +174,9 @@ export async function PATCH(
 
     if (error) throw error;
 
+    // On-demand refresh of the static blog list + post page.
+    revalidateBlog(data.slug);
+
     // Log the update (best-effort, never blocks)
     try {
       await logActivity(
@@ -214,7 +218,7 @@ export async function DELETE(
 
     const { data: row, error: fetchErr } = await db
       .from("blogs")
-      .select("image, title")
+      .select("image, title, slug")
       .eq("id", id)
       .maybeSingle();
     if (fetchErr) throw fetchErr;
@@ -222,6 +226,9 @@ export async function DELETE(
 
     const { error } = await db.from("blogs").delete().eq("id", id);
     if (error) throw error;
+
+    // On-demand refresh of the static blog list + post page.
+    revalidateBlog(row.slug);
 
     // Log the deletion (best-effort, never blocks)
     try {

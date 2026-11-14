@@ -6,7 +6,6 @@ import { fetchBlogs } from "@/lib/blogs";
 import { Clock, BookOpen, ArrowRight } from "lucide-react";
 import BlogListSchema from "@/components/BlogListSchema";
 
-export const revalidate = 3600; // Refresh hourly — blogs rarely change, no need to run a function on every view
 
 export const metadata: Metadata = {
   title: "EV Store Blog — Electric Bikes & Scooter Tech Journal",

@@ -32,7 +32,9 @@ export default function QuickCategoryChange({
       toast.success("Category updated!");
       setCategory(newCat);
       // Category affects listings; refresh storefront cache
-      await revalidateStorefront();
+      if (!(await revalidateStorefront())) {
+        toast.warning("Category saved, but the storefront did not refresh.");
+      }
     }
     setUpdating(false);
   }

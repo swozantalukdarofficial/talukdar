@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getAllCategories, deleteCategory } from "@/lib/categories";
-import { getAllProducts } from "@/lib/products";
+import { getAllProducts, revalidateStorefront } from "@/lib/products";
 import { Plus, FolderTree, Package, ExternalLink, Sparkles, Pencil, Trash2, Loader2, RefreshCw } from "lucide-react";
 import Link from "next/link";
 import CategoryDrawer from "@/components/admin/CategoryDrawer";
@@ -48,6 +48,12 @@ export default function AdminCategoriesPage() {
     } else {
       toast.success("Category deleted.");
       setCategories((prev) => prev.filter((c) => c.id !== id));
+      // No time-based fallback anymore: refresh the storefront on demand.
+      if (!(await revalidateStorefront())) {
+        toast.warning(
+          "Category deleted, but the storefront did not refresh — edit any product to retry."
+        );
+      }
     }
   };
 

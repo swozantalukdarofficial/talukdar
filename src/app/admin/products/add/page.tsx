@@ -221,8 +221,13 @@ export default function AddProductPage() {
     }
 
     toast.success(`"${name}" product added successfully! 🎉`);
-    // Refresh storefront cache so the new price shows instantly
-    await revalidateStorefront(result.product.slug);
+    // Refresh storefront cache so the new price shows instantly — no
+    // time-based fallback exists anymore, so warn loudly on failure.
+    if (!(await revalidateStorefront(result.product.slug))) {
+      toast.warning(
+        "Product saved, but the storefront did not refresh — change the product again or re-save to retry."
+      );
+    }
 
     // Fire-and-forget: low-stock email + activity log (never blocks navigation)
     const savedStock = parseInt(stock) || 0;

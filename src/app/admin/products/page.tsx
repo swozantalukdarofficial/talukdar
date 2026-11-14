@@ -26,7 +26,7 @@ import {
   Star
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
-import { updateProduct, deleteProduct } from "@/lib/products";
+import { updateProduct, deleteProduct, revalidateStorefront } from "@/lib/products";
 import { getAllCategories } from "@/lib/categories";
 import type { Product, Category } from "@/lib/types";
 import { toast } from "sonner";
@@ -177,6 +177,13 @@ export default function AdminProductsPage() {
       toast.success("Product deleted.");
       setProducts((prev) => prev.filter((p) => p.id !== id));
       setSelectedIds((prev) => prev.filter((item) => item !== id));
+      // No time-based fallback anymore: refresh the storefront on demand,
+      // or the deleted product stays visible until the next product edit.
+      if (!(await revalidateStorefront())) {
+        toast.warning(
+          "Product deleted, but the storefront did not refresh — edit any product to retry."
+        );
+      }
     }
   };
 
@@ -195,6 +202,12 @@ export default function AdminProductsPage() {
     setProducts((prev) => prev.filter((p) => !selectedIds.includes(p.id)));
     setSelectedIds([]);
     setBulkDeleting(false);
+    // No time-based fallback anymore: refresh the storefront on demand.
+    if (!(await revalidateStorefront())) {
+      toast.warning(
+        "Products deleted, but the storefront did not refresh — edit any product to retry."
+      );
+    }
   };
 
   const handleExportCSV = () => {

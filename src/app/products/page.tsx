@@ -1,194 +1,53 @@
 import { Suspense } from "react";
 import { getAllProducts } from "@/lib/products";
-import { PRICE_RANGES, type ProductCategory } from "@/lib/types";
 import { getAllCategories } from "@/lib/categories";
-import ProductGrid from "@/components/ProductGrid";
-import ProductFilters, { SortDropdown } from "@/components/ProductFilters";
+import ProductCatalog from "@/components/ProductCatalog";
 import { ProductGridSkeleton } from "@/components/Skeletons";
-import Pagination from "@/components/Pagination";
-import CollectionSEOContent from "@/components/CollectionSEOContent";
+import CollectionSchema from "@/components/CollectionSchema";
 import type { Metadata } from "next";
 import { SITE_URL } from "@/config/seo";
-import CollectionSchema from "@/components/CollectionSchema";
 
-interface ProductsPageProps {
-  searchParams: Promise<{
-    category?: string;
-    sort?: string;
-    priceIdx?: string;
-    search?: string;
-    brand?: string;
-    stock?: string;
-    page?: string;
-    subcat?: string;
-    tag?: string;
-  }>;
-}
+// Static metadata only — reading searchParams here would force the page to
+// render dynamically on every request. Category-specific titles are handled
+// by the client-side catalog UI instead.
+export const metadata: Metadata = {
+  title: "All Products — Premium EV Parts & Accessories | EV Solution BD",
+  description:
+    "Browse our full range of e-bikes, lithium batteries, chargers, and parts. High-quality products with warranty and fast delivery across Bangladesh.",
+  alternates: {
+    canonical: `${SITE_URL}/products`,
+  },
+  openGraph: {
+    title: "All Products | EV Solution BD",
+    description:
+      "Browse e-bikes, lithium batteries, chargers, and parts with warranty in Bangladesh.",
+    url: `${SITE_URL}/products`,
+  },
+};
 
-export async function generateMetadata({ searchParams }: ProductsPageProps): Promise<Metadata> {
-  const params = await searchParams;
-  const category = params.category;
-  
-  if (category) {
-    const categories = await getAllCategories();
-    const activeCategoryObj = categories.find(c => c.slug === category);
-    const categoryName = activeCategoryObj ? activeCategoryObj.name : category.charAt(0).toUpperCase() + category.slice(1);
-    const canonicalUrl = `${SITE_URL}/products?category=${encodeURIComponent(category)}`;
-
-    return {
-      title: `${categoryName} — Premium E-Bike & EV Parts | EV Solution BD`,
-      description: `Shop premium ${categoryName.toLowerCase()} in Bangladesh. We offer original products with warranty, best price, and instant delivery.`,
-      alternates: {
-        canonical: canonicalUrl,
-      },
-      openGraph: {
-        title: `${categoryName} | EV Solution BD`,
-        description: `Shop premium ${categoryName.toLowerCase()} in Bangladesh. Original products with warranty.`,
-        url: canonicalUrl,
-      },
-    };
-  }
-
-  const canonicalUrl = `${SITE_URL}/products`;
-
-  return {
-    title: "All Products — Premium EV Parts & Accessories | EV Solution BD",
-    description: "Browse our full range of e-bikes, lithium batteries, chargers, and parts. High-quality products with warranty and fast delivery across Bangladesh.",
-    alternates: {
-      canonical: canonicalUrl,
-    },
-    openGraph: {
-      title: "All Products | EV Solution BD",
-      description: "Browse e-bikes, lithium batteries, chargers, and parts with warranty in Bangladesh.",
-      url: canonicalUrl,
-    },
-  };
-}
-
-export const revalidate = 300;
-
-export default async function ProductsPage({ searchParams }: ProductsPageProps) {
-  const params = await searchParams;
-  const category = params.category as ProductCategory | undefined;
-  const sortBy = params.sort as
-    | "price_asc"
-    | "price_desc"
-    | "newest"
-    | "featured"
-    | undefined;
-  const priceIdx = Number(params.priceIdx ?? 0);
-  const priceRange = PRICE_RANGES[priceIdx] ?? PRICE_RANGES[0];
-  const search = params.search;
-  const brand = params.brand;
-  const stock = params.stock;
-  const subcat = params.subcat;
-  const tag = params.tag;
-
-  const inStock = stock === "in_stock" ? true : stock === "out_of_stock" ? false : undefined;
-
-  // Run database queries in parallel for peak performance
-  const [products, brandLookupProducts] = await Promise.all([
-    getAllProducts({
-      category: category ?? "all",
-      sortBy: sortBy ?? "newest",
-      minPrice: priceRange.min,
-      maxPrice: priceRange.max,
-      search,
-      brand,
-      inStock,
-      subcat,
-      tag,
-    }),
-    getAllProducts({
-      category: category ?? "all",
-      search,
-    })
+// Fully static (on-demand only): the product list is fetched once at build
+// time and refreshed only when an admin edit calls /api/revalidate — no
+// time-based revalidation, no function run per listing view. Filtering,
+// sorting and pagination run in the browser inside ProductCatalog, which
+// reads the URL params client-side.
+export default async function ProductsPage() {
+  const [products, categories] = await Promise.all([
+    getAllProducts({}),
+    getAllCategories(),
   ]);
-
-  // Extract unique brands dynamically from the category products
-  const uniqueBrands = new Set<string>();
-  brandLookupProducts.forEach((p) => {
-    const b = p.specs?.Brand || p.specs?.brand;
-    if (b) uniqueBrands.add(b.trim());
-  });
-
-  const availableBrands = Array.from(uniqueBrands)
-    .sort()
-    .map((b) => ({
-      label: b,
-      value: b,
-    }));
-
-  const categories = await getAllCategories();
-  
-  const activeCategoryObj = categories.find(c => c.slug === category);
-  const activeCategory = category
-    ? activeCategoryObj?.name || category
-    : "All Products";
-
-  // Pagination Configuration
-  const ITEMS_PER_PAGE = 12;
-  const currentPage = Math.max(1, Number(params.page ?? "1"));
-  const totalCount = products.length;
-  const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedProducts = products.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
     <main className="min-h-screen bg-[#faf9f6] pt-0">
       {/* Schema Markup for search engines */}
-      <CollectionSchema products={paginatedProducts} categoryName={activeCategory} categorySlug={category ?? "all"} />
+      <CollectionSchema
+        products={products.slice(0, 12)}
+        categoryName="All Products"
+        categorySlug="all"
+      />
 
-      {/* Page header */}
-      <div className="border-b border-stone-200 bg-white">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 py-6 md:py-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h1 className="text-2xl md:text-3xl font-extrabold text-stone-900 tracking-tight mb-1">
-              {activeCategory}
-            </h1>
-            <p className="text-stone-500 text-xs font-medium uppercase tracking-wider">
-              Showing {products.length} result{products.length !== 1 ? "s" : ""}
-            </p>
-          </div>
-          <div className="flex-shrink-0">
-            <Suspense fallback={<div className="w-40 h-9 bg-stone-100 animate-pulse rounded-xl" />}>
-              <SortDropdown />
-            </Suspense>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-[1600px] mx-auto px-6 lg:px-12 py-8">
-        <div className="flex flex-col md:flex-row gap-8">
-          {/* Filters sidebar (desktop) + mobile toggle */}
-          <Suspense fallback={null}>
-            <ProductFilters totalCount={products.length} availableBrands={availableBrands} categories={categories} />
-          </Suspense>
-
-          {/* Product grid */}
-          <div className="flex-1 min-w-0">
-            {products.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-20 text-center bg-white border border-stone-200 rounded-2xl p-8">
-                <div className="text-4xl mb-4">🔎</div>
-                <h2 className="text-lg font-bold text-stone-900 mb-1">
-                  No products found
-                </h2>
-                <p className="text-sm text-stone-500 max-w-sm">
-                  Try adjusting your filters or sorting option to discover more products.
-                </p>
-              </div>
-            ) : (
-              <Suspense fallback={<ProductGridSkeleton />}>
-                <ProductGrid products={paginatedProducts} />
-                <Pagination currentPage={currentPage} totalPages={totalPages} />
-              </Suspense>
-            )}
-          </div>
-        </div>
-
-        {/* Dynamic Collection-specific SEO & FAQ section */}
-        <CollectionSEOContent category={category ?? "all"} />
-      </div>
+      <Suspense fallback={<ProductGridSkeleton />}>
+        <ProductCatalog products={products} categories={categories} />
+      </Suspense>
     </main>
   );
 }

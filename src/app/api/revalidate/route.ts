@@ -5,7 +5,10 @@ import { revalidatePath } from "next/cache";
 // Called from the admin panel (behind AdminClientGuard) after
 // product create/update/delete so price changes appear instantly
 // instead of waiting for the ISR window.
-const ALLOWED_PREFIXES = ["/", "/products"];
+// On-demand only: no time-based revalidation anywhere in the app, so these
+// are the only paths the admin can refresh. "/" with type "layout" refreshes
+// the root layout (settings/categories) and every page beneath it.
+const ALLOWED_PREFIXES = ["/", "/products", "/blog", "/sitemap.xml"];
 
 function isAllowed(path: string): boolean {
   if (typeof path !== "string" || !path.startsWith("/")) return false;
