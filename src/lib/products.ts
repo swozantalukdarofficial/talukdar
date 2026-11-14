@@ -569,7 +569,13 @@ export async function getProductById(id: string): Promise<Product | null> {
 // callers must warn the admin instead of showing a plain "saved" toast.
 export async function revalidateStorefront(slug?: string): Promise<boolean> {
   try {
-    const paths = ["/", "/products", "/products/category/[slug]", "/sitemap.xml"];
+    const paths = [
+      "/",
+      "/products",
+      "/products/category/[slug]",
+      "/sitemap.xml",
+      "/api/products-feed",
+    ];
     if (slug) paths.push(`/products/${slug}`);
     const res = await fetch("/api/revalidate", {
       method: "POST",

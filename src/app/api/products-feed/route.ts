@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 import { getAllProducts } from "@/lib/products";
 import { SITE_URL } from "@/config/seo";
 
-export const dynamic = "force-dynamic";
+// Fully static (on-demand only): generated at build time and refreshed only
+// when a product edit calls /api/revalidate. Bots (Google Merchant / Meta
+// catalog) fetch this feed on a schedule, and force-dynamic made every fetch
+// run a function + a full Supabase query for nothing.
+export const dynamic = "force-static";
 
 function escapeXml(unsafe: string): string {
   return unsafe

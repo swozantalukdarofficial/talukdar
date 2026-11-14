@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getProductBySlug, getRelatedProducts } from "@/lib/products";
+import { getProductBySlug, getRelatedProducts, getAllProducts } from "@/lib/products";
 import ProductDetailClient from "@/components/ProductDetailClient";
 import ProductCarousel from "@/components/ProductCarousel";
 import type { Metadata } from "next";
@@ -10,6 +10,15 @@ import { getProductMetaDescription } from "@/lib/metaDescriptions";
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+// Static at build time: every product page is prerendered, so bots (and
+// humans) are served from cache — no on-demand generation / ISR write per
+// visit. New products generate on demand on first visit and are cached after;
+// admin product edits revalidate the affected page via /api/revalidate.
+export async function generateStaticParams() {
+  const products = await getAllProducts({});
+  return products.map((p) => ({ slug: p.slug }));
 }
 
 // Generate SEO metadata dynamically

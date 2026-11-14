@@ -8,7 +8,13 @@ import { revalidatePath } from "next/cache";
 // On-demand only: no time-based revalidation anywhere in the app, so these
 // are the only paths the admin can refresh. "/" with type "layout" refreshes
 // the root layout (settings/categories) and every page beneath it.
-const ALLOWED_PREFIXES = ["/", "/products", "/blog", "/sitemap.xml"];
+const ALLOWED_PREFIXES = [
+  "/",
+  "/products",
+  "/blog",
+  "/sitemap.xml",
+  "/api/products-feed",
+];
 
 function isAllowed(path: string): boolean {
   if (typeof path !== "string" || !path.startsWith("/")) return false;
@@ -33,8 +39,14 @@ export async function POST(req: NextRequest) {
     }
 
     for (const p of valid) {
-      // "/" needs layout revalidation to refresh nested product data
-      revalidatePath(p, p === "/" ? "layout" : "page");
+      // Route handlers (e.g. /api/products-feed) take no type argument —
+      // revalidatePath(path) alone invalidates the handler.
+      if (p.startsWith("/api/")) {
+        revalidatePath(p);
+      } else {
+        // "/" needs layout revalidation to refresh nested product data
+        revalidatePath(p, p === "/" ? "layout" : "page");
+      }
     }
 
     return NextResponse.json({ revalidated: valid });
